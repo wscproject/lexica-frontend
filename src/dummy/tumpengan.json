@@ -1,0 +1,125 @@
+{
+  "status": "Success",
+  "statusCode": 200,
+  "data": [
+    {
+      "id": "Q2746599",
+      "label": "tumpeng",
+      "description": "salah satu jenis hidangan nasi",
+      "statements": {
+        "instanceOf":{
+          "property": "P31",
+          "data": [
+            {
+              "id": "Q19861951",
+              "value": "jenis makanan atau masakan"
+            },
+            {
+              "id": "Q8195619",
+              "value": "makanan manusia"
+            },
+            {
+              "id": "Q746549",
+              "value": "hidangan"
+            }
+          ]
+        },
+        "subclass": {
+          "property": "P279",
+          "data": [
+            {
+              "id": "Q21976260",
+              "value": "masakan nasi"
+            }
+          ] 
+        },
+        "partOf": {
+          "property": "P361",
+          "data": [
+            {
+              "id": "Q6165227",
+              "value": "Masakan Jawa"
+            },
+            {
+              "id": "Q787497",
+              "value": "masakan Indonesia"
+            }
+          ]
+        },
+        "image": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Nasi Tumpeng.jpg",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Nasi_Tumpeng.jpg"
+            }
+          ]
+        },
+        "follows": null,
+        "textAudio":null
+      }
+    },
+    {
+      "id": "Q13522658",
+      "label": "Tumpeng",
+      "description": "desa di Kabupaten Bondowoso, Jawa Timur",
+      "statements": {
+        "instanceOf": {
+          "property": "P31",
+          "data":[
+            {
+              "id": "Q26211545",
+              "value": "Desa di Indonesia"   
+            }
+          ]
+        },
+        "subclass": {
+          "property": "P279",
+          "data": [
+            {
+              "id": "Q2225692",
+              "value": "Daerah tingkat IV di Indonesia"
+            },
+            {
+              "id": "Q532",
+              "value": "desa"
+            }
+          ]
+        },
+        "partOf": null,
+        "image": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Kantor Desa Melayu Ulu, Banjar.jpg",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/9/92/Kantor_Desa_Melayu_Ulu%2C_Banjar.jpg"
+            }
+          ]
+        },
+        "follows": null,
+        "textAudio":null
+      }
+    },
+    {
+      "id": "Q12522693",
+      "label": "Tumpeng",
+      "description": "desa di Kabupaten Lumajang, Jawa Timur",
+      "statements": {
+        "instanceOf": {
+          "property": "P31",
+          "data":[
+            {
+              "id": "Q26211545",
+              "value": "Desa di Indonesia"   
+            }
+          ]
+        },
+        "subclass": null,
+        "partOf": null,
+        "image": null,
+        "follows": null,
+        "textAudio":null
+      }
+    }
+  ]
+}

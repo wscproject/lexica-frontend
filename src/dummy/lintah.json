@@ -1,0 +1,85 @@
+{
+  "status": "Success",
+  "statusCode": 200,
+  "data": [
+    {
+      "id": "Q43012",
+      "label": "lintah",
+      "description": "subkelas dari cacing bersegmen",
+      "statements": {
+        "instanceOf": {
+          "property": "P31",
+          "data": [
+            {
+              "id": "Q16521",
+              "value": "takson"
+            }
+          ]
+        },
+        "subclass": null,
+        "partOf": null,
+        "image": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Leech-china.JPG",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/6/6e/Leech-china.JPG"
+            }
+          ]
+        },
+        "follows": null,
+        "textAudio": null
+      }
+    },
+    {
+      "id": "Q15278867",
+      "label": "Lintah Darat",
+      "description": "film Hindia Belanda",
+      "statements": {
+        "instanceOf": {
+          "property": "P31",
+          "data": [
+            {
+              "id": "Q15278867",
+              "value": "film"
+            }
+          ]
+        },
+        "subclass": null,
+        "partOf": null,
+        "image": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Poster lintah darat.jpg",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/8/84/Poster_lintah_darat.jpg"
+            }
+          ]
+        },
+        "follows": null,
+        "textAudio": null
+      }
+    },
+    {
+      "id": "Q12494961",
+      "label": "Lintah Betung",
+      "description": "desa di Kabupaten Landak, Kalimantan Barat",
+      "statements": {
+        "instanceOf": {
+          "property": "P31",
+          "data": [
+            {
+              "id": "Q26211545",
+              "value": "Desa di Indonesia"
+            }
+          ]
+        },
+        "subclass": null,
+        "partOf": null,
+        "image": null,
+        "follows": null,
+        "textAudio": null
+      }
+    }
+  ]
+}

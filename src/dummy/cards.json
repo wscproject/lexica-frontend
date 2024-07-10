@@ -1,0 +1,50 @@
+{
+  "status": "Success",
+  "statusCode": 200,
+  "data": [
+    {
+      "lexemeId": "L694840",
+      "sensesId": "L694840-S1",
+      "lemma": "penghayatan",
+      "category": "nomina",
+      "gloss": "proses mendalami dan merasakan di dalam batin",
+      "statements": {
+        "image": null,
+        "antonym": null,
+        "translate": null
+      }
+    },
+    {
+      "lexemeId": "L697552",
+      "sensesId": "L697552-S1",
+      "lemma": "tumpengan",
+      "category": "nomina",
+      "gloss": "selebrasi dengan penyajian nasi tumpeng",
+      "statements": {
+        "image": null,
+        "antonym": null,
+        "translate": null
+      }
+    },
+    {
+      "lexemeId": "L1330284",
+      "sensesId": "L1330284-S1",
+      "lemma": "lintah",
+      "category": "nomina",
+      "gloss": "hewan seperti cacing, berbadan pipih dan mampu menghisap darah",
+      "statements": {
+        "image": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Sucking leech.jpg",
+              "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Sucking_leech.jpg"
+            }
+          ]
+        },
+        "antonym": null,
+        "translate": null
+      }
+    }
+  ]
+}

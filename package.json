@@ -1,0 +1,33 @@
+{
+  "name": "lexica-demo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@wikimedia/codex": "^1.6.1",
+    "@wikimedia/codex-icons": "^1.6.1",
+    "axios": "^1.7.2",
+    "interactjs": "^1.10.27",
+    "lodash.debounce": "^4.0.8",
+    "pinia": "^2.1.7",
+    "vue": "^3.4.21",
+    "vue-client-only": "^2.1.0",
+    "vue-cookies": "^1.8.4",
+    "vue-flip": "^3.0.2",
+    "vue-router": "^4.3.2",
+    "vue3-cookies": "^1.0.6",
+    "vuetify": "^3.6.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3",
+    "vite": "^5.2.0"
+  }
+}

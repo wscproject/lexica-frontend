@@ -1,0 +1,5 @@
+<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Interactions/AddSquare">
+<path id="Vector" fill-rule="evenodd" clip-rule="evenodd" d="M3 0.999512C1.89543 0.999512 1 1.89494 1 2.99951V16.9995C1 18.1041 1.89543 18.9995 3 18.9995H17C18.1046 18.9995 19 18.1041 19 16.9995V2.99951C19 1.89494 18.1046 0.999512 17 0.999512H3ZM11 8.99951H16V10.9995H11V15.9995H9V10.9995H4V8.99951H9V3.99951H11V8.99951Z" fill="#202122"/>
+</g>
+</svg>
