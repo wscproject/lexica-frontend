@@ -11,6 +11,8 @@ import About from "./pages/About/index.vue";
 import Guide from "./pages/Guide/index.vue";
 import Session from "./pages/Session/index.vue";
 import Success from "./pages/Success/index.vue";
+import Privacy from "./pages/Privacy/index.vue";
+import License from "./pages/License/index.vue";
 
 import AuthLayout from "./components/layout/auth/index.vue";
 import HomeLayout from "./components/layout/home/index.vue";
@@ -37,7 +39,16 @@ const routes = [
     path: "/about",
     name: "about",
     component: About,
-    meta: { layout: AuthLayout },
+  },
+  {
+    path: "/privacy-policy",
+    name: "privacy-policy",
+    component: Privacy,
+  },
+  {
+    path: "/license-list",
+    name: "license",
+    component: License,
   },
   {
     path: "/guide",

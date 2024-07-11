@@ -70,6 +70,12 @@ ol {
   list-style-type: decimal !important;
 }
 
+ul {
+  list-style-type: initial !important;
+  padding-left: 16px !important;
+  margin-left: 8px !important;
+}
+
 html {
   margin-right: unset !important;
 }

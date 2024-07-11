@@ -9,14 +9,18 @@ import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
   >
     <img :src="Logo" alt="lexica_footer" />
     <div class="text-center text-[12px]">
-      <span>Sebuah perkakas dari </span><a>Wikidata Software Collaboration</a>
+      <span>Sebuah perkakas dari </span
+      ><a
+        href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
+        >Wikidata Software Collaboration</a
+      >
     </div>
     <div class="text-center text-[12px] mt-[4px]">
-      <a>Tentang</a>
+      <a href="/about">Tentang</a>
       <span> · </span>
-      <a>Privasi</a>
+      <a href="/privacy-policy">Privasi</a>
       <span> · </span>
-      <a>Lisensi</a>
+      <a href="/license-list">Lisensi</a>
     </div>
   </footer>
 </template>
