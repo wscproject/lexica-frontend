@@ -47,7 +47,7 @@ const statements = computed(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between gap-x-2 relative rounded-t-[16px]"
+      class="header p-[16px] text-white flex test justify-between relative rounded-t-[16px]"
       :style="{
         background: '#2A4B8D',
         alignItems: 'flex-start',
@@ -58,7 +58,7 @@ const statements = computed(() => {
       @touchstart.stop="emit('onHold')"
       @touchend.stop="emit('onRelease')"
     >
-      <div>
+      <div class="w-full break-normal">
         <CdxLabel class="text-[18px] pb-[4px] leading-[22.5px]">{{
           props?.headerData?.lemma
         }}</CdxLabel>
@@ -75,9 +75,8 @@ const statements = computed(() => {
         <p
           :key="2"
           v-if="props?.headerData?.gloss"
-          class="overflow-hidden text-ellipsis"
           :style="{
-            whiteSpace: 'nowrap',
+            wordWrap: 'break-word',
           }"
         >
           {{ props.headerData.gloss }}

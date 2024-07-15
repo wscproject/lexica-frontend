@@ -506,7 +506,7 @@ watch(
                 ? ''
                 : springBack
                 ? 'transform 0.35s'
-                : 'transform 1s',
+                : 'transform 0.5s ease-out',
               transformStyle: 'preserve-3d',
               zIndex: '2',
               display:
