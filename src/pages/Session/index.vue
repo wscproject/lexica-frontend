@@ -7,11 +7,6 @@ import CardReview from "@/components/pages/Session/Card/review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 
-import cards from "@/dummy/cards.json";
-import lintah from "@/dummy/lintah.json";
-import tumpengan from "@/dummy/tumpengan.json";
-import penghayatan from "@/dummy/penghayatan.json";
-
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
@@ -36,7 +31,6 @@ import {
   UpdateCardDetail,
   EndContribution,
 } from "@/api/Session";
-import { cookies } from "../../helper/cookies";
 
 const router = useRouter();
 
@@ -58,7 +52,6 @@ const submittingData = ref(false);
 const undoWarn = ref(false);
 const progress = reactive({ number: 0 });
 const skipAll = ref(false);
-const subDetail = ref(null);
 const testing = ref(false);
 const springBack = ref(false);
 const zIndex = ref("z-[1]");
@@ -81,28 +74,6 @@ const isError = ref(false);
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
-};
-
-const recommendations = (lemma) => {
-  if (lemma === "lintah") {
-    return lintah?.data;
-  } else if (lemma === "tumpengan") {
-    return [];
-  } else if (lemma === "penghayatan") {
-    return penghayatan?.data;
-  } else {
-    return [];
-  }
-};
-
-const searchRecommendations = (lemma) => {
-  if (lemma === "lintah") {
-    return lintah?.data;
-  } else if (lemma === "tumpengan") {
-    return tumpengan?.data;
-  } else if (lemma === "penghayatan") {
-    return penghayatan?.data;
-  }
 };
 
 const currCount = computed(() => {
@@ -575,7 +546,6 @@ watch(
                 :key="0"
                 :recommendation="entities"
                 :data="value"
-                :searchRec="searchRecommendations(value?.lemma)"
                 :keyword="params.keyword"
                 :searchLoading="searchLoading"
                 :recommendedLoading="recommendedLoading"
