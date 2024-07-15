@@ -16,6 +16,7 @@ const emit = defineEmits(["backtoItem, onHold, onRelease"]);
 const props = defineProps({
   data: Object,
   isLoading: Boolean,
+  headerData: Object,
 });
 
 const translate = (data) => {
@@ -58,7 +59,9 @@ const statements = computed(() => {
       @touchend="emit('onRelease')"
     >
       <div>
-        <CdxLabel class="text-[18px] pb-0">{{ props?.data?.label }}</CdxLabel>
+        <CdxLabel class="text-[18px] pb-0">{{
+          props?.headerData?.label
+        }}</CdxLabel>
 
         <div class="flex items-center gap-x-2">
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
@@ -68,13 +71,17 @@ const statements = computed(() => {
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
 
         <p
+          v-if="props?.headerData?.description"
           :key="2"
           class="overflow-hidden text-ellipsis"
           :style="{
             whiteSpace: 'wrap',
           }"
         >
-          {{ props?.data?.description }}
+          {{ props?.headerData?.description }}
+        </p>
+        <p v-else class="text-[16px] p-0">
+          <i>Tidak ada deskripsi</i>
         </p>
       </div>
       <div>

@@ -95,7 +95,7 @@ const onInput = debounce(() => {
           {{ props.data.gloss }}
         </p>
 
-        <p v-else class="text-[16px]">
+        <p v-else class="text-[16px] p-0">
           <i>Tidak ada deskripsi</i>
         </p>
       </div>

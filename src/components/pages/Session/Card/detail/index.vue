@@ -82,7 +82,7 @@ const statements = computed(() => {
           {{ props.headerData.gloss }}
         </p>
 
-        <p v-else class="text-[16px]">
+        <p v-else class="text-[16px] p-0">
           <i>Tidak ada deskripsi</i>
         </p>
       </div>

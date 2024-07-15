@@ -73,6 +73,7 @@ const entityDetailLoading = ref(false);
 const isError = ref(false);
 const detailHeaderData = ref(null);
 const isSubmitError = ref(false);
+const subItemHeaderData = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -276,7 +277,8 @@ const test1 = async (id, headerData) => {
     await getDetail(id);
   }, 100);
 };
-const test2 = async (id) => {
+const test2 = async (id, data) => {
+  subItemHeaderData.value = data;
   currMode.value = 2;
   flip.value = true;
 
@@ -360,6 +362,10 @@ const getCardsData = async () => {
 
   if (response.statusCode === 200) {
     data.value = [...response.data.filter((item) => item.status === "pending")];
+    currMargin.value =
+      ([...response.data.filter((item) => item.status === "pending")]?.length -
+        1) *
+      4;
     isLoading.value = false;
     disableSplash();
   } else {
@@ -377,10 +383,11 @@ watch(
   (newData, oldData) => {
     // currMargin.value = currMargin.value - (count.value < 5 ? 8 : 0);
 
-    if (newData?.length < oldData?.length)
-      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 8 : 0);
-    else if (newData?.length > oldData?.length)
-      currMargin.value = currMargin.value + 8;
+    if (newData?.length < oldData?.length) {
+      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 4 : 0);
+      console.log("setset", currMargin.value);
+    } else if (newData?.length > oldData?.length)
+      currMargin.value = currMargin.value + 4;
   },
   { immediate: true }
 );
@@ -430,7 +437,7 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen w-full flex flex-col">
+  <div class="min-h-screen w-full flex flex-col relative">
     <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
       <CdxButton
         weight="quiet"
@@ -492,7 +499,7 @@ watch(
         <div
           class="flex justify-center w-full relative custom-height items-center"
           :style="{
-            marginTop: '12px',
+            marginTop: currMargin + 'px',
             perspective: '1000px',
           }"
         >
@@ -574,7 +581,7 @@ watch(
                     gloss: value?.gloss,
                   })
                 "
-                @gotoSubItemDetail="(value) => test2(value?.id)"
+                @gotoSubItemDetail="(value) => test2(value?.id, value)"
                 @gotoReview="test3"
                 @setSearch="searchKeyword"
                 @loadMore="loadMore"
@@ -596,6 +603,7 @@ watch(
               <CardSubItemDetail
                 :data="entityDetailData"
                 :isLoading="entityDetailLoading"
+                :headerData="subItemHeaderData"
                 v-else-if="currMode === 2"
                 @backtoItem="backtoHome"
               />
