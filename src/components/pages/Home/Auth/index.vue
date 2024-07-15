@@ -34,7 +34,9 @@ const props = defineProps({
           class="shrink-0 w-[48px] h-[48px] mb-[8px]"
         />
       </div>
-      <CdxLabel class="] mb-[12px] text-[18px] p-0"> {{ store.name }}</CdxLabel>
+      <CdxLabel class="] mb-[12px] text-[18px] p-0">
+        Halo, {{ store.name }}!</CdxLabel
+      >
     </div>
 
     <div class="text-[16px] pb-[12px]">

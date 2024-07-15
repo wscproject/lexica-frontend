@@ -65,7 +65,7 @@ const moveCurr = (action) => {
       <div>
         <iframe
           class="h-[80vh] w-full"
-          src="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=2cd67f1ed9840be7f3c5734fbac858a4&response_type=code"
+          src="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=d804e6e8527faede6443d8add46084d8&response_type=code"
           title="Login"
         ></iframe>
       </div>

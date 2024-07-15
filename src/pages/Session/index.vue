@@ -6,6 +6,7 @@ import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue
 import CardReview from "@/components/pages/Session/Card/review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
+import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 
@@ -16,7 +17,7 @@ import {
   cdxIconUndo,
 } from "@wikimedia/codex-icons";
 import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
-import skip from "@/assets/skip.svg";
+import SkipIcon from "@/components/icons/skip/index.vue";
 import error from "@/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
@@ -59,7 +60,7 @@ const isLoading = ref(false);
 const entities = ref([]);
 const params = reactive({
   page: 1,
-  limit: 5,
+  limit: 3,
   keyword: "",
 });
 const searchLoading = ref(false);
@@ -70,6 +71,8 @@ const cardDetailLoading = ref(false);
 const entityDetailData = ref(null);
 const entityDetailLoading = ref(false);
 const isError = ref(false);
+const detailHeaderData = ref(null);
+const isSubmitError = ref(false);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -132,6 +135,9 @@ const submitCard = async (item) => {
       submit.value = false;
       disableSplash();
     }, 200);
+  } else {
+    submittingData.value = false;
+    isSubmitError.value = true;
   }
 };
 
@@ -260,8 +266,9 @@ const ab = () => {
   }, 350);
 };
 
-const test1 = async (id) => {
+const test1 = async (id, headerData) => {
   currMode.value = 1;
+  detailHeaderData.value = headerData;
   flip.value = true;
 
   setTimeout(async () => {
@@ -308,7 +315,7 @@ const loadMore = () => {
 const searchData = async () => {
   const response = await SearchEntity({
     page: params.page,
-    limit: params.keyword ? 10 : 5,
+    limit: params.keyword ? 10 : 3,
     keyword: params.keyword || data?.value?.[5 - currCount.value]?.lemma,
   });
 
@@ -465,7 +472,7 @@ watch(
       class="relative custom-height flex justify-center"
     >
       <div
-        class="w-full text-center max-w-[896px] absolute top-[45%] px-[16px]"
+        class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
       >
         <CdxLabel class="pb-[16px]">Memuat kartu...</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
@@ -486,6 +493,7 @@ watch(
           class="flex justify-center w-full relative custom-height items-center"
           :style="{
             marginTop: '12px',
+            perspective: '1000px',
           }"
         >
           <Card
@@ -524,13 +532,22 @@ watch(
               <CardSplash
                 :class="[
                   data?.length !== index + 1 ? 'bg-white' : 'bg-[#2A4B8D]',
-                  'custom-height z-[1]  rounded-[16px]',
+                  'custom-height z-[1]  rounded-[16px] max-h-[900px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
                 :key="0"
                 :currCount="currCount"
               ></CardSplash>
+            </transition>
+
+            <transition name="fade">
+              <CardSubmitFailed
+                class="custom-height rounded-[16px] back"
+                v-if="isSubmitError === true"
+                :key="0"
+                @back="isSubmitError = false"
+              ></CardSubmitFailed>
             </transition>
 
             <transition name="fade">
@@ -550,7 +567,13 @@ watch(
                 :searchLoading="searchLoading"
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
-                @gotoDetail="test1(value?.lexemeSenseId)"
+                @gotoDetail="
+                  test1(value?.lexemeSenseId, {
+                    category: value?.category,
+                    lemma: value?.lemma,
+                    gloss: value?.gloss,
+                  })
+                "
                 @gotoSubItemDetail="(value) => test2(value?.id)"
                 @gotoReview="test3"
                 @setSearch="searchKeyword"
@@ -567,6 +590,7 @@ watch(
                 v-if="currMode === 1"
                 :isLoading="cardDetailLoading"
                 :data="cardDetailData ?? {}"
+                :headerData="detailHeaderData"
                 @backtoItem="backtoHome"
               />
               <CardSubItemDetail
@@ -641,16 +665,16 @@ watch(
               data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
             )
           "
-          :disabled="undoWarn"
+          :disabled="undoWarn || submittingData"
         >
-          <img :src="skip" alt="home" />
+          <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
           <CdxLabel class="text-[16px] pb-0">Lewati</CdxLabel>
         </CdxButton>
         <CdxButton
           weight="quiet"
           class="h-[34px] w-full"
           @click="endEarly"
-          :disabled="currCount === 1"
+          :disabled="currCount === 1 || submittingData"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <CdxLabel class="text-[16px] pb-0">Akhiri sesi</CdxLabel>
@@ -716,7 +740,7 @@ watch(
 
 @media (max-height: 915px) and (min-height: 701px) {
   .custom-height {
-    height: 75vh;
+    height: 84vh;
   }
 }
 

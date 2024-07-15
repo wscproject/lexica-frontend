@@ -86,12 +86,17 @@ const onInput = debounce(() => {
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
 
         <p
+          v-if="props?.data?.gloss"
           class="overflow-hidden text-ellipsis"
           :style="{
             whiteSpace: 'nowrap',
           }"
         >
           {{ props.data.gloss }}
+        </p>
+
+        <p v-else class="text-[16px]">
+          <i>Tidak ada deskripsi</i>
         </p>
       </div>
       <div>

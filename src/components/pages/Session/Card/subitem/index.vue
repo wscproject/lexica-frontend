@@ -88,8 +88,8 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white h-full rounded-b-[16px]">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] mb-[8px] text-[16px]">Memuat...</span>
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <span class="text-[#54595D] text-[16px]">Memuat...</span>
+          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 

@@ -40,6 +40,11 @@ const api = async () => {
       async (error) => {
         let originalRequest = error.config;
 
+        if (error?.response?.status === 400) {
+          // Handle forbidden error e.g. show restricted access warning
+          return error;
+        }
+
         if (error?.response?.status === 404) {
           // Handle forbidden error e.g. show restricted access warning
           return "asd";

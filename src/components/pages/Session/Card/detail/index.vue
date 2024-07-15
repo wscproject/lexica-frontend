@@ -9,6 +9,7 @@ const isInfo = ref(false);
 
 const props = defineProps({
   data: Object,
+  headerData: Object,
   isLoading: Boolean,
 });
 
@@ -59,13 +60,13 @@ const statements = computed(() => {
     >
       <div>
         <CdxLabel class="text-[18px] pb-[4px] leading-[22.5px]">{{
-          props?.data?.lemma
+          props?.headerData?.lemma
         }}</CdxLabel>
 
         <div class="flex items-center gap-x-2 pb-[4px]">
           <img :src="wikimedia" alt="WikidataLexeme" />
           <p>
-            <b>leksem — {{ props?.data?.category }}</b>
+            <b>leksem — {{ props?.headerData?.category }}</b>
           </p>
         </div>
 
@@ -73,12 +74,17 @@ const statements = computed(() => {
 
         <p
           :key="2"
+          v-if="props?.headerData?.gloss"
           class="overflow-hidden text-ellipsis"
           :style="{
-            whiteSpace: 'wrap',
+            whiteSpace: 'nowrap',
           }"
         >
-          {{ props?.data?.gloss }}
+          {{ props.headerData.gloss }}
+        </p>
+
+        <p v-else class="text-[16px]">
+          <i>Tidak ada deskripsi</i>
         </p>
       </div>
       <div>
@@ -92,8 +98,8 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white rounded-b-[16px] h-full">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] mb-[8px] text-[16px]">Memuat...</span>
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <span class="text-[#54595D] text-[16px]">Memuat...</span>
+          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 

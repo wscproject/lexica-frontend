@@ -16,7 +16,9 @@ import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
     </div>
     <div class="text-[16px] pb-[32px]">
       <span>Dengan menggunakan Lexica, Anda menyetujui </span
-      ><a class="text-decoration-underline">Kebijakan Privasi Lexica.</a>
+      ><a class="text-decoration-underline" href="/privacy-policy"
+        >Kebijakan Privasi Lexica.</a
+      >
     </div>
 
     <a
