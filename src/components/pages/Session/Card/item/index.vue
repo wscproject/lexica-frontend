@@ -163,7 +163,7 @@ const onInput = debounce(() => {
           class="text-[16px] font-normal text-[#54595D] pb-[8px]"
           style="padding-bottom: 16px"
         >
-          Rekomendasi ({{ props?.recommendation?.length }})
+          Rekomendasi
         </p>
 
         <div
@@ -217,7 +217,7 @@ const onInput = debounce(() => {
             class="text-[16px] font-normal text-[#54595D] pb-[8px]"
             style="padding-bottom: 16px"
           >
-            Hasil pencarian ({{ props?.recommendation?.length }})
+            Hasil pencarian
           </p>
           <div
             v-for="(value, index) in props?.recommendation"
