@@ -734,7 +734,13 @@ watch(
   opacity: 0;
 }
 
-@media (max-height: 600px) {
+@media (max-height: 459px) {
+  .custom-height {
+    height: 68vh;
+  }
+}
+
+@media (max-height: 600px) and (min-height: 460px) {
   .custom-height {
     height: 75vh;
   }

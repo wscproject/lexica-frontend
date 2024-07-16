@@ -147,7 +147,7 @@ onMounted(() => {
     }"
     ref="cardRef"
     :class="[
-      'absolute bg-white rounded-[16px] shadow-custom w-full h-full min-h-[416px] max-h-[650px] min-w-[288px] max-w-[450px] border-t border-[#C8CCD1] ',
+      'absolute bg-white rounded-[16px] shadow-custom w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] border-t border-[#C8CCD1] ',
     ]"
   >
     <slot />
