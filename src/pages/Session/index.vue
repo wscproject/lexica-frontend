@@ -539,7 +539,7 @@ watch(
               <CardSplash
                 :class="[
                   data?.length !== index + 1 ? 'bg-white' : 'bg-[#2A4B8D]',
-                  'custom-height z-[1]  rounded-[16px] max-h-[900px]',
+                  'custom-height z-[1]  rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
@@ -550,7 +550,7 @@ watch(
 
             <transition name="fade">
               <CardSubmitFailed
-                class="custom-height rounded-[16px] back"
+                class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="isSubmitError === true"
                 :key="0"
                 @back="isSubmitError = false"
@@ -559,7 +559,7 @@ watch(
 
             <transition name="fade">
               <CardSubmitting
-                class="custom-height rounded-[16px] back"
+                class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="submittingData === true"
                 :key="0"
               ></CardSubmitting>
