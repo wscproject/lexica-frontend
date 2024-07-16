@@ -39,7 +39,9 @@ const translate = (data) => {
 
 const statements = computed(() => {
   return props?.data?.statements
-    ? [...Object.entries(props?.data?.statements)].filter((item) => item?.[1])
+    ? [...Object.entries(props?.data?.statements)].filter(
+        (item) => item?.[1]?.data?.[0]?.value
+      )
     : [];
 });
 </script>
