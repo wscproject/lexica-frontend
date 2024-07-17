@@ -437,7 +437,7 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen w-full flex flex-col relative">
+  <div class="container w-full flex flex-col relative">
     <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
       <CdxButton
         weight="quiet"
@@ -487,7 +487,7 @@ watch(
     </div>
     <div
       v-else-if="!isLoading && !isError"
-      class="w-full"
+      class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
         backgroundImage: `url(${blank})`,
         backgroundRepeat: 'no-repeat',
@@ -495,7 +495,7 @@ watch(
         backgroundPosition: 'center',
       }"
     >
-      <div :class="[skipAll && 'skipall', 'px-[16px]']">
+      <div :class="[skipAll && 'skipall', 'px-[16px] w-full']">
         <div
           class="flex justify-center w-full relative custom-height items-center"
           :style="{
@@ -696,6 +696,11 @@ watch(
 </template>
 
 <style>
+.container {
+  height: 100vh;
+  min-height: stretch;
+}
+
 .front,
 .back {
   -webkit-backface-visibility: hidden;
@@ -754,7 +759,7 @@ watch(
 
 @media (max-height: 915px) and (min-height: 701px) {
   .custom-height {
-    height: 84vh;
+    height: 75vh;
   }
 }
 
