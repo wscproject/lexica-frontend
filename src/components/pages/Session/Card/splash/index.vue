@@ -9,7 +9,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="absolute z-[99] w-full flex justify-center flex-col text-white text-center p-[16px]"
+    class="absolute z-[99] w-full flex justify-center flex-col text-white text-center p-[16px] h-full"
   >
     <CdxLabel>Kartu {{ props.currCount }}</CdxLabel>
     <p class="text-[28px]">

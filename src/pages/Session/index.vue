@@ -437,7 +437,7 @@ watch(
 </script>
 
 <template>
-  <div class="container w-full flex flex-col relative">
+  <div class="session-container w-full flex flex-col relative h-[100dvh]">
     <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
       <CdxButton
         weight="quiet"
@@ -696,8 +696,8 @@ watch(
 </template>
 
 <style>
-.container {
-  height: 100vh;
+.session-container {
+  height: 100%;
   min-height: stretch;
 }
 
