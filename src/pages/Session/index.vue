@@ -47,7 +47,7 @@ const next = ref(false);
 const prev = ref(false);
 const submit = ref(false);
 const cardRef = ref(null);
-const isMove = ref(true);
+const isMove = ref(false);
 const splash = ref(true);
 const submittingData = ref(false);
 const undoWarn = ref(false);
@@ -75,6 +75,8 @@ const detailHeaderData = ref(null);
 const isSubmitError = ref(false);
 const subItemHeaderData = ref(null);
 
+const timeoutLoading = ref(null);
+
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
@@ -89,11 +91,11 @@ const nextCard = (isButton, id) => {
   if (isButton) {
     next.value = true;
   }
-  springBack.value = true;
+  // springBack.value = true;
 
-  setTimeout(() => {
-    springBack.value = false;
-  }, 1000);
+  // setTimeout(() => {
+  //   springBack.value = false;
+  // }, 1000);
 
   setTimeout(async () => {
     splash.value = true;
@@ -142,8 +144,12 @@ const submitCard = async (item) => {
   }
 };
 
+let timeout = null;
+
 const undoCard = () => {
-  springBack.value = true;
+  clearTimeout(timeout);
+
+  // springBack.value = true;
   prev.value = true;
   splash.value = false;
 
@@ -151,13 +157,13 @@ const undoCard = () => {
   tempData.value = null;
   undoWarn.value = false;
 
-  setTimeout(() => {
-    springBack.value = false;
-  }, 1000);
+  // setTimeout(() => {
+  //   springBack.value = false;
+  // }, 1000);
 
   setTimeout(() => {
     prev.value = false;
-  }, 300);
+  }, 500);
 };
 
 const disableSplash = () => {
@@ -222,7 +228,7 @@ const setUndoWarn = async (id) => {
     currentStep++;
 
     if (currentStep <= steps) {
-      setTimeout(increment, interval);
+      timeout = setTimeout(increment, interval);
     }
 
     if (progress.number === 100) {
@@ -239,8 +245,12 @@ const setUndoWarn = async (id) => {
     }
   };
 
-  setTimeout(increment, interval);
+  timeout = setTimeout(increment, interval);
 };
+
+watch(timeoutLoading, () => {
+  console.log(timeout);
+});
 
 const updateDetail = async (data) => {
   const response = await UpdateCardDetail({
@@ -253,7 +263,7 @@ const updateDetail = async (data) => {
 };
 
 const aa = () => {
-  isMove.value = false;
+  isMove.value = true;
   // if (flip) {
   //   flip.value = false;
   // }
@@ -261,40 +271,36 @@ const aa = () => {
 
 const ab = () => {
   springBack.value = true;
-  isMove.value = true;
+  isMove.value = false;
   setTimeout(() => {
     springBack.value = false;
   }, 350);
 };
 
 const test1 = async (id, headerData) => {
+  zIndex.value = "";
+
   currMode.value = 1;
   detailHeaderData.value = headerData;
   flip.value = true;
 
-  setTimeout(async () => {
-    zIndex.value = "";
-    await getDetail(id);
-  }, 100);
+  await getDetail(id);
 };
 const test2 = async (id, data) => {
+  zIndex.value = "";
+
   subItemHeaderData.value = data;
   currMode.value = 2;
   flip.value = true;
 
-  setTimeout(async () => {
-    zIndex.value = "";
-    await getEntityDetail(id);
-  }, 100);
+  await getEntityDetail(id);
 };
 const test3 = (data) => {
+  zIndex.value = "";
+
   currMode.value = 3;
   flip.value = true;
   detail.value = data;
-
-  setTimeout(() => {
-    zIndex.value = "";
-  }, 100);
 };
 
 const backtoHome = () => {
@@ -302,7 +308,7 @@ const backtoHome = () => {
 
   setTimeout(() => {
     zIndex.value = "z-[1]";
-  }, 800);
+  }, 300);
 };
 
 const searchKeyword = (keyword) => {
@@ -511,11 +517,15 @@ watch(
             v-for="(value, index) in data"
             :style="{
               marginTop: -8 * index + 1 + 'px',
-              transition: !isMove
-                ? ''
-                : springBack
-                ? 'transform 0.35s'
-                : 'transform 0.5s ease-out',
+              ...(prev && { transition: 'unset !important' }),
+              ...(!isMove && { transition: 'transform 0.5s ease-out' }),
+              ...(springBack && { transition: 'transform 0.35s' }),
+
+              // transition: !isMove
+              //   ? ''
+              //   : springBack
+              //   ? 'transform 0.35s'
+              //   : 'transform 0.5s ease-out',
               transformStyle: 'preserve-3d',
               zIndex: '2',
               display:

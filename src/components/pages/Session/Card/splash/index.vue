@@ -15,6 +15,9 @@ const props = defineProps({
     <p class="text-[28px]">
       {{ props?.data?.lemma }} ({{ props?.data?.lexemeSenseId }})
     </p>
-    <p class="text-[16px]">{{ props?.data?.gloss }}</p>
+    <p v-if="props?.data?.gloss" class="text-[16px]">
+      {{ props?.data?.gloss }}
+    </p>
+    <p v-else class="text-[16px]"><i>Tidak ada deskripsi</i></p>
   </div>
 </template>
