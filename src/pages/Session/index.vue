@@ -438,7 +438,9 @@ watch(
 
 <template>
   <div class="session-container w-full flex flex-col relative">
-    <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
+    <div
+      class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
+    >
       <CdxButton
         weight="quiet"
         class="w-[44px] h-[44px] px-0 absolute left-[3px]"
@@ -739,7 +741,13 @@ watch(
   opacity: 0;
 }
 
-@media (max-height: 459px) {
+@media (max-height: 399px) {
+  .custom-height {
+    height: 58vh;
+  }
+}
+
+@media (max-height: 459px) and (min-height: 400px) {
   .custom-height {
     height: 68vh;
   }

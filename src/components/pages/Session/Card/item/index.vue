@@ -134,7 +134,7 @@ const onInput = debounce(() => {
           <span class="mb-[8px] text-[#54595D] text-[16px]"
             >Memuat rekomendasi...</span
           >
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 
