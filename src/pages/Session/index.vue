@@ -437,7 +437,7 @@ watch(
 </script>
 
 <template>
-  <div class="session-container w-full flex flex-col relative h-[100dvh]">
+  <div class="session-container w-full flex flex-col relative">
     <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
       <CdxButton
         weight="quiet"
