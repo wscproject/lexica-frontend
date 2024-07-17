@@ -24,7 +24,7 @@ const emit = defineEmits(["hideCard, onStarting, onEnd, onSkip, "]);
 const statics = readonly({
   interactMaxRotation: 2,
   interactOutOfSightXCoordinate: 500,
-  interactOutOfSightYCoordinate: -1000,
+  interactOutOfSightYCoordinate: -825,
   interactYThreshold: -30,
   interactXThreshold: 100,
 });
