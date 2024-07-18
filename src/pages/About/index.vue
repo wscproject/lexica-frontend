@@ -55,7 +55,7 @@ const router = useRouter();
           class="cdx-docs-link is-underlined"
           href="https://archive.org/details/completebookofca00behr/page/28/mode/2up"
         >
-          halaman berikut </a
+          halaman berikut</a
         >.
       </p>
     </div>
