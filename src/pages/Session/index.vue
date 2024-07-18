@@ -163,7 +163,7 @@ const undoCard = () => {
 
   setTimeout(() => {
     prev.value = false;
-  }, 500);
+  }, 600);
 };
 
 const disableSplash = () => {
