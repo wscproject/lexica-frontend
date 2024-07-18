@@ -10,7 +10,7 @@ import Image from "@/assets/guide_1.svg";
     </div>
 
     <div class="px-[16px]">
-      <CdxLabel class="text-[18px] pb-[12px]">Apa it Lexica?</CdxLabel>
+      <CdxLabel class="text-[18px] pb-[12px]">Apa itu Lexica?</CdxLabel>
       <p class="content pb">
         Lexica menyajikan tampilan penyuntingan Wikidata Leksem untuk memudahkan
         kontribusi cepat.
