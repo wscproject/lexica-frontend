@@ -165,7 +165,7 @@ onMounted(() => {
 
 .prev-card {
   transition: unset !important;
-  animation: swipeCardDown 0.4s !important;
+  animation: swipeCardDown 0.5s !important;
 }
 
 .submit-card {
@@ -181,17 +181,17 @@ onMounted(() => {
     opacity: 1;
   }
   80% {
-    opacity: 0;
+    opacity: 1;
   }
   100% {
-    transform: translateY(-500px) rotate(2deg);
+    transform: translateY(-825px) rotate(2deg);
     opacity: 0;
   }
 }
 
 @keyframes swipeCardDown {
   0% {
-    transform: translateY(-500px) rotate(2deg);
+    transform: translateY(-825px) rotate(2deg);
     opacity: 0;
   }
   30% {
