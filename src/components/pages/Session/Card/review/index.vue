@@ -1,5 +1,5 @@
 <script setup>
-import { CdxLabel, CdxIcon, CdxButton, CdxSearchInput } from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxButton } from "@wikimedia/codex";
 import { cdxIconInfoFilled } from "@wikimedia/codex-icons";
 import { ref } from "vue";
 import { useGeneralStore } from "@/store/general";

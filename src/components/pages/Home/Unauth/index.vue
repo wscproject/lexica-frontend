@@ -16,12 +16,14 @@ import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
     </div>
     <div class="text-[16px] pb-[32px]">
       <span>Dengan menggunakan Lexica, Anda menyetujui </span
-      ><a class="text-decoration-underline">Kebijakan Privasi Lexica.</a>
+      ><a class="text-decoration-underline" href="/privacy-policy"
+        >Kebijakan Privasi Lexica.</a
+      >
     </div>
 
     <a
       class="w-full flex justify-center"
-      href="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=c373636e79ec684127469b81aae43c37&response_type=code"
+      href="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=d804e6e8527faede6443d8add46084d8&response_type=code"
     >
       <CdxButton
         action="progressive"

@@ -6,11 +6,7 @@ import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue
 import CardReview from "@/components/pages/Session/Card/review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
-
-import cards from "@/dummy/cards.json";
-import lintah from "@/dummy/lintah.json";
-import tumpengan from "@/dummy/tumpengan.json";
-import penghayatan from "@/dummy/penghayatan.json";
+import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 
@@ -21,7 +17,7 @@ import {
   cdxIconUndo,
 } from "@wikimedia/codex-icons";
 import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
-import skip from "@/assets/skip.svg";
+import SkipIcon from "@/components/icons/skip/index.vue";
 import error from "@/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
@@ -36,7 +32,6 @@ import {
   UpdateCardDetail,
   EndContribution,
 } from "@/api/Session";
-import { cookies } from "../../helper/cookies";
 
 const router = useRouter();
 
@@ -52,13 +47,12 @@ const next = ref(false);
 const prev = ref(false);
 const submit = ref(false);
 const cardRef = ref(null);
-const isMove = ref(true);
+const isMove = ref(false);
 const splash = ref(true);
 const submittingData = ref(false);
 const undoWarn = ref(false);
 const progress = reactive({ number: 0 });
 const skipAll = ref(false);
-const subDetail = ref(null);
 const testing = ref(false);
 const springBack = ref(false);
 const zIndex = ref("z-[1]");
@@ -66,7 +60,7 @@ const isLoading = ref(false);
 const entities = ref([]);
 const params = reactive({
   page: 1,
-  limit: 5,
+  limit: 3,
   keyword: "",
 });
 const searchLoading = ref(false);
@@ -77,32 +71,15 @@ const cardDetailLoading = ref(false);
 const entityDetailData = ref(null);
 const entityDetailLoading = ref(false);
 const isError = ref(false);
+const detailHeaderData = ref(null);
+const isSubmitError = ref(false);
+const subItemHeaderData = ref(null);
+
+const timeoutLoading = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
-};
-
-const recommendations = (lemma) => {
-  if (lemma === "lintah") {
-    return lintah?.data;
-  } else if (lemma === "tumpengan") {
-    return [];
-  } else if (lemma === "penghayatan") {
-    return penghayatan?.data;
-  } else {
-    return [];
-  }
-};
-
-const searchRecommendations = (lemma) => {
-  if (lemma === "lintah") {
-    return lintah?.data;
-  } else if (lemma === "tumpengan") {
-    return tumpengan?.data;
-  } else if (lemma === "penghayatan") {
-    return penghayatan?.data;
-  }
 };
 
 const currCount = computed(() => {
@@ -114,11 +91,11 @@ const nextCard = (isButton, id) => {
   if (isButton) {
     next.value = true;
   }
-  springBack.value = true;
+  // springBack.value = true;
 
-  setTimeout(() => {
-    springBack.value = false;
-  }, 1000);
+  // setTimeout(() => {
+  //   springBack.value = false;
+  // }, 1000);
 
   setTimeout(async () => {
     splash.value = true;
@@ -161,11 +138,18 @@ const submitCard = async (item) => {
       submit.value = false;
       disableSplash();
     }, 200);
+  } else {
+    submittingData.value = false;
+    isSubmitError.value = true;
   }
 };
 
+let timeout = null;
+
 const undoCard = () => {
-  springBack.value = true;
+  clearTimeout(timeout);
+
+  // springBack.value = true;
   prev.value = true;
   splash.value = false;
 
@@ -173,13 +157,13 @@ const undoCard = () => {
   tempData.value = null;
   undoWarn.value = false;
 
-  setTimeout(() => {
-    springBack.value = false;
-  }, 1000);
+  // setTimeout(() => {
+  //   springBack.value = false;
+  // }, 1000);
 
   setTimeout(() => {
     prev.value = false;
-  }, 300);
+  }, 600);
 };
 
 const disableSplash = () => {
@@ -244,7 +228,7 @@ const setUndoWarn = async (id) => {
     currentStep++;
 
     if (currentStep <= steps) {
-      setTimeout(increment, interval);
+      timeout = setTimeout(increment, interval);
     }
 
     if (progress.number === 100) {
@@ -261,8 +245,12 @@ const setUndoWarn = async (id) => {
     }
   };
 
-  setTimeout(increment, interval);
+  timeout = setTimeout(increment, interval);
 };
+
+watch(timeoutLoading, () => {
+  console.log(timeout);
+});
 
 const updateDetail = async (data) => {
   const response = await UpdateCardDetail({
@@ -275,7 +263,7 @@ const updateDetail = async (data) => {
 };
 
 const aa = () => {
-  isMove.value = false;
+  isMove.value = true;
   // if (flip) {
   //   flip.value = false;
   // }
@@ -283,38 +271,36 @@ const aa = () => {
 
 const ab = () => {
   springBack.value = true;
-  isMove.value = true;
+  isMove.value = false;
   setTimeout(() => {
     springBack.value = false;
   }, 350);
 };
 
-const test1 = async (id) => {
+const test1 = async (id, headerData) => {
+  zIndex.value = "";
+
   currMode.value = 1;
+  detailHeaderData.value = headerData;
   flip.value = true;
 
-  setTimeout(async () => {
-    zIndex.value = "";
-    await getDetail(id);
-  }, 100);
+  await getDetail(id);
 };
-const test2 = async (id) => {
+const test2 = async (id, data) => {
+  zIndex.value = "";
+
+  subItemHeaderData.value = data;
   currMode.value = 2;
   flip.value = true;
 
-  setTimeout(async () => {
-    zIndex.value = "";
-    await getEntityDetail(id);
-  }, 100);
+  await getEntityDetail(id);
 };
 const test3 = (data) => {
+  zIndex.value = "";
+
   currMode.value = 3;
   flip.value = true;
   detail.value = data;
-
-  setTimeout(() => {
-    zIndex.value = "";
-  }, 100);
 };
 
 const backtoHome = () => {
@@ -322,7 +308,7 @@ const backtoHome = () => {
 
   setTimeout(() => {
     zIndex.value = "z-[1]";
-  }, 800);
+  }, 300);
 };
 
 const searchKeyword = (keyword) => {
@@ -337,7 +323,7 @@ const loadMore = () => {
 const searchData = async () => {
   const response = await SearchEntity({
     page: params.page,
-    limit: params.keyword ? 10 : 5,
+    limit: params.keyword ? 10 : 3,
     keyword: params.keyword || data?.value?.[5 - currCount.value]?.lemma,
   });
 
@@ -382,6 +368,10 @@ const getCardsData = async () => {
 
   if (response.statusCode === 200) {
     data.value = [...response.data.filter((item) => item.status === "pending")];
+    currMargin.value =
+      ([...response.data.filter((item) => item.status === "pending")]?.length -
+        1) *
+      4;
     isLoading.value = false;
     disableSplash();
   } else {
@@ -399,10 +389,11 @@ watch(
   (newData, oldData) => {
     // currMargin.value = currMargin.value - (count.value < 5 ? 8 : 0);
 
-    if (newData?.length < oldData?.length)
-      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 8 : 0);
-    else if (newData?.length > oldData?.length)
-      currMargin.value = currMargin.value + 8;
+    if (newData?.length < oldData?.length) {
+      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 4 : 0);
+      console.log("setset", currMargin.value);
+    } else if (newData?.length > oldData?.length)
+      currMargin.value = currMargin.value + 4;
   },
   { immediate: true }
 );
@@ -452,8 +443,10 @@ watch(
 </script>
 
 <template>
-  <div class="min-h-screen w-full flex flex-col">
-    <div class="h-[54px] w-full left-0 flex items-center top-0 px-[16px]">
+  <div class="session-container w-full flex flex-col relative">
+    <div
+      class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
+    >
       <CdxButton
         weight="quiet"
         class="w-[44px] h-[44px] px-0 absolute left-[3px]"
@@ -494,7 +487,7 @@ watch(
       class="relative custom-height flex justify-center"
     >
       <div
-        class="w-full text-center max-w-[896px] absolute top-[45%] px-[16px]"
+        class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
       >
         <CdxLabel class="pb-[16px]">Memuat kartu...</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
@@ -502,7 +495,7 @@ watch(
     </div>
     <div
       v-else-if="!isLoading && !isError"
-      class="w-full"
+      class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
         backgroundImage: `url(${blank})`,
         backgroundRepeat: 'no-repeat',
@@ -510,11 +503,12 @@ watch(
         backgroundPosition: 'center',
       }"
     >
-      <div :class="[skipAll && 'skipall', 'px-[16px]']">
+      <div :class="[skipAll && 'skipall', 'px-[16px] w-full']">
         <div
           class="flex justify-center w-full relative custom-height items-center"
           :style="{
-            marginTop: '12px',
+            marginTop: currMargin + 'px',
+            perspective: '1000px',
           }"
         >
           <Card
@@ -523,11 +517,15 @@ watch(
             v-for="(value, index) in data"
             :style="{
               marginTop: -8 * index + 1 + 'px',
-              transition: !isMove
-                ? ''
-                : springBack
-                ? 'transform 0.35s'
-                : 'transform 1s',
+              ...(prev && { transition: 'unset !important' }),
+              ...(!isMove && { transition: 'transform 0.5s ease-out' }),
+              ...(springBack && { transition: 'transform 0.35s' }),
+
+              // transition: !isMove
+              //   ? ''
+              //   : springBack
+              //   ? 'transform 0.35s'
+              //   : 'transform 0.5s ease-out',
               transformStyle: 'preserve-3d',
               zIndex: '2',
               display:
@@ -553,7 +551,7 @@ watch(
               <CardSplash
                 :class="[
                   data?.length !== index + 1 ? 'bg-white' : 'bg-[#2A4B8D]',
-                  'custom-height z-[1]  rounded-[16px]',
+                  'custom-height z-[1]  rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
@@ -563,8 +561,17 @@ watch(
             </transition>
 
             <transition name="fade">
+              <CardSubmitFailed
+                class="custom-height rounded-[16px] back max-h-[650px] h-full"
+                v-if="isSubmitError === true"
+                :key="0"
+                @back="isSubmitError = false"
+              ></CardSubmitFailed>
+            </transition>
+
+            <transition name="fade">
               <CardSubmitting
-                class="custom-height rounded-[16px] back"
+                class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="submittingData === true"
                 :key="0"
               ></CardSubmitting>
@@ -575,13 +582,18 @@ watch(
                 :key="0"
                 :recommendation="entities"
                 :data="value"
-                :searchRec="searchRecommendations(value?.lemma)"
                 :keyword="params.keyword"
                 :searchLoading="searchLoading"
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
-                @gotoDetail="test1(value?.lexemeSenseId)"
-                @gotoSubItemDetail="(value) => test2(value?.id)"
+                @gotoDetail="
+                  test1(value?.lexemeSenseId, {
+                    category: value?.category,
+                    lemma: value?.lemma,
+                    gloss: value?.gloss,
+                  })
+                "
+                @gotoSubItemDetail="(value) => test2(value?.id, value)"
                 @gotoReview="test3"
                 @setSearch="searchKeyword"
                 @loadMore="loadMore"
@@ -597,11 +609,13 @@ watch(
                 v-if="currMode === 1"
                 :isLoading="cardDetailLoading"
                 :data="cardDetailData ?? {}"
+                :headerData="detailHeaderData"
                 @backtoItem="backtoHome"
               />
               <CardSubItemDetail
                 :data="entityDetailData"
                 :isLoading="entityDetailLoading"
+                :headerData="subItemHeaderData"
                 v-else-if="currMode === 2"
                 @backtoItem="backtoHome"
               />
@@ -671,16 +685,16 @@ watch(
               data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
             )
           "
-          :disabled="undoWarn"
+          :disabled="undoWarn || submittingData"
         >
-          <img :src="skip" alt="home" />
+          <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
           <CdxLabel class="text-[16px] pb-0">Lewati</CdxLabel>
         </CdxButton>
         <CdxButton
           weight="quiet"
           class="h-[34px] w-full"
           @click="endEarly"
-          :disabled="currCount === 1"
+          :disabled="currCount === 1 || submittingData"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <CdxLabel class="text-[16px] pb-0">Akhiri sesi</CdxLabel>
@@ -694,6 +708,11 @@ watch(
 </template>
 
 <style>
+.session-container {
+  height: 100%;
+  min-height: stretch;
+}
+
 .front,
 .back {
   -webkit-backface-visibility: hidden;
@@ -732,7 +751,19 @@ watch(
   opacity: 0;
 }
 
-@media (max-height: 600px) {
+@media (max-height: 399px) {
+  .custom-height {
+    height: 58vh;
+  }
+}
+
+@media (max-height: 459px) and (min-height: 400px) {
+  .custom-height {
+    height: 68vh;
+  }
+}
+
+@media (max-height: 600px) and (min-height: 460px) {
   .custom-height {
     height: 75vh;
   }

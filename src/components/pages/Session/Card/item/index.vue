@@ -86,12 +86,17 @@ const onInput = debounce(() => {
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
 
         <p
+          v-if="props?.data?.gloss"
           class="overflow-hidden text-ellipsis"
           :style="{
             whiteSpace: 'nowrap',
           }"
         >
           {{ props.data.gloss }}
+        </p>
+
+        <p v-else class="text-[16px] p-0">
+          <i>Tidak ada deskripsi</i>
         </p>
       </div>
       <div>
@@ -129,7 +134,7 @@ const onInput = debounce(() => {
           <span class="mb-[8px] text-[#54595D] text-[16px]"
             >Memuat rekomendasi...</span
           >
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 
@@ -158,7 +163,7 @@ const onInput = debounce(() => {
           class="text-[16px] font-normal text-[#54595D] pb-[8px]"
           style="padding-bottom: 16px"
         >
-          Rekomendasi ({{ props?.recommendation?.length }})
+          Rekomendasi
         </p>
 
         <div
@@ -186,9 +191,17 @@ const onInput = debounce(() => {
                 >{{ value?.label }} ({{ value?.id }})</CdxLabel
               >
               <p
+                v-if="value?.description"
                 class="text-[16px] font-normal text-[#54595D] pb-0 leading-[22px]"
               >
                 {{ value?.description }}
+              </p>
+              <p
+                v-else
+                class="text-[16px] font-normal text-[#54595D] pb-0"
+                style="padding-bottom: 16px"
+              >
+                <i>Tidak ada deskripsi</i>
               </p>
             </div>
           </div>
@@ -212,7 +225,7 @@ const onInput = debounce(() => {
             class="text-[16px] font-normal text-[#54595D] pb-[8px]"
             style="padding-bottom: 16px"
           >
-            Hasil pencarian ({{ props?.recommendation?.length }})
+            Hasil pencarian
           </p>
           <div
             v-for="(value, index) in props?.recommendation"
@@ -225,20 +238,33 @@ const onInput = debounce(() => {
             ]"
             @click="selectItem(value.id, value)"
           >
-            <div class="flex gap-x-2">
-              <img
-                :src="value?.image || placeholder"
-                class="h-[48px] w-[48px]"
-              />
+            <div class="flex gap-x-[12px]">
+              <div
+                class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
+              >
+                <img
+                  :src="value?.image || placeholder"
+                  class="object-cover h-full w-full"
+                />
+              </div>
               <div>
                 <CdxLabel class="text-[16px]"
                   >{{ value?.label }} ({{ value?.id }})</CdxLabel
                 >
                 <p
-                  class="text-[16px] font-normal text-[#54595D] pb-[8px]"
+                  v-if="value?.description"
+                  class="text-[16px] font-normal text-[#54595D] pb-0"
                   style="padding-bottom: 16px"
                 >
                   {{ value?.description }}
+                </p>
+
+                <p
+                  v-else
+                  class="text-[16px] font-normal text-[#54595D] pb-0"
+                  style="padding-bottom: 16px"
+                >
+                  <i>Tidak ada deskripsi</i>
                 </p>
               </div>
             </div>

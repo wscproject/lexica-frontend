@@ -56,6 +56,16 @@ const router = useRouter();
             >Vue.js</a
           >, MIT
         </li>
+        <li>
+          <a href="https://interactjs.io/" class="cdx-docs-link is-underlined"
+            >Interact.js</a
+          >, MIT
+        </li>
+        <li>
+          <a href="https://vuetifyjs.com/" class="cdx-docs-link is-underlined"
+            >Vuetify</a
+          >, MIT
+        </li>
       </ul>
     </div>
   </div>

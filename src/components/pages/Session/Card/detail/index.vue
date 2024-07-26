@@ -9,6 +9,7 @@ const isInfo = ref(false);
 
 const props = defineProps({
   data: Object,
+  headerData: Object,
   isLoading: Boolean,
 });
 
@@ -38,7 +39,9 @@ const translate = (data) => {
 
 const statements = computed(() => {
   return props?.data?.statements
-    ? [...Object.entries(props?.data?.statements)]?.filter((item) => item?.[1])
+    ? [...Object.entries(props?.data?.statements)]?.filter(
+        (item) => item?.[1]?.data?.[0]?.value
+      )
     : [];
 });
 </script>
@@ -46,7 +49,7 @@ const statements = computed(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between gap-x-2 relative rounded-t-[16px]"
+      class="header p-[16px] text-white flex test justify-between relative rounded-t-[16px]"
       :style="{
         background: '#2A4B8D',
         alignItems: 'flex-start',
@@ -57,15 +60,15 @@ const statements = computed(() => {
       @touchstart.stop="emit('onHold')"
       @touchend.stop="emit('onRelease')"
     >
-      <div>
+      <div class="w-full break-normal">
         <CdxLabel class="text-[18px] pb-[4px] leading-[22.5px]">{{
-          props?.data?.lemma
+          props?.headerData?.lemma
         }}</CdxLabel>
 
         <div class="flex items-center gap-x-2 pb-[4px]">
           <img :src="wikimedia" alt="WikidataLexeme" />
           <p>
-            <b>leksem — {{ props?.data?.category }}</b>
+            <b>leksem — {{ props?.headerData?.category }}</b>
           </p>
         </div>
 
@@ -73,12 +76,16 @@ const statements = computed(() => {
 
         <p
           :key="2"
-          class="overflow-hidden text-ellipsis"
+          v-if="props?.headerData?.gloss"
           :style="{
-            whiteSpace: 'wrap',
+            wordWrap: 'break-word',
           }"
         >
-          {{ props?.data?.gloss }}
+          {{ props.headerData.gloss }}
+        </p>
+
+        <p v-else class="text-[16px] p-0">
+          <i>Tidak ada deskripsi</i>
         </p>
       </div>
       <div>
@@ -92,8 +99,8 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white rounded-b-[16px] h-full">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] mb-[8px] text-[16px]">Memuat...</span>
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <span class="text-[#54595D] text-[16px]">Memuat...</span>
+          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 

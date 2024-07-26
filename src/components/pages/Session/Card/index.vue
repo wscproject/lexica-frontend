@@ -24,7 +24,7 @@ const emit = defineEmits(["hideCard, onStarting, onEnd, onSkip, "]);
 const statics = readonly({
   interactMaxRotation: 2,
   interactOutOfSightXCoordinate: 500,
-  interactOutOfSightYCoordinate: -500,
+  interactOutOfSightYCoordinate: -825,
   interactYThreshold: -30,
   interactXThreshold: 100,
 });
@@ -147,7 +147,7 @@ onMounted(() => {
     }"
     ref="cardRef"
     :class="[
-      'absolute bg-white rounded-[16px] shadow-custom  w-full h-full min-h-[416px] max-h-[900px] min-w-[288px] max-w-[450px] border-t border-[#C8CCD1] ',
+      'absolute bg-white rounded-[16px] shadow-custom w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] border-t border-[#C8CCD1] ',
     ]"
   >
     <slot />
@@ -164,7 +164,8 @@ onMounted(() => {
 }
 
 .prev-card {
-  animation: swipeCardDown 0.4s;
+  transition: unset !important;
+  animation: swipeCardDown 0.5s !important;
 }
 
 .submit-card {
@@ -180,32 +181,28 @@ onMounted(() => {
     opacity: 1;
   }
   80% {
-    opacity: 0;
+    opacity: 1;
   }
   100% {
-    transform: translateY(-500px) rotate(2deg);
+    transform: translateY(-825px) rotate(2deg);
     opacity: 0;
   }
 }
 
 @keyframes swipeCardDown {
   0% {
-    transform: translateY(-500px) rotate(2deg);
+    transform: translateY(-825px) rotate(2deg);
     opacity: 0;
   }
   30% {
     opacity: 0;
   }
 
-  70% {
-    opacity: 1;
-  }
-
   80% {
     opacity: 1;
   }
   100% {
-    transform: translateY(20px) rotate(0);
+    transform: translateY(0) rotate(0);
     opacity: 1;
   }
 }
