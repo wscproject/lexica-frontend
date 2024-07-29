@@ -15,6 +15,7 @@ import { useGeneralStore } from "@/store/general";
 const store = useGeneralStore();
 
 const { cookies } = useCookies();
+const loginUrl = import.meta.env.VITE_LOGIN_URL;
 
 const testRef = ref(null);
 const isAuth = ref(null);
@@ -64,7 +65,7 @@ const catchOutsideClick = (event, dropdown) => {
     <a
       class="z-[99] mr-[4px]"
       v-if="!isAuth && !props.isLogout"
-      :href="import.meta.env.VITE_LOGIN_URL"
+      :href="loginUrl"
     >
       <CdxButton weight="quiet" class="p-[11px]">
         <CdxIcon :icon="cdxIconLogIn" class="text-[#54595D]" />

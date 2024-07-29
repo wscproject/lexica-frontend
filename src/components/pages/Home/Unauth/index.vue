@@ -1,6 +1,8 @@
 <script setup>
 import { CdxIcon, CdxLabel, CdxButton } from "@wikimedia/codex";
 import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
+
+const loginUrl = import.meta.env.VITE_LOGIN_URL;
 </script>
 
 <template>
@@ -21,10 +23,7 @@ import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
       >
     </div>
 
-    <a
-      class="w-full flex justify-center"
-      :href="import.meta.env.VITE_LOGIN_URL"
-    >
+    <a class="w-full flex justify-center" :href="loginUrl">
       <CdxButton
         action="progressive"
         weight="primary"
