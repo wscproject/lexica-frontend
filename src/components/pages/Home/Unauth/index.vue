@@ -23,7 +23,7 @@ import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
 
     <a
       class="w-full flex justify-center"
-      href="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=d804e6e8527faede6443d8add46084d8&response_type=code"
+      :href="import.meta.env.VITE_LOGIN_URL"
     >
       <CdxButton
         action="progressive"

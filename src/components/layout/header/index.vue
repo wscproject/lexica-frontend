@@ -64,7 +64,7 @@ const catchOutsideClick = (event, dropdown) => {
     <a
       class="z-[99] mr-[4px]"
       v-if="!isAuth && !props.isLogout"
-      href="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=91265fbe034ec64ae64e0c3a77007ab8&response_type=code"
+      :href="import.meta.env.VITE_LOGIN_URL"
     >
       <CdxButton weight="quiet" class="p-[11px]">
         <CdxIcon :icon="cdxIconLogIn" class="text-[#54595D]" />
