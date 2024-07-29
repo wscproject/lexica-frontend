@@ -53,7 +53,7 @@ const router = useRouter();
         kami lebih lanjut, silakan kunjungi
         <a
           class="cdx-docs-link is-underlined"
-          href="https://archive.org/details/completebookofca00behr/page/28/mode/2up"
+          href="https://www.wikidata.org/wiki/Wikidata:Lexica"
         >
           halaman berikut</a
         >.
