@@ -1,9 +1,5 @@
 import { createApp } from "vue";
-import {
-  createMemoryHistory,
-  createRouter,
-  createWebHistory,
-} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import VueCookies from "vue3-cookies";
 import "./style.css";
 import Home from "./pages/Home/index.vue";
