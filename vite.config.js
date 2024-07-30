@@ -8,10 +8,12 @@ export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
+      base: "/",
       registerType: "autoUpdate",
+      includeAssets: ["img/**/*.*", "fonts/**/*.*"],
       injectRegister: "auto",
       workbox: {
-        cleanupOutdatedCaches: true,
+        cleanupOutdatedCaches: false,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,json,vue,txt,woff2}"],
       },
       manifest: {
