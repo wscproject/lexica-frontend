@@ -80,7 +80,10 @@ const catchOutsideClick = (event, dropdown) => {
       <button
         weight="quiet"
         ref="testRef"
-        class="dropdown w-full p-[11px] w-[44px] h-[44px]"
+        :class="[
+          'home-button dropdown w-full p-[11px] w-[44px] h-[44px] flex items-center',
+          menu && 'active',
+        ]"
         @click="
           (e) => {
             temp(e);
@@ -90,7 +93,7 @@ const catchOutsideClick = (event, dropdown) => {
       >
         <CdxIcon
           :icon="cdxIconUserAvatar"
-          class="cursor-pointer pointer-events-none text-[#54595D]"
+          class="cursor-pointer pointer-events-none text-[#54595D] w-[20px] h-[20px]"
         />
         <div class="dropdown-content" :class="menu ? 'flex' : 'hidden'">
           <div class="flex gap-x-[12px]">
@@ -110,6 +113,19 @@ const catchOutsideClick = (event, dropdown) => {
 </template>
 
 <style>
+.home-button:active {
+  border-radius: 2px !important;
+  border-color: #72777d !important;
+  border: 1px solid;
+  background: #eaecf0 !important;
+}
+
+.active {
+  border-radius: 2px !important;
+  border-color: #72777d !important;
+  border: 1px solid;
+  background: #eaecf0 !important;
+}
 .dropdown-content {
   position: absolute;
   right: 4px;

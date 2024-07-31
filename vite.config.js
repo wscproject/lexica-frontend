@@ -172,13 +172,13 @@ export default defineConfig({
             src: "manifest/512.png",
             sizes: "512x512",
             type: "image/png",
-            purpose: "maskable",
+            purpose: "any",
           },
           {
             src: "manifest/1024.png",
             sizes: "1024x1024",
             type: "image/png",
-            purpose: "maskable",
+            purpose: "any",
           },
         ],
       },
@@ -187,12 +187,6 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  build: {
-    manifest: true,
-    rollupOptions: {
-      input: "/src/main.js",
     },
   },
 });

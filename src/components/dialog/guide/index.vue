@@ -56,7 +56,7 @@ const toSession = () => {
       @update:open="close"
       :class="[
         curr === 2 || curr === 3 ? 'guide-dialog' : 'guide-dialog-2',
-        'min-w-full min-h-full guide',
+        'min-w-full min-h-full guide border-0 rounded-0',
       ]"
     >
       <template #header>
