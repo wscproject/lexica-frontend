@@ -1,6 +1,8 @@
 <script setup>
 import Logo from "@/assets/lexica_footer.svg";
-import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -9,18 +11,19 @@ import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
   >
     <img :src="Logo" alt="lexica_footer" />
     <div class="text-center text-[12px]">
-      <span>Sebuah perkakas dari </span
+      <span>{{ t("footer.label") }} </span
       ><a
         href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
-        >Wikidata Software Collaboration</a
+      >
+        Wikidata Software Collaboration</a
       >
     </div>
     <div class="text-center text-[12px] mt-[4px]">
-      <a href="/about">Tentang</a>
+      <a href="/about">{{ t("footer.about") }}</a>
       <span> · </span>
-      <a href="/privacy-policy">Privasi</a>
+      <a href="/privacy-policy">{{ t("footer.privacy") }}</a>
       <span> · </span>
-      <a href="/license-list">Lisensi</a>
+      <a href="/license-list">{{ t("footer.license") }}</a>
     </div>
   </footer>
 </template>

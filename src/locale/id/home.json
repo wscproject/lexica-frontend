@@ -1,0 +1,16 @@
+{
+  "unauth": {
+    "title": "Selamat datang!",
+    "body1": "merupakan sebuah perkakas eksperimental untuk berkontribusi ke Wikidata Leksem dengan mudah.",
+    "body2": "Dengan menggunakan Lexica, Anda menyetujui ",
+    "privacyPolicy": "Kebijakan Privasi Lexica.",
+    "login": "Masuk log",
+    "info": "Lexica masih dalam tahap pengembangan. Fitur-fiturnya dapat berubah seiring waktu."
+  },
+  "auth": {
+    "title": "Halo",
+    "languageSelect": "Kontribusi untuk leksem berbahasa",
+    "start": "Mulai kontribusi",
+    "tutorial": "Lihat panduan"
+  }
+}

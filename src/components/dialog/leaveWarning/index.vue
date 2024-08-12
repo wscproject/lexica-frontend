@@ -1,7 +1,9 @@
 <script setup>
 import { CdxDialog, CdxLabel, CdxButton, CdxIcon } from "@wikimedia/codex";
 import { ref } from "vue";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const open = ref(false);
 
 let resolvePromise;
@@ -47,24 +49,27 @@ defineExpose({ openModal });
   <CdxDialog
     v-model:open="open"
     class="mx-[16px] w-full"
-    title="Akhiri sesi kontribusi ini?"
+    :title="t('session.warning.title')"
     @update:open="handleUserInput(false)"
     close-button-label="Close"
   >
     <div class="px-[16px]">
       <p>
-        Anda telah mengerjakan <b>{{ props.count }} kartu sejauh ini.</b>
+        {{ t("session.warning.content") }}
+        <b> {{ props.count }} {{ t("session.warning.subtext") }}</b>
       </p>
     </div>
 
     <template #footer>
       <div class="flex gap-x-2 justify-end">
-        <CdxButton @click="handleUserInput(false)">Sunting lagi</CdxButton>
+        <CdxButton @click="handleUserInput(false)">{{
+          t("session.warning.button1")
+        }}</CdxButton>
         <CdxButton
           weight="primary"
           action="progressive"
           @click="handleUserInput(true)"
-          >Akhiri sesi</CdxButton
+          >{{ t("session.warning.button2") }}</CdxButton
         >
       </div>
     </template>

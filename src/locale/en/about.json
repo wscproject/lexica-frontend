@@ -1,0 +1,8 @@
+{
+  "title": "About",
+  "content1": "Editing lexicographic data on Wikidata through mobile devices can be challenging for some. That is why {lexica} was created. Our goal is straightforward: to make editing simpler and accessible to everyone, everywhere.",
+  "content2": "{lexica} is an experiment to find new ways to edit lexicographic data on Wikidata. As a web-based tool optimized for mobile devices, {lexica} allows you to quickly connect lexemes to Wikidata items through an intuitive card interface.",
+  "content3": "{lexica} is developed by a team of Indonesian software developers in collaboration with Wikimedia Deutschland. This collaboration is part of the Wikidata Software Collaboration, supported by a grant from the Arcadia Philanthropic Fund.",
+  "content4": "We are committed to keep on developing {lexica} to provide a better user experience. To learn more about our project, please visit {link}.",
+  "page": "this page"
+}

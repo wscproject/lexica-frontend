@@ -10,7 +10,6 @@ import Success from "./pages/Success/index.vue";
 import Privacy from "./pages/Privacy/index.vue";
 import License from "./pages/License/index.vue";
 
-import AuthLayout from "./components/layout/auth/index.vue";
 import HomeLayout from "./components/layout/home/index.vue";
 import SessionLayout from "./components/layout/session/index.vue";
 
@@ -23,6 +22,8 @@ import * as components from "vuetify/components";
 import "./index.css";
 import "@wikimedia/codex/dist/codex.style.css";
 import { cookies } from "@/helper/cookies";
+import { i18n } from "./plugins/i18n";
+import { CdxTooltip } from "@wikimedia/codex";
 
 const routes = [
   {
@@ -89,7 +90,9 @@ const pinia = createPinia();
 
 const app = createApp(App);
 app.use(router);
+app.use(i18n);
 app.use(vuetify);
 app.use(pinia);
 app.use(VueCookies);
+app.directive("tooltip", CdxTooltip);
 app.mount("#app");

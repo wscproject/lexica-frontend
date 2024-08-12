@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@wikimedia/codex": "^1.6.1",
-    "@wikimedia/codex-design-tokens": "^1.9.0",
-    "@wikimedia/codex-icons": "^1.6.1",
+    "@wikimedia/codex": "^1.11.0",
+    "@wikimedia/codex-design-tokens": "^1.11.0",
+    "@wikimedia/codex-icons": "^1.11.0",
     "axios": "^1.7.2",
     "interactjs": "^1.10.27",
     "less": "^4.2.0",
@@ -21,6 +21,7 @@
     "vue-client-only": "^2.1.0",
     "vue-cookies": "^1.8.4",
     "vue-flip": "^3.0.2",
+    "vue-i18n": "^9.13.1",
     "vue-router": "^4.3.2",
     "vue3-cookies": "^1.0.6",
     "vuetify": "^3.6.8"

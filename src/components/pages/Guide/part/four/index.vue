@@ -1,6 +1,9 @@
 <script setup>
 import { CdxLabel } from "@wikimedia/codex";
 import Image from "@/assets/guide_4.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -9,13 +12,15 @@ import Image from "@/assets/guide_4.svg";
       <img :src="Image" alt="image" class="w-100 mb-[12px] object-cover" />
     </div>
     <div class="px-[16px]">
-      <CdxLabel class="text-[18px] pb-[12px]">Selesai!</CdxLabel>
+      <CdxLabel class="text-[18px] pb-[12px]">{{
+        t("tutorial.four.title")
+      }}</CdxLabel>
       <p class="content pb">
-        Selamat berkontribusi ke Wikidata Leksem dengan Lexica.
+        {{ t("tutorial.four.content1") }}
       </p>
       <br />
       <p class="content">
-        Tip: Anda dapat melihat panduan ini kembali dari halaman Beranda.
+        {{ t("tutorial.four.content2") }}
       </p>
     </div>
   </div>

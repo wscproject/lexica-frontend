@@ -1,7 +1,9 @@
 <script setup>
 import { CdxLabel, CdxButton } from "@wikimedia/codex";
 import error from "@/assets/error.svg";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const emit = defineEmits(["back"]);
 </script>
 
@@ -14,11 +16,11 @@ const emit = defineEmits(["back"]);
         <img :src="error" alt="home" />
       </div>
 
-      <CdxLabel class="pb-[16px] text-[18px]"
-        >Tidak dapat mengunggah kontribusi</CdxLabel
-      >
+      <CdxLabel class="pb-[16px] text-[18px]">{{
+        t("session.cardError.title")
+      }}</CdxLabel>
       <p class="w-full text-[16px]">
-        Periksa koneksi internet Anda, lalu coba lagi.
+        {{ t("session.cardError.description") }}
       </p>
 
       <CdxButton
@@ -26,7 +28,8 @@ const emit = defineEmits(["back"]);
         weight="primary"
         action="progressive"
         @click="emit('back')"
-        >Coba lagi</CdxButton
+      >
+        {{ t("session.cardError.button") }}</CdxButton
       >
     </div>
   </div>

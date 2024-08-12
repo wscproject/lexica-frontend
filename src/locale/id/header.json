@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "login": "Masuk log",
+    "logout": "Keluar log",
+    "locale": "Tampilan bahasa",
+    "language": "Bahasa Indonesia",
+    "loggingout": "Sedang keluar log...",
+    "logoutsuccess": "Anda berhasil keluar log.",
+    "ok": "Oke"
+  }
+}

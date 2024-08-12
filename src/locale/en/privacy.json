@@ -1,0 +1,26 @@
+{
+  "header": "Privacy",
+  "title1": "Privacy Policy",
+  "version": "Version",
+  "section1": "Lexica is still in the early stages of development. The privacy policy will be continuously updated along with changes to Lexica. By using Lexica, users are considered to agree to this privacy policy.",
+
+  "title2": "Collection of Personal Data Information",
+  "section2": {
+    "point1": "Lexica does not store any data associated with users, such as but no means limited to usernames, passwords, IP addresses, interaction history, and usage statistics.",
+    "point2": "Lexica only obtains authorization to take actions on behalf of users when users log in through their Wikimedia user account.",
+    "point3": "User contribution records will be stored on Wikidata, which is subject to the {privacy}",
+    "privacy": "Wikimedia Foundation Privacy Policy"
+  },
+  "title3": "License",
+  "section3": "See the {license} page.",
+  "license": "License",
+  "title4": "Changes to Privacy Policy",
+  "section4": {
+    "point1": "Lexica may change its privacy policy at any time.",
+    "point2": "Before making changes to the privacy policy, Lexica will provide prior notification regarding the changes to the privacy policy before they are permanently implemented.",
+    "point3": "Notifications of changes to the privacy policy will be announced through Lexica.",
+    "point4": "There is a period of time referred to as “waiting period”, which covers seven days following the announcement of the privacy policy change and the implementation of the new privacy policy.",
+    "point5": "Lexica recommends users to regularly check for changes to the privacy policy that can be found on this page, the user page on Wikidata, and the Wikimedia Foundation privacy policy.",
+    "point6": "By continuing to use Lexica after the privacy policy changes, the user agrees to the revised privacy policy change."
+  }
+}

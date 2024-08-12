@@ -7,7 +7,9 @@ import successlogo from "@/assets/Success.svg";
 import { useCookies } from "vue3-cookies";
 import { useGeneralStore } from "@/store/general";
 import { GetProfile } from "@/api/Home";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const logout = ref(false);
 const success = ref(false);
 const { cookies } = useCookies();
@@ -45,7 +47,7 @@ const reload = () => {
         v-if="logout && !success"
         class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px]"
       >
-        <CdxLabel class="pb-[16px]">Sedang keluar log...</CdxLabel>
+        <CdxLabel class="pb-[16px]">{{ t("header.menu.loggingout") }}</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
       </div>
       <div
@@ -53,13 +55,15 @@ const reload = () => {
         class="w-full text-center flex flex-col justify-center items-center h-[80vh] p-[16px]"
       >
         <img :src="successlogo" alt="success" />
-        <CdxLabel class="pb-[16px]">Anda berhasil keluar log.</CdxLabel>
+        <CdxLabel class="pb-[16px]">{{
+          t("header.menu.logoutsuccess")
+        }}</CdxLabel>
         <CdxButton
           weight="primary"
           action="progressive"
           class="w-full"
           @click="reload"
-          >Oke</CdxButton
+          >{{ t("header.menu.ok") }}</CdxButton
         >
       </div>
     </div>

@@ -32,6 +32,9 @@ import {
   UpdateCardDetail,
   EndContribution,
 } from "@/api/Session";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 
 const router = useRouter();
 
@@ -448,6 +451,7 @@ watch(
       class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
     >
       <CdxButton
+        v-tooltip:bottom-start="t('tooltips.home')"
         weight="quiet"
         class="w-[44px] h-[44px] px-0 absolute left-[3px]"
         @click="endEarly"
@@ -456,7 +460,7 @@ watch(
       </CdxButton>
       <div class="absolute mx-auto left-0 right-0 w-fit">
         <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
-          >Kartu {{ currCount }}</CdxLabel
+          >{{ t("session.title") }} {{ currCount }}</CdxLabel
         >
       </div>
     </div>
@@ -468,16 +472,18 @@ watch(
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="error" alt="home" />
         </div>
-        <CdxLabel class="text-[16px] p-0">Gagal memuat kartu</CdxLabel>
+        <CdxLabel class="text-[16px] p-0">{{
+          t("session.error.title")
+        }}</CdxLabel>
         <p class="text-[16px] pb-[16px]">
-          Periksa koneksi internet Anda, lalu muat ulang.
+          {{ t("session.error.description") }}
         </p>
         <CdxButton
           weight="primary"
           action="progressive"
           class="w-full max-w-[448px] h-[44px]"
           @click="getCardsData"
-          >Muat ulang</CdxButton
+          >{{ t("session.error.button") }}</CdxButton
         >
       </div>
     </div>
@@ -489,7 +495,7 @@ watch(
       <div
         class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
       >
-        <CdxLabel class="pb-[16px]">Memuat kartu...</CdxLabel>
+        <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
       </div>
     </div>
@@ -675,7 +681,7 @@ watch(
       v-if="!isLoading && !isError"
       class="flex bottom-0 w-full p-[14px] justify-center left-0 z-0 absolute"
     >
-      <div class="flex max-w-[450px] gap-x-[8px] w-full">
+      <div class="flex max-w-[450px] gap-x-[12px] w-full">
         <CdxButton
           weight="quiet"
           class="h-[34px] w-full"
@@ -688,7 +694,9 @@ watch(
           :disabled="undoWarn || submittingData"
         >
           <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
-          <CdxLabel class="text-[16px] pb-0">Lewati</CdxLabel>
+          <CdxLabel class="text-[16px] pb-0">{{
+            t("session.button1")
+          }}</CdxLabel>
         </CdxButton>
         <CdxButton
           weight="quiet"
@@ -697,7 +705,9 @@ watch(
           :disabled="currCount === 1 || submittingData"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <CdxLabel class="text-[16px] pb-0">Akhiri sesi</CdxLabel>
+          <CdxLabel class="text-[16px] pb-0">{{
+            t("session.button2")
+          }}</CdxLabel>
         </CdxButton>
       </div>
     </div>

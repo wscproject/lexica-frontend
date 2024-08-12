@@ -1,12 +1,13 @@
 <script setup>
-import { CdxLabel, CdxIcon, CdxButton } from "@wikimedia/codex";
-import { cdxIconInfoFilled } from "@wikimedia/codex-icons";
+import { CdxLabel, CdxIcon, CdxButton, CdxThumbnail } from "@wikimedia/codex";
+import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { ref } from "vue";
 import { useGeneralStore } from "@/store/general";
 import Logo from "@/assets/add.svg";
-import wikimedia from "@/assets/lexica_footer.svg";
-import placeholder from "@/assets/placeholder.svg";
+import wikimedia from "@/assets/lexeme.svg";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
 const store = useGeneralStore();
@@ -30,17 +31,19 @@ const props = defineProps({
       }"
       :ref="props.headerRef"
     >
-      <CdxLabel class="text-[18px] pb-0 text-white">Pratinjau</CdxLabel>
+      <CdxLabel class="text-[18px] pb-0 text-white">{{
+        t("session.preview.title")
+      }}</CdxLabel>
     </div>
     <div
       class="px-[16px] pt-[68px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white h-full"
     >
-      <CdxLabel class="text-[16px]" style="padding-bottom: 16px"
-        >Leksem</CdxLabel
-      >
+      <CdxLabel class="text-[16px]" style="padding-bottom: 16px">{{
+        t("session.preview.lexeme")
+      }}</CdxLabel>
       <div class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[8px]">
         <div class="flex gap-x-[12px]">
-          <div
+          <!-- <div
             class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
           >
             <img
@@ -49,7 +52,17 @@ const props = defineProps({
               "
               class="object-cover w-full h-full"
             />
-          </div>
+          </div> -->
+
+          <CdxThumbnail
+            :thumbnail="{
+              url: props?.data?.statements?.images?.data?.[0]?.url || wikimedia,
+            }"
+            :class="[
+              !props?.data?.statements?.images?.data?.[0]?.url &&
+                'custom-thumbnail',
+            ]"
+          />
 
           <div>
             <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
@@ -73,19 +86,24 @@ const props = defineProps({
         <div class="flex gap-x-2 items-start">
           <img :src="Logo" alt="lexica_footer" />
           <CdxLabel class="text-[16px]" style="padding-bottom: 16px"
-            >Pernyataan baru: butir untuk makna ini (P5137)</CdxLabel
+            >{{ t("session.preview.statement") }} (P5137)</CdxLabel
           >
         </div>
         <div class="border border-[#A2A9B1] rounded-[2px] p-[12px] bg-white">
           <div class="flex gap-x-[12px]">
-            <div
+            <!-- <div
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
             >
               <img
                 :src="props?.detail?.image || placeholder"
                 class="object-cover w-full h-full"
               />
-            </div>
+            </div> -->
+            <CdxThumbnail
+              :thumbnail="{ url: props?.detail?.image }"
+              :placeholder-icon="cdxIconLogoWikidata"
+            />
+
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
                 >{{ props?.detail?.label }} ({{ props?.detail?.id }})</CdxLabel
@@ -104,20 +122,22 @@ const props = defineProps({
         <div class="flex gap-x-2">
           <CdxIcon :icon="cdxIconInfoFilled" />
           <div>
-            <CdxLabel class="text-[16px] p-0">Tidak ada perubahan</CdxLabel>
+            <CdxLabel class="text-[16px] p-0">{{
+              t("session.preview.empty")
+            }}</CdxLabel>
             <p class="text-[16px] text-[#54595D] pt-[5px]">
-              <i>Alasan: Butir tidak ada</i>
+              <i>{{ t("session.preview.reason") }}</i>
             </p>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="fixed bottom-0 w-full h-66px border-t border-[#A2A9B1] p-[16px] flex justify-between align-center bg-white gap-x-[8px] rounded-b-[16px]"
+      class="fixed bottom-0 w-full h-66px border-t border-[#A2A9B1] p-[16px] flex justify-between align-center bg-white gap-x-[12px] rounded-b-[16px]"
     >
-      <CdxButton @click="emit('backtoItem')" class="w-full"
-        >Sunting lagi</CdxButton
-      >
+      <CdxButton @click="emit('backtoItem')" class="w-full">{{
+        t("session.preview.button1")
+      }}</CdxButton>
       <CdxButton
         weight="primary"
         action="progressive"
@@ -128,7 +148,7 @@ const props = defineProps({
             itemId: props?.detail?.id || '',
           })
         "
-        >Selanjutnya</CdxButton
+        >{{ t("session.preview.button2") }}</CdxButton
       >
     </div>
   </div>
@@ -141,5 +161,11 @@ const props = defineProps({
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
   border-bottom: 12px solid #eaecf0;
+}
+
+.custom-thumbnail .cdx-thumbnail__image {
+  background-size: initial;
+  background-position: center;
+  background-color: #f8f9fa;
 }
 </style>

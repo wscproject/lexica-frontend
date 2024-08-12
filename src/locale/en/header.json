@@ -1,0 +1,11 @@
+{
+  "menu": {
+    "login": "Log in",
+    "logout": "Log out",
+    "locale": "Display language",
+    "language": "English",
+    "loggingtout": "Logging out...",
+    "logoutsuccess": "You are logged out.",
+    "ok": "OK"
+  }
+}

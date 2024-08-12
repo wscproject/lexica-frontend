@@ -12,6 +12,9 @@ import {
 import Lightbulb from "@/assets/lightbulb.svg";
 import { useRouter } from "vue-router";
 import { useGeneralStore } from "@/store/general";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 
 const store = useGeneralStore();
 
@@ -35,12 +38,12 @@ const props = defineProps({
         />
       </div>
       <CdxLabel class="] mb-[12px] text-[18px] p-0">
-        Halo, {{ store.name }}!</CdxLabel
+        {{ t("home.auth.title") }}, {{ store.name }}!</CdxLabel
       >
     </div>
 
     <div class="text-[16px] pb-[12px]">
-      <span>Kontribusi untuk leksem berbahasa:</span>
+      <span>{{ t("home.auth.languageSelect") }}:</span>
     </div>
     <div class="text-[16px] pb-[12px]">
       <CdxSelect
@@ -52,30 +55,31 @@ const props = defineProps({
       />
     </div>
 
-    <div class="flex gap-x-2 pb-[24px]">
+    <!-- <div class="flex gap-x-2 pb-[24px]">
       <CdxIcon :icon="cdxIconInfoFilled" />
       <CdxLabel
         >Untuk sementara, Lexica hanya tersedia untuk leksem Bahasa
         Indonesia.</CdxLabel
       >
-    </div>
+    </div> -->
 
     <div
-      class="w-full flex flex-col min-[616px]:flex-row min-[616px]:gap-x-[8px] gap-y-[8px] items-center justify-center"
+      class="w-full flex flex-col min-[616px]:flex-row min-[616px]:gap-x-[12px] gap-y-[12px] items-center justify-center"
     >
       <CdxButton
         weight="primary"
         action="progressive"
-        class="w-full max-w-[384px] py-[5px] rounded-[2px]"
+        class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
         @click="router.push('/session')"
       >
-        <CdxIcon :icon="cdxIconPlay" /> Mulai kontribusi</CdxButton
+        <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
       >
       <CdxButton
-        class="w-full max-w-[384px] py-[5px] rounded-[2px]"
+        class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
         @click="emit('onHint')"
       >
-        <img :src="Lightbulb" alt="Lightbulb" /> Lihat panduan</CdxButton
+        <img :src="Lightbulb" alt="Lightbulb" />
+        {{ t("home.auth.tutorial") }}</CdxButton
       >
     </div>
   </div>

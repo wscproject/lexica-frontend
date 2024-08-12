@@ -1,16 +1,10 @@
 <script setup>
 import { CdxLabel, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
-import {
-  cdxIconInfoFilled,
-  cdxIconClose,
-  cdxIconLogoWikidata,
-} from "@wikimedia/codex-icons";
+import { cdxIconClose, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { computed, ref, watch } from "vue";
-import Logo from "@/assets/lexica_footer.svg";
-import placeholder from "@/assets/placeholder.svg";
+import { useI18n } from "vue-i18n";
 
-const isInfo = ref(false);
-
+const { t } = useI18n({ useScope: "global" });
 const emit = defineEmits(["backtoItem, onHold, onRelease"]);
 
 const props = defineProps({
@@ -67,7 +61,9 @@ const statements = computed(() => {
 
         <div class="flex items-center gap-x-2">
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
-          <p><b>butir Wikidata</b></p>
+          <p>
+            <b>{{ t("session.item.wikidata") }}</b>
+          </p>
         </div>
 
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
@@ -83,7 +79,7 @@ const statements = computed(() => {
           {{ props?.headerData?.description }}
         </p>
         <p v-else class="text-[16px] p-0">
-          <i>Tidak ada deskripsi</i>
+          <i>{{ t("session.emptyDescription") }}</i>
         </p>
       </div>
       <div>
@@ -97,15 +93,17 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white h-full rounded-b-[16px]">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px]">Memuat...</span>
+          <span class="text-[#54595D] text-[16px]">{{
+            t("session.item.loading")
+          }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 
       <div class="h-full" v-if="statements.length > 0 && !props.isLoading">
-        <CdxLabel class="text-[16px]" style="padding-bottom: 12px"
-          >Pernyataan</CdxLabel
-        >
+        <CdxLabel class="text-[16px]" style="padding-bottom: 12px">{{
+          t("session.item.statements")
+        }}</CdxLabel>
         <div
           v-for="(value, index) in statements.filter(
             (item) => item?.[0] !== 'translation'
@@ -114,7 +112,7 @@ const statements = computed(() => {
           class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
-            <div
+            <!-- <div
               v-if="value[0] === 'images'"
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
             >
@@ -123,7 +121,13 @@ const statements = computed(() => {
                 :alt="value?.[1]?.data?.[0]?.value"
                 class="object-cover w-full h-full"
               />
-            </div>
+            </div> -->
+
+            <CdxThumbnail
+              v-if="value?.[0] === 'images'"
+              :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
+              :placeholder-icon="cdxIconLogoWikidata"
+            />
 
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
@@ -144,7 +148,7 @@ const statements = computed(() => {
           v-if="statements.find((item) => item?.[0] === 'translation')"
           class="text-[16px] pt-[4px]"
           style="padding-bottom: 12px"
-          >Terjemahan</CdxLabel
+          >{{ t("session.item.translation") }}</CdxLabel
         >
 
         <div
@@ -174,7 +178,9 @@ const statements = computed(() => {
         class="h-full flex justify-center items-center"
         v-else-if="statements.length === 0 && !props.isLoading"
       >
-        <p class="text-[16px] text-[#54595D]"><i>Tidak ada pernyataan</i></p>
+        <p class="text-[16px] text-[#54595D]">
+          <i>{{ t("session.emptyStatement") }}</i>
+        </p>
       </div>
     </div>
   </div>

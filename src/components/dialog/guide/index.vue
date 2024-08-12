@@ -9,7 +9,9 @@ import { cdxIconNext, cdxIconClose } from "@wikimedia/codex-icons";
 import ButtonPrimary from "@/components/buttons/ButtonPrimary/index.vue";
 import ClientOnly from "vue-client-only";
 import { useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const props = defineProps({
   open: {
     type: Boolean,
@@ -63,7 +65,7 @@ const toSession = () => {
         <div class="w-full">
           <div class="w-full">
             <div class="flex w-full justify-between items-center">
-              <CdxLabel class="text-[18px]">Panduan</CdxLabel>
+              <CdxLabel class="text-[18px]">{{ t("tutorial.title") }}</CdxLabel>
               <CdxButton @click="close" weight="quiet">
                 <CdxIcon
                   :icon="cdxIconClose"
@@ -73,7 +75,7 @@ const toSession = () => {
               </CdxButton>
             </div>
             <div :class="['flex items-center gap-x-2']">
-              <p class="title">{{ curr }} dari 4</p>
+              <p class="title">{{ curr }} {{ t("tutorial.of") }} 4</p>
               <div class="flex gap-x-2">
                 <div
                   :key="n"
@@ -95,7 +97,7 @@ const toSession = () => {
         <PartFour v-if="curr === 4" />
       </div>
       <template #footer>
-        <div class="flex gap-x-[8px] w-full justify-end">
+        <div class="flex gap-x-[12px] w-full justify-end">
           <CdxButton
             v-if="curr !== 1"
             class="w-[34px] h-[34px]"
@@ -110,7 +112,7 @@ const toSession = () => {
             action="progressive"
           >
             <CdxIcon v-if="curr !== 4" :icon="cdxIconNext" />
-            <span v-else-if="curr === 4">Mulai kontribusi</span>
+            <span v-else-if="curr === 4">{{ t("tutorial.start") }}</span>
           </CdxButton>
         </div>
       </template>

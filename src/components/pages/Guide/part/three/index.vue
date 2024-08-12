@@ -1,6 +1,9 @@
 <script setup>
 import { CdxLabel } from "@wikimedia/codex";
 import Image from "@/assets/guide_3.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -9,21 +12,21 @@ import Image from "@/assets/guide_3.svg";
       <img :src="Image" alt="image" class="w-100 max-w-[329px]" rel="preload" />
     </div>
     <div class="px-[14px]">
-      <CdxLabel class="text-[18px] pb-[12px]"
-        >Isi sebuah kartu kontribusi</CdxLabel
-      >
+      <CdxLabel class="text-[18px] pb-[12px]">{{
+        t("tutorial.three.title")
+      }}</CdxLabel>
       <ol class="px-[16px]">
         <li class="content">
-          <b>Kepala kartu:</b> berisi nama leksem, deskripsi singkat, dan tombol
-          untuk melihat informasi lanjutan leksem tersebut.
+          <b>{{ t("tutorial.three.point1Title") }}:</b>
+          {{ t("tutorial.three.point1Content") }}
         </li>
         <li class="content">
-          <b>Isi kartu:</b> berisi pertanyaan, kotak pencarian, dan rekomendasi
-          atau hasil pencarian Wikidata.
+          <b>{{ t("tutorial.three.point2Title") }}:</b>
+          {{ t("tutorial.three.point2Content") }}
         </li>
         <li class="content">
-          <b>Tombol aksi:</b> pilih “Selanjutnya” setelah memilih jawaban yang
-          sesuai atau “Butir tidak ada” jika jawabannya tidak ditemukan.
+          <b>{{ t("tutorial.three.point3Title") }}:</b>
+          {{ t("tutorial.three.point3Content") }}
         </li>
       </ol>
     </div>
