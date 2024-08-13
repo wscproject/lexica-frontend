@@ -1,7 +1,7 @@
 {
   "title": "Tutorial",
   "of": "of",
-  "start": "Start contribution",
+  "start": "Start contributing",
   "one": {
     "title": "What is Lexica?",
     "content": "Lexica is an experiment to find new ways to edit lexicographical data on Wikidata. Here, we provide a Wikidata Lexeme editing view to make quick contributions easier. You will be given lexemes that needs to be connected to Wikidata items."

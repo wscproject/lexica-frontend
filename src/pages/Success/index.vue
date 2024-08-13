@@ -4,7 +4,9 @@ import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCookies } from "vue3-cookies";
 import { Login } from "@/api/Auth";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const route = useRoute();
 const router = useRouter();
 
@@ -25,7 +27,7 @@ onMounted(async () => {
 <template>
   <div class="min-h-screen flex justify-center items-center w-full p-[16px]">
     <div class="w-full text-center max-w-[896px]">
-      <CdxLabel class="pb-[16px]">Memuat...</CdxLabel>
+      <CdxLabel class="pb-[16px]">{{ t("home.loading") }}</CdxLabel>
       <CdxProgressBar class="w-full"></CdxProgressBar>
     </div>
   </div>

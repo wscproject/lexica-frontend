@@ -12,5 +12,6 @@
     "languageSelect": "Contribute for lexemes in",
     "start": "Start contributing",
     "tutorial": "Read the tutorial"
-  }
+  },
+  "loading": "Loading..."
 }

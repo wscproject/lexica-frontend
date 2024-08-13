@@ -104,7 +104,6 @@ const onInput = debounce(() => {
       </div>
       <div>
         <CdxIcon
-          v-tooltip:bottom-end="t('tooltips.info')"
           :icon="cdxIconInfoFilled"
           class="text-white cursor-pointer"
           @click.stop="(e) => emit('gotoDetail', e)"
@@ -216,7 +215,6 @@ const onInput = debounce(() => {
             </div>
           </div>
           <CdxIcon
-            v-tooltip:bottom-end="t('tooltips.item')"
             :icon="cdxIconInfoFilled"
             class="cursor-pointer"
             @click="emit('gotoSubItemDetail', value)"

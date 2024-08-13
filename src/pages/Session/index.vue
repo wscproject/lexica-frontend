@@ -660,7 +660,7 @@ watch(
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
             <div class="p-[16px] text-white flex items-center justify-between">
-              <p>Kartu dilewati.</p>
+              <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
                 class="flex gap-x-2 items-center cursor-pointer text-white"
@@ -668,7 +668,7 @@ watch(
               >
                 <CdxIcon class="text-white" :icon="cdxIconUndo" alt="undo" />
                 <p style="padding-bottom: 0px" class="text-[16px] font-[700]">
-                  Urungkan
+                  {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
             </div>

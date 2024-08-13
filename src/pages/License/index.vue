@@ -25,7 +25,9 @@ const router = useRouter();
     </div>
     <div class="p-[16px]">
       <div class="border-b border-[#C8CCD1] mb-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">Lisensi</p>
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+          {{ t("license.title1") }}
+        </p>
       </div>
       <I18nT keypath="license.section1" tag="p" class="p-0 text-[16px]">
         <template #gnu>
