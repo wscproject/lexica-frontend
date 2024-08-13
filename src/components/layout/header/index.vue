@@ -247,4 +247,8 @@ const onSelect = (newSelection) => {
 .first-child .cdx-menu-item--disabled:first-child {
   color: #202122;
 }
+
+.cdx-menu-item {
+  border-bottom: 1px solid #a2a9b1;
+}
 </style>
