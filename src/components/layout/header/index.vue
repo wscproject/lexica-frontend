@@ -59,6 +59,7 @@ const authMenu = computed(() => {
       value: "user",
       icon: cdxIconUserAvatar,
       action: "progressive",
+      disabled: true,
     },
     {
       label: t("header.menu.locale"),
@@ -123,7 +124,7 @@ const onSelect = (newSelection) => {
     </a> -->
 
     <CdxMenuButton
-      v-tooltip:bottom="'Akun'"
+      v-tooltip:bottom="t('tooltips.account')"
       v-model="selection"
       :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
       :class="[
@@ -241,5 +242,9 @@ const onSelect = (newSelection) => {
 
 .unauth .cdx-menu-item:first-child svg {
   color: #202122 !important;
+}
+
+.first-child .cdx-menu-item--disabled:first-child {
+  color: #202122;
 }
 </style>

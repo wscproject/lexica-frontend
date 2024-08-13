@@ -1,5 +1,5 @@
 {
-  "loading": "Loading card...",
+  "loading": "Loading cards...",
 
   "error": {
     "title": "Card failed to load",

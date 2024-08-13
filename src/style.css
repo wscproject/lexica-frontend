@@ -109,3 +109,7 @@ h1 {
 .cdx-dialog__body {
   padding: 0 !important;
 }
+
+.cdx-toggle-button {
+  border: 0 !important;
+}

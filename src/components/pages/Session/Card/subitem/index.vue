@@ -1,5 +1,10 @@
 <script setup>
-import { CdxLabel, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
+import {
+  CdxLabel,
+  CdxIcon,
+  CdxProgressBar,
+  CdxThumbnail,
+} from "@wikimedia/codex";
 import { cdxIconClose, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
