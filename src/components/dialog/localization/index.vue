@@ -7,12 +7,16 @@ import {
   CdxRadio,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 import { useI18n } from "vue-i18n";
+import { updateUserPreference } from "@/api/Home";
+import displayLang from "@/locale/displayLang.json";
+
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
+
 const { t, locale } = useI18n();
 
 const currentLocale = ref(cookies?.get("locale") || locale.value);
@@ -30,23 +34,20 @@ const close = () => {
   emit("onPrimaryAction", false);
 };
 
-const radios = [
-  {
-    label: "Bahasa Indonesia",
-    value: "id",
-    disabled: false,
-  },
-  {
-    label: "English",
-    value: "en",
-    disabled: false,
-  },
-];
+const radios = displayLang.lang;
 
-const setLocale = () => {
+const setLocale = async () => {
+  if (!!cookies?.get("auth")) {
+    await updateUserPreference({ displayLanguage: currentLocale.value });
+  }
+
   locale.value = currentLocale.value;
   cookies.set("locale", currentLocale.value);
 };
+
+watch(locale, () => {
+  currentLocale.value = cookies?.get("locale") || locale.value;
+});
 </script>
 
 <template>

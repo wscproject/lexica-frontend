@@ -20,19 +20,19 @@ const props = defineProps({
 
 const translate = (data) => {
   if (data === "images") {
-    return "gambar";
+    return t("session.item.images");
   } else if (data === "instanceOf") {
-    return "adalah";
+    return t("session.item.instanceOf");
   } else if (data === "partOf") {
-    return "bagian dari";
+    return t("session.item.partOf");
   } else if (data === "subclass") {
-    return "subkelas";
-  } else if (data === "follows") {
-    return "didahului oleh";
-  } else if (data === "textAudio") {
-    return "suara teks ucapan";
+    return t("session.item.subclass");
+  } else if (data === "taxonName") {
+    return t("session.item.taxonName");
+  } else if (data === "hasParts") {
+    return t("session.item.hasParts");
   } else if (data === "translation") {
-    return "terjemahan";
+    return t("session.item.translation");
   }
 };
 

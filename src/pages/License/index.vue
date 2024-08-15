@@ -46,7 +46,7 @@ const router = useRouter();
             href="https://creativecommons.org/public-domain/cc0/"
             class="cdx-docs-link is-underlined"
             >CC0</a
-          >.
+          >
         </template>
       </I18nT>
 

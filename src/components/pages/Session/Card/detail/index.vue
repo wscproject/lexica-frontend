@@ -28,19 +28,19 @@ const setInfo = () => {
 
 const translate = (data) => {
   if (data === "images") {
-    return "gambar";
-  } else if (data === "instanceOf") {
-    return "adalah";
-  } else if (data === "partOf") {
-    return "bagian dari";
-  } else if (data === "subclass") {
-    return "subkelas";
-  } else if (data === "follows") {
-    return "didahului oleh";
-  } else if (data === "textAudio") {
-    return "suara teks ucapan";
+    return t("session.detail.images");
+  } else if (data === "antonym") {
+    return t("session.detail.antonym");
+  } else if (data === "synonym") {
+    return t("session.detail.synonym");
+  } else if (data === "locationOfSenseUsage") {
+    return t("session.detail.locationOfSenseUsage");
+  } else if (data === "languageStyle") {
+    return t("session.detail.languageStyle");
+  } else if (data === "describedAtUrl") {
+    return t("session.detail.describedAtUrl");
   } else if (data === "translation") {
-    return "terjemahan";
+    return t("session.detail.translation");
   }
 };
 
@@ -109,9 +109,9 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white rounded-b-[16px] h-full">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px]"
-            >{{ t("session.detail.loading") }}...</span
-          >
+          <span class="text-[#54595D] text-[16px]">{{
+            t("session.detail.loading")
+          }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>

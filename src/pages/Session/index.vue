@@ -9,6 +9,7 @@ import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useGeneralStore } from "@/store/general";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -32,9 +33,12 @@ import {
   UpdateCardDetail,
   EndContribution,
 } from "@/api/Session";
+import { GetProfile } from "@/api/Home";
+
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({ useScope: "global" });
+const store = useGeneralStore();
 
 const router = useRouter();
 
@@ -365,9 +369,17 @@ const getEntityDetail = async (id) => {
   }
 };
 
-const getCardsData = async () => {
-  isLoading.value = true;
-  const response = await GetCards();
+const getProfile = async () => {
+  const response = await GetProfile();
+  if (response?.statusCode === 200) {
+    console.log(response?.data);
+
+    await getCardsData(response?.data?.language);
+  }
+};
+
+const getCardsData = async (code) => {
+  const response = await GetCards({ language: code ? code : store?.language });
 
   if (response.statusCode === 200) {
     data.value = [...response.data.filter((item) => item.status === "pending")];
@@ -384,7 +396,14 @@ const getCardsData = async () => {
 };
 
 onMounted(async () => {
-  await getCardsData();
+  console.log(store.language);
+
+  isLoading.value = true;
+  if (store?.language) {
+    await getCardsData();
+  } else {
+    await getProfile();
+  }
 });
 
 watch(

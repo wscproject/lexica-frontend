@@ -1,0 +1,14 @@
+{
+  "lang": [
+    {
+      "label": "Bahasa Indonesia",
+      "value": "id",
+      "disabled": false
+    },
+    {
+      "label": "English",
+      "value": "en",
+      "disabled": false
+    }
+  ]
+}

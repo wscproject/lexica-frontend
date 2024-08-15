@@ -133,9 +133,9 @@ const onInput = debounce(() => {
 
       <div v-if="props.recommendedLoading">
         <div class="w-full max-w-[896px]">
-          <span class="mb-[8px] text-[#54595D] text-[16px]"
-            >Memuat rekomendasi...</span
-          >
+          <span class="mb-[8px] text-[#54595D] text-[16px]">{{
+            t("session.recLoading")
+          }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
@@ -210,7 +210,7 @@ const onInput = debounce(() => {
                 class="text-[16px] font-normal text-[#54595D] pb-0"
                 style="padding-bottom: 16px"
               >
-                <i>Tidak ada deskripsi</i>
+                <i>t</i>
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ const onInput = debounce(() => {
                   class="text-[16px] font-normal text-[#54595D] pb-0"
                   style="padding-bottom: 16px"
                 >
-                  <i>Tidak ada deskripsi</i>
+                  <i>t</i>
                 </p>
               </div>
             </div>
@@ -294,7 +294,9 @@ const onInput = debounce(() => {
               @click="emit('loadMore')"
               :disabled="props.loadmoreLoading"
               >{{
-                props.loadmoreLoading ? "Memuat..." : "Muat lebih banyak"
+                props.loadmoreLoading
+                  ? t("session.main.loading")
+                  : t("session.main.loadmore")
               }}</CdxButton
             >
           </div>

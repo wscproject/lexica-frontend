@@ -1,7 +1,7 @@
 <script setup>
 import ButtonPrimary from "@/components/buttons/ButtonPrimary/index.vue";
 import Logo from "@/assets/home_logo.svg";
-
+import { useGeneralStore } from "@/store/general";
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import {
   cdxIconLogIn,
@@ -11,10 +11,15 @@ import {
 
 import Lightbulb from "@/assets/lightbulb.svg";
 import { useRouter } from "vue-router";
-import { useGeneralStore } from "@/store/general";
 import { useI18n } from "vue-i18n";
+import { onMounted, ref } from "vue";
+import { GetLexemeLanguage } from "@/api/Home";
+import { watch } from "vue";
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
+
+const selection = ref([]);
+const contributeLang = ref("");
 
 const store = useGeneralStore();
 
@@ -23,6 +28,42 @@ const emit = defineEmits(["onHint"]);
 const props = defineProps({
   data: Object,
 });
+
+onMounted(async () => {
+  const response = await GetLexemeLanguage();
+  if (response?.statusCode === 200) {
+    selection.value = response?.data?.languages?.map((item) => {
+      return {
+        label: locale.value === "en" ? item?.titleEn : item?.titleId,
+        titleEn: item?.titleEn,
+        titleId: item?.titleId,
+        value: item?.code,
+      };
+    });
+  }
+});
+
+const gotoSession = async () => {
+  await store.setData({ language: contributeLang.value });
+  await router.push("/session");
+};
+
+watch(store, () => {
+  contributeLang.value = store.language;
+});
+
+watch(locale, () => {
+  selection.value = selection?.value?.map((item) => {
+    return {
+      label: locale.value === "en" ? item?.titleEn : item?.titleId,
+      titleEn: item?.titleEn,
+      titleId: item?.titleId,
+      value: item?.value,
+    };
+  });
+});
+
+console.log(navigator.language);
 </script>
 
 <template>
@@ -42,15 +83,14 @@ const props = defineProps({
       >
     </div>
 
-    <div class="text-[16px] pb-[12px]">
+    <div class="text-[16px] pb-[12px] font-[700]">
       <span>{{ t("home.auth.languageSelect") }}:</span>
     </div>
     <div class="text-[16px] pb-[12px]">
       <CdxSelect
+        v-model:selected="contributeLang"
         class="w-full"
-        disabled
-        default-label="Bahasa Indonesia (id)"
-        :menuItems="[{ value: id, label: 'Bahasa Indonesia (id)' }]"
+        :menuItems="selection"
         selected="id"
       />
     </div>
@@ -70,7 +110,7 @@ const props = defineProps({
         weight="primary"
         action="progressive"
         class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
-        @click="router.push('/session')"
+        @click="gotoSession"
       >
         <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
       >

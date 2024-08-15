@@ -1,8 +1,0 @@
-{
-  "title1": "License",
-  "section1": "{lexica} and all its components are published under the {gnu} license. All data added with this tool will be stored on Wikidata under the {cc0} license.",
-  "title2": "Open source components",
-  "section2": {
-    "content": "The following are the open source components used by Lexica:"
-  }
-}

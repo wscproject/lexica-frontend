@@ -9,7 +9,7 @@ import { useGeneralStore } from "@/store/general";
 import { GetProfile } from "@/api/Home";
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
 const logout = ref(false);
 const success = ref(false);
 const { cookies } = useCookies();
@@ -29,6 +29,8 @@ onMounted(async () => {
     const response = await GetProfile();
     if (response?.statusCode === 200) {
       store.setData(response.data);
+      locale.value = response?.data?.displayLanguage;
+      cookies.set("locale", response?.data?.displayLanguage);
     }
   }
 });
