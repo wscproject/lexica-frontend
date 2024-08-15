@@ -19,7 +19,9 @@ const { cookies } = useCookies();
 
 const { t, locale } = useI18n();
 
-const currentLocale = ref(cookies?.get("locale") || locale.value);
+const currentLocale = ref(
+  cookies?.get("locale") || window.navigator.language.split("-")[0]
+);
 
 const props = defineProps({
   open: {
