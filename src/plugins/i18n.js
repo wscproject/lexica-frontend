@@ -5,6 +5,7 @@ import displayLang from "@/locale/displayLang.json";
 const { cookies } = useCookies();
 
 //Function for dynamically import localization datas
+
 const importLangs = async (lang) => {
   const locale = await import(`@/locale/${lang}.json`);
 
