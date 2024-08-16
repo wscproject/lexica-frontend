@@ -150,7 +150,7 @@
     "preview": {
       "title": "Preview",
       "lexeme": "Lexeme",
-      "statement": "New statement: item for this sense (P5173)",
+      "statement": "New statement: item for this sense",
       "button1": "Edit",
       "button2": "Finish",
       "empty": "No changes will be made",
@@ -179,7 +179,8 @@
     "warning": {
       "title": "End this contribution session?",
       "content": "You have worked on",
-      "subtext": "cards so far.",
+      "subtext": "{card} so far.",
+      "card": "no card | card | cards",
       "button1": "Keep editing",
       "button2": "End session"
     },

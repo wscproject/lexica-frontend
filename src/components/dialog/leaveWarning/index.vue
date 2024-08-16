@@ -3,7 +3,7 @@ import { CdxDialog, CdxLabel, CdxButton, CdxIcon } from "@wikimedia/codex";
 import { ref } from "vue";
 import { useI18n } from "vue-i18n";
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
 const open = ref(false);
 
 let resolvePromise;
@@ -56,7 +56,11 @@ defineExpose({ openModal });
     <div class="px-[16px]">
       <p>
         {{ t("session.warning.content") }}
-        <b> {{ props.count }} {{ t("session.warning.subtext") }}</b>
+        <b>
+          {{ props.count }}
+          {{ locale === "en" ? t("session.warning.card", props.count) : "" }}
+          {{ t("session.warning.subtext") }}</b
+        >
       </p>
     </div>
 

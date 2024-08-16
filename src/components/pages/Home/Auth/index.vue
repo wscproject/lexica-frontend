@@ -3,11 +3,7 @@ import ButtonPrimary from "@/components/buttons/ButtonPrimary/index.vue";
 import Logo from "@/assets/home_logo.svg";
 import { useGeneralStore } from "@/store/general";
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
-import {
-  cdxIconLogIn,
-  cdxIconInfoFilled,
-  cdxIconPlay,
-} from "@wikimedia/codex-icons";
+import { cdxIconPlay } from "@wikimedia/codex-icons";
 
 import Lightbulb from "@/assets/lightbulb.svg";
 import { useRouter } from "vue-router";
@@ -15,13 +11,17 @@ import { useI18n } from "vue-i18n";
 import { onMounted, ref } from "vue";
 import { GetLexemeLanguage } from "@/api/Home";
 import { watch } from "vue";
+import { useCookies } from "vue3-cookies";
+
+const { cookies } = useCookies();
 
 const { t, locale } = useI18n({ useScope: "global" });
 
 const selection = ref([]);
-const contributeLang = ref("");
 
 const store = useGeneralStore();
+
+const contributeLang = ref();
 
 const router = useRouter();
 const emit = defineEmits(["onHint"]);
@@ -30,13 +30,13 @@ const props = defineProps({
 });
 
 onMounted(async () => {
+  contributeLang.value = store?.language || cookies?.get("locale") || "en";
   const response = await GetLexemeLanguage();
   if (response?.statusCode === 200) {
     selection.value = response?.data?.languages?.map((item) => {
       return {
-        label: locale.value === "en" ? item?.titleEn : item?.titleId,
-        titleEn: item?.titleEn,
-        titleId: item?.titleId,
+        label: `${item?.title} (${item?.code})`,
+
         value: item?.code,
       };
     });
@@ -48,22 +48,9 @@ const gotoSession = async () => {
   await router.push("/session");
 };
 
-watch(store, () => {
-  contributeLang.value = store.language;
-});
-
-watch(locale, () => {
-  selection.value = selection?.value?.map((item) => {
-    return {
-      label: locale.value === "en" ? item?.titleEn : item?.titleId,
-      titleEn: item?.titleEn,
-      titleId: item?.titleId,
-      value: item?.value,
-    };
-  });
-});
-
-console.log(navigator.language);
+// watch(store, () => {
+//   contributeLang.value = store?.language || cookies?.get("locale") || "en";
+// });
 </script>
 
 <template>
@@ -84,12 +71,12 @@ console.log(navigator.language);
     </div>
 
     <div class="text-[16px] pb-[12px] font-[700]">
-      <span>{{ t("home.auth.languageSelect") }}:</span>
+      <span>{{ t("home.auth.languageSelect") }}</span>
     </div>
     <div class="text-[16px] pb-[12px]">
       <CdxSelect
         v-model:selected="contributeLang"
-        class="w-full"
+        class="w-full cont-lang"
         :menuItems="selection"
         selected="id"
       />
@@ -124,3 +111,9 @@ console.log(navigator.language);
     </div>
   </div>
 </template>
+
+<style>
+.cont-lang .cdx-menu-item {
+  border: none;
+}
+</style>
