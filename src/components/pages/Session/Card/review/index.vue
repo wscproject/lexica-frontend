@@ -73,7 +73,7 @@ const props = defineProps({
             <p
               class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
             >
-              {{ props?.data?.gloss }}
+              {{ props?.data?.gloss || t("session.emptyDescription") }}
             </p>
           </div>
         </div>
@@ -111,7 +111,9 @@ const props = defineProps({
               <p
                 class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
               >
-                {{ props?.detail?.description }}
+                {{
+                  props?.detail?.description || t("session.emptyDescription")
+                }}
               </p>
             </div>
           </div>

@@ -105,7 +105,13 @@ const statements = computed(() => {
         </div>
       </div>
 
-      <div class="h-full" v-if="statements.length > 0 && !props.isLoading">
+      <div
+        class="h-full"
+        v-if="
+          statements?.filter((item) => item?.[0] !== 'translation')?.length >
+            0 && !props.isLoading
+        "
+      >
         <CdxLabel class="text-[16px]" style="padding-bottom: 12px">{{
           t("session.item.statements")
         }}</CdxLabel>
@@ -150,10 +156,10 @@ const statements = computed(() => {
         </div>
 
         <CdxLabel
-          v-if="statements.find((item) => item?.[0] === 'translation')"
+          v-if="statements.find((item) => item?.[0] === 'translation') > 0"
           class="text-[16px] pt-[4px]"
           style="padding-bottom: 12px"
-          >{{ t("session.item.translation") }}</CdxLabel
+          >{{ t("session.item.translation") }} (P5972)</CdxLabel
         >
 
         <div
@@ -167,13 +173,14 @@ const statements = computed(() => {
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
                 >{{ value?.[1]?.data?.[0]?.language }} ({{
-                  value?.[1]?.property
+                  value?.[1]?.data?.[0]?.code
                 }})</CdxLabel
               >
               <p
                 class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
               >
                 {{ value?.[1]?.data?.[0]?.value }}
+                ({{ value?.[1]?.data?.[0]?.id }})
               </p>
             </div>
           </div>
