@@ -156,7 +156,7 @@ const statements = computed(() => {
         </div>
 
         <CdxLabel
-          v-if="statements.find((item) => item?.[0] === 'translation') > 0"
+          v-if="statements.find((item) => item?.[0] === 'translation')"
           class="text-[16px] pt-[4px]"
           style="padding-bottom: 12px"
           >{{ t("session.item.translation") }} (P5972)</CdxLabel
