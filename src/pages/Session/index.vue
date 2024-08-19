@@ -9,6 +9,7 @@ import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useGeneralStore } from "@/store/general";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -32,6 +33,12 @@ import {
   UpdateCardDetail,
   EndContribution,
 } from "@/api/Session";
+import { GetProfile } from "@/api/Home";
+
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
+const store = useGeneralStore();
 
 const router = useRouter();
 
@@ -362,9 +369,17 @@ const getEntityDetail = async (id) => {
   }
 };
 
-const getCardsData = async () => {
-  isLoading.value = true;
-  const response = await GetCards();
+const getProfile = async () => {
+  const response = await GetProfile();
+  if (response?.statusCode === 200) {
+    console.log(response?.data);
+
+    await getCardsData(response?.data?.language);
+  }
+};
+
+const getCardsData = async (code) => {
+  const response = await GetCards({ language: code ? code : store?.language });
 
   if (response.statusCode === 200) {
     data.value = [...response.data.filter((item) => item.status === "pending")];
@@ -381,7 +396,14 @@ const getCardsData = async () => {
 };
 
 onMounted(async () => {
-  await getCardsData();
+  console.log(store.language);
+
+  isLoading.value = true;
+  if (store?.language) {
+    await getCardsData();
+  } else {
+    await getProfile();
+  }
 });
 
 watch(
@@ -448,6 +470,7 @@ watch(
       class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
     >
       <CdxButton
+        v-tooltip:bottom-start="t('tooltips.home')"
         weight="quiet"
         class="w-[44px] h-[44px] px-0 absolute left-[3px]"
         @click="endEarly"
@@ -456,7 +479,7 @@ watch(
       </CdxButton>
       <div class="absolute mx-auto left-0 right-0 w-fit">
         <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
-          >Kartu {{ currCount }}</CdxLabel
+          >{{ t("session.title") }} {{ currCount }}</CdxLabel
         >
       </div>
     </div>
@@ -468,16 +491,18 @@ watch(
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="error" alt="home" />
         </div>
-        <CdxLabel class="text-[16px] p-0">Gagal memuat kartu</CdxLabel>
+        <CdxLabel class="text-[16px] p-0">{{
+          t("session.error.title")
+        }}</CdxLabel>
         <p class="text-[16px] pb-[16px]">
-          Periksa koneksi internet Anda, lalu muat ulang.
+          {{ t("session.error.description") }}
         </p>
         <CdxButton
           weight="primary"
           action="progressive"
           class="w-full max-w-[448px] h-[44px]"
           @click="getCardsData"
-          >Muat ulang</CdxButton
+          >{{ t("session.error.button") }}</CdxButton
         >
       </div>
     </div>
@@ -489,7 +514,7 @@ watch(
       <div
         class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
       >
-        <CdxLabel class="pb-[16px]">Memuat kartu...</CdxLabel>
+        <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
       </div>
     </div>
@@ -654,7 +679,7 @@ watch(
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
             <div class="p-[16px] text-white flex items-center justify-between">
-              <p>Kartu dilewati.</p>
+              <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
                 class="flex gap-x-2 items-center cursor-pointer text-white"
@@ -662,7 +687,7 @@ watch(
               >
                 <CdxIcon class="text-white" :icon="cdxIconUndo" alt="undo" />
                 <p style="padding-bottom: 0px" class="text-[16px] font-[700]">
-                  Urungkan
+                  {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
             </div>
@@ -675,7 +700,7 @@ watch(
       v-if="!isLoading && !isError"
       class="flex bottom-0 w-full p-[14px] justify-center left-0 z-0 absolute"
     >
-      <div class="flex max-w-[450px] gap-x-[8px] w-full">
+      <div class="flex max-w-[450px] gap-x-[12px] w-full">
         <CdxButton
           weight="quiet"
           class="h-[34px] w-full"
@@ -688,7 +713,9 @@ watch(
           :disabled="undoWarn || submittingData"
         >
           <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
-          <CdxLabel class="text-[16px] pb-0">Lewati</CdxLabel>
+          <CdxLabel class="text-[16px] pb-0">{{
+            t("session.button1")
+          }}</CdxLabel>
         </CdxButton>
         <CdxButton
           weight="quiet"
@@ -697,7 +724,9 @@ watch(
           :disabled="currCount === 1 || submittingData"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <CdxLabel class="text-[16px] pb-0">Akhiri sesi</CdxLabel>
+          <CdxLabel class="text-[16px] pb-0">{{
+            t("session.button2")
+          }}</CdxLabel>
         </CdxButton>
       </div>
     </div>

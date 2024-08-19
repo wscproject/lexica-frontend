@@ -1,6 +1,9 @@
 <script setup>
 import { CdxLabel } from "@wikimedia/codex";
 import Image from "@/assets/guide_2.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -9,25 +12,29 @@ import Image from "@/assets/guide_2.svg";
       <img :src="Image" alt="image" class="w-100 max-w-[320px]" rel="preload" />
     </div>
     <div class="px-[14px]">
-      <CdxLabel class="text-[18px] pb-[12px]">Antarmuka kontribusi</CdxLabel>
+      <CdxLabel class="text-[18px] pb-[12px]">{{
+        t("tutorial.two.title")
+      }}</CdxLabel>
       <ol class="px-[16px]">
         <li class="content">
-          <b>Beranda:</b> mengakhiri sesi kontribusi dan kembali ke halaman
-          utama.
+          <b>{{ t("tutorial.two.point1Title") }}:</b>
+          {{ t("tutorial.two.point1Content") }}
         </li>
         <li class="content">
-          <b>Nomor kartu:</b> menampilkan urutan kartu yang sedang ditampilkan.
+          <b>{{ t("tutorial.two.point2Title") }}:</b>
+          {{ t("tutorial.two.point2Content") }}
         </li>
         <li class="content">
-          <b>Gestur lewati kartu:</b> usap kepala kartu ke atas untuk melewati
-          kartu yang tidak dapat Anda isi.
+          <b>{{ t("tutorial.two.point3Title") }}:</b>
+          {{ t("tutorial.two.point3Content") }}
         </li>
         <li class="content">
-          <b>Tombol lewati kartu:</b> cara lain untuk melewati kartu.
+          <b>{{ t("tutorial.two.point4Title") }}:</b>
+          {{ t("tutorial.two.point4Content") }}
         </li>
         <li class="content">
-          <b>Akhiri sesi:</b> mengakhiri sesi kontribusi dan kembali ke halaman
-          utama.
+          <b>{{ t("tutorial.two.point5Title") }}:</b>
+          {{ t("tutorial.two.point5Content") }}
         </li>
       </ol>
     </div>

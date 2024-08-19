@@ -64,7 +64,7 @@ const moveCurr = (action) => {
       ]"
     ></div>
 
-    <div class="px-[16px] flex gap-x-[8px] bottom-[16px] right-0 fixed">
+    <div class="px-[16px] flex gap-x-[12px] bottom-[16px] right-0 fixed">
       <CdxButton
         v-if="curr !== 1"
         class="w-[34px] h-[34px]"

@@ -5,12 +5,15 @@ import {
   CdxButton,
   CdxSearchInput,
   CdxProgressBar,
+  CdxThumbnail,
 } from "@wikimedia/codex";
-import { cdxIconInfoFilled } from "@wikimedia/codex-icons";
-import { reactive, ref, watch } from "vue";
+import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
+import { ref } from "vue";
 import { useGeneralStore } from "@/store/general";
-import placeholder from "@/assets/placeholder.svg";
 import debounce from "lodash.debounce";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 
 const isInfo = ref(false);
 const selectedItem = ref(null);
@@ -65,7 +68,7 @@ const onInput = debounce(() => {
     class="relative w-full flex flex-col overflow-hidden flex flex-col h-full"
   >
     <div
-      class="p-[16px] text-white flex test justify-between gap-x-2 header w-full rounded-t-[16px]"
+      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full rounded-t-[16px]"
       :style="{
         background: '#2A4B8D',
         alignItems: 'center',
@@ -96,7 +99,7 @@ const onInput = debounce(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          <i>Tidak ada deskripsi</i>
+          <i>{{ t("session.emptyDescription") }}</i>
         </p>
       </div>
       <div>
@@ -108,14 +111,13 @@ const onInput = debounce(() => {
       </div>
     </div>
     <div class="px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px]">
-      <CdxLabel class="text-[16px]" style="padding-bottom: 16px"
-        >Leksem di atas memiliki makna yang sama dengan butir Wikidata
-        apa?</CdxLabel
-      >
+      <CdxLabel class="text-[16px]" style="padding-bottom: 16px">{{
+        t("session.main.title")
+      }}</CdxLabel>
       <div class="relative">
         <CdxSearchInput
           aria-label="SearchInput default demo"
-          placeholder="Cari butir atau QID"
+          :placeholder="t('session.main.search')"
           class="pb-[16px] relative"
           v-model="search"
           @input="onInput"
@@ -131,9 +133,9 @@ const onInput = debounce(() => {
 
       <div v-if="props.recommendedLoading">
         <div class="w-full max-w-[896px]">
-          <span class="mb-[8px] text-[#54595D] text-[16px]"
-            >Memuat rekomendasi...</span
-          >
+          <span class="mb-[8px] text-[#54595D] text-[16px]">{{
+            t("session.recLoading")
+          }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
@@ -146,9 +148,11 @@ const onInput = debounce(() => {
           !props.recommendedLoading
         "
       >
-        <p class="text-[16px] text-[#54595D]"><i>Tidak ada rekomendasi.</i></p>
         <p class="text-[16px] text-[#54595D]">
-          <i>Carilah butir secara manual.</i>
+          <i>{{ t("session.main.emptySuggestion1") }}</i>
+        </p>
+        <p class="text-[16px] text-[#54595D]">
+          <i>{{ t("session.main.emptySuggestion2") }}</i>
         </p>
       </div>
       <div
@@ -163,7 +167,7 @@ const onInput = debounce(() => {
           class="text-[16px] font-normal text-[#54595D] pb-[8px]"
           style="padding-bottom: 16px"
         >
-          Rekomendasi
+          {{ t("session.main.recommendation") }}
         </p>
 
         <div
@@ -178,14 +182,19 @@ const onInput = debounce(() => {
           @click="selectItem(value.id, value)"
         >
           <div class="flex gap-x-[12px]">
-            <div
+            <!-- <div
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
             >
               <img
                 :src="value?.image || placeholder"
                 class="object-cover h-full w-full"
               />
-            </div>
+            </div> -->
+            <CdxThumbnail
+              :thumbnail="{ url: value?.image }"
+              :placeholder-icon="cdxIconLogoWikidata"
+            />
+
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
                 >{{ value?.label }} ({{ value?.id }})</CdxLabel
@@ -201,7 +210,7 @@ const onInput = debounce(() => {
                 class="text-[16px] font-normal text-[#54595D] pb-0"
                 style="padding-bottom: 16px"
               >
-                <i>Tidak ada deskripsi</i>
+                <i>t</i>
               </p>
             </div>
           </div>
@@ -225,7 +234,7 @@ const onInput = debounce(() => {
             class="text-[16px] font-normal text-[#54595D] pb-[8px]"
             style="padding-bottom: 16px"
           >
-            Hasil pencarian
+            {{ t("session.main.result") }}
           </p>
           <div
             v-for="(value, index) in props?.recommendation"
@@ -239,14 +248,18 @@ const onInput = debounce(() => {
             @click="selectItem(value.id, value)"
           >
             <div class="flex gap-x-[12px]">
-              <div
+              <!-- <div
                 class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
               >
                 <img
                   :src="value?.image || placeholder"
                   class="object-cover h-full w-full"
                 />
-              </div>
+              </div> -->
+              <CdxThumbnail
+                :thumbnail="{ url: value?.image }"
+                :placeholder-icon="cdxIconLogoWikidata"
+              />
               <div>
                 <CdxLabel class="text-[16px]"
                   >{{ value?.label }} ({{ value?.id }})</CdxLabel
@@ -264,7 +277,7 @@ const onInput = debounce(() => {
                   class="text-[16px] font-normal text-[#54595D] pb-0"
                   style="padding-bottom: 16px"
                 >
-                  <i>Tidak ada deskripsi</i>
+                  <i>t</i>
                 </p>
               </div>
             </div>
@@ -281,7 +294,9 @@ const onInput = debounce(() => {
               @click="emit('loadMore')"
               :disabled="props.loadmoreLoading"
               >{{
-                props.loadmoreLoading ? "Memuat..." : "Muat lebih banyak"
+                props.loadmoreLoading
+                  ? t("session.main.loading")
+                  : t("session.main.loadmore")
               }}</CdxButton
             >
           </div>
@@ -292,17 +307,17 @@ const onInput = debounce(() => {
             props?.recommendation?.length === 0 && !props.searchLoading
           "
         >
-          <CdxLabel class="text-[16px] text-[#D73333]"
-            >Tidak ada hasil pencarian yang ditemukan.</CdxLabel
-          >
-          <CdxLabel class="text-[16px] text-[#D73333]"
-            >Coba gunakan kata kunci lain.</CdxLabel
-          >
+          <CdxLabel class="text-[16px] text-[#D73333]">{{
+            t("session.main.emptySearch1")
+          }}</CdxLabel>
+          <CdxLabel class="text-[16px] text-[#D73333]">{{
+            t("session.main.emptySearch2")
+          }}</CdxLabel>
         </div>
       </div>
     </div>
     <div
-      class="w-full h-66px border-t border-[#A2A9B1] p-[16px] flex align-center bg-white gap-x-[8px] rounded-b-[16px]"
+      class="w-full h-66px border-t border-[#A2A9B1] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px]"
     >
       <CdxButton
         class="w-full"
@@ -312,7 +327,7 @@ const onInput = debounce(() => {
             emit('gotoReview');
           }
         "
-        >Butir tidak ada</CdxButton
+        >{{ t("session.main.button1") }}</CdxButton
       >
       <CdxButton
         :disabled="!selectedItem"
@@ -320,7 +335,7 @@ const onInput = debounce(() => {
         action="progressive"
         class="w-full"
         @click="emit('gotoReview', detailData)"
-        >Selanjutnya</CdxButton
+        >{{ t("session.main.button2") }}</CdxButton
       >
     </div>
   </div>

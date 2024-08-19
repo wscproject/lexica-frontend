@@ -1,9 +1,9 @@
 import api from "../config";
 
-export const GetCards = async () => {
+export const GetCards = async (data) => {
   const response = await api();
 
-  return response.get("/contributions/start");
+  return response.post("/contributions/start", { ...data });
 };
 
 export const SearchEntity = async (params) => {

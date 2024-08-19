@@ -1,6 +1,9 @@
 <script setup>
 import { CdxLabel } from "@wikimedia/codex";
 import Image from "@/assets/guide_1.svg";
+import { useI18n } from "vue-i18n";
+
+const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -10,15 +13,11 @@ import Image from "@/assets/guide_1.svg";
     </div>
 
     <div class="px-[16px]">
-      <CdxLabel class="text-[18px] pb-[12px]">Apa itu Lexica?</CdxLabel>
+      <CdxLabel class="text-[18px] pb-[12px]">{{
+        t("tutorial.one.title")
+      }}</CdxLabel>
       <p class="content pb">
-        Lexica menyajikan tampilan penyuntingan Wikidata Leksem untuk memudahkan
-        kontribusi cepat.
-      </p>
-      <br />
-      <p class="content">
-        Anda akan mengerjakan hal berikut: Mengaitkan sebuah leksem dengan butir
-        Wikidata yang bermakna sama.
+        {{ t("tutorial.one.content") }}
       </p>
     </div>
   </div>

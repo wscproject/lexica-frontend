@@ -1,10 +1,17 @@
 <script setup>
-import { CdxLabel, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
-import { cdxIconInfoFilled, cdxIconClose } from "@wikimedia/codex-icons";
+import {
+  CdxLabel,
+  CdxIcon,
+  CdxProgressBar,
+  CdxThumbnail,
+} from "@wikimedia/codex";
+import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
 import { computed, reactive, ref, toRaw, watch } from "vue";
 import placeholder from "@/assets/placeholder.svg";
 import wikimedia from "@/assets/WikidataLexeme.svg";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
 const props = defineProps({
@@ -21,19 +28,19 @@ const setInfo = () => {
 
 const translate = (data) => {
   if (data === "images") {
-    return "gambar";
-  } else if (data === "instanceOf") {
-    return "adalah";
-  } else if (data === "partOf") {
-    return "bagian dari";
-  } else if (data === "subclass") {
-    return "subkelas";
-  } else if (data === "follows") {
-    return "didahului oleh";
-  } else if (data === "textAudio") {
-    return "suara teks ucapan";
+    return t("session.detail.images");
+  } else if (data === "antonym") {
+    return t("session.detail.antonym");
+  } else if (data === "synonym") {
+    return t("session.detail.synonym");
+  } else if (data === "locationOfSenseUsage") {
+    return t("session.detail.locationOfSenseUsage");
+  } else if (data === "languageStyle") {
+    return t("session.detail.languageStyle");
+  } else if (data === "describedAtUrl") {
+    return t("session.detail.describedAtUrl");
   } else if (data === "translation") {
-    return "terjemahan";
+    return t("session.detail.translation");
   }
 };
 
@@ -68,7 +75,10 @@ const statements = computed(() => {
         <div class="flex items-center gap-x-2 pb-[4px]">
           <img :src="wikimedia" alt="WikidataLexeme" />
           <p>
-            <b>leksem — {{ props?.headerData?.category }}</b>
+            <b
+              >{{ t("session.detail.lexeme") }} —
+              {{ props?.headerData?.category }}</b
+            >
           </p>
         </div>
 
@@ -85,7 +95,7 @@ const statements = computed(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          <i>Tidak ada deskripsi</i>
+          <i>{{ t("session.emptyDescription") }}</i>
         </p>
       </div>
       <div>
@@ -99,15 +109,23 @@ const statements = computed(() => {
     <div class="p-[16px] overflow-auto bg-white rounded-b-[16px] h-full">
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px]">Memuat...</span>
+          <span class="text-[#54595D] text-[16px]">{{
+            t("session.detail.loading")
+          }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
 
-      <div class="h-full" v-if="statements.length > 0 && !props.isLoading">
-        <CdxLabel class="text-[16px]" style="padding-bottom: 12px"
-          >Pernyataan</CdxLabel
-        >
+      <div
+        class="h-full"
+        v-if="
+          statements?.filter((item) => item?.[0] !== 'translation')?.length >
+            0 && !props.isLoading
+        "
+      >
+        <CdxLabel class="text-[16px]" style="padding-bottom: 12px">{{
+          t("session.detail.statements")
+        }}</CdxLabel>
         <div
           v-for="(value, index) in statements.filter(
             (item) => item?.[0] !== 'translation'
@@ -116,7 +134,7 @@ const statements = computed(() => {
           class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
-            <div
+            <!-- <div
               v-if="value?.[0] === 'images'"
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
             >
@@ -125,7 +143,12 @@ const statements = computed(() => {
                 :alt="value?.[1]?.data?.[0]?.value"
                 class="object-cover w-full h-full"
               />
-            </div>
+            </div> -->
+            <CdxThumbnail
+              v-if="value?.[0] === 'images'"
+              :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
+              :placeholder-icon="cdxIconLogoWikidata"
+            />
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
                 >{{ translate(value[0]) }} ({{
@@ -145,7 +168,7 @@ const statements = computed(() => {
           v-if="statements.find((item) => item?.[0] === 'translation')"
           class="text-[16px] pt-[4px]"
           style="padding-bottom: 12px"
-          >Terjemahan</CdxLabel
+          >{{ t("session.detail.translation") }} (P5972)</CdxLabel
         >
 
         <div
@@ -159,13 +182,14 @@ const statements = computed(() => {
             <div>
               <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
                 >{{ value?.[1]?.data?.[0]?.language }} ({{
-                  value?.[1]?.property
+                  value?.[1]?.data?.[0]?.code
                 }})</CdxLabel
               >
               <p
                 class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
               >
                 {{ value?.[1]?.data?.[0]?.value }}
+                ({{ value?.[1]?.data?.[0]?.id }})
               </p>
             </div>
           </div>
@@ -175,7 +199,9 @@ const statements = computed(() => {
         class="h-full flex justify-center items-center"
         v-else-if="statements.length === 0 && !props.isLoading"
       >
-        <p class="text-[16px] text-[#54595D]"><i>Tidak ada pernyataan</i></p>
+        <p class="text-[16px] text-[#54595D]">
+          <i>{{ t("session.emptyStatement") }}</i>
+        </p>
       </div>
     </div>
   </div>
