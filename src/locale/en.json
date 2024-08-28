@@ -192,6 +192,11 @@
       "loading": "Ending session..."
     },
 
+    "blank": {
+      "title": "There are no cards that can be filled in again at the moment.",
+      "button": "Back to home"
+    },
+
     "emptyStatement": "No statement found",
     "emptyDescription": "No description found"
   },

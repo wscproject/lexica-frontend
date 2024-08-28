@@ -185,6 +185,11 @@
       "loading": "Mengakhiri sesi..."
     },
 
+    "blank": {
+      "title": "Belum ada kartu yang dapat Anda isi lagi saat ini.",
+      "button": "Kembali ke beranda"
+    },
+
     "emptyStatement": "Tidak ada pernyataan",
     "emptyDescription": "Tidak ada deskripsi"
   },

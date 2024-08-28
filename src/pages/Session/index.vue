@@ -23,6 +23,7 @@ import error from "/src/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
 import sad from "@/assets/Sad.svg";
+import happy from "@/assets/happy.svg";
 
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
@@ -87,6 +88,7 @@ const timeoutLoading = ref(null);
 const noInternet = ref(null);
 const errorLog = ref(null);
 const endLoading = ref(false);
+const totalCount = ref(0);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -95,7 +97,7 @@ const onHideCard = () => {
 
 const currCount = computed(() => {
   // return 5 - count.value + 1;
-  return 6 - data?.value?.length;
+  return totalCount.value + 1 - data?.value?.length;
 });
 
 const nextCard = (isButton, id) => {
@@ -417,6 +419,9 @@ const getCardsData = async (code) => {
   const response = await GetCards({ language: code ? code : store?.language });
 
   if (response.statusCode === 200) {
+    totalCount.value = response?.data?.length;
+    console.log(totalCount.value);
+
     data.value = [...response.data.filter((item) => item.status === "pending")];
     currMargin.value =
       ([...response.data.filter((item) => item.status === "pending")]?.length -
@@ -599,6 +604,30 @@ watch(
             }
           "
           >{{ t("session.error.button") }}</CdxButton
+        >
+      </div>
+    </div>
+
+    <div
+      v-if="totalCount === 0"
+      class="relative custom-height flex justify-center"
+    >
+      <div
+        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
+      >
+        <div class="w-full flex justify-center pb-[16px]">
+          <img :src="happy" alt="happy" />
+        </div>
+        <CdxLabel class="text-[16px] p-0">{{
+          t("session.blank.title")
+        }}</CdxLabel>
+
+        <CdxButton
+          weight="primary"
+          action="progressive"
+          class="w-full max-w-[448px] h-[44px]"
+          @click="router.push('/')"
+          >{{ t("session.blank.button") }}</CdxButton
         >
       </div>
     </div>
