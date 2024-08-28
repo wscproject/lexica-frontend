@@ -33,7 +33,7 @@ onMounted(async () => {
     const response = await GetProfile();
     if (response?.statusCode === 200) {
       store.setData(response.data);
-      locale.value = response?.data?.displayLanguage;
+      locale.value = response?.data?.displayLanguage || "en";
       cookies.set("locale", response?.data?.displayLanguage || "en");
 
       if (response?.data?.ongoingContribution) {
