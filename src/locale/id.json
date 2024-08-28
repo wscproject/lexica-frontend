@@ -83,7 +83,14 @@
   },
   "session": {
     "loading": "Memuat kartu...",
+
     "error": {
+      "title": "Terjadi kesalahan",
+      "description": "Coba muat ulang halaman ini.",
+      "button": "Muat ulang"
+    },
+
+    "noInternet": {
       "title": "Gagal memuat kartu",
       "description": "Periksa koneksi internet Anda, lalu muat ulang.",
       "button": "Muat ulang"
@@ -174,7 +181,8 @@
       "content": "Anda telah mengerjakan",
       "subtext": "kartu sejauh ini.",
       "button1": "Sunting lagi",
-      "button2": "Akhiri sesi"
+      "button2": "Akhiri sesi",
+      "loading": "Mengakhiri sesi..."
     },
 
     "emptyStatement": "Tidak ada pernyataan",

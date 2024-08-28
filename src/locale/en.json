@@ -91,6 +91,12 @@
     "loading": "Loading cards...",
 
     "error": {
+      "title": "Something went wrong",
+      "description": "Try reloading this page.",
+      "button": "Reload"
+    },
+
+    "noInternet": {
       "title": "Card failed to load",
       "description": "Check your internet connection, then try reloading the page.",
       "button": "Reload page"
@@ -182,7 +188,8 @@
       "subtext": "{card} so far.",
       "card": "no card | card | cards",
       "button1": "Keep editing",
-      "button2": "End session"
+      "button2": "End session",
+      "loading": "Ending session..."
     },
 
     "emptyStatement": "No statement found",

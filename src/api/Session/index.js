@@ -16,24 +16,20 @@ export const SearchEntity = async (params) => {
 
 export const GetCardDetail = async (senseId) => {
   const response = await api();
-
   return response.get(`/lexemes/sense/${senseId}`);
 };
 
 export const GetEntityDetail = async (entityId) => {
   const response = await api();
-
   return response.get(`/entites/${entityId}`);
 };
 
 export const UpdateCardDetail = async (data) => {
   const response = await api();
-
   return response.put(`/contributions/detail/${data.senseId}`, { ...data });
 };
 
 export const EndContribution = async () => {
   const response = await api();
-
   return response.post(`/contributions/end`);
 };
