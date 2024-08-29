@@ -609,7 +609,7 @@ watch(
     </div>
 
     <div
-      v-if="totalCount === 0"
+      v-if="totalCount === 0 && !isLoading"
       class="relative custom-height flex justify-center"
     >
       <div
