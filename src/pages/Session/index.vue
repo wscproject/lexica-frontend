@@ -573,7 +573,7 @@ watch(
     </div>
 
     <div
-      v-if="!isLoading && isError"
+      v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
       class="relative custom-height flex justify-center"
     >
       <div
@@ -609,7 +609,12 @@ watch(
     </div>
 
     <div
-      v-if="totalCount === 0 && !isLoading"
+      v-if="
+        totalCount === 0 &&
+        !isLoading &&
+        isError &&
+        errorLog?.message === 'Lexemes not found.'
+      "
       class="relative custom-height flex justify-center"
     >
       <div
@@ -618,7 +623,8 @@ watch(
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="happy" alt="happy" />
         </div>
-        <CdxLabel class="text-[16px] p-0">{{
+
+        <CdxLabel class="text-[16px] px-0 pb-[16px]">{{
           t("session.blank.title")
         }}</CdxLabel>
 

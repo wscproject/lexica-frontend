@@ -6,7 +6,7 @@ import { CdxProgressBar, CdxLabel, CdxButton } from "@wikimedia/codex";
 import successlogo from "@/assets/Success.svg";
 import { useCookies } from "vue3-cookies";
 import { useGeneralStore } from "@/store/general";
-import { GetProfile } from "@/api/Home";
+import { GetProfile, updateUserPreference } from "@/api/Home";
 import { useI18n } from "vue-i18n";
 import { EndContribution } from "@/api/Session";
 
@@ -26,22 +26,32 @@ const loggingOut = () => {
   }, 2000);
 };
 
+const fetchProfile = async (lang) => {
+  const response = await GetProfile();
+  if (response?.statusCode === 200) {
+    store.setData(response?.data || lang);
+    locale.value = response?.data?.displayLanguage || lang;
+    cookies.set("locale", response?.data?.displayLanguage || lang);
+
+    if (response?.data?.ongoingContribution) {
+      EndContribution();
+      loading.value = false;
+    }
+    loading.value = false;
+  }
+};
+
 onMounted(async () => {
+  const lang =
+    window?.navigator?.language?.split("-")?.[0] === "en" ||
+    window?.navigator?.language?.split("-")?.[0] === "id"
+      ? window?.navigator?.language?.split("-")?.[0]
+      : "en";
+
   if (cookies.get("auth")) {
     loading.value = true;
 
-    const response = await GetProfile();
-    if (response?.statusCode === 200) {
-      store.setData(response.data);
-      locale.value = response?.data?.displayLanguage || "en";
-      cookies.set("locale", response?.data?.displayLanguage || "en");
-
-      if (response?.data?.ongoingContribution) {
-        EndContribution();
-        loading.value = false;
-      }
-      loading.value = false;
-    }
+    await fetchProfile(lang);
   }
 });
 
