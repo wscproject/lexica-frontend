@@ -361,7 +361,9 @@ const searchData = async () => {
   const response = await SearchEntity({
     page: params.page,
     limit: params.keyword ? 10 : 3,
-    keyword: params.keyword || data?.value?.[5 - currCount.value]?.lemma,
+    keyword:
+      params.keyword ||
+      data?.value?.[totalCount.value - currCount.value]?.lemma,
   });
 
   if (response?.statusCode) {
@@ -494,7 +496,7 @@ watch([currCount, data], async () => {
   const response = await SearchEntity({
     ...params,
     page: 1,
-    keyword: data?.value?.[5 - currCount.value]?.lemma,
+    keyword: data?.value?.[totalCount.value - currCount.value]?.lemma,
   });
 
   if (response?.statusCode) {
