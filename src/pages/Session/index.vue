@@ -488,7 +488,7 @@ watch([currCount, undoWarn], async () => {
   }
 });
 
-watch(currCount, async () => {
+watch([currCount, data], async () => {
   recommendedLoading.value = true;
 
   const response = await SearchEntity({
