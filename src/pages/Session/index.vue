@@ -935,7 +935,7 @@ watch(
 
 @media (max-height: 675px) and (min-height: 460px) {
   .custom-height {
-    height: 70vh;
+    height: 72vh;
   }
 }
 
