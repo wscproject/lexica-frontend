@@ -933,13 +933,13 @@ watch(
   }
 }
 
-@media (max-height: 675px) and (min-height: 460px) {
+@media (max-height: 600px) and (min-height: 460px) {
   .custom-height {
-    height: 70vh;
+    height: 75vh;
   }
 }
 
-@media (max-height: 700px) and (min-height: 676px) {
+@media (max-height: 700px) and (min-height: 601px) {
   .custom-height {
     height: 75vh;
   }
