@@ -496,7 +496,10 @@ watch([currCount, data], async () => {
   const response = await SearchEntity({
     ...params,
     page: 1,
-    keyword: data?.value?.[totalCount.value - currCount.value]?.lemma,
+    keyword:
+      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
+        /[a-zA-Z]+/
+      )?.[0],
   });
 
   if (response?.statusCode) {
@@ -930,13 +933,13 @@ watch(
   }
 }
 
-@media (max-height: 600px) and (min-height: 460px) {
+@media (max-height: 675px) and (min-height: 460px) {
   .custom-height {
-    height: 75vh;
+    height: 70vh;
   }
 }
 
-@media (max-height: 700px) and (min-height: 601px) {
+@media (max-height: 700px) and (min-height: 676px) {
   .custom-height {
     height: 75vh;
   }
