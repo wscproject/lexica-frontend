@@ -921,31 +921,31 @@ watch(
   opacity: 0;
 }
 
-@media (max-height: 399px) {
+@media (max-height: 400px) {
   .custom-height {
     height: 58vh;
   }
 }
 
-@media (max-height: 459px) and (min-height: 400px) {
+@media (max-height: 460px) and (min-height: 400px) {
   .custom-height {
     height: 68vh;
   }
 }
 
-@media (max-height: 600px) and (min-height: 460px) {
+@media (max-height: 676px) and (min-height: 460px) {
+  .custom-height {
+    height: 70vh;
+  }
+}
+
+@media (max-height: 701px) and (min-height: 676px) {
   .custom-height {
     height: 75vh;
   }
 }
 
-@media (max-height: 700px) and (min-height: 601px) {
-  .custom-height {
-    height: 75vh;
-  }
-}
-
-@media (max-height: 915px) and (min-height: 701px) {
+@media (max-height: 916px) and (min-height: 701px) {
   .custom-height {
     height: 75vh;
   }
