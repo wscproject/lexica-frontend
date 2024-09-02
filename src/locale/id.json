@@ -3,7 +3,7 @@
     "menu": {
       "login": "Masuk log",
       "logout": "Keluar log",
-      "locale": "Tampilan bahasa",
+      "locale": "Bahasa tampilan",
       "language": "Bahasa Indonesia",
       "loggingout": "Sedang keluar log...",
       "logoutsuccess": "Anda berhasil keluar log.",
@@ -17,7 +17,7 @@
     "license": "Lisensi"
   },
   "localeDialog": {
-    "title": "Tampilan bahasa",
+    "title": "Bahasa tampilan",
     "cancel": "Batal",
     "apply": "Terapkan"
   },
