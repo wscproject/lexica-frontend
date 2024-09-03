@@ -3,7 +3,7 @@
     "menu": {
       "login": "Masuk log",
       "logout": "Keluar log",
-      "locale": "Tampilan bahasa",
+      "locale": "Bahasa tampilan",
       "language": "Bahasa Indonesia",
       "loggingout": "Sedang keluar log...",
       "logoutsuccess": "Anda berhasil keluar log.",
@@ -17,7 +17,7 @@
     "license": "Lisensi"
   },
   "localeDialog": {
-    "title": "Tampilan bahasa",
+    "title": "Bahasa tampilan",
     "cancel": "Batal",
     "apply": "Terapkan"
   },
@@ -83,7 +83,14 @@
   },
   "session": {
     "loading": "Memuat kartu...",
+
     "error": {
+      "title": "Terjadi kesalahan",
+      "description": "Coba muat ulang halaman ini.",
+      "button": "Muat ulang"
+    },
+
+    "noInternet": {
       "title": "Gagal memuat kartu",
       "description": "Periksa koneksi internet Anda, lalu muat ulang.",
       "button": "Muat ulang"
@@ -174,7 +181,13 @@
       "content": "Anda telah mengerjakan",
       "subtext": "kartu sejauh ini.",
       "button1": "Sunting lagi",
-      "button2": "Akhiri sesi"
+      "button2": "Akhiri sesi",
+      "loading": "Mengakhiri sesi..."
+    },
+
+    "blank": {
+      "title": "Belum ada kartu yang dapat Anda isi lagi saat ini.",
+      "button": "Kembali ke beranda"
     },
 
     "emptyStatement": "Tidak ada pernyataan",

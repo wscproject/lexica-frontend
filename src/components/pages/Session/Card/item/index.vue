@@ -210,7 +210,7 @@ const onInput = debounce(() => {
                 class="text-[16px] font-normal text-[#54595D] pb-0"
                 style="padding-bottom: 16px"
               >
-                <i>t</i>
+                <i>{{ t("session.emptyDescription") }}</i>
               </p>
             </div>
           </div>
@@ -277,7 +277,7 @@ const onInput = debounce(() => {
                   class="text-[16px] font-normal text-[#54595D] pb-0"
                   style="padding-bottom: 16px"
                 >
-                  <i>t</i>
+                  <i>{{ t("session.emptyDescription") }}</i>
                 </p>
               </div>
             </div>

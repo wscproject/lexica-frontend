@@ -1,6 +1,6 @@
 <script setup>
 import { CdxDialog, CdxLabel, CdxButton, CdxIcon } from "@wikimedia/codex";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t, locale } = useI18n({ useScope: "global" });
@@ -10,6 +10,7 @@ let resolvePromise;
 
 const props = defineProps({
   count: Number,
+  loading: Boolean,
 });
 
 const emit = defineEmits(["onPrimaryAction, result"]);
@@ -25,13 +26,21 @@ const openModal = () => {
   });
 };
 
-const handleUserInput = (value) => {
+const handleUserInput = async (value) => {
   if (!resolvePromise) return;
 
   resolvePromise(value);
 
-  open.value = false;
+  if (!value) {
+    open.value = false;
+  }
 };
+
+watch(props, () => {
+  if (!props.loading) {
+    open.value = false;
+  }
+});
 
 const primaryAction = {
   label: "Save",
@@ -65,7 +74,7 @@ defineExpose({ openModal });
     </div>
 
     <template #footer>
-      <div class="flex gap-x-2 justify-end">
+      <div class="flex gap-x-2 justify-end" v-if="!props.loading">
         <CdxButton @click="handleUserInput(false)">{{
           t("session.warning.button1")
         }}</CdxButton>
@@ -75,6 +84,10 @@ defineExpose({ openModal });
           @click="handleUserInput(true)"
           >{{ t("session.warning.button2") }}</CdxButton
         >
+      </div>
+
+      <div class="flex gap-x-2 justify-end" v-if="props.loading">
+        <CdxButton disabled>{{ t("session.warning.loading") }}</CdxButton>
       </div>
     </template>
   </CdxDialog>

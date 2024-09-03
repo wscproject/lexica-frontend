@@ -19,9 +19,11 @@ import {
 } from "@wikimedia/codex-icons";
 import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
-import error from "@/assets/error.svg";
+import error from "/src/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
+import sad from "@/assets/Sad.svg";
+import happy from "@/assets/happy.svg";
 
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
@@ -83,6 +85,10 @@ const isSubmitError = ref(false);
 const subItemHeaderData = ref(null);
 
 const timeoutLoading = ref(null);
+const noInternet = ref(null);
+const errorLog = ref(null);
+const endLoading = ref(false);
+const totalCount = ref(0);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -91,7 +97,7 @@ const onHideCard = () => {
 
 const currCount = computed(() => {
   // return 5 - count.value + 1;
-  return 6 - data?.value?.length;
+  return totalCount.value + 1 - data?.value?.length;
 });
 
 const nextCard = (isButton, id) => {
@@ -145,6 +151,9 @@ const submitCard = async (item) => {
       submit.value = false;
       disableSplash();
     }, 200);
+  } else if (response.statusCode === 503) {
+    isLoading.value = false;
+    noInternet.value = true;
   } else {
     submittingData.value = false;
     isSubmitError.value = true;
@@ -179,6 +188,10 @@ const disableSplash = () => {
   }, 1500);
 };
 
+const reload = () => {
+  window.location.reload();
+};
+
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
     if (currCount.value > 1 && currCount.value < 6) {
@@ -189,7 +202,12 @@ onBeforeRouteLeave(async (to, from) => {
       } else {
         skipAll.value = true;
 
-        EndContribution();
+        const response = await EndContribution();
+
+        if (response?.statusCode === 503) {
+          isLoading.value = false;
+          noInternet.value = true;
+        }
 
         const completeInput = await completeRef?.value?.openModal();
 
@@ -209,12 +227,24 @@ const endEarly = async () => {
 
     if (userInput) {
       skipAll.value = true;
-      EndContribution();
+      endLoading.value = true;
 
-      const completeInput = await completeRef?.value?.openModal();
+      const response = await EndContribution();
 
-      if (completeInput) {
-        router.push("/");
+      if (response?.statusCode === 200) {
+        endLoading.value = false;
+
+        const userInput = await completeRef?.value?.openModal();
+
+        if (userInput) {
+          router.push("/");
+        }
+      }
+
+      if (response?.statusCode === 503) {
+        endLoading.value = false;
+        isLoading.value = false;
+        noInternet.value = true;
       }
     }
   } else {
@@ -331,7 +361,9 @@ const searchData = async () => {
   const response = await SearchEntity({
     page: params.page,
     limit: params.keyword ? 10 : 3,
-    keyword: params.keyword || data?.value?.[5 - currCount.value]?.lemma,
+    keyword:
+      params.keyword ||
+      data?.value?.[totalCount.value - currCount.value]?.lemma,
   });
 
   if (response?.statusCode) {
@@ -370,18 +402,28 @@ const getEntityDetail = async (id) => {
 };
 
 const getProfile = async () => {
+  isLoading.value = true;
+
   const response = await GetProfile();
   if (response?.statusCode === 200) {
-    console.log(response?.data);
-
     await getCardsData(response?.data?.language);
+  } else if (response.statusCode === 503) {
+    isLoading.value = false;
+    noInternet.value = true;
+  } else {
+    isLoading.value = false;
+    isError.value = true;
   }
 };
 
 const getCardsData = async (code) => {
+  isLoading.value = true;
   const response = await GetCards({ language: code ? code : store?.language });
 
   if (response.statusCode === 200) {
+    totalCount.value = response?.data?.length;
+    console.log(totalCount.value);
+
     data.value = [...response.data.filter((item) => item.status === "pending")];
     currMargin.value =
       ([...response.data.filter((item) => item.status === "pending")]?.length -
@@ -390,15 +432,22 @@ const getCardsData = async (code) => {
     isLoading.value = false;
     disableSplash();
   } else {
-    isLoading.value = false;
-    isError.value = true;
+    if (response.statusCode === 503) {
+      isLoading.value = false;
+      noInternet.value = true;
+    } else {
+      isLoading.value = false;
+      isError.value = true;
+
+      errorLog.value = {
+        message: response?.response?.data?.message,
+        code: response?.response?.status,
+      };
+    }
   }
 };
 
 onMounted(async () => {
-  console.log(store.language);
-
-  isLoading.value = true;
   if (store?.language) {
     await getCardsData();
   } else {
@@ -413,7 +462,6 @@ watch(
 
     if (newData?.length < oldData?.length) {
       currMargin.value = currMargin.value - (data?.value?.length < 5 ? 4 : 0);
-      console.log("setset", currMargin.value);
     } else if (newData?.length > oldData?.length)
       currMargin.value = currMargin.value + 4;
   },
@@ -422,28 +470,47 @@ watch(
 
 watch([currCount, undoWarn], async () => {
   if (currCount.value === 6 && !undoWarn.value) {
-    EndContribution();
-    const userInput = await completeRef?.value?.openModal();
+    endLoading.value = true;
 
-    if (userInput) {
-      router.push("/");
+    const response = await EndContribution();
+
+    if (response?.statusCode === 200) {
+      endLoading.value = false;
+      const userInput = await completeRef?.value?.openModal();
+
+      if (userInput) {
+        router.push("/");
+      }
+    }
+
+    if (response?.statusCode === 503) {
+      isLoading.value = false;
+      noInternet.value = true;
     }
   }
 });
 
-watch(currCount, async () => {
+watch([currCount, data], async () => {
   recommendedLoading.value = true;
 
   const response = await SearchEntity({
     ...params,
     page: 1,
-    keyword: data?.value?.[5 - currCount.value]?.lemma,
+    keyword:
+      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
+        /[a-zA-Z]+/
+      )?.[0],
   });
 
   if (response?.statusCode) {
     recommendedLoading.value = false;
 
     entities.value = [...response?.data?.entities];
+  } else {
+    if (response.statusCode === 503) {
+      isLoading.value = false;
+      noInternet.value = true;
+    }
   }
 });
 
@@ -484,12 +551,41 @@ watch(
       </div>
     </div>
 
-    <div v-if="isError" class="relative custom-height flex justify-center">
+    <div
+      v-if="!isLoading && noInternet"
+      class="relative custom-height flex justify-center"
+    >
       <div
-        class="w-full text-center max-w-[896px] absolute top-[45%] px-[16px]"
+        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
       >
         <div class="w-full flex justify-center pb-[16px]">
-          <img :src="error" alt="home" />
+          <img :src="error" alt="error" />
+        </div>
+        <CdxLabel class="text-[16px] p-0">{{
+          t("session.noInternet.title")
+        }}</CdxLabel>
+        <p class="text-[16px] pb-[16px]">
+          {{ t("session.noInternet.description") }}
+        </p>
+        <CdxButton
+          weight="primary"
+          action="progressive"
+          class="w-full max-w-[448px] h-[44px]"
+          @click="reload"
+          >{{ t("session.noInternet.button") }}</CdxButton
+        >
+      </div>
+    </div>
+
+    <div
+      v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
+      class="relative custom-height flex justify-center"
+    >
+      <div
+        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
+      >
+        <div class="w-full flex justify-center pb-[16px]">
+          <img :src="sad" alt="home" />
         </div>
         <CdxLabel class="text-[16px] p-0">{{
           t("session.error.title")
@@ -497,18 +593,58 @@ watch(
         <p class="text-[16px] pb-[16px]">
           {{ t("session.error.description") }}
         </p>
+
+        <p class="text-[14px] pb-[16px]" style="font-family: monospace">
+          {{ errorLog?.code || "" }} {{ errorLog?.message || "" }}
+        </p>
+
         <CdxButton
           weight="primary"
           action="progressive"
           class="w-full max-w-[448px] h-[44px]"
-          @click="getCardsData"
+          @click="
+            () => {
+              getProfile();
+              isError = false;
+            }
+          "
           >{{ t("session.error.button") }}</CdxButton
         >
       </div>
     </div>
 
     <div
-      v-if="isLoading && !isError"
+      v-if="
+        totalCount === 0 &&
+        !isLoading &&
+        isError &&
+        errorLog?.message === 'Lexemes not found.'
+      "
+      class="relative custom-height flex justify-center"
+    >
+      <div
+        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
+      >
+        <div class="w-full flex justify-center pb-[16px]">
+          <img :src="happy" alt="happy" />
+        </div>
+
+        <CdxLabel class="text-[16px] px-0 pb-[16px]">{{
+          t("session.blank.title")
+        }}</CdxLabel>
+
+        <CdxButton
+          weight="primary"
+          action="progressive"
+          class="w-full max-w-[448px] h-[44px]"
+          @click="router.push('/')"
+          >{{ t("session.blank.button") }}</CdxButton
+        >
+      </div>
+    </div>
+
+    <div
+      v-if="isLoading && !isError && !noInternet"
       class="relative custom-height flex justify-center"
     >
       <div
@@ -519,7 +655,7 @@ watch(
       </div>
     </div>
     <div
-      v-else-if="!isLoading && !isError"
+      v-else-if="!isLoading && !isError && !noInternet"
       class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
         backgroundImage: `url(${blank})`,
@@ -697,7 +833,7 @@ watch(
     </div>
 
     <div
-      v-if="!isLoading && !isError"
+      v-if="!isLoading && !isError && !noInternet"
       class="flex bottom-0 w-full p-[14px] justify-center left-0 z-0 absolute"
     >
       <div class="flex max-w-[450px] gap-x-[12px] w-full">
@@ -731,7 +867,12 @@ watch(
       </div>
     </div>
 
-    <WarningDialog class="session" :count="currCount - 1" ref="testing" />
+    <WarningDialog
+      class="session"
+      :count="currCount - 1"
+      ref="testing"
+      :loading="endLoading"
+    />
     <CompleteDialog class="session" ref="completeRef" />
   </div>
 </template>
@@ -780,31 +921,31 @@ watch(
   opacity: 0;
 }
 
-@media (max-height: 399px) {
+@media (max-height: 400px) {
   .custom-height {
     height: 58vh;
   }
 }
 
-@media (max-height: 459px) and (min-height: 400px) {
+@media (max-height: 460px) and (min-height: 400px) {
   .custom-height {
     height: 68vh;
   }
 }
 
-@media (max-height: 600px) and (min-height: 460px) {
+@media (max-height: 676px) and (min-height: 460px) {
+  .custom-height {
+    height: 70vh;
+  }
+}
+
+@media (max-height: 701px) and (min-height: 676px) {
   .custom-height {
     height: 75vh;
   }
 }
 
-@media (max-height: 700px) and (min-height: 601px) {
-  .custom-height {
-    height: 75vh;
-  }
-}
-
-@media (max-height: 915px) and (min-height: 701px) {
+@media (max-height: 916px) and (min-height: 701px) {
   .custom-height {
     height: 75vh;
   }

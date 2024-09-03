@@ -44,7 +44,7 @@ onMounted(async () => {
 });
 
 const gotoSession = async () => {
-  await store.setData({ language: contributeLang.value });
+  await store.setData({ language: contributeLang?.value || "" });
   await router.push("/session");
 };
 

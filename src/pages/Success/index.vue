@@ -13,7 +13,16 @@ const router = useRouter();
 const { cookies } = useCookies();
 
 onMounted(async () => {
-  const response = await Login({ code: route.query.code });
+  const lang =
+    window?.navigator?.language?.split("-")?.[0] === "en" ||
+    window?.navigator?.language?.split("-")?.[0] === "id"
+      ? window?.navigator?.language?.split("-")?.[0]
+      : "en";
+
+  const response = await Login({
+    code: route.query.code,
+    displayLanguage: lang,
+  });
 
   if (response.statusCode === 200) {
     cookies.set("auth", response?.data?.access_token);

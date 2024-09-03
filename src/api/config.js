@@ -38,6 +38,8 @@ const api = async () => {
         return response.data;
       },
       async (error) => {
+        console.log("error", error);
+
         let originalRequest = error.config;
 
         if (error?.response?.status === 400) {
@@ -47,7 +49,11 @@ const api = async () => {
 
         if (error?.response?.status === 404) {
           // Handle forbidden error e.g. show restricted access warning
-          return "asd";
+          return error;
+        }
+
+        if (error?.message === "Network Error") {
+          return { statusCode: 503 };
         }
 
         if (error?.response?.status === 401) {
