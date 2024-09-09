@@ -24,6 +24,16 @@
     "apply": "Apply"
   },
 
+  "darkmodeDialog": {
+    "title": "Theme",
+    "auto": "Automatic",
+    "desc": "Follow your system/browser theme",
+    "light": "Light",
+    "dark": "Dark",
+    "cancel": "Cancel",
+    "apply": "Apply"
+  },
+
   "home": {
     "unauth": {
       "title": "Welcome!",

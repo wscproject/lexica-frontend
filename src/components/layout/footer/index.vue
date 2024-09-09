@@ -7,11 +7,12 @@ const { t } = useI18n({ useScope: "global" });
 
 <template>
   <footer
-    class="h-[103px] fixed flex justify-center items-center w-full left-0 bottom-0 flex-col px-[16px] bg-[#EAECF0]"
+    class="h-[103px] fixed flex justify-center items-center w-full left-0 bottom-0 flex-col px-[16px] bg-[#EAECF0] dark:bg-[#27292D]"
   >
     <img :src="Logo" alt="lexica_footer" />
     <div class="text-center text-[12px]">
-      <span>{{ t("footer.label") }} </span
+      <span class="text-[#54595D] dark:text-[#A2A9B1]"
+        >{{ t("footer.label") }} </span
       ><a
         href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
       >

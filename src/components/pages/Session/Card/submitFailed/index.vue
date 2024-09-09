@@ -9,17 +9,17 @@ const emit = defineEmits(["back"]);
 
 <template>
   <div
-    class="absolute z-[99] w-full bg-white flex justify-center flex-col text-center p-[16px]"
+    class="absolute z-[99] w-full bg-white dark:bg-[#101418] flex justify-center flex-col text-center p-[16px]"
   >
     <div class="w-full text-center">
       <div class="w-full flex justify-center pb-[16px]">
         <img :src="error" alt="home" />
       </div>
 
-      <CdxLabel class="pb-[16px] text-[18px]">{{
+      <CdxLabel class="pb-[16px] text-[18px] dark:text-[#EAECF0]">{{
         t("session.cardError.title")
       }}</CdxLabel>
-      <p class="w-full text-[16px]">
+      <p class="w-full text-[16px] dark:text-[#EAECF0]">
         {{ t("session.cardError.description") }}
       </p>
 

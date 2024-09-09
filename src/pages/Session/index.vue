@@ -19,6 +19,8 @@ import {
 } from "@wikimedia/codex-icons";
 import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
+import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
+
 import error from "/src/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
@@ -38,18 +40,21 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
+import { useDark } from "@vueuse/core";
 
 const { t } = useI18n({ useScope: "global" });
 const store = useGeneralStore();
 
 const router = useRouter();
 
+const isDark = useDark();
+
 const completeRef = ref(null);
 const count = ref(3);
 const data = ref([]);
 const tempData = ref(null);
 const detail = ref(null);
-const currMargin = ref(32);
+const currMargin = ref(48);
 const flip = ref(false);
 const currMode = ref(1);
 const next = ref(false);
@@ -677,7 +682,7 @@ watch(
             :isFlipped="flip"
             v-for="(value, index) in data"
             :style="{
-              marginTop: -8 * index + 1 + 'px',
+              marginTop: -12 * index + 1 + 'px',
               ...(prev && { transition: 'unset !important' }),
               ...(!isMove && { transition: 'transform 0.5s ease-out' }),
               ...(springBack && { transition: 'transform 0.35s' }),
@@ -711,7 +716,9 @@ watch(
             <transition name="fade">
               <CardSplash
                 :class="[
-                  data?.length !== index + 1 ? 'bg-white' : 'bg-[#2A4B8D]',
+                  data?.length !== index + 1
+                    ? 'bg-white dark:bg-[#101418]'
+                    : 'bg-[#2A4B8D]',
                   'custom-height z-[1]  rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
@@ -806,7 +813,7 @@ watch(
           ]"
         >
           <div
-            class="w-full max-w-[450px] min-w-[288px] bg-black relative mx-[8px] rounded-[2px]"
+            class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
             style="box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2)"
           >
             <v-progress-linear
@@ -814,15 +821,24 @@ watch(
               color="#3366CC"
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
-            <div class="p-[16px] text-white flex items-center justify-between">
+            <div
+              class="p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
+            >
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
                 class="flex gap-x-2 items-center cursor-pointer text-white"
                 @click="undoCard"
               >
-                <CdxIcon class="text-white" :icon="cdxIconUndo" alt="undo" />
-                <p style="padding-bottom: 0px" class="text-[16px] font-[700]">
+                <CdxIcon
+                  class="text-white dark:text-[#101418]"
+                  :icon="cdxIconUndo"
+                  alt="undo"
+                />
+                <p
+                  style="padding-bottom: 0px"
+                  class="text-[16px] font-[700] dark:text-[#101418]"
+                >
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -848,7 +864,15 @@ watch(
           "
           :disabled="undoWarn || submittingData"
         >
-          <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
+          <SkipIcon
+            v-if="!isDark"
+            :color="submittingData ? '#72777d' : '#202122'"
+          />
+          <SkipDarkIcon
+            v-if="isDark"
+            :color="submittingData ? '#72777d' : '#EAECF0'"
+          />
+
           <CdxLabel class="text-[16px] pb-0">{{
             t("session.button1")
           }}</CdxLabel>

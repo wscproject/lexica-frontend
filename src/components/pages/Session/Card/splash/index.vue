@@ -6,6 +6,7 @@ const { t } = useI18n({ useScope: "global" });
 const props = defineProps({
   data: Object,
   currCount: Number,
+  isNotCurrent: Boolean,
 });
 </script>
 

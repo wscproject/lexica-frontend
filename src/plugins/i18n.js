@@ -32,6 +32,7 @@ const messages = Promise.all(mapLangs).then(function (results) {
 
 export const i18n = createI18n({
   legacy: false,
+  globalInjection: true,
   locale:
     cookies?.get("locale") ||
     window?.navigator?.language?.split("-")?.[0] === "en" ||

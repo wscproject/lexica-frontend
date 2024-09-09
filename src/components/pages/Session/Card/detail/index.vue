@@ -106,10 +106,12 @@ const statements = computed(() => {
         />
       </div>
     </div>
-    <div class="p-[16px] overflow-auto bg-white rounded-b-[16px] h-full">
+    <div
+      class="p-[16px] overflow-auto bg-white dark:bg-[#101418] rounded-b-[16px] h-full"
+    >
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px]">{{
+          <span class="text-[#54595D] text-[16px] dark:text-[#EAECF0]">{{
             t("session.detail.loading")
           }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
@@ -123,9 +125,11 @@ const statements = computed(() => {
             0 && !props.isLoading
         "
       >
-        <CdxLabel class="text-[16px]" style="padding-bottom: 12px">{{
-          t("session.detail.statements")
-        }}</CdxLabel>
+        <CdxLabel
+          class="text-[16px] dark:text-[#EAECF0]"
+          style="padding-bottom: 12px"
+          >{{ t("session.detail.statements") }}</CdxLabel
+        >
         <div
           v-for="(value, index) in statements.filter(
             (item) => item?.[0] !== 'translation'
@@ -150,7 +154,8 @@ const statements = computed(() => {
               :placeholder-icon="cdxIconLogoWikidata"
             />
             <div>
-              <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
+              <CdxLabel
+                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ translate(value[0]) }} ({{
                   value?.[1]?.property
                 }})</CdxLabel
@@ -166,7 +171,7 @@ const statements = computed(() => {
 
         <CdxLabel
           v-if="statements.find((item) => item?.[0] === 'translation')"
-          class="text-[16px] pt-[4px]"
+          class="text-[16px] pt-[4px] dark:text-[#EAECF0]"
           style="padding-bottom: 12px"
           >{{ t("session.detail.translation") }} (P5972)</CdxLabel
         >
@@ -180,7 +185,8 @@ const statements = computed(() => {
         >
           <div class="flex gap-x-[12px]">
             <div>
-              <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
+              <CdxLabel
+                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ value?.[1]?.data?.[0]?.language }} ({{
                   value?.[1]?.data?.[0]?.code
                 }})</CdxLabel

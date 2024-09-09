@@ -1,18 +1,24 @@
 <script setup>
 import { CdxButton, CdxIcon } from "@wikimedia/codex";
-import {
-  cdxIconArrowPrevious,
-  cdxIconLinkExternal,
-} from "@wikimedia/codex-icons";
+import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
+import { useDark } from "@vueuse/core";
+import { onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
+
+onMounted(() => {
+  useDark();
+});
+
 const router = useRouter();
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div
+    class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
+  >
     <div
       class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
     >
@@ -24,7 +30,7 @@ const router = useRouter();
       >
         <CdxIcon :icon="cdxIconArrowPrevious" />
       </CdxButton>
-      <p class="p-0 font-[700]">{{ t("about.title") }}</p>
+      <p class="p-0 font-[700] dark:text-white">{{ t("about.title") }}</p>
     </div>
     <div class="p-[16px]">
       <div class="border-b border-[#C8CCD1] mb-[12px]">
@@ -67,8 +73,10 @@ const router = useRouter();
   </div>
 </template>
 
-<style lang="less">
+<!-- <style lang="less">
 @import (reference) "@wikimedia/codex-design-tokens/theme-wikimedia-ui.less";
+@import (reference)
+  "@wikimedia/codex-design-tokens/theme-wikimedia-ui-mixin-dark.less";
 @import (reference) "@wikimedia/codex/mixins/link.less";
 
 .cdx-docs-link {
@@ -79,4 +87,4 @@ const router = useRouter();
     color: inherit;
   }
 }
-</style>
+</style> -->

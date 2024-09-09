@@ -21,6 +21,15 @@
     "cancel": "Batal",
     "apply": "Terapkan"
   },
+  "darkmodeDialog": {
+    "title": "Tema",
+    "auto": "Otomatis",
+    "desc": "Ikuti tema sistem/peramban Anda",
+    "light": "Terang",
+    "dark": "Gelap",
+    "cancel": "Batal",
+    "apply": "Terapkan"
+  },
   "home": {
     "unauth": {
       "title": "Selamat datang!",
@@ -154,7 +163,7 @@
       "button1": "Sunting lagi",
       "button2": "Selesai",
       "empty": "Tidak ada perubahan",
-      "reason": "ALasan: Butir tidak ada"
+      "reason": "Alasan: Butir tidak ada"
     },
 
     "upload": "Mengunggah kontribusi...",

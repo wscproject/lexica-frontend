@@ -1,0 +1,25 @@
+<script setup>
+const props = defineProps({
+  color: String,
+});
+</script>
+
+<template>
+  <svg
+    width="20"
+    height="20"
+    viewBox="0 0 20 20"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g id="Media / Skip">
+      <path
+        id="Union"
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d="M19.5848 10.9021C20.1384 10.4394 20.1384 9.55975 19.5848 9.09706L11.3988 2.25544C10.6744 1.65002 9.60132 2.18882 9.60132 3.15797V8.7776L1.79755 2.25545C1.07312 1.65 0 2.18883 0 3.15803V16.842C0 17.8112 1.07313 18.35 1.79755 17.7445L9.60132 11.2224V16.8412C9.60132 17.8103 10.6744 18.3492 11.3988 17.7437L19.5848 10.9021Z"
+        :fill="props.color"
+      />
+    </g>
+  </svg>
+</template>

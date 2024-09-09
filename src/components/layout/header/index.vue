@@ -12,6 +12,8 @@ import {
   cdxIconLanguage,
 } from "@wikimedia/codex-icons";
 import ChooseLocale from "@/components/dialog/localization/index.vue";
+import ChooseTheme from "@/components/dialog/darkMode/index.vue";
+
 import { useGeneralStore } from "@/store/general";
 import { useI18n } from "vue-i18n";
 
@@ -23,12 +25,12 @@ const { cookies } = useCookies();
 const selection = ref(null);
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
 const changeLanguage = ref(false);
+const changeTheme = ref(false);
 
 const testRef = ref(null);
+
 const isAuth = ref(null);
-const selected = ref(null);
 const menu = ref(false);
-const menuItems = [{ label: "Keyboard shortcuts", value: "logout" }];
 
 const emit = defineEmits(["logout"]);
 const props = defineProps({
@@ -68,6 +70,10 @@ const authMenu = computed(() => {
       description: t("header.menu.language"),
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
+    {
+      label: "test",
+      value: "test",
+    },
   ];
 });
 
@@ -97,12 +103,20 @@ const catchOutsideClick = (event, dropdown) => {
 };
 
 const onSelect = (newSelection) => {
+  console.log(newSelection);
+
   switch (newSelection) {
     case "logout":
       emit("logout");
       break;
     case "locale":
       changeLanguage.value = true;
+      break;
+
+    case "test":
+      changeTheme.value = true;
+      break;
+
     default:
       break;
   }
@@ -111,7 +125,7 @@ const onSelect = (newSelection) => {
 
 <template>
   <header
-    class="h-[54px] border-b-[1px] border-[#C8CCD1] fixed flex justify-end items-center w-full bg-white left-0"
+    class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0"
   >
     <div class="absolute w-full flex justify-center items-center h-full">
       <img :src="Logo" alt="lexica_logo" />
@@ -130,6 +144,7 @@ const onSelect = (newSelection) => {
       :class="[
         'z-[5] top-[58px] p-[4px]',
         isAuth && !props.isLogout ? 'first-child' : 'unauth',
+        'dark:text-[#fff]',
       ]"
       @update:selected="onSelect"
     >
@@ -186,6 +201,8 @@ const onSelect = (newSelection) => {
       :open="changeLanguage"
       @onPrimaryAction="changeLanguage = false"
     />
+
+    <ChooseTheme :open="changeTheme" @onPrimaryAction="changeTheme = false" />
   </header>
 </template>
 
@@ -221,6 +238,10 @@ const onSelect = (newSelection) => {
 
 .cdx-menu {
   top: 4px !important;
+}
+
+.cdx-menu-button__menu-wrapper {
+  z-index: 9999 !important;
 }
 
 .cdx-menu ul {
