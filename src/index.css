@@ -1,3 +1,56 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind variants;
+
+/* .cdx-select-vue--enabled .cdx-select-vue__handle {
+  @apply dark:bg-[#202122] dark:text-[#EAECF0] dark:border-[#72777D];
+}
+
+.cdx-select-vue--enabled .cdx-select-vue__handle:hover {
+  @apply dark:bg-[#101418];
+}
+
+.cdx-select-vue--enabled .cdx-select-vue__handle:active {
+  @apply dark:bg-[#101418];
+}
+
+.cdx-select-vue--enabled .cdx-select-vue__handle:focus {
+  @apply dark:bg-[#101418];
+}
+
+.cdx-select-vue__handle .cdx-select-vue__indicator {
+  @apply text-[#202122] dark:text-[#EAECF0];
+}
+
+.cdx-select-vue__handle:hover .cdx-select-vue__indicator {
+  @apply dark:text-[#EAECF0];
+}
+
+.cdx-button--action-default {
+  @apply border-[1px] dark:bg-[#202122] dark:text-[#EAECF0] dark:border-[#a2a9b1];
+}
+
+.cdx-button--action-default:hover {
+  @apply dark:bg-[#101418] dark:text-[#EAECF0];
+}
+
+.cdx-menu {
+  @apply dark:bg-[#101418] dark:border-[#72777D];
+}
+
+.cdx-menu-item__content {
+  @apply dark:text-[#EAECF0];
+}
+
+.cdx-menu-item--highlighted {
+  @apply dark:bg-[#202122];
+}
+
+.cdx-menu-item--highlighted .cdx-menu-item__content {
+  @apply dark:text-[#EAECF0];
+} */
+
+/* .cdx-menu-item--selected {
+  @apply 
+} */

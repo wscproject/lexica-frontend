@@ -3,13 +3,16 @@ import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
+import { onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col">
+  <div
+    class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
+  >
     <div
       class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
     >
@@ -98,17 +101,3 @@ const router = useRouter();
     </div>
   </div>
 </template>
-
-<style lang="less">
-@import (reference) "@wikimedia/codex-design-tokens/theme-wikimedia-ui.less";
-@import (reference) "@wikimedia/codex/mixins/link.less";
-
-.cdx-docs-link {
-  .cdx-mixin-link();
-
-  // stylelint-disable-next-line selector-class-pattern
-  .cdx-icon {
-    color: inherit;
-  }
-}
-</style>

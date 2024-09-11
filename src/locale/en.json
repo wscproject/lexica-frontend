@@ -4,6 +4,11 @@
       "login": "Log in",
       "logout": "Log out",
       "locale": "Display language",
+      "theme": "Theme",
+      "auto": "Automatic",
+      "autoDesc": "Follow your system/browser theme",
+      "light": "Light",
+      "dark": "Dark",
       "language": "English",
       "loggingout": "Logging out...",
       "logoutsuccess": "You are logged out.",
@@ -20,6 +25,16 @@
 
   "localeDialog": {
     "title": "Display language",
+    "cancel": "Cancel",
+    "apply": "Apply"
+  },
+
+  "darkmodeDialog": {
+    "title": "Theme",
+    "auto": "Automatic",
+    "desc": "Follow your system/browser theme",
+    "light": "Light",
+    "dark": "Dark",
     "cancel": "Cancel",
     "apply": "Apply"
   },

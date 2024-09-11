@@ -34,9 +34,13 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex justify-center items-center w-full p-[16px]">
+  <div
+    class="min-h-screen flex justify-center items-center w-full p-[16px] dark:bg-[#101418]"
+  >
     <div class="w-full text-center max-w-[896px]">
-      <CdxLabel class="pb-[16px]">{{ t("home.loading") }}</CdxLabel>
+      <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
+        t("home.loading")
+      }}</CdxLabel>
       <CdxProgressBar class="w-full"></CdxProgressBar>
     </div>
   </div>
