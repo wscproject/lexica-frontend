@@ -12,8 +12,10 @@ import { useGeneralStore } from "@/store/general";
 import { onMounted, ref, watch } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { updateUserPreference } from "@/api/Home";
+import { useCookies } from "vue3-cookies";
 
 const store = useGeneralStore();
+const { cookies } = useCookies();
 
 const currTheme = ref();
 
@@ -28,7 +30,10 @@ const props = defineProps({
 
 onMounted(() => {
   currTheme.value =
-    store?.displayTheme === "default" ? "auto" : store?.displayTheme;
+    localStorage.getItem("theme") === "default" ||
+    !localStorage.getItem("theme")
+      ? "auto"
+      : localStorage.getItem("theme");
 });
 
 const emit = defineEmits(["onPrimaryAction"]);
@@ -75,16 +80,21 @@ const menus = [
 ];
 
 const applyTheme = async () => {
-  await updateUserPreference({
-    displayTheme: currTheme.value === "auto" ? "default" : currTheme.value,
-  });
+  if (cookies.get("auth")) {
+    await updateUserPreference({
+      displayTheme: currTheme.value === "auto" ? "default" : currTheme.value,
+    });
+  }
 
   if (currTheme.value === "light") {
     light();
+    close();
   } else if (currTheme.value === "dark") {
     dark();
+    close();
   } else {
     auto();
+    close();
   }
 };
 </script>
