@@ -1,6 +1,11 @@
 <script setup>
 import Logo from "@/assets/lexica_logo.svg";
+import LogoDark from "@/assets/lexica_logo_dark.svg";
+
 import Login from "@/assets/login.svg";
+import Sun from "@/assets/sun.svg";
+import Moon from "@/assets/moon.svg";
+
 import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
 import { onMounted, ref, watch, toRaw, computed } from "vue";
 import { useCookies } from "vue3-cookies";
@@ -10,12 +15,15 @@ import {
   cdxIconLogOut,
   cdxIconLogIn,
   cdxIconLanguage,
+  cdxIconBright,
+  cdxIconMoon,
 } from "@wikimedia/codex-icons";
 import ChooseLocale from "@/components/dialog/localization/index.vue";
 import ChooseTheme from "@/components/dialog/darkMode/index.vue";
 
 import { useGeneralStore } from "@/store/general";
 import { useI18n } from "vue-i18n";
+import { useMediaQuery } from "@vueuse/core";
 
 const { t, locale } = useI18n({ useScope: "global" });
 
@@ -26,6 +34,8 @@ const selection = ref(null);
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
 const changeLanguage = ref(false);
 const changeTheme = ref(false);
+const unauthClass = ref("");
+const authClass = ref("");
 
 const testRef = ref(null);
 
@@ -46,6 +56,17 @@ const unauthMenu = computed(() => {
       url: loginUrl,
     },
     {
+      label: t("header.menu.theme"),
+      value: "theme",
+      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      description:
+        localStorage.getItem("theme") === "auto"
+          ? t("header.menu.auto")
+          : store.isThemeDark
+          ? t("header.menu.dark")
+          : t("header.menu.light"),
+    },
+    {
       label: t("header.menu.locale"),
       value: "locale",
       icon: cdxIconLanguage,
@@ -64,21 +85,36 @@ const authMenu = computed(() => {
       disabled: true,
     },
     {
+      label: t("header.menu.theme"),
+      value: "theme",
+      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      description:
+        localStorage.getItem("theme") === "auto"
+          ? t("header.menu.auto")
+          : store.isThemeDark
+          ? t("header.menu.dark")
+          : t("header.menu.light"),
+    },
+    {
       label: t("header.menu.locale"),
       value: "locale",
       icon: cdxIconLanguage,
       description: t("header.menu.language"),
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
-    {
-      label: "test",
-      value: "test",
-    },
   ];
 });
 
 onMounted(() => {
   isAuth.value = cookies.get("auth");
+
+  if (store.isThemeDark) {
+    unauthClass.value = "unauth-dark";
+    authClass.value = "first-child-dark";
+  } else {
+    unauthClass.value = "unauth";
+    authClass.value = "first-child";
+  }
 });
 
 const temp = (e) => {
@@ -103,8 +139,6 @@ const catchOutsideClick = (event, dropdown) => {
 };
 
 const onSelect = (newSelection) => {
-  console.log(newSelection);
-
   switch (newSelection) {
     case "logout":
       emit("logout");
@@ -113,7 +147,7 @@ const onSelect = (newSelection) => {
       changeLanguage.value = true;
       break;
 
-    case "test":
+    case "theme":
       changeTheme.value = true;
       break;
 
@@ -121,14 +155,25 @@ const onSelect = (newSelection) => {
       break;
   }
 };
+
+watch(store, () => {
+  if (store.isThemeDark) {
+    unauthClass.value = "unauth-dark";
+    authClass.value = "first-child-dark";
+  } else {
+    unauthClass.value = "unauth";
+    authClass.value = "first-child";
+  }
+});
 </script>
 
 <template>
   <header
-    class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0"
+    class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0 z-[10]"
   >
     <div class="absolute w-full flex justify-center items-center h-full">
-      <img :src="Logo" alt="lexica_logo" />
+      <img v-if="!store.isThemeDark" :src="Logo" alt="lexica_logo" />
+      <img v-else :src="LogoDark" alt="lexica_logo" />
     </div>
 
     <!-- <a class="z-[99] mr-[4px]" :href="loginUrl">
@@ -143,7 +188,7 @@ const onSelect = (newSelection) => {
       :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
       :class="[
         'z-[5] top-[58px] p-[4px]',
-        isAuth && !props.isLogout ? 'first-child' : 'unauth',
+        isAuth && !props.isLogout ? authClass : unauthClass,
         'dark:text-[#fff]',
       ]"
       @update:selected="onSelect"
@@ -266,10 +311,26 @@ const onSelect = (newSelection) => {
 }
 
 .first-child .cdx-menu-item--disabled:first-child {
-  color: #202122;
+  color: #202122 !important;
+}
+
+.unauth-dark .cdx-menu-item:first-child bdi {
+  color: #eaecf0 !important;
+}
+
+.unauth-dark .cdx-menu-item:first-child svg {
+  color: #eaecf0 !important;
+}
+
+.first-child-dark .cdx-menu-item--disabled:first-child {
+  color: #eaecf0 !important;
 }
 
 .cdx-menu-item {
   border-bottom: 1px solid #a2a9b1;
+}
+
+.cdx-menu-item:nth-child(2) {
+  border-bottom: unset;
 }
 </style>

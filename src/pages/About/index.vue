@@ -3,14 +3,9 @@ import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
-import { useDark } from "@vueuse/core";
 import { onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
-
-onMounted(() => {
-  useDark();
-});
 
 const router = useRouter();
 </script>

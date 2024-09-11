@@ -40,14 +40,11 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
-import { useDark } from "@vueuse/core";
 
 const { t } = useI18n({ useScope: "global" });
 const store = useGeneralStore();
 
 const router = useRouter();
-
-const isDark = useDark();
 
 const completeRef = ref(null);
 const count = ref(3);
@@ -427,7 +424,6 @@ const getCardsData = async (code) => {
 
   if (response.statusCode === 200) {
     totalCount.value = response?.data?.length;
-    console.log(totalCount.value);
 
     data.value = [...response.data.filter((item) => item.status === "pending")];
     currMargin.value =
@@ -865,11 +861,11 @@ watch(
           :disabled="undoWarn || submittingData"
         >
           <SkipIcon
-            v-if="!isDark"
+            v-if="!store.isThemeDark"
             :color="submittingData ? '#72777d' : '#202122'"
           />
           <SkipDarkIcon
-            v-if="isDark"
+            v-if="store.isThemeDark"
             :color="submittingData ? '#72777d' : '#EAECF0'"
           />
 

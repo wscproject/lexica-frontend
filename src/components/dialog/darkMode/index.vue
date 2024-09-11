@@ -7,14 +7,17 @@ import {
   CdxRadio,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
-import { useDark, useToggle } from "@vueuse/core";
 import { useI18n } from "vue-i18n";
-import { watch } from "vue";
+import { useGeneralStore } from "@/store/general";
+import { onMounted, ref, watch } from "vue";
+import { useMediaQuery } from "@vueuse/core";
+import { updateUserPreference } from "@/api/Home";
+
+const store = useGeneralStore();
+
+const currTheme = ref();
 
 const { t } = useI18n({ useScope: "global" });
-
-const isDark = useDark();
-const toggleDark = useToggle(isDark);
 
 const props = defineProps({
   open: {
@@ -23,18 +26,67 @@ const props = defineProps({
   },
 });
 
+onMounted(() => {
+  currTheme.value =
+    store?.displayTheme === "default" ? "auto" : store?.displayTheme;
+});
+
 const emit = defineEmits(["onPrimaryAction"]);
 
 const close = () => {
   emit("onPrimaryAction", false);
 };
 
-watch(props, () => {
-  // console.log(isDark.effect.);
-  console.log(window.matchMedia("(prefers-color-scheme: dark)").matches);
-});
+const light = () => {
+  document.documentElement.className = "light";
+  localStorage.setItem("theme", "light");
+  store.setTheme();
+};
 
-const menu = [];
+const dark = () => {
+  document.documentElement.className = "dark";
+  localStorage.setItem("theme", "dark");
+  store.setTheme();
+};
+
+const auto = () => {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.className = "dark";
+  } else {
+    document.documentElement.className = "";
+  }
+  localStorage.setItem("theme", "auto");
+  store.setTheme();
+};
+
+const menus = [
+  {
+    label: t("darkmodeDialog.auto"),
+    value: "auto",
+  },
+  {
+    label: t("darkmodeDialog.light"),
+    value: "light",
+  },
+  {
+    label: t("darkmodeDialog.dark"),
+    value: "dark",
+  },
+];
+
+const applyTheme = async () => {
+  await updateUserPreference({
+    displayTheme: currTheme.value === "auto" ? "default" : currTheme.value,
+  });
+
+  if (currTheme.value === "light") {
+    light();
+  } else if (currTheme.value === "dark") {
+    dark();
+  } else {
+    auto();
+  }
+};
 </script>
 
 <template>
@@ -67,25 +119,26 @@ const menu = [];
         </div>
       </template>
       <div class="w-full px-[16px] py-[12px]">
-        <!-- <CdxRadio
-          v-for="radio in radios"
-          :key="'radio-' + radio.value"
-          v-model="currentLocale"
+        <CdxRadio
+          v-for="menu in menus"
+          :key="'menu-' + menu.value"
+          v-model="currTheme"
           name="radio-group"
-          :input-value="radio.value"
+          :input-value="menu.value"
         >
-          {{ radio.label }}
-        </CdxRadio> -->
+          {{ menu.label }}
+        </CdxRadio>
       </div>
       <template #footer>
         <div class="flex gap-x-[12px] w-full justify-end">
-          <CdxButton class="w-fit h-[34px]" @click="toggleDark()">{{
+          <CdxButton class="w-fit h-[34px]" @click="close">{{
             t("darkmodeDialog.cancel")
           }}</CdxButton>
           <CdxButton
             :class="['h-[34px]', 'w-fit']"
             weight="primary"
             action="progressive"
+            @click="applyTheme"
           >
             {{ t("darkmodeDialog.apply") }}
           </CdxButton>

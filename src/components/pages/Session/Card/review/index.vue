@@ -8,9 +8,6 @@ import LogoDark from "@/assets/adddark.svg";
 
 import wikimedia from "@/assets/lexeme.svg";
 import { useI18n } from "vue-i18n";
-import { useDark } from "@vueuse/core";
-
-const isDark = useDark();
 
 const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
@@ -94,7 +91,7 @@ const props = defineProps({
       </div>
       <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]" v-if="props?.detail">
         <div class="flex gap-x-2 items-start">
-          <img :src="isDark ? LogoDark : Logo" alt="lexica_footer" />
+          <img :src="store.isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
           <CdxLabel
             class="text-[16px] dark:text-[#EAECF0]"
             style="padding-bottom: 16px"

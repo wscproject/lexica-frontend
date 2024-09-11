@@ -38,8 +38,6 @@ const api = async () => {
         return response.data;
       },
       async (error) => {
-        console.log("error", error);
-
         let originalRequest = error.config;
 
         if (error?.response?.status === 400) {
