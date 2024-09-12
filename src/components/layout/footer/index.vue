@@ -28,9 +28,9 @@ const { t } = useI18n({ useScope: "global" });
     </div>
     <div class="text-center text-[12px] mt-[4px]">
       <a href="/about">{{ t("footer.about") }}</a>
-      <span> · </span>
+      <span class="text-[#3366cc]"> · </span>
       <a href="/privacy-policy">{{ t("footer.privacy") }}</a>
-      <span> · </span>
+      <span class="text-[#3366cc]"> · </span>
       <a href="/license-list">{{ t("footer.license") }}</a>
     </div>
   </footer>

@@ -24,26 +24,28 @@ const router = useRouter();
       >
         <CdxIcon :icon="cdxIconArrowPrevious" />
       </CdxButton>
-      <p class="p-0 font-[700]">{{ t("privacy.header") }}</p>
+      <p class="p-0 font-[700] dark:text-[#EAECF0]">
+        {{ t("privacy.header") }}
+      </p>
     </div>
     <div class="p-[16px]">
       <div class="border-b border-[#C8CCD1] mb-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title1") }}
         </p>
       </div>
-      <p class="pb-[12px] text-[14px] text-[#54595D]">
+      <p class="pb-[12px] text-[14px] text-[#54595D] dark:text-[#A2A9B1]">
         {{ t("privacy.version") }} 1.0
       </p>
-      <p class="p-0 text-[16px]">
+      <p class="p-0 text-[16px] dark:text-[#EAECF0]">
         {{ t("privacy.section1") }}
       </p>
       <div class="border-b border-[#C8CCD1] my-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title2") }}
         </p>
       </div>
-      <ul>
+      <ul class="dark:text-[#EAECF0]">
         <li>
           {{ t("privacy.section2.point1") }}
         </li>
@@ -62,12 +64,12 @@ const router = useRouter();
         </I18nT>
       </ul>
       <div class="border-b border-[#C8CCD1] my-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title3") }}
         </p>
       </div>
 
-      <I18nT keypath="privacy.section3" tag="p">
+      <I18nT keypath="privacy.section3" tag="p" class="dark:text-[#EAECF0]">
         <template #license>
           <a class="cdx-docs-link is-underlined" href="/license-list">
             {{ t("privacy.license") }}</a
@@ -76,11 +78,11 @@ const router = useRouter();
       </I18nT>
 
       <div class="border-b border-[#C8CCD1] my-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title4") }}
         </p>
       </div>
-      <ul>
+      <ul class="dark:text-[#EAECF0]">
         <li>{{ t("privacy.section4.point1") }}</li>
         <li>
           {{ t("privacy.section4.point2") }}

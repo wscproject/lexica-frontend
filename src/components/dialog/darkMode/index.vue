@@ -30,8 +30,7 @@ const props = defineProps({
 
 onMounted(() => {
   currTheme.value =
-    localStorage.getItem("theme") === "default" ||
-    !localStorage.getItem("theme")
+    localStorage.getItem("theme") === "auto" || !localStorage.getItem("theme")
       ? "auto"
       : localStorage.getItem("theme");
 });
@@ -81,6 +80,7 @@ const menus = [
   {
     label: t("darkmodeDialog.auto"),
     value: "auto",
+    description: t("darkmodeDialog.desc"),
   },
   {
     label: t("darkmodeDialog.light"),
@@ -150,6 +150,10 @@ const applyTheme = async () => {
           :input-value="menu.value"
         >
           {{ menu.label }}
+
+          <template #description>
+            {{ menu.description }}
+          </template>
         </CdxRadio>
       </div>
       <template #footer>

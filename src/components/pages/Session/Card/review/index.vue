@@ -23,7 +23,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="relative w-full flex flex-col overflow-hidden rounded-[16px] flex flex-col h-full"
+    class="relative w-full flex flex-col overflow-hidden rounded-[15px] flex flex-col h-full"
   >
     <div
       class="p-[16px] text-white flex test justify-between gap-x-2 header fixed w-full rounded-t-[16px]"

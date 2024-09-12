@@ -11,9 +11,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
-  >
+  <div class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D]">
     <div
       class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
     >
@@ -25,33 +23,49 @@ const router = useRouter();
       >
         <CdxIcon :icon="cdxIconArrowPrevious" />
       </CdxButton>
-      <p class="p-0 font-[700] dark:text-white">{{ t("about.title") }}</p>
+      <p class="p-0 font-[700] dark:text-[#EAECF0]">{{ t("about.title") }}</p>
     </div>
     <div class="p-[16px]">
       <div class="border-b border-[#C8CCD1] mb-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("about.title") }}
         </p>
       </div>
-      <I18nT keypath="about.content1" tag="p" class="p-0 text-[16px]">
+      <I18nT
+        keypath="about.content1"
+        tag="p"
+        class="p-0 text-[16px] dark:text-[#EAECF0]"
+      >
         <template #lexica>
           <span><b>Lexica</b></span>
         </template>
       </I18nT>
       <br />
-      <I18nT keypath="about.content2" tag="p" class="p-0 text-[16px]">
+      <I18nT
+        keypath="about.content2"
+        tag="p"
+        class="p-0 text-[16px] dark:text-[#EAECF0]"
+      >
         <template #lexica>
           <span><b>Lexica</b></span>
         </template>
       </I18nT>
       <br />
-      <I18nT keypath="about.content3" tag="p" class="p-0 text-[16px]">
+      <I18nT
+        keypath="about.content3"
+        tag="p"
+        class="p-0 text-[16px] dark:text-[#EAECF0]"
+      >
         <template #lexica>
           <span><b>Lexica</b></span>
         </template>
       </I18nT>
       <br />
-      <I18nT keypath="about.content4" tag="p" class="p-0 text-[16px]">
+      <I18nT
+        keypath="about.content4"
+        tag="p"
+        class="p-0 text-[16px] dark:text-[#EAECF0]"
+      >
         <template #lexica>
           <span><b>Lexica</b></span>
         </template>

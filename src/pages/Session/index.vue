@@ -452,15 +452,31 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
-  if (localStorage.getItem("theme") !== "auto") {
-    if (localStorage.getItem("theme") === "light") {
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute("content", "#EAECF0");
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") !== "auto") {
+      if (localStorage.getItem("theme") === "light") {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      } else {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      }
     } else {
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute("content", "#EAECF0");
+      if (isPreferredDark.value) {
+        console.log("testing123");
+
+        document.documentElement.className = "dark";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#27292D");
+      } else {
+        document.documentElement.className = "";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      }
     }
   } else {
     if (isPreferredDark.value) {

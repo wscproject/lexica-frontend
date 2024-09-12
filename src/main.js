@@ -27,11 +27,19 @@ import { CdxTooltip } from "@wikimedia/codex";
 
 import "@wikimedia/codex/dist/codex.style.css";
 
-if (localStorage?.getItem("theme") !== "auto") {
-  if (localStorage.getItem("theme") === "dark") {
-    document.documentElement.className = "dark";
-  } else if (localStorage.getItem("theme") === "light") {
-    document.documentElement.className = "light";
+if (localStorage?.getItem("theme")) {
+  if (localStorage?.getItem("theme") !== "auto") {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.className = "dark";
+    } else if (localStorage.getItem("theme") === "light") {
+      document.documentElement.className = "light";
+    }
+  } else {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.className = "dark";
+    } else {
+      document.documentElement.className = "";
+    }
   }
 } else {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {

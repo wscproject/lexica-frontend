@@ -10,9 +10,7 @@ const router = useRouter();
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
-  >
+  <div class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D]">
     <div
       class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
     >
@@ -24,15 +22,21 @@ const router = useRouter();
       >
         <CdxIcon :icon="cdxIconArrowPrevious" />
       </CdxButton>
-      <p class="p-0 font-[700]">{{ t("license.title1") }}</p>
+      <p class="p-0 font-[700] dark:text-[#EAECF0]">
+        {{ t("license.title1") }}
+      </p>
     </div>
     <div class="p-[16px]">
       <div class="border-b border-[#C8CCD1] mb-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("license.title1") }}
         </p>
       </div>
-      <I18nT keypath="license.section1" tag="p" class="p-0 text-[16px]">
+      <I18nT
+        keypath="license.section1"
+        tag="p"
+        class="p-0 text-[16px] dark:text-[#EAECF0]"
+      >
         <template #gnu>
           <a
             class="cdx-docs-link is-underlined"
@@ -54,14 +58,14 @@ const router = useRouter();
       </I18nT>
 
       <div class="border-b border-[#C8CCD1] mb-[12px] mt-[24px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px]">
+        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("license.title2") }}
         </p>
       </div>
-      <p class="p-0 text-[16px] mb-[12px]">
+      <p class="p-0 text-[16px] mb-[12px] dark:text-[#EAECF0]">
         {{ t("license.section2.content") }}
       </p>
-      <ul>
+      <ul class="dark:text-[#EAECF0]">
         <li>
           <a
             href="https://gerrit.wikimedia.org/r/admin/repos/design/codex,general"

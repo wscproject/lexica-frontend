@@ -65,7 +65,7 @@ const onInput = debounce(() => {
 
 <template>
   <div
-    class="relative w-full flex flex-col overflow-hidden flex flex-col h-full rounded-t-[16px] dark:bg-black rounded-[16px]"
+    class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div
       class="p-[16px] text-white flex test justify-between gap-x-1 header w-full"

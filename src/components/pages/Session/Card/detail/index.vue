@@ -56,7 +56,7 @@ const statements = computed(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between relative rounded-t-[16px]"
+      class="header p-[16px] text-white flex test justify-between relative rounded-t-[15px]"
       :style="{
         background: '#2A4B8D',
         alignItems: 'flex-start',

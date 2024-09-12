@@ -60,7 +60,8 @@ const unauthMenu = computed(() => {
       value: "theme",
       icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
       description:
-        localStorage.getItem("theme") === "auto"
+        localStorage.getItem("theme") === "auto" ||
+        !localStorage.getItem("theme")
           ? t("header.menu.auto")
           : store.isThemeDark
           ? t("header.menu.dark")
@@ -326,11 +327,26 @@ watch(store, () => {
   color: #eaecf0 !important;
 }
 
-.cdx-menu-item {
+.first-child-dark .cdx-menu-item {
+  border-bottom: 1px solid #72777d;
+}
+
+.first-child .cdx-menu-item {
+  border-bottom: 1px solid #a2a9b1;
+}
+
+.unauth-dark .cdx-menu-item {
+  border-bottom: 1px solid #72777d;
+}
+.unauth .cdx-menu-item {
   border-bottom: 1px solid #a2a9b1;
 }
 
 .cdx-menu-item:nth-child(2) {
+  border-bottom: unset;
+}
+
+.cdx-menu-item:last-child {
   border-bottom: unset;
 }
 </style>
