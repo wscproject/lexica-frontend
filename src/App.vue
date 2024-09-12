@@ -17,12 +17,20 @@ watch(isPreferredDark, () => {
       console.log("testing123");
 
       document.documentElement.className = "dark";
-      document.querySelector("meta[name='theme-color']").content =
-        route.path === "/session" ? "#27292D" : "#101418";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path === "/session" ? "#27292D" : "#101418"
+        );
     } else {
       document.documentElement.className = "";
-      document.querySelector("meta[name='theme-color']").content =
-        route.path === "/session" ? "#EAECF0" : "#FFFFFF";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path === "/session" ? "#EAECF0" : "#FFFFFF"
+        );
     }
   }
   store.setTheme();

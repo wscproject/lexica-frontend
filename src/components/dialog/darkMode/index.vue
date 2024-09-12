@@ -45,24 +45,33 @@ const close = () => {
 const light = () => {
   document.documentElement.className = "light";
   localStorage.setItem("theme", "light");
-  document.querySelector("meta[name='theme-color']").content = "#FFFFFF";
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute("content", "#FFFFFF");
   store.setTheme();
 };
 
 const dark = () => {
   document.documentElement.className = "dark";
   localStorage.setItem("theme", "dark");
-  document.querySelector("meta[name='theme-color']").content = "#101418";
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute("content", "#101418");
+
   store.setTheme();
 };
 
 const auto = () => {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     document.documentElement.className = "dark";
-    document.querySelector("meta[name='theme-color']").content = "#101418";
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute("content", "#101418");
   } else {
     document.documentElement.className = "";
-    document.querySelector("meta[name='theme-color']").content = "#FFFFFF";
+    document
+      .querySelector('meta[name="theme-color"]')
+      .setAttribute("content", "#FFFFFF");
   }
   localStorage.setItem("theme", "auto");
   store.setTheme();
