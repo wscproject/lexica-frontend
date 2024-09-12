@@ -40,6 +40,9 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
+import { useMediaQuery } from "@vueuse/core";
+
+const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 
 const { t } = useI18n({ useScope: "global" });
 const store = useGeneralStore();
@@ -449,6 +452,24 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
+  if (localStorage.getItem("theme") !== "auto") {
+    if (localStorage.getItem("theme") === "light") {
+      document.querySelector("meta[name='theme-color']").content = "#EAECF0";
+    } else {
+      document.querySelector("meta[name='theme-color']").content = "#27292D";
+    }
+  } else {
+    if (isPreferredDark.value) {
+      console.log("testing123");
+
+      document.documentElement.className = "dark";
+      document.querySelector("meta[name='theme-color']").content = "#27292D";
+    } else {
+      document.documentElement.className = "";
+      document.querySelector("meta[name='theme-color']").content = "#EAECF0";
+    }
+  }
+
   if (store?.language) {
     await getCardsData();
   } else {
