@@ -14,15 +14,17 @@ const props = defineProps({
   <div
     class="absolute z-[99] w-full flex justify-center flex-col text-white text-center p-[16px] h-full"
   >
-    <CdxLabel>{{ t("session.title") }} {{ props.currCount }}</CdxLabel>
-    <p class="text-[28px]">
-      {{ props?.data?.lemma }} ({{ props?.data?.lexemeSenseId }})
-    </p>
-    <p v-if="props?.data?.gloss" class="text-[16px]">
-      {{ props?.data?.gloss }}
-    </p>
-    <p v-else class="text-[16px]">
-      <i>{{ t("session.emptyDescription") }}</i>
-    </p>
+    <div v-if="!isNotCurrent">
+      <CdxLabel>{{ t("session.title") }} {{ props.currCount }}</CdxLabel>
+      <p class="text-[28px]">
+        {{ props?.data?.lemma }} ({{ props?.data?.lexemeSenseId }})
+      </p>
+      <p v-if="props?.data?.gloss" class="text-[16px]">
+        {{ props?.data?.gloss }}
+      </p>
+      <p v-else class="text-[16px]">
+        <i>{{ t("session.emptyDescription") }}</i>
+      </p>
+    </div>
   </div>
 </template>

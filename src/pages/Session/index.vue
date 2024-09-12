@@ -750,6 +750,7 @@ watch(
                 v-if="splash === true || data?.length !== index + 1"
                 :key="0"
                 :currCount="currCount"
+                :isNotCurrent="data?.length !== index + 1"
               ></CardSplash>
             </transition>
 
