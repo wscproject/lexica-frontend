@@ -81,7 +81,7 @@ const reload = () => {
 </script>
 
 <template>
-  <div class="bg-white dark:bg-[#101418] w-full">
+  <div class="bg-white dark:bg-[#101418] w-full container-home w-full">
     <div
       v-if="loading"
       class="w-full text-center flex flex-col justify-center h-[100vh] p-[16px]"
@@ -91,10 +91,10 @@ const reload = () => {
       }}</CdxLabel>
       <CdxProgressBar class="w-full"></CdxProgressBar>
     </div>
-    <div v-else class="relative flex flex-col items-center">
+    <div v-else class="relative flex flex-col items-center container-home">
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
-        class="min-h-[100vh] pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
+        class="container-home pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
       >
         <slot v-if="!logout && !loading" />
 
@@ -128,3 +128,10 @@ const reload = () => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.container-home {
+  height: 100%;
+  min-height: stretch;
+}
+</style>

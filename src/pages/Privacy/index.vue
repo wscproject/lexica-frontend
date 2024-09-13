@@ -14,7 +14,7 @@ const router = useRouter();
     class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
   >
     <div
-      class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
+      class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1] dark:border-[#54595D]"
     >
       <CdxButton
         weight="quiet"
@@ -29,7 +29,7 @@ const router = useRouter();
       </p>
     </div>
     <div class="p-[16px]">
-      <div class="border-b border-[#C8CCD1] mb-[12px]">
+      <div class="border-b border-[#C8CCD1] mb-[12px] dark:border-[#72777D]">
         <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title1") }}
         </p>
@@ -40,7 +40,7 @@ const router = useRouter();
       <p class="p-0 text-[16px] dark:text-[#EAECF0]">
         {{ t("privacy.section1") }}
       </p>
-      <div class="border-b border-[#C8CCD1] my-[12px]">
+      <div class="border-b border-[#C8CCD1] my-[12px] dark:border-[#72777D]">
         <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title2") }}
         </p>
@@ -63,7 +63,7 @@ const router = useRouter();
           </template>
         </I18nT>
       </ul>
-      <div class="border-b border-[#C8CCD1] my-[12px]">
+      <div class="border-b border-[#C8CCD1] my-[12px] dark:border-[#72777D]">
         <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title3") }}
         </p>
@@ -77,7 +77,7 @@ const router = useRouter();
         </template>
       </I18nT>
 
-      <div class="border-b border-[#C8CCD1] my-[12px]">
+      <div class="border-b border-[#C8CCD1] my-[12px] dark:border-[#72777D]">
         <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("privacy.title4") }}
         </p>

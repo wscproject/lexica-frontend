@@ -78,7 +78,7 @@ const props = defineProps({
               }})</CdxLabel
             >
             <p
-              class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+              class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
             >
               {{ props?.data?.gloss || t("session.emptyDescription") }}
             </p>
@@ -121,7 +121,7 @@ const props = defineProps({
                 >{{ props?.detail?.label }} ({{ props?.detail?.id }})</CdxLabel
               >
               <p
-                class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
                 {{
                   props?.detail?.description || t("session.emptyDescription")

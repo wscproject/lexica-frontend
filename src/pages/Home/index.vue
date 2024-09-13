@@ -22,14 +22,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="p-[16px] bg-white dark:bg-[#101418]">
+  <div class="p-[16px] bg-white dark:bg-[#101418] h-full">
     <!-- <div class="pt-[100px]">
       <CdxLabel class="mb-[12px] text-[18px] p-0 text-black dark:text-white">
         asdasd</CdxLabel
       >
     </div> -->
 
-    <div v-if="isAuth">
+    <div
+      v-if="isAuth"
+      class="flex align-center flex-col w-full justify-center h-full"
+    >
       <Auth @onHint="isGuide = true" />
     </div>
 

@@ -13,7 +13,7 @@ const router = useRouter();
 <template>
   <div class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D]">
     <div
-      class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1]"
+      class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1] dark:border-[#54595D]"
     >
       <CdxButton
         weight="quiet"
@@ -26,7 +26,7 @@ const router = useRouter();
       <p class="p-0 font-[700] dark:text-[#EAECF0]">{{ t("about.title") }}</p>
     </div>
     <div class="p-[16px]">
-      <div class="border-b border-[#C8CCD1] mb-[12px]">
+      <div class="border-b border-[#C8CCD1] dark:border-[#72777D] mb-[12px]">
         <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
           {{ t("about.title") }}
         </p>

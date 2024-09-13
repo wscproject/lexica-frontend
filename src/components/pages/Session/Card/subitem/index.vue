@@ -48,7 +48,7 @@ const statements = computed(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between gap-x-2 relative rounded-t-[16px]"
+      class="header p-[16px] text-white flex test justify-between gap-x-2 relative rounded-t-[14px]"
       :style="{
         background: '#096450',
         alignItems: 'flex-start',
@@ -100,7 +100,7 @@ const statements = computed(() => {
     >
       <div v-if="props.isLoading">
         <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px] dark:text-[#EAECF0]">{{
+          <span class="text-[#54595D] text-[16px] dark:text-[#A2A9B1]">{{
             t("session.item.loading")
           }}</span>
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
@@ -124,7 +124,7 @@ const statements = computed(() => {
             (item) => item?.[0] !== 'translation'
           )"
           :key="index"
-          class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[12px]"
+          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
             <!-- <div
@@ -152,7 +152,7 @@ const statements = computed(() => {
                 }})</CdxLabel
               >
               <p
-                class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
                 {{ value?.[1]?.data?.[0]?.value }}
               </p>
@@ -172,7 +172,7 @@ const statements = computed(() => {
             (item) => item?.[0] === 'translation'
           )"
           :key="index"
-          class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[12px]"
+          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
             <div>
@@ -182,7 +182,7 @@ const statements = computed(() => {
                 }})</CdxLabel
               >
               <p
-                class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
                 {{ value?.[1]?.data?.[0]?.value }}
                 ({{ value?.[1]?.data?.[0]?.id }})
@@ -195,7 +195,7 @@ const statements = computed(() => {
         class="h-full flex justify-center items-center"
         v-else-if="statements.length === 0 && !props.isLoading"
       >
-        <p class="text-[16px] text-[#54595D]">
+        <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>
         </p>
       </div>

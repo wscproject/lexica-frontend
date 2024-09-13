@@ -137,9 +137,10 @@ const onInput = debounce(() => {
 
       <div v-if="props.recommendedLoading">
         <div class="w-full max-w-[896px]">
-          <span class="mb-[8px] text-[#54595D] text-[16px]">{{
-            t("session.recLoading")
-          }}</span>
+          <span
+            class="mb-[8px] text-[#54595D] text-[16px] dark:text-[#A2A9B1]"
+            >{{ t("session.recLoading") }}</span
+          >
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
@@ -180,7 +181,7 @@ const onInput = debounce(() => {
           :class="[
             value.id === selectedItem
               ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
-              : 'border border-[#A2A9B1] dark:border-[#54595D]',
+              : 'border border-[#A2A9B1] dark:border-[#72777D]',
             'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
@@ -206,13 +207,13 @@ const onInput = debounce(() => {
               >
               <p
                 v-if="value?.description"
-                class="text-[16px] font-normal text-[#54595D] pb-0 leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
               >
                 {{ value?.description }}
               </p>
               <p
                 v-else
-                class="text-[16px] font-normal text-[#54595D] pb-0"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                 style="padding-bottom: 16px"
               >
                 <i>{{ t("session.emptyDescription") }}</i>
@@ -247,7 +248,7 @@ const onInput = debounce(() => {
             :class="[
               value.id === selectedItem
                 ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF]'
-                : 'border border-[#A2A9B1]',
+                : 'border border-[#A2A9B1] dark:border-[#72777D]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
             ]"
             @click="selectItem(value.id, value)"
@@ -271,7 +272,7 @@ const onInput = debounce(() => {
                 >
                 <p
                   v-if="value?.description"
-                  class="text-[16px] font-normal text-[#54595D] pb-0"
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                   style="padding-bottom: 16px"
                 >
                   {{ value?.description }}
@@ -279,7 +280,7 @@ const onInput = debounce(() => {
 
                 <p
                   v-else
-                  class="text-[16px] font-normal text-[#54595D] pb-0"
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                   style="padding-bottom: 16px"
                 >
                   <i>{{ t("session.emptyDescription") }}</i>
@@ -322,7 +323,7 @@ const onInput = debounce(() => {
       </div>
     </div>
     <div
-      class="w-full h-66px border-t border-[#A2A9B1] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
+      class="w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
     >
       <CdxButton
         class="w-full"

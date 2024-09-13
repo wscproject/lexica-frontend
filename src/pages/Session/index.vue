@@ -24,6 +24,8 @@ import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
 import error from "/src/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
+import blankdark from "@/assets/blank_icon_dark.svg";
+
 import sad from "@/assets/Sad.svg";
 import happy from "@/assets/happy.svg";
 
@@ -704,7 +706,7 @@ watch(
       v-else-if="!isLoading && !isError && !noInternet"
       class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
-        backgroundImage: `url(${blank})`,
+        backgroundImage: `url(${store.isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
@@ -904,15 +906,15 @@ watch(
               data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
             )
           "
-          :disabled="undoWarn || submittingData"
+          :disabled="undoWarn || submittingData || data?.length === 0"
         >
           <SkipIcon
             v-if="!store.isThemeDark"
-            :color="submittingData ? '#72777d' : '#202122'"
+            :color="undoWarn || submittingData ? '#72777d' : '#202122'"
           />
           <SkipDarkIcon
             v-if="store.isThemeDark"
-            :color="submittingData ? '#72777d' : '#EAECF0'"
+            :color="undoWarn || submittingData ? '#72777d' : '#EAECF0'"
           />
 
           <CdxLabel class="text-[16px] pb-0">{{
@@ -923,7 +925,7 @@ watch(
           weight="quiet"
           class="h-[34px] w-full"
           @click="endEarly"
-          :disabled="currCount === 1 || submittingData"
+          :disabled="currCount === 1 || submittingData || data?.length === 0"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <CdxLabel class="text-[16px] pb-0">{{
