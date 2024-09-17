@@ -123,9 +123,11 @@ const props = defineProps({
               <p
                 class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
-                {{
-                  props?.detail?.description || t("session.emptyDescription")
-                }}
+                <i>
+                  {{
+                    props?.detail?.description || t("session.emptyDescription")
+                  }}
+                </i>
               </p>
             </div>
           </div>

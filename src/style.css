@@ -18,12 +18,8 @@
 
 a {
   font-weight: 400;
-  color: #3366cc !important;
   text-decoration: underline;
   cursor: pointer;
-}
-a:hover {
-  color: #3366cc;
 }
 
 html.dark {

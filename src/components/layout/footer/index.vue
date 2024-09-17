@@ -21,17 +21,22 @@ const { t } = useI18n({ useScope: "global" });
       <span class="text-[#54595D] dark:text-[#A2A9B1]"
         >{{ t("footer.label") }} </span
       ><a
+        class="cdx-docs-link"
         href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
       >
         Wikidata Software Collaboration</a
       >
     </div>
     <div class="text-center text-[12px] mt-[4px]">
-      <a href="/about">{{ t("footer.about") }}</a>
-      <span class="text-[#3366cc]"> · </span>
-      <a href="/privacy-policy">{{ t("footer.privacy") }}</a>
-      <span class="text-[#3366cc]"> · </span>
-      <a href="/license-list">{{ t("footer.license") }}</a>
+      <a class="cdx-docs-link" href="/about">{{ t("footer.about") }}</a>
+      <span class="cdx-docs-link"> · </span>
+      <a class="cdx-docs-link" href="/privacy-policy">{{
+        t("footer.privacy")
+      }}</a>
+      <span class="cdx-docs-link"> · </span>
+      <a class="cdx-docs-link" href="/license-list">{{
+        t("footer.license")
+      }}</a>
     </div>
   </footer>
 </template>

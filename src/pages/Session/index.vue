@@ -906,15 +906,25 @@ watch(
               data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
             )
           "
-          :disabled="undoWarn || submittingData || data?.length === 0"
+          :disabled="
+            undoWarn || submittingData || data?.length === 0 || currCount > 5
+          "
         >
           <SkipIcon
             v-if="!store.isThemeDark"
-            :color="undoWarn || submittingData ? '#72777d' : '#202122'"
+            :color="
+              undoWarn || submittingData || data?.length === 0 || currCount > 5
+                ? '#72777d'
+                : '#202122'
+            "
           />
           <SkipDarkIcon
             v-if="store.isThemeDark"
-            :color="undoWarn || submittingData ? '#72777d' : '#EAECF0'"
+            :color="
+              undoWarn || submittingData || data?.length === 0 || currCount > 5
+                ? '#72777d'
+                : '#EAECF0'
+            "
           />
 
           <CdxLabel class="text-[16px] pb-0">{{

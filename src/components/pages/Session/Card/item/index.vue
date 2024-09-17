@@ -169,7 +169,7 @@ const onInput = debounce(() => {
         "
       >
         <p
-          class="text-[16px] font-normal text-[#54595D] pb-[8px]"
+          class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
           style="padding-bottom: 16px"
         >
           {{ t("session.main.recommendation") }}
@@ -237,7 +237,7 @@ const onInput = debounce(() => {
           "
         >
           <p
-            class="text-[16px] font-normal text-[#54595D] pb-[8px]"
+            class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
             style="padding-bottom: 16px"
           >
             {{ t("session.main.result") }}
@@ -247,7 +247,7 @@ const onInput = debounce(() => {
             :key="index"
             :class="[
               value.id === selectedItem
-                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF]'
+                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[#A2A9B1] dark:border-[#72777D]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
             ]"

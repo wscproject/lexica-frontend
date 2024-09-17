@@ -19,7 +19,7 @@ const loginUrl = import.meta.env.VITE_LOGIN_URL;
     </div>
     <div class="text-[16px] pb-[32px] dark:text-[#EAECF0]">
       <span>{{ t("home.unauth.body2") }}</span
-      ><a class="text-decoration-underline" href="/privacy-policy">{{
+      ><a class="cdx-docs-link is-underlined" href="/privacy-policy">{{
         t("home.unauth.privacyPolicy")
       }}</a>
     </div>

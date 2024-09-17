@@ -82,7 +82,7 @@ const router = useRouter();
   </div>
 </template>
 
-<!-- <style lang="less">
+<style lang="less">
 @import (reference) "@wikimedia/codex-design-tokens/theme-wikimedia-ui.less";
 @import (reference)
   "@wikimedia/codex-design-tokens/theme-wikimedia-ui-mixin-dark.less";
@@ -96,4 +96,4 @@ const router = useRouter();
     color: inherit;
   }
 }
-</style> -->
+</style>
