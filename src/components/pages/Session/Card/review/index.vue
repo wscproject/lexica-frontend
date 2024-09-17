@@ -95,8 +95,19 @@ const props = defineProps({
           <CdxLabel
             class="text-[16px] dark:text-[#EAECF0]"
             style="padding-bottom: 16px"
-            >{{ t("session.preview.statement") }} (P5137)</CdxLabel
           >
+            <I18nT
+              keypath="session.preview.newStatement"
+              tag="p"
+              class="p-0 text-[16px] dark:text-[#EAECF0]"
+            >
+              <template #statement>
+                <span
+                  ><b>{{ t("session.preview.statement") }} (P5137)</b></span
+                >
+              </template>
+            </I18nT>
+          </CdxLabel>
         </div>
         <div
           class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] bg-white dark:bg-[#101418]"

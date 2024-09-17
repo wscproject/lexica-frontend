@@ -1,12 +1,16 @@
 <script setup>
 import { useMediaQuery } from "@vueuse/core";
 import { useGeneralStore } from "@/store/general";
-import { watch } from "vue";
+import { onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useI18n } from "vue-i18n";
+import { useCookies } from "vue3-cookies";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const store = useGeneralStore();
 const route = useRoute();
+const { locale } = useI18n();
+const { cookies } = useCookies();
 
 watch(isPreferredDark, () => {
   if (
@@ -34,6 +38,16 @@ watch(isPreferredDark, () => {
     }
   }
   store.setTheme();
+});
+
+onMounted(() => {
+  const lang =
+    window?.navigator?.language?.split("-")?.[0] === "en" ||
+    window?.navigator?.language?.split("-")?.[0] === "id"
+      ? window?.navigator?.language?.split("-")?.[0]
+      : "en";
+
+  locale.value = cookies?.get("locale") || lang;
 });
 </script>
 
