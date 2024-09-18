@@ -22,7 +22,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="p-[16px] bg-white dark:bg-[#101418] h-full">
+  <div class="p-[16px] bg-white dark:bg-[#101418] h-full overflow-hidden">
     <!-- <div class="pt-[100px]">
       <CdxLabel class="mb-[12px] text-[18px] p-0 text-black dark:text-white">
         asdasd</CdxLabel
