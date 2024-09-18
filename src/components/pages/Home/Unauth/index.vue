@@ -9,15 +9,17 @@ const loginUrl = import.meta.env.VITE_LOGIN_URL;
 
 <template>
   <div>
-    <h1 class="pb-[12px] mb-[13px] border-b-[1px] border-[#C8CCD1]">
+    <h1
+      class="pb-[12px] mb-[13px] border-b-[1px] border-[#C8CCD1] dark:border-[#72777D] dark:text-[#EAECF0]"
+    >
       {{ t("home.unauth.title") }}
     </h1>
-    <div class="text-[16px] pb-[12px]">
+    <div class="text-[16px] pb-[12px] dark:text-[#EAECF0]">
       <span><b>Lexica </b> {{ t("home.unauth.body1") }}</span>
     </div>
-    <div class="text-[16px] pb-[32px]">
+    <div class="text-[16px] pb-[32px] dark:text-[#EAECF0]">
       <span>{{ t("home.unauth.body2") }}</span
-      ><a class="text-decoration-underline" href="/privacy-policy">{{
+      ><a class="cdx-docs-link is-underlined" href="/privacy-policy">{{
         t("home.unauth.privacyPolicy")
       }}</a>
     </div>
@@ -32,7 +34,7 @@ const loginUrl = import.meta.env.VITE_LOGIN_URL;
       >
     </a>
 
-    <div class="flex gap-x-2 pt-[32px]">
+    <div class="flex gap-x-2 pt-[32px] dark:text-[#EAECF0]">
       <CdxIcon :icon="cdxIconInfoFilled" />
       <CdxLabel>{{ t("home.unauth.info") }}</CdxLabel>
     </div>

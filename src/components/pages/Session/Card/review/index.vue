@@ -4,6 +4,8 @@ import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { ref } from "vue";
 import { useGeneralStore } from "@/store/general";
 import Logo from "@/assets/add.svg";
+import LogoDark from "@/assets/adddark.svg";
+
 import wikimedia from "@/assets/lexeme.svg";
 import { useI18n } from "vue-i18n";
 
@@ -21,7 +23,7 @@ const props = defineProps({
 
 <template>
   <div
-    class="relative w-full flex flex-col overflow-hidden rounded-[16px] flex flex-col h-full"
+    class="relative w-full flex flex-col overflow-hidden rounded-[15px] flex flex-col h-full"
   >
     <div
       class="p-[16px] text-white flex test justify-between gap-x-2 header fixed w-full rounded-t-[16px]"
@@ -36,12 +38,16 @@ const props = defineProps({
       }}</CdxLabel>
     </div>
     <div
-      class="px-[16px] pt-[68px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white h-full"
+      class="px-[16px] pt-[68px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"
     >
-      <CdxLabel class="text-[16px]" style="padding-bottom: 16px">{{
-        t("session.preview.lexeme")
-      }}</CdxLabel>
-      <div class="border border-[#A2A9B1] rounded-[2px] p-[12px] mb-[8px]">
+      <CdxLabel
+        class="text-[16px] dark:text-[#EAECF0]"
+        style="padding-bottom: 16px"
+        >{{ t("session.preview.lexeme") }}</CdxLabel
+      >
+      <div
+        class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[8px]"
+      >
         <div class="flex gap-x-[12px]">
           <!-- <div
             class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
@@ -65,13 +71,14 @@ const props = defineProps({
           />
 
           <div>
-            <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
+            <CdxLabel
+              class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
               >{{ props?.data?.lemma }} ({{
                 props?.data?.lexemeSenseId
               }})</CdxLabel
             >
             <p
-              class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+              class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
             >
               {{ props?.data?.gloss || t("session.emptyDescription") }}
             </p>
@@ -80,16 +87,29 @@ const props = defineProps({
       </div>
 
       <div class="flex justify-center">
-        <div class="arrow"></div>
+        <div class="arrow dark:border-b-[#27292D]"></div>
       </div>
-      <div class="p-[12px] bg-[#eaecf0]" v-if="props?.detail">
+      <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]" v-if="props?.detail">
         <div class="flex gap-x-2 items-start">
-          <img :src="Logo" alt="lexica_footer" />
-          <CdxLabel class="text-[16px]" style="padding-bottom: 16px"
-            >{{ t("session.preview.statement") }} (P5137)</CdxLabel
+          <img :src="store.isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
+          <CdxLabel
+            class="text-[16px] dark:text-[#EAECF0]"
+            style="padding-bottom: 16px"
           >
+            <I18nT
+              keypath="session.preview.newStatement"
+              tag="p"
+              class="p-0 text-[16px] dark:text-[#EAECF0] font-bold"
+            >
+              <template #statement>
+                <span>{{ t("session.preview.statement") }} (P5137)</span>
+              </template>
+            </I18nT>
+          </CdxLabel>
         </div>
-        <div class="border border-[#A2A9B1] rounded-[2px] p-[12px] bg-white">
+        <div
+          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] bg-white dark:bg-[#101418]"
+        >
           <div class="flex gap-x-[12px]">
             <!-- <div
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
@@ -105,29 +125,35 @@ const props = defineProps({
             />
 
             <div>
-              <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
+              <CdxLabel
+                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ props?.detail?.label }} ({{ props?.detail?.id }})</CdxLabel
               >
               <p
-                class="text-[16px] font-normal text-[#54595D] pb-[0] leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
-                {{
-                  props?.detail?.description || t("session.emptyDescription")
-                }}
+                <i>
+                  {{
+                    props?.detail?.description || t("session.emptyDescription")
+                  }}
+                </i>
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="p-[12px] bg-[#eaecf0]" v-if="!props?.detail">
+      <div
+        class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]"
+        v-if="!props?.detail"
+      >
         <div class="flex gap-x-2">
           <CdxIcon :icon="cdxIconInfoFilled" />
           <div>
-            <CdxLabel class="text-[16px] p-0">{{
+            <CdxLabel class="text-[16px] dark:text-[#EAECF0] p-0">{{
               t("session.preview.empty")
             }}</CdxLabel>
-            <p class="text-[16px] text-[#54595D] pt-[5px]">
+            <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1] pt-[5px]">
               <i>{{ t("session.preview.reason") }}</i>
             </p>
           </div>
@@ -135,7 +161,7 @@ const props = defineProps({
       </div>
     </div>
     <div
-      class="fixed bottom-0 w-full h-66px border-t border-[#A2A9B1] p-[16px] flex justify-between align-center bg-white gap-x-[12px] rounded-b-[16px]"
+      class="fixed bottom-0 w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[12px] rounded-b-[16px]"
     >
       <CdxButton @click="emit('backtoItem')" class="w-full">{{
         t("session.preview.button1")

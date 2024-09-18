@@ -65,10 +65,10 @@ const onInput = debounce(() => {
 
 <template>
   <div
-    class="relative w-full flex flex-col overflow-hidden flex flex-col h-full"
+    class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div
-      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full rounded-t-[16px]"
+      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full"
       :style="{
         background: '#2A4B8D',
         alignItems: 'center',
@@ -110,10 +110,14 @@ const onInput = debounce(() => {
         />
       </div>
     </div>
-    <div class="px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px]">
-      <CdxLabel class="text-[16px]" style="padding-bottom: 16px">{{
-        t("session.main.title")
-      }}</CdxLabel>
+    <div
+      class="px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418]"
+    >
+      <CdxLabel
+        class="text-[16px] dark:text-[#EAECF0]"
+        style="padding-bottom: 16px"
+        >{{ t("session.main.title") }}</CdxLabel
+      >
       <div class="relative">
         <CdxSearchInput
           aria-label="SearchInput default demo"
@@ -133,9 +137,10 @@ const onInput = debounce(() => {
 
       <div v-if="props.recommendedLoading">
         <div class="w-full max-w-[896px]">
-          <span class="mb-[8px] text-[#54595D] text-[16px]">{{
-            t("session.recLoading")
-          }}</span>
+          <span
+            class="mb-[8px] text-[#54595D] text-[16px] dark:text-[#A2A9B1]"
+            >{{ t("session.recLoading") }}</span
+          >
           <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
         </div>
       </div>
@@ -164,7 +169,7 @@ const onInput = debounce(() => {
         "
       >
         <p
-          class="text-[16px] font-normal text-[#54595D] pb-[8px]"
+          class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
           style="padding-bottom: 16px"
         >
           {{ t("session.main.recommendation") }}
@@ -175,8 +180,8 @@ const onInput = debounce(() => {
           :key="index"
           :class="[
             value.id === selectedItem
-              ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF]'
-              : 'border border-[#A2A9B1]',
+              ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
+              : 'border border-[#A2A9B1] dark:border-[#72777D]',
             'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
@@ -196,18 +201,19 @@ const onInput = debounce(() => {
             />
 
             <div>
-              <CdxLabel class="text-[16px] pb-[4px] leading-[20px]"
+              <CdxLabel
+                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ value?.label }} ({{ value?.id }})</CdxLabel
               >
               <p
                 v-if="value?.description"
-                class="text-[16px] font-normal text-[#54595D] pb-0 leading-[22px]"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
               >
                 {{ value?.description }}
               </p>
               <p
                 v-else
-                class="text-[16px] font-normal text-[#54595D] pb-0"
+                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                 style="padding-bottom: 16px"
               >
                 <i>{{ t("session.emptyDescription") }}</i>
@@ -231,7 +237,7 @@ const onInput = debounce(() => {
           "
         >
           <p
-            class="text-[16px] font-normal text-[#54595D] pb-[8px]"
+            class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
             style="padding-bottom: 16px"
           >
             {{ t("session.main.result") }}
@@ -241,8 +247,8 @@ const onInput = debounce(() => {
             :key="index"
             :class="[
               value.id === selectedItem
-                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF]'
-                : 'border border-[#A2A9B1]',
+                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
+                : 'border border-[#A2A9B1] dark:border-[#72777D]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
             ]"
             @click="selectItem(value.id, value)"
@@ -261,12 +267,12 @@ const onInput = debounce(() => {
                 :placeholder-icon="cdxIconLogoWikidata"
               />
               <div>
-                <CdxLabel class="text-[16px]"
+                <CdxLabel class="text-[16px] dark:text-[#EAECF0]"
                   >{{ value?.label }} ({{ value?.id }})</CdxLabel
                 >
                 <p
                   v-if="value?.description"
-                  class="text-[16px] font-normal text-[#54595D] pb-0"
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                   style="padding-bottom: 16px"
                 >
                   {{ value?.description }}
@@ -274,7 +280,7 @@ const onInput = debounce(() => {
 
                 <p
                   v-else
-                  class="text-[16px] font-normal text-[#54595D] pb-0"
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
                   style="padding-bottom: 16px"
                 >
                   <i>{{ t("session.emptyDescription") }}</i>
@@ -317,7 +323,7 @@ const onInput = debounce(() => {
       </div>
     </div>
     <div
-      class="w-full h-66px border-t border-[#A2A9B1] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px]"
+      class="w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
     >
       <CdxButton
         class="w-full"

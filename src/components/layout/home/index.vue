@@ -33,6 +33,26 @@ const fetchProfile = async (lang) => {
     locale.value = response?.data?.displayLanguage || lang;
     cookies.set("locale", response?.data?.displayLanguage || lang);
 
+    if (response?.data?.displayTheme !== "default") {
+      if (response?.data?.displayTheme === "dark") {
+        document.documentElement.className = "dark";
+        localStorage.setItem("theme", "dark");
+      } else if (response?.data?.displayTheme === "light") {
+        document.documentElement.className = "light";
+        localStorage.setItem("theme", "light");
+      }
+    } else {
+      localStorage.setItem("theme", "auto");
+
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.className = "dark";
+      } else {
+        document.documentElement.className = "";
+      }
+    }
+
+    store.setTheme();
+
     if (response?.data?.ongoingContribution) {
       EndContribution();
       loading.value = false;
@@ -61,42 +81,57 @@ const reload = () => {
 </script>
 
 <template>
-  <div
-    v-if="loading"
-    class="w-full text-center flex flex-col justify-center h-[100vh] p-[16px]"
-  >
-    <CdxLabel class="pb-[16px]">{{ t("home.loading") }}</CdxLabel>
-    <CdxProgressBar class="w-full"></CdxProgressBar>
-  </div>
-  <div v-else class="relative flex flex-col items-center">
-    <Header @logout="loggingOut" :isLogout="logout" />
-    <div class="min-h-[100vh] pb-[103px] pt-[54px] w-full max-w-[896px]">
-      <slot v-if="!logout && !loading" />
-
-      <div
-        v-if="logout && !success"
-        class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px]"
-      >
-        <CdxLabel class="pb-[16px]">{{ t("header.menu.loggingout") }}</CdxLabel>
-        <CdxProgressBar class="w-full"></CdxProgressBar>
-      </div>
-      <div
-        v-else-if="logout && success"
-        class="w-full text-center flex flex-col justify-center items-center h-[80vh] p-[16px]"
-      >
-        <img :src="successlogo" alt="success" />
-        <CdxLabel class="pb-[16px]">{{
-          t("header.menu.logoutsuccess")
-        }}</CdxLabel>
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full"
-          @click="reload"
-          >{{ t("header.menu.ok") }}</CdxButton
-        >
-      </div>
+  <div class="bg-white dark:bg-[#101418] w-full container-home w-full">
+    <div
+      v-if="loading"
+      class="w-full text-center flex flex-col justify-center h-[100vh] p-[16px]"
+    >
+      <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
+        t("home.loading")
+      }}</CdxLabel>
+      <CdxProgressBar class="w-full"></CdxProgressBar>
     </div>
-    <Footer v-if="!logout" />
+    <div v-else class="relative flex flex-col items-center container-home">
+      <Header @logout="loggingOut" :isLogout="logout" />
+      <div
+        class="container-home pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
+      >
+        <slot v-if="!logout && !loading" />
+
+        <div
+          v-if="logout && !success"
+          class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px]"
+        >
+          <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
+            t("header.menu.loggingout")
+          }}</CdxLabel>
+          <CdxProgressBar class="w-full"></CdxProgressBar>
+        </div>
+        <div
+          v-else-if="logout && success"
+          class="w-full text-center flex flex-col justify-center items-center h-[80vh] p-[16px]"
+        >
+          <img :src="successlogo" alt="success" />
+          <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
+            t("header.menu.logoutsuccess")
+          }}</CdxLabel>
+          <CdxButton
+            weight="primary"
+            action="progressive"
+            class="w-full"
+            @click="reload"
+            >{{ t("header.menu.ok") }}</CdxButton
+          >
+        </div>
+      </div>
+      <Footer v-if="!logout" />
+    </div>
   </div>
 </template>
+
+<style scoped>
+.container-home {
+  height: 100%;
+  min-height: stretch;
+}
+</style>

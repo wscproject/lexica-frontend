@@ -19,9 +19,13 @@ import {
 } from "@wikimedia/codex-icons";
 import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
+import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
+
 import error from "/src/assets/error.svg";
 
 import blank from "@/assets/blank_icon.svg";
+import blankdark from "@/assets/blank_icon_dark.svg";
+
 import sad from "@/assets/Sad.svg";
 import happy from "@/assets/happy.svg";
 
@@ -38,6 +42,9 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
+import { useMediaQuery } from "@vueuse/core";
+
+const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 
 const { t } = useI18n({ useScope: "global" });
 const store = useGeneralStore();
@@ -49,7 +56,7 @@ const count = ref(3);
 const data = ref([]);
 const tempData = ref(null);
 const detail = ref(null);
-const currMargin = ref(32);
+const currMargin = ref(48);
 const flip = ref(false);
 const currMode = ref(1);
 const next = ref(false);
@@ -422,7 +429,6 @@ const getCardsData = async (code) => {
 
   if (response.statusCode === 200) {
     totalCount.value = response?.data?.length;
-    console.log(totalCount.value);
 
     data.value = [...response.data.filter((item) => item.status === "pending")];
     currMargin.value =
@@ -448,6 +454,48 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
+  if (localStorage.getItem("theme")) {
+    if (localStorage.getItem("theme") !== "auto") {
+      if (localStorage.getItem("theme") === "light") {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      } else {
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      }
+    } else {
+      if (isPreferredDark.value) {
+        console.log("testing123");
+
+        document.documentElement.className = "dark";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#27292D");
+      } else {
+        document.documentElement.className = "";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute("content", "#EAECF0");
+      }
+    }
+  } else {
+    if (isPreferredDark.value) {
+      console.log("testing123");
+
+      document.documentElement.className = "dark";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", "#27292D");
+    } else {
+      document.documentElement.className = "";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute("content", "#EAECF0");
+    }
+  }
+
   if (store?.language) {
     await getCardsData();
   } else {
@@ -658,7 +706,7 @@ watch(
       v-else-if="!isLoading && !isError && !noInternet"
       class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
-        backgroundImage: `url(${blank})`,
+        backgroundImage: `url(${store.isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
@@ -666,7 +714,7 @@ watch(
     >
       <div :class="[skipAll && 'skipall', 'px-[16px] w-full']">
         <div
-          class="flex justify-center w-full relative custom-height items-center"
+          class="flex justify-center w-full relative custom-height items-center z-[2]"
           :style="{
             marginTop: currMargin + 'px',
             perspective: '1000px',
@@ -677,7 +725,7 @@ watch(
             :isFlipped="flip"
             v-for="(value, index) in data"
             :style="{
-              marginTop: -8 * index + 1 + 'px',
+              marginTop: -12 * index + 1 + 'px',
               ...(prev && { transition: 'unset !important' }),
               ...(!isMove && { transition: 'transform 0.5s ease-out' }),
               ...(springBack && { transition: 'transform 0.35s' }),
@@ -711,13 +759,16 @@ watch(
             <transition name="fade">
               <CardSplash
                 :class="[
-                  data?.length !== index + 1 ? 'bg-white' : 'bg-[#2A4B8D]',
+                  data?.length !== index + 1
+                    ? 'bg-white dark:bg-[#101418]'
+                    : 'bg-[#2A4B8D]',
                   'custom-height z-[1]  rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
                 :key="0"
                 :currCount="currCount"
+                :isNotCurrent="data?.length !== index + 1"
               ></CardSplash>
             </transition>
 
@@ -806,7 +857,7 @@ watch(
           ]"
         >
           <div
-            class="w-full max-w-[450px] min-w-[288px] bg-black relative mx-[8px] rounded-[2px]"
+            class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
             style="box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2)"
           >
             <v-progress-linear
@@ -814,15 +865,24 @@ watch(
               color="#3366CC"
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
-            <div class="p-[16px] text-white flex items-center justify-between">
+            <div
+              class="p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
+            >
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
                 class="flex gap-x-2 items-center cursor-pointer text-white"
                 @click="undoCard"
               >
-                <CdxIcon class="text-white" :icon="cdxIconUndo" alt="undo" />
-                <p style="padding-bottom: 0px" class="text-[16px] font-[700]">
+                <CdxIcon
+                  class="text-white dark:text-[#101418]"
+                  :icon="cdxIconUndo"
+                  alt="undo"
+                />
+                <p
+                  style="padding-bottom: 0px"
+                  class="text-[16px] font-[700] dark:text-[#101418]"
+                >
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -834,7 +894,7 @@ watch(
 
     <div
       v-if="!isLoading && !isError && !noInternet"
-      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-0 absolute"
+      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute"
     >
       <div class="flex max-w-[450px] gap-x-[12px] w-full">
         <CdxButton
@@ -846,9 +906,27 @@ watch(
               data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
             )
           "
-          :disabled="undoWarn || submittingData"
+          :disabled="
+            undoWarn || submittingData || data?.length === 0 || currCount > 5
+          "
         >
-          <SkipIcon :color="submittingData ? '#72777d' : '#202122'" />
+          <SkipIcon
+            v-if="!store.isThemeDark"
+            :color="
+              undoWarn || submittingData || data?.length === 0 || currCount > 5
+                ? '#72777d'
+                : '#202122'
+            "
+          />
+          <SkipDarkIcon
+            v-if="store.isThemeDark"
+            :color="
+              undoWarn || submittingData || data?.length === 0 || currCount > 5
+                ? '#72777d'
+                : '#EAECF0'
+            "
+          />
+
           <CdxLabel class="text-[16px] pb-0">{{
             t("session.button1")
           }}</CdxLabel>
@@ -857,7 +935,7 @@ watch(
           weight="quiet"
           class="h-[34px] w-full"
           @click="endEarly"
-          :disabled="currCount === 1 || submittingData"
+          :disabled="currCount === 1 || submittingData || data?.length === 0"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <CdxLabel class="text-[16px] pb-0">{{

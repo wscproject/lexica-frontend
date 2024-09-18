@@ -4,6 +4,11 @@
       "login": "Masuk log",
       "logout": "Keluar log",
       "locale": "Bahasa tampilan",
+      "theme": "Tema",
+      "auto": "Otomatis",
+      "autoDesc": "Ikuti tema sistem/peramban Anda",
+      "light": "Terang",
+      "dark": "Gelap",
       "language": "Bahasa Indonesia",
       "loggingout": "Sedang keluar log...",
       "logoutsuccess": "Anda berhasil keluar log.",
@@ -11,7 +16,7 @@
     }
   },
   "footer": {
-    "label": "Sebuah perkakas dari",
+    "label": "Alat yang dikembangkan oleh tim",
     "about": "Tentang",
     "privacy": "Privasi",
     "license": "Lisensi"
@@ -21,10 +26,19 @@
     "cancel": "Batal",
     "apply": "Terapkan"
   },
+  "darkmodeDialog": {
+    "title": "Tema",
+    "auto": "Otomatis",
+    "desc": "Ikuti tema peramban Anda",
+    "light": "Terang",
+    "dark": "Gelap",
+    "cancel": "Batal",
+    "apply": "Terapkan"
+  },
   "home": {
     "unauth": {
       "title": "Selamat datang!",
-      "body1": "merupakan sebuah perkakas eksperimental untuk berkontribusi ke Wikidata Leksem dengan mudah.",
+      "body1": "adalah alat inovatif yang dirancang untuk membantu Anda berkontribusi ke data leksikografis di Wikidata.",
       "body2": "Dengan menggunakan Lexica, Anda menyetujui ",
       "privacyPolicy": "Kebijakan Privasi Lexica.",
       "login": "Masuk log",
@@ -32,7 +46,7 @@
     },
     "auth": {
       "title": "Halo",
-      "languageSelect": "Kontribusi untuk leksem berbahasa",
+      "languageSelect": "Kontribusi untuk Leksem berbahasa",
       "start": "Mulai kontribusi",
       "tutorial": "Lihat panduan"
     },
@@ -44,12 +58,12 @@
     "start": "Mulai kontribusi",
     "one": {
       "title": "Apa itu Lexica?",
-      "content": "Lexica menyajikan tampilan penyuntingan Wikidata Leksem untuk memudahkan kontribusi cepat. Anda akan mengerjakan hal berikut: Mengaitkan sebuah leksem dengan butir Wikidata yang bermakna sama."
+      "content": "Lexica menyajikan tampilan penyuntingan data leksikografis di Wikidata untuk memudahkan kontribusi cepat. Anda akan mengerjakan hal berikut: menautkan sebuah Leksem dengan Butir di Wikidata yang bermakna sama."
     },
     "two": {
-      "title": "Antarmuka kontribusi",
+      "title": "Isi sebuah kartu kontribusi",
       "point1Title": "Beranda",
-      "point1Content": "mengakhiri sesi kontribusi dan kembali ke halaman utama.",
+      "point1Content": "mengakhiri sesi kontribusi dan kembali ke Beranda.",
       "point2Title": "Nomor kartu",
       "point2Content": "menampilkan urutan kartu yang sedang ditampilkan.",
       "point3Title": "Gestur lewati kartu",
@@ -57,28 +71,28 @@
       "point4Title": "Tombol lewati kartu",
       "point4Content": "cara lain untuk melewati kartu. ",
       "point5Title": "Akhiri sesi",
-      "point5Content": "mengakhiri sesi kontribusi dan kembali ke halaman utama."
+      "point5Content": "mengakhiri sesi kontribusi dan kembali ke Beranda."
     },
     "three": {
       "title": "Isi sebuah kartu kontribusi",
       "point1Title": "Kepala kartu",
-      "point1Content": "berisi nama leksem, deskripsi singkat, dan tombol untuk melihat informasi lanjutan leksem tersebut.",
+      "point1Content": "berisi Lema, ID Leksem, definisi dari Leksem, dan tombol untuk melihat informasi lanjutan Leksem tersebut.",
       "point2Title": "Isi kartu",
-      "point2Content": "berisi pertanyaan, kotak pencarian, dan rekomendasi atau hasil pencarian Wikidata.",
+      "point2Content": "berisi pertanyaan, kotak pencarian, dan rekomendasi atau hasil pencarian Butir di Wikidata.",
       "point3Title": "Tombol aksi",
-      "point3Content": "pilih “Selanjutnya” setelah memilih jawaban yang sesuai atau “Butir tidak ada” jika jawabannya tidak ditemukan."
+      "point3Content": "pilih “Selanjutnya” setelah memilih Butir yang sesuai atau “Butir tidak ada” jika Butir yang sesuai tidak ditemukan."
     },
     "four": {
       "title": "Selesai!",
-      "content1": "Selamat berkontribusi ke Wikidata Leksem dengan Lexica!",
+      "content1": "Selamat berkontribusi ke data leksikografis di Wikidata dengan Lexica!",
       "content2": "Tip: Anda dapat melihat panduan ini kembali dari halaman Beranda."
     }
   },
   "tooltips": {
-    "home": "Kembali ke beranda",
+    "home": "Kembali ke Beranda",
     "account": "Akun",
-    "info": "Tampilkan informasi lexeme",
-    "item": "Tampilkan informasi butir",
+    "info": "Tampilkan informasi Leksem",
+    "item": "Tampilkan informasi Butir",
     "back": "Kembali"
   },
   "session": {
@@ -91,14 +105,14 @@
     },
 
     "noInternet": {
-      "title": "Gagal memuat kartu",
-      "description": "Periksa koneksi internet Anda, lalu muat ulang.",
-      "button": "Muat ulang"
+      "title": "Gagal mengunggah kontribusi",
+      "description": "Periksa koneksi internet Anda, lalu coba lagi.",
+      "button": "Coba lagi"
     },
 
     "empty": {
       "title": "Belum ada kartu yang dapat Anda isi lagi saat ini.",
-      "button": "Kembali ke beranda"
+      "button": "Kembali ke Beranda"
     },
 
     "title": "Kartu",
@@ -106,16 +120,16 @@
     "button2": "Akhiri sesi",
 
     "main": {
-      "title": "Leksem di atas memiliki makna yang sama dengan butir Wikidata apa?",
-      "search": "Cari butir atau QID",
+      "title": "Butir mana yang memiliki konsep yang sama dengan Makna pada Leksem di atas?",
+      "search": "Cari Butir atau QID",
       "recommendation": "Rekomendasi",
       "result": "Hasil pencarian",
       "button1": "Butir tidak ada",
       "button2": "Selanjutnya",
-      "emptySearch1": "Tidak ada hasil pencarian yang ditemukan.",
+      "emptySearch1": "Hasil pencarian tidak ditemukan.",
       "emptySearch2": "Coba gunakan kata kunci lain.",
-      "emptySuggestion1": "Tidak ada rekomendasi.",
-      "emptySuggestion2": "Carilah butir secara manual.",
+      "emptySuggestion1": "Rekomendasi tidak ditemukan.",
+      "emptySuggestion2": "Carilah Butir secara manual.",
       "loadmore": "Muat lebih banyak",
       "loading": "Memuat..."
     },
@@ -135,7 +149,7 @@
     },
 
     "item": {
-      "wikidata": "butir Wikidata",
+      "wikidata": "Butir Wikidata",
       "statements": "Pernyataan",
       "translations": "Terjemahan",
       "loading": "Memuat...",
@@ -150,11 +164,12 @@
     "preview": {
       "title": "Pratinjau",
       "lexeme": "Leksem",
-      "statement": "Pernyataan baru: butir untuk makna ini",
-      "button1": "Sunting lagi",
+      "newStatement": "Pernyataan baru: {statement}",
+      "statement": "butir untuk makna ini",
+      "button1": "Sunting",
       "button2": "Selesai",
       "empty": "Tidak ada perubahan",
-      "reason": "ALasan: Butir tidak ada"
+      "reason": "Alasan: Butir tidak ditemukan"
     },
 
     "upload": "Mengunggah kontribusi...",
@@ -168,7 +183,7 @@
 
     "done": {
       "title": "Terima kasih telah berkontribusi dengan Lexica!",
-      "button": "Kembail ke beranda"
+      "button": "Kembail ke Beranda"
     },
 
     "skip": {
@@ -190,14 +205,14 @@
       "button": "Kembali ke beranda"
     },
 
-    "emptyStatement": "Tidak ada pernyataan",
-    "emptyDescription": "Tidak ada deskripsi"
+    "emptyStatement": "Pernyataan tidak ditemukan",
+    "emptyDescription": "Definisi tidak ditemukan"
   },
   "about": {
     "title": "Tentang",
     "content1": "Menyunting data leksikografis di Wikidata melalui ponsel merupakan kegiatan yang menantang bagi sebagian pengguna. Hal itulah yang mendasari hadirnya {lexica}. Tujuan kami sederhana: membuat proses menyunting menjadi lebih mudah dan dapat dilakukan oleh siapa saja, di mana saja.",
-    "content2": "{lexica} merupakan eksperimen untuk menyajikan pengalaman menyunting data leksikografis di Wikidata dengan cara yang berbeda. Sebagai perkakas berbasis web yang dioptimalkan untuk pengguna ponsel, {lexica} memungkinkan Anda untuk menautkan makna pada Leksem ke butir Wikidata secara cepat melalui tampilan kartu yang responsif. ",
-    "content3": "{lexica} dikembangkan oleh tim pengembangan perangkat lunak dari Indonesia bersama Wikimedia Deutschland. Kerja sama ini merupakan bagian dari Wikidata Software Collaboration yang didukung oleh hibah dari Arcadia Philanthropic Fund. ",
+    "content2": "{lexica} merupakan alat inovatif yang dirancang untuk membantu Anda berkontribusi ke data leksikografis di Wikidata. Sebagai perkakas berbasis web yang dioptimalkan untuk pengguna ponsel, {lexica} memungkinkan Anda untuk menautkan Makna pada Leksem ke Butir di Wikidata secara cepat melalui tampilan kartu yang intuitif.",
+    "content3": "{lexica} dikembangkan oleh tim pengembangan perangkat lunak dari Indonesia bersama Wikimedia Deutschland. Kerja sama ini merupakan bagian dari Wikidata Software Collaboration yang didukung oleh hibah dari Arcadia Philanthropic Fund.",
     "content4": "Kami berkomitmen untuk terus mengembangkan {lexica} agar dapat memberikan pengalaman pengguna yang lebih baik. Untuk mempelajari proyek kami lebih lanjut, silakan kunjungi {link}.",
     "page": "halaman berikut"
   },

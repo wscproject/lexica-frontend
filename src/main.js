@@ -20,10 +20,34 @@ import { createPinia } from "pinia";
 import * as directives from "vuetify/directives";
 import * as components from "vuetify/components";
 import "./index.css";
-import "@wikimedia/codex/dist/codex.style.css";
+
 import { cookies } from "@/helper/cookies";
 import { i18n } from "./plugins/i18n";
 import { CdxTooltip } from "@wikimedia/codex";
+
+import "@wikimedia/codex/dist/codex.style.css";
+
+if (localStorage?.getItem("theme")) {
+  if (localStorage?.getItem("theme") !== "auto") {
+    if (localStorage.getItem("theme") === "dark") {
+      document.documentElement.className = "dark";
+    } else if (localStorage.getItem("theme") === "light") {
+      document.documentElement.className = "light";
+    }
+  } else {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      document.documentElement.className = "dark";
+    } else {
+      document.documentElement.className = "";
+    }
+  }
+} else {
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    document.documentElement.className = "dark";
+  } else {
+    document.documentElement.className = "";
+  }
+}
 
 const routes = [
   {
