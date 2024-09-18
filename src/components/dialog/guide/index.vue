@@ -82,7 +82,9 @@ const toSession = () => {
                   v-for="n in 4"
                   :class="[
                     'w-[8px] h-[8px] rounded-full',
-                    curr >= n ? 'bg-[#202122]' : 'bg-[#C8CCD1]',
+                    curr >= n
+                      ? 'bg-[#202122] dark:bg-[#FFFFFFA6]'
+                      : 'bg-[#C8CCD1] dark:bg-[#54595D]',
                   ]"
                 />
               </div>
@@ -130,9 +132,9 @@ const toSession = () => {
   border-bottom: unset;
 }
 
-.cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__footer {
+/* .cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__footer {
   border-top: 1px solid #c8ccd1;
-}
+} */
 
 .cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__footer {
   border-top: unset;
