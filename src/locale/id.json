@@ -61,7 +61,7 @@
       "content": "Lexica menyajikan tampilan penyuntingan data leksikografis di Wikidata untuk memudahkan kontribusi cepat. Anda akan mengerjakan hal berikut: menautkan sebuah Leksem dengan Butir di Wikidata yang bermakna sama."
     },
     "two": {
-      "title": "Cara menggunakan",
+      "title": "Isi sebuah kartu kontribusi",
       "point1Title": "Beranda",
       "point1Content": "mengakhiri sesi kontribusi dan kembali ke Beranda.",
       "point2Title": "Nomor kartu",
@@ -149,7 +149,7 @@
     },
 
     "item": {
-      "wikidata": "butir Wikidata",
+      "wikidata": "Butir Wikidata",
       "statements": "Pernyataan",
       "translations": "Terjemahan",
       "loading": "Memuat...",

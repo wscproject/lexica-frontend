@@ -82,7 +82,7 @@ const gotoSession = async () => {
   </div>
 
   <div
-    class="text-[16px] pt-[24px] pb-[12px] font-[700] text-black dark:text-white"
+    class="text-[16px] pt-[24px] pb-[12px] font-[700] text-black dark:text-white text-left w-100"
   >
     <span>{{ t("home.auth.languageSelect") }}</span>
   </div>

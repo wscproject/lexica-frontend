@@ -36,7 +36,7 @@ const router = useRouter();
         class="p-0 text-[16px] dark:text-[#EAECF0]"
       >
         <template #lexica>
-          <span><b>Lexica</b></span>
+          <span>Lexica</span>
         </template>
       </I18nT>
       <br />
@@ -46,7 +46,7 @@ const router = useRouter();
         class="p-0 text-[16px] dark:text-[#EAECF0]"
       >
         <template #lexica>
-          <span><b>Lexica</b></span>
+          <span>Lexica</span>
         </template>
       </I18nT>
       <br />
@@ -56,7 +56,7 @@ const router = useRouter();
         class="p-0 text-[16px] dark:text-[#EAECF0]"
       >
         <template #lexica>
-          <span><b>Lexica</b></span>
+          <span>Lexica</span>
         </template>
       </I18nT>
       <br />
@@ -66,7 +66,7 @@ const router = useRouter();
         class="p-0 text-[16px] dark:text-[#EAECF0]"
       >
         <template #lexica>
-          <span><b>Lexica</b></span>
+          <span>Lexica</span>
         </template>
         <template #link>
           <a

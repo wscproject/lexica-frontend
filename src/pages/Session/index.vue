@@ -714,7 +714,7 @@ watch(
     >
       <div :class="[skipAll && 'skipall', 'px-[16px] w-full']">
         <div
-          class="flex justify-center w-full relative custom-height items-center"
+          class="flex justify-center w-full relative custom-height items-center z-[2]"
           :style="{
             marginTop: currMargin + 'px',
             perspective: '1000px',
@@ -894,7 +894,7 @@ watch(
 
     <div
       v-if="!isLoading && !isError && !noInternet"
-      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-0 absolute"
+      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute"
     >
       <div class="flex max-w-[450px] gap-x-[12px] w-full">
         <CdxButton

@@ -9,7 +9,7 @@ import {
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { useI18n } from "vue-i18n";
 import { useGeneralStore } from "@/store/general";
-import { onMounted, ref, watch } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { updateUserPreference } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
@@ -19,7 +19,7 @@ const { cookies } = useCookies();
 
 const currTheme = ref();
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
 
 const props = defineProps({
   open: {
@@ -76,21 +76,23 @@ const auto = () => {
   store.setTheme();
 };
 
-const menus = [
-  {
-    label: t("darkmodeDialog.auto"),
-    value: "auto",
-    description: t("darkmodeDialog.desc"),
-  },
-  {
-    label: t("darkmodeDialog.light"),
-    value: "light",
-  },
-  {
-    label: t("darkmodeDialog.dark"),
-    value: "dark",
-  },
-];
+const menus = computed(() => {
+  return [
+    {
+      label: t("darkmodeDialog.auto"),
+      value: "auto",
+      description: t("darkmodeDialog.desc"),
+    },
+    {
+      label: t("darkmodeDialog.light"),
+      value: "light",
+    },
+    {
+      label: t("darkmodeDialog.dark"),
+      value: "dark",
+    },
+  ];
+});
 
 const applyTheme = async () => {
   if (cookies.get("auth")) {
@@ -144,7 +146,7 @@ const applyTheme = async () => {
       <div class="w-full px-[16px] py-[12px]">
         <CdxRadio
           v-for="menu in menus"
-          :key="'menu-' + menu.value"
+          :key="locale"
           v-model="currTheme"
           name="radio-group"
           :input-value="menu.value"

@@ -7,7 +7,7 @@ import { useGeneralStore } from "@/store/general";
 
 const store = useGeneralStore();
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
 </script>
 
 <template>
@@ -25,6 +25,8 @@ const { t } = useI18n({ useScope: "global" });
         href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
       >
         Wikidata Software Collaboration</a
+      ><span class="text-[#54595D] dark:text-[#A2A9B1]" v-if="locale === 'en'">
+        team</span
       >
     </div>
     <div class="text-center text-[12px] mt-[4px]">

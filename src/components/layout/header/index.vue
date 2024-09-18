@@ -184,6 +184,7 @@ watch(store, () => {
     </a> -->
 
     <CdxMenuButton
+      :key="locale"
       v-tooltip:bottom="t('tooltips.account')"
       v-model="selection"
       :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"

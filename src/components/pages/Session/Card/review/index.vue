@@ -99,12 +99,10 @@ const props = defineProps({
             <I18nT
               keypath="session.preview.newStatement"
               tag="p"
-              class="p-0 text-[16px] dark:text-[#EAECF0]"
+              class="p-0 text-[16px] dark:text-[#EAECF0] font-bold"
             >
               <template #statement>
-                <span
-                  ><b>{{ t("session.preview.statement") }} (P5137)</b></span
-                >
+                <span>{{ t("session.preview.statement") }} (P5137)</span>
               </template>
             </I18nT>
           </CdxLabel>
