@@ -132,9 +132,9 @@ const toSession = () => {
   border-bottom: unset;
 }
 
-/* .cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__footer {
-  border-top: 1px solid #c8ccd1;
-} */
+.cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__footer {
+  border-top: unset;
+}
 
 .cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__footer {
   border-top: unset;
