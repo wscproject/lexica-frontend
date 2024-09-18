@@ -92,7 +92,7 @@ const toSession = () => {
           </div>
         </div>
       </template>
-      <div class="flex items-center flex-col w-full pt-[85px]">
+      <div class="flex items-center flex-col w-full pt-[85px] pb-[90px]">
         <PartOne v-if="curr === 1" />
         <PartTwo v-if="curr === 2" />
         <PartThree v-if="curr === 3" />
