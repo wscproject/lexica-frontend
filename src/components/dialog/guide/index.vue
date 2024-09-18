@@ -125,7 +125,7 @@ const toSession = () => {
 
 <style>
 .cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__header {
-  border-bottom: 1px solid #c8ccd1;
+  @apply border-b border-[#c8ccd1] dark:border-[#54595D];
 }
 
 .cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__header {
