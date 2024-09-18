@@ -62,7 +62,7 @@ const toSession = () => {
       ]"
     >
       <template #header>
-        <div class="w-full">
+        <div class="w-full header-guide">
           <div class="w-full">
             <div class="flex w-full justify-between items-center">
               <CdxLabel class="text-[18px]">{{ t("tutorial.title") }}</CdxLabel>
@@ -92,7 +92,7 @@ const toSession = () => {
           </div>
         </div>
       </template>
-      <div class="flex items-center flex-col w-full">
+      <div class="flex items-center flex-col w-full pt-[85px]">
         <PartOne v-if="curr === 1" />
         <PartTwo v-if="curr === 2" />
         <PartThree v-if="curr === 3" />
@@ -124,8 +124,34 @@ const toSession = () => {
 </template>
 
 <style>
+.cdx-dialog__footer {
+  @apply bg-[#fff] dark:bg-[#101418] absolute bottom-0 w-[100%];
+}
+
+.header-guide {
+  position: absolute;
+  width: 100%;
+  z-index: 10;
+
+  top: 0;
+  left: 0;
+  padding: 16px 16px 16px 12px;
+}
+
+.guide-dialog .header-guide {
+  @apply border-b border-[#c8ccd1] dark:border-[#54595D] bg-[#fff] dark:bg-[#101418];
+}
+
+.guide-dialog-2 .header-guide {
+  @apply bg-[#fff] dark:bg-[#101418];
+}
+
+.cdx-dialog__header {
+  @apply p-0;
+}
+
 .cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__header {
-  @apply border-b border-[#c8ccd1] dark:border-[#54595D];
+  border: unset;
 }
 
 .cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__header {
@@ -147,7 +173,6 @@ const toSession = () => {
 .guide .cdx-dialog__header {
   display: flex !important;
   align-items: center !important;
-  padding: 16px 16px 12px !important;
 }
 
 .guide .cdx-dialog__footer {
