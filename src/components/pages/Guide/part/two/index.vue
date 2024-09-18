@@ -8,7 +8,7 @@ const { t } = useI18n({ useScope: "global" });
 
 <template>
   <div class="w-full pb-[8px]">
-    <div class="mb-[12px] px-[15px] w-full flex justify-center">
+    <div class="mb-[12px] mt-[20px] px-[15px] w-full flex justify-center">
       <img :src="Image" alt="image" class="w-100 max-w-[320px]" rel="preload" />
     </div>
     <div class="px-[14px]">
