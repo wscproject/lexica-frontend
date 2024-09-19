@@ -49,7 +49,7 @@ const toSession = () => {
 </script>
 
 <template>
-  <div>
+  <div class="guide-dialog-main">
     <!-- <client-only> -->
     <CdxDialog
       :open="open"
@@ -58,7 +58,7 @@ const toSession = () => {
       @update:open="close"
       :class="[
         curr === 2 || curr === 3 ? 'guide-dialog' : 'guide-dialog-2',
-        'min-w-full min-h-full guide border-0 rounded-0',
+        'min-w-full min-h-full guide border-0 rounded-0 guide-main',
       ]"
     >
       <template #header>
@@ -123,8 +123,8 @@ const toSession = () => {
   </div>
 </template>
 
-<style>
-.cdx-dialog__footer {
+<style scoped>
+.guide-main .cdx-dialog__footer {
   @apply bg-[#fff] dark:bg-[#101418] absolute bottom-0 w-[100%];
 }
 
