@@ -205,12 +205,18 @@ const onInput = debounce(() => {
                 class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ value?.label }} ({{ value?.id }})</CdxLabel
               >
-              <p
+              <div
                 v-if="value?.description"
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+                :lang="value?.language"
+                style="hyphens: auto; -moz-hyphens: auto; word-wrap: break-word"
               >
-                {{ value?.description }}
-              </p>
+                <p
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+                >
+                  {{ value?.description }}
+                </p>
+              </div>
+
               <p
                 v-else
                 class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
@@ -270,14 +276,22 @@ const onInput = debounce(() => {
                 <CdxLabel class="text-[16px] dark:text-[#EAECF0]"
                   >{{ value?.label }} ({{ value?.id }})</CdxLabel
                 >
-                <p
+                <div
+                  :lang="value?.language"
                   v-if="value?.description"
-                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
-                  style="padding-bottom: 16px"
+                  style="
+                    hyphens: auto;
+                    -moz-hyphens: auto;
+                    word-wrap: break-word;
+                  "
                 >
-                  {{ value?.description }}
-                </p>
-
+                  <p
+                    class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
+                    style="padding-bottom: 16px"
+                  >
+                    {{ value?.description }}
+                  </p>
+                </div>
                 <p
                   v-else
                   class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
