@@ -97,12 +97,12 @@ watch(isLoading, () => {
   <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div
       v-if="isLoading"
-      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center h-[100vh] p-[16px] absolute z-[1000] top-0"
+      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0"
     >
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")
       }}</CdxLabel>
-      <CdxProgressBar class="w-full"></CdxProgressBar>
+      <CdxProgressBar class="w-full max-w-[896px]"></CdxProgressBar>
     </div>
     <div class="relative flex flex-col items-center container-home">
       <Header @logout="loggingOut" :isLogout="logout" />

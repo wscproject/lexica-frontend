@@ -2,6 +2,7 @@
 import "@wikimedia/codex/dist/codex.style.css";
 import Logo from "@/assets/home_logo.svg";
 import LogoDark from "@/assets/home_logo_dark.svg";
+import GuideDialog from "@/components/dialog/guide/index.vue";
 
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay } from "@wikimedia/codex-icons";
@@ -23,6 +24,7 @@ const { cookies } = useCookies();
 const { t } = useI18n({ useScope: "global" });
 
 const selection = ref([]);
+const isGuide = ref(false);
 
 const contributeLang = ref();
 
@@ -130,12 +132,18 @@ const gotoSession = async () => {
     >
     <CdxButton
       class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
-      @click="emit('onHint')"
+      @click="isGuide = true"
     >
       <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
       {{ t("home.auth.tutorial") }}</CdxButton
     >
   </div>
+
+  <GuideDialog
+    :open="isGuide"
+    @onPrimaryAction="isGuide = false"
+    @toSession="gotoSession"
+  />
 </template>
 
 <style>
