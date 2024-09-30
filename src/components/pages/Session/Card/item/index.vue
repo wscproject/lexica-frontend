@@ -187,7 +187,7 @@ const onInput = debounce(() => {
             value.id === selectedItem
               ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
               : 'border border-[#A2A9B1] dark:border-[#72777D]',
-            'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
+            'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
         >
@@ -260,7 +260,7 @@ const onInput = debounce(() => {
               value.id === selectedItem
                 ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[#A2A9B1] dark:border-[#72777D]',
-              'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
+              'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
             ]"
             @click="selectItem(value.id, value)"
           >
@@ -328,7 +328,7 @@ const onInput = debounce(() => {
 
             <div
               v-else-if="props.noLoadData"
-              class="flex justify-center flex-col align-center gap-y-[4px]"
+              class="flex justify-center flex-col align-center gap-y-[4px] pt-[8px]"
             >
               <img :src="isThemeDark ? noDataDark : noData" alt="logo" />
               <span
