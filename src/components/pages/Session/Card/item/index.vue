@@ -8,12 +8,17 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { ref } from "vue";
-import { useGeneralStore } from "@/store/general";
+import { computed, ref } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
+import noData from "@/assets/endofresult.svg";
+import noDataDark from "@/assets/endofresult-dark.svg";
+import { useStore } from "vuex";
+
+const vuex = useStore();
 
 const { t } = useI18n({ useScope: "global" });
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const isInfo = ref(false);
 const selectedItem = ref(null);
@@ -24,7 +29,6 @@ const search = ref("");
 
 const isSearch = ref(false);
 
-const store = useGeneralStore();
 const emit = defineEmits([
   "gotoDetail, gotoSubItemDetail, onHold, onRelease, gotoReview, selectItem, setSearch, loadMore",
 ]);
@@ -35,6 +39,7 @@ const props = defineProps({
   searchLoading: Boolean,
   recommendedLoading: Boolean,
   loadmoreLoading: Boolean,
+  noLoadData: Boolean,
 });
 
 const recommendationSearch = ref([]);
@@ -310,6 +315,7 @@ const onInput = debounce(() => {
 
           <div class="w-full">
             <CdxButton
+              v-if="!props.noLoadData"
               class="w-full h-[34px]"
               @click="emit('loadMore')"
               :disabled="props.loadmoreLoading"
@@ -319,6 +325,18 @@ const onInput = debounce(() => {
                   : t("session.main.loadmore")
               }}</CdxButton
             >
+
+            <div
+              v-else-if="props.noLoadData"
+              class="flex justify-center flex-col align-center gap-y-[4px]"
+            >
+              <img :src="isThemeDark ? noDataDark : noData" alt="logo" />
+              <span
+                class="text-[#54595D] dark:text-[#A2A9B1] text-[16px] text-center"
+              >
+                <i>{{ t("session.main.emptyLoad") }}</i>
+              </span>
+            </div>
           </div>
         </div>
 

@@ -131,7 +131,8 @@
       "emptySuggestion1": "Rekomendasi tidak ditemukan.",
       "emptySuggestion2": "Carilah Butir secara manual.",
       "loadmore": "Muat lebih banyak",
-      "loading": "Memuat..."
+      "loading": "Memuat...",
+      "emptyLoad": "Anda telah mencapai akhir dari hasil pencarian"
     },
 
     "detail": {

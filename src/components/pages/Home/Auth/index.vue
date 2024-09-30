@@ -3,7 +3,6 @@ import "@wikimedia/codex/dist/codex.style.css";
 import Logo from "@/assets/home_logo.svg";
 import LogoDark from "@/assets/home_logo_dark.svg";
 
-import { useGeneralStore } from "@/store/general";
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay } from "@wikimedia/codex-icons";
 
@@ -12,11 +11,12 @@ import LightbulbDark from "@/assets/lightbulbdark.svg";
 
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { onMounted, ref } from "vue";
+import { computed, onBeforeMount, onMounted, ref, watch } from "vue";
 import { GetLexemeLanguage } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
+import { useStore } from "vuex";
 
-const store = useGeneralStore();
+const vuex = useStore();
 
 const { cookies } = useCookies();
 
@@ -32,12 +32,18 @@ const props = defineProps({
   data: Object,
 });
 
-onMounted(async () => {
-  console.log(document.documentElement.className);
+//vuex
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+const name = computed(() => vuex.getters["profile/name"]);
+const language = computed(() => vuex.getters["profile/language"]);
 
-  contributeLang.value = store?.language || cookies?.get("locale") || "en";
+onMounted(async () => {
+  contributeLang.value = language.value || cookies?.get("locale") || "en";
+
   const response = await GetLexemeLanguage();
   if (response?.statusCode === 200) {
+    vuex.dispatch("profile/setLoadingState");
+
     selection.value = response?.data?.languages?.map((item) => {
       return {
         label: `${item?.title} (${item?.code})`,
@@ -48,8 +54,15 @@ onMounted(async () => {
   }
 });
 
+watch(language, () => {
+  contributeLang.value = language.value || cookies?.get("locale") || "en";
+});
+
 const gotoSession = async () => {
-  await store.setData({ language: contributeLang?.value || "" });
+  await vuex.dispatch("profile/addData", {
+    ...vuex.getters["profile/allData"],
+    language: contributeLang?.value || "",
+  });
   await router.push("/session");
 };
 
@@ -64,7 +77,7 @@ const gotoSession = async () => {
   >
     <div>
       <img
-        v-if="!store.isThemeDark"
+        v-if="!isThemeDark"
         :src="Logo"
         alt="home_logo"
         class="shrink-0 w-[48px] h-[48px] mb-[8px]"
@@ -77,7 +90,7 @@ const gotoSession = async () => {
       />
     </div>
     <CdxLabel class="mb-[12px] text-[18px] p-0 text-black dark:text-white">
-      {{ t("home.auth.title") }}, {{ store.name }}!</CdxLabel
+      {{ t("home.auth.title") }}, {{ name }}!</CdxLabel
     >
   </div>
 
@@ -119,10 +132,7 @@ const gotoSession = async () => {
       class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
       @click="emit('onHint')"
     >
-      <img
-        :src="store.isThemeDark ? LightbulbDark : Lightbulb"
-        alt="Lightbulb"
-      />
+      <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
       {{ t("home.auth.tutorial") }}</CdxButton
     >
   </div>

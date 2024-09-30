@@ -21,13 +21,15 @@ import {
 import ChooseLocale from "@/components/dialog/localization/index.vue";
 import ChooseTheme from "@/components/dialog/darkMode/index.vue";
 
-import { useGeneralStore } from "@/store/general";
 import { useI18n } from "vue-i18n";
 import { useMediaQuery } from "@vueuse/core";
+import { useStore } from "vuex";
 
 const { t, locale } = useI18n({ useScope: "global" });
 
-const store = useGeneralStore();
+const vuex = useStore();
+
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const { cookies } = useCookies();
 const selection = ref(null);
@@ -58,12 +60,12 @@ const unauthMenu = computed(() => {
     {
       label: t("header.menu.theme"),
       value: "theme",
-      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
       description:
         localStorage.getItem("theme") === "auto" ||
         !localStorage.getItem("theme")
           ? t("header.menu.auto")
-          : store.isThemeDark
+          : isThemeDark
           ? t("header.menu.dark")
           : t("header.menu.light"),
     },
@@ -79,7 +81,7 @@ const unauthMenu = computed(() => {
 const authMenu = computed(() => {
   return [
     {
-      label: store.name,
+      label: vuex.getters["profile/name"],
       value: "user",
       icon: cdxIconUserAvatar,
       action: "progressive",
@@ -88,11 +90,11 @@ const authMenu = computed(() => {
     {
       label: t("header.menu.theme"),
       value: "theme",
-      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
       description:
         localStorage.getItem("theme") === "auto"
           ? t("header.menu.auto")
-          : store.isThemeDark
+          : isThemeDark
           ? t("header.menu.dark")
           : t("header.menu.light"),
     },
@@ -109,7 +111,7 @@ const authMenu = computed(() => {
 onMounted(() => {
   isAuth.value = cookies.get("auth");
 
-  if (store.isThemeDark) {
+  if (isThemeDark) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -157,8 +159,8 @@ const onSelect = (newSelection) => {
   }
 };
 
-watch(store, () => {
-  if (store.isThemeDark) {
+watch(vuex, () => {
+  if (isThemeDark) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -173,7 +175,7 @@ watch(store, () => {
     class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0 z-[10]"
   >
     <div class="absolute w-full flex justify-center items-center h-full">
-      <img v-if="!store.isThemeDark" :src="Logo" alt="lexica_logo" />
+      <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
       <img v-else :src="LogoDark" alt="lexica_logo" />
     </div>
 
