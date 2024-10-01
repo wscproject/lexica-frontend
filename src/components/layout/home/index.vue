@@ -87,10 +87,6 @@ onMounted(async () => {
 const reload = () => {
   window.location.reload();
 };
-
-watch(isLoading, () => {
-  console.log(isLoading.value);
-});
 </script>
 
 <template>

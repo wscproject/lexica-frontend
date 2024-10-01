@@ -49,37 +49,39 @@ const props = defineProps({
   isLogout: Boolean,
 });
 
-const unauthMenu = computed(() => {
-  return [
-    {
-      label: t("header.menu.login"),
-      value: "login",
-      icon: cdxIconLogIn,
-      url: loginUrl,
-    },
-    {
-      label: t("header.menu.theme"),
-      value: "theme",
-      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
-      description:
-        localStorage.getItem("theme") === "auto" ||
-        !localStorage.getItem("theme")
-          ? t("header.menu.auto")
-          : isThemeDark
-          ? t("header.menu.dark")
-          : t("header.menu.light"),
-    },
-    {
-      label: t("header.menu.locale"),
-      value: "locale",
-      icon: cdxIconLanguage,
-      description: t("header.menu.language"),
-    },
-  ];
+const unauthMenu = ref([]);
+console.log(toRaw(unauthMenu.value[1]));
+
+watch(changeTheme, () => {
+  if (isAuth.value) {
+    unauthMenu.value[1].icon = vuex.getters["profile/isDark"]
+      ? cdxIconMoon
+      : cdxIconBright;
+    unauthMenu.value[1].description =
+      localStorage.getItem("theme") === "auto"
+        ? t("header.menu.auto")
+        : vuex.getters["profile/isDark"]
+        ? t("header.menu.dark")
+        : t("header.menu.light");
+  } else {
+    unauthMenu.value[1].icon = vuex.getters["profile/isDark"]
+      ? cdxIconMoon
+      : cdxIconBright;
+    unauthMenu.value[1].description =
+      localStorage.getItem("theme") === "auto" || !localStorage.getItem("theme")
+        ? t("header.menu.auto")
+        : vuex.getters["profile/isDark"]
+        ? t("header.menu.dark")
+        : t("header.menu.light");
+  }
 });
 
-const authMenu = computed(() => {
-  return [
+const authMenu = ref([]);
+
+onMounted(() => {
+  isAuth.value = cookies.get("auth");
+
+  authMenu.value = [
     {
       label: vuex.getters["profile/name"],
       value: "user",
@@ -106,12 +108,35 @@ const authMenu = computed(() => {
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
   ];
-});
 
-onMounted(() => {
-  isAuth.value = cookies.get("auth");
+  unauthMenu.value = [
+    {
+      label: t("header.menu.login"),
+      value: "login",
+      icon: cdxIconLogIn,
+      url: loginUrl,
+    },
+    {
+      label: t("header.menu.theme"),
+      value: "theme",
+      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
+      description:
+        localStorage.getItem("theme") === "auto" ||
+        !localStorage.getItem("theme")
+          ? t("header.menu.auto")
+          : isThemeDark
+          ? t("header.menu.dark")
+          : t("header.menu.light"),
+    },
+    {
+      label: t("header.menu.locale"),
+      value: "locale",
+      icon: cdxIconLanguage,
+      description: t("header.menu.language"),
+    },
+  ];
 
-  if (isThemeDark) {
+  if (vuex.getters["profile/isDark"]) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -119,27 +144,6 @@ onMounted(() => {
     authClass.value = "first-child";
   }
 });
-
-const temp = (e) => {
-  const a = testRef.value;
-
-  const closeListerner = (event) => {
-    if (catchOutsideClick(event, toRaw(a))) {
-      window.removeEventListener("click", closeListerner);
-      menu.value = false;
-    }
-  };
-
-  window.addEventListener("click", closeListerner);
-};
-
-const catchOutsideClick = (event, dropdown) => {
-  // When user clicks menu — do nothing
-  if (dropdown == event.target) return false;
-
-  // When user clicks outside of the menu — close the menu
-  if (menu.value && dropdown != event.target) return true;
-};
 
 const onSelect = (newSelection) => {
   switch (newSelection) {
@@ -159,8 +163,8 @@ const onSelect = (newSelection) => {
   }
 };
 
-watch(vuex, () => {
-  if (isThemeDark) {
+watch(isThemeDark, () => {
+  if (vuex.getters["profile/isDark"]) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -304,6 +308,10 @@ watch(vuex, () => {
 
 .first-child .cdx-menu-item:first-child {
   font-weight: bold;
+}
+
+.first-child-dark .cdx-menu-item--disabled:first-child {
+  color: #202122 !important;
 }
 
 .unauth .cdx-menu-item:first-child bdi {
