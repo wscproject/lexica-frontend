@@ -39,49 +39,44 @@ const changeTheme = ref(false);
 const unauthClass = ref("");
 const authClass = ref("");
 
-const testRef = ref(null);
-
 const isAuth = ref(null);
-const menu = ref(false);
 
 const emit = defineEmits(["logout"]);
 const props = defineProps({
   isLogout: Boolean,
 });
 
-const unauthMenu = ref([]);
-console.log(toRaw(unauthMenu.value[1]));
+const storeTheme = ref();
 
-watch(changeTheme, () => {
-  if (isAuth.value) {
-    unauthMenu.value[1].icon = vuex.getters["profile/isDark"]
-      ? cdxIconMoon
-      : cdxIconBright;
-    unauthMenu.value[1].description =
-      localStorage.getItem("theme") === "auto"
-        ? t("header.menu.auto")
-        : vuex.getters["profile/isDark"]
-        ? t("header.menu.dark")
-        : t("header.menu.light");
-  } else {
-    unauthMenu.value[1].icon = vuex.getters["profile/isDark"]
-      ? cdxIconMoon
-      : cdxIconBright;
-    unauthMenu.value[1].description =
-      localStorage.getItem("theme") === "auto" || !localStorage.getItem("theme")
-        ? t("header.menu.auto")
-        : vuex.getters["profile/isDark"]
-        ? t("header.menu.dark")
-        : t("header.menu.light");
-  }
+const unauthMenu = computed(() => {
+  return [
+    {
+      label: t("header.menu.login"),
+      value: "login",
+      icon: cdxIconLogIn,
+      url: loginUrl,
+    },
+    {
+      label: t("header.menu.theme"),
+      value: "theme",
+      icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
+      description:
+        storeTheme.value === "auto" || !storeTheme.value
+          ? t("header.menu.auto")
+          : vuex.getters["profile/isDark"]
+          ? t("header.menu.dark")
+          : t("header.menu.light"),
+    },
+    {
+      label: t("header.menu.locale"),
+      value: "locale",
+      icon: cdxIconLanguage,
+      description: t("header.menu.language"),
+    },
+  ];
 });
-
-const authMenu = ref([]);
-
-onMounted(() => {
-  isAuth.value = cookies.get("auth");
-
-  authMenu.value = [
+const authMenu = computed(() => {
+  return [
     {
       label: vuex.getters["profile/name"],
       value: "user",
@@ -92,11 +87,11 @@ onMounted(() => {
     {
       label: t("header.menu.theme"),
       value: "theme",
-      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
+      icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
       description:
-        localStorage.getItem("theme") === "auto"
+        storeTheme.value === "auto"
           ? t("header.menu.auto")
-          : isThemeDark
+          : vuex.getters["profile/isDark"]
           ? t("header.menu.dark")
           : t("header.menu.light"),
     },
@@ -108,33 +103,16 @@ onMounted(() => {
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
   ];
+});
 
-  unauthMenu.value = [
-    {
-      label: t("header.menu.login"),
-      value: "login",
-      icon: cdxIconLogIn,
-      url: loginUrl,
-    },
-    {
-      label: t("header.menu.theme"),
-      value: "theme",
-      icon: isThemeDark ? cdxIconMoon : cdxIconBright,
-      description:
-        localStorage.getItem("theme") === "auto" ||
-        !localStorage.getItem("theme")
-          ? t("header.menu.auto")
-          : isThemeDark
-          ? t("header.menu.dark")
-          : t("header.menu.light"),
-    },
-    {
-      label: t("header.menu.locale"),
-      value: "locale",
-      icon: cdxIconLanguage,
-      description: t("header.menu.language"),
-    },
-  ];
+watch(changeTheme, () => {
+  storeTheme.value = localStorage.getItem("theme");
+});
+
+onMounted(() => {
+  isAuth.value = cookies.get("auth");
+
+  storeTheme.value = localStorage.getItem("theme");
 
   if (vuex.getters["profile/isDark"]) {
     unauthClass.value = "unauth-dark";
