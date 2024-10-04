@@ -39,6 +39,15 @@
     "apply": "Apply"
   },
 
+  "contributionLangDialog": {
+    "title": "Contribute to Lexemes in",
+    "placeholder": "Change language",
+    "cancel": "Cancel",
+    "apply": "Apply",
+    "emptySearch1": "No languages found.",
+    "emptySearch2": "Try using different keywords."
+  },
+
   "home": {
     "unauth": {
       "title": "Welcome!",

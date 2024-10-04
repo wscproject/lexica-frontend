@@ -6,10 +6,10 @@ export const GetProfile = async (input) => {
   return response.get("/users/profile");
 };
 
-export const GetLexemeLanguage = async () => {
+export const GetLexemeLanguage = async (data) => {
   const response = await api();
 
-  return response.get("/languages");
+  return response.get(`/languages?search=${data?.search || ""}`);
 };
 
 export const updateUserPreference = async (data) => {

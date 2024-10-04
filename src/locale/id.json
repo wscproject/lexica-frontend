@@ -35,6 +35,14 @@
     "cancel": "Batal",
     "apply": "Terapkan"
   },
+  "contributionLangDialog": {
+    "title": "Kontribusi untuk leksem berbahasa",
+    "placeholder": "Cari bahasa",
+    "cancel": "Batal",
+    "apply": "Terapkan",
+    "emptySearch1": "Bahasa tidak ditemukan.",
+    "emptySearch2": "Coba gunakan kata kunci lain."
+  },
   "home": {
     "unauth": {
       "title": "Selamat datang!",
