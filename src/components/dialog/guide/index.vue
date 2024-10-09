@@ -21,7 +21,7 @@ const props = defineProps({
 
 const router = useRouter();
 
-const emit = defineEmits(["onPrimaryAction"]);
+const emit = defineEmits(["onPrimaryAction, toSession"]);
 
 const close = () => {
   emit("onPrimaryAction", false);
@@ -44,7 +44,7 @@ const moveCurr = (action) => {
 
 const toSession = () => {
   close();
-  router.push("/session");
+  emit("toSession");
 };
 </script>
 

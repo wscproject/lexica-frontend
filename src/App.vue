@@ -1,13 +1,13 @@
 <script setup>
 import { useMediaQuery } from "@vueuse/core";
-import { useGeneralStore } from "@/store/general";
 import { onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
+import { useStore } from "vuex";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
-const store = useGeneralStore();
+const vuex = useStore();
 const route = useRoute();
 const { locale } = useI18n();
 const { cookies } = useCookies();
@@ -37,7 +37,7 @@ watch(isPreferredDark, () => {
         );
     }
   }
-  store.setTheme();
+  vuex.dispatch("profile/changeTheme");
 });
 
 onMounted(() => {

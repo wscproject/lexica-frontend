@@ -16,11 +16,11 @@ import SessionLayout from "./components/layout/session/index.vue";
 import "vuetify/styles";
 import App from "./App.vue";
 import { createVuetify } from "vuetify";
-import { createPinia } from "pinia";
 import * as directives from "vuetify/directives";
 import * as components from "vuetify/components";
 import "./index.css";
 
+import store from "./store";
 import { cookies } from "@/helper/cookies";
 import { i18n } from "./plugins/i18n";
 import { CdxTooltip } from "@wikimedia/codex";
@@ -110,13 +110,11 @@ const vuetify = createVuetify({
   directives,
 });
 
-const pinia = createPinia();
-
 const app = createApp(App);
 app.use(router);
 app.use(i18n);
 app.use(vuetify);
-app.use(pinia);
+app.use(store);
 app.use(VueCookies);
 app.directive("tooltip", CdxTooltip);
 app.mount("#app");

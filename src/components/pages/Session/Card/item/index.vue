@@ -8,12 +8,17 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { ref } from "vue";
-import { useGeneralStore } from "@/store/general";
+import { computed, ref } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
+import noData from "@/assets/endofresult.svg";
+import noDataDark from "@/assets/endofresult-dark.svg";
+import { useStore } from "vuex";
+
+const vuex = useStore();
 
 const { t } = useI18n({ useScope: "global" });
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const isInfo = ref(false);
 const selectedItem = ref(null);
@@ -24,7 +29,6 @@ const search = ref("");
 
 const isSearch = ref(false);
 
-const store = useGeneralStore();
 const emit = defineEmits([
   "gotoDetail, gotoSubItemDetail, onHold, onRelease, gotoReview, selectItem, setSearch, loadMore",
 ]);
@@ -35,6 +39,7 @@ const props = defineProps({
   searchLoading: Boolean,
   recommendedLoading: Boolean,
   loadmoreLoading: Boolean,
+  noLoadData: Boolean,
 });
 
 const recommendationSearch = ref([]);
@@ -182,7 +187,7 @@ const onInput = debounce(() => {
             value.id === selectedItem
               ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
               : 'border border-[#A2A9B1] dark:border-[#72777D]',
-            'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
+            'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
         >
@@ -205,12 +210,18 @@ const onInput = debounce(() => {
                 class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
                 >{{ value?.label }} ({{ value?.id }})</CdxLabel
               >
-              <p
+              <div
                 v-if="value?.description"
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+                :lang="value?.language"
+                style="hyphens: auto; -moz-hyphens: auto; word-wrap: break-word"
               >
-                {{ value?.description }}
-              </p>
+                <p
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+                >
+                  {{ value?.description }}
+                </p>
+              </div>
+
               <p
                 v-else
                 class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
@@ -249,7 +260,7 @@ const onInput = debounce(() => {
               value.id === selectedItem
                 ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[#A2A9B1] dark:border-[#72777D]',
-              'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[12px] cursor-pointer justify-between',
+              'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
             ]"
             @click="selectItem(value.id, value)"
           >
@@ -270,14 +281,22 @@ const onInput = debounce(() => {
                 <CdxLabel class="text-[16px] dark:text-[#EAECF0]"
                   >{{ value?.label }} ({{ value?.id }})</CdxLabel
                 >
-                <p
+                <div
+                  :lang="value?.language"
                   v-if="value?.description"
-                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
-                  style="padding-bottom: 16px"
+                  style="
+                    hyphens: auto;
+                    -moz-hyphens: auto;
+                    word-wrap: break-word;
+                  "
                 >
-                  {{ value?.description }}
-                </p>
-
+                  <p
+                    class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
+                    style="padding-bottom: 16px"
+                  >
+                    {{ value?.description }}
+                  </p>
+                </div>
                 <p
                   v-else
                   class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
@@ -296,6 +315,7 @@ const onInput = debounce(() => {
 
           <div class="w-full">
             <CdxButton
+              v-if="!props.noLoadData"
               class="w-full h-[34px]"
               @click="emit('loadMore')"
               :disabled="props.loadmoreLoading"
@@ -305,6 +325,18 @@ const onInput = debounce(() => {
                   : t("session.main.loadmore")
               }}</CdxButton
             >
+
+            <div
+              v-else-if="props.noLoadData"
+              class="flex justify-center flex-col align-center gap-y-[4px] pt-[8px]"
+            >
+              <img :src="isThemeDark ? noDataDark : noData" alt="logo" />
+              <span
+                class="text-[#54595D] dark:text-[#A2A9B1] text-[16px] text-center"
+              >
+                <i>{{ t("session.main.emptyLoad") }}</i>
+              </span>
+            </div>
           </div>
         </div>
 

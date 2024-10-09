@@ -138,7 +138,8 @@
       "emptySuggestion1": "Recommendation not found.",
       "emptySuggestion2": "Try searching for the Item manually.",
       "loadmore": "Load more",
-      "loading": "Loading..."
+      "loading": "Loading...",
+      "emptyLoad": "You’ve reached the end of search results"
     },
 
     "detail": {

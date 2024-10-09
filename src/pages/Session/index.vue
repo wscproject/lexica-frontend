@@ -9,7 +9,6 @@ import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
-import { useGeneralStore } from "@/store/general";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -17,7 +16,15 @@ import {
   cdxIconSuccess,
   cdxIconUndo,
 } from "@wikimedia/codex-icons";
-import { computed, ref, watch, Transition, onMounted, reactive } from "vue";
+import {
+  computed,
+  ref,
+  watch,
+  Transition,
+  onMounted,
+  reactive,
+  toRaw,
+} from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
 import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
 
@@ -43,11 +50,15 @@ import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
 import { useMediaQuery } from "@vueuse/core";
+import { useStore } from "vuex";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 
 const { t } = useI18n({ useScope: "global" });
-const store = useGeneralStore();
+const vuex = useStore();
+
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+const language = computed(() => vuex.getters["profile/language"]);
 
 const router = useRouter();
 
@@ -97,6 +108,8 @@ const errorLog = ref(null);
 const endLoading = ref(false);
 const totalCount = ref(0);
 
+const noLoad = ref(false);
+
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
@@ -125,6 +138,7 @@ const nextCard = (isButton, id) => {
 
     currMode.value = 1;
     flip.value = false;
+    noLoad.value = false;
     if (isButton) {
       next.value = false;
     }
@@ -147,6 +161,7 @@ const submitCard = async (item) => {
   if (response.statusCode === 200) {
     submit.value = true;
     submittingData.value = false;
+    noLoad.value = false;
 
     setTimeout(async () => {
       splash.value = true;
@@ -374,6 +389,10 @@ const searchData = async () => {
   });
 
   if (response?.statusCode) {
+    if (response?.data?.entities?.length === 0) {
+      noLoad.value = true;
+    }
+
     if (params.page === 1) {
       entities.value = [...response?.data?.entities];
       searchLoading.value = false;
@@ -425,7 +444,9 @@ const getProfile = async () => {
 
 const getCardsData = async (code) => {
   isLoading.value = true;
-  const response = await GetCards({ language: code ? code : store?.language });
+  const response = await GetCards({
+    language: code ? code : vuex.getters["profile/language"],
+  });
 
   if (response.statusCode === 200) {
     totalCount.value = response?.data?.length;
@@ -496,7 +517,7 @@ onMounted(async () => {
     }
   }
 
-  if (store?.language) {
+  if (vuex.getters["profile/language"]) {
     await getCardsData();
   } else {
     await getProfile();
@@ -565,6 +586,8 @@ watch([currCount, data], async () => {
 watch(
   () => ({ ...params }),
   async (newParams, oldParams) => {
+    noLoad.value = false;
+
     if (newParams.page > 1) {
       loadmoreLoading.value = true;
     }
@@ -706,7 +729,7 @@ watch(
       v-else-if="!isLoading && !isError && !noInternet"
       class="w-full flex justify-center items-center pb-[62px] h-full"
       :style="{
-        backgroundImage: `url(${store.isThemeDark ? blankdark : blank})`,
+        backgroundImage: `url(${isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
@@ -798,6 +821,7 @@ watch(
                 :searchLoading="searchLoading"
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
+                :noLoadData="noLoad"
                 @gotoDetail="
                   test1(value?.lexemeSenseId, {
                     category: value?.category,
@@ -911,7 +935,7 @@ watch(
           "
         >
           <SkipIcon
-            v-if="!store.isThemeDark"
+            v-if="!isThemeDark"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -919,7 +943,7 @@ watch(
             "
           />
           <SkipDarkIcon
-            v-if="store.isThemeDark"
+            v-if="isThemeDark"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'

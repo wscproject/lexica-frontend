@@ -8,13 +8,13 @@ import {
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { useI18n } from "vue-i18n";
-import { useGeneralStore } from "@/store/general";
 import { computed, onMounted, ref, watch } from "vue";
 import { useMediaQuery } from "@vueuse/core";
 import { updateUserPreference } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
+import { useStore } from "vuex";
 
-const store = useGeneralStore();
+const vuex = useStore();
 const { cookies } = useCookies();
 
 const currTheme = ref();
@@ -47,7 +47,8 @@ const light = () => {
   document
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", "#FFFFFF");
-  store.setTheme();
+
+  vuex.dispatch("profile/changeTheme");
 };
 
 const dark = () => {
@@ -57,7 +58,7 @@ const dark = () => {
     .querySelector('meta[name="theme-color"]')
     .setAttribute("content", "#101418");
 
-  store.setTheme();
+  vuex.dispatch("profile/changeTheme");
 };
 
 const auto = () => {
@@ -73,7 +74,8 @@ const auto = () => {
       .setAttribute("content", "#FFFFFF");
   }
   localStorage.setItem("theme", "auto");
-  store.setTheme();
+
+  vuex.dispatch("profile/changeTheme");
 };
 
 const menus = computed(() => {

@@ -21,13 +21,15 @@ import {
 import ChooseLocale from "@/components/dialog/localization/index.vue";
 import ChooseTheme from "@/components/dialog/darkMode/index.vue";
 
-import { useGeneralStore } from "@/store/general";
 import { useI18n } from "vue-i18n";
 import { useMediaQuery } from "@vueuse/core";
+import { useStore } from "vuex";
 
 const { t, locale } = useI18n({ useScope: "global" });
 
-const store = useGeneralStore();
+const vuex = useStore();
+
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const { cookies } = useCookies();
 const selection = ref(null);
@@ -37,15 +39,14 @@ const changeTheme = ref(false);
 const unauthClass = ref("");
 const authClass = ref("");
 
-const testRef = ref(null);
-
 const isAuth = ref(null);
-const menu = ref(false);
 
 const emit = defineEmits(["logout"]);
 const props = defineProps({
   isLogout: Boolean,
 });
+
+const storeTheme = ref();
 
 const unauthMenu = computed(() => {
   return [
@@ -58,12 +59,11 @@ const unauthMenu = computed(() => {
     {
       label: t("header.menu.theme"),
       value: "theme",
-      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
       description:
-        localStorage.getItem("theme") === "auto" ||
-        !localStorage.getItem("theme")
+        storeTheme.value === "auto" || !storeTheme.value
           ? t("header.menu.auto")
-          : store.isThemeDark
+          : vuex.getters["profile/isDark"]
           ? t("header.menu.dark")
           : t("header.menu.light"),
     },
@@ -75,11 +75,10 @@ const unauthMenu = computed(() => {
     },
   ];
 });
-
 const authMenu = computed(() => {
   return [
     {
-      label: store.name,
+      label: vuex.getters["profile/name"],
       value: "user",
       icon: cdxIconUserAvatar,
       action: "progressive",
@@ -88,11 +87,11 @@ const authMenu = computed(() => {
     {
       label: t("header.menu.theme"),
       value: "theme",
-      icon: store.isThemeDark ? cdxIconMoon : cdxIconBright,
+      icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
       description:
-        localStorage.getItem("theme") === "auto"
+        storeTheme.value === "auto"
           ? t("header.menu.auto")
-          : store.isThemeDark
+          : vuex.getters["profile/isDark"]
           ? t("header.menu.dark")
           : t("header.menu.light"),
     },
@@ -106,10 +105,16 @@ const authMenu = computed(() => {
   ];
 });
 
+watch(changeTheme, () => {
+  storeTheme.value = localStorage.getItem("theme");
+});
+
 onMounted(() => {
   isAuth.value = cookies.get("auth");
 
-  if (store.isThemeDark) {
+  storeTheme.value = localStorage.getItem("theme");
+
+  if (vuex.getters["profile/isDark"]) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -117,27 +122,6 @@ onMounted(() => {
     authClass.value = "first-child";
   }
 });
-
-const temp = (e) => {
-  const a = testRef.value;
-
-  const closeListerner = (event) => {
-    if (catchOutsideClick(event, toRaw(a))) {
-      window.removeEventListener("click", closeListerner);
-      menu.value = false;
-    }
-  };
-
-  window.addEventListener("click", closeListerner);
-};
-
-const catchOutsideClick = (event, dropdown) => {
-  // When user clicks menu — do nothing
-  if (dropdown == event.target) return false;
-
-  // When user clicks outside of the menu — close the menu
-  if (menu.value && dropdown != event.target) return true;
-};
 
 const onSelect = (newSelection) => {
   switch (newSelection) {
@@ -157,8 +141,8 @@ const onSelect = (newSelection) => {
   }
 };
 
-watch(store, () => {
-  if (store.isThemeDark) {
+watch(isThemeDark, () => {
+  if (vuex.getters["profile/isDark"]) {
     unauthClass.value = "unauth-dark";
     authClass.value = "first-child-dark";
   } else {
@@ -173,7 +157,7 @@ watch(store, () => {
     class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0 z-[10]"
   >
     <div class="absolute w-full flex justify-center items-center h-full">
-      <img v-if="!store.isThemeDark" :src="Logo" alt="lexica_logo" />
+      <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
       <img v-else :src="LogoDark" alt="lexica_logo" />
     </div>
 
@@ -302,6 +286,10 @@ watch(store, () => {
 
 .first-child .cdx-menu-item:first-child {
   font-weight: bold;
+}
+
+.first-child-dark .cdx-menu-item--disabled:first-child {
+  color: #202122 !important;
 }
 
 .unauth .cdx-menu-item:first-child bdi {

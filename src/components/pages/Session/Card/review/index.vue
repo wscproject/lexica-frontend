@@ -1,18 +1,20 @@
 <script setup>
 import { CdxLabel, CdxIcon, CdxButton, CdxThumbnail } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { ref } from "vue";
-import { useGeneralStore } from "@/store/general";
+import { computed, ref } from "vue";
 import Logo from "@/assets/add.svg";
 import LogoDark from "@/assets/adddark.svg";
 
 import wikimedia from "@/assets/lexeme.svg";
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 
 const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
-const store = useGeneralStore();
+const vuex = useStore();
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+
 const emit = defineEmits(["backtoItem, onDone"]);
 const props = defineProps({
   headerRef: Object,
@@ -91,7 +93,7 @@ const props = defineProps({
       </div>
       <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]" v-if="props?.detail">
         <div class="flex gap-x-2 items-start">
-          <img :src="store.isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
+          <img :src="isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
           <CdxLabel
             class="text-[16px] dark:text-[#EAECF0]"
             style="padding-bottom: 16px"

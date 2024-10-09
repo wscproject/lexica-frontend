@@ -1,21 +1,30 @@
 <script setup>
 import Header from "@/components/layout/header/index.vue";
 import Footer from "@/components/layout/footer/index.vue";
-import { onMounted, ref } from "vue";
+import {
+  computed,
+  onBeforeMount,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  watch,
+} from "vue";
 import { CdxProgressBar, CdxLabel, CdxButton } from "@wikimedia/codex";
 import successlogo from "@/assets/Success.svg";
 import { useCookies } from "vue3-cookies";
-import { useGeneralStore } from "@/store/general";
 import { GetProfile, updateUserPreference } from "@/api/Home";
 import { useI18n } from "vue-i18n";
 import { EndContribution } from "@/api/Session";
+import { useStore } from "vuex";
 
 const { t, locale } = useI18n({ useScope: "global" });
 const logout = ref(false);
 const loading = ref(false);
 const success = ref(false);
 const { cookies } = useCookies();
-const store = useGeneralStore();
+const vuex = useStore();
+
+const isLoading = computed(() => vuex.getters["profile/isLoading"]);
 
 const loggingOut = () => {
   logout.value = true;
@@ -29,7 +38,7 @@ const loggingOut = () => {
 const fetchProfile = async (lang) => {
   const response = await GetProfile();
   if (response?.statusCode === 200) {
-    store.setData(response?.data || lang);
+    vuex.dispatch("profile/addData", response?.data || lang);
     locale.value = response?.data?.displayLanguage || lang;
     cookies.set("locale", response?.data?.displayLanguage || lang);
 
@@ -51,13 +60,13 @@ const fetchProfile = async (lang) => {
       }
     }
 
-    store.setTheme();
+    vuex.dispatch("profile/changeTheme");
 
     if (response?.data?.ongoingContribution) {
       EndContribution();
-      loading.value = false;
     }
-    loading.value = false;
+
+    console.log("first");
   }
 };
 
@@ -69,7 +78,7 @@ onMounted(async () => {
       : "en";
 
   if (cookies.get("auth")) {
-    loading.value = true;
+    vuex.dispatch("profile/setLoadingState");
 
     await fetchProfile(lang);
   }
@@ -81,17 +90,17 @@ const reload = () => {
 </script>
 
 <template>
-  <div class="bg-white dark:bg-[#101418] w-full container-home w-full">
+  <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div
-      v-if="loading"
-      class="w-full text-center flex flex-col justify-center h-[100vh] p-[16px]"
+      v-if="isLoading"
+      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0"
     >
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")
       }}</CdxLabel>
-      <CdxProgressBar class="w-full"></CdxProgressBar>
+      <CdxProgressBar class="w-full max-w-[896px]"></CdxProgressBar>
     </div>
-    <div v-else class="relative flex flex-col items-center container-home">
+    <div class="relative flex flex-col items-center container-home">
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
         class="container-home pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
