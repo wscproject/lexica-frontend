@@ -9,10 +9,17 @@ import {
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import debounce from "lodash.debounce";
-import { ref } from "vue";
+import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 
 const { t } = useI18n();
+const vuex = useStore();
+
+const language = computed(() => vuex.getters["profile/language"]);
+const languageCode = computed(() => vuex.getters["profile/language"]);
+const languageName = computed(() => vuex.getters["profile/fullLang"]);
+const languageId = computed(() => vuex.getters["profile/langId"]);
 
 const search = ref("");
 const isSearch = ref(false);
@@ -53,6 +60,14 @@ const onInput = debounce(() => {
     emit("setSearch", search.value);
   }
 }, 500);
+
+watch(language, () => {
+  selected.value = {
+    full: languageName.value,
+    value: languageCode.value,
+    id: languageId.value,
+  };
+});
 </script>
 
 <template>
@@ -89,7 +104,11 @@ const onInput = debounce(() => {
           v-if="props.options.length > 0"
           v-for="option in props.options"
           :key="option.label"
-          :input-value="{ value: option?.value, full: option?.full }"
+          :input-value="{
+            value: option?.value,
+            full: option?.full,
+            id: option?.id,
+          }"
           v-model="selected"
         >
           {{ option.label }}

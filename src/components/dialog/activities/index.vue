@@ -1,0 +1,103 @@
+<script setup>
+import { CdxDialog } from "@wikimedia/codex";
+import { useI18n } from "vue-i18n";
+import { ref, watch } from "vue";
+import SelectedImage from "@/assets/selected.svg";
+
+const { t } = useI18n();
+const selectedType = ref("");
+
+const props = defineProps({
+  open: {
+    type: Boolean,
+    required: true,
+  },
+  options: {
+    type: Array,
+    required: true,
+  },
+});
+
+const primaryAction = {
+  label: "Save",
+  actionType: "progressive",
+};
+
+const defaultAction = {
+  label: "Cancel",
+};
+
+const emit = defineEmits(["onClose", "applyActivity"]);
+
+const apply = () => {
+  emit("applyActivity");
+};
+
+const test = (test) => {
+  fetch(test, {
+    headers: {
+      "ngrok-skip-browser-warning": true,
+      "Access-Control-Allow-Origin": "*",
+    },
+  }).then((r) => r.blob());
+};
+</script>
+
+<template>
+  <div>
+    <CdxDialog
+      :open="props.open"
+      @update:open="emit('onClose')"
+      :use-close-button="true"
+      class="activities"
+      :title="t('activityDialog.title')"
+      :primary-action="primaryAction"
+      :default-action="defaultAction"
+      @primary="apply"
+      @default="emit('onClose')"
+    >
+      <div class="p-[16px]">
+        <div
+          v-for="activity in props.options"
+          @click="selectedType = activity.type"
+          :class="[
+            'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px]',
+            selectedType === activity.type &&
+              'border-[2px] border-[--border-color-progressive--focus] bg-[--background-color-progressive-subtle]',
+          ]"
+        >
+          <div
+            :class="[
+              'w-[40px] h-[40px] border border-[--border-color-subtle] rounded-[2px] overflow-hidden shrink-0',
+              selectedType === activity.type &&
+                'border-[--border-color-progressive]',
+            ]"
+          >
+            <img
+              v-if="selectedType !== activity.type"
+              :src="activity.imageUrl"
+              :alt="activity.type"
+            />
+            <img v-else :src="SelectedImage" alt="selected" />
+          </div>
+          <div>
+            <p
+              v-if="activity.type === 'connect'"
+              class="text-[16px] text-[var(--color-base)]"
+            >
+              <b>{{ t("activityDialog.connect.title") }}</b>
+            </p>
+            <p
+              v-if="activity.type === 'connect'"
+              class="text-[16px] text-[var(--color-subtle)]"
+            >
+              {{ t("activityDialog.connect.description") }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </CdxDialog>
+  </div>
+</template>
+
+<style></style>

@@ -39,8 +39,8 @@ const fetchProfile = async (lang) => {
   const response = await GetProfile();
   if (response?.statusCode === 200) {
     vuex.dispatch("profile/addData", response?.data || lang);
-    locale.value = response?.data?.displayLanguage || lang;
-    cookies.set("locale", response?.data?.displayLanguage || lang);
+    locale.value = response?.data?.displayLanguageCode || lang;
+    cookies.set("locale", response?.data?.displayLanguageCode || lang);
 
     if (response?.data?.displayTheme !== "default") {
       if (response?.data?.displayTheme === "dark") {

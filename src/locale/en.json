@@ -48,6 +48,18 @@
     "emptySearch2": "Try using different keywords."
   },
 
+  "activityDialog": {
+    "title": "Contribution type",
+    "connect": {
+      "title": "Lexeme to Item",
+      "description": "Link a Lexeme to an Item with the same concept"
+    },
+    "script": {
+      "title": "Script variants",
+      "description": "Add script variants for a Lexeme"
+    }
+  },
+
   "home": {
     "unauth": {
       "title": "Welcome!",

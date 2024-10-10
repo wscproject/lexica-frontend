@@ -4,6 +4,7 @@ import Logo from "@/assets/home_logo.svg";
 import LogoDark from "@/assets/home_logo_dark.svg";
 import GuideDialog from "@/components/dialog/guide/index.vue";
 import ContributeLanguageDialog from "@/components/dialog/contributionLanguage/index.vue";
+import ActivityDialog from "@/components/dialog/activities/index.vue";
 
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay, cdxIconGlobe, cdxIconNext } from "@wikimedia/codex-icons";
@@ -11,10 +12,13 @@ import { cdxIconPlay, cdxIconGlobe, cdxIconNext } from "@wikimedia/codex-icons";
 import Lightbulb from "@/assets/lightbulb.svg";
 import LightbulbDark from "@/assets/lightbulbdark.svg";
 
+import Changes from "@/assets/changes.svg";
+import ChangesDark from "@/assets/changesdark.svg";
+
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { computed, onBeforeMount, onMounted, ref, watch } from "vue";
-import { GetLexemeLanguage } from "@/api/Home";
+import { GetLexemeLanguage, GetActivities } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
 
@@ -29,10 +33,11 @@ const isGuide = ref(false);
 const isContributeLang = ref(false);
 const searchQuery = ref("");
 const searchLoading = ref(false);
+const activityList = ref([]);
 
+const isActivity = ref(false);
 const selectedLang = ref({});
-
-const contributeLang = ref();
+const selectedAct = ref("");
 
 const router = useRouter();
 const emit = defineEmits(["onHint"]);
@@ -44,6 +49,19 @@ const props = defineProps({
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const name = computed(() => vuex.getters["profile/name"]);
 const language = computed(() => vuex.getters["profile/language"]);
+const languageCode = computed(() => vuex.getters["profile/language"]);
+const languageName = computed(() => vuex.getters["profile/fullLang"]);
+const languageId = computed(() => vuex.getters["profile/langId"]);
+
+const getActivities = async (id) => {
+  const response = await GetActivities({ id: id });
+
+  if (response?.statusCode === 200) {
+    activityList.value = response?.data?.activities?.map((item) => {
+      return item;
+    });
+  }
+};
 
 const getLexemeLanguage = async (search) => {
   searchLoading.value = true;
@@ -55,6 +73,7 @@ const getLexemeLanguage = async (search) => {
         label: `${item?.title} (${item?.code})`,
         full: item?.title,
         value: item?.code,
+        id: item?.id,
       };
     });
 
@@ -63,7 +82,11 @@ const getLexemeLanguage = async (search) => {
 };
 
 onMounted(async () => {
-  contributeLang.value = language.value || cookies?.get("locale") || "en";
+  selectedLang.value = {
+    full: languageName.value,
+    value: languageCode.value,
+    id: languageId.value,
+  };
   await getLexemeLanguage();
 
   await vuex.dispatch("profile/setLoadingState");
@@ -74,13 +97,19 @@ watch(searchQuery, async () => {
 });
 
 watch(language, () => {
-  contributeLang.value = language.value || cookies?.get("locale") || "en";
+  getActivities(languageId.value);
+
+  selectedLang.value = {
+    full: languageName.value,
+    value: languageCode.value,
+    id: languageId.value,
+  };
 });
 
 const gotoSession = async () => {
   await vuex.dispatch("profile/addData", {
     ...vuex.getters["profile/allData"],
-    language: contributeLang?.value || "",
+    languageCode: selectedLang?.value?.value || "",
   });
   await router.push("/session");
 };
@@ -102,10 +131,34 @@ const gotoSession = async () => {
     >
   </div>
 
-  <div class="menu mb-[12px] cursor-pointer" @click="isContributeLang = true">
+  <div
+    class="menu mb-[12px] cursor-pointer w-100"
+    @click="isContributeLang = true"
+  >
     <div class="flex align-center justify-between gap-x-[12px]">
       <div class="flex gap-x-[12px]">
         <CdxIcon :icon="cdxIconGlobe" />
+        <div class="flex flex-col">
+          <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
+            t("home.auth.languageSelect")
+          }}</CdxLabel>
+          <span class="text-[#54595D] dark:text-[#A2A9B1]"
+            >{{ selectedLang?.full }} ({{ selectedLang?.value }})</span
+          >
+        </div>
+      </div>
+      <CdxIcon :icon="cdxIconNext" />
+    </div>
+  </div>
+
+  <div class="menu mb-[12px] cursor-pointer w-100" @click="isActivity = true">
+    <div class="flex align-center justify-between gap-x-[12px]">
+      <div class="flex gap-x-[12px]">
+        <img
+          :src="isThemeDark ? ChangesDark : Changes"
+          alt="Changes"
+          class="h-[100%]"
+        />
         <div class="flex flex-col">
           <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
             t("home.auth.languageSelect")
@@ -143,18 +196,18 @@ const gotoSession = async () => {
     </div> -->
 
   <div
-    class="w-full flex flex-col min-[616px]:flex-row min-[616px]:gap-x-[12px] gap-y-[12px] items-center justify-center"
+    class="w-full flex flex-col min-[616px]:gap-x-[12px] gap-y-[12px] items-center justify-center"
   >
     <CdxButton
       weight="primary"
       action="progressive"
-      class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
+      class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
       @click="gotoSession"
     >
       <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
     >
     <CdxButton
-      class="w-full max-w-[384px] py-[5px] rounded-[2px] h-[44px]"
+      class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
       @click="isGuide = true"
     >
       <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
@@ -189,6 +242,16 @@ const gotoSession = async () => {
       }
     "
   />
+
+  <ActivityDialog
+    :open="isActivity"
+    :options="activityList"
+    @onClose="
+      () => {
+        isActivity = false;
+      }
+    "
+  />
 </template>
 
 <style>
@@ -198,6 +261,6 @@ const gotoSession = async () => {
 }
 
 .menu {
-  @apply border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px];
+  @apply border border-[var(--border-color-base)] rounded-[2px] p-[12px];
 }
 </style>

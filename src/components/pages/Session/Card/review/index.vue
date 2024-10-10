@@ -48,7 +48,7 @@ const props = defineProps({
         >{{ t("session.preview.lexeme") }}</CdxLabel
       >
       <div
-        class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[8px]"
+        class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[8px]"
       >
         <div class="flex gap-x-[12px]">
           <!-- <div
@@ -76,7 +76,7 @@ const props = defineProps({
             <CdxLabel
               class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
               >{{ props?.data?.lemma }} ({{
-                props?.data?.lexemeSenseId
+                props?.data?.externalLexemeSenseId
               }})</CdxLabel
             >
             <p
@@ -110,7 +110,7 @@ const props = defineProps({
           </CdxLabel>
         </div>
         <div
-          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] bg-white dark:bg-[#101418]"
+          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] bg-white dark:bg-[#101418]"
         >
           <div class="flex gap-x-[12px]">
             <!-- <div
@@ -163,7 +163,7 @@ const props = defineProps({
       </div>
     </div>
     <div
-      class="fixed bottom-0 w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[12px] rounded-b-[16px]"
+      class="fixed bottom-0 w-full h-66px border-t border-[var(--border-color-base)] p-[16px] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[12px] rounded-b-[16px]"
     >
       <CdxButton @click="emit('backtoItem')" class="w-full">{{
         t("session.preview.button1")
@@ -174,7 +174,7 @@ const props = defineProps({
         class="w-full"
         @click="
           emit('onDone', {
-            senseId: props?.data?.lexemeSenseId,
+            senseId: props?.data?.externalLexemeSenseId,
             itemId: props?.detail?.id || '',
           })
         "

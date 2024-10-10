@@ -432,7 +432,7 @@ const getProfile = async () => {
 
   const response = await GetProfile();
   if (response?.statusCode === 200) {
-    await getCardsData(response?.data?.language);
+    await getCardsData(response?.data?.languageCode);
   } else if (response.statusCode === 503) {
     isLoading.value = false;
     noInternet.value = true;
@@ -445,7 +445,7 @@ const getProfile = async () => {
 const getCardsData = async (code) => {
   isLoading.value = true;
   const response = await GetCards({
-    language: code ? code : vuex.getters["profile/language"],
+    languageCode: code ? code : vuex.getters["profile/language"],
   });
 
   if (response.statusCode === 200) {
@@ -475,6 +475,8 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
+  console.log(vuex.getters["profile/language"]);
+
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -767,7 +769,7 @@ watch(
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.lexemeSenseId)"
+            @hideCard="nextCard(false, value?.externalLexemeSenseId)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -784,7 +786,7 @@ watch(
                 :class="[
                   data?.length !== index + 1
                     ? 'bg-white dark:bg-[#101418]'
-                    : 'bg-[#2A4B8D]',
+                    : 'bg-[#3056A9]',
                   'custom-height z-[1]  rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
@@ -823,7 +825,7 @@ watch(
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
                 @gotoDetail="
-                  test1(value?.lexemeSenseId, {
+                  test1(value?.externalLexemeSenseId, {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
@@ -927,7 +929,8 @@ watch(
           @click="
             nextCard(
               true,
-              data?.find((item) => item.order === 6 - currCount)?.lexemeSenseId
+              data?.find((item) => item.order === 6 - currCount)
+                ?.externalLexemeSenseId
             )
           "
           :disabled="
