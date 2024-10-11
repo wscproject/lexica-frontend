@@ -5,6 +5,7 @@ import LogoDark from "@/assets/home_logo_dark.svg";
 import GuideDialog from "@/components/dialog/guide/index.vue";
 import ContributeLanguageDialog from "@/components/dialog/contributionLanguage/index.vue";
 import ActivityDialog from "@/components/dialog/activities/index.vue";
+import { GetProfile } from "@/api/Home";
 
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay, cdxIconGlobe, cdxIconNext } from "@wikimedia/codex-icons";
@@ -17,16 +18,18 @@ import ChangesDark from "@/assets/changesdark.svg";
 
 import { useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
-import { computed, onBeforeMount, onMounted, ref, watch } from "vue";
+import { computed, onBeforeMount, onMounted, ref, toRaw, watch } from "vue";
 import { GetLexemeLanguage, GetActivities } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
+
+import { EndConnectContribution } from "@/api/Session";
 
 const vuex = useStore();
 
 const { cookies } = useCookies();
 
-const { t } = useI18n({ useScope: "global" });
+const { t, locale } = useI18n({ useScope: "global" });
 
 const selection = ref([]);
 const isGuide = ref(false);
@@ -37,7 +40,7 @@ const activityList = ref([]);
 
 const isActivity = ref(false);
 const selectedLang = ref({});
-const selectedAct = ref("");
+const selectedAct = ref(null);
 
 const router = useRouter();
 const emit = defineEmits(["onHint"]);
@@ -52,6 +55,47 @@ const language = computed(() => vuex.getters["profile/language"]);
 const languageCode = computed(() => vuex.getters["profile/language"]);
 const languageName = computed(() => vuex.getters["profile/fullLang"]);
 const languageId = computed(() => vuex.getters["profile/langId"]);
+const activityType = computed(() => vuex.getters["profile/contributionType"]);
+
+const fetchProfile = async (lang) => {
+  const response = await GetProfile();
+  if (response?.statusCode === 200) {
+    selectedLang.value = {
+      full: response?.data?.language?.title,
+      value: response?.data?.languageCode,
+      id: response?.data?.language?.id,
+    };
+
+    selectedAct.value = response?.data?.activityType;
+    vuex.dispatch("profile/addData", response?.data || lang);
+    locale.value = response?.data?.displayLanguageCode || lang;
+    cookies.set("locale", response?.data?.displayLanguageCode || lang);
+
+    if (response?.data?.displayTheme !== "default") {
+      if (response?.data?.displayTheme === "dark") {
+        document.documentElement.className = "dark";
+        localStorage.setItem("theme", "dark");
+      } else if (response?.data?.displayTheme === "light") {
+        document.documentElement.className = "light";
+        localStorage.setItem("theme", "light");
+      }
+    } else {
+      localStorage.setItem("theme", "auto");
+
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        document.documentElement.className = "dark";
+      } else {
+        document.documentElement.className = "";
+      }
+    }
+
+    vuex.dispatch("profile/changeTheme");
+
+    if (response?.data?.ongoingContribution) {
+      EndConnectContribution();
+    }
+  }
+};
 
 const getActivities = async (id) => {
   const response = await GetActivities({ id: id });
@@ -60,6 +104,12 @@ const getActivities = async (id) => {
     activityList.value = response?.data?.activities?.map((item) => {
       return item;
     });
+
+    if (activityList.value.find((item) => item.type === activityType.value)) {
+      selectedAct.value = activityType.value;
+    } else {
+      selectedAct.value = activityList?.value?.[0]?.type;
+    }
   }
 };
 
@@ -82,11 +132,16 @@ const getLexemeLanguage = async (search) => {
 };
 
 onMounted(async () => {
-  selectedLang.value = {
-    full: languageName.value,
-    value: languageCode.value,
-    id: languageId.value,
-  };
+  const lang =
+    window?.navigator?.language?.split("-")?.[0] === "en" ||
+    window?.navigator?.language?.split("-")?.[0] === "id"
+      ? window?.navigator?.language?.split("-")?.[0]
+      : "en";
+
+  await vuex.dispatch("profile/setLoadingState");
+
+  await fetchProfile(lang);
+
   await getLexemeLanguage();
 
   await vuex.dispatch("profile/setLoadingState");
@@ -96,14 +151,12 @@ watch(searchQuery, async () => {
   await getLexemeLanguage(searchQuery.value);
 });
 
-watch(language, () => {
-  getActivities(languageId.value);
+watch(props, () => {
+  console.log();
+});
 
-  selectedLang.value = {
-    full: languageName.value,
-    value: languageCode.value,
-    id: languageId.value,
-  };
+watch(selectedLang, async () => {
+  await getActivities(selectedLang?.value?.id);
 });
 
 const gotoSession = async () => {
@@ -161,10 +214,17 @@ const gotoSession = async () => {
         />
         <div class="flex flex-col">
           <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
-            t("home.auth.languageSelect")
+            t("activityDialog.title")
           }}</CdxLabel>
-          <span class="text-[#54595D] dark:text-[#A2A9B1]"
-            >{{ selectedLang?.full }} ({{ selectedLang?.value }})</span
+          <span
+            v-if="selectedAct === 'connect'"
+            class="text-[#54595D] dark:text-[#A2A9B1]"
+            >{{ t("activityDialog.connect.title") }}</span
+          >
+          <span
+            v-else-if="selectedAct === 'script'"
+            class="text-[#54595D] dark:text-[#A2A9B1]"
+            >{{ t("activityDialog.script.title") }}</span
           >
         </div>
       </div>
@@ -248,6 +308,12 @@ const gotoSession = async () => {
     :options="activityList"
     @onClose="
       () => {
+        isActivity = false;
+      }
+    "
+    @applyActivity="
+      (value) => {
+        selectedAct = value;
         isActivity = false;
       }
     "

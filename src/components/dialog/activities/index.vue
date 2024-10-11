@@ -5,7 +5,7 @@ import { ref, watch } from "vue";
 import SelectedImage from "@/assets/selected.svg";
 
 const { t } = useI18n();
-const selectedType = ref("");
+const selectedType = ref(null);
 
 const props = defineProps({
   open: {
@@ -30,16 +30,7 @@ const defaultAction = {
 const emit = defineEmits(["onClose", "applyActivity"]);
 
 const apply = () => {
-  emit("applyActivity");
-};
-
-const test = (test) => {
-  fetch(test, {
-    headers: {
-      "ngrok-skip-browser-warning": true,
-      "Access-Control-Allow-Origin": "*",
-    },
-  }).then((r) => r.blob());
+  emit("applyActivity", selectedType.value);
 };
 </script>
 
@@ -59,9 +50,9 @@ const test = (test) => {
       <div class="p-[16px]">
         <div
           v-for="activity in props.options"
-          @click="selectedType = activity.type"
+          @click="selectedType = activity?.type"
           :class="[
-            'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px]',
+            'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px] mb-[var(--spacing-50)]',
             selectedType === activity.type &&
               'border-[2px] border-[--border-color-progressive--focus] bg-[--background-color-progressive-subtle]',
           ]"
@@ -92,6 +83,19 @@ const test = (test) => {
               class="text-[16px] text-[var(--color-subtle)]"
             >
               {{ t("activityDialog.connect.description") }}
+            </p>
+
+            <p
+              v-if="activity.type === 'script'"
+              class="text-[16px] text-[var(--color-base)]"
+            >
+              <b>{{ t("activityDialog.script.title") }}</b>
+            </p>
+            <p
+              v-if="activity.type === 'script'"
+              class="text-[16px] text-[var(--color-subtle)]"
+            >
+              {{ t("activityDialog.script.description") }}
             </p>
           </div>
         </div>

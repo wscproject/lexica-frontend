@@ -79,7 +79,7 @@ const api = async () => {
             cookie.remove("refresh");
 
             window.location.href = "/";
-            return Promise.reject(refreshError);
+            return Promise.reject(error);
           }
           // Handle unauthorized error e.g. refresh and set token in storage
         }

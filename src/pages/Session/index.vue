@@ -39,12 +39,12 @@ import happy from "@/assets/happy.svg";
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
-  GetCards,
+  GetConnectCards,
   SearchEntity,
   GetCardDetail,
   GetEntityDetail,
-  UpdateCardDetail,
-  EndContribution,
+  UpdateConnectCardDetail,
+  EndConnectContribution,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -64,6 +64,7 @@ const router = useRouter();
 
 const completeRef = ref(null);
 const count = ref(3);
+const totalData = ref(0);
 const data = ref([]);
 const tempData = ref(null);
 const detail = ref(null);
@@ -216,7 +217,7 @@ const reload = () => {
 
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
-    if (currCount.value > 1 && currCount.value < 6) {
+    if (currCount.value > 1 && currCount.value < totalData.value + 1) {
       const userInput = await testing?.value?.openModal();
 
       if (!userInput) {
@@ -224,7 +225,7 @@ onBeforeRouteLeave(async (to, from) => {
       } else {
         skipAll.value = true;
 
-        const response = await EndContribution();
+        const response = await EndConnectContribution();
 
         if (response?.statusCode === 503) {
           isLoading.value = false;
@@ -244,14 +245,14 @@ onBeforeRouteLeave(async (to, from) => {
 });
 
 const endEarly = async () => {
-  if (currCount.value > 1 && currCount.value < 6) {
+  if (currCount.value > 1 && currCount.value < totalData.value + 1) {
     const userInput = await testing?.value?.openModal();
 
     if (userInput) {
       skipAll.value = true;
       endLoading.value = true;
 
-      const response = await EndContribution();
+      const response = await EndConnectContribution();
 
       if (response?.statusCode === 200) {
         endLoading.value = false;
@@ -312,7 +313,7 @@ watch(timeoutLoading, () => {
 });
 
 const updateDetail = async (data) => {
-  const response = await UpdateCardDetail({
+  const response = await UpdateConnectCardDetail({
     senseId: data?.senseId,
     itemId: data?.itemId || "",
     action: data?.action || "",
@@ -444,7 +445,7 @@ const getProfile = async () => {
 
 const getCardsData = async (code) => {
   isLoading.value = true;
-  const response = await GetCards({
+  const response = await GetConnectCards({
     languageCode: code ? code : vuex.getters["profile/language"],
   });
 
@@ -452,6 +453,9 @@ const getCardsData = async (code) => {
     totalCount.value = response?.data?.length;
 
     data.value = [...response.data.filter((item) => item.status === "pending")];
+    totalData.value = [
+      ...response.data.filter((item) => item.status === "pending"),
+    ].length;
     currMargin.value =
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
@@ -540,10 +544,10 @@ watch(
 );
 
 watch([currCount, undoWarn], async () => {
-  if (currCount.value === 6 && !undoWarn.value) {
+  if (currCount.value > totalData.value && !undoWarn.value) {
     endLoading.value = true;
 
-    const response = await EndContribution();
+    const response = await EndConnectContribution();
 
     if (response?.statusCode === 200) {
       endLoading.value = false;

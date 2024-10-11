@@ -4,9 +4,15 @@ import Unauth from "@/components/pages/Home/Unauth/index.vue";
 import Auth from "@/components/pages/Home/Auth/index.vue";
 
 import { useCookies } from "vue3-cookies";
+import { useStore } from "vuex";
+import { useI18n } from "vue-i18n";
 
 const { cookies } = useCookies();
+const { locale } = useI18n({ useScope: "global" });
+
 const isAuth = ref(null);
+const vuex = useStore();
+const data = ref();
 
 onMounted(async () => {
   isAuth.value = cookies.get("auth");
