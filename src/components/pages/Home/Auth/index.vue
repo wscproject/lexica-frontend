@@ -317,6 +317,7 @@ const gotoSession = async () => {
         isActivity = false;
       }
     "
+    :defaultValue="selectedAct"
   />
 </template>
 

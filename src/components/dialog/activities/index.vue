@@ -1,7 +1,7 @@
 <script setup>
 import { CdxDialog } from "@wikimedia/codex";
 import { useI18n } from "vue-i18n";
-import { ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import SelectedImage from "@/assets/selected.svg";
 
 const { t } = useI18n();
@@ -15,6 +15,10 @@ const props = defineProps({
   options: {
     type: Array,
     required: true,
+  },
+  defaultValue: {
+    type: String,
+    required: false,
   },
 });
 
@@ -32,6 +36,12 @@ const emit = defineEmits(["onClose", "applyActivity"]);
 const apply = () => {
   emit("applyActivity", selectedType.value);
 };
+
+watch(props, () => {
+  if (props.defaultValue) {
+    selectedType.value = props.defaultValue;
+  }
+});
 </script>
 
 <template>
