@@ -21,7 +21,7 @@ onMounted(async () => {
 
   const response = await Login({
     code: route.query.code,
-    displayLanguage: lang,
+    displayLanguageCode: lang,
   });
 
   if (response.statusCode === 200) {

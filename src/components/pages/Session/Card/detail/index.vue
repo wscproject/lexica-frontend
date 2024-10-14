@@ -58,7 +58,7 @@ const statements = computed(() => {
     <div
       class="header p-[16px] text-white flex test justify-between relative rounded-t-[15px]"
       :style="{
-        background: '#2A4B8D',
+        background: '#3056A9',
         alignItems: 'flex-start',
         transition: 'all 0.4s ease-in-out',
       }"
@@ -135,7 +135,7 @@ const statements = computed(() => {
             (item) => item?.[0] !== 'translation'
           )"
           :key="index"
-          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[12px]"
+          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
             <!-- <div
@@ -181,7 +181,7 @@ const statements = computed(() => {
             (item) => item?.[0] === 'translation'
           )"
           :key="index"
-          class="border border-[#A2A9B1] dark:border-[#72777D] rounded-[2px] p-[12px] mb-[12px]"
+          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
         >
           <div class="flex gap-x-[12px]">
             <div>
