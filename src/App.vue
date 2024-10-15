@@ -25,7 +25,7 @@ watch(isPreferredDark, () => {
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
           "content",
-          route.path === "/session" ? "#27292D" : "#101418"
+          route.path === "/session-connect" ? "#27292D" : "#101418"
         );
     } else {
       document.documentElement.className = "";
@@ -33,7 +33,7 @@ watch(isPreferredDark, () => {
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
           "content",
-          route.path === "/session" ? "#EAECF0" : "#FFFFFF"
+          route.path === "/session-connect" ? "#EAECF0" : "#FFFFFF"
         );
     }
   }

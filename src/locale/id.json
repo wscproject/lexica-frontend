@@ -154,6 +154,13 @@
       "emptyLoad": "Anda telah mencapai akhir dari hasil pencarian"
     },
 
+    "scriptWriting": {
+      "title1": "Tulis ulang",
+      "title2": "dalam aksara Jawa (jv-x-Q879704)",
+      "button": "Selanjutnya",
+      "placeholder": "Tulis disini"
+    },
+
     "detail": {
       "lexeme": "leksem",
       "statements": "Pernyataan",

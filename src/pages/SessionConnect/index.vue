@@ -791,7 +791,7 @@ watch(
                   data?.length !== index + 1
                     ? 'bg-white dark:bg-[#101418]'
                     : 'bg-[#3056A9]',
-                  'custom-height z-[1]  rounded-[16px] max-h-[650px]',
+                  'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"

@@ -164,7 +164,12 @@ const gotoSession = async () => {
     ...vuex.getters["profile/allData"],
     languageCode: selectedLang?.value?.value || "",
   });
-  await router.push("/session");
+
+  if (selectedAct.value === "connect") {
+    await router.push("/session-connect");
+  } else {
+    await router.push("/session-script");
+  }
 };
 
 // watch(store, () => {

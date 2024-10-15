@@ -163,6 +163,13 @@
       "emptyLoad": "You’ve reached the end of search results"
     },
 
+    "scriptWriting": {
+      "title1": "Rewrite",
+      "title2": "in Javanese script (jx-x-Q879704)",
+      "button": "Next",
+      "placeholder": "Write here"
+    },
+
     "detail": {
       "lexeme": "Lexeme",
       "statements": "Statements",
