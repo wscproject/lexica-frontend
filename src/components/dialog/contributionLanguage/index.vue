@@ -38,6 +38,10 @@ const props = defineProps({
     type: Boolean,
     required: true,
   },
+  defaultLang: {
+    type: Object,
+    required: true,
+  },
 });
 
 const emit = defineEmits(["onClose", "setSearch", "applyLanguage"]);
@@ -60,6 +64,10 @@ const onInput = debounce(() => {
     emit("setSearch", search.value);
   }
 }, 500);
+
+watch(props, () => {
+  selected.value = props.defaultLang;
+});
 
 watch(language, () => {
   selected.value = {
@@ -149,7 +157,7 @@ watch(language, () => {
 }
 
 .contributionLang .cdx-dialog__footer {
-  @apply p-[16px];
+  @apply p-[16px] border-t border-[#A2A9B1] dark:border-[#72777D];
 }
 
 .progress {
