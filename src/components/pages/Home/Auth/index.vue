@@ -51,10 +51,10 @@ const props = defineProps({
 //vuex
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const name = computed(() => vuex.getters["profile/name"]);
-const language = computed(() => vuex.getters["profile/language"]);
-const languageCode = computed(() => vuex.getters["profile/language"]);
-const languageName = computed(() => vuex.getters["profile/fullLang"]);
-const languageId = computed(() => vuex.getters["profile/langId"]);
+// const language = computed(() => vuex.getters["profile/language"]);
+// const languageCode = computed(() => vuex.getters["profile/language"]);
+// const languageName = computed(() => vuex.getters["profile/fullLang"]);
+// const languageId = computed(() => vuex.getters["profile/langId"]);
 const activityType = computed(() => vuex.getters["profile/contributionType"]);
 
 const fetchProfile = async (lang) => {
