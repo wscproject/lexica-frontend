@@ -47,6 +47,8 @@ const props = defineProps({
 const emit = defineEmits(["onClose", "setSearch", "applyLanguage"]);
 
 const close = () => {
+  search.value = "";
+  emit("setSearch", search.value);
   emit("onClose", false);
 };
 
