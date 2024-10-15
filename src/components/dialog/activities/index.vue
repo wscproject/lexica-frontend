@@ -64,14 +64,16 @@ watch(props, () => {
           :class="[
             'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px] mb-[var(--spacing-50)]',
             selectedType === activity.type &&
-              'border-[2px] border-[--border-color-progressive--focus] bg-[--background-color-progressive-subtle]',
+              'border-[2px] border-[var(--border-color-progressive--focus)] bg-[var(--background-color-progressive-subtle)]',
           ]"
         >
           <div
             :class="[
-              'w-[40px] h-[40px] border border-[--border-color-subtle] rounded-[2px] overflow-hidden shrink-0',
               selectedType === activity.type &&
-                'border-[--border-color-progressive]',
+                'border-[var(--border-color-progressive)]',
+              selectedType !== activity.type &&
+                'border-[var(--border-color-subtle)]',
+              'w-[40px] h-[40px] border  rounded-[2px] overflow-hidden shrink-0',
             ]"
           >
             <img
@@ -114,4 +116,8 @@ watch(props, () => {
   </div>
 </template>
 
-<style></style>
+<style>
+.activities .cdx-dialog__header {
+  padding: 16px;
+}
+</style>
