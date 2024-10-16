@@ -51,22 +51,30 @@ const props = defineProps({
 //vuex
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const name = computed(() => vuex.getters["profile/name"]);
-const language = computed(() => vuex.getters["profile/language"]);
-const languageCode = computed(() => vuex.getters["profile/language"]);
-const languageName = computed(() => vuex.getters["profile/fullLang"]);
-const languageId = computed(() => vuex.getters["profile/langId"]);
+// const language = computed(() => vuex.getters["profile/language"]);
+// const languageCode = computed(() => vuex.getters["profile/language"]);
+// const languageName = computed(() => vuex.getters["profile/fullLang"]);
+// const languageId = computed(() => vuex.getters["profile/langId"]);
 const activityType = computed(() => vuex.getters["profile/contributionType"]);
 
 const fetchProfile = async (lang) => {
   const response = await GetProfile();
   if (response?.statusCode === 200) {
-    selectedLang.value = {
-      full: response?.data?.language?.title,
-      value: response?.data?.languageCode,
-      id: response?.data?.language?.id,
-    };
+    if (!response?.data?.languageCode) {
+      selectedLang.value = {
+        full: selection?.value?.find((item) => item.value === lang)?.full,
+        value: lang,
+        id: selection?.value?.find((item) => item.value === lang)?.id,
+      };
+    } else {
+      selectedLang.value = {
+        full: response?.data?.language?.title,
+        value: response?.data?.languageCode,
+        id: response?.data?.language?.id,
+      };
+    }
 
-    selectedAct.value = response?.data?.activityType;
+    selectedAct.value = response?.data?.activityType || "connect";
     vuex.dispatch("profile/addData", response?.data || lang);
     locale.value = response?.data?.displayLanguageCode || lang;
     cookies.set("locale", response?.data?.displayLanguageCode || lang);
@@ -140,19 +148,15 @@ onMounted(async () => {
 
   await vuex.dispatch("profile/setLoadingState");
 
-  await fetchProfile(lang);
-
   await getLexemeLanguage();
+
+  await fetchProfile(lang);
 
   await vuex.dispatch("profile/setLoadingState");
 });
 
 watch(searchQuery, async () => {
   await getLexemeLanguage(searchQuery.value);
-});
-
-watch(props, () => {
-  console.log();
 });
 
 watch(selectedLang, async () => {
@@ -290,6 +294,7 @@ const gotoSession = async () => {
     :open="isContributeLang"
     :options="selection"
     :searchLoading="searchLoading"
+    :defaultLang="selectedLang"
     @onClose="
       () => {
         searchQuery = '';
