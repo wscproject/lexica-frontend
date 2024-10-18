@@ -31,6 +31,8 @@ const search = ref("");
 
 const isSearch = ref(false);
 
+const isScrollbar = ref(false);
+
 const emit = defineEmits([
   "gotoDetail, gotoSubItemDetail, onHold, onRelease, gotoReview, selectItem, setSearch, loadMore",
 ]);
@@ -69,8 +71,16 @@ const onInput = debounce(() => {
   }
 }, 500);
 
-watch(refText, () => {
-  console.log(refText.value);
+watch(props, () => {
+  const div = document.getElementById("yes");
+  console.log(div);
+  const hasVerticalScrollbar = div.scrollHeight > div.clientHeight;
+
+  if (hasVerticalScrollbar) {
+    isScrollbar.value = true;
+  } else {
+    isScrollbar.value = false;
+  }
 });
 </script>
 
@@ -79,7 +89,7 @@ watch(refText, () => {
     class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div
-      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full"
+      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full bg-white dark:bg-[#101418]"
       :style="{
         alignItems: 'center',
       }"
@@ -95,52 +105,59 @@ watch(refText, () => {
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
       </div>
     </div>
-    <div
-      class="px-[16px] bg-white pt-[12px] pb-[12px] dark:bg-[#101418] flex align-center gap-x-[16px] justify-between"
-    >
-      <div
-        class="overflow-auto h-[18.3vh] text-white text-[28px] w-full max-w-[380px] flex align-center"
-        lang="de"
-        style="
-          -webkit-hyphens: auto;
-          -moz-hyphens: auto;
-          -ms-hyphens: auto;
-          hyphens: auto;
-          word-wrap: break-word;
-          width: 100%;
-        "
-      >
-        <span :ref="refText">
-          Pseudopseudohypoparathyroidism Pseudopseudohypoparathyroidism
-          hypothetically hypothetically
-        </span>
+    <div class="flex flex-col h-full">
+      <div class="bg-white px-[16px] dark:bg-[#101418] h-fit">
+        <div class="flex align-center gap-x-[16px] justify-between">
+          <div
+            id="yes"
+            :class="[
+              'overflow-auto h-[10vh] text-white text-[28px] w-full',
+              !isScrollbar && 'flex items-center',
+            ]"
+            lang="de"
+            style="
+              -webkit-hyphens: auto;
+              -moz-hyphens: auto;
+              -ms-hyphens: auto;
+              hyphens: auto;
+              word-wrap: break-word;
+              width: 100%;
+            "
+          >
+            <p>
+              Pseudopseudohypopar Pseudopseudohypopar
+              PseudopseudohypoparPseudopseudohypopar Pseudopseudohypopar
+              Pseudopseudohypopar
+            </p>
+          </div>
+          <div>
+            <CdxIcon
+              :icon="cdxIconInfoFilled"
+              class="text-white cursor-pointer"
+              @click.stop="(e) => emit('gotoDetail', e)"
+            />
+          </div>
+        </div>
+
+        <div
+          class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px] dark:text-[#A2A9B1]"
+        >
+          <span>Kepala</span>
+        </div>
       </div>
-      <div>
-        <CdxIcon
-          :icon="cdxIconInfoFilled"
-          class="text-white cursor-pointer"
-          @click.stop="(e) => emit('gotoDetail', e)"
-        />
+
+      <div class="p-[16px] bg-[#FFA758] h-full">
+        <div class="pb-[16px]">
+          <span class="text-[#361D13] text-[18px]">Dalam aksara jawa</span>
+        </div>
+
+        <div>
+          <CdxTextArea class="leading-[35px] text-[28px] textarea-script" />
+        </div>
       </div>
     </div>
-    <div
-      class="px-[16px] bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418]"
-    ></div>
-    <div
-      class="w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
-    >
+    <div class="w-full absolute bottom-0 h-[66px] p-[16px]">
       <CdxButton
-        class="w-full"
-        @click="
-          () => {
-            selectedItem = null;
-            emit('gotoReview');
-          }
-        "
-        >{{ t("session.main.button1") }}</CdxButton
-      >
-      <CdxButton
-        :disabled="!selectedItem"
         weight="primary"
         action="progressive"
         class="w-full"
@@ -152,6 +169,11 @@ watch(refText, () => {
 </template>
 
 <style>
+.textarea-script .cdx-text-area__textarea:enabled {
+  background-color: #ffa758 !important;
+  color: #361d13 !important;
+  resize: none;
+}
 .heighted {
   height: 100%;
 }
