@@ -8,7 +8,7 @@ const state = {
 
 const getters = {
   name: (state) => {
-    return state?.data?.name;
+    return state?.data?.username;
   },
   language: (state) => state?.data?.languageCode,
   fullLang: (state) => state?.data?.language?.title,
