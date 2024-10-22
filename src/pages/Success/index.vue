@@ -25,8 +25,7 @@ onMounted(async () => {
   });
 
   if (response.statusCode === 200) {
-    cookies.set("auth", response?.data?.access_token);
-    cookies.set("refresh", response?.data?.refresh_token);
+    cookies.set("auth", response?.data?.token);
 
     router.push("/");
   }
