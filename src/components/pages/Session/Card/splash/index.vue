@@ -17,7 +17,11 @@ const props = defineProps({
     <div v-if="!isNotCurrent">
       <CdxLabel>{{ t("session.title") }} {{ props.currCount }}</CdxLabel>
       <p class="text-[28px]">
-        {{ props?.data?.lemma }} ({{ props?.data?.externalLexemeSenseId }})
+        {{ props?.data?.lemma }} ({{
+          props?.data?.externalLexemeSenseId ||
+          props?.data?.externalLexemeId ||
+          ""
+        }})
       </p>
       <p v-if="props?.data?.gloss" class="text-[16px]">
         {{ props?.data?.gloss }}

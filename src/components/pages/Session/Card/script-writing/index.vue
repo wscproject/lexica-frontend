@@ -8,24 +8,26 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { computed, ref, watch } from "vue";
+import { computed, ref, toRaw, watch } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
 import noData from "@/assets/endofresult.svg";
 import noDataDark from "@/assets/endofresult-dark.svg";
 import { useStore } from "vuex";
+import { onMounted } from "vue";
 
 const vuex = useStore();
 
 const { t } = useI18n({ useScope: "global" });
 
-const refText = ref(null);
+const scrollRef = ref(null);
+const textAreaRef = ref(null);
+
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const isInfo = ref(false);
 const selectedItem = ref(null);
 const detailData = ref(null);
-const isLoading = ref(false);
 
 const search = ref("");
 
@@ -71,10 +73,15 @@ const onInput = debounce(() => {
   }
 }, 500);
 
-watch(props, () => {
-  const div = document.getElementById("yes");
-  console.log(div);
-  const hasVerticalScrollbar = div.scrollHeight > div.clientHeight;
+onMounted(() => {
+  textAreaRef.value.textarea.focus();
+});
+
+// watch(textareaREf);
+
+watch(scrollRef, () => {
+  const hasVerticalScrollbar =
+    scrollRef?.value?.scrollHeight > scrollRef?.value?.clientHeight;
 
   if (hasVerticalScrollbar) {
     isScrollbar.value = true;
@@ -109,6 +116,7 @@ watch(props, () => {
       <div class="bg-white px-[16px] dark:bg-[#101418] h-fit">
         <div class="flex align-center gap-x-[16px] justify-between">
           <div
+            ref="scrollRef"
             id="yes"
             :class="[
               'overflow-auto h-[10vh] text-white text-[28px] w-full',
@@ -125,9 +133,7 @@ watch(props, () => {
             "
           >
             <p>
-              Pseudopseudohypopar Pseudopseudohypopar
-              PseudopseudohypoparPseudopseudohypopar Pseudopseudohypopar
-              Pseudopseudohypopar
+              {{ props?.data?.lemma }}
             </p>
           </div>
           <div>
@@ -142,28 +148,40 @@ watch(props, () => {
         <div
           class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px] dark:text-[#A2A9B1]"
         >
-          <span>Kepala</span>
+          <span>{{ props?.data?.gloss }}</span>
         </div>
       </div>
 
-      <div class="p-[16px] bg-[#FFA758] h-full">
-        <div class="pb-[16px]">
-          <span class="text-[#361D13] text-[18px]">Dalam aksara jawa</span>
+      <div class="relative p-[16px] bg-[#FFA758] h-full">
+        <div class="pb-[16px] absolute top-[16px]">
+          <span class="text-[#361D13] text-[18px] font-[700]"
+            >dalam aksara {{ props?.data?.language?.title }} ({{
+              props?.data?.language?.languageVariant?.codePreview
+            }})</span
+          >
         </div>
 
-        <div>
-          <CdxTextArea class="leading-[35px] text-[28px] textarea-script" />
+        <div
+          class="h-full flex items-center justify-start pt-[43px] pb-[66px] max-[368px]:pb-[30px]"
+        >
+          <CdxTextArea
+            ref="textAreaRef"
+            autofocus
+            class="leading-[35px] text-[28px] textarea-script"
+          />
         </div>
       </div>
-    </div>
-    <div class="w-full absolute bottom-0 h-[66px] p-[16px]">
-      <CdxButton
-        weight="primary"
-        action="progressive"
-        class="w-full"
-        @click="emit('gotoReview', detailData)"
-        >{{ t("session.main.button2") }}</CdxButton
+      <div
+        class="w-full absolute bottom-0 left-0 h-[66px] px-[16px] bg-[#FFA758] flex items-center"
       >
+        <CdxButton
+          weight="primary"
+          action="progressive"
+          class="w-full"
+          @click="emit('gotoReview', detailData)"
+          >{{ t("session.main.button2") }}</CdxButton
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -173,6 +191,22 @@ watch(props, () => {
   background-color: #ffa758 !important;
   color: #361d13 !important;
   resize: none;
+  min-height: 86px;
+  max-height: 90px;
+  overflow: auto;
+}
+
+.textarea-script.cdx-text-area {
+  height: 100%;
+  width: 100%;
+
+  /* temporary */
+  display: flex;
+  align-items: center;
+}
+
+.textarea-script .cdx-text-area__textarea {
+  height: 100%;
 }
 .heighted {
   height: 100%;

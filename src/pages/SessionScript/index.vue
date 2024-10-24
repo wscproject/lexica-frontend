@@ -1,7 +1,7 @@
 <script setup>
 import Card from "@/components/pages/Session/Card/index.vue";
 import CardItem from "@/components/pages/Session/Card/script-writing/index.vue";
-import CardItemDetail from "@/components/pages/Session/Card/detail/index.vue";
+import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
 import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
 import CardReview from "@/components/pages/Session/Card/review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
@@ -39,9 +39,9 @@ import happy from "@/assets/happy.svg";
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
-  GetConnectCards,
+  GetScriptCards,
   SearchEntity,
-  GetCardDetail,
+  GetLexemeDetail,
   GetEntityDetail,
   UpdateConnectCardDetail,
   EndConnectContribution,
@@ -409,10 +409,13 @@ const searchData = async () => {
 const getDetail = async (id) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
-  const response = await GetCardDetail(id);
+  const response = await GetLexemeDetail(id);
 
   if (response.statusCode === 200) {
     cardDetailLoading.value = false;
+
+    console.log(response?.data);
+
     cardDetailData.value = response?.data;
   }
 };
@@ -445,7 +448,7 @@ const getProfile = async () => {
 
 const getCardsData = async (code) => {
   isLoading.value = true;
-  const response = await GetConnectCards({
+  const response = await GetScriptCards({
     languageCode: code ? code : vuex.getters["profile/language"],
   });
 
@@ -829,7 +832,7 @@ watch(
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
                 @gotoDetail="
-                  test1(value?.externalLexemeSenseId, {
+                  test1(value?.externalLexemeId, {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,

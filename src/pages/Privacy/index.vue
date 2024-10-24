@@ -7,10 +7,22 @@ import { onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
+
+onMounted(() => {
+  const div = document.getElementById("yes");
+  const hasVerticalScrollbar = div.scrollHeight > div.clientHeight;
+
+  if (hasVerticalScrollbar) {
+    console.log("tes", div);
+  } else {
+    console.log(div);
+  }
+});
 </script>
 
 <template>
   <div
+    id="yes"
     class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D] dark:text-[#A2A9B1]"
   >
     <div
