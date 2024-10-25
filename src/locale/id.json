@@ -35,6 +35,25 @@
     "cancel": "Batal",
     "apply": "Terapkan"
   },
+  "contributionLangDialog": {
+    "title": "Kontribusi untuk leksem berbahasa",
+    "placeholder": "Cari bahasa",
+    "cancel": "Batal",
+    "apply": "Terapkan",
+    "emptySearch1": "Bahasa tidak ditemukan.",
+    "emptySearch2": "Coba gunakan kata kunci lain."
+  },
+  "activityDialog": {
+    "title": "Jenis kontribusi",
+    "connect": {
+      "title": "Leksem ke Butir",
+      "description": "Hubungkan Leksem ke Butir dengan konsep yang sepadan"
+    },
+    "script": {
+      "title": "Variasi aksara",
+      "description": "Masukkan variasi aksara dari sebuah Leksem"
+    }
+  },
   "home": {
     "unauth": {
       "title": "Selamat datang!",

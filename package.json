@@ -10,9 +10,9 @@
   },
   "dependencies": {
     "@vueuse/core": "^11.0.3",
-    "@wikimedia/codex": "^1.12.0",
-    "@wikimedia/codex-design-tokens": "^1.12.0",
-    "@wikimedia/codex-icons": "^1.12.0",
+    "@wikimedia/codex": "^1.13.1",
+    "@wikimedia/codex-design-tokens": "^1.13.1",
+    "@wikimedia/codex-icons": "^1.13.1",
     "axios": "^1.7.2",
     "interactjs": "^1.10.27",
     "less": "^4.2.0",

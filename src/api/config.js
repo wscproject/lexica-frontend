@@ -55,32 +55,37 @@ const api = async () => {
         }
 
         if (error?.response?.status === 401) {
-          originalRequest._retry = true;
+          // originalRequest._retry = true;
 
-          try {
-            const refreshToken = cookies("refresh");
-            const response = await axios.post(
-              `${import.meta.env.VITE_BASE_URL}auth/refresh-token`,
-              {
-                refreshToken: refreshToken,
-              }
-            );
+          // try {
+          //   const refreshToken = cookies("refresh");
+          //   const response = await axios.post(
+          //     `${import.meta.env.VITE_BASE_URL}auth/refresh-token`,
+          //     {
+          //       refreshToken: refreshToken,
+          //     }
+          //   );
 
-            cookie.set("auth", response?.data?.data?.access_token);
-            cookie.set("refresh", response?.data?.data?.refresh_token);
+          //   cookie.set("auth", response?.data?.data?.access_token);
+          //   cookie.set("refresh", response?.data?.data?.refresh_token);
 
-            instance.defaults.headers.common[
-              "Authorization"
-            ] = `Bearer ${response?.data?.data?.access_token}`;
+          //   instance.defaults.headers.common[
+          //     "Authorization"
+          //   ] = `Bearer ${response?.data?.data?.access_token}`;
 
-            return instance(originalRequest);
-          } catch (error) {
-            cookie.remove("auth");
-            cookie.remove("refresh");
+          //   return instance(originalRequest);
+          // } catch (error) {
+          //   cookie.remove("auth");
+          //   cookie.remove("refresh");
 
-            window.location.href = "/";
-            return Promise.reject(refreshError);
-          }
+          //   window.location.href = "/";
+          // }
+
+          cookie.remove("auth");
+
+          window.location.href = "/";
+          return Promise.reject(error);
+
           // Handle unauthorized error e.g. refresh and set token in storage
         }
 

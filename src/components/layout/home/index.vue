@@ -14,7 +14,6 @@ import successlogo from "@/assets/Success.svg";
 import { useCookies } from "vue3-cookies";
 import { GetProfile, updateUserPreference } from "@/api/Home";
 import { useI18n } from "vue-i18n";
-import { EndContribution } from "@/api/Session";
 import { useStore } from "vuex";
 
 const { t, locale } = useI18n({ useScope: "global" });
@@ -34,55 +33,6 @@ const loggingOut = () => {
     success.value = true;
   }, 2000);
 };
-
-const fetchProfile = async (lang) => {
-  const response = await GetProfile();
-  if (response?.statusCode === 200) {
-    vuex.dispatch("profile/addData", response?.data || lang);
-    locale.value = response?.data?.displayLanguage || lang;
-    cookies.set("locale", response?.data?.displayLanguage || lang);
-
-    if (response?.data?.displayTheme !== "default") {
-      if (response?.data?.displayTheme === "dark") {
-        document.documentElement.className = "dark";
-        localStorage.setItem("theme", "dark");
-      } else if (response?.data?.displayTheme === "light") {
-        document.documentElement.className = "light";
-        localStorage.setItem("theme", "light");
-      }
-    } else {
-      localStorage.setItem("theme", "auto");
-
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        document.documentElement.className = "dark";
-      } else {
-        document.documentElement.className = "";
-      }
-    }
-
-    vuex.dispatch("profile/changeTheme");
-
-    if (response?.data?.ongoingContribution) {
-      EndContribution();
-    }
-
-    console.log("first");
-  }
-};
-
-onMounted(async () => {
-  const lang =
-    window?.navigator?.language?.split("-")?.[0] === "en" ||
-    window?.navigator?.language?.split("-")?.[0] === "id"
-      ? window?.navigator?.language?.split("-")?.[0]
-      : "en";
-
-  if (cookies.get("auth")) {
-    vuex.dispatch("profile/setLoadingState");
-
-    await fetchProfile(lang);
-  }
-});
 
 const reload = () => {
   window.location.reload();

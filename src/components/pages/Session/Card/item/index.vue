@@ -75,7 +75,7 @@ const onInput = debounce(() => {
     <div
       class="p-[16px] text-white flex test justify-between gap-x-1 header w-full"
       :style="{
-        background: '#2A4B8D',
+        background: '#3056A9',
         alignItems: 'center',
       }"
       @mousedown="emit('onHold')"
@@ -89,7 +89,9 @@ const onInput = debounce(() => {
         }"
       >
         <CdxLabel class="text-[18px] pb-0"
-          >{{ props?.data?.lemma }} ({{ props?.data?.lexemeSenseId }})</CdxLabel
+          >{{ props?.data?.lemma }} ({{
+            props?.data?.externalLexemeSenseId
+          }})</CdxLabel
         >
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
 
@@ -186,7 +188,7 @@ const onInput = debounce(() => {
           :class="[
             value.id === selectedItem
               ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
-              : 'border border-[#A2A9B1] dark:border-[#72777D]',
+              : 'border border-[var(--border-color-base)] ',
             'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
@@ -259,7 +261,7 @@ const onInput = debounce(() => {
             :class="[
               value.id === selectedItem
                 ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
-                : 'border border-[#A2A9B1] dark:border-[#72777D]',
+                : 'border border-[var(--border-color-base)]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
             ]"
             @click="selectItem(value.id, value)"

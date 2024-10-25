@@ -1,9 +1,9 @@
 import api from "../config";
 
-export const GetCards = async (data) => {
+export const GetConnectCards = async (data) => {
   const response = await api();
 
-  return response.post("/contributions/start", { ...data });
+  return response.post("/contributions/connect/start", { ...data });
 };
 
 export const SearchEntity = async (params) => {
@@ -24,12 +24,14 @@ export const GetEntityDetail = async (entityId) => {
   return response.get(`/entites/${entityId}`);
 };
 
-export const UpdateCardDetail = async (data) => {
+export const UpdateConnectCardDetail = async (data) => {
   const response = await api();
-  return response.put(`/contributions/detail/${data.senseId}`, { ...data });
+  return response.put(`/contributions/connect/${data.senseId}`, {
+    ...data,
+  });
 };
 
-export const EndContribution = async () => {
+export const EndConnectContribution = async () => {
   const response = await api();
-  return response.post(`/contributions/end`);
+  return response.post(`/contributions/connect/end`);
 };
