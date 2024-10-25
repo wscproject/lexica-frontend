@@ -6,10 +6,11 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
-import { computed, ref, watch } from "vue";
+import { computed, ref, toRaw, watch } from "vue";
 import placeholder from "@/assets/placeholder.svg";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
+import dataku from "@/dummy/message.json";
 
 const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
@@ -23,7 +24,7 @@ const props = defineProps({
 const emit = defineEmits(["backtoItem, onHold, onRelease"]);
 
 const senses = computed(() => {
-  const data = props?.data?.senses?.map((item, idx) => {
+  const data = dataku?.data?.senses?.map((item, idx) => {
     const inside = Object.keys(item).map((key) => ({
       label: key,
       value: item[key],
@@ -35,13 +36,13 @@ const senses = computed(() => {
     };
   });
 
-  console.log(props?.data);
+  console.log(toRaw(data));
 
   return data;
 });
 
 watch(props, () => {
-  console.log(senses?.value);
+  console.log("asd", senses?.value);
 });
 </script>
 
@@ -110,23 +111,60 @@ watch(props, () => {
         </div>
       </div>
 
-      <div class="h-full">
-        <div v-for="sense in senses">
-          <div v-for="data in sense?.data?.filter((i) => i.value !== null)">
-            <div v-if="data.label === 'gloss'" class="pb-[var(--spacing-50)]">
+      <div class="h-full w-full">
+        <div v-for="sense in senses" class="pb-[4px] w-full">
+          <div
+            v-for="data in sense?.data?.filter((i) => i.value !== null)"
+            class="w-full"
+          >
+            <div
+              v-if="data.label === 'gloss'"
+              class="pb-[var(--spacing-50)] w-full"
+            >
               <span class="text-[var(--color-base)] font-[700]"
                 >Makna {{ sense.number }}: {{ data.value }}</span
               >
             </div>
+            <div
+              v-else-if="data.label === 'images'"
+              class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
+            >
+              <CdxThumbnail
+                :thumbnail="{ url: data?.value?.data?.[0]?.url }"
+                :placeholder-icon="cdxIconLogoWikidata"
+              />
+              <div>
+                <CdxLabel
+                  class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
+                  >{{ data.label }} ({{ data?.value?.property }})</CdxLabel
+                >
+                <p
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
+                >
+                  {{ data?.value?.data?.[0]?.value }}
+                </p>
+              </div>
+            </div>
 
             <div
               v-else
-              class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px]"
+              class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
             >
               <span class="text-[var(--color-base)] font-[700]"
                 >{{ data.label }} ({{ data?.value?.property }})</span
               >
-              <span class="text-[var(--color-base)] font-[700]"
+              <span
+                v-if="data.label === 'describedAtUrl'"
+                class="text-[var(--color-subtle)]"
+                >{{
+                  data?.value?.data
+                    ?.map((item) => {
+                      return `${item.value}`;
+                    })
+                    .join(", ")
+                }}
+              </span>
+              <span v-else class="text-[var(--color-subtle)]"
                 >{{
                   data?.value?.data
                     ?.map((item) => {

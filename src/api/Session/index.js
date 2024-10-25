@@ -42,6 +42,13 @@ export const UpdateConnectCardDetail = async (data) => {
   });
 };
 
+export const UpdateScriptCardDetail = async (data) => {
+  const response = await api();
+  return response.put(`/contributions/script/${data.senseId}`, {
+    ...data,
+  });
+};
+
 export const EndConnectContribution = async () => {
   const response = await api();
   return response.post(`/contributions/connect/end`);

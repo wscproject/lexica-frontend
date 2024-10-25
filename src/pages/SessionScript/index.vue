@@ -43,7 +43,7 @@ import {
   SearchEntity,
   GetLexemeDetail,
   GetEntityDetail,
-  UpdateConnectCardDetail,
+  UpdateScriptCardDetail,
   EndConnectContribution,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
@@ -313,7 +313,7 @@ watch(timeoutLoading, () => {
 });
 
 const updateDetail = async (data) => {
-  const response = await UpdateConnectCardDetail({
+  const response = await UpdateScriptCardDetail({
     senseId: data?.senseId,
     itemId: data?.itemId || "",
     action: data?.action || "",
