@@ -6,7 +6,7 @@ This repository contains the frontend code for Lexica, a tool designed to facili
 
 - Interactive card-based interface for linking Lexemes and Items.
 - Real-time search functionality to find matching Items.
-- User authentication and session management.
+- User authentication and session managements.
 
 ## Installation
 
