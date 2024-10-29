@@ -23,7 +23,7 @@ import { GetLexemeLanguage, GetActivities } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
 
-import { EndConnectContribution } from "@/api/Session";
+import { EndContribution } from "@/api/Session";
 
 const vuex = useStore();
 
@@ -100,7 +100,7 @@ const fetchProfile = async (lang) => {
     vuex.dispatch("profile/changeTheme");
 
     if (response?.data?.ongoingContribution) {
-      EndConnectContribution();
+      EndContribution();
     }
   }
 };

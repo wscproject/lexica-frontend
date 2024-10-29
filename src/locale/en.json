@@ -165,7 +165,7 @@
 
     "scriptWriting": {
       "title1": "Rewrite",
-      "title2": "in Javanese script (jx-x-Q879704)",
+      "title2": "in {lang}",
       "button": "Next",
       "placeholder": "Write here"
     },
@@ -206,6 +206,10 @@
       "button2": "Done",
       "empty": "No changes will be made",
       "reason": "Reason: Item not found"
+    },
+
+    "scriptPreview": {
+      "newStatement": "Lemma added {lang} ({code})"
     },
 
     "upload": "Uploading contribution...",

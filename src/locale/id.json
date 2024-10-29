@@ -156,7 +156,7 @@
 
     "scriptWriting": {
       "title1": "Tulis ulang",
-      "title2": "dalam aksara Jawa (jv-x-Q879704)",
+      "title2": "dalam {lang}",
       "button": "Selanjutnya",
       "placeholder": "Tulis disini"
     },
@@ -197,6 +197,10 @@
       "button2": "Selesai",
       "empty": "Tidak ada perubahan",
       "reason": "Alasan: Butir tidak ditemukan"
+    },
+
+    "scriptPreview": {
+      "newStatement": "Lema ditambahkan {lang} ({code})"
     },
 
     "upload": "Mengunggah kontribusi...",

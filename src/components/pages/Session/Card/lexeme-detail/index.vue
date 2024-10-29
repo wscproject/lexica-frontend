@@ -24,25 +24,20 @@ const props = defineProps({
 const emit = defineEmits(["backtoItem, onHold, onRelease"]);
 
 const senses = computed(() => {
-  const data = dataku?.data?.senses?.map((item, idx) => {
-    const inside = Object.keys(item).map((key) => ({
-      label: key,
-      value: item[key],
-    }));
+  const data =
+    props?.data?.senses?.map((item, idx) => {
+      const inside = Object.keys(item).map((key) => ({
+        label: key,
+        value: item[key],
+      }));
 
-    return {
-      number: idx + 1,
-      data: inside,
-    };
-  });
-
-  console.log(toRaw(data));
+      return {
+        number: idx + 1,
+        data: inside,
+      };
+    }) || [];
 
   return data;
-});
-
-watch(props, () => {
-  console.log("asd", senses?.value);
 });
 </script>
 
@@ -111,7 +106,7 @@ watch(props, () => {
         </div>
       </div>
 
-      <div class="h-full w-full">
+      <div class="h-full w-full" v-if="senses.length !== 0 && !props.isLoading">
         <div v-for="sense in senses" class="pb-[4px] w-full">
           <div
             v-for="data in sense?.data?.filter((i) => i.value !== null)"
@@ -177,14 +172,14 @@ watch(props, () => {
           </div>
         </div>
       </div>
-      <!-- <div
+      <div
         class="h-full flex justify-center items-center"
-        v-else-if="statements.length === 0 && !props.isLoading"
+        v-else-if="senses.length === 0 && !props.isLoading"
       >
         <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>
         </p>
-      </div> -->
+      </div>
     </div>
   </div>
 </template>

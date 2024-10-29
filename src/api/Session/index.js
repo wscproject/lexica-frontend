@@ -37,19 +37,19 @@ export const GetEntityDetail = async (entityId) => {
 
 export const UpdateConnectCardDetail = async (data) => {
   const response = await api();
-  return response.put(`/contributions/connect/${data.senseId}`, {
+  return response.put(`/contributions/connect/${data.contributionDetailId}`, {
     ...data,
   });
 };
 
 export const UpdateScriptCardDetail = async (data) => {
   const response = await api();
-  return response.put(`/contributions/script/${data.senseId}`, {
+  return response.put(`/contributions/script/${data.contributionDetailId}`, {
     ...data,
   });
 };
 
-export const EndConnectContribution = async () => {
+export const EndContribution = async () => {
   const response = await api();
-  return response.post(`/contributions/connect/end`);
+  return response.post(`/contributions/end`);
 };

@@ -7,7 +7,7 @@ import {
   CdxProgressBar,
   CdxThumbnail,
 } from "@wikimedia/codex";
-import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
+import { cdxIconInfoFilled } from "@wikimedia/codex-icons";
 import { computed, ref, toRaw, watch } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
@@ -22,22 +22,16 @@ const { t } = useI18n({ useScope: "global" });
 
 const scrollRef = ref(null);
 const textAreaRef = ref(null);
+const script = ref("");
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
-
-const isInfo = ref(false);
-const selectedItem = ref(null);
-const detailData = ref(null);
-
-const search = ref("");
-
-const isSearch = ref(false);
 
 const isScrollbar = ref(false);
 
 const emit = defineEmits([
-  "gotoDetail, gotoSubItemDetail, onHold, onRelease, gotoReview, selectItem, setSearch, loadMore",
+  "gotoDetail, onHold, onRelease, gotoReview, selectItem, setSearch, loadMore",
 ]);
+
 const props = defineProps({
   data: Object,
   recommendation: Array,
@@ -47,31 +41,6 @@ const props = defineProps({
   loadmoreLoading: Boolean,
   noLoadData: Boolean,
 });
-
-const recommendationSearch = ref([]);
-
-const setInfo = () => {
-  isInfo.value = !isInfo.value;
-};
-
-const selectItem = (n, value) => {
-  selectedItem.value = n;
-  detailData.value = value;
-  emit("selectItem");
-};
-
-const onInput = debounce(() => {
-  if (search.value === "") {
-    isSearch.value = false;
-    selectedItem.value = null;
-    emit("setSearch", search.value);
-
-    recommendationSearch.value = [];
-  } else {
-    isSearch.value = true;
-    emit("setSearch", search.value);
-  }
-}, 500);
 
 onMounted(() => {
   textAreaRef.value.textarea.focus();
@@ -88,6 +57,10 @@ watch(scrollRef, () => {
   } else {
     isScrollbar.value = false;
   }
+});
+
+watch(script, () => {
+  console.log(script.value);
 });
 </script>
 
@@ -106,7 +79,7 @@ watch(scrollRef, () => {
           minWidth: '200px',
         }"
       >
-        <CdxLabel class="text-[18px] pb-0">{{
+        <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)]">{{
           t("session.scriptWriting.title1")
         }}</CdxLabel>
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
@@ -119,7 +92,7 @@ watch(scrollRef, () => {
             ref="scrollRef"
             id="yes"
             :class="[
-              'overflow-auto h-[10vh] text-white text-[28px] w-full',
+              'overflow-auto h-[10vh] text-[var(--color-base)] text-[28px] w-full',
               !isScrollbar && 'flex items-center',
             ]"
             lang="de"
@@ -139,25 +112,32 @@ watch(scrollRef, () => {
           <div>
             <CdxIcon
               :icon="cdxIconInfoFilled"
-              class="text-white cursor-pointer"
+              class="cursor-pointer"
               @click.stop="(e) => emit('gotoDetail', e)"
             />
           </div>
         </div>
 
-        <div
-          class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px] dark:text-[#A2A9B1]"
-        >
-          <span>{{ props?.data?.gloss }}</span>
+        <div class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px]">
+          <span v-if="props?.data?.gloss" class="text-[var(--color-subtle)]">{{
+            props?.data?.gloss
+          }}</span>
+
+          <span v-else class="text-[var(--color-subtle)]"
+            ><i>{{ t("session.emptyDescription") }}</i></span
+          >
         </div>
       </div>
 
       <div class="relative p-[16px] bg-[#FFA758] h-full">
         <div class="pb-[16px] absolute top-[16px]">
-          <span class="text-[#361D13] text-[18px] font-[700]"
-            >dalam aksara {{ props?.data?.language?.title }} ({{
-              props?.data?.language?.languageVariant?.codePreview
-            }})</span
+          <span class="text-[#361D13] text-[18px] font-[700]">
+            {{
+              t("session.scriptWriting.title2", {
+                lang: props?.data?.language?.languageVariant?.title,
+              })
+            }}
+            ({{ props?.data?.language?.languageVariant?.codePreview }})</span
           >
         </div>
 
@@ -167,7 +147,9 @@ watch(scrollRef, () => {
           <CdxTextArea
             ref="textAreaRef"
             autofocus
+            :placeholder="t('session.scriptWriting.placeholder')"
             class="leading-[35px] text-[28px] textarea-script"
+            v-model="script"
           />
         </div>
       </div>
@@ -178,7 +160,8 @@ watch(scrollRef, () => {
           weight="primary"
           action="progressive"
           class="w-full"
-          @click="emit('gotoReview', detailData)"
+          :disabled="!script"
+          @click="emit('gotoReview', script)"
           >{{ t("session.main.button2") }}</CdxButton
         >
       </div>
@@ -194,6 +177,7 @@ watch(scrollRef, () => {
   min-height: 86px;
   max-height: 90px;
   overflow: auto;
+  border: none;
 }
 
 .textarea-script.cdx-text-area {

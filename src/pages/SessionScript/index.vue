@@ -3,7 +3,7 @@ import Card from "@/components/pages/Session/Card/index.vue";
 import CardItem from "@/components/pages/Session/Card/script-writing/index.vue";
 import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
 import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
-import CardReview from "@/components/pages/Session/Card/review/index.vue";
+import CardReview from "@/components/pages/Session/Card/script-review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
@@ -44,7 +44,7 @@ import {
   GetLexemeDetail,
   GetEntityDetail,
   UpdateScriptCardDetail,
-  EndConnectContribution,
+  EndContribution,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -110,6 +110,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
+const img = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -134,8 +135,8 @@ const nextCard = (isButton, id) => {
   setTimeout(async () => {
     splash.value = true;
 
-    onHideCard();
     setUndoWarn(id);
+    onHideCard();
 
     currMode.value = 1;
     flip.value = false;
@@ -151,11 +152,7 @@ const submitCard = async (item) => {
   submittingData.value = true;
   let action = "";
 
-  if (item?.itemId === "") {
-    action = "noItem";
-  } else {
-    action = "add";
-  }
+  action = "add";
 
   const response = await updateDetail({ ...item, action: action });
 
@@ -217,7 +214,7 @@ const reload = () => {
 
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
-    if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+    if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
       const userInput = await testing?.value?.openModal();
 
       if (!userInput) {
@@ -225,7 +222,7 @@ onBeforeRouteLeave(async (to, from) => {
       } else {
         skipAll.value = true;
 
-        const response = await EndConnectContribution();
+        const response = await EndContribution();
 
         if (response?.statusCode === 503) {
           isLoading.value = false;
@@ -245,14 +242,14 @@ onBeforeRouteLeave(async (to, from) => {
 });
 
 const endEarly = async () => {
-  if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+  if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
     const userInput = await testing?.value?.openModal();
 
     if (userInput) {
       skipAll.value = true;
       endLoading.value = true;
 
-      const response = await EndConnectContribution();
+      const response = await EndContribution();
 
       if (response?.statusCode === 200) {
         endLoading.value = false;
@@ -293,7 +290,13 @@ const setUndoWarn = async (id) => {
 
     if (progress.number === 100) {
       undoWarn.value = false;
-      await updateDetail({ senseId: id, action: "skip", itemId: "" });
+
+      if (currCount.value <= totalCount.value)
+        await updateDetail({
+          contributionDetailId: id,
+          action: "skip",
+          itemId: "",
+        });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -314,8 +317,8 @@ watch(timeoutLoading, () => {
 
 const updateDetail = async (data) => {
   const response = await UpdateScriptCardDetail({
-    senseId: data?.senseId,
-    itemId: data?.itemId || "",
+    contributionDetailId: data?.contributionDetailId,
+    lemma: data?.lemma || "",
     action: data?.action || "",
   });
 
@@ -414,9 +417,17 @@ const getDetail = async (id) => {
   if (response.statusCode === 200) {
     cardDetailLoading.value = false;
 
-    console.log(response?.data);
-
     cardDetailData.value = response?.data;
+  }
+};
+
+const getImage = async (id) => {
+  const response = await GetLexemeDetail(id);
+
+  if (response.statusCode === 200) {
+    img.value =
+      response?.data?.senses?.find((item) => !!item?.images?.data?.[0]?.url) ||
+      "";
   }
 };
 
@@ -463,7 +474,15 @@ const getCardsData = async (code) => {
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
       4;
+
+    getImage(
+      [...response.data.filter((item) => item.status === "pending")]?.[
+        totalCount.value - currCount.value
+      ]?.externalLexemeId
+    );
+
     isLoading.value = false;
+
     disableSplash();
   } else {
     if (response.statusCode === 503) {
@@ -482,8 +501,6 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
-  console.log(vuex.getters["profile/language"]);
-
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -497,8 +514,6 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        console.log("testing123");
-
         document.documentElement.className = "dark";
         document
           .querySelector('meta[name="theme-color"]')
@@ -512,8 +527,6 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      console.log("testing123");
-
       document.documentElement.className = "dark";
       document
         .querySelector('meta[name="theme-color"]')
@@ -546,11 +559,18 @@ watch(
   { immediate: true }
 );
 
+watch(currCount, async () => {
+  if (currCount?.value <= totalCount?.value)
+    getImage(
+      data?.value?.[totalCount.value - currCount.value]?.externalLexemeId
+    );
+});
+
 watch([currCount, undoWarn], async () => {
-  if (currCount.value > totalData.value && !undoWarn.value) {
+  if (currCount.value > totalCount.value && !undoWarn.value) {
     endLoading.value = true;
 
-    const response = await EndConnectContribution();
+    const response = await EndContribution();
 
     if (response?.statusCode === 200) {
       endLoading.value = false;
@@ -567,48 +587,6 @@ watch([currCount, undoWarn], async () => {
     }
   }
 });
-
-watch([currCount, data], async () => {
-  recommendedLoading.value = true;
-
-  const response = await SearchEntity({
-    ...params,
-    page: 1,
-    keyword:
-      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
-        /[a-zA-Z]+/
-      )?.[0],
-  });
-
-  if (response?.statusCode) {
-    recommendedLoading.value = false;
-
-    entities.value = [...response?.data?.entities];
-  } else {
-    if (response.statusCode === 503) {
-      isLoading.value = false;
-      noInternet.value = true;
-    }
-  }
-});
-
-watch(
-  () => ({ ...params }),
-  async (newParams, oldParams) => {
-    noLoad.value = false;
-
-    if (newParams.page > 1) {
-      loadmoreLoading.value = true;
-    }
-
-    if (oldParams.keyword !== newParams.keyword) {
-      entities.value = [];
-      searchLoading.value = true;
-    }
-
-    await searchData();
-  }
-);
 </script>
 
 <template>
@@ -776,7 +754,7 @@ watch(
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.externalLexemeSenseId)"
+            @hideCard="nextCard(false, value?.id)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -868,6 +846,7 @@ watch(
               <CardReview
                 :data="value"
                 :detail="detail"
+                :img="img"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="
@@ -936,8 +915,11 @@ watch(
           @click="
             nextCard(
               true,
-              data?.find((item) => item.order === 6 - currCount)
-                ?.externalLexemeSenseId
+              data?.find((item) => {
+                console.log(currCount);
+
+                return item.order === totalCount + 1 - currCount;
+              })?.id
             )
           "
           :disabled="

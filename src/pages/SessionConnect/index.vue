@@ -44,7 +44,7 @@ import {
   GetCardDetail,
   GetEntityDetail,
   UpdateConnectCardDetail,
-  EndConnectContribution,
+  EndContribution,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -110,6 +110,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
+const img = ref("");
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -217,7 +218,7 @@ const reload = () => {
 
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
-    if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+    if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
       const userInput = await testing?.value?.openModal();
 
       if (!userInput) {
@@ -225,7 +226,7 @@ onBeforeRouteLeave(async (to, from) => {
       } else {
         skipAll.value = true;
 
-        const response = await EndConnectContribution();
+        const response = await EndContribution();
 
         if (response?.statusCode === 503) {
           isLoading.value = false;
@@ -245,14 +246,14 @@ onBeforeRouteLeave(async (to, from) => {
 });
 
 const endEarly = async () => {
-  if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+  if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
     const userInput = await testing?.value?.openModal();
 
     if (userInput) {
       skipAll.value = true;
       endLoading.value = true;
 
-      const response = await EndConnectContribution();
+      const response = await EndContribution();
 
       if (response?.statusCode === 200) {
         endLoading.value = false;
@@ -293,7 +294,11 @@ const setUndoWarn = async (id) => {
 
     if (progress.number === 100) {
       undoWarn.value = false;
-      await updateDetail({ senseId: id, action: "skip", itemId: "" });
+      await updateDetail({
+        contributionDetailId: id,
+        action: "skip",
+        itemId: "",
+      });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -314,7 +319,7 @@ watch(timeoutLoading, () => {
 
 const updateDetail = async (data) => {
   const response = await UpdateConnectCardDetail({
-    senseId: data?.senseId,
+    contributionDetailId: data?.contributionDetailId,
     itemId: data?.itemId || "",
     action: data?.action || "",
   });
@@ -460,6 +465,12 @@ const getCardsData = async (code) => {
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
       4;
+
+    getImage(
+      [...response.data.filter((item) => item.status === "pending")]?.[
+        totalCount.value - currCount.value
+      ]?.externalLexemeSenseId
+    );
     isLoading.value = false;
     disableSplash();
   } else {
@@ -475,6 +486,17 @@ const getCardsData = async (code) => {
         code: response?.response?.status,
       };
     }
+  }
+};
+
+const getImage = async (id) => {
+  const response = await GetCardDetail(id);
+
+  if (response.statusCode === 200) {
+    img.value =
+      response?.data?.statements?.find(
+        (item) => !!item?.images?.data?.[0]?.url
+      ) || "";
   }
 };
 
@@ -544,10 +566,10 @@ watch(
 );
 
 watch([currCount, undoWarn], async () => {
-  if (currCount.value > totalData.value && !undoWarn.value) {
+  if (currCount.value > totalCount.value && !undoWarn.value) {
     endLoading.value = true;
 
-    const response = await EndConnectContribution();
+    const response = await EndContribution();
 
     if (response?.statusCode === 200) {
       endLoading.value = false;
@@ -587,6 +609,13 @@ watch([currCount, data], async () => {
       noInternet.value = true;
     }
   }
+});
+
+watch(currCount, async () => {
+  if (currCount?.value <= totalCount?.value)
+    getImage(
+      data?.value?.[totalCount.value - currCount.value]?.externalLexemeSenseId
+    );
 });
 
 watch(
@@ -773,7 +802,7 @@ watch(
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.externalLexemeSenseId)"
+            @hideCard="nextCard(false, value?.id)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -865,6 +894,7 @@ watch(
               <CardReview
                 :data="value"
                 :detail="detail"
+                :img="img"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="
@@ -933,8 +963,8 @@ watch(
           @click="
             nextCard(
               true,
-              data?.find((item) => item.order === 6 - currCount)
-                ?.externalLexemeSenseId
+              data?.find((item) => item.order === totalCount + 1 - currCount)
+                ?.id
             )
           "
           :disabled="
