@@ -73,7 +73,7 @@ watch(script, () => {
     <div
       class="bg-white px-[16px] dark:bg-[#101418] h-full flex flex-col justify-between"
     >
-      <div class="py-[16px]">
+      <div class="py-[16px] header">
         <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)]">{{
           t("session.scriptWriting.title1")
         }}</CdxLabel>
