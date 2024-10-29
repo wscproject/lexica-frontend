@@ -43,7 +43,9 @@ const props = defineProps({
 });
 
 onMounted(() => {
-  textAreaRef.value.textarea.focus();
+  setTimeout(() => {
+    textAreaRef.value.textarea.focus();
+  }, 1500);
 });
 
 // watch(textareaREf);
@@ -69,104 +71,91 @@ watch(script, () => {
     class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div
-      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full bg-white dark:bg-[#101418]"
-      :style="{
-        alignItems: 'center',
-      }"
+      class="bg-white px-[16px] dark:bg-[#101418] h-full flex flex-col justify-between"
     >
-      <div
-        :style="{
-          minWidth: '200px',
-        }"
-      >
+      <div class="py-[16px]">
         <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)]">{{
           t("session.scriptWriting.title1")
         }}</CdxLabel>
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
       </div>
-    </div>
-    <div class="flex flex-col h-full">
-      <div class="bg-white px-[16px] dark:bg-[#101418] h-fit">
-        <div class="flex align-center gap-x-[16px] justify-between">
-          <div
-            ref="scrollRef"
-            id="yes"
-            :class="[
-              'overflow-auto h-[10vh] text-[var(--color-base)] text-[28px] w-full',
-              !isScrollbar && 'flex items-center',
-            ]"
-            lang="de"
-            style="
-              -webkit-hyphens: auto;
-              -moz-hyphens: auto;
-              -ms-hyphens: auto;
-              hyphens: auto;
-              word-wrap: break-word;
-              width: 100%;
-            "
-          >
-            <p>
-              {{ props?.data?.lemma }}
-            </p>
-          </div>
-          <div>
-            <CdxIcon
-              :icon="cdxIconInfoFilled"
-              class="cursor-pointer"
-              @click.stop="(e) => emit('gotoDetail', e)"
-            />
-          </div>
-        </div>
-
-        <div class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px]">
-          <span
-            v-if="props?.data?.gloss"
-            class="text-[var(--color-subtle)] elipsis"
-            >{{ props?.data?.gloss }}</span
-          >
-
-          <span v-else class="text-[var(--color-subtle)]"
-            ><i>{{ t("session.emptyDescription") }}</i></span
-          >
-        </div>
-      </div>
-
-      <div class="relative p-[16px] bg-[#FFA758] h-full">
-        <div class="pb-[16px] absolute top-[16px]">
-          <span class="text-[#361D13] text-[18px] font-[700]">
-            {{
-              t("session.scriptWriting.title2", {
-                lang: props?.data?.language?.languageVariant?.title,
-              })
-            }}
-            ({{ props?.data?.language?.languageVariant?.codePreview }})</span
-          >
-        </div>
-
+      <div class="flex align-center gap-x-[16px] justify-between">
         <div
-          class="h-full flex items-center justify-start pt-[43px] pb-[66px] max-[368px]:pb-[30px]"
+          ref="scrollRef"
+          id="yes"
+          :class="[
+            'overflow-auto h-[10vh] text-[var(--color-base)] text-[28px] w-full ',
+            !isScrollbar && 'flex items-center',
+          ]"
+          lang="de"
+          style="
+            -webkit-hyphens: auto;
+            -moz-hyphens: auto;
+            -ms-hyphens: auto;
+            hyphens: auto;
+            word-wrap: break-word;
+            width: 100%;
+          "
         >
-          <CdxTextArea
-            ref="textAreaRef"
-            autofocus
-            :placeholder="t('session.scriptWriting.placeholder')"
-            class="leading-[35px] text-[28px] textarea-script"
-            v-model="script"
+          <p>
+            {{ props?.data?.lemma }}
+          </p>
+        </div>
+        <div>
+          <CdxIcon
+            :icon="cdxIconInfoFilled"
+            class="cursor-pointer"
+            @click.stop="(e) => emit('gotoDetail', e)"
           />
         </div>
       </div>
-      <div
-        class="w-full absolute bottom-0 left-0 h-[66px] px-[16px] bg-[#FFA758] flex items-center"
-      >
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full"
-          :disabled="!script"
-          @click="emit('gotoReview', script)"
-          >{{ t("session.main.button2") }}</CdxButton
+
+      <div class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px]">
+        <span
+          v-if="props?.data?.gloss"
+          class="text-[var(--color-subtle)] elipsis"
+          >{{ props?.data?.gloss }}</span
+        >
+
+        <span v-else class="text-[var(--color-subtle)]"
+          ><i>{{ t("session.emptyDescription") }}</i></span
         >
       </div>
+    </div>
+
+    <div class="relative px-[16px] bg-[#FFA758] h-full flex flex-col">
+      <div class="py-[16px] top-[16px]">
+        <span class="text-[#361D13] text-[18px] font-[700]">
+          {{
+            t("session.scriptWriting.title2", {
+              lang: props?.data?.language?.languageVariant?.title,
+            })
+          }}
+          ({{ props?.data?.language?.languageVariant?.codePreview }})</span
+        >
+      </div>
+
+      <div class="relative flex items-center justify-start grow">
+        <CdxTextArea
+          ref="textAreaRef"
+          autofocus
+          :placeholder="t('session.scriptWriting.placeholder')"
+          class="leading-[35px] text-[28px] textarea-script"
+          v-model="script"
+        />
+      </div>
+    </div>
+    <div
+      class="w-full bottom-0 left-0 h-[66px] p-[16px] bg-[#FFA758] flex items-center"
+    >
+      <CdxButton
+        weight="primary"
+        action="progressive"
+        class="w-full"
+        :disabled="!script"
+        @click="emit('gotoReview', script)"
+        >{{ t("session.main.button2") }}</CdxButton
+      >
     </div>
   </div>
 </template>
@@ -183,14 +172,18 @@ watch(script, () => {
   background-color: #ffa758 !important;
   color: #361d13 !important;
   resize: none;
-  min-height: 86px;
-  max-height: 90px;
+  min-height: 0 !important;
+  flex: 1;
+  max-height: 128px;
+  height: auto;
   overflow: auto;
   border: none;
 }
 
+.textarea-script .cdx-text-area__textarea:enabled {
+}
+
 .textarea-script.cdx-text-area {
-  height: 100%;
   width: 100%;
 
   /* temporary */
@@ -215,8 +208,14 @@ watch(script, () => {
 .script .cdx-text-area__textarea {
   resize: none;
   height: 100%;
-  max-height: 183px;
   font-size: 28px;
+}
+
+@media (max-height: 575px) {
+  .textarea-script .cdx-text-area__textarea:enabled {
+    font-size: 16px !important ;
+    height: 30px;
+  }
 }
 
 @media (max-height: 600px) {
