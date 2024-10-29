@@ -73,14 +73,13 @@ watch(props, () => {
                 'border-[var(--border-color-progressive)]',
               selectedType !== activity.type &&
                 'border-[var(--border-color-subtle)]',
-              'w-[40px] h-[40px] border rounded-[2px]  shrink-0',
+              'w-[40px] h-[40px] border rounded-[2px] overflow-hidden shrink-0',
             ]"
           >
             <img
               v-if="selectedType !== activity.type"
               :src="activity.imageUrl"
               :alt="activity.type"
-              class="overflow-hidden"
             />
             <img
               v-else
