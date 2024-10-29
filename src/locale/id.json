@@ -200,7 +200,7 @@
     },
 
     "scriptPreview": {
-      "newStatement": "Lema ditambahkan {lang} ({code})"
+      "newStatement": "Lema ditambahkan: {lang} ({code})"
     },
 
     "upload": "Mengunggah kontribusi...",

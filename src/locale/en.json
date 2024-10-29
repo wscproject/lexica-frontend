@@ -209,7 +209,7 @@
     },
 
     "scriptPreview": {
-      "newStatement": "Lemma added {lang} ({code})"
+      "newStatement": "Lemma added: {lang} ({code})"
     },
 
     "upload": "Uploading contribution...",
