@@ -135,7 +135,10 @@ watch(script, () => {
         >
       </div>
 
-      <div class="relative flex items-center justify-start grow">
+      <div
+        class="relative flex items-center justify-start grow"
+        :dir="props?.data?.language?.languageVariant?.isRtl ? 'rtl' : 'ltr'"
+      >
         <CdxTextArea
           ref="textAreaRef"
           autofocus
