@@ -119,9 +119,11 @@ watch(script, () => {
         </div>
 
         <div class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px]">
-          <span v-if="props?.data?.gloss" class="text-[var(--color-subtle)]">{{
-            props?.data?.gloss
-          }}</span>
+          <span
+            v-if="props?.data?.gloss"
+            class="text-[var(--color-subtle)] elipsis"
+            >{{ props?.data?.gloss }}</span
+          >
 
           <span v-else class="text-[var(--color-subtle)]"
             ><i>{{ t("session.emptyDescription") }}</i></span
@@ -170,6 +172,13 @@ watch(script, () => {
 </template>
 
 <style>
+.elipsis {
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
 .textarea-script .cdx-text-area__textarea:enabled {
   background-color: #ffa758 !important;
   color: #361d13 !important;
