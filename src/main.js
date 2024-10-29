@@ -5,7 +5,9 @@ import "./style.css";
 import Home from "./pages/Home/index.vue";
 import About from "./pages/About/index.vue";
 import Guide from "./pages/Guide/index.vue";
-import Session from "./pages/Session/index.vue";
+import SessionConnect from "./pages/SessionConnect/index.vue";
+import SessionScript from "./pages/SessionScript/index.vue";
+
 import Success from "./pages/Success/index.vue";
 import Privacy from "./pages/Privacy/index.vue";
 import License from "./pages/License/index.vue";
@@ -83,9 +85,20 @@ const routes = [
     },
   },
   {
-    path: "/session",
-    name: "session",
-    component: Session,
+    path: "/session-connect",
+    name: "session-connect",
+    component: SessionConnect,
+    meta: { layout: SessionLayout },
+    beforeEnter: (to, from) => {
+      if (!cookies("auth")) {
+        return "/";
+      }
+    },
+  },
+  {
+    path: "/session-script",
+    name: "session-script",
+    component: SessionScript,
     meta: { layout: SessionLayout },
     beforeEnter: (to, from) => {
       if (!cookies("auth")) {

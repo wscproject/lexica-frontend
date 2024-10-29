@@ -23,7 +23,7 @@ import { GetLexemeLanguage, GetActivities } from "@/api/Home";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
 
-import { EndConnectContribution } from "@/api/Session";
+import { EndContribution } from "@/api/Session";
 
 const vuex = useStore();
 
@@ -100,7 +100,7 @@ const fetchProfile = async (lang) => {
     vuex.dispatch("profile/changeTheme");
 
     if (response?.data?.ongoingContribution) {
-      EndConnectContribution();
+      EndContribution();
     }
   }
 };
@@ -168,7 +168,12 @@ const gotoSession = async () => {
     ...vuex.getters["profile/allData"],
     languageCode: selectedLang?.value?.value || "",
   });
-  await router.push("/session");
+
+  if (selectedAct.value === "connect") {
+    await router.push("/session-connect");
+  } else {
+    await router.push("/session-script");
+  }
 };
 
 // watch(store, () => {
