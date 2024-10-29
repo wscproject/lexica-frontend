@@ -74,7 +74,7 @@ watch(script, () => {
       class="bg-white px-[16px] dark:bg-[#101418] h-full flex flex-col justify-between"
     >
       <div class="py-[16px] header">
-        <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)]">{{
+        <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)] header">{{
           t("session.scriptWriting.title1")
         }}</CdxLabel>
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
