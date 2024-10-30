@@ -8,7 +8,7 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled } from "@wikimedia/codex-icons";
-import { computed, ref, toRaw, watch } from "vue";
+import { computed, ref, toRaw, toRef, watch } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
 import noData from "@/assets/endofresult.svg";
@@ -40,9 +40,12 @@ const props = defineProps({
   recommendedLoading: Boolean,
   loadmoreLoading: Boolean,
   noLoadData: Boolean,
+  currCount: Number,
 });
 
-onMounted(() => {
+const changing = toRef(props, "currCount");
+
+watch(changing, () => {
   setTimeout(() => {
     textAreaRef.value.textarea.focus();
   }, 1500);

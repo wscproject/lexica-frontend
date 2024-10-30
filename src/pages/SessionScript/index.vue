@@ -809,6 +809,7 @@ watch([currCount, undoWarn], async () => {
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
+                :currCount="currCount"
                 @gotoDetail="
                   test1(value?.externalLexemeId, {
                     category: value?.category,
