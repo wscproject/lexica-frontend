@@ -1,10 +1,16 @@
 <script setup>
 import { CdxLabel, CdxButton } from "@wikimedia/codex";
 import error from "@/assets/error.svg";
+import errordark from "@/assets/errordark.svg";
+
 import { useI18n } from "vue-i18n";
+import { useStore } from "vuex";
 
 const { t } = useI18n({ useScope: "global" });
 const emit = defineEmits(["back"]);
+const vuex = useStore();
+
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 </script>
 
 <template>
@@ -13,7 +19,8 @@ const emit = defineEmits(["back"]);
   >
     <div class="w-full text-center">
       <div class="w-full flex justify-center pb-[16px]">
-        <img :src="error" alt="home" />
+        <img v-if="!isThemeDark" :src="error" alt="home" />
+        <img v-if="isThemeDark" :src="errordark" alt="home" />
       </div>
 
       <CdxLabel class="pb-[16px] text-[18px] dark:text-[#EAECF0]">{{

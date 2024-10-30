@@ -29,6 +29,7 @@ import SkipIcon from "@/components/icons/skip/index.vue";
 import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
 
 import error from "/src/assets/error.svg";
+import errordark from "@/assets/errordark.svg";
 
 import blank from "@/assets/blank_icon.svg";
 import blankdark from "@/assets/blank_icon_dark.svg";
@@ -617,7 +618,8 @@ watch([currCount, undoWarn], async () => {
         class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
       >
         <div class="w-full flex justify-center pb-[16px]">
-          <img :src="error" alt="error" />
+          <img v-if="!isThemeDark" :src="error" alt="home" />
+          <img v-if="isThemeDark" :src="errordark" alt="home" />
         </div>
         <CdxLabel class="text-[16px] p-0">{{
           t("session.noInternet.title")
