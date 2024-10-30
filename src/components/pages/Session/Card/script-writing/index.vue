@@ -45,6 +45,12 @@ const props = defineProps({
 
 const changing = toRef(props, "currCount");
 
+onMounted(() => {
+  setTimeout(() => {
+    textAreaRef.value.textarea.focus();
+  }, 1500);
+});
+
 watch(changing, () => {
   setTimeout(() => {
     textAreaRef.value.textarea.focus();
