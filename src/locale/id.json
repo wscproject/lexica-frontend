@@ -172,7 +172,8 @@
       "locationOfSenseUsage": "lokasi penggunaan makna",
       "languageStyle": "gaya bahasa",
       "describedAtUrl": "dijelaskan di URL",
-      "translation": "translation"
+      "translation": "translation",
+      "sense": "Makna"
     },
 
     "item": {

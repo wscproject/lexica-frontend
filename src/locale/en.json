@@ -181,7 +181,8 @@
       "locationOfSenseUsage": "location of sense usage",
       "languageStyle": "language style",
       "describedAtUrl": "described at URL",
-      "translation": "Translation"
+      "translation": "Translation",
+      "sense": "Sense"
     },
 
     "item": {

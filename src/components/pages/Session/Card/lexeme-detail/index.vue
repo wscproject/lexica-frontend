@@ -117,7 +117,8 @@ const senses = computed(() => {
               class="pb-[var(--spacing-50)] w-full"
             >
               <span class="text-[var(--color-base)] font-[700]"
-                >Makna {{ sense.number }}: {{ data.value }}</span
+                >{{ t("session.detail.sense") }} {{ sense.number }}:
+                {{ data.value }}</span
               >
             </div>
             <div
