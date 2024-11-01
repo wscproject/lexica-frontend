@@ -73,7 +73,7 @@ watch(props, () => {
                 'border-[var(--border-color-progressive)]',
               selectedType !== activity.type &&
                 'border-[var(--border-color-subtle)]',
-              'w-[40px] h-[40px] border  rounded-[2px] overflow-hidden shrink-0',
+              'w-[40px] h-[40px] border rounded-[2px] overflow-hidden shrink-0',
             ]"
           >
             <img
@@ -81,7 +81,12 @@ watch(props, () => {
               :src="activity.imageUrl"
               :alt="activity.type"
             />
-            <img v-else :src="SelectedImage" alt="selected" />
+            <img
+              v-else
+              :src="SelectedImage"
+              alt="selected"
+              class="overflow-hidden"
+            />
           </div>
           <div>
             <p

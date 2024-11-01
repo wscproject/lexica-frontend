@@ -154,6 +154,13 @@
       "emptyLoad": "Anda telah mencapai akhir dari hasil pencarian"
     },
 
+    "scriptWriting": {
+      "title1": "Tulis ulang",
+      "title2": "dalam {lang}",
+      "button": "Selanjutnya",
+      "placeholder": "Tulis disini"
+    },
+
     "detail": {
       "lexeme": "leksem",
       "statements": "Pernyataan",
@@ -165,7 +172,8 @@
       "locationOfSenseUsage": "lokasi penggunaan makna",
       "languageStyle": "gaya bahasa",
       "describedAtUrl": "dijelaskan di URL",
-      "translation": "translation"
+      "translation": "translation",
+      "sense": "Makna"
     },
 
     "item": {
@@ -190,6 +198,10 @@
       "button2": "Selesai",
       "empty": "Tidak ada perubahan",
       "reason": "Alasan: Butir tidak ditemukan"
+    },
+
+    "scriptPreview": {
+      "newStatement": "Lema ditambahkan: {lang} ({code})"
     },
 
     "upload": "Mengunggah kontribusi...",

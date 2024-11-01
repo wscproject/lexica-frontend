@@ -65,22 +65,22 @@ const props = defineProps({
 
           <CdxThumbnail
             :thumbnail="{
-              url: props?.img || wikimedia,
+              url: props.img || wikimedia,
             }"
-            :class="[!props?.img && 'custom-thumbnail']"
+            :class="[!img && 'custom-thumbnail']"
           />
 
           <div>
             <CdxLabel
               class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
               >{{ props?.data?.lemma }} ({{
-                props?.data?.externalLexemeSenseId
+                props?.data?.externalLexemeId
               }})</CdxLabel
             >
             <p
               class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
             >
-              {{ props?.data?.gloss || t("session.emptyDescription") }}
+              <i>{{ props?.data?.gloss || t("session.emptyDescription") }}</i>
             </p>
           </div>
         </div>
@@ -89,73 +89,25 @@ const props = defineProps({
       <div class="flex justify-center">
         <div class="arrow dark:border-b-[#27292D]"></div>
       </div>
-      <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]" v-if="props?.detail">
+      <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]">
         <div class="flex gap-x-2 items-start">
           <img :src="isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
-          <CdxLabel
-            class="text-[16px] dark:text-[#EAECF0]"
-            style="padding-bottom: 16px"
-          >
-            <I18nT
-              keypath="session.preview.newStatement"
-              tag="p"
-              class="p-0 text-[16px] dark:text-[#EAECF0] font-bold"
+          <div class="">
+            <CdxLabel
+              class="text-[16px] dark:text-[#EAECF0] pb-0"
+              style="padding-bottom: 16px"
             >
-              <template #statement>
-                <span>{{ t("session.preview.statement") }} (P5137)</span>
-              </template>
-            </I18nT>
-          </CdxLabel>
-        </div>
-        <div
-          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] bg-white dark:bg-[#101418]"
-        >
-          <div class="flex gap-x-[12px]">
-            <!-- <div
-              class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
-            >
-              <img
-                :src="props?.detail?.image || placeholder"
-                class="object-cover w-full h-full"
-              />
-            </div> -->
-            <CdxThumbnail
-              :thumbnail="{ url: props?.detail?.image }"
-              :placeholder-icon="cdxIconLogoWikidata"
-            />
+              {{
+                t("session.scriptPreview.newStatement", {
+                  lang: props.data?.language?.languageVariant?.title,
+                  code: props.data?.language?.languageVariant?.codePreview,
+                })
+              }}
+            </CdxLabel>
 
-            <div>
-              <CdxLabel
-                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
-                >{{ props?.detail?.label }} ({{ props?.detail?.id }})</CdxLabel
-              >
-              <p
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
-              >
-                <i>
-                  {{
-                    props?.detail?.description || t("session.emptyDescription")
-                  }}
-                </i>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]"
-        v-if="!props?.detail"
-      >
-        <div class="flex gap-x-2">
-          <CdxIcon :icon="cdxIconInfoFilled" />
-          <div>
-            <CdxLabel class="text-[16px] dark:text-[#EAECF0] p-0">{{
-              t("session.preview.empty")
-            }}</CdxLabel>
-            <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1] pt-[5px]">
-              <i>{{ t("session.preview.reason") }}</i>
-            </p>
+            <span class="text-[16px] text-[var(--color-subtle)]">{{
+              props.detail
+            }}</span>
           </div>
         </div>
       </div>
@@ -173,7 +125,7 @@ const props = defineProps({
         @click="
           emit('onDone', {
             contributionDetailId: props?.data?.id,
-            itemId: props?.detail?.id || '',
+            lemma: props?.detail || '',
           })
         "
         >{{ t("session.preview.button2") }}</CdxButton

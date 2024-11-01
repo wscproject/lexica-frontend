@@ -1,9 +1,9 @@
 <script setup>
 import Card from "@/components/pages/Session/Card/index.vue";
-import CardItem from "@/components/pages/Session/Card/item/index.vue";
-import CardItemDetail from "@/components/pages/Session/Card/detail/index.vue";
+import CardItem from "@/components/pages/Session/Card/script-writing/index.vue";
+import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
 import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
-import CardReview from "@/components/pages/Session/Card/review/index.vue";
+import CardReview from "@/components/pages/Session/Card/script-review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
@@ -29,6 +29,7 @@ import SkipIcon from "@/components/icons/skip/index.vue";
 import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
 
 import error from "/src/assets/error.svg";
+import errordark from "@/assets/errordark.svg";
 
 import blank from "@/assets/blank_icon.svg";
 import blankdark from "@/assets/blank_icon_dark.svg";
@@ -39,12 +40,12 @@ import happy from "@/assets/happy.svg";
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
-  GetConnectCards,
+  GetScriptCards,
   SearchEntity,
-  GetCardDetail,
+  GetLexemeDetail,
   GetEntityDetail,
-  UpdateConnectCardDetail,
-  EndConnectContribution,
+  UpdateScriptCardDetail,
+  EndContribution,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -110,6 +111,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
+const img = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -134,8 +136,8 @@ const nextCard = (isButton, id) => {
   setTimeout(async () => {
     splash.value = true;
 
-    onHideCard();
     setUndoWarn(id);
+    onHideCard();
 
     currMode.value = 1;
     flip.value = false;
@@ -151,11 +153,7 @@ const submitCard = async (item) => {
   submittingData.value = true;
   let action = "";
 
-  if (item?.itemId === "") {
-    action = "noItem";
-  } else {
-    action = "add";
-  }
+  action = "add";
 
   const response = await updateDetail({ ...item, action: action });
 
@@ -217,7 +215,7 @@ const reload = () => {
 
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
-    if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+    if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
       const userInput = await testing?.value?.openModal();
 
       if (!userInput) {
@@ -225,7 +223,7 @@ onBeforeRouteLeave(async (to, from) => {
       } else {
         skipAll.value = true;
 
-        const response = await EndConnectContribution();
+        const response = await EndContribution();
 
         if (response?.statusCode === 503) {
           isLoading.value = false;
@@ -245,14 +243,14 @@ onBeforeRouteLeave(async (to, from) => {
 });
 
 const endEarly = async () => {
-  if (currCount.value > 1 && currCount.value < totalData.value + 1) {
+  if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
     const userInput = await testing?.value?.openModal();
 
     if (userInput) {
       skipAll.value = true;
       endLoading.value = true;
 
-      const response = await EndConnectContribution();
+      const response = await EndContribution();
 
       if (response?.statusCode === 200) {
         endLoading.value = false;
@@ -293,7 +291,13 @@ const setUndoWarn = async (id) => {
 
     if (progress.number === 100) {
       undoWarn.value = false;
-      await updateDetail({ senseId: id, action: "skip", itemId: "" });
+
+      if (currCount.value <= totalCount.value)
+        await updateDetail({
+          contributionDetailId: id,
+          action: "skip",
+          itemId: "",
+        });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -313,9 +317,9 @@ watch(timeoutLoading, () => {
 });
 
 const updateDetail = async (data) => {
-  const response = await UpdateConnectCardDetail({
-    senseId: data?.senseId,
-    itemId: data?.itemId || "",
+  const response = await UpdateScriptCardDetail({
+    contributionDetailId: data?.contributionDetailId,
+    lemma: data?.lemma || "",
     action: data?.action || "",
   });
 
@@ -409,11 +413,22 @@ const searchData = async () => {
 const getDetail = async (id) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
-  const response = await GetCardDetail(id);
+  const response = await GetLexemeDetail(id);
 
   if (response.statusCode === 200) {
     cardDetailLoading.value = false;
+
     cardDetailData.value = response?.data;
+  }
+};
+
+const getImage = async (id) => {
+  const response = await GetLexemeDetail(id);
+
+  if (response.statusCode === 200) {
+    img.value =
+      response?.data?.senses?.find((item) => !!item?.images?.data?.[0]?.url) ||
+      "";
   }
 };
 
@@ -445,7 +460,7 @@ const getProfile = async () => {
 
 const getCardsData = async (code) => {
   isLoading.value = true;
-  const response = await GetConnectCards({
+  const response = await GetScriptCards({
     languageCode: code ? code : vuex.getters["profile/language"],
   });
 
@@ -460,7 +475,15 @@ const getCardsData = async (code) => {
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
       4;
+
+    getImage(
+      [...response.data.filter((item) => item.status === "pending")]?.[
+        totalCount.value - currCount.value
+      ]?.externalLexemeId
+    );
+
     isLoading.value = false;
+
     disableSplash();
   } else {
     if (response.statusCode === 503) {
@@ -479,8 +502,6 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
-  console.log(vuex.getters["profile/language"]);
-
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -494,8 +515,6 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        console.log("testing123");
-
         document.documentElement.className = "dark";
         document
           .querySelector('meta[name="theme-color"]')
@@ -509,8 +528,6 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      console.log("testing123");
-
       document.documentElement.className = "dark";
       document
         .querySelector('meta[name="theme-color"]')
@@ -543,11 +560,18 @@ watch(
   { immediate: true }
 );
 
+watch(currCount, async () => {
+  if (currCount?.value <= totalCount?.value)
+    getImage(
+      data?.value?.[totalCount.value - currCount.value]?.externalLexemeId
+    );
+});
+
 watch([currCount, undoWarn], async () => {
-  if (currCount.value > totalData.value && !undoWarn.value) {
+  if (currCount.value > totalCount.value && !undoWarn.value) {
     endLoading.value = true;
 
-    const response = await EndConnectContribution();
+    const response = await EndContribution();
 
     if (response?.statusCode === 200) {
       endLoading.value = false;
@@ -564,48 +588,6 @@ watch([currCount, undoWarn], async () => {
     }
   }
 });
-
-watch([currCount, data], async () => {
-  recommendedLoading.value = true;
-
-  const response = await SearchEntity({
-    ...params,
-    page: 1,
-    keyword:
-      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
-        /[a-zA-Z]+/
-      )?.[0],
-  });
-
-  if (response?.statusCode) {
-    recommendedLoading.value = false;
-
-    entities.value = [...response?.data?.entities];
-  } else {
-    if (response.statusCode === 503) {
-      isLoading.value = false;
-      noInternet.value = true;
-    }
-  }
-});
-
-watch(
-  () => ({ ...params }),
-  async (newParams, oldParams) => {
-    noLoad.value = false;
-
-    if (newParams.page > 1) {
-      loadmoreLoading.value = true;
-    }
-
-    if (oldParams.keyword !== newParams.keyword) {
-      entities.value = [];
-      searchLoading.value = true;
-    }
-
-    await searchData();
-  }
-);
 </script>
 
 <template>
@@ -636,7 +618,8 @@ watch(
         class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
       >
         <div class="w-full flex justify-center pb-[16px]">
-          <img :src="error" alt="error" />
+          <img v-if="!isThemeDark" :src="error" alt="home" />
+          <img v-if="isThemeDark" :src="errordark" alt="home" />
         </div>
         <CdxLabel class="text-[16px] p-0">{{
           t("session.noInternet.title")
@@ -773,7 +756,7 @@ watch(
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.externalLexemeSenseId)"
+            @hideCard="nextCard(false, value?.id)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -790,8 +773,8 @@ watch(
                 :class="[
                   data?.length !== index + 1
                     ? 'bg-white dark:bg-[#101418]'
-                    : 'bg-[#3056A9]',
-                  'custom-height z-[1]  rounded-[16px] max-h-[650px]',
+                    : 'bg-[#FFA758]',
+                  'custom-height z-[1] text-[#361D13] rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
@@ -828,8 +811,9 @@ watch(
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
+                :currCount="currCount"
                 @gotoDetail="
-                  test1(value?.externalLexemeSenseId, {
+                  test1(value?.externalLexemeId, {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
@@ -865,6 +849,7 @@ watch(
               <CardReview
                 :data="value"
                 :detail="detail"
+                :img="img"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="
@@ -933,8 +918,11 @@ watch(
           @click="
             nextCard(
               true,
-              data?.find((item) => item.order === 6 - currCount)
-                ?.externalLexemeSenseId
+              data?.find((item) => {
+                console.log(currCount);
+
+                return item.order === totalCount + 1 - currCount;
+              })?.id
             )
           "
           :disabled="

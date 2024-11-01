@@ -1,0 +1,220 @@
+{
+  "status": "Success",
+  "statusCode": 200,
+  "data": {
+    "externalLexemeId": "L413183",
+    "externalLanguageId": "Q33549",
+    "lemma": "êndhas / endhas / ꦲꦼꦤ꧀ꦝꦱ꧀",
+    "externalCategoryId": "Q1084",
+    "language": {
+      "id": "d739ed3f-3332-48b8-b418-d32112e05d73",
+      "code": "jv",
+      "externalId": "Q33549",
+      "title": "Jawa",
+      "languageVariant": {
+        "id": "2d6e627e-5df4-4d87-a7b8-535f4fd10410",
+        "code": "jv-x-q879704",
+        "codePreview": "jv-x-Q879704",
+        "title": "Hanacaraka / ꦲꦤꦕꦫꦏ"
+      }
+    },
+    "category": "nomina",
+    "gloss": "head (of an animal), human head, the upper or front part of something",
+    "senses": [
+      {
+        "gloss": "human head",
+        "images": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Jakarta Night sky.jpg",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jakarta Night sky.jpg"
+            }
+          ]
+        },
+        "antonym": {
+          "property": "P5973",
+          "data": [
+            {
+              "id": "L999025-S1",
+              "value": "ꦱꦶꦫꦃ / sirah"
+            },
+            {
+              "id": "L413863-S1",
+              "value": "mastaka / ꦩꦱ꧀ꦠꦏ"
+            }
+          ]
+        },
+        "synonym": {
+          "property": "P5973",
+          "data": [
+            {
+              "id": "L999025-S1",
+              "value": "ꦱꦶꦫꦃ / sirah"
+            },
+            {
+              "id": "L413863-S1",
+              "value": "mastaka / ꦩꦱ꧀ꦠꦏ"
+            },
+            {
+              "id": "L1346169-S1",
+              "value": "utamangga / ꦲꦸꦠꦩꦁꦒ"
+            },
+            {
+              "id": "L1346494-S1",
+              "value": "hulu / ꦲꦸꦭꦸ / ulu"
+            },
+            {
+              "id": "L1346531-S1",
+              "value": "rajawèni / ꦫꦗꦮꦺꦤꦶ"
+            },
+            {
+              "id": "L1346532-S1",
+              "value": "katumangga / ꦏꦠꦸꦩꦁꦒ"
+            },
+            {
+              "id": "L1346537-S1",
+              "value": "sidhira / ꦱꦶꦝꦶꦫ"
+            },
+            {
+              "id": "L1346538-S1",
+              "value": "têndhas / ꦠꦼꦤ꧀ꦝꦱ꧀"
+            },
+            {
+              "id": "L1346539-S1",
+              "value": "mukyana / ꦩꦸꦏꦾꦤ"
+            },
+            {
+              "id": "L1346540-S1",
+              "value": "pasuhunan / ꦥꦱꦸꦲꦸꦤꦤ꧀"
+            }
+          ]
+        },
+        "translation": null,
+        "locationOfSenseUsage": {
+          "property": "P6084",
+          "data": [
+            {
+              "id": "Q5092",
+              "value": "Baltimore"
+            }
+          ]
+        },
+        "languageStyle": {
+          "property": "P6191",
+          "data": [
+            {
+              "id": "Q12500634",
+              "value": "ngoko"
+            }
+          ]
+        },
+        "describedAtUrl": {
+          "property": "P973",
+          "data": [
+            {
+              "value": "https://data.baltimoresun.com/features/baltimore-dictionary/"
+            }
+          ]
+        }
+      },
+      {
+        "gloss": "human head1",
+        "images": {
+          "property": "P18",
+          "data": [
+            {
+              "value": "Jakarta Night sky.jpg",
+              "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Jakarta Night sky.jpg"
+            }
+          ]
+        },
+        "antonym": {
+          "property": "P5973",
+          "data": [
+            {
+              "id": "L999025-S1",
+              "value": "ꦱꦶꦫꦃ / sirah"
+            },
+            {
+              "id": "L413863-S1",
+              "value": "mastaka / ꦩꦱ꧀ꦠꦏ"
+            }
+          ]
+        },
+        "synonym": {
+          "property": "P5973",
+          "data": [
+            {
+              "id": "L999025-S1",
+              "value": "ꦱꦶꦫꦃ / sirah"
+            },
+            {
+              "id": "L413863-S1",
+              "value": "mastaka / ꦩꦱ꧀ꦠꦏ"
+            },
+            {
+              "id": "L1346169-S1",
+              "value": "utamangga / ꦲꦸꦠꦩꦁꦒ"
+            },
+            {
+              "id": "L1346494-S1",
+              "value": "hulu / ꦲꦸꦭꦸ / ulu"
+            },
+            {
+              "id": "L1346531-S1",
+              "value": "rajawèni / ꦫꦗꦮꦺꦤꦶ"
+            },
+            {
+              "id": "L1346532-S1",
+              "value": "katumangga / ꦏꦠꦸꦩꦁꦒ"
+            },
+            {
+              "id": "L1346537-S1",
+              "value": "sidhira / ꦱꦶꦝꦶꦫ"
+            },
+            {
+              "id": "L1346538-S1",
+              "value": "têndhas / ꦠꦼꦤ꧀ꦝꦱ꧀"
+            },
+            {
+              "id": "L1346539-S1",
+              "value": "mukyana / ꦩꦸꦏꦾꦤ"
+            },
+            {
+              "id": "L1346540-S1",
+              "value": "pasuhunan / ꦥꦱꦸꦲꦸꦤꦤ꧀"
+            }
+          ]
+        },
+        "translation": null,
+        "locationOfSenseUsage": {
+          "property": "P6084",
+          "data": [
+            {
+              "id": "Q5092",
+              "value": "Baltimore"
+            }
+          ]
+        },
+        "languageStyle": {
+          "property": "P6191",
+          "data": [
+            {
+              "id": "Q12500634",
+              "value": "ngoko"
+            }
+          ]
+        },
+        "describedAtUrl": {
+          "property": "P973",
+          "data": [
+            {
+              "value": "https://data.baltimoresun.com/features/baltimore-dictionary/"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

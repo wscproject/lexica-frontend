@@ -109,7 +109,7 @@ watch(language, () => {
         </div>
       </template>
 
-      <div class="py-[12px] px-[16px]">
+      <div class="py-[12px] px-[16px] max-h-[360px] overflow-auto">
         <CdxRadio
           v-if="props.options.length > 0"
           v-for="option in props.options"
