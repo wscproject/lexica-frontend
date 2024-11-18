@@ -7,6 +7,7 @@ import CardReview from "@/components/pages/Session/Card/script-review/index.vue"
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
+import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 
@@ -103,6 +104,7 @@ const isError = ref(false);
 const detailHeaderData = ref(null);
 const isSubmitError = ref(false);
 const subItemHeaderData = ref(null);
+const shownImage = ref("");
 
 const timeoutLoading = ref(null);
 const noInternet = ref(null);
@@ -837,6 +839,11 @@ watch([currCount, undoWarn], async () => {
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
                 @backtoItem="backtoHome"
+                @showImage="
+                  (data) => {
+                    shownImage = data;
+                  }
+                "
               />
               <CardSubItemDetail
                 :data="entityDetailData"
@@ -971,6 +978,16 @@ watch([currCount, undoWarn], async () => {
       :loading="endLoading"
     />
     <CompleteDialog class="session" ref="completeRef" />
+
+    <transition name="fadebox">
+      <Lightbox
+        v-if="Boolean(shownImage)"
+        @click="shownImage = ''"
+        :img="shownImage"
+        class="z-[999]"
+      >
+      </Lightbox>
+    </transition>
   </div>
 </template>
 
@@ -984,6 +1001,17 @@ watch([currCount, undoWarn], async () => {
 .back {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
+}
+
+.fadebox-enter-active,
+.fadebox-leave-active {
+  transition: opacity 250ms ease-out;
+}
+
+.fadebox-enter-from,
+.fadebox-leave-to
+/* .fade-leave-active in <2.1.8 */ {
+  opacity: 0;
 }
 
 .back {
