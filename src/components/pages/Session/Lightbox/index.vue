@@ -41,7 +41,7 @@ onMounted(async () => {
       <CdxButton
         @click="emit('close')"
         weight="quiet"
-        class="w-[var(--size-275)] h-[var(--size-275)]"
+        class="w-[var(--size-275)] h-[var(--size-275)] bg-[#101418]"
       >
         <CdxIcon
           :icon="cdxIconClose"
