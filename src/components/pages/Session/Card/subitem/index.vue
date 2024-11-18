@@ -10,7 +10,7 @@ import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 const { t } = useI18n({ useScope: "global" });
-const emit = defineEmits(["backtoItem, onHold, onRelease"]);
+const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 
 const props = defineProps({
   data: Object,
@@ -126,7 +126,7 @@ const statements = computed(() => {
           :key="index"
           class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
         >
-          <div class="flex gap-x-[12px]">
+          <div class="flex gap-x-[12px] items-center">
             <!-- <div
               v-if="value[0] === 'images'"
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
@@ -140,6 +140,13 @@ const statements = computed(() => {
 
             <CdxThumbnail
               v-if="value?.[0] === 'images'"
+              @click="
+                () => {
+                  if (value?.[1]?.data?.[0]?.url)
+                    emit('showImage', value?.[1]?.data?.[0]?.url);
+                }
+              "
+              class="cursor-pointer"
               :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
               :placeholder-icon="cdxIconLogoWikidata"
             />
