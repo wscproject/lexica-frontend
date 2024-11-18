@@ -2,7 +2,6 @@
 import { CdxButton, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { onMounted, ref, watch } from "vue";
-import VueLoadImage from "vue-load-image";
 
 const props = defineProps({
   img: {
