@@ -6,14 +6,11 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
-import { computed, ref, toRaw, watch } from "vue";
-import placeholder from "@/assets/placeholder.svg";
+import { computed } from "vue";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
-import dataku from "@/dummy/message.json";
 
 const { t } = useI18n({ useScope: "global" });
-const isInfo = ref(false);
 
 const props = defineProps({
   data: Object,
@@ -21,7 +18,7 @@ const props = defineProps({
   isLoading: Boolean,
 });
 
-const emit = defineEmits(["backtoItem, onHold, onRelease"]);
+const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 
 const senses = computed(() => {
   const data =
@@ -126,6 +123,13 @@ const senses = computed(() => {
               class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
             >
               <CdxThumbnail
+                @click="
+                  () => {
+                    if (data?.value?.data?.[0]?.url)
+                      emit('showImage', data?.value?.data?.[0]?.url);
+                  }
+                "
+                class="cursor-pointer"
                 :thumbnail="{ url: data?.value?.data?.[0]?.url }"
                 :placeholder-icon="cdxIconLogoWikidata"
               />
