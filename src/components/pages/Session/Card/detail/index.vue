@@ -20,7 +20,9 @@ const props = defineProps({
   isLoading: Boolean,
 });
 
-const emit = defineEmits(["backtoItem, onHold, onRelease"]);
+const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
+
+const image = ref("");
 
 const setInfo = () => {
   isInfo.value = !isInfo.value;
@@ -150,6 +152,13 @@ const statements = computed(() => {
             </div> -->
             <CdxThumbnail
               v-if="value?.[0] === 'images'"
+              @click="
+                () => {
+                  if (value?.[1]?.data?.[0]?.url)
+                    emit('showImage', value?.[1]?.data?.[0]?.url);
+                }
+              "
+              class="cursor-pointer"
               :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
               :placeholder-icon="cdxIconLogoWikidata"
             />
