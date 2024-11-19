@@ -77,6 +77,7 @@ watch(script, () => {
 
 <template>
   <div
+    autofocus
     class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div

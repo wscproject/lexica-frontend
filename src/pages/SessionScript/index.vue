@@ -982,7 +982,7 @@ watch([currCount, undoWarn], async () => {
     <transition name="fadebox">
       <Lightbox
         v-if="Boolean(shownImage)"
-        @click="shownImage = ''"
+        @close="shownImage = ''"
         :img="shownImage"
         class="z-[999]"
       >

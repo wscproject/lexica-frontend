@@ -13,11 +13,14 @@ const props = defineProps({
 const emit = defineEmits(["close"]);
 const newImage = ref("");
 const loading = ref(true);
+const refs = ref(null);
 
 console.log(props.img);
 
 onMounted(async () => {
   console.log(loading.value);
+
+  refs.value.focus();
 
   if (props.img) {
     let img = new Image();
@@ -35,7 +38,10 @@ onMounted(async () => {
 
 <template>
   <div
+    ref="refs"
     class="absolute w-100 h-100 bg-[#101418] z-[99] flex justify-center items-center py-[var(--spacing-100)]"
+    tabindex="0"
+    @keydown.esc="emit('close')"
   >
     <div class="absolute right-[4px] top-[4px] z-[999]">
       <CdxButton
@@ -51,7 +57,7 @@ onMounted(async () => {
       </CdxButton>
     </div>
 
-    <img v-if="!loading" :src="newImage" />
+    <img v-if="!loading" :src="newImage" @keydown="console.log('asdasd')" />
     <CdxProgressBar
       v-else
       class="w-full mt-[8px] max-w-[448px]"
