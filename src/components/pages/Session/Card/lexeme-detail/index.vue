@@ -6,9 +6,10 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
+import expand from "@/assets/expand.svg";
 
 const { t } = useI18n({ useScope: "global" });
 
@@ -19,6 +20,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
+const hovered = ref(false);
 
 const senses = computed(() => {
   const data =
@@ -108,6 +110,25 @@ const senses = computed(() => {
           <div
             v-for="data in sense?.data?.filter((i) => i.value !== null)"
             class="w-full"
+            @mouseover="
+              () => {
+                if (data.label === 'images' && !hovered) hovered = true;
+              }
+            "
+            @mouseout="
+              () => {
+                if (data.label === 'images' && hovered) hovered = false;
+              }
+            "
+            :style="hovered && 'cursor: pointer'"
+            @click="
+              () => {
+                if (data.label === 'images' && data?.value?.data?.[0]?.url)
+                  emit('showImage', data?.value?.data?.[0]?.url);
+
+                // console.log('sdasd');
+              }
+            "
           >
             <div
               v-if="data.label === 'gloss'"
@@ -122,20 +143,18 @@ const senses = computed(() => {
               v-else-if="data.label === 'images'"
               class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
             >
-              <CdxThumbnail
-                @click="
-                  () => {
-                    if (data?.value?.data?.[0]?.url)
-                      emit('showImage', data?.value?.data?.[0]?.url);
-                  }
-                "
-                class="cursor-pointer"
-                :thumbnail="{ url: data?.value?.data?.[0]?.url }"
-                :placeholder-icon="cdxIconLogoWikidata"
-              />
+              <div class="relative">
+                <CdxThumbnail
+                  :thumbnail="{ url: data?.value?.data?.[0]?.url }"
+                  :placeholder-icon="cdxIconLogoWikidata"
+                />
+                <div v-if="hovered" class="w-[40px] h-[40px] absolute top-0">
+                  <img :src="expand" />
+                </div>
+              </div>
               <div>
                 <CdxLabel
-                  class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
+                  class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
                   >{{ data.label }} ({{ data?.value?.property }})</CdxLabel
                 >
                 <p
