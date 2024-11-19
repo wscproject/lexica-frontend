@@ -164,7 +164,7 @@ const statements = computed(() => {
                 :placeholder-icon="cdxIconLogoWikidata"
               />
 
-              <div v-if="hovered" class="w-[40px] h-[40px] absolute top-0">
+              <div class="w-[40px] h-[40px] absolute top-0">
                 <img :src="expand" />
               </div>
             </div>
