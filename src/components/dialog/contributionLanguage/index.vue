@@ -155,7 +155,7 @@ watch(language, () => {
 
 <style>
 .contributionLang .cdx-dialog__header {
-  @apply pt-[22px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
+  @apply pt-[16px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
 }
 
 .contributionLang .cdx-dialog__footer {
