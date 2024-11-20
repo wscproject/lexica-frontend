@@ -57,7 +57,12 @@ onMounted(async () => {
       </CdxButton>
     </div>
 
-    <img v-if="!loading" :src="newImage" @keydown="console.log('asdasd')" />
+    <img
+      v-if="!loading"
+      :src="newImage"
+      @keydown="console.log('asdasd')"
+      class="object-contain w-100 h-100"
+    />
     <CdxProgressBar
       v-else
       class="w-full mt-[8px] max-w-[448px]"
