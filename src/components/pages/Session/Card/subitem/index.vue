@@ -8,9 +8,10 @@ import {
 import { cdxIconClose, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import expand from "@/assets/expand.svg";
 
 const { t } = useI18n({ useScope: "global" });
-const emit = defineEmits(["backtoItem, onHold, onRelease"]);
+const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 
 const props = defineProps({
   data: Object,
@@ -35,6 +36,8 @@ const translate = (data) => {
     return t("session.item.translation");
   }
 };
+
+const hovered = ref(false);
 
 const statements = computed(() => {
   return props?.data?.statements
@@ -125,8 +128,25 @@ const statements = computed(() => {
           )"
           :key="index"
           class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
+          @mouseover="
+            () => {
+              if (value?.[0] === 'images') hovered = true;
+            }
+          "
+          @mouseout="
+            () => {
+              if (value?.[0] === 'images') hovered = false;
+            }
+          "
+          :style="hovered && 'cursor: pointer'"
+          @click="
+            () => {
+              if (value?.[0] === 'images' && value?.[1]?.data?.[0]?.url)
+                emit('showImage', value?.[1]?.data?.[0]?.url);
+            }
+          "
         >
-          <div class="flex gap-x-[12px]">
+          <div class="flex gap-x-[12px] items-center">
             <!-- <div
               v-if="value[0] === 'images'"
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
@@ -138,15 +158,20 @@ const statements = computed(() => {
               />
             </div> -->
 
-            <CdxThumbnail
-              v-if="value?.[0] === 'images'"
-              :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
-              :placeholder-icon="cdxIconLogoWikidata"
-            />
+            <div class="relative" v-if="value?.[0] === 'images'">
+              <CdxThumbnail
+                :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
+                :placeholder-icon="cdxIconLogoWikidata"
+              />
+
+              <div class="w-[40px] h-[40px] absolute top-0">
+                <img :src="expand" />
+              </div>
+            </div>
 
             <div>
               <CdxLabel
-                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
+                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
                 >{{ translate(value[0]) }} ({{
                   value?.[1]?.property
                 }})</CdxLabel

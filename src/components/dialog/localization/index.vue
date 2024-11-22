@@ -40,7 +40,7 @@ const radios = displayLang.lang;
 
 const setLocale = async () => {
   if (!!cookies?.get("auth")) {
-    await updateUserPreference({ displayLanguage: currentLocale.value });
+    await updateUserPreference({ displayLanguageCode: currentLocale.value });
   }
 
   locale.value = currentLocale.value;

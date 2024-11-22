@@ -85,7 +85,7 @@ watch(language, () => {
     <CdxDialog :open="props.open" @update:open="close" class="contributionLang">
       <template #header>
         <div class="flex justify-between align-center pb-[12px]">
-          <CdxLabel class="text-[18px]">{{
+          <CdxLabel class="text-[18px] p-0">{{
             t("contributionLangDialog.title")
           }}</CdxLabel>
           <CdxButton @click="close" weight="quiet">
@@ -155,7 +155,7 @@ watch(language, () => {
 
 <style>
 .contributionLang .cdx-dialog__header {
-  @apply pt-[22px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
+  @apply pt-[16px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
 }
 
 .contributionLang .cdx-dialog__footer {
