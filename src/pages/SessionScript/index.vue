@@ -424,15 +424,15 @@ const getDetail = async (id) => {
   }
 };
 
-const getImage = async (id) => {
-  const response = await GetLexemeDetail(id);
+// const getImage = async (id) => {
+//   const response = await GetLexemeDetail(id);
 
-  if (response.statusCode === 200) {
-    img.value =
-      response?.data?.senses?.find((item) => !!item?.images?.data?.[0]?.url) ||
-      "";
-  }
-};
+//   if (response.statusCode === 200) {
+//     img.value =
+//       response?.data?.senses?.find((item) => !!item?.images?.data?.[0]?.url) ||
+//       "";
+//   }
+// };
 
 const getEntityDetail = async (id) => {
   entityDetailData.value = null;
@@ -478,11 +478,11 @@ const getCardsData = async (code) => {
         1) *
       4;
 
-    getImage(
-      [...response.data.filter((item) => item.status === "pending")]?.[
-        totalCount.value - currCount.value
-      ]?.externalLexemeId
-    );
+    // getImage(
+    //   [...response.data.filter((item) => item.status === "pending")]?.[
+    //     totalCount.value - currCount.value
+    //   ]?.externalLexemeId
+    // );
 
     isLoading.value = false;
 
@@ -562,12 +562,12 @@ watch(
   { immediate: true }
 );
 
-watch(currCount, async () => {
-  if (currCount?.value <= totalCount?.value)
-    getImage(
-      data?.value?.[totalCount.value - currCount.value]?.externalLexemeId
-    );
-});
+// watch(currCount, async () => {
+//   if (currCount?.value <= totalCount?.value)
+//     getImage(
+//       data?.value?.[totalCount.value - currCount.value]?.externalLexemeId
+//     );
+// });
 
 watch([currCount, undoWarn], async () => {
   if (currCount.value > totalCount.value && !undoWarn.value) {
@@ -856,7 +856,7 @@ watch([currCount, undoWarn], async () => {
               <CardReview
                 :data="value"
                 :detail="detail"
-                :img="img"
+                :img="value?.image"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="

@@ -56,6 +56,14 @@ const statements = computed(() => {
       )
     : [];
 });
+
+const isThisLexeme = computed(() => {
+  return (
+    props?.data?.usageExamples &&
+    props?.data?.hasCharacteristics &&
+    props?.data?.combineLexemes
+  );
+});
 </script>
 
 <template>
@@ -123,110 +131,51 @@ const statements = computed(() => {
         </div>
       </div>
 
-      <div
-        class="h-full"
-        v-if="
-          statements?.filter((item) => item?.[0] !== 'translation')?.length >
-            0 && !props.isLoading
-        "
-      >
+      <div class="h-full" v-if="!props.isLoading">
         <CdxLabel
+          v-if="isThisLexeme"
           class="text-[16px] dark:text-[#EAECF0]"
           style="padding-bottom: 12px"
-          >{{ t("session.detail.statements") }}</CdxLabel
+          >{{ t("session.detail.title1") }}</CdxLabel
         >
-        <div
-          v-for="(value, index) in statements.filter(
-            (item) => item?.[0] !== 'translation'
-          )"
-          :key="index"
-          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
-          @mouseover="
-            () => {
-              if (value?.[0] === 'images') hovered = true;
-            }
-          "
-          @mouseout="
-            () => {
-              if (value?.[0] === 'images') hovered = false;
-            }
-          "
-          :style="hovered && 'cursor: pointer'"
-          @click="
-            () => {
-              if (value?.[0] === 'images' && value?.[1]?.data?.[0]?.url)
-                emit('showImage', value?.[1]?.data?.[0]?.url);
-            }
-          "
-        >
-          <div class="flex gap-x-[12px]">
-            <!-- <div
-              v-if="value?.[0] === 'images'"
-              class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
-            >
-              <img
-                :src="value?.[1]?.data?.[0]?.url || placeholder"
-                :alt="value?.[1]?.data?.[0]?.value"
-                class="object-cover w-full h-full"
-              />
-            </div> -->
-            <div class="relative" v-if="value?.[0] === 'images'">
-              <CdxThumbnail
-                :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
-                :placeholder-icon="cdxIconLogoWikidata"
-              />
 
-              <div class="w-[40px] h-[40px] absolute top-0">
-                <img :src="expand" />
-              </div>
-            </div>
-            <div>
-              <CdxLabel
-                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
-                >{{ translate(value[0]) }} ({{
-                  value?.[1]?.property
-                }})</CdxLabel
-              >
-              <p
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
-              >
-                {{ value?.[1]?.data?.[0]?.value }}
-              </p>
-            </div>
-          </div>
+        <div
+          v-if="data?.usageExamples"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.usageExample") }} (P5831)</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.usageExamples
+          }}</span>
         </div>
 
-        <CdxLabel
-          v-if="statements.find((item) => item?.[0] === 'translation')"
-          class="text-[16px] pt-[4px] dark:text-[#EAECF0]"
-          style="padding-bottom: 12px"
-          >{{ t("session.detail.translation") }} (P5972)</CdxLabel
+        <div
+          v-if="data?.hasCharacteristics"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
         >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.hasCharacteristics") }} (P1552)</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.hasCharacteristics
+          }}</span>
+        </div>
 
         <div
-          v-for="(value, index) in statements.filter(
-            (item) => item?.[0] === 'translation'
-          )"
-          :key="index"
-          class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[12px]"
-          @mouseOver="console.log('asdasdasd')"
+          v-if="data?.combinesLexemes"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
         >
-          <div class="flex gap-x-[12px]">
-            <div>
-              <CdxLabel
-                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
-                >{{ value?.[1]?.data?.[0]?.language }} ({{
-                  value?.[1]?.data?.[0]?.code
-                }})</CdxLabel
-              >
-              <p
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
-              >
-                {{ value?.[1]?.data?.[0]?.value }}
-                ({{ value?.[1]?.data?.[0]?.id }})
-              </p>
-            </div>
-          </div>
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.combinesLexemes") }} (P5831)</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.combinesLexemes
+          }}</span>
         </div>
       </div>
       <div

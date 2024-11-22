@@ -468,11 +468,6 @@ const getCardsData = async (code) => {
         1) *
       4;
 
-    getImage(
-      [...response.data.filter((item) => item.status === "pending")]?.[
-        totalCount.value - currCount.value
-      ]?.externalLexemeSenseId
-    );
     isLoading.value = false;
     disableSplash();
   } else {
@@ -488,17 +483,6 @@ const getCardsData = async (code) => {
         code: response?.response?.status,
       };
     }
-  }
-};
-
-const getImage = async (id) => {
-  const response = await GetCardDetail(id);
-
-  if (response.statusCode === 200) {
-    img.value =
-      response?.data?.statements?.find(
-        (item) => !!item?.images?.data?.[0]?.url
-      ) || "";
   }
 };
 
@@ -613,12 +597,12 @@ watch([currCount, data], async () => {
   }
 });
 
-watch(currCount, async () => {
-  if (currCount?.value <= totalCount?.value)
-    getImage(
-      data?.value?.[totalCount.value - currCount.value]?.externalLexemeSenseId
-    );
-});
+// watch(currCount, async () => {
+//   if (currCount?.value <= totalCount?.value)
+//     getImage(
+//       data?.value?.[totalCount.value - currCount.value]?.externalLexemeSenseId
+//     );
+// });
 
 watch(
   () => ({ ...params }),
@@ -906,7 +890,7 @@ watch(
               <CardReview
                 :data="value"
                 :detail="detail"
-                :img="img"
+                :img="value?.image"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="
