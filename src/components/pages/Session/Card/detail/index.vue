@@ -177,6 +177,51 @@ const isThisLexeme = computed(() => {
             data?.combinesLexemes
           }}</span>
         </div>
+
+        <CdxLabel
+          class="text-[16px] dark:text-[#EAECF0]"
+          style="padding-bottom: 12px"
+          >{{ t("session.detail.title2") }}</CdxLabel
+        >
+
+        <div
+          class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
+        >
+          <div class="relative">
+            <CdxThumbnail
+              :thumbnail="{ url: data?.sense?.images?.data?.[0]?.url }"
+              :placeholder-icon="cdxIconLogoWikidata"
+            />
+            <div class="w-[40px] h-[40px] absolute top-0">
+              <img :src="expand" />
+            </div>
+          </div>
+          <div>
+            <CdxLabel
+              class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
+            >
+              ({{ data?.sense?.images?.property }})</CdxLabel
+            >
+            <p
+              class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
+            >
+              {{ data?.sense?.images?.data?.[0]?.value }}
+            </p>
+          </div>
+        </div>
+
+        <div
+          v-if="data?.combinesLexemes"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.combinesLexemes") }} (P5831)</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.combinesLexemes
+          }}</span>
+        </div>
       </div>
       <div
         class="h-full flex justify-center items-center"
