@@ -592,13 +592,14 @@ watch([currCount, undoWarn], async () => {
 watch([currCount, data], async () => {
   recommendedLoading.value = true;
 
+  const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
+
+  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
+
   const response = await SearchEntity({
     ...params,
     page: 1,
-    keyword:
-      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
-        /[a-zA-Z]+/
-      )?.[0],
+    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
   });
 
   if (response?.statusCode) {
