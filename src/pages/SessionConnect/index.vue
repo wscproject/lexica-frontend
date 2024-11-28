@@ -502,8 +502,6 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        console.log("testing123");
-
         document.documentElement.className = "dark";
         document
           .querySelector('meta[name="theme-color"]')

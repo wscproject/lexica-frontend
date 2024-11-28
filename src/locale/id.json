@@ -181,7 +181,10 @@
       "synonym": "sinonim",
       "antonym": "anonim",
       "glossQuote": "kutipan glosa",
-      "itemForThisSense": "butir untuk makna ini"
+      "itemForThisSense": "butir untuk makna ini",
+      "otherGlosses": "Dalam bahasa lain",
+      "allSense": "Semua Makna",
+      "sense": "Makna"
     },
 
     "item": {

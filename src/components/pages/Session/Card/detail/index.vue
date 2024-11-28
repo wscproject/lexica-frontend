@@ -5,7 +5,12 @@ import {
   CdxProgressBar,
   CdxThumbnail,
 } from "@wikimedia/codex";
-import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
+import {
+  cdxIconLogoWikidata,
+  cdxIconClose,
+  cdxIconExpand,
+  cdxIconLanguage,
+} from "@wikimedia/codex-icons";
 import { computed, reactive, ref, toRaw, watch } from "vue";
 import placeholder from "@/assets/placeholder.svg";
 import wikimedia from "@/assets/WikidataLexeme.svg";
@@ -30,6 +35,8 @@ const setInfo = () => {
 };
 
 const hovered = ref(false);
+
+const isExpand = ref(false);
 
 const translate = (data) => {
   if (data === "images") {
@@ -179,9 +186,14 @@ const isThisLexeme = computed(() => {
         </div>
 
         <CdxLabel
-          class="text-[16px] dark:text-[#EAECF0]"
+          class="text-[16px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
           style="padding-bottom: 12px"
           >{{ t("session.detail.title2") }}</CdxLabel
+        >
+
+        <CdxLabel
+          class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)]"
+          >{{ t("session.detail.subtitle1") }}</CdxLabel
         >
 
         <div
@@ -211,16 +223,214 @@ const isThisLexeme = computed(() => {
         </div>
 
         <div
-          v-if="data?.combinesLexemes"
+          v-if="data?.sense?.antonym"
           class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
         >
           <span
             class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.combinesLexemes") }} (P5831)</span
+            >{{ t("session.detail.antonym") }} ({{
+              data?.sense?.antonym?.property
+            }})</span
           >
           <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            data?.combinesLexemes
+            data?.sense?.antonym?.data?.[0]?.value
           }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.synonym"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.synonym") }} ({{
+              data?.sense?.synonym?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.synonym?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.locationOfSenseUsage"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.locationOfSenseUsage") }} ({{
+              data?.sense?.locationOfSenseUsage?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.locationOfSenseUsage?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.languageStyle"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.languageStyle") }} ({{
+              data?.sense?.languageStyle?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.languageStyle?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.describedAtUrl"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.describedAtUrl") }} ({{
+              data?.sense?.describedAtUrl?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.describedAtUrl?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.glossQuotes"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.glossQuotes") }} ({{
+              data?.sense?.glossQuotes?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.glossQuotes?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <div
+          v-if="data?.sense?.sematicGender"
+          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+        >
+          <span
+            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+            >{{ t("session.detail.sematicGender") }} ({{
+              data?.sense?.sematicGender?.property
+            }})</span
+          >
+          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            data?.sense?.sematicGender?.data?.[0]?.value
+          }}</span>
+        </div>
+
+        <CdxLabel
+          class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)]"
+          >{{ t("session.detail.subtitle2") }}</CdxLabel
+        >
+
+        <!-- <v-expansion-panels theme="dark">
+          <v-expansion-panel
+            theme="dark"
+            :title="t('session.detail.title3')"
+            class="bg-[var(--background-color-neutral)] detail"
+          >
+            <template #title>
+              <div
+                class="bg-[green] text-[var(--color-base)] font-[700] text-[16px]"
+              >
+                {{ t("session.detail.title3") }}
+              </div>
+            </template>
+          </v-expansion-panel>
+        </v-expansion-panels> -->
+
+        <div
+          class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-base-color)]"
+          @click="isExpand = !isExpand"
+        >
+          <div
+            class="font-[700] text-[16px] pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
+          >
+            <span>{{ t("session.detail.title3") }}</span>
+
+            <CdxIcon
+              :icon="cdxIconExpand"
+              :class="`icon ${isExpand && 'open'}`"
+            />
+          </div>
+          <v-expand-transition class="duration-[250ms] ease-out">
+            <div v-show="isExpand">
+              <div v-for="item in data?.otherSenses" :key="item.senseNumber">
+                <div class="text-[14px] font-[700] pb-[var(--spacing-50)]">
+                  {{ item?.gloss }}
+                </div>
+                <div
+                  class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)]] rounded-[2px]"
+                >
+                  <div class="font-[700]">
+                    {{ t("session.detail.itemForThisSense") }} ({{
+                      item?.itemForThisSense?.property
+                    }})
+                  </div>
+                  <div class="text-[var(--color-subtle)]">
+                    {{ item?.itemForThisSense?.data?.[0]?.value }}
+                  </div>
+                </div>
+
+                <div
+                  class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+                >
+                  <CdxIcon :icon="cdxIconLanguage" />
+                  <div class="text-[16px] pl-[var(--spacing-75)]">
+                    <div class="font-[700]">
+                      {{ t("session.detail.otherGlosses") }}
+                    </div>
+                    <div class="text-[var(--color-subtle)]">
+                      {{
+                        data
+                          ?.map((item) => {
+                            item.value;
+                          })
+                          .join(", ")
+                      }}
+                    </div>
+                  </div>
+                </div>
+
+                <div
+                  class="flex gap-x-[12px] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] p-[var(--spacing-75)] w-full text-[16px]"
+                >
+                  <div class="relative">
+                    <CdxThumbnail
+                      :thumbnail="{
+                        url: item?.itemForThisSense?.data?.[0]?.url,
+                      }"
+                      :placeholder-icon="cdxIconLogoWikidata"
+                    />
+                    <div class="w-[40px] h-[40px] absolute top-0">
+                      <img :src="expand" />
+                    </div>
+                  </div>
+                  <div>
+                    <CdxLabel
+                      class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
+                    >
+                      ({{ item?.itemForThisSense?.properties }})</CdxLabel
+                    >
+                    <p
+                      class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
+                    >
+                      {{ item?.itemForThisSense?.data?.[0]?.value }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </v-expand-transition>
         </div>
       </div>
       <div
@@ -259,5 +469,24 @@ const isThisLexeme = computed(() => {
 .fade-detail-leave-to {
   transform: translateY(-20px);
   opacity: 0;
+}
+
+.icon {
+  transition: transform 250ms ease-out;
+}
+
+.open {
+  -ms-transform: rotate(-180deg);
+  transform: rotate(-180deg);
+}
+
+.smooth-enter-active,
+.smooth-leave-active {
+  transition: height 0.25s;
+  overflow: hidden;
+}
+.smooth-enter,
+.smooth-leave-to {
+  height: 0;
 }
 </style>

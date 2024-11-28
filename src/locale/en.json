@@ -189,8 +189,11 @@
       "semanticGender": "semantic gender",
       "synonym": "synonym",
       "antonym": "antonym",
-      "glossQuote": "gloss quote",
-      "itemForThisSense": "item for this sense"
+      "glossQuotes": "gloss quote",
+      "itemForThisSense": "item for this sense",
+      "otherGlosses": "In other languages",
+      "allSense": "All Senses",
+      "sense": "Sense"
     },
 
     "item": {
