@@ -140,7 +140,7 @@ const senses = computed(() => {
               v-if="data.label === 'gloss'"
               class="pb-[var(--spacing-50)] w-full"
             >
-              <span class="text-[var(--color-base)] font-[700]"
+              <span class="text-[var(--color-base)] font-[700] text-[14px]"
                 >{{ t("session.detail.sense") }} {{ sense.number }}:
                 {{ data.value }}</span
               >
@@ -177,7 +177,9 @@ const senses = computed(() => {
               v-else-if="
                 data.label !== 'images' &&
                 data.label !== 'gloss' &&
-                data.label !== 'senseNumber'
+                data.label !== 'senseNumber' &&
+                data.label !== 'externalLexemeSenseId' &&
+                data.label !== 'otherGlosses'
               "
               class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
             >

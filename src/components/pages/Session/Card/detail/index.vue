@@ -28,47 +28,26 @@ const props = defineProps({
 
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 
-const image = ref("");
-
-const setInfo = () => {
-  isInfo.value = !isInfo.value;
-};
-
-const hovered = ref(false);
-
 const isExpand = ref(false);
-
-const translate = (data) => {
-  if (data === "images") {
-    return t("session.detail.images");
-  } else if (data === "antonym") {
-    return t("session.detail.antonym");
-  } else if (data === "synonym") {
-    return t("session.detail.synonym");
-  } else if (data === "locationOfSenseUsage") {
-    return t("session.detail.locationOfSenseUsage");
-  } else if (data === "languageStyle") {
-    return t("session.detail.languageStyle");
-  } else if (data === "describedAtUrl") {
-    return t("session.detail.describedAtUrl");
-  } else if (data === "translation") {
-    return t("session.detail.translation");
-  }
-};
-
-const statements = computed(() => {
-  return props?.data?.statements
-    ? [...Object.entries(props?.data?.statements)]?.filter(
-        (item) => item?.[1]?.data?.[0]?.value
-      )
-    : [];
-});
 
 const isThisLexeme = computed(() => {
   return (
     props?.data?.usageExamples &&
     props?.data?.hasCharacteristics &&
     props?.data?.combineLexemes
+  );
+});
+
+const isNoStatement = computed(() => {
+  return (
+    !props?.data?.sense?.images &&
+    !props?.data?.sense?.languageStyle &&
+    !props?.data?.sense?.fieldOfUsage &&
+    !props?.data?.sense?.locationOfSenseUsage &&
+    !props?.data?.sense?.sematicGender &&
+    !props?.data?.sense?.antonym &&
+    !props?.data?.sense?.synonym &&
+    !props?.data?.sense?.glossQuotes
   );
 });
 </script>
@@ -192,11 +171,13 @@ const isThisLexeme = computed(() => {
         >
 
         <CdxLabel
+          v-if="!isNoStatement"
           class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)]"
           >{{ t("session.detail.subtitle1") }}</CdxLabel
         >
 
         <div
+          v-if="data?.sense?.images"
           class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
         >
           <div class="relative">
@@ -393,9 +374,9 @@ const isThisLexeme = computed(() => {
                       {{
                         data
                           ?.map((item) => {
-                            item.value;
+                            return item?.value;
                           })
-                          .join(", ")
+                          ?.join(", ")
                       }}
                     </div>
                   </div>
@@ -433,14 +414,14 @@ const isThisLexeme = computed(() => {
           </v-expand-transition>
         </div>
       </div>
-      <div
+      <!-- <div
         class="h-full flex justify-center items-center"
         v-else-if="statements.length === 0 && !props.isLoading"
       >
         <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>
         </p>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>

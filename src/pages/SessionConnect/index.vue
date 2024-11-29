@@ -46,6 +46,7 @@ import {
   GetEntityDetail,
   UpdateConnectCardDetail,
   EndContribution,
+  GetLanguages,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -112,7 +113,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
-const img = ref("");
+const languages = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -450,6 +451,16 @@ const getProfile = async () => {
   }
 };
 
+const getLanguages = async () => {
+  const response = await GetLanguages();
+
+  if (response.statusCode === 200) {
+    console.log("response", response.data);
+    languages.value = response.data;
+    isLoading.value = false;
+  }
+};
+
 const getCardsData = async (code) => {
   isLoading.value = true;
   const response = await GetConnectCards({
@@ -467,7 +478,7 @@ const getCardsData = async (code) => {
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
       4;
-
+    await getLanguages();
     isLoading.value = false;
     disableSplash();
   } else {
@@ -487,8 +498,6 @@ const getCardsData = async (code) => {
 };
 
 onMounted(async () => {
-  console.log(vuex.getters["profile/language"]);
-
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -635,7 +644,9 @@ watch(
         <CdxIcon :icon="cdxIconHome" alt="home" />
       </CdxButton>
       <div class="absolute mx-auto left-0 right-0 w-fit">
-        <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
+        <CdxLabel
+          v-if="data?.length !== 0 && !isLoading"
+          class="text-[16px] pb-0"
           >{{ t("session.title") }} {{ currCount }}</CdxLabel
         >
       </div>
