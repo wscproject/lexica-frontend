@@ -214,7 +214,7 @@ const senses = computed(() => {
       </div>
       <div
         class="h-full flex justify-center items-center"
-        v-else-if="senses.length === 0 && !props.isLoading"
+        v-else-if="senses?.length === 0 && !props.isLoading"
       >
         <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>

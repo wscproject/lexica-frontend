@@ -876,6 +876,7 @@ watch(
                 :isLoading="cardDetailLoading"
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
+                :languages="languages"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {
