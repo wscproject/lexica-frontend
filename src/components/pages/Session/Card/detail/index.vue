@@ -489,7 +489,7 @@ const langs = computed(() => {
                     <CdxLabel
                       class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
                     >
-                      ({{ item?.images?.properties }})</CdxLabel
+                      ({{ item?.images?.property }})</CdxLabel
                     >
                     <p
                       class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
