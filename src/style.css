@@ -247,6 +247,10 @@ h1 {
   border: 0 !important;
 }
 
+.detail .v-expansion-panel-title__icon {
+  display: none;
+}
+
 /* .cdx-select-vue--enabled .cdx-select-vue__handle {
   background-color: #202122 !important;
   color: #eaecf0 !important;
