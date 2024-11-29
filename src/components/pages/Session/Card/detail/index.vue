@@ -33,9 +33,9 @@ const isExpand = ref(false);
 
 const isThisLexeme = computed(() => {
   return (
-    props?.data?.usageExamples &&
-    props?.data?.hasCharacteristics &&
-    props?.data?.combineLexemes
+    props?.data?.usageExamples ||
+    props?.data?.hasCharacteristics ||
+    props?.data?.combinesLexemes
   );
 });
 
@@ -138,217 +138,256 @@ const langs = computed(() => {
             props?.data?.otherSenses?.length > 0)
         "
       >
-        <CdxLabel
-          v-if="isThisLexeme"
-          class="text-[16px] dark:text-[#EAECF0]"
-          style="padding-bottom: 12px"
-          >{{ t("session.detail.title1") }}</CdxLabel
-        >
-
-        <div
-          v-if="props?.data?.usageExamples"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.usageExample") }} (P5831)</span
+        <div v-if="isThisLexeme" class="mb-[var(--spacing-100)]">
+          <CdxLabel
+            class="text-[16px] dark:text-[#EAECF0] p-0"
+            style="padding-bottom: 12px"
+            >{{ t("session.detail.title1") }}</CdxLabel
           >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.usageExamples
-          }}</span>
-        </div>
 
-        <div
-          v-if="props?.data?.hasCharacteristics"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.hasCharacteristics") }} (P1552)</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.hasCharacteristics
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.combinesLexemes"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.combinesLexemes") }} (P5831)</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.combinesLexemes
-          }}</span>
-        </div>
-
-        <CdxLabel
-          class="text-[16px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
-          style="padding-bottom: 12px"
-          v-if="!isNoStatement || props?.data?.sense?.otherGlosses?.length > 0"
-          >{{ t("session.detail.title2") }}</CdxLabel
-        >
-
-        <CdxLabel
-          v-if="!isNoStatement"
-          class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
-          >{{ t("session.detail.subtitle1") }}</CdxLabel
-        >
-
-        <div
-          v-if="props?.data?.sense?.images"
-          class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
-        >
-          <div class="relative">
-            <CdxThumbnail
-              :thumbnail="{ url: props?.data?.sense?.images?.data?.[0]?.url }"
-              :placeholder-icon="cdxIconLogoWikidata"
-            />
-            <div class="w-[40px] h-[40px] absolute top-0">
-              <img :src="expand" />
-            </div>
-          </div>
-          <div>
-            <CdxLabel
-              class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
-            >
-              ({{ props?.data?.sense?.images?.property }})</CdxLabel
-            >
-            <p
-              class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
-            >
-              {{ props?.data?.sense?.images?.data?.[0]?.value }}
-            </p>
-          </div>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.antonym"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.antonym") }} ({{
-              props?.data?.sense?.antonym?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.antonym?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.synonym"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.synonym") }} ({{
-              props?.data?.sense?.synonym?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.synonym?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.locationOfSenseUsage"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.locationOfSenseUsage") }} ({{
-              props?.data?.sense?.locationOfSenseUsage?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.locationOfSenseUsage?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.languageStyle"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.languageStyle") }} ({{
-              props?.data?.sense?.languageStyle?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.languageStyle?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.describedAtUrl"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.describedAtUrl") }} ({{
-              props?.data?.sense?.describedAtUrl?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.describedAtUrl?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.glossQuotes"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.glossQuotes") }} ({{
-              props?.data?.sense?.glossQuotes?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.glossQuotes?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <div
-          v-if="props?.data?.sense?.sematicGender"
-          class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
-        >
-          <span
-            class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-            >{{ t("session.detail.sematicGender") }} ({{
-              props?.data?.sense?.sematicGender?.property
-            }})</span
-          >
-          <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
-            props?.data?.sense?.sematicGender?.data?.[0]?.value
-          }}</span>
-        </div>
-
-        <CdxLabel
-          v-if="props?.data?.sense?.otherGlosses?.length > 0"
-          class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
-          >{{ t("session.detail.subtitle2") }}</CdxLabel
-        >
-
-        <div v-for="item in props?.data?.sense?.otherGlosses">
           <div
+            v-if="props?.data?.usageExamples"
             class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
           >
             <span
               class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
-              >{{ props?.languages?.[item?.language]?.autonym }} ({{
-                item?.language
+              >{{ t("session.detail.usageExample") }} ({{
+                props?.data?.usageExamples?.property
               }})</span
             >
             <span
               class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
-              >{{ item?.value }}</span
+              >{{ props?.data?.usageExamples?.data?.[0]?.value }}</span
             >
+          </div>
+
+          <div
+            v-if="props?.data?.hasCharacteristics"
+            class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+          >
+            <span0
+              class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+              >{{ t("session.detail.hasCharacteristics") }} ({{
+                props?.data?.hasCharacteristics?.property
+              }})</span0
+            >
+            <span
+              class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+              >{{ props?.data?.hasCharacteristics?.data?.[0]?.value }}</span
+            >
+          </div>
+
+          <div
+            v-if="props?.data?.combinesLexemes"
+            class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+          >
+            <span
+              class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+              >{{ t("session.detail.combinesLexemes") }} ({{
+                props?.data?.combinesLexemes?.property
+              }})</span
+            >
+            <span
+              class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+              >{{
+                props?.data?.combinesLexemes?.data
+                  ?.map((item) => {
+                    return `${item.value} (${item.id})`;
+                  })
+                  ?.join(" + ")
+              }}</span
+            >
+          </div>
+        </div>
+
+        <div
+          v-if="!isNoStatement || props?.data?.sense?.otherGlosses?.length > 0"
+          class="mb-[var(--spacing-100)]"
+        >
+          <CdxLabel
+            class="text-[16px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
+            style="padding-bottom: 12px"
+            >{{ t("session.detail.title2") }}</CdxLabel
+          >
+          <div class="mb-[var(--spacing-50)]">
+            <CdxLabel
+              v-if="!isNoStatement"
+              class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
+              >{{ t("session.detail.subtitle1") }}</CdxLabel
+            >
+
+            <div
+              v-if="props?.data?.sense?.images"
+              class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full cursor-pointer"
+              @click="
+                () => {
+                  emit('showImage', props?.data?.sense?.images?.data?.[0]?.url);
+                }
+              "
+            >
+              <div class="relative">
+                <CdxThumbnail
+                  :thumbnail="{
+                    url: props?.data?.sense?.images?.data?.[0]?.url,
+                  }"
+                  :placeholder-icon="cdxIconLogoWikidata"
+                />
+                <div class="w-[40px] h-[40px] absolute top-0">
+                  <img :src="expand" />
+                </div>
+              </div>
+              <div>
+                <CdxLabel
+                  class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
+                >
+                  ({{ props?.data?.sense?.images?.property }})</CdxLabel
+                >
+                <p
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
+                >
+                  {{ props?.data?.sense?.images?.data?.[0]?.value }}
+                </p>
+              </div>
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.antonym"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.antonym") }} ({{
+                  props?.data?.sense?.antonym?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ props?.data?.sense?.antonym?.data?.[0]?.value }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.synonym"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.synonym") }} ({{
+                  props?.data?.sense?.synonym?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ props?.data?.sense?.synonym?.data?.[0]?.value }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.locationOfSenseUsage"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.locationOfSenseUsage") }} ({{
+                  props?.data?.sense?.locationOfSenseUsage?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{
+                  props?.data?.sense?.locationOfSenseUsage?.data?.[0]?.value
+                }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.languageStyle"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.languageStyle") }} ({{
+                  props?.data?.sense?.languageStyle?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ props?.data?.sense?.languageStyle?.data?.[0]?.value }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.describedAtUrl"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.describedAtUrl") }} ({{
+                  props?.data?.sense?.describedAtUrl?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{
+                  props?.data?.sense?.describedAtUrl?.data?.[0]?.value
+                }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.glossQuotes"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.glossQuotes") }} ({{
+                  props?.data?.sense?.glossQuotes?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ props?.data?.sense?.glossQuotes?.data?.[0]?.value }}</span
+              >
+            </div>
+
+            <div
+              v-if="props?.data?.sense?.sematicGender"
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ t("session.detail.sematicGender") }} ({{
+                  props?.data?.sense?.sematicGender?.property
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ props?.data?.sense?.sematicGender?.data?.[0]?.value }}</span
+              >
+            </div>
+          </div>
+
+          <CdxLabel
+            v-if="props?.data?.sense?.otherGlosses?.length > 0"
+            class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
+            >{{ t("session.detail.subtitle2") }}</CdxLabel
+          >
+
+          <div v-for="item in props?.data?.sense?.otherGlosses">
+            <div
+              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]"
+            >
+              <span
+                class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]"
+                >{{ props?.languages?.[item?.language]?.autonym }} ({{
+                  item?.language
+                }})</span
+              >
+              <span
+                class="text-[var(--color-subtle)] text-[16px] leading-[22px]"
+                >{{ item?.value }}</span
+              >
+            </div>
           </div>
         </div>
 
@@ -369,7 +408,7 @@ const langs = computed(() => {
         </v-expansion-panels> -->
 
         <div
-          class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-color-base)] my-[var(--spacing-100)]"
+          class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-color-base)] mb-[var(--spacing-100)]"
           @click="isExpand = !isExpand"
           v-if="props?.data?.otherSenses?.length > 0"
         >
@@ -383,15 +422,22 @@ const langs = computed(() => {
               :class="`icon ${isExpand && 'open'}`"
             />
           </div>
-          <v-expand-transition class="duration-[250ms] ease-out">
+          <v-expand-transition
+            class="duration-[250ms] ease-out pb-[var(--spacing-75)]"
+          >
             <div v-show="isExpand">
-              <div v-for="item in langs" :key="item.senseNumber">
-                <div class="text-[14px] font-[700] pb-[var(--spacing-50)]">
+              <div v-for="(item, i) in langs" :key="item.senseNumber">
+                <div
+                  :class="[
+                    'text-[14px] font-[700]',
+                    i !== 0 && 'mt-[var(--spacing-50)]',
+                  ]"
+                >
                   {{ t("session.detail.sense") }} {{ item?.senseNumber }}:
                   {{ item?.gloss }}
                 </div>
                 <div
-                  class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px]"
+                  class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px]"
                   v-if="item?.itemForThisSense?.data?.[0]?.value"
                 >
                   <div class="font-[700]">
@@ -405,7 +451,7 @@ const langs = computed(() => {
                 </div>
 
                 <div
-                  class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+                  class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
                   v-if="item?.otherGlosses?.length > 0"
                 >
                   <CdxIcon :icon="cdxIconLanguage" />
@@ -420,8 +466,13 @@ const langs = computed(() => {
                 </div>
 
                 <div
-                  class="flex gap-x-[12px] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] p-[var(--spacing-75)] w-full text-[16px]"
+                  class="flex gap-x-[12px] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] p-[var(--spacing-75)] w-full text-[16px] cursor-pointer"
                   v-if="item.images"
+                  @click="
+                    () => {
+                      emit('showImage', item?.images?.data?.[0]?.url);
+                    }
+                  "
                 >
                   <div class="relative">
                     <CdxThumbnail
@@ -438,12 +489,12 @@ const langs = computed(() => {
                     <CdxLabel
                       class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
                     >
-                      ({{ item?.itemForThisSense?.properties }})</CdxLabel
+                      ({{ item?.images?.properties }})</CdxLabel
                     >
                     <p
                       class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
                     >
-                      {{ item?.itemForThisSense?.data?.[0]?.value }}
+                      {{ item?.images?.data?.[0]?.value }}
                     </p>
                   </div>
                 </div>

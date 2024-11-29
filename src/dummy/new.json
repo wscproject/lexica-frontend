@@ -1,0 +1,155 @@
+{
+  "status": "Success",
+  "statusCode": 200,
+  "data": {
+    "externalLexemeId": "L22930",
+    "externalLexemeSenseId": "L22930-S1",
+    "lemma": "dummy",
+    "externalCategoryId": "Q1084",
+    "category": "noun",
+    "externalLanguageId": "Q1860",
+    "hasCharacteristics": {
+      "property": "P1552",
+      "data": [
+        {
+          "id": "Q51927507",
+          "value": "animate"
+        }
+      ]
+    },
+    "usageExamples": {
+      "property": "P5831",
+      "data": [
+        {
+          "value": "A dummy round or drill round is a round that is completely inert, i.e., contains no primer, propellant, or explosive charge."
+        }
+      ]
+    },
+    "combinesLexemes": {
+      "property": "P5238",
+      "data": [
+        {
+          "id": "L4589",
+          "value": "flower"
+        },
+        {
+          "id": "L3817",
+          "value": "pot"
+        }
+      ]
+    },
+    "sense": {
+      "gloss": "",
+      "otherGlosses": [
+        {
+          "language": "en",
+          "value": "a substitute object lacking normal functionality of objects of its class, used for various purposes"
+        }
+      ],
+      "images": {
+        "property": "P18",
+        "data": [
+          {
+            "value": "Aboard Carol M. (boat) 10.jpg",
+            "url": "https://commons.wikimedia.org/wiki/Special:FilePath/Aboard Carol M. (boat) 10.jpg"
+          }
+        ]
+      },
+      "languageStyle": {
+        "property": "P6191",
+        "data": [
+          {
+            "id": "Q901711",
+            "value": "colloquial language"
+          }
+        ]
+      },
+      "fieldOfUsage": {
+        "property": "P9488",
+        "data": [
+          {
+            "id": "Q21198",
+            "value": "computer science"
+          }
+        ]
+      },
+      "locationOfSenseUsage": {
+        "property": "P6084",
+        "data": [
+          {
+            "id": "Q5092",
+            "value": "Baltimore"
+          }
+        ]
+      },
+      "semanticGender": {
+        "property": "P10339",
+        "data": [
+          {
+            "id": "Q6581097",
+            "value": "male"
+          }
+        ]
+      },
+      "antonym": null,
+      "synonym": null,
+      "glossQuotes": {
+        "property": "P8394",
+        "data": [
+          {
+            "language": "da",
+            "value": "Skibskøkken"
+          },
+          {
+            "language": "da",
+            "value": "Skibskøkken"
+          }
+        ]
+      }
+    },
+    "otherSenses": [
+      {
+        "externalLexemeSenseId": "L22930-S2",
+        "senseNumber": 2,
+        "gloss": "",
+        "otherGlosses": [
+          {
+            "language": "en",
+            "value": "person of low intelligence"
+          }
+        ],
+        "images": null,
+        "itemForThisSense": {
+          "property": "P5137",
+          "data": [
+            {
+              "id": "Q193607",
+              "value": "idiot"
+            }
+          ]
+        }
+      },
+      {
+        "externalLexemeSenseId": "L22930-S3",
+        "senseNumber": 3,
+        "gloss": "",
+        "otherGlosses": [
+          {
+            "language": "en",
+            "value": "term of endearment used towards a friend or close associate"
+          }
+        ],
+        "images": null,
+        "itemForThisSense": {
+          "property": "P5137",
+          "data": [
+            {
+              "id": "Q17297777",
+              "value": "friend"
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
