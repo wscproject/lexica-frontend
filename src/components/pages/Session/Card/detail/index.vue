@@ -409,11 +409,11 @@ const langs = computed(() => {
 
         <div
           class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-color-base)] mb-[var(--spacing-100)]"
-          @click="isExpand = !isExpand"
           v-if="props?.data?.otherSenses?.length > 0"
         >
           <div
             class="font-[700] text-[16px] pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
+            @click="isExpand = !isExpand"
           >
             <span>{{ t("session.detail.title3") }}</span>
 
