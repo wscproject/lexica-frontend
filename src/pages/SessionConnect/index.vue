@@ -46,6 +46,7 @@ import {
   GetEntityDetail,
   UpdateConnectCardDetail,
   EndContribution,
+  GetLanguages,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -112,7 +113,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
-const img = ref("");
+const languages = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -450,6 +451,16 @@ const getProfile = async () => {
   }
 };
 
+const getLanguages = async () => {
+  const response = await GetLanguages();
+
+  if (response.statusCode === 200) {
+    console.log("response", response.data);
+    languages.value = response.data;
+    isLoading.value = false;
+  }
+};
+
 const getCardsData = async (code) => {
   isLoading.value = true;
   const response = await GetConnectCards({
@@ -467,12 +478,7 @@ const getCardsData = async (code) => {
       ([...response.data.filter((item) => item.status === "pending")]?.length -
         1) *
       4;
-
-    getImage(
-      [...response.data.filter((item) => item.status === "pending")]?.[
-        totalCount.value - currCount.value
-      ]?.externalLexemeSenseId
-    );
+    await getLanguages();
     isLoading.value = false;
     disableSplash();
   } else {
@@ -491,20 +497,7 @@ const getCardsData = async (code) => {
   }
 };
 
-const getImage = async (id) => {
-  const response = await GetCardDetail(id);
-
-  if (response.statusCode === 200) {
-    img.value =
-      response?.data?.statements?.find(
-        (item) => !!item?.images?.data?.[0]?.url
-      ) || "";
-  }
-};
-
 onMounted(async () => {
-  console.log(vuex.getters["profile/language"]);
-
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -518,8 +511,6 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        console.log("testing123");
-
         document.documentElement.className = "dark";
         document
           .querySelector('meta[name="theme-color"]')
@@ -592,13 +583,14 @@ watch([currCount, undoWarn], async () => {
 watch([currCount, data], async () => {
   recommendedLoading.value = true;
 
+  const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
+
+  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
+
   const response = await SearchEntity({
     ...params,
     page: 1,
-    keyword:
-      data?.value?.[totalCount.value - currCount.value]?.lemma?.match(
-        /[a-zA-Z]+/
-      )?.[0],
+    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
   });
 
   if (response?.statusCode) {
@@ -613,12 +605,12 @@ watch([currCount, data], async () => {
   }
 });
 
-watch(currCount, async () => {
-  if (currCount?.value <= totalCount?.value)
-    getImage(
-      data?.value?.[totalCount.value - currCount.value]?.externalLexemeSenseId
-    );
-});
+// watch(currCount, async () => {
+//   if (currCount?.value <= totalCount?.value)
+//     getImage(
+//       data?.value?.[totalCount.value - currCount.value]?.externalLexemeSenseId
+//     );
+// });
 
 watch(
   () => ({ ...params }),
@@ -653,7 +645,9 @@ watch(
         <CdxIcon :icon="cdxIconHome" alt="home" />
       </CdxButton>
       <div class="absolute mx-auto left-0 right-0 w-fit">
-        <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
+        <CdxLabel
+          v-if="data?.length !== 0 && !isLoading"
+          class="text-[16px] pb-0"
           >{{ t("session.title") }} {{ currCount }}</CdxLabel
         >
       </div>
@@ -883,6 +877,7 @@ watch(
                 :isLoading="cardDetailLoading"
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
+                :languages="languages"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {
@@ -906,7 +901,7 @@ watch(
               <CardReview
                 :data="value"
                 :detail="detail"
-                :img="img"
+                :img="value?.image"
                 v-else-if="currMode === 3"
                 @backtoItem="backtoHome"
                 @onDone="

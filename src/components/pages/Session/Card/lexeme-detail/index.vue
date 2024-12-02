@@ -31,7 +31,7 @@ const senses = computed(() => {
       }));
 
       return {
-        number: idx + 1,
+        number: item.senseNumber,
         data: inside,
       };
     }) || [];
@@ -106,6 +106,12 @@ const senses = computed(() => {
       </div>
 
       <div class="h-full w-full" v-if="senses.length !== 0 && !props.isLoading">
+        <div class="pb-[var(--spacing-50)] w-full">
+          <span class="text-[var(--color-base)] font-[700]"
+            >{{ t("session.detail.allSense") }}
+          </span>
+        </div>
+
         <div v-for="sense in senses" class="pb-[4px] w-full">
           <div
             v-for="data in sense?.data?.filter((i) => i.value !== null)"
@@ -134,7 +140,7 @@ const senses = computed(() => {
               v-if="data.label === 'gloss'"
               class="pb-[var(--spacing-50)] w-full"
             >
-              <span class="text-[var(--color-base)] font-[700]"
+              <span class="text-[var(--color-base)] font-[700] text-[14px]"
                 >{{ t("session.detail.sense") }} {{ sense.number }}:
                 {{ data.value }}</span
               >
@@ -155,7 +161,9 @@ const senses = computed(() => {
               <div>
                 <CdxLabel
                   class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
-                  >{{ data.label }} ({{ data?.value?.property }})</CdxLabel
+                  >{{ t("session.detail.image") }} ({{
+                    data?.value?.property
+                  }})</CdxLabel
                 >
                 <p
                   class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
@@ -166,11 +174,19 @@ const senses = computed(() => {
             </div>
 
             <div
-              v-else
+              v-else-if="
+                data.label !== 'images' &&
+                data.label !== 'gloss' &&
+                data.label !== 'senseNumber' &&
+                data.label !== 'externalLexemeSenseId' &&
+                data.label !== 'otherGlosses'
+              "
               class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
             >
               <span class="text-[var(--color-base)] font-[700]"
-                >{{ data.label }} ({{ data?.value?.property }})</span
+                >{{ t(`session.detail.${data.label}`) }} ({{
+                  data?.value?.property
+                }})</span
               >
               <span
                 v-if="data.label === 'describedAtUrl'"
@@ -198,7 +214,7 @@ const senses = computed(() => {
       </div>
       <div
         class="h-full flex justify-center items-center"
-        v-else-if="senses.length === 0 && !props.isLoading"
+        v-else-if="senses?.length === 0 && !props.isLoading"
       >
         <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>

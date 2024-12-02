@@ -53,3 +53,8 @@ export const EndContribution = async () => {
   const response = await api();
   return response.post(`/contributions/end`);
 };
+
+export const GetLanguages = async () => {
+  const response = await api();
+  return response.get("/wikidata/languages");
+};
