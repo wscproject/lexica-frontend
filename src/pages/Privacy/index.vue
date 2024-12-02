@@ -46,9 +46,6 @@ onMounted(() => {
           {{ t("privacy.title1") }}
         </p>
       </div>
-      <p class="pb-[12px] text-[14px] text-[#54595D] dark:text-[#A2A9B1]">
-        {{ t("privacy.version") }} 1.0
-      </p>
       <p class="p-0 text-[16px] dark:text-[#EAECF0]">
         {{ t("privacy.section1") }}
       </p>
