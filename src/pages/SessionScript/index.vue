@@ -7,6 +7,8 @@ import CardReview from "@/components/pages/Session/Card/script-review/index.vue"
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
+import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
+
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
@@ -113,7 +115,7 @@ const endLoading = ref(false);
 const totalCount = ref(0);
 
 const noLoad = ref(false);
-const img = ref(null);
+const isSuccess = ref(false);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -151,6 +153,52 @@ const nextCard = (isButton, id) => {
   }, 300);
 };
 
+const slideRightWithSuccess = () => {
+  setTimeout(() => {
+    submit.value = true;
+
+    // submittingData.value = false;
+    noLoad.value = false;
+
+    // isSuccess.value = false;
+
+    setTimeout(() => {
+      isSuccess.value = false;
+    }, 50);
+
+    setTimeout(async () => {
+      currMode.value = 1;
+      splash.value = true;
+
+      onHideCard();
+
+      // flip.value = false;
+      flip.value = false;
+      submit.value = false;
+      disableSplash();
+    }, 100);
+  }, 600);
+};
+
+// const slideRight = () => {
+//   submit.value = true;
+
+//   submittingData.value = false;
+//   noLoad.value = false;
+
+//   setTimeout(async () => {
+//     currMode.value = 1;
+//     splash.value = true;
+
+//     onHideCard();
+
+//     // flip.value = false;
+//     flip.value = false;
+//     submit.value = false;
+//     disableSplash();
+//   }, 200);
+// };
+
 const submitCard = async (item) => {
   submittingData.value = true;
   let action = "";
@@ -160,26 +208,19 @@ const submitCard = async (item) => {
   const response = await updateDetail({ ...item, action: action });
 
   if (response.statusCode === 200) {
-    submit.value = true;
     submittingData.value = false;
-    noLoad.value = false;
+    isSuccess.value = true;
 
-    setTimeout(async () => {
-      splash.value = true;
-      currMode.value = 1;
-
-      onHideCard();
-
-      flip.value = false;
-      submit.value = false;
-      disableSplash();
-    }, 200);
+    slideRightWithSuccess();
   } else if (response.statusCode === 503) {
     isLoading.value = false;
     noInternet.value = true;
   } else {
     submittingData.value = false;
     isSubmitError.value = true;
+    // isSuccess.value = true;
+
+    // slideRightWithSuccess();
   }
 };
 
@@ -784,6 +825,14 @@ watch([currCount, undoWarn], async () => {
                 :currCount="currCount"
                 :isNotCurrent="data?.length !== index + 1"
               ></CardSplash>
+            </transition>
+
+            <transition name="fade">
+              <CardSuccess
+                v-if="isSuccess"
+                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[2]']"
+              >
+              </CardSuccess>
             </transition>
 
             <transition name="fade">

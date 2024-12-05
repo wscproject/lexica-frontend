@@ -275,13 +275,13 @@ const gotoSession = async () => {
     >
       <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
     >
-    <CdxButton
+    <!-- <CdxButton
       class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
       @click="isGuide = true"
     >
       <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
       {{ t("home.auth.tutorial") }}</CdxButton
-    >
+    > -->
   </div>
 
   <GuideDialog
