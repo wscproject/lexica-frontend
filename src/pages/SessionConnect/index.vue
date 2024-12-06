@@ -865,6 +865,7 @@ watch(
                     : 'bg-[#3056A9]',
                   'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
                 ]"
+                :currLang="value?.language?.title"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
                 :key="123"
@@ -933,6 +934,7 @@ watch(
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
                 :languages="languages"
+                :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {

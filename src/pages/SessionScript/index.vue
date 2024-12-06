@@ -49,6 +49,7 @@ import {
   GetEntityDetail,
   UpdateScriptCardDetail,
   EndContribution,
+  GetLanguages,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -116,6 +117,7 @@ const totalCount = ref(0);
 
 const noLoad = ref(false);
 const isSuccess = ref(false);
+const languages = ref(null);
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
@@ -486,6 +488,16 @@ const getEntityDetail = async (id) => {
   }
 };
 
+const getLanguages = async () => {
+  const response = await GetLanguages();
+
+  if (response.statusCode === 200) {
+    console.log("response", response.data);
+    languages.value = response.data;
+    isLoading.value = false;
+  }
+};
+
 const getProfile = async () => {
   isLoading.value = true;
 
@@ -524,6 +536,8 @@ const getCardsData = async (code) => {
     //     totalCount.value - currCount.value
     //   ]?.externalLexemeId
     // );
+
+    await getLanguages();
 
     isLoading.value = false;
 
@@ -824,6 +838,7 @@ watch([currCount, undoWarn], async () => {
                 :key="0"
                 :currCount="currCount"
                 :isNotCurrent="data?.length !== index + 1"
+                :currLang="value?.language?.title"
               ></CardSplash>
             </transition>
 
@@ -887,6 +902,8 @@ watch([currCount, undoWarn], async () => {
                 :isLoading="cardDetailLoading"
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
+                :languages="languages"
+                :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {

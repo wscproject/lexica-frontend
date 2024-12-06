@@ -249,6 +249,7 @@
     },
 
     "emptyStatement": "Pernyataan tidak ditemukan",
+    "emptyDescriptionHead": "Definisi tidak ditemukan dalam",
     "emptyDescription": "Definisi tidak ditemukan"
   },
   "about": {

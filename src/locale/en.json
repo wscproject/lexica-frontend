@@ -259,7 +259,8 @@
     },
 
     "emptyStatement": "Statement not found",
-    "emptyDescription": "Definition not found"
+    "emptyDescriptionHead": "Definition not found in",
+    "emptyDescription": "Definition not found in"
   },
 
   "about": {
