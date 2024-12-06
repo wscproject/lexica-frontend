@@ -118,6 +118,7 @@ const noLoad = ref(false);
 const languages = ref(null);
 
 const isSuccess = ref(false);
+const submitAction = ref("");
 
 const slideRightWithSuccess = () => {
   setTimeout(() => {
@@ -206,8 +207,10 @@ const submitCard = async (item) => {
 
   if (item?.itemId === "") {
     action = "noItem";
+    submitAction.value = "noItem";
   } else {
     action = "add";
+    submitAction.value = "add";
   }
 
   const response = await updateDetail({ ...item, action: action });
@@ -896,6 +899,7 @@ watch(
                 class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="submittingData === true"
                 :key="1"
+                :submitAction="submitAction"
               ></CardSubmitting>
             </transition>
 

@@ -863,6 +863,7 @@ watch([currCount, undoWarn], async () => {
               <CardSubmitting
                 class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="submittingData === true"
+                :submitAction="'add'"
                 :key="0"
               ></CardSubmitting>
             </transition>
