@@ -1,0 +1,5 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M64 124.364C97.3379 124.364 124.364 97.3379 124.364 64C124.364 30.6621 97.3379 3.63636 64 3.63636C30.6621 3.63636 3.63636 30.6621 3.63636 64C3.63636 97.3379 30.6621 124.364 64 124.364ZM64 128C99.3462 128 128 99.3462 128 64C128 28.6538 99.3462 0 64 0C28.6538 0 0 28.6538 0 64C0 99.3462 28.6538 128 64 128Z" fill="white" fill-opacity="0.4"/>
+<circle cx="64" cy="64" r="48" fill="white" fill-opacity="0.9"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M92 50L56 84L36 64L42 58L56 72L86 44L92 50Z" fill="#14876B"/>
+</svg>

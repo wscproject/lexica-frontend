@@ -5,8 +5,12 @@ import {
   CdxProgressBar,
   CdxThumbnail,
 } from "@wikimedia/codex";
-import { cdxIconLogoWikidata, cdxIconClose } from "@wikimedia/codex-icons";
-import { computed, ref } from "vue";
+import {
+  cdxIconLogoWikidata,
+  cdxIconClose,
+  cdxIconLanguage,
+} from "@wikimedia/codex-icons";
+import { computed, ref, watch } from "vue";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
 import expand from "@/assets/expand.svg";
@@ -17,6 +21,8 @@ const props = defineProps({
   data: Object,
   headerData: Object,
   isLoading: Boolean,
+  languages: Object,
+  currLang: String,
 });
 
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
@@ -37,6 +43,10 @@ const senses = computed(() => {
     }) || [];
 
   return data;
+});
+
+watch(senses, () => {
+  console.log(senses.value);
 });
 </script>
 
@@ -82,7 +92,7 @@ const senses = computed(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          <i>{{ t("session.emptyDescription") }}</i>
+          <i>{{ t("session.emptyDescription") }} {{ props?.currLang }}</i>
         </p>
       </div>
       <div>
@@ -145,6 +155,31 @@ const senses = computed(() => {
                 {{ data.value }}</span
               >
             </div>
+
+            <div
+              v-else-if="data.label === 'otherGlosses'"
+              class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+            >
+              <CdxIcon :icon="cdxIconLanguage" />
+              <div class="text-[16px] pl-[var(--spacing-75)]">
+                <div class="font-[700]">
+                  {{ t("session.detail.otherGlosses") }}
+                </div>
+                <div class="text-[var(--color-subtle)]">
+                  {{
+                    data?.value
+                      ?.map(
+                        (item) =>
+                          `${item.value} (${
+                            props?.languages?.[item?.language]?.autonym
+                          })`
+                      )
+                      ?.join(", ") || ""
+                  }}
+                </div>
+              </div>
+            </div>
+
             <div
               v-else-if="data.label === 'images'"
               class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
@@ -178,8 +213,8 @@ const senses = computed(() => {
                 data.label !== 'images' &&
                 data.label !== 'gloss' &&
                 data.label !== 'senseNumber' &&
-                data.label !== 'externalLexemeSenseId' &&
-                data.label !== 'otherGlosses'
+                data.label !== 'externalLexemeSenseId'
+                // data.label !== 'otherGlosses'
               "
               class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
             >

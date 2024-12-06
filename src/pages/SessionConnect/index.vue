@@ -7,6 +7,8 @@ import CardReview from "@/components/pages/Session/Card/review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
+import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
+
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
@@ -115,6 +117,54 @@ const totalCount = ref(0);
 const noLoad = ref(false);
 const languages = ref(null);
 
+const isSuccess = ref(false);
+const submitAction = ref("");
+
+const slideRightWithSuccess = () => {
+  setTimeout(() => {
+    submit.value = true;
+
+    noLoad.value = false;
+
+    // isSuccess.value = false;
+
+    setTimeout(() => {
+      isSuccess.value = false;
+    }, 50);
+
+    setTimeout(async () => {
+      currMode.value = 1;
+      splash.value = true;
+
+      onHideCard();
+
+      // flip.value = false;
+      flip.value = false;
+      submit.value = false;
+      disableSplash();
+    }, 100);
+  }, 600);
+};
+
+const slideRight = () => {
+  submit.value = true;
+
+  submittingData.value = false;
+  noLoad.value = false;
+
+  setTimeout(async () => {
+    currMode.value = 1;
+    splash.value = true;
+
+    onHideCard();
+
+    // flip.value = false;
+    flip.value = false;
+    submit.value = false;
+    disableSplash();
+  }, 200);
+};
+
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
@@ -157,33 +207,33 @@ const submitCard = async (item) => {
 
   if (item?.itemId === "") {
     action = "noItem";
+    submitAction.value = "noItem";
   } else {
     action = "add";
+    submitAction.value = "add";
   }
 
   const response = await updateDetail({ ...item, action: action });
-
   if (response.statusCode === 200) {
-    submit.value = true;
-    submittingData.value = false;
-    noLoad.value = false;
+    if (action === "noItem") {
+      submittingData.value = false;
 
-    setTimeout(async () => {
-      splash.value = true;
-      currMode.value = 1;
+      slideRight();
+    } else {
+      submittingData.value = false;
 
-      onHideCard();
+      isSuccess.value = true;
 
-      flip.value = false;
-      submit.value = false;
-      disableSplash();
-    }, 200);
+      slideRightWithSuccess();
+    }
   } else if (response.statusCode === 503) {
     isLoading.value = false;
     noInternet.value = true;
   } else {
     submittingData.value = false;
     isSubmitError.value = true;
+    // isSuccess.value = true;
+    // slideRightWithSuccess();
   }
 };
 
@@ -818,19 +868,28 @@ watch(
                     : 'bg-[#3056A9]',
                   'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
                 ]"
+                :currLang="value?.language?.title"
                 :data="value"
                 v-if="splash === true || data?.length !== index + 1"
-                :key="0"
+                :key="123"
                 :currCount="currCount"
                 :isNotCurrent="data?.length !== index + 1"
               ></CardSplash>
             </transition>
 
             <transition name="fade">
+              <CardSuccess
+                v-if="isSuccess"
+                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[2]']"
+              >
+              </CardSuccess>
+            </transition>
+
+            <transition name="fade">
               <CardSubmitFailed
                 class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="isSubmitError === true"
-                :key="0"
+                :key="3"
                 @back="isSubmitError = false"
               ></CardSubmitFailed>
             </transition>
@@ -839,7 +898,8 @@ watch(
               <CardSubmitting
                 class="custom-height rounded-[16px] back max-h-[650px] h-full"
                 v-if="submittingData === true"
-                :key="0"
+                :key="1"
+                :submitAction="submitAction"
               ></CardSubmitting>
             </transition>
 
@@ -878,6 +938,7 @@ watch(
                 :data="cardDetailData ?? {}"
                 :headerData="detailHeaderData"
                 :languages="languages"
+                :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {

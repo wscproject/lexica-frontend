@@ -7,6 +7,7 @@ const props = defineProps({
   data: Object,
   currCount: Number,
   isNotCurrent: Boolean,
+  currLang: String,
 });
 </script>
 
@@ -27,7 +28,7 @@ const props = defineProps({
         {{ props?.data?.gloss }}
       </p>
       <p v-else class="text-[16px]">
-        <i>{{ t("session.emptyDescription") }}</i>
+        <i>{{ t("session.emptyDescription") }} {{ props?.currLang }}</i>
       </p>
     </div>
   </div>
