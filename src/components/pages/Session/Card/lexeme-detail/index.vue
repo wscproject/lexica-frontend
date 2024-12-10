@@ -181,6 +181,29 @@ watch(senses, () => {
             </div>
 
             <div
+              v-else-if="data.label === 'combinesLexemes'"
+              class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+            >
+              <CdxIcon :icon="cdxIconLanguage" />
+              <div class="text-[16px] pl-[var(--spacing-75)]">
+                <div class="font-[700]">
+                  {{ t("session.detail.combinesLexemes") }} ({{
+                    data?.value?.property
+                  }})
+                </div>
+                <div class="text-[var(--color-subtle)]">
+                  {{
+                    data?.value?.data
+                      ?.map((item) => {
+                        return `${item.value} (${item.id})`;
+                      })
+                      ?.join(" + ")
+                  }}
+                </div>
+              </div>
+            </div>
+
+            <div
               v-else-if="data.label === 'images'"
               class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
             >
@@ -213,7 +236,9 @@ watch(senses, () => {
                 data.label !== 'images' &&
                 data.label !== 'gloss' &&
                 data.label !== 'senseNumber' &&
-                data.label !== 'externalLexemeSenseId'
+                data.label !== 'externalLexemeSenseId' &&
+                data.label !== 'combinesLexemes' &&
+                data.label !== 'otherGlosses'
                 // data.label !== 'otherGlosses'
               "
               class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
