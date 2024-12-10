@@ -158,7 +158,7 @@ watch(senses, () => {
 
             <div
               v-else-if="data.label === 'otherGlosses'"
-              class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+              class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
             >
               <CdxIcon :icon="cdxIconLanguage" />
               <div class="text-[16px] pl-[var(--spacing-75)]">
@@ -196,7 +196,7 @@ watch(senses, () => {
               <div>
                 <CdxLabel
                   class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none"
-                  >{{ t("session.detail.image") }} ({{
+                  >{{ t("session.detail.images") }} ({{
                     data?.value?.property
                   }})</CdxLabel
                 >
