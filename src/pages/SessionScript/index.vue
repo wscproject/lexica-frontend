@@ -173,13 +173,14 @@ const slideRightWithSuccess = () => {
       splash.value = true;
 
       onHideCard();
+      submittingData.value = false;
 
       // flip.value = false;
       flip.value = false;
       submit.value = false;
       disableSplash();
     }, 100);
-  }, 600);
+  }, 750);
 };
 
 // const slideRight = () => {
@@ -210,7 +211,6 @@ const submitCard = async (item) => {
   const response = await updateDetail({ ...item, action: action });
 
   if (response.statusCode === 200) {
-    submittingData.value = false;
     isSuccess.value = true;
 
     slideRightWithSuccess();
@@ -218,8 +218,9 @@ const submitCard = async (item) => {
     isLoading.value = false;
     noInternet.value = true;
   } else {
-    submittingData.value = false;
     isSubmitError.value = true;
+    submittingData.value = false;
+
     // isSuccess.value = true;
 
     // slideRightWithSuccess();
@@ -844,8 +845,8 @@ watch([currCount, undoWarn], async () => {
 
             <transition name="fade">
               <CardSuccess
-                v-if="isSuccess"
-                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[2]']"
+                v-if="isSuccess && data?.length === index + 1"
+                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']"
               >
               </CardSuccess>
             </transition>
