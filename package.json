@@ -17,6 +17,7 @@
     "interactjs": "^1.10.27",
     "less": "^4.2.0",
     "lodash.debounce": "^4.0.8",
+    "lottie-web-vue": "^2.0.7",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",
     "vue-client-only": "^2.1.0",

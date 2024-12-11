@@ -5,6 +5,7 @@ import errordark from "@/assets/errordark.svg";
 
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const emit = defineEmits(["back"]);

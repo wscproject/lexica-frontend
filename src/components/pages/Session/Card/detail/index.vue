@@ -25,6 +25,7 @@ const props = defineProps({
   headerData: Object,
   isLoading: Boolean,
   languages: Object,
+  currLang: String,
 });
 
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
@@ -115,7 +116,7 @@ onMounted(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          <i>{{ t("session.emptyDescription") }}</i>
+          <i>{{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}</i>
         </p>
       </div>
       <div>
@@ -141,14 +142,17 @@ onMounted(() => {
       <div
         class="h-full"
         v-if="
-          !props.isLoading ||
-          !isNoStatement ||
-          isThisLexeme ||
-          data?.otherSenses?.length > 0 ||
-          !noGlosses
+          !props.isLoading &&
+          (!isNoStatement ||
+            isThisLexeme ||
+            data?.otherSenses?.length > 0 ||
+            !noGlosses)
         "
       >
-        <div v-if="isThisLexeme" class="mb-[var(--spacing-100)]">
+        <div
+          v-if="!props.isLoading && isThisLexeme"
+          class="mb-[var(--spacing-100)]"
+        >
           <CdxLabel
             class="text-[16px] dark:text-[#EAECF0] p-0"
             style="padding-bottom: 12px"
@@ -374,7 +378,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <div v-if="!noGlosses">
+          <div v-if="!props.isLoading && !noGlosses">
             <CdxLabel
               class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0"
               >{{ t("session.detail.subtitle2") }}</CdxLabel
