@@ -157,12 +157,14 @@ watch(senses, () => {
             </div>
 
             <div
-              v-else-if="data.label === 'otherGlosses'"
+              v-else-if="
+                data.label === 'otherGlosses' && data?.value?.length !== 0
+              "
               class="text-[16px] p-[var(--spacing-75)] mb-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
             >
               <CdxIcon :icon="cdxIconLanguage" />
               <div class="text-[16px] pl-[var(--spacing-75)]">
-                <div class="font-[700]">
+                <div class="font-[700] text-[var(--color-base)]">
                   {{ t("session.detail.otherGlosses") }}
                 </div>
                 <div class="text-[var(--color-subtle)]">
