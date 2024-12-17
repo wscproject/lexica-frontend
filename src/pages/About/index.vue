@@ -12,71 +12,79 @@ const router = useRouter();
 <template>
   <div class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D]">
     <div
-      class="flex p-[4px] gap-x-[8px] items-center border-b border-[#C8CCD1] dark:border-[#54595D]"
+      class="flex gap-x-[8px] border-b border-[#C8CCD1] dark:border-[#54595D] max-[639px]:h-[54px] h-[64px] bg-[var(--background-color-neutral)] breakpoints-2"
     >
-      <CdxButton
-        weight="quiet"
-        class="p-[11px]"
-        @click="router.back"
-        v-tooltip:bottom-start="t('tooltips.back')"
+      <div
+        class="max-w-[908px] w-full flex items-center h-full relative"
+        style="display: block; margin-left: auto; margin-right: auto"
       >
-        <CdxIcon :icon="cdxIconArrowPrevious" />
-      </CdxButton>
-      <p class="p-0 font-[700] dark:text-[#EAECF0]">{{ t("about.title") }}</p>
-    </div>
-    <div class="p-[16px]">
-      <div class="border-b border-[#C8CCD1] dark:border-[#72777D] mb-[12px]">
-        <p class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]">
-          {{ t("about.title") }}
-        </p>
+        <CdxButton
+          weight="quiet"
+          class="absolute left-[0px] p-[var(--spacing-75)]"
+          @click="router.back"
+          v-tooltip:bottom-start="t('tooltips.back')"
+        >
+          <CdxIcon :icon="cdxIconArrowPrevious" />
+        </CdxButton>
       </div>
-      <I18nT
-        keypath="about.content1"
-        tag="p"
-        class="p-0 text-[16px] dark:text-[#EAECF0]"
-      >
-        <template #lexica>
-          <span>Lexica</span>
-        </template>
-      </I18nT>
-      <br />
-      <I18nT
-        keypath="about.content2"
-        tag="p"
-        class="p-0 text-[16px] dark:text-[#EAECF0]"
-      >
-        <template #lexica>
-          <span>Lexica</span>
-        </template>
-      </I18nT>
-      <br />
-      <I18nT
-        keypath="about.content3"
-        tag="p"
-        class="p-0 text-[16px] dark:text-[#EAECF0]"
-      >
-        <template #lexica>
-          <span>Lexica</span>
-        </template>
-      </I18nT>
-      <br />
-      <I18nT
-        keypath="about.content4"
-        tag="p"
-        class="p-0 text-[16px] dark:text-[#EAECF0]"
-      >
-        <template #lexica>
-          <span>Lexica</span>
-        </template>
-        <template #link>
-          <a
-            class="cdx-docs-link is-underlined"
-            href="https://www.wikidata.org/wiki/Wikidata:Lexica"
+    </div>
+    <div class="p-[16px] flex flex-col items-center">
+      <div class="max-w-[896px]">
+        <div class="border-b border-[#C8CCD1] dark:border-[#72777D] mb-[12px]">
+          <h1
+            class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]"
           >
-            {{ t("about.page") }}</a
-          >
-        </template>
-      </I18nT>
+            {{ t("about.title") }}
+          </h1>
+        </div>
+        <I18nT
+          keypath="about.content1"
+          tag="p"
+          class="p-0 text-[16px] dark:text-[#EAECF0]"
+        >
+          <template #lexica>
+            <span>Lexica</span>
+          </template>
+        </I18nT>
+        <br />
+        <I18nT
+          keypath="about.content2"
+          tag="p"
+          class="p-0 text-[16px] dark:text-[#EAECF0]"
+        >
+          <template #lexica>
+            <span>Lexica</span>
+          </template>
+        </I18nT>
+        <br />
+        <I18nT
+          keypath="about.content3"
+          tag="p"
+          class="p-0 text-[16px] dark:text-[#EAECF0]"
+        >
+          <template #lexica>
+            <span>Lexica</span>
+          </template>
+        </I18nT>
+        <br />
+        <I18nT
+          keypath="about.content4"
+          tag="p"
+          class="p-0 text-[16px] dark:text-[#EAECF0]"
+        >
+          <template #lexica>
+            <span>Lexica</span>
+          </template>
+          <template #link>
+            <a
+              class="cdx-docs-link is-underlined"
+              href="https://www.wikidata.org/wiki/Wikidata:Lexica"
+            >
+              {{ t("about.page") }}</a
+            >
+          </template>
+        </I18nT>
+      </div>
     </div>
   </div>
 </template>

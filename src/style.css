@@ -160,6 +160,11 @@ body,
   height: 100%;
 }
 
+/* html,
+html.dark {
+  overflow: auto;
+} */
+
 body {
   margin: 0;
   display: flex;
@@ -260,3 +265,41 @@ h1 {
 .cdx-select-vue__indicator {
   color: #eaecf0 !important;
 } */
+
+.breakpoints {
+  padding-right: var(--spacing-125);
+  padding-left: var(--spacing-200);
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .breakpoints {
+    padding-right: var(--spacing-125);
+    padding-left: var(--spacing-200);
+  }
+}
+
+@media (max-width: 639px) {
+  .breakpoints {
+    padding-right: var(--spacing-25);
+    padding-left: var(--spacing-100);
+  }
+}
+
+.breakpoints-2 {
+  padding-right: var(--spacing-200);
+  padding-left: var(--spacing-125);
+}
+
+@media (max-width: 1023px) and (min-width: 640px) {
+  .breakpoints-2 {
+    padding-right: var(--spacing-200);
+    padding-left: var(--spacing-125);
+  }
+}
+
+@media (max-width: 639px) {
+  .breakpoints-2 {
+    padding-right: var(--spacing-100);
+    padding-left: var(--spacing-25);
+  }
+}

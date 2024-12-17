@@ -49,6 +49,7 @@ import {
   UpdateConnectCardDetail,
   EndContribution,
   GetLanguages,
+  GetRecommendations,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -545,6 +546,31 @@ const getCardsData = async (code) => {
   }
 };
 
+const getRecommendation = async () => {
+  recommendedLoading.value = true;
+
+  const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
+
+  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
+
+  const response = await GetRecommendations({
+    ...params,
+    page: 1,
+    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
+  });
+
+  if (response?.statusCode) {
+    recommendedLoading.value = false;
+
+    entities.value = [...response?.data?.entities];
+  } else {
+    if (response.statusCode === 503) {
+      isLoading.value = false;
+      noInternet.value = true;
+    }
+  }
+};
+
 onMounted(async () => {
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
@@ -629,28 +655,7 @@ watch([currCount, undoWarn], async () => {
 });
 
 watch([currCount, data], async () => {
-  recommendedLoading.value = true;
-
-  const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
-
-  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
-
-  const response = await SearchEntity({
-    ...params,
-    page: 1,
-    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
-  });
-
-  if (response?.statusCode) {
-    recommendedLoading.value = false;
-
-    entities.value = [...response?.data?.entities];
-  } else {
-    if (response.statusCode === 503) {
-      isLoading.value = false;
-      noInternet.value = true;
-    }
-  }
+  await getRecommendation();
 });
 
 // watch(currCount, async () => {
@@ -670,11 +675,17 @@ watch(
     }
 
     if (oldParams.keyword !== newParams.keyword) {
-      entities.value = [];
-      searchLoading.value = true;
+      if (newParams.keyword) {
+        entities.value = [];
+        searchLoading.value = true;
+      }
     }
 
-    await searchData();
+    if (newParams.keyword) {
+      await searchData();
+    } else {
+      await getRecommendation();
+    }
   }
 );
 </script>
@@ -682,22 +693,24 @@ watch(
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
+      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 px-[16px] shrink-0 justify-center"
     >
-      <CdxButton
-        v-tooltip:bottom-start="t('tooltips.home')"
-        weight="quiet"
-        class="w-[44px] h-[44px] px-0 absolute left-[3px]"
-        @click="endEarly"
-      >
-        <CdxIcon :icon="cdxIconHome" alt="home" />
-      </CdxButton>
-      <div class="absolute mx-auto left-0 right-0 w-fit">
-        <CdxLabel
-          v-if="data?.length !== 0 && !isLoading"
-          class="text-[16px] pb-0"
-          >{{ t("session.title") }} {{ currCount }}</CdxLabel
+      <div class="max-w-[920px] w-full h-full flex items-center relative">
+        <CdxButton
+          v-tooltip:bottom-start="t('tooltips.home')"
+          weight="quiet"
+          class="w-[44px] h-[44px] px-0 absolute left-[3px]"
+          @click="endEarly"
         >
+          <CdxIcon :icon="cdxIconHome" alt="home" />
+        </CdxButton>
+        <div class="absolute mx-auto left-0 right-0 w-fit">
+          <CdxLabel
+            v-if="data?.length !== 0 && !isLoading"
+            class="text-[16px] pb-0"
+            >{{ t("session.title") }} {{ currCount }}</CdxLabel
+          >
+        </div>
       </div>
     </div>
 

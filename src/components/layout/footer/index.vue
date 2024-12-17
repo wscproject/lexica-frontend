@@ -1,6 +1,11 @@
 <script setup>
 import Logo from "@/assets/lexica_footer.svg";
 import LogoDark from "@/assets/lexica_footer_dark.svg";
+import LogoLexica from "@/assets/lexica_logo_footer.svg";
+import LogoLexicaDark from "@/assets/lexica_logo_footer_dark.svg";
+import { CdxIcon } from "@wikimedia/codex";
+import { cdxIconHeart } from "@wikimedia/codex-icons";
+
 import { computed } from "vue";
 
 import { useI18n } from "vue-i18n";
@@ -15,33 +20,63 @@ const { t, locale } = useI18n({ useScope: "global" });
 
 <template>
   <footer
-    class="h-[103px] fixed flex justify-center items-center w-full left-0 bottom-0 flex-col px-[16px] bg-[#EAECF0] dark:bg-[#27292D]"
+    class="h-[82px] max-[1023px]:h-[104px] max-[639px]:h-[134px] max-[1023px]:h-[104px] fixed flex items-center jusitfy-center w-full left-0 bottom-0 flex-col px-[16px] bg-[#EAECF0] dark:bg-[#27292D] py-[var(--spacing-100)] px-[var(--spacing-200)] max-[639px]:px-[var(--spacing-100)]"
   >
-    <img v-if="!isThemeDark" :src="Logo" alt="lexica_footer" />
-    <img v-else :src="LogoDark" alt="lexica_footer" />
-
-    <div class="text-center text-[12px]">
-      <span class="text-[#54595D] dark:text-[#A2A9B1]"
-        >{{ t("footer.label") }} </span
-      ><a
-        class="cdx-docs-link"
-        href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
+    <div
+      class="max-w-[896px] w-full flex items-center justify-between h-full gap-x-[var(--spacing-100)] max-[639px]:flex-col max-[639px]:items-start max-[639px]:gap-y-[var(--spacing-50)]"
+    >
+      <div
+        class="flex flex-col max-[1023px]:w-full max-[639px]:w-fit h-full justify-between gap-y-[var(--spacing-50)]"
       >
-        Wikidata Software Collaboration</a
-      ><span class="text-[#54595D] dark:text-[#A2A9B1]" v-if="locale === 'en'">
-        team</span
+        <div class="flex items-center gap-x-[var(--spacing-50)]">
+          <div>
+            <img v-if="!isThemeDark" :src="LogoLexica" alt="lexica_footer" />
+            <img v-else :src="LogoLexicaDark" alt="lexica_footer" />
+          </div>
+          <CdxIcon
+            :icon="cdxIconHeart"
+            size="extra-small"
+            dir="rtl"
+            class="text-[#BF3C2C] w-[12px] h-[12px]"
+          />
+          <div>
+            <img v-if="!isThemeDark" :src="Logo" alt="lexica_footer" />
+            <img v-else :src="LogoDark" alt="lexica_footer" />
+          </div>
+        </div>
+        <div class="text-[14px] font-[700]">
+          <span class="text-[#54595D] dark:text-[#A2A9B1]"
+            >{{ t("footer.label") }} </span
+          ><a
+            class="cdx-docs-link"
+            href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
+          >
+            Wikidata Software Collaboration</a
+          ><span
+            class="text-[#54595D] dark:text-[#A2A9B1]"
+            v-if="locale === 'en'"
+          >
+            team</span
+          >
+        </div>
+      </div>
+      <div
+        class="flex items-end max-[1023px]:w-full max-[639px]:w-fit justify-end h-full"
       >
-    </div>
-    <div class="text-center text-[12px] mt-[4px]">
-      <a class="cdx-docs-link" href="/about">{{ t("footer.about") }}</a>
-      <span class="cdx-docs-link"> · </span>
-      <a class="cdx-docs-link" href="/privacy-policy">{{
-        t("footer.privacy")
-      }}</a>
-      <span class="cdx-docs-link"> · </span>
-      <a class="cdx-docs-link" href="/license-list">{{
-        t("footer.license")
-      }}</a>
+        <div
+          class="text-center text-[14px] font-[700] flex gap-x-[var(--spacing-50)] items-center"
+        >
+          <a class="cdx-docs-link" href="/about">{{ t("footer.about") }}</a>
+          <span class="cdx-docs-link">·</span>
+          <a class="cdx-docs-link" href="/privacy-policy">{{
+            t("footer.privacy")
+          }}</a>
+          <span class="cdx-docs-link">·</span>
+          <a class="cdx-docs-link" href="/license-list">{{
+            t("footer.license")
+          }}</a>
+        </div>
+      </div>
     </div>
   </footer>
 </template>

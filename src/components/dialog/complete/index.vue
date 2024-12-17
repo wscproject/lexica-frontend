@@ -45,7 +45,7 @@ defineExpose({ openModal });
 <template>
   <CdxDialog
     v-model:open="open"
-    class="text-center"
+    class="text-center max-w-[512px]"
     @update:open="handleUserInput(true)"
   >
     <div class="flex flex-col items-center">

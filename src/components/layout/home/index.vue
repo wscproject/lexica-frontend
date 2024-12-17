@@ -53,7 +53,7 @@ const reload = () => {
     <div class="relative flex flex-col items-center container-home">
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
-        class="container-home pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
+        class="container-home pb-[103px] max-[639px]:pt-[54px] pt-[64px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
       >
         <slot v-if="!logout && !loading" />
 

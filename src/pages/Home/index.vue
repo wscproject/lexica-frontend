@@ -31,7 +31,7 @@ onMounted(async () => {
 
     <div
       v-if="isAuth"
-      class="flex align-center flex-col w-full justify-center h-full max-w-[512px]"
+      class="flex align-center flex-col w-full justify-center h-full max-w-[448px]"
     >
       <Auth />
     </div>

@@ -57,7 +57,7 @@ defineExpose({ openModal });
 <template>
   <CdxDialog
     v-model:open="open"
-    class="mx-[16px] w-full"
+    class="mx-[16px] w-full max-w-[512px]"
     :title="t('session.warning.title')"
     @update:open="handleUserInput(false)"
     close-button-label="Close"
