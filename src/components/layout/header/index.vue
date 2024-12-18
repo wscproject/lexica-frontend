@@ -157,9 +157,10 @@ watch(isThemeDark, () => {
         <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
         <img v-else :src="LogoDark" alt="lexica_logo" />
       </div>
-      <div class="absolute right-[0px]">
+      <div class="absolute right-[0px] edited">
         <CdxMenuButton
           :key="locale"
+          top-right
           v-tooltip:bottom="t('tooltips.account')"
           v-model="selection"
           :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
@@ -188,6 +189,11 @@ watch(isThemeDark, () => {
 </template>
 
 <style>
+.edited .cdx-menu {
+  right: unset !important;
+  left: 0px !important;
+  transform: translate(-212px, 4px) !important;
+}
 .home-button:active {
   border-radius: 2px !important;
   border-color: #72777d !important;
