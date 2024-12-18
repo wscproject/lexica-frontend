@@ -63,6 +63,7 @@
   "home": {
     "unauth": {
       "title": "Welcome!",
+      "title2": "Complete lexicographical data on Wikidata with ease",
       "body1": "is an innovative tool crafted to empower you to seamlessly contribute to the lexicographical data on Wikidata.",
       "body2": "By using Lexica, you agree to ",
       "privacyPolicy": "Lexica Privacy Policy.",

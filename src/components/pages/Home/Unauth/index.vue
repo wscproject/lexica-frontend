@@ -23,7 +23,7 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
       <h1
         class="text-[28px] text-[var(--color-emphasized)] pb-[var(--spacing-50)] leading-[35px]"
       >
-        Lengkapi data leksikografis di Wikidata dengan mudah
+        {{ t("home.unauth.title2") }}
       </h1>
 
       <div class="text-[16px] dark:text-[#EAECF0]">
