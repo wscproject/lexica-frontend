@@ -48,23 +48,23 @@ const reload = () => {
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")
       }}</CdxLabel>
-      <CdxProgressBar class="w-full max-w-[896px]"></CdxProgressBar>
+      <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
     </div>
     <div class="relative flex flex-col items-center container-home">
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
-        class="container-home pb-[103px] max-[639px]:pt-[54px] pt-[64px] w-full bg-white dark:bg-[#101418] relative z-[0]"
+        class="container-home max-[639px]:pt-[54px] pt-[64px] w-full bg-white dark:bg-[#101418] relative z-[0]"
       >
         <slot v-if="!logout && !loading" />
 
         <div
           v-if="logout && !success"
-          class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px]"
+          class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px] items-center"
         >
           <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
             t("header.menu.loggingout")
           }}</CdxLabel>
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
         </div>
         <div
           v-else-if="logout && success"

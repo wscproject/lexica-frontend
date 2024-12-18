@@ -16,7 +16,7 @@
     }
   },
   "footer": {
-    "label": "Alat yang dikembangkan oleh tim",
+    "label": "Lexica adalah sebuah alat yang dikembangkan oleh tim {wikidata}",
     "about": "Tentang",
     "privacy": "Privasi",
     "license": "Lisensi"
@@ -60,7 +60,7 @@
       "title2": "Lengkapi data leksikografis di Wikidata dengan mudah",
       "body1": "adalah alat inovatif yang dirancang untuk membantu Anda berkontribusi ke data leksikografis di Wikidata.",
       "body2": "Dengan menggunakan Lexica, Anda menyetujui ",
-      "privacyPolicy": "Kebijakan Privasi Lexica.",
+      "privacyPolicy": "Kebijakan Privasi Lexica",
       "login": "Masuk log",
       "info": "Lexica masih dalam tahap pengembangan. Fitur-fiturnya dapat berubah seiring waktu."
     },

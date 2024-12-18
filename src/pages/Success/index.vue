@@ -40,7 +40,7 @@ onMounted(async () => {
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")
       }}</CdxLabel>
-      <CdxProgressBar class="w-full"></CdxProgressBar>
+      <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
     </div>
   </div>
 </template>

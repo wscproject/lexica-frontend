@@ -30,7 +30,8 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
         <span>{{ t("home.unauth.body2") }}</span
         ><a class="cdx-docs-link is-underlined" href="/privacy-policy">{{
           t("home.unauth.privacyPolicy")
-        }}</a>
+        }}</a
+        >.
       </div>
 
       <a :href="loginUrl" class="">

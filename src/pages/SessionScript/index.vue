@@ -770,7 +770,7 @@ watch([currCount, undoWarn], async () => {
       class="relative custom-height flex justify-center"
     >
       <div
-        class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
+        class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
       >
         <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>
