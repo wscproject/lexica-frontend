@@ -43,7 +43,7 @@ const reload = () => {
   <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div
       v-if="isLoading"
-      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0"
+      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0 items-center"
     >
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")

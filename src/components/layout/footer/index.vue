@@ -48,7 +48,7 @@ const { t, locale } = useI18n({ useScope: "global" });
           <I18nT
             keypath="footer.label"
             tag="p"
-            class="p-0 text-[16px] dark:text-[#EAECF0] font-[700]"
+            class="p-0 text-[14px] dark:text-[#EAECF0] font-[700]"
           >
             <template #wikidata>
               <a
