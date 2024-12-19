@@ -93,7 +93,7 @@ const isLoading = ref(false);
 const entities = ref([]);
 const params = reactive({
   page: 1,
-  limit: 3,
+  limit: 10,
   keyword: "",
 });
 const searchLoading = ref(false);

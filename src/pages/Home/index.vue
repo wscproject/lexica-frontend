@@ -36,8 +36,6 @@ onMounted(async () => {
       <Auth />
     </div>
 
-    <div v-else-if="!isAuth" class="">
-      <Unauth />
-    </div>
+    <div v-else-if="!isAuth" class="w-full max-w-[896px]"><Unauth /></div>
   </div>
 </template>
