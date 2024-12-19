@@ -50,7 +50,9 @@ const reload = () => {
       }}</CdxLabel>
       <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
     </div>
-    <div class="relative flex flex-col items-center container-home">
+    <div
+      class="relative flex flex-col items-center container-home min-h-[700px]"
+    >
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
         class="container-home max-[639px]:pt-[54px] pt-[64px] w-full bg-white dark:bg-[#101418] relative z-[0]"
@@ -91,6 +93,6 @@ const reload = () => {
 <style scoped>
 .container-home {
   height: 100%;
-  min-height: stretch;
+  /* min-height: stretch; */
 }
 </style>

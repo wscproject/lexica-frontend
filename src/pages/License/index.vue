@@ -10,7 +10,9 @@ const router = useRouter();
 </script>
 
 <template>
-  <div class="min-h-screen flex flex-col bg-white dark:bg-black text-[#54595D]">
+  <div
+    class="min-h-screen flex flex-col bg-white dark:bg-[var(--background-color-base)] text-[#54595D]"
+  >
     <div
       class="gap-x-[8px] border-b border-[#C8CCD1] dark:border-[#54595D] max-[639px]:h-[54px] h-[64px] bg-[var(--background-color-neutral)] breakpoints-2"
     >
@@ -28,11 +30,11 @@ const router = useRouter();
         </CdxButton>
       </div>
     </div>
-    <div class="p-[16px] flex flex-col items-center">
+    <div class="max-[639px]:p-[16px] p-[32px] flex flex-col items-center">
       <div class="max-w-[896px]">
         <div class="border-b border-[#C8CCD1] mb-[12px] dark:border-[#72777D]">
           <h1
-            class="p-0 text-[28px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]"
+            class="p-0 text-[28px] leading-[35px] pb-[12px] text-[var(--color-emphasized)]"
           >
             {{ t("license.title1") }}
           </h1>
@@ -66,7 +68,7 @@ const router = useRouter();
           class="border-b border-[#C8CCD1] mb-[12px] mt-[24px] dark:border-[#72777D]"
         >
           <h2
-            class="p-0 text-[24px] leading-[35px] pb-[12px] dark:text-[#F8F9FA]"
+            class="p-0 text-[24px] leading-[35px] pb-[12px] text-[var(--color-emphasized)]"
           >
             {{ t("license.title2") }}
           </h2>
