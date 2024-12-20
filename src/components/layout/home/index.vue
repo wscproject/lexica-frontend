@@ -22,6 +22,7 @@ const loading = ref(false);
 const success = ref(false);
 const { cookies } = useCookies();
 const vuex = useStore();
+const isAuth = ref(null);
 
 const isLoading = computed(() => vuex.getters["profile/isLoading"]);
 
@@ -37,6 +38,10 @@ const loggingOut = () => {
 const reload = () => {
   window.location.reload();
 };
+
+onMounted(() => {
+  isAuth.value = cookies.get("auth");
+});
 </script>
 
 <template>
@@ -51,7 +56,10 @@ const reload = () => {
       <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
     </div>
     <div
-      class="relative flex flex-col items-center container-home min-h-[700px]"
+      :class="[
+        'relative flex flex-col items-center container-home',
+        !isAuth && 'min-[640px]:min-h-[700px]',
+      ]"
     >
       <Header @logout="loggingOut" :isLogout="logout" />
       <div

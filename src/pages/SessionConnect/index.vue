@@ -693,7 +693,7 @@ watch(
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 px-[16px] shrink-0 justify-center"
+      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center"
     >
       <div class="max-w-[920px] w-full h-full flex items-center relative">
         <CdxButton
