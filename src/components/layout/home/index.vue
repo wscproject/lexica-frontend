@@ -58,7 +58,7 @@ onMounted(() => {
     <div
       :class="[
         'relative flex flex-col items-center container-home',
-        !isAuth && 'min-[640px]:min-h-[700px]',
+        !isAuth ? 'min-[640px]:min-h-[700px]' : 'min-[640px]:min-h-[420px]',
       ]"
     >
       <Header @logout="loggingOut" :isLogout="logout" />
