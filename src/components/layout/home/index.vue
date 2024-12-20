@@ -22,6 +22,7 @@ const loading = ref(false);
 const success = ref(false);
 const { cookies } = useCookies();
 const vuex = useStore();
+const isAuth = ref(null);
 
 const isLoading = computed(() => vuex.getters["profile/isLoading"]);
 
@@ -37,34 +38,43 @@ const loggingOut = () => {
 const reload = () => {
   window.location.reload();
 };
+
+onMounted(() => {
+  isAuth.value = cookies.get("auth");
+});
 </script>
 
 <template>
   <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div
       v-if="isLoading"
-      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0"
+      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0 items-center"
     >
       <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
         t("home.loading")
       }}</CdxLabel>
-      <CdxProgressBar class="w-full max-w-[896px]"></CdxProgressBar>
+      <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
     </div>
-    <div class="relative flex flex-col items-center container-home">
+    <div
+      :class="[
+        'relative flex flex-col items-center container-home',
+        !isAuth ? 'min-[640px]:min-h-[700px]' : 'min-[640px]:min-h-[420px]',
+      ]"
+    >
       <Header @logout="loggingOut" :isLogout="logout" />
       <div
-        class="container-home pb-[103px] pt-[54px] w-full max-w-[896px] bg-white dark:bg-[#101418] relative z-[0]"
+        class="container-home max-[639px]:pt-[54px] pt-[64px] w-full bg-white dark:bg-[#101418] relative z-[0]"
       >
         <slot v-if="!logout && !loading" />
 
         <div
           v-if="logout && !success"
-          class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px]"
+          class="w-full text-center flex flex-col justify-center h-[80vh] p-[16px] items-center"
         >
           <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
             t("header.menu.loggingout")
           }}</CdxLabel>
-          <CdxProgressBar class="w-full"></CdxProgressBar>
+          <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
         </div>
         <div
           v-else-if="logout && success"
@@ -91,6 +101,6 @@ const reload = () => {
 <style scoped>
 .container-home {
   height: 100%;
-  min-height: stretch;
+  /* min-height: stretch; */
 }
 </style>

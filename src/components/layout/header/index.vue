@@ -2,10 +2,6 @@
 import Logo from "@/assets/lexica_logo.svg";
 import LogoDark from "@/assets/lexica_logo_dark.svg";
 
-import Login from "@/assets/login.svg";
-import Sun from "@/assets/sun.svg";
-import Moon from "@/assets/moon.svg";
-
 import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
 import { onMounted, ref, watch, toRaw, computed } from "vue";
 import { useCookies } from "vue3-cookies";
@@ -154,90 +150,50 @@ watch(isThemeDark, () => {
 
 <template>
   <header
-    class="h-[54px] border-b-[1px] border-[#C8CCD1] dark:border-[#54595D] fixed flex justify-end items-center w-full bg-white dark:bg-[#101418] left-0 z-[10]"
+    class="h-[64px] fixed w-full bg-white dark:bg-[#101418] left-0 z-[10] flex justify-center breakpoints"
   >
-    <div class="absolute w-full flex justify-center items-center h-full">
-      <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
-      <img v-else :src="LogoDark" alt="lexica_logo" />
-    </div>
+    <div class="flex items-center max-w-[908px] w-full relative">
+      <div class="flex justify-center items-center h-full">
+        <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
+        <img v-else :src="LogoDark" alt="lexica_logo" />
+      </div>
+      <div class="absolute right-[0px] edited">
+        <CdxMenuButton
+          :key="locale"
+          top-right
+          v-tooltip:bottom="t('tooltips.account')"
+          v-model="selection"
+          :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
+          :class="[
+            'z-[5] top-[58px] p-[4px]',
+            isAuth && !props.isLogout ? authClass : unauthClass,
+            'dark:text-[#fff]',
+          ]"
+          @update:selected="onSelect"
+        >
+          <cdx-icon :icon="cdxIconUserAvatar" />
+        </CdxMenuButton>
 
-    <!-- <a class="z-[99] mr-[4px]" :href="loginUrl">
-      <CdxButton weight="quiet" class="p-[11px]">
-        <CdxIcon :icon="cdxIconLogIn" class="text-[#54595D]" />
-      </CdxButton>
-    </a> -->
-
-    <CdxMenuButton
-      :key="locale"
-      v-tooltip:bottom="t('tooltips.account')"
-      v-model="selection"
-      :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
-      :class="[
-        'z-[5] top-[58px] p-[4px]',
-        isAuth && !props.isLogout ? authClass : unauthClass,
-        'dark:text-[#fff]',
-      ]"
-      @update:selected="onSelect"
-    >
-      <cdx-icon :icon="cdxIconUserAvatar" />
-    </CdxMenuButton>
-
-    <!-- <CdxButton weight="quiet" class="p-0 m-[4px] cursor-pointer z-[5] shrink-0">
-      <button
-        weight="quiet"
-        ref="testRef"
-        :class="[
-          'home-button dropdown w-full p-[11px] w-[44px] h-[44px] flex items-center',
-          menu && 'active',
-        ]"
-        @click="
-          (e) => {
-            temp(e);
-            menu = !menu;
-          }
-        "
-      >
-        <CdxIcon
-          :icon="cdxIconUserAvatar"
-          class="cursor-pointer pointer-events-none w-[20px] h-[20px]"
+        <ChooseLocale
+          :open="changeLanguage"
+          @onPrimaryAction="changeLanguage = false"
         />
-        <div class="dropdown-content" :class="menu ? 'flex' : 'hidden'">
-          <div v-if="!isAuth && !props.isLogout"></div>
 
-          <div v-else-if="isAuth && !props.isLogout">
-            <div
-              class="flex gap-x-[8px] items-center pb-[8px] px-[12px] border-b border-[#A2A9B1] cursor-pointer"
-            >
-              <CdxIcon
-                :icon="cdxIconLogIn"
-                class="text-[#202122] mt-[2px]"
-              /><span class="text-[16px] font-[400] text-[#202122]"
-                >Masuk log</span
-              >
-            </div>
-            <div class="flex gap-x-[12px] text-[#54595D]">
-              <CdxIcon :icon="cdxIconUserAvatar" />
-              <CdxLabel class="text-[18px] p-0">{{ store.name }}</CdxLabel>
-            </div>
-
-            <CdxButton @click="emit('logout')"
-              ><CdxIcon :icon="cdxIconLogOut" /> Keluar log</CdxButton
-            >
-          </div>
-        </div>
-      </button>
-    </CdxButton> -->
-
-    <ChooseLocale
-      :open="changeLanguage"
-      @onPrimaryAction="changeLanguage = false"
-    />
-
-    <ChooseTheme :open="changeTheme" @onPrimaryAction="changeTheme = false" />
+        <ChooseTheme
+          :open="changeTheme"
+          @onPrimaryAction="changeTheme = false"
+        />
+      </div>
+    </div>
   </header>
 </template>
 
 <style>
+.edited .cdx-menu {
+  right: unset !important;
+  left: 0px !important;
+  transform: translate(-212px, 4px) !important;
+}
 .home-button:active {
   border-radius: 2px !important;
   border-color: #72777d !important;

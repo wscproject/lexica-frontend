@@ -21,7 +21,7 @@ onMounted(async () => {
 
 <template>
   <div
-    class="p-[16px] bg-white dark:bg-[#101418] h-full overflow-hidden flex justify-center"
+    class="max-[639px]:p-[var(--spacing-100)] max-[1023px]:p-[var(--spacing-200)] bg-white dark:bg-[#101418] h-full flex justify-center"
   >
     <!-- <div class="pt-[100px]">
       <CdxLabel class="mb-[12px] text-[18px] p-0 text-black dark:text-white">
@@ -31,13 +31,11 @@ onMounted(async () => {
 
     <div
       v-if="isAuth"
-      class="flex align-center flex-col w-full justify-center h-full max-w-[512px]"
+      class="flex align-center flex-col w-full justify-center h-full max-w-[448px]"
     >
       <Auth />
     </div>
 
-    <div v-else-if="!isAuth">
-      <Unauth />
-    </div>
+    <div v-else-if="!isAuth" class="w-full max-w-[896px]"><Unauth /></div>
   </div>
 </template>

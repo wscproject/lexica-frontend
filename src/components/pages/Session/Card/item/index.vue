@@ -186,7 +186,9 @@ const onInput = debounce(() => {
         </p>
 
         <div
-          v-for="(value, index) in props.recommendation"
+          v-for="(value, index) in props?.recommendation?.filter(
+            (item, i) => i <= 2
+          )"
           :key="index"
           :class="[
             value.id === selectedItem

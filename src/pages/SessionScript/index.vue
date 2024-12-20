@@ -651,20 +651,24 @@ watch([currCount, undoWarn], async () => {
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0"
+      class="max-[639px]:h-[54px] w-full left-0 flex items-center top-0 px-[16px] shrink-0 justify-center"
     >
-      <CdxButton
-        v-tooltip:bottom-start="t('tooltips.home')"
-        weight="quiet"
-        class="w-[44px] h-[44px] px-0 absolute left-[3px]"
-        @click="endEarly"
-      >
-        <CdxIcon :icon="cdxIconHome" alt="home" />
-      </CdxButton>
-      <div class="absolute mx-auto left-0 right-0 w-fit">
-        <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
-          >{{ t("session.title") }} {{ currCount }}</CdxLabel
-        >
+      <div class="max-w-[920px] w-full h-full flex items-center relative">
+        <div>
+          <CdxButton
+            v-tooltip:bottom-start="t('tooltips.home')"
+            weight="quiet"
+            class="w-[44px] h-[44px] px-0 absolute left-[3px]"
+            @click="endEarly"
+          >
+            <CdxIcon :icon="cdxIconHome" alt="home" />
+          </CdxButton>
+          <div class="absolute mx-auto left-0 right-0 w-fit">
+            <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
+              >{{ t("session.title") }} {{ currCount }}</CdxLabel
+            >
+          </div>
+        </div>
       </div>
     </div>
 
@@ -766,7 +770,7 @@ watch([currCount, undoWarn], async () => {
       class="relative custom-height flex justify-center"
     >
       <div
-        class="w-full text-center max-w-[896px] absolute top-[50%] px-[16px]"
+        class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
       >
         <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
         <CdxProgressBar class="w-full"></CdxProgressBar>

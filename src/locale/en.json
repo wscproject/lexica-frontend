@@ -17,7 +17,7 @@
   },
 
   "footer": {
-    "label": "A tool brought to you by",
+    "label": "Lexica is a tool brought to you by {wikidata}",
     "about": "About",
     "privacy": "Privacy",
     "license": "License"
@@ -63,9 +63,10 @@
   "home": {
     "unauth": {
       "title": "Welcome!",
+      "title2": "Complete lexicographical data on Wikidata with ease",
       "body1": "is an innovative tool crafted to empower you to seamlessly contribute to the lexicographical data on Wikidata.",
       "body2": "By using Lexica, you agree to ",
-      "privacyPolicy": "Lexica Privacy Policy.",
+      "privacyPolicy": "Lexica Privacy Policy",
       "login": "Log in",
       "info": "Lexica is still under development. Features may change over time."
     },

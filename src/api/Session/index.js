@@ -20,6 +20,14 @@ export const SearchEntity = async (params) => {
   );
 };
 
+export const GetRecommendations = async (params) => {
+  const response = await api();
+
+  return response.get(
+    `/entites/recommendations?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
+  );
+};
+
 export const GetCardDetail = async (senseId) => {
   const response = await api();
   return response.get(`/lexemes/sense/${senseId}`);

@@ -182,15 +182,13 @@ const gotoSession = async () => {
 </script>
 
 <template>
-  <div class="flex flex-col items-center w-full">
-    <span class="font-[400] text-[28px] p-0 text-black dark:text-[#F8F9FA]">
-      {{ t("home.auth.title") }},</span
+  <div class="flex flex-col items-center w-full text-center">
+    <h1
+      class="font-[400] text-[28px] p-0 text-black dark:text-[#F8F9FA] mb-[12px] break-normal w-fit leading-[35px]"
     >
-    <span
-      class="mb-[12px] font-[400] text-[28px] p-0 text-black dark:text-[#F8F9FA]"
-    >
-      {{ name }}!</span
-    >
+      {{ t("home.auth.title") }}, <br />
+      {{ name }}!
+    </h1>
   </div>
 
   <div
