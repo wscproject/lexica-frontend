@@ -11,7 +11,7 @@ const router = useRouter();
 
 <template>
   <div
-    class="min-h-screen flex flex-col bg-white dark:bg-[var(--background-color-base)] text-[#54595D]"
+    class="min-h-screen flex flex-col bg-[var(--background-color-base)] text-[#54595D] dark:text-[#A2A9B1]"
   >
     <div
       class="flex gap-x-[8px] border-b border-[#C8CCD1] dark:border-[#54595D] max-[639px]:h-[54px] h-[64px] bg-[var(--background-color-neutral)] breakpoints-2"
