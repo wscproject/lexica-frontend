@@ -54,6 +54,12 @@ const selectItem = (n, value) => {
   emit("selectItem");
 };
 
+const highlightText = (text, searchTerm) => {
+  if (!searchTerm) return [text];
+  const regex = new RegExp(`(${searchTerm})`, "gi");
+  return text.split(regex);
+};
+
 const onInput = debounce(() => {
   if (search.value === "") {
     isSearch.value = false;
@@ -285,8 +291,19 @@ const onInput = debounce(() => {
                 :placeholder-icon="cdxIconLogoWikidata"
               />
               <div>
-                <CdxLabel class="text-[16px] dark:text-[#EAECF0]"
-                  >{{ value?.label }} ({{ value?.id }})</CdxLabel
+                <CdxLabel class="text-[16px] dark:text-[#EAECF0]">
+                  <span
+                    v-for="(part, index) in highlightText(value?.label, search)"
+                    :key="index"
+                  >
+                    <span
+                      v-if="part.toLowerCase() === search.toLowerCase()"
+                      class="font-[400]"
+                      >{{ part }}</span
+                    >
+                    <span v-else>{{ part }}</span>
+                  </span>
+                  ({{ value?.id }})</CdxLabel
                 >
                 <div
                   :lang="value?.language"
