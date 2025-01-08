@@ -256,7 +256,7 @@
 
     "blank": {
       "title": "There are no cards that can be filled in again at the moment.",
-      "button": "Back to home"
+      "button": "Back to Homepage"
     },
 
     "emptyStatement": "Statement not found",
