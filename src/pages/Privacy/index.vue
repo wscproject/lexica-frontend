@@ -51,7 +51,7 @@ onMounted(() => {
             {{ t("privacy.title1") }}
           </h1>
         </div>
-        <p class="p-0 text-[16px] dark:text-[#EAECF0]">
+        <p class="p-0 text-[16px] text-[var(--color-base)]">
           {{ t("privacy.section1") }}
         </p>
         <div class="border-b border-[#C8CCD1] my-[12px] dark:border-[#72777D]">
@@ -61,7 +61,7 @@ onMounted(() => {
             {{ t("privacy.title2") }}
           </h2>
         </div>
-        <ul class="dark:text-[#EAECF0]">
+        <ul class="text-[var(--color-base)]">
           <li>
             {{ t("privacy.section2.point1") }}
           </li>
@@ -72,7 +72,7 @@ onMounted(() => {
             <template #privacy>
               <a
                 class="cdx-docs-link is-underlined"
-                href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy/id"
+                href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy/"
               >
                 {{ t("privacy.section2.privacy") }}</a
               >.
@@ -87,7 +87,11 @@ onMounted(() => {
           </h2>
         </div>
 
-        <I18nT keypath="privacy.section3" tag="p" class="dark:text-[#EAECF0]">
+        <I18nT
+          keypath="privacy.section3"
+          tag="p"
+          class="text-[var(--color-base)]"
+        >
           <template #license>
             <a class="cdx-docs-link is-underlined" href="/license-list">
               {{ t("privacy.license") }}</a
@@ -102,7 +106,7 @@ onMounted(() => {
             {{ t("privacy.title4") }}
           </h2>
         </div>
-        <ul class="dark:text-[#EAECF0]">
+        <ul class="text-[var(--color-base)]">
           <li>{{ t("privacy.section4.point1") }}</li>
           <li>
             {{ t("privacy.section4.point2") }}

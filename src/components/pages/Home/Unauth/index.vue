@@ -48,7 +48,9 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
         class="flex gap-x-2 p-[var(--spacing-100)] rounded-[var(--border-radius-base)] border-[1px] border-[var(--border-color-notice)] bg-[var(--background-color-notice-subtle)] text-[var(--color-base)]"
       >
         <CdxIcon :icon="cdxIconInfoFilled" />
-        <CdxLabel class="p-0 font-[400]">{{ t("home.unauth.info") }}</CdxLabel>
+        <span class="p-0 font-[400] text-[16px]">{{
+          t("home.unauth.info")
+        }}</span>
       </div>
     </div>
     <div
