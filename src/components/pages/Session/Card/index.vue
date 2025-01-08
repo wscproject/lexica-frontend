@@ -229,7 +229,7 @@ onMounted(() => {
     opacity: 0;
   }
   100% {
-    transform: translateX(1000px) rotate(2deg);
+    transform: translateX(5000px) rotate(2deg);
     opacity: 0;
   }
 }
