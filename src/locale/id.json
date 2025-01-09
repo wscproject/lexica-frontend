@@ -294,5 +294,13 @@
     "section2": {
       "content": "Berikut adalah komponen sumber terbuka yang digunakan Lexica:"
     }
+  },
+  "aria": {
+    "account": "Akun",
+    "backToHome": "Kembali ke Beranda",
+    "showLexemeDetail": "Tampilkan informasi Leksem",
+    "showItemDetail": "Tampilkan informasi Butir",
+    "back": "Kembali",
+    "close": "Tutup"
   }
 }

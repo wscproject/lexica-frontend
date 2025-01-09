@@ -112,6 +112,7 @@ watch(script, () => {
         </div>
         <div>
           <CdxIcon
+            :aria-label="t('aria.showLexemeDetail')"
             :icon="cdxIconInfoFilled"
             class="cursor-pointer"
             @click.stop="(e) => emit('gotoDetail', e)"

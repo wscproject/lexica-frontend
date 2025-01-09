@@ -697,6 +697,7 @@ watch(
     >
       <div class="max-w-[920px] w-full h-full flex items-center relative">
         <CdxButton
+          :aria-label="t('aria.backToHome')"
           v-tooltip:bottom-start="t('tooltips.home')"
           weight="quiet"
           class="w-[44px] h-[44px] px-0 absolute left-[3px]"
@@ -797,6 +798,7 @@ watch(
         }}</CdxLabel>
 
         <CdxButton
+          :aria-label="t('aria.backToHome')"
           weight="primary"
           action="progressive"
           class="w-full max-w-[448px] h-[44px]"

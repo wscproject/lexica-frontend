@@ -70,7 +70,11 @@ watch(locale, () => {
               <CdxLabel class="text-[18px]">{{
                 t("localeDialog.title")
               }}</CdxLabel>
-              <CdxButton @click="close" weight="quiet">
+              <CdxButton
+                :aria-label="t('aria.close')"
+                @click="close"
+                weight="quiet"
+              >
                 <CdxIcon
                   :icon="cdxIconClose"
                   dir="rtl"

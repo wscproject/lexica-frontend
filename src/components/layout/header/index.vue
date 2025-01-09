@@ -160,6 +160,7 @@ watch(isThemeDark, () => {
       <div class="absolute right-[0px] edited">
         <CdxMenuButton
           :key="locale"
+          :aria-label="t('aria.account')"
           top-right
           v-tooltip:bottom="t('tooltips.account')"
           v-model="selection"

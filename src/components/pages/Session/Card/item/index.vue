@@ -120,6 +120,7 @@ const onInput = debounce(() => {
       </div>
       <div>
         <CdxIcon
+          :aria-label="t('aria.showLexemeDetail')"
           :icon="cdxIconInfoFilled"
           class="text-white cursor-pointer"
           @click.stop="(e) => emit('gotoDetail', e)"
@@ -245,6 +246,7 @@ const onInput = debounce(() => {
             </div>
           </div>
           <CdxIcon
+            :aria-label="t('aria.showItemDetail')"
             :icon="cdxIconInfoFilled"
             class="cursor-pointer"
             @click="emit('gotoSubItemDetail', value)"
@@ -331,6 +333,7 @@ const onInput = debounce(() => {
               </div>
             </div>
             <CdxIcon
+              :aria-label="t('aria.showItemDetail')"
               :icon="cdxIconInfoFilled"
               class="cursor-pointer"
               @click="emit('gotoSubItemDetail', value)"

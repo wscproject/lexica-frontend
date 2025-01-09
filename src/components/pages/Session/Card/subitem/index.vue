@@ -92,6 +92,7 @@ const statements = computed(() => {
       </div>
       <div>
         <CdxIcon
+          :aria-label="t('aria.close')"
           :icon="cdxIconClose"
           class="text-white cursor-pointer"
           @click="emit('backtoItem')"

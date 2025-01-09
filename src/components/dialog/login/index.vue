@@ -53,6 +53,7 @@ const moveCurr = (action) => {
             <div class="flex w-full justify-between items-center">
               <CdxLabel class="text-[18px]">Masuk</CdxLabel>
               <CdxIcon
+                :aria-label="t('aria.close')"
                 :icon="cdxIconClose"
                 dir="rtl"
                 class="cursor-pointer"

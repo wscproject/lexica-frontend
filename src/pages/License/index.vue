@@ -21,6 +21,7 @@ const router = useRouter();
         style="display: block; margin-left: auto; margin-right: auto"
       >
         <CdxButton
+          :aria-label="t('aria.back')"
           weight="quiet"
           class="absolute left-[0px] p-[var(--spacing-75)]"
           @click="router.back"

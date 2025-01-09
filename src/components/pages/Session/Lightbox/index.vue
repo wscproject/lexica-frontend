@@ -45,6 +45,7 @@ onMounted(async () => {
   >
     <div class="absolute right-[4px] top-[4px] z-[999]">
       <CdxButton
+        :aria-label="t('aria.close')"
         @click="emit('close')"
         weight="quiet"
         class="w-[var(--size-275)] h-[var(--size-275)] bg-[#101418]"
