@@ -161,6 +161,7 @@ const statements = computed(() => {
 
             <div class="relative" v-if="value?.[0] === 'images'">
               <CdxThumbnail
+                v-if="value?.[1]?.data?.[0]?.url"
                 :thumbnail="{ url: value?.[1]?.data?.[0]?.url }"
                 :placeholder-icon="cdxIconLogoWikidata"
               />
