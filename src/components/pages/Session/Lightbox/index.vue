@@ -2,6 +2,7 @@
 import { CdxButton, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   img: {
@@ -14,6 +15,7 @@ const emit = defineEmits(["close"]);
 const newImage = ref("");
 const loading = ref(true);
 const refs = ref(null);
+const { t } = useI18n({ useScope: "global" });
 
 console.log(props.img);
 
