@@ -73,7 +73,7 @@ onMounted(() => {
             <template #privacy>
               <a
                 class="cdx-docs-link is-underlined"
-                href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy/"
+                href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy"
               >
                 {{ t("privacy.section2.privacy") }}</a
               >.
