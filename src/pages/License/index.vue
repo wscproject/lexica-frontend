@@ -21,6 +21,7 @@ const router = useRouter();
         style="display: block; margin-left: auto; margin-right: auto"
       >
         <CdxButton
+          :aria-label="t('aria.back')"
           weight="quiet"
           class="absolute left-[0px] p-[var(--spacing-75)]"
           @click="router.back"
@@ -42,7 +43,7 @@ const router = useRouter();
         <I18nT
           keypath="license.section1"
           tag="p"
-          class="p-0 text-[16px] dark:text-[#EAECF0]"
+          class="p-0 text-[16px] text-[var(--color-base)]"
         >
           <template #gnu>
             <a
@@ -73,10 +74,10 @@ const router = useRouter();
             {{ t("license.title2") }}
           </h2>
         </div>
-        <p class="p-0 text-[16px] mb-[12px] dark:text-[#EAECF0]">
+        <p class="p-0 text-[16px] mb-[12px] text-[var(--color-base)]">
           {{ t("license.section2.content") }}
         </p>
-        <ul class="dark:text-[#EAECF0]">
+        <ul class="text-[var(--color-base)]">
           <li>
             <a
               href="https://gerrit.wikimedia.org/r/admin/repos/design/codex,general"

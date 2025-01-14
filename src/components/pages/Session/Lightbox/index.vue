@@ -2,6 +2,7 @@
 import { CdxButton, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { onMounted, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 
 const props = defineProps({
   img: {
@@ -14,6 +15,7 @@ const emit = defineEmits(["close"]);
 const newImage = ref("");
 const loading = ref(true);
 const refs = ref(null);
+const { t } = useI18n({ useScope: "global" });
 
 console.log(props.img);
 
@@ -45,6 +47,7 @@ onMounted(async () => {
   >
     <div class="absolute right-[4px] top-[4px] z-[999]">
       <CdxButton
+        :aria-label="t('aria.close')"
         @click="emit('close')"
         weight="quiet"
         class="w-[var(--size-275)] h-[var(--size-275)] bg-[#101418]"

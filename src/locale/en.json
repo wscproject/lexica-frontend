@@ -256,7 +256,7 @@
 
     "blank": {
       "title": "There are no cards that can be filled in again at the moment.",
-      "button": "Back to home"
+      "button": "Back to Homepage"
     },
 
     "emptyStatement": "Statement not found",
@@ -307,5 +307,13 @@
     "section2": {
       "content": "The following are the open source components used by Lexica:"
     }
+  },
+  "aria": {
+    "account": "Account",
+    "backToHome": "Back to Home",
+    "showLexemeDetail": "Show Lexeme detail",
+    "showItemDetail": "Show Item detail",
+    "back": "Back",
+    "close": "Close"
   }
 }

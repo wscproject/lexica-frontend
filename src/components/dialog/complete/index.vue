@@ -57,6 +57,7 @@ defineExpose({ openModal });
     <template #footer>
       <div class="flex gap-x-2 justify-center">
         <CdxButton
+          :aria-label="t('aria.backToHome')"
           class="w-full"
           weight="primary"
           action="progressive"

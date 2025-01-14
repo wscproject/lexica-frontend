@@ -121,6 +121,7 @@ onMounted(() => {
       </div>
       <div>
         <CdxIcon
+          :aria-label="t('aria.close')"
           :icon="cdxIconClose"
           class="text-white cursor-pointer"
           @click.stop="emit('backtoItem')"

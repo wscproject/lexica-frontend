@@ -21,6 +21,7 @@ const router = useRouter();
         style="display: block; margin-left: auto; margin-right: auto"
       >
         <CdxButton
+          :aria-label="t('aria.back')"
           weight="quiet"
           class="absolute left-[0px] p-[var(--spacing-75)]"
           @click="router.back"
@@ -42,7 +43,7 @@ const router = useRouter();
         <I18nT
           keypath="about.content1"
           tag="p"
-          class="p-0 text-[16px] dark:text-[#EAECF0]"
+          class="p-0 text-[16px] text-[var(--color-base)]"
         >
           <template #lexica>
             <span>Lexica</span>
@@ -52,7 +53,7 @@ const router = useRouter();
         <I18nT
           keypath="about.content2"
           tag="p"
-          class="p-0 text-[16px] dark:text-[#EAECF0]"
+          class="p-0 text-[16px] text-[var(--color-base)]"
         >
           <template #lexica>
             <span>Lexica</span>
@@ -62,7 +63,7 @@ const router = useRouter();
         <I18nT
           keypath="about.content3"
           tag="p"
-          class="p-0 text-[16px] dark:text-[#EAECF0]"
+          class="p-0 text-[16px] text-[var(--color-base)]"
         >
           <template #lexica>
             <span>Lexica</span>
@@ -72,7 +73,7 @@ const router = useRouter();
         <I18nT
           keypath="about.content4"
           tag="p"
-          class="p-0 text-[16px] dark:text-[#EAECF0]"
+          class="p-0 text-[16px] text-[var(--color-base)]"
         >
           <template #lexica>
             <span>Lexica</span>

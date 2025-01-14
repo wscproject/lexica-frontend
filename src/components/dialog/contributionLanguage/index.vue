@@ -88,7 +88,11 @@ watch(language, () => {
           <CdxLabel class="text-[18px] p-0">{{
             t("contributionLangDialog.title")
           }}</CdxLabel>
-          <CdxButton @click="close" weight="quiet">
+          <CdxButton
+            :aria-label="t('aria.close')"
+            @click="close"
+            weight="quiet"
+          >
             <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
           </CdxButton>
         </div>
