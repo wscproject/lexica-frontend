@@ -127,11 +127,9 @@ watch(script, () => {
           >{{ props?.data?.gloss }}</span
         >
 
-        <span v-else class="text-[var(--color-subtle)]"
-          ><i
-            >{{ t("session.emptyDescription") }}
-            {{ props?.data?.language?.title }}</i
-          ></span
+        <span v-else class="text-[var(--color-subtle)]">
+          >{{ t("session.emptyDescriptionHead") }}
+          {{ props?.data?.language?.title }}</span
         >
       </div>
     </div>

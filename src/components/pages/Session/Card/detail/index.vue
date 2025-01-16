@@ -116,7 +116,7 @@ onMounted(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          <i>{{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}</i>
+          {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}
         </p>
       </div>
       <div>

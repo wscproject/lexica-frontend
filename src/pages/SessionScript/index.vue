@@ -932,6 +932,7 @@ watch([currCount, undoWarn], async () => {
                 :detail="detail"
                 :img="value?.image"
                 v-else-if="currMode === 3"
+                :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
                 @onDone="
                   (data) => {

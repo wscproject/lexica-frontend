@@ -21,6 +21,7 @@ const props = defineProps({
   data: Object,
   detail: Object,
   img: String,
+  currLang: String,
 });
 </script>
 
@@ -80,7 +81,10 @@ const props = defineProps({
             <p
               class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
             >
-              {{ props?.data?.gloss || t("session.emptyDescription") }}
+              {{
+                props?.data?.gloss ||
+                `${t("session.emptyDescriptionHead")} ${props?.currLang}`
+              }}
             </p>
           </div>
         </div>
@@ -132,9 +136,13 @@ const props = defineProps({
               <p
                 class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
-                {{
-                  props?.detail?.description || t("session.emptyDescription")
-                }}
+                <span v-if="props?.detail?.description">
+                  {{ props?.detail?.description }}</span
+                >
+
+                <span v-else
+                  ><i> {{ t("session.emptyDescription") }}</i>
+                </span>
               </p>
             </div>
           </div>
