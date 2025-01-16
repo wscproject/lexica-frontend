@@ -112,8 +112,10 @@ const onInput = debounce(() => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          {{ t("session.emptyDescriptionHead") }}
-          {{ data?.language?.title }}
+          <i>
+            {{ t("session.emptyDescriptionHead") }}
+            {{ data?.language?.title }}
+          </i>
         </p>
       </div>
       <div>

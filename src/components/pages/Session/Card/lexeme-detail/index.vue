@@ -92,7 +92,7 @@ watch(senses, () => {
         </p>
 
         <p v-else class="text-[16px] p-0">
-          {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}
+          <i> {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }} </i>
         </p>
       </div>
       <div>

@@ -28,7 +28,7 @@ const props = defineProps({
         {{ props?.data?.gloss }}
       </p>
       <p v-else class="text-[16px]">
-        {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}
+        <i>{{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}</i>
       </p>
     </div>
   </div>
