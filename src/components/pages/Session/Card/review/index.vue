@@ -82,10 +82,14 @@ const props = defineProps({
               class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
             >
               <span v-if="props?.data?.gloss">
-                {{ `${t("session.emptyDescriptionHead")} ${props?.currLang}` }}
+                {{ props?.data?.gloss }}
               </span>
               <span v-else
-                ><i>{{ props?.data?.gloss }} </i></span
+                ><i>
+                  {{
+                    `${t("session.emptyDescriptionHead")} ${props?.currLang}`
+                  }}
+                </i></span
               >
             </p>
           </div>
