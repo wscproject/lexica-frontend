@@ -113,7 +113,11 @@ onMounted(() => {
     onmove: (event) => {
       const { interactMaxRotation, interactXThreshold } = statics;
       const x = positions.interactPosition.x + event.dx;
-      const y = positions.interactPosition.y + event.dy;
+      let y = positions.interactPosition.y + event.dy;
+
+      if (y > 0) {
+        y = y / 1.35; // Do nothing if trying to move downward
+      }
 
       let rotation = interactMaxRotation * (x / interactXThreshold);
 
