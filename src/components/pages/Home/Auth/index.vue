@@ -193,7 +193,10 @@ const gotoSession = async () => {
 
   <div
     class="menu mb-[12px] cursor-pointer w-100"
+    tabindex="0"
     @click="isContributeLang = true"
+    @keydown.enter="isContributeLang = true"
+    @keydown.space="isContributeLang = true"
   >
     <div class="flex align-center justify-between gap-x-[12px]">
       <div class="flex gap-x-[12px]">
@@ -211,7 +214,13 @@ const gotoSession = async () => {
     </div>
   </div>
 
-  <div class="menu mb-[12px] cursor-pointer w-100" @click="isActivity = true">
+  <div
+    class="menu mb-[12px] cursor-pointer w-100"
+    @click="isActivity = true"
+    @keydown.enter="isActivity = true"
+    @keydown.space="isActivity = true"
+    tabindex="0"
+  >
     <div class="flex align-center justify-between gap-x-[12px]">
       <div class="flex gap-x-[12px]">
         <img

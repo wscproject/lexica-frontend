@@ -6,7 +6,7 @@ import LogoLexicaDark from "@/assets/lexica_logo_footer_dark.svg";
 import { CdxIcon } from "@wikimedia/codex";
 import { cdxIconHeart } from "@wikimedia/codex-icons";
 
-import { computed } from "vue";
+import { computed, onBeforeUnmount, onMounted } from "vue";
 
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
@@ -14,6 +14,58 @@ import { useStore } from "vuex";
 const vuex = useStore();
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+
+const toWiki = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href =
+      "https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata";
+  }
+};
+
+const toPrivacy = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "/privacy-policy";
+  }
+};
+
+const toAbout = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "/about";
+  }
+};
+
+const toLicense = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "/license-list";
+  }
+};
+onMounted(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+  const linkAbout = document.querySelector("#about");
+  const linklicense = document.querySelector("#license");
+  const linkWiki = document.querySelector("#wikidata");
+
+  linkPrivacy.addEventListener("keydown", toPrivacy);
+  linkAbout.addEventListener("keydown", toAbout);
+  linklicense.addEventListener("keydown", toLicense);
+  linkWiki.addEventListener("keydown", toWiki);
+});
+
+onBeforeUnmount(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+  const linkAbout = document.querySelector("#about");
+  const linklicense = document.querySelector("#license");
+  const linkWiki = document.querySelector("#wikidata");
+
+  linkPrivacy.removeEventListener("keydown", toPrivacy);
+  linkAbout.removeEventListener("keydown", toAbout);
+  linklicense.removeEventListener("keydown", toLicense);
+  linkWiki.removeEventListener("keydown", toWiki);
+});
 
 const { t, locale } = useI18n({ useScope: "global" });
 </script>
@@ -52,6 +104,7 @@ const { t, locale } = useI18n({ useScope: "global" });
           >
             <template #wikidata>
               <a
+                id="wikidata"
                 class="cdx-docs-link"
                 href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
               >
@@ -65,13 +118,15 @@ const { t, locale } = useI18n({ useScope: "global" });
         <div
           class="text-center text-[14px] font-[700] flex gap-x-[var(--spacing-50)] items-center"
         >
-          <a class="cdx-docs-link" href="/about">{{ t("footer.about") }}</a>
+          <a class="cdx-docs-link" id="about" href="/about">{{
+            t("footer.about")
+          }}</a>
           <span class="cdx-docs-link">·</span>
-          <a class="cdx-docs-link" href="/privacy-policy">{{
+          <a id="privacy-policy" class="cdx-docs-link" href="/privacy-policy">{{
             t("footer.privacy")
           }}</a>
           <span class="cdx-docs-link">·</span>
-          <a class="cdx-docs-link" href="/license-list">{{
+          <a class="cdx-docs-link" id="license" href="/license-list">{{
             t("footer.license")
           }}</a>
         </div>

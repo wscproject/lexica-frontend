@@ -3,10 +3,29 @@ import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { t } = useI18n();
 
 const router = useRouter();
+
+const toPage = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://www.wikidata.org/wiki/Wikidata:Lexica";
+  }
+};
+onMounted(() => {
+  const linkPage = document.querySelector("#to-page");
+
+  linkPage.addEventListener("keydown", toPage);
+});
+
+onBeforeUnmount(() => {
+  const linkPage = document.querySelector("#to-page");
+
+  linkPage.removeEventListener("keydown", toPage);
+});
 </script>
 
 <template>
@@ -80,6 +99,7 @@ const router = useRouter();
           </template>
           <template #link>
             <a
+              id="to-page"
               class="cdx-docs-link is-underlined"
               href="https://www.wikidata.org/wiki/Wikidata:Lexica"
             >

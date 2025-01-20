@@ -1,11 +1,12 @@
 <script setup>
 import { CdxDialog } from "@wikimedia/codex";
 import { useI18n } from "vue-i18n";
-import { onMounted, ref, watch } from "vue";
+import { nextTick, onMounted, ref, watch } from "vue";
 import SelectedImage from "@/assets/selected.svg";
 
 const { t } = useI18n();
 const selectedType = ref(null);
+const focusedIndex = ref(0);
 
 const props = defineProps({
   open: {
@@ -37,6 +38,31 @@ const apply = () => {
   emit("applyActivity", selectedType.value);
 };
 
+const setFocusedIndex = (index) => {
+  focusedIndex.value = index;
+};
+
+const keydown = (event) => {
+  if (event.key === "ArrowDown" || event.key === "ArrowRight") {
+    event.preventDefault();
+    focusedIndex.value = (focusedIndex.value + 1) % props?.options?.length;
+  } else if (event.key === "ArrowUp" || event.key === "ArrowLeft") {
+    event.preventDefault();
+    focusedIndex.value =
+      (focusedIndex.value - 1 + props?.options?.length) %
+      props?.options?.length;
+  }
+  // Focus the new item
+
+  nextTick(() => {
+    const element = document.querySelectorAll(".focused")[focusedIndex.value];
+    element.focus();
+    selectedType.value = props?.options[focusedIndex.value]?.type;
+
+    console.log(focusedIndex.value);
+  });
+};
+
 watch(props, () => {
   if (props.defaultValue) {
     selectedType.value = props.defaultValue;
@@ -56,15 +82,25 @@ watch(props, () => {
       :default-action="defaultAction"
       @primary="apply"
       @default="emit('onClose')"
+      @keydown.enter="apply"
     >
-      <div class="p-[16px]">
+      <div class="p-[16px]" role="radiogroup" @keydown="keydown" tabindex="0">
         <div
-          v-for="activity in props.options"
-          @click="selectedType = activity?.type"
+          v-for="(activity, index) in props.options"
+          :key="activity.type"
+          @click="
+            () => {
+              selectedType = activity?.type;
+              focusedIndex = index;
+            }
+          "
+          @focus="setFocusedIndex(index)"
+          :tabindex="focusedIndex === index ? 0 : -1"
+          name="activity"
           :class="[
-            'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px] mb-[var(--spacing-50)]',
+            'border border-[var(--border-color-base)] rounded-[2px] p-[12px] flex gap-x-[12px] mb-[var(--spacing-50)] focused',
             selectedType === activity.type &&
-              'border-[2px] border-[var(--border-color-progressive--focus)] bg-[var(--background-color-progressive-subtle)]',
+              'border-[2px] border-[var(--border-color-progressive--focus)] bg-[var(--background-color-progressive-subtle)] ',
           ]"
         >
           <div

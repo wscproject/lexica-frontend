@@ -3,10 +3,83 @@ import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
-import { onMounted } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
+
+const toGNU = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href =
+      "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html";
+  }
+};
+
+const toCC0 = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://creativecommons.org/public-domain/cc0/";
+  }
+};
+
+const toWikimedia = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href =
+      "https://gerrit.wikimedia.org/r/admin/repos/design/codex,general";
+  }
+};
+const toVue = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://vuejs.org/";
+  }
+};
+const toInteract = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://interactjs.io/";
+  }
+};
+const toVuetify = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://vuetifyjs.com/";
+  }
+};
+
+onMounted(() => {
+  const linkGNU = document.querySelector("#GNU");
+  const linkCC0 = document.querySelector("#CC0");
+  const linkWikimedia = document.querySelector("#wikimedia");
+  const linkVue = document.querySelector("#vue");
+  const linkInteract = document.querySelector("#interact");
+  const linkVuetify = document.querySelector("#vuetify");
+
+  linkGNU.addEventListener("keydown", toGNU);
+  linkCC0.addEventListener("keydown", toCC0);
+  linkWikimedia.addEventListener("keydown", toWikimedia);
+  linkVue.addEventListener("keydown", toVue);
+  linkInteract.addEventListener("keydown", toInteract);
+  linkVuetify.addEventListener("keydown", toVuetify);
+});
+
+onBeforeUnmount(() => {
+  const linkGNU = document.querySelector("#GNU");
+  const linkCC0 = document.querySelector("#CC0");
+  const linkWikimedia = document.querySelector("#wikimedia");
+  const linkVue = document.querySelector("#vue");
+  const linkInteract = document.querySelector("#interact");
+  const linkVuetify = document.querySelector("#vuetify");
+
+  linkGNU.removeEventListener("keydown", toGNU);
+  linkCC0.removeEventListener("keydown", toCC0);
+  linkWikimedia.removeEventListener("keydown", toWikimedia);
+  linkVue.removeEventListener("keydown", toVue);
+  linkInteract.removeEventListener("keydown", toInteract);
+  linkVuetify.removeEventListener("keydown", toVuetify);
+});
 </script>
 
 <template>
@@ -47,6 +120,7 @@ const router = useRouter();
         >
           <template #gnu>
             <a
+              id="GNU"
               class="cdx-docs-link is-underlined"
               href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
             >
@@ -58,6 +132,7 @@ const router = useRouter();
           </template>
           <template #cc0>
             <a
+              id="CC0"
               href="https://creativecommons.org/public-domain/cc0/"
               class="cdx-docs-link is-underlined"
               >CC0</a
@@ -80,23 +155,33 @@ const router = useRouter();
         <ul class="text-[var(--color-base)]">
           <li>
             <a
+              id="wikimedia"
               href="https://gerrit.wikimedia.org/r/admin/repos/design/codex,general"
               class="cdx-docs-link is-underlined"
               >Wikimedia Codex Design System</a
             >, GNU GPL-2.0
           </li>
           <li>
-            <a href="https://vuejs.org/" class="cdx-docs-link is-underlined"
+            <a
+              id="vue"
+              href="https://vuejs.org/"
+              class="cdx-docs-link is-underlined"
               >Vue.js</a
             >, MIT
           </li>
           <li>
-            <a href="https://interactjs.io/" class="cdx-docs-link is-underlined"
+            <a
+              id="interact"
+              href="https://interactjs.io/"
+              class="cdx-docs-link is-underlined"
               >Interact.js</a
             >, MIT
           </li>
           <li>
-            <a href="https://vuetifyjs.com/" class="cdx-docs-link is-underlined"
+            <a
+              id="vuetify"
+              href="https://vuetifyjs.com/"
+              class="cdx-docs-link is-underlined"
               >Vuetify</a
             >, MIT
           </li>

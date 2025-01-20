@@ -3,7 +3,7 @@ import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
 import { useRouter } from "vue-router";
 import { useI18n, I18nT } from "vue-i18n";
-import { onMounted } from "vue";
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
@@ -17,6 +17,36 @@ onMounted(() => {
   } else {
     console.log(div);
   }
+});
+
+const toPolicy = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href =
+      "https://foundation.wikimedia.org/wiki/Privacy_policy";
+  }
+};
+
+const toLicense = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "/license-list";
+  }
+};
+onMounted(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+  const linklicense = document.querySelector("#license");
+
+  linkPrivacy.addEventListener("keydown", toPolicy);
+  linklicense.addEventListener("keydown", toLicense);
+});
+
+onBeforeUnmount(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+  const linklicense = document.querySelector("#license");
+
+  linkPrivacy.removeEventListener("keydown", toPolicy);
+  linklicense.removeEventListener("keydown", toLicense);
 });
 </script>
 
@@ -72,6 +102,7 @@ onMounted(() => {
           <I18nT keypath="privacy.section2.point3" tag="li">
             <template #privacy>
               <a
+                id="privacy-policy"
                 class="cdx-docs-link is-underlined"
                 href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy"
               >
@@ -94,7 +125,11 @@ onMounted(() => {
           class="text-[var(--color-base)]"
         >
           <template #license>
-            <a class="cdx-docs-link is-underlined" href="/license-list">
+            <a
+              id="license"
+              class="cdx-docs-link is-underlined"
+              href="/license-list"
+            >
               {{ t("privacy.license") }}</a
             >
           </template>
