@@ -282,13 +282,16 @@ const gotoSession = async () => {
     >
       <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
     >
-    <!-- <CdxButton
-      class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
-      @click="isGuide = true"
+    <a
+      href="https://www.wikidata.org/wiki/Wikidata:Lexica#How_to_use"
+      class="w-100"
+      tabindex="-1"
     >
-      <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
-      {{ t("home.auth.tutorial") }}</CdxButton
-    > -->
+      <CdxButton class="w-100 py-[5px] max-w-[unset] rounded-[2px] h-[44px]">
+        <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
+        {{ t("home.auth.tutorial") }}</CdxButton
+      >
+    </a>
   </div>
 
   <GuideDialog
