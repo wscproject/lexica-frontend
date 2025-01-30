@@ -73,7 +73,7 @@ const statements = computed(() => {
           <CdxIcon
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
-            class="text-white cursor-pointer"
+            class="text-white cursor-pointer mx-[var(--spacing-25)]"
             @click="emit('backtoItem')"
           />
           <CdxLabel class="text-[18px] pb-0">{{
@@ -82,7 +82,7 @@ const statements = computed(() => {
         </div>
 
         <div
-          class="flex items-center gap-x-[var(--spacing-25)] pb-[var(--spacing-25)]"
+          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)]"
         >
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
           <p>
@@ -95,14 +95,14 @@ const statements = computed(() => {
         <p
           v-if="props?.headerData?.description"
           :key="2"
-          class="overflow-hidden text-ellipsis"
+          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)]"
           :style="{
             whiteSpace: 'wrap',
           }"
         >
           {{ props?.headerData?.description }}
         </p>
-        <p v-else class="text-[16px] p-0">
+        <p v-else class="text-[16px] pb-0 pl-[var(--spacing-50)]">
           <i>{{ t("session.emptyDescription") }}</i>
         </p>
       </div>
