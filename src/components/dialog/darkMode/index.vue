@@ -151,6 +151,7 @@ const applyTheme = async () => {
       </template>
       <div class="w-full px-[16px] py-[12px]">
         <CdxRadio
+          @keydown.enter="applyTheme"
           v-for="menu in menus"
           :key="locale"
           v-model="currTheme"

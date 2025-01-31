@@ -9,7 +9,7 @@ import {
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import debounce from "lodash.debounce";
-import { computed, ref, watch } from "vue";
+import { computed, nextTick, onMounted, ref, toRef, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { useStore } from "vuex";
 
@@ -44,6 +44,9 @@ const props = defineProps({
   },
 });
 
+const opened = toRef(props, "open");
+const radioRef = ref(null);
+
 const emit = defineEmits(["onClose", "setSearch", "applyLanguage"]);
 
 const close = () => {
@@ -67,9 +70,25 @@ const onInput = debounce(() => {
   }
 }, 500);
 
-watch(props, () => {
-  selected.value = props.defaultLang;
-});
+// watch(props, () => {
+//   selected.value= props.defaultLang;
+// });
+
+watch(
+  () => props.open,
+  async (newVal) => {
+    if (newVal) {
+      selected.value = props.defaultLang;
+      await nextTick(); // Wait for DOM updates
+      const radio = document.getElementById(`my-radio-${selected.value.full}`);
+      console.log(radio.firstElementChild.firstElementChild);
+
+      if (radio) {
+        radio.firstElementChild.focus(); // Focus on the first radio button
+      }
+    }
+  }
+);
 
 watch(language, () => {
   selected.value = {
@@ -77,6 +96,7 @@ watch(language, () => {
     value: languageCode.value,
     id: languageId.value,
   };
+  console.log(radioRef.value);
 });
 </script>
 
@@ -113,8 +133,15 @@ watch(language, () => {
         </div>
       </template>
 
-      <div class="py-[12px] px-[16px] max-h-[360px] overflow-auto">
+      <div
+        role="radiogroup"
+        class="py-[12px] max-h-[360px] px-[16px] overflow-auto"
+      >
         <CdxRadio
+          :id="`my-radio-${option.full}`"
+          ref="radioRef"
+          autofocus
+          @keydown.enter="apply"
           v-if="props.options.length > 0"
           v-for="option in props.options"
           :key="option.label"
@@ -124,6 +151,8 @@ watch(language, () => {
             id: option?.id,
           }"
           v-model="selected"
+          @update:modelValue="selected"
+          name="as"
         >
           {{ option.label }}
         </CdxRadio>

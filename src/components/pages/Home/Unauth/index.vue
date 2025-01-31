@@ -5,7 +5,7 @@ import { useI18n } from "vue-i18n";
 
 import HomeImage from "@/assets/home_image.svg";
 
-import { computed } from "vue";
+import { computed, onBeforeUnmount, onMounted } from "vue";
 import { useStore } from "vuex";
 
 const vuex = useStore();
@@ -13,6 +13,24 @@ const vuex = useStore();
 const { t } = useI18n({ useScope: "global" });
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+
+const toPrivacy = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "/privacy-policy";
+  }
+};
+onMounted(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+
+  linkPrivacy.addEventListener("keydown", toPrivacy);
+});
+
+onBeforeUnmount(() => {
+  const linkPrivacy = document.querySelector("#privacy-policy");
+
+  linkPrivacy.removeEventListener("keydown", toPrivacy);
+});
 </script>
 
 <template>
@@ -28,13 +46,15 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
       <div class="text-[16px] dark:text-[#EAECF0]">
         <span>{{ t("home.unauth.body2") }}</span
-        ><a class="cdx-docs-link is-underlined" href="/privacy-policy">{{
-          t("home.unauth.privacyPolicy")
-        }}</a
+        ><a
+          class="cdx-docs-link is-underlined"
+          href="/privacy-policy"
+          id="privacy-policy"
+          >{{ t("home.unauth.privacyPolicy") }}</a
         >.
       </div>
 
-      <a :href="loginUrl" class="">
+      <a :href="loginUrl" class="" tabindex="-1">
         <CdxButton
           action="progressive"
           weight="primary"

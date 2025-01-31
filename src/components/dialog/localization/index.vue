@@ -87,6 +87,12 @@ watch(locale, () => {
       </template>
       <div class="w-full px-[16px] py-[12px]">
         <CdxRadio
+          @keydown.enter="
+            () => {
+              setLocale();
+              emit('onPrimaryAction');
+            }
+          "
           v-for="radio in radios"
           :key="'radio-' + radio.value"
           v-model="currentLocale"

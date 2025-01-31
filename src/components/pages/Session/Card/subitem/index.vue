@@ -5,7 +5,11 @@ import {
   CdxProgressBar,
   CdxThumbnail,
 } from "@wikimedia/codex";
-import { cdxIconClose, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
+import {
+  cdxIconClose,
+  cdxIconLogoWikidata,
+  cdxIconArrowPrevious,
+} from "@wikimedia/codex-icons";
 import { computed, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import expand from "@/assets/expand.svg";
@@ -51,7 +55,7 @@ const statements = computed(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between gap-x-2 relative rounded-t-[14px]"
+      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)]] text-white flex test justify-between gap-x-2 relative rounded-t-[14px]"
       :style="{
         background: '#196551',
         alignItems: 'flex-start',
@@ -63,11 +67,23 @@ const statements = computed(() => {
       @touchend="emit('onRelease')"
     >
       <div>
-        <CdxLabel class="text-[18px] pb-0">{{
-          props?.headerData?.label
-        }}</CdxLabel>
+        <div
+          class="flex items-center gap-x-[var(--spacing-25)] pb-[var(--spacing-25)]"
+        >
+          <CdxIcon
+            :aria-label="t('aria.close')"
+            :icon="cdxIconArrowPrevious"
+            class="text-white cursor-pointer mx-[var(--spacing-25)]"
+            @click="emit('backtoItem')"
+          />
+          <CdxLabel class="text-[18px] pb-0">{{
+            props?.headerData?.label
+          }}</CdxLabel>
+        </div>
 
-        <div class="flex items-center gap-x-2">
+        <div
+          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)]"
+        >
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
           <p>
             <b>{{ t("session.item.wikidata") }}</b>
@@ -79,24 +95,16 @@ const statements = computed(() => {
         <p
           v-if="props?.headerData?.description"
           :key="2"
-          class="overflow-hidden text-ellipsis"
+          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)]"
           :style="{
             whiteSpace: 'wrap',
           }"
         >
           {{ props?.headerData?.description }}
         </p>
-        <p v-else class="text-[16px] p-0">
+        <p v-else class="text-[16px] pb-0 pl-[var(--spacing-50)]">
           <i>{{ t("session.emptyDescription") }}</i>
         </p>
-      </div>
-      <div>
-        <CdxIcon
-          :aria-label="t('aria.close')"
-          :icon="cdxIconClose"
-          class="text-white cursor-pointer"
-          @click="emit('backtoItem')"
-        />
       </div>
     </div>
     <div

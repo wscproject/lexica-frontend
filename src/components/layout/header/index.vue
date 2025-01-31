@@ -154,8 +154,8 @@ watch(isThemeDark, () => {
   >
     <div class="flex items-center max-w-[908px] w-full relative">
       <div class="flex justify-center items-center h-full">
-        <img v-if="!isThemeDark" :src="Logo" alt="lexica_logo" />
-        <img v-else :src="LogoDark" alt="lexica_logo" />
+        <img v-if="!isThemeDark" :src="Logo" alt="Lexica logo" />
+        <img v-else :src="LogoDark" alt="Lexica logo" />
       </div>
       <div class="absolute right-[0px] edited">
         <CdxMenuButton

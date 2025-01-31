@@ -10,6 +10,7 @@ import {
   cdxIconClose,
   cdxIconExpand,
   cdxIconLanguage,
+  cdxIconArrowPrevious,
 } from "@wikimedia/codex-icons";
 import { computed, onMounted, reactive, ref, toRaw, toRef, watch } from "vue";
 import placeholder from "@/assets/placeholder.svg";
@@ -77,7 +78,7 @@ onMounted(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header p-[16px] text-white flex test justify-between relative rounded-t-[15px]"
+      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)] text-white flex test justify-between relative rounded-t-[15px]"
       :style="{
         background: '#3056A9',
         alignItems: 'flex-start',
@@ -89,11 +90,23 @@ onMounted(() => {
       @touchend.stop="emit('onRelease')"
     >
       <div class="w-full break-normal">
-        <CdxLabel class="text-[18px] pb-[4px] leading-[22.5px]">{{
-          props?.headerData?.lemma
-        }}</CdxLabel>
+        <div
+          class="flex items-center gap-x-[var(--spacing-25)] pb-[var(--spacing-25)]"
+        >
+          <CdxIcon
+            :aria-label="t('aria.close')"
+            :icon="cdxIconArrowPrevious"
+            class="text-white cursor-pointer mx-[var(--spacing-25)]"
+            @click="emit('backtoItem')"
+          />
+          <CdxLabel class="text-[18px] leading-[22.5px]">{{
+            props?.headerData?.lemma
+          }}</CdxLabel>
+        </div>
 
-        <div class="flex items-center gap-x-2 pb-[4px]">
+        <div
+          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)]"
+        >
           <img :src="wikimedia" alt="WikidataLexeme" />
           <p>
             <b
@@ -111,21 +124,14 @@ onMounted(() => {
           :style="{
             wordWrap: 'break-word',
           }"
+          class="pl-[var(--spacing-50)]"
         >
           {{ props.headerData.gloss }}
         </p>
 
-        <p v-else class="text-[16px] p-0">
+        <p v-else class="text-[16px] pb-0 pl-[var(--spacing-50)]">
           <i> {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }} </i>
         </p>
-      </div>
-      <div>
-        <CdxIcon
-          :aria-label="t('aria.close')"
-          :icon="cdxIconClose"
-          class="text-white cursor-pointer"
-          @click.stop="emit('backtoItem')"
-        />
       </div>
     </div>
     <div

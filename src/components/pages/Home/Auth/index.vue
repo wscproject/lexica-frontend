@@ -193,7 +193,10 @@ const gotoSession = async () => {
 
   <div
     class="menu mb-[12px] cursor-pointer w-100"
+    tabindex="0"
     @click="isContributeLang = true"
+    @keydown.enter="isContributeLang = true"
+    @keydown.space="isContributeLang = true"
   >
     <div class="flex align-center justify-between gap-x-[12px]">
       <div class="flex gap-x-[12px]">
@@ -211,7 +214,13 @@ const gotoSession = async () => {
     </div>
   </div>
 
-  <div class="menu mb-[12px] cursor-pointer w-100" @click="isActivity = true">
+  <div
+    class="menu mb-[12px] cursor-pointer w-100"
+    @click="isActivity = true"
+    @keydown.enter="isActivity = true"
+    @keydown.space="isActivity = true"
+    tabindex="0"
+  >
     <div class="flex align-center justify-between gap-x-[12px]">
       <div class="flex gap-x-[12px]">
         <img
@@ -273,13 +282,16 @@ const gotoSession = async () => {
     >
       <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
     >
-    <!-- <CdxButton
-      class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
-      @click="isGuide = true"
+    <a
+      href="https://www.wikidata.org/wiki/Wikidata:Lexica#How_to_use"
+      class="w-100"
+      tabindex="-1"
     >
-      <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
-      {{ t("home.auth.tutorial") }}</CdxButton
-    > -->
+      <CdxButton class="w-100 py-[5px] max-w-[unset] rounded-[2px] h-[44px]">
+        <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
+        {{ t("home.auth.tutorial") }}</CdxButton
+      >
+    </a>
   </div>
 
   <GuideDialog
