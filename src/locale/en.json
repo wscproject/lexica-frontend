@@ -10,6 +10,7 @@
       "light": "Light",
       "dark": "Dark",
       "language": "English",
+      "accessibility": "Accessibility",
       "loggingout": "Logging out...",
       "logoutsuccess": "You are logged out.",
       "ok": "OK"

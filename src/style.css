@@ -1,5 +1,6 @@
 @import "/node_modules/@wikimedia/codex-design-tokens/theme-wikimedia-ui.css";
 
+/* Inter */
 @font-face {
   font-family: "Inter";
   src: url("@/assets/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
@@ -46,9 +47,146 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "InterBold";
+  src: url("@/assets/font/Inter-Bold.ttf") format("truetype");
+  font-weight: 100 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("@/assets/font/Inter-BoldItalic.ttf") format("truetype");
+  font-weight: 100 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("@/assets/font/Inter-Black.ttf") format("truetype");
+  font-weight: 700 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("@/assets/font/Inter-BlackItalic.ttf") format("truetype");
+  font-weight: 700 800;
+  font-style: italic;
+}
+/* **************************************************** */
+
+/* Lexend */
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-VariableFont_wght.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-VariableFont_wght.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-ThinItalic.ttf") format("truetype");
+  font-weight: 100;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-ExtraLightItalic.ttf") format("truetype");
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-LightItalic.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-RegularItalic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-MediumItalic.ttf") format("truetype");
+  font-weight: 500;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-SemiBoldItalic.ttf") format("truetype");
+  font-weight: 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-BoldItalic.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-ExtraBoldItalic.ttf") format("truetype");
+  font-weight: 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "Lexend";
+  src: url("@/assets/font/Lexend-BlackItalic.ttf") format("truetype");
+  font-weight: 900;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "LexendBold";
+  src: url("@/assets/font/Lexend-Bold.ttf") format("truetype");
+  font-weight: 100 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LexendBold";
+  src: url("@/assets/font/Lexend-Black.ttf") format("truetype");
+  font-weight: 700 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LexendBold";
+  src: url("@/assets/font/Lexend-BoldItalic.ttf") format("truetype");
+  font-weight: 100 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "LexendBold";
+  src: url("@/assets/font/Lexend-BlackItalic.ttf") format("truetype");
+  font-weight: 700 800;
+  font-style: italic;
+}
+
+/* **************************************************** */
+
 :root {
-  font-family: Inter, "NotoSansSundanese", "NotoSansBalinese", system-ui, Avenir,
-    Helvetica, Arial, sans-serif;
+  --font-family: "Inter", "NotoSansSundanese", "NotoSansBalinese", system-ui,
+    Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -172,7 +310,8 @@ body {
   min-width: 320px;
   min-height: 100%;
   font-weight: 400;
-  /* font-family: "Inter", sans-serif; */
+  font-family: var(--font-family);
+  /* font-style: oblique 10deg; */
 }
 
 h1 {

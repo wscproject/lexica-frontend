@@ -203,7 +203,7 @@ const gotoSession = async () => {
         <CdxIcon :icon="cdxIconGlobe" />
         <div class="flex flex-col">
           <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
-            t("home.auth.languageSelect")
+            t("contributionLangDialog.title")
           }}</CdxLabel>
           <span class="text-[#54595D] dark:text-[#A2A9B1]"
             >{{ selectedLang?.full }} ({{ selectedLang?.value }})</span
