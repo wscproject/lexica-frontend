@@ -51,7 +51,7 @@ onMounted(() => {
 
   console.log(localStorage.getItem("altFont"));
 
-  if (localStorage.getItem("altFont") === "true") {
+  if (localStorage?.getItem("altFont") === "true") {
     console.log("setset");
 
     document.documentElement.style.setProperty(

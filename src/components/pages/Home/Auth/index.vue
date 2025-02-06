@@ -74,7 +74,22 @@ const fetchProfile = async (lang) => {
       };
     }
 
-    localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
+    if (!localStorage.getItem("altFont")) {
+      localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
+
+      if (response?.data?.isAlternateFont) {
+        document.documentElement.style.setProperty(
+          "--font-family",
+          "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        );
+      } else {
+        document.documentElement.style.setProperty(
+          "--font-family",
+          "NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        );
+      }
+    }
+
     selectedAct.value = response?.data?.activityType || "connect";
     vuex.dispatch("profile/addData", response?.data || lang);
     locale.value = response?.data?.displayLanguageCode || lang;
