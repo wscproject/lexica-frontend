@@ -10,6 +10,7 @@
       "light": "Light",
       "dark": "Dark",
       "language": "English",
+      "accessibility": "Accessibility",
       "loggingout": "Logging out...",
       "logoutsuccess": "You are logged out.",
       "ok": "OK"
@@ -21,6 +22,15 @@
     "about": "About",
     "privacy": "Privacy",
     "license": "License"
+  },
+
+  "accessibilityDialog": {
+    "title": "Accessibility",
+    "apply": "Apply",
+    "close": "Close",
+    "subtitle": "Text",
+    "option1": "Use alternative font (Atkinson Hyperlegible)",
+    "option1Note": "Note: Some characters may not be rendered in this font."
   },
 
   "localeDialog": {

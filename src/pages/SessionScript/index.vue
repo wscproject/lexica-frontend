@@ -664,7 +664,7 @@ watch([currCount, undoWarn], async () => {
           >
             <CdxIcon :icon="cdxIconHome" alt="home" />
           </CdxButton>
-          <div class="absolute mx-auto left-0 right-0 w-fit">
+          <div class="absolute mx-auto left-0 right-0 w-fit top-[10px]">
             <CdxLabel v-if="data?.length !== 0" class="text-[16px] pb-0"
               >{{ t("session.title") }} {{ currCount }}</CdxLabel
             >
@@ -1163,7 +1163,7 @@ watch([currCount, undoWarn], async () => {
 
 .skipall {
   animation: swipeCardRight 0.3s;
-  transform: translateX(1000px);
+  transform: translateX(2000px);
 }
 
 @keyframes swipeCardRight {
@@ -1178,7 +1178,7 @@ watch([currCount, undoWarn], async () => {
     opacity: 0;
   }
   100% {
-    transform: translateX(1000px);
+    transform: translateX(2000px);
     opacity: 0;
   }
 }
