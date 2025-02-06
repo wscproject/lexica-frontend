@@ -24,6 +24,15 @@
     "license": "License"
   },
 
+  "accessibilityDialog": {
+    "title": "Accessibility",
+    "apply": "Apply",
+    "close": "Close",
+    "subtitle": "Text",
+    "option1": "Use alternative font (Atkinson Hyperlegible)",
+    "option1Note": "Note: Some characters may not be rendered in this font."
+  },
+
   "localeDialog": {
     "title": "Display language",
     "cancel": "Cancel",

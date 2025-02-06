@@ -8,6 +8,7 @@ import {
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import { updateUserPreference } from "@/api/Home";
 
 const props = defineProps({
   open: {
@@ -17,8 +18,7 @@ const props = defineProps({
 });
 const { t, locale } = useI18n({ useScope: "global" });
 
-const isBold = ref(false);
-const isLexend = ref(false);
+const isAlternateFont = ref(Boolean(localStorage.getItem("altFont")) || false);
 
 const emit = defineEmits(["onPrimaryAction"]);
 
@@ -26,33 +26,23 @@ const close = () => {
   emit("onPrimaryAction", false);
 };
 
-const apply = () => {
-  console.log(isBold.value);
+const apply = async () => {
+  updateUserPreference({
+    isAlternateFont: isAlternateFont.value,
+  });
 
-  if (isBold.value) {
-    if (isLexend.value) {
-      document.documentElement.style.setProperty(
-        "--font-family",
-        "LexendBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-      );
-    } else {
-      document.documentElement.style.setProperty(
-        "--font-family",
-        "InterBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-      );
-    }
+  localStorage.setItem("altFont", isAlternateFont.value);
+
+  if (isAlternateFont.value) {
+    document.documentElement.style.setProperty(
+      "--font-family",
+      "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+    );
   } else {
-    if (isLexend.value) {
-      document.documentElement.style.setProperty(
-        "--font-family",
-        "Lexend, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-      );
-    } else {
-      document.documentElement.style.setProperty(
-        "--font-family",
-        "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-      );
-    }
+    document.documentElement.style.setProperty(
+      "--font-family",
+      "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+    );
   }
 
   close();
@@ -73,7 +63,9 @@ const apply = () => {
       <div class="w-full">
         <div class="w-full">
           <div class="flex w-full justify-between items-center">
-            <CdxLabel class="text-[18px]">Accessibility</CdxLabel>
+            <CdxLabel class="text-[18px]">{{
+              t("accessibilityDialog.title")
+            }}</CdxLabel>
             <CdxButton
               :aria-label="t('aria.close')"
               @click="close"
@@ -86,10 +78,19 @@ const apply = () => {
       </div>
     </template>
     <div class="w-full px-[16px] py-[12px]">
-      <h5>Text</h5>
-      <CdxToggleSwitch v-model="isBold"> Use bold font </CdxToggleSwitch>
-      <CdxToggleSwitch v-model="isLexend">
-        Use alternative font
+      <h5 class="pb-[var(--spacing-50)] font-bold">
+        {{ t("accessibilityDialog.subtitle") }}
+      </h5>
+      <CdxToggleSwitch
+        v-model="isAlternateFont"
+        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
+      >
+        <div class="text-[16px] text-[var(--color-base)]">
+          {{ t("accessibilityDialog.option1") }}
+        </div>
+        <div class="text-[16px] text-[var(--color-subtle)]">
+          {{ t("accessibilityDialog.option1Note") }}
+        </div>
       </CdxToggleSwitch>
     </div>
     <template #footer>

@@ -74,6 +74,7 @@ const fetchProfile = async (lang) => {
       };
     }
 
+    localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
     selectedAct.value = response?.data?.activityType || "connect";
     vuex.dispatch("profile/addData", response?.data || lang);
     locale.value = response?.data?.displayLanguageCode || lang;
