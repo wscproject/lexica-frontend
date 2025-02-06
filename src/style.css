@@ -93,8 +93,7 @@
 
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-RegularItalic.ttf")
-    format("truetype");
+  src: url("@/assets/font/AtkinsonHyperlegible-Italic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
