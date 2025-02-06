@@ -18,7 +18,9 @@ const props = defineProps({
 });
 const { t, locale } = useI18n({ useScope: "global" });
 
-const isAlternateFont = ref(Boolean(localStorage.getItem("altFont")) || false);
+const isAlternateFont = ref(
+  localStorage.getItem("altFont") === "true" ? true : false
+);
 
 const emit = defineEmits(["onPrimaryAction"]);
 
