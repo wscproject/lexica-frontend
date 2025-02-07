@@ -656,6 +656,44 @@ watch([currCount, undoWarn], async () => {
 
 watch([currCount, data], async () => {
   await getRecommendation();
+
+  console.log(cardRef.value);
+});
+
+watch(splash, () => {
+  // const div = document.querySelector();
+  console.log(isLoading.value);
+
+  for (let i = 1; i <= totalCount.value; i++) {
+    if (currCount.value !== i && currCount.value < i) {
+      const div = document?.querySelector(`.card-${i}`);
+      console.log(data.value);
+      if (div) {
+        div?.setAttribute("tabindex", "-1");
+
+        const children = div.querySelectorAll("*");
+        children?.forEach((child) => {
+          child.setAttribute("tabindex", "-1");
+        });
+      }
+      // div?.setAttribute("tabindex", "-1");
+
+      // const children = div.querySelectorAll("*");
+      // children?.forEach((child) => {
+      //   child.setAttribute("tabindex", "-1");
+      // });
+    } else {
+      const div = document?.querySelector(`.card-${i}`);
+      if (div) {
+        div?.setAttribute("tabindex", "");
+
+        const children = div.querySelectorAll("*");
+        children?.forEach((child) => {
+          child.setAttribute("tabindex", "");
+        });
+      }
+    }
+  }
 });
 
 // watch(currCount, async () => {
@@ -871,6 +909,7 @@ watch(
               data?.length === index + 1 && next ? 'next-card' : '',
               data?.length === index + 1 && prev ? 'prev-card' : '',
               data?.length === index + 1 && submit ? 'submit-card' : '',
+              `card-${totalCount - index}`,
             ]"
           >
             <transition name="fade">

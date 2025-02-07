@@ -204,6 +204,7 @@ const onInput = debounce(() => {
             'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
           ]"
           @click="selectItem(value.id, value)"
+          tabindex="0"
         >
           <div class="flex gap-x-[12px]">
             <!-- <div
