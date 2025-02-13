@@ -8,7 +8,7 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { computed, ref } from "vue";
+import { computed, nextTick, ref, toRaw, toRef, watch } from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
 import noData from "@/assets/endofresult.svg";
@@ -24,6 +24,8 @@ const isInfo = ref(false);
 const selectedItem = ref(null);
 const detailData = ref(null);
 const isLoading = ref(false);
+const radioButtons = ref([]);
+const radioButtons2 = ref([]);
 
 const search = ref("");
 
@@ -41,11 +43,39 @@ const props = defineProps({
   loadmoreLoading: Boolean,
   noLoadData: Boolean,
 });
+const recs = toRef(props, "recommendation");
 
 const recommendationSearch = ref([]);
 
 const setInfo = () => {
   isInfo.value = !isInfo.value;
+};
+
+const moveSelectionRec = (newIndex) => {
+  if (
+    isSearch.value &&
+    (newIndex < 0 ||
+      newIndex >= props?.recommendation?.filter((item, i) => i <= 2)?.length)
+  )
+    return;
+
+  // Move focus to the newly selected element
+  nextTick(() => {
+    radioButtons.value[newIndex]?.focus();
+  });
+};
+
+const moveSelectionSearch = (newIndex) => {
+  if (
+    !isSearch.value &&
+    (newIndex < 0 || newIndex >= props?.recommendation?.length)
+  )
+    return;
+
+  // Move focus to the newly selected element
+  nextTick(() => {
+    radioButtons2.value[newIndex]?.focus();
+  });
 };
 
 const selectItem = (n, value) => {
@@ -72,6 +102,17 @@ const onInput = debounce(() => {
     emit("setSearch", search.value);
   }
 }, 500);
+
+watch(recs, async () => {
+  await nextTick();
+
+  if (radioButtons2.value) {
+    const test = toRaw(radioButtons2?.value);
+    test?.[recs?.value?.length - 10]?.focus();
+
+    // radioButtons2?.value
+  }
+});
 </script>
 
 <template>
@@ -122,8 +163,9 @@ const onInput = debounce(() => {
         <CdxIcon
           :aria-label="t('aria.showLexemeDetail')"
           :icon="cdxIconInfoFilled"
-          class="text-white cursor-pointer"
+          class="text-white cursor-pointer interactable"
           @click.stop="(e) => emit('gotoDetail', e)"
+          @keydown.space="(e) => emit('gotoDetail', e)"
         />
       </div>
     </div>
@@ -139,7 +181,7 @@ const onInput = debounce(() => {
         <CdxSearchInput
           aria-label="SearchInput default demo"
           :placeholder="t('session.main.search')"
-          class="pb-[16px] relative"
+          class="pb-[16px] relative interactable"
           v-model="search"
           @input="onInput"
         />
@@ -191,23 +233,31 @@ const onInput = debounce(() => {
         >
           {{ t("session.main.recommendation") }}
         </p>
-
-        <div
-          v-for="(value, index) in props?.recommendation?.filter(
-            (item, i) => i <= 2
-          )"
-          :key="index"
-          :class="[
-            value.id === selectedItem
-              ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
-              : 'border border-[var(--border-color-base)] ',
-            'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
-          ]"
-          @click="selectItem(value.id, value)"
-          tabindex="0"
-        >
-          <div class="flex gap-x-[12px]">
-            <!-- <div
+        <div role="radiogroup">
+          <div
+            v-for="(value, index) in props?.recommendation?.filter(
+              (item, i) => i <= 2
+            )"
+            ref="radioButtons"
+            role="radio"
+            :key="index"
+            :class="[
+              value.id === selectedItem
+                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
+                : 'border border-[var(--border-color-base)] ',
+              'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
+              !isSearch && 'recommendation-box',
+            ]"
+            @click.prevent="selectItem(value.id, value)"
+            @keydown.space="selectItem(value.id, value)"
+            @keydown.enter="selectItem(value.id, value)"
+            @keydown.left="moveSelectionRec(index - 1)"
+            @keydown.right="moveSelectionRec(index + 1)"
+            @keydown.up="moveSelectionRec(index - 1)"
+            @keydown.down="moveSelectionRec(index + 1)"
+          >
+            <div class="flex gap-x-[12px]">
+              <!-- <div
               class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
             >
               <img
@@ -215,43 +265,48 @@ const onInput = debounce(() => {
                 class="object-cover h-full w-full"
               />
             </div> -->
-            <CdxThumbnail
-              :thumbnail="{ url: value?.image }"
-              :placeholder-icon="cdxIconLogoWikidata"
-            />
+              <CdxThumbnail
+                :thumbnail="{ url: value?.image }"
+                :placeholder-icon="cdxIconLogoWikidata"
+              />
 
-            <div>
-              <CdxLabel
-                class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
-                >{{ value?.label }} ({{ value?.id }})</CdxLabel
-              >
-              <div
-                v-if="value?.description"
-                :lang="value?.language"
-                style="hyphens: auto; -moz-hyphens: auto; word-wrap: break-word"
-              >
-                <p
-                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+              <div>
+                <CdxLabel
+                  class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
+                  >{{ value?.label }} ({{ value?.id }})</CdxLabel
                 >
-                  {{ value?.description }}
+                <div
+                  v-if="value?.description"
+                  :lang="value?.language"
+                  style="
+                    hyphens: auto;
+                    -moz-hyphens: auto;
+                    word-wrap: break-word;
+                  "
+                >
+                  <p
+                    class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0 leading-[22px]"
+                  >
+                    {{ value?.description }}
+                  </p>
+                </div>
+
+                <p
+                  v-else
+                  class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
+                  style="padding-bottom: 16px"
+                >
+                  <i>{{ t("session.emptyDescription") }}</i>
                 </p>
               </div>
-
-              <p
-                v-else
-                class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-0"
-                style="padding-bottom: 16px"
-              >
-                <i>{{ t("session.emptyDescription") }}</i>
-              </p>
             </div>
+            <CdxIcon
+              :aria-label="t('aria.showItemDetail')"
+              :icon="cdxIconInfoFilled"
+              class="cursor-pointer"
+              @click.stop="emit('gotoSubItemDetail', value)"
+            />
           </div>
-          <CdxIcon
-            :aria-label="t('aria.showItemDetail')"
-            :icon="cdxIconInfoFilled"
-            class="cursor-pointer"
-            @click="emit('gotoSubItemDetail', value)"
-          />
         </div>
       </div>
 
@@ -277,8 +332,16 @@ const onInput = debounce(() => {
                 ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[var(--border-color-base)]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
+              'recommendation-box',
             ]"
-            @click="selectItem(value.id, value)"
+            ref="radioButtons2"
+            @click.prevent="selectItem(value.id, value)"
+            @keydown.space="selectItem(value.id, value)"
+            @keydown.enter="selectItem(value.id, value)"
+            @keydown.left="moveSelectionSearch(index - 1)"
+            @keydown.right="moveSelectionSearch(index + 1)"
+            @keydown.up="moveSelectionSearch(index - 1)"
+            @keydown.down="moveSelectionSearch(index + 1)"
           >
             <div class="flex gap-x-[12px]">
               <!-- <div
@@ -337,7 +400,7 @@ const onInput = debounce(() => {
               :aria-label="t('aria.showItemDetail')"
               :icon="cdxIconInfoFilled"
               class="cursor-pointer"
-              @click="emit('gotoSubItemDetail', value)"
+              @click.stop="emit('gotoSubItemDetail', value)"
             />
           </div>
 
@@ -345,7 +408,7 @@ const onInput = debounce(() => {
             <CdxButton
               v-if="!props.noLoadData"
               class="w-full h-[34px]"
-              @click="emit('loadMore')"
+              @click="emit('loadMore', radioButtons2?.[0])"
               :disabled="props.loadmoreLoading"
               >{{
                 props.loadmoreLoading
@@ -386,7 +449,7 @@ const onInput = debounce(() => {
       class="w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
     >
       <CdxButton
-        class="w-full"
+        class="w-full interactable"
         @click="
           () => {
             selectedItem = null;
@@ -399,7 +462,7 @@ const onInput = debounce(() => {
         :disabled="!selectedItem"
         weight="primary"
         action="progressive"
-        class="w-full"
+        class="w-full interactable"
         @click="emit('gotoReview', detailData)"
         >{{ t("session.main.button2") }}</CdxButton
       >
