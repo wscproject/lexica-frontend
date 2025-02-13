@@ -686,8 +686,6 @@ watch([splash, flip, currMode, entities], async () => {
 
           const section = div.querySelector(".card-front");
 
-          console.log("section", section);
-
           if (section) {
             const children = section?.querySelectorAll(".interactable");
 
@@ -716,8 +714,10 @@ watch([splash, flip, currMode, entities], async () => {
           cardDisableAccessibilityConnect("active", div);
 
           const section = div.querySelector(".card-detail");
-          const children = section.querySelectorA(".interactable");
-          children.setAttribute("tabindex", "0");
+          const children = section.querySelectorAll(".interactable");
+          children?.forEach((child) => {
+            child.setAttribute("tabindex", "0");
+          });
         } else if (flip.value && currMode.value === 2) {
           await nextTick();
 
