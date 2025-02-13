@@ -10,7 +10,7 @@ import {
   cdxIconLogoWikidata,
   cdxIconArrowPrevious,
 } from "@wikimedia/codex-icons";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import expand from "@/assets/expand.svg";
 
@@ -50,6 +50,20 @@ const statements = computed(() => {
       )
     : [];
 });
+
+const handleKeyPress = (event) => {
+  if (event.key === "Escape") {
+    emit("backtoItem");
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeyPress);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeyPress);
+});
 </script>
 
 <template>
@@ -73,8 +87,9 @@ const statements = computed(() => {
           <CdxIcon
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
-            class="text-white cursor-pointer mx-[var(--spacing-25)]"
+            class="text-white cursor-pointer mx-[var(--spacing-25)] interactable"
             @click="emit('backtoItem')"
+            @keydown.space="emit('backtoItem')"
           />
           <CdxLabel class="text-[18px] pb-0">{{
             props?.headerData?.label

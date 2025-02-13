@@ -10,7 +10,7 @@ import {
   cdxIconArrowPrevious,
   cdxIconLanguage,
 } from "@wikimedia/codex-icons";
-import { computed, ref, watch } from "vue";
+import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
 import expand from "@/assets/expand.svg";
@@ -48,6 +48,20 @@ const senses = computed(() => {
 watch(senses, () => {
   console.log(senses.value);
 });
+
+const handleKeyPress = (event) => {
+  if (event.key === "Escape") {
+    emit("backtoItem");
+  }
+};
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeyPress);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeyPress);
+});
 </script>
 
 <template>
@@ -65,12 +79,15 @@ watch(senses, () => {
       @touchend.stop="emit('onRelease')"
     >
       <div class="w-full break-normal">
-        <div class="flex items-center gap-x-[54px] pb-[var(--spacing-25)]">
+        <div
+          class="flex items-center gap-x-[var(--spacing-25)] pb-[var(--spacing-25)]"
+        >
           <CdxIcon
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
-            class="text-white cursor-pointer mx-[var(--spacing-25)]"
+            class="text-white cursor-pointer mx-[var(--spacing-25)] interactable"
             @click="emit('backtoItem')"
+            @keydown.space="emit('backtoItem')"
           />
           <CdxLabel class="text-[18px] leading-[22.5px]">{{
             props?.headerData?.lemma
