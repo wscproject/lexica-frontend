@@ -85,7 +85,7 @@ const fetchProfile = async (lang) => {
       } else {
         document.documentElement.style.setProperty(
           "--font-family",
-          "NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+          "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
         );
       }
     }
