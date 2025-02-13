@@ -227,12 +227,12 @@ watch(recs, async () => {
           !props.recommendedLoading
         "
       >
-        <p
+        <h6
           class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
           style="padding-bottom: 16px"
         >
           {{ t("session.main.recommendation") }}
-        </p>
+        </h6>
         <div role="radiogroup">
           <div
             v-for="(value, index) in props?.recommendation?.filter(
@@ -318,12 +318,12 @@ watch(recs, async () => {
             !props.recommendedLoading
           "
         >
-          <p
+          <h6
             class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
             style="padding-bottom: 16px"
           >
             {{ t("session.main.result") }}
-          </p>
+          </h6>
           <div
             v-for="(value, index) in props?.recommendation"
             :key="index"
