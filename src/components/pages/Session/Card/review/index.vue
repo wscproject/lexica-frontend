@@ -175,13 +175,13 @@ const props = defineProps({
     <div
       class="fixed bottom-0 w-full h-66px border-t border-[var(--border-color-base)] p-[16px] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[12px] rounded-b-[16px]"
     >
-      <CdxButton @click="emit('backtoItem')" class="w-full">{{
+      <CdxButton @click="emit('backtoItem')" class="w-full interactable">{{
         t("session.preview.button1")
       }}</CdxButton>
       <CdxButton
         weight="primary"
         action="progressive"
-        class="w-full"
+        class="w-full interactable"
         @click="
           emit('onDone', {
             contributionDetailId: props?.data?.id,

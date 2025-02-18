@@ -27,6 +27,7 @@ import {
   onMounted,
   reactive,
   toRaw,
+  nextTick,
 } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
 import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
@@ -56,6 +57,7 @@ import { GetProfile } from "@/api/Home";
 import { useI18n } from "vue-i18n";
 import { useMediaQuery } from "@vueuse/core";
 import { useStore } from "vuex";
+import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 
@@ -656,6 +658,88 @@ watch([currCount, undoWarn], async () => {
 
 watch([currCount, data], async () => {
   await getRecommendation();
+
+  console.log(cardRef.value);
+});
+
+watch([splash, flip, currMode, entities], async () => {
+  // const div = document.querySelector();
+
+  for (let i = 1; i <= totalCount.value; i++) {
+    if (currCount.value !== i && currCount.value < i) {
+      const div = document?.querySelector(`.card-${i}`);
+      if (div) {
+        div?.setAttribute("tabindex", "-1");
+
+        const children = div.querySelectorAll("*");
+        children?.forEach((child) => {
+          child.setAttribute("tabindex", "-1");
+        });
+      }
+    } else {
+      const div = document?.querySelector(`.card-${i}`);
+      if (div) {
+        if (!flip.value) {
+          await nextTick();
+
+          cardDisableAccessibilityConnect("inactive", div, currMode.value);
+
+          const section = div.querySelector(".card-front");
+
+          if (section) {
+            const children = section?.querySelectorAll(".interactable");
+
+            children?.forEach((child) => {
+              if (child.className.includes("cdx-search-input")) {
+                child
+                  .querySelector(".cdx-text-input__input")
+                  .setAttribute("tabindex", "");
+              } else {
+                child.setAttribute("tabindex", "0");
+              }
+            });
+
+            nextTick(() => {
+              const recBox = section?.querySelectorAll(".recommendation-box");
+              console.log("asdasdasd", recBox);
+
+              recBox?.forEach((child) => {
+                child.setAttribute("tabindex", "0");
+              });
+            });
+          }
+        } else if (flip.value && currMode.value === 1) {
+          await nextTick();
+
+          cardDisableAccessibilityConnect("active", div);
+
+          const section = div.querySelector(".card-detail");
+          const children = section.querySelectorAll(".interactable");
+          children?.forEach((child) => {
+            child.setAttribute("tabindex", "0");
+          });
+        } else if (flip.value && currMode.value === 2) {
+          await nextTick();
+
+          cardDisableAccessibilityConnect("active", div);
+
+          const section = div.querySelector(".card-item-detail");
+
+          const children = section.querySelector(".interactable");
+          children.setAttribute("tabindex", "0");
+        } else if (flip.value && currMode.value === 3) {
+          await nextTick();
+          cardDisableAccessibilityConnect("active", div);
+          const section = div.querySelector(".card-review");
+
+          const children = section.querySelectorAll(".interactable");
+          children?.forEach((child) => {
+            child.setAttribute("tabindex", "0");
+          });
+        }
+      }
+    }
+  }
 });
 
 // watch(currCount, async () => {
@@ -705,7 +789,7 @@ watch(
         >
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
-        <div class="absolute mx-auto left-0 right-0 w-fit">
+        <div class="absolute mx-auto left-0 right-0 w-fit top-[10px]">
           <CdxLabel
             v-if="data?.length !== 0 && !isLoading"
             class="text-[16px] pb-0"
@@ -871,6 +955,7 @@ watch(
               data?.length === index + 1 && next ? 'next-card' : '',
               data?.length === index + 1 && prev ? 'prev-card' : '',
               data?.length === index + 1 && submit ? 'submit-card' : '',
+              `card-${totalCount - index}`,
             ]"
           >
             <transition name="fade">
@@ -926,6 +1011,7 @@ watch(
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
+                class="card-front"
                 @gotoDetail="
                   test1(value?.externalLexemeSenseId, {
                     category: value?.category,
@@ -952,6 +1038,7 @@ watch(
                 :headerData="detailHeaderData"
                 :languages="languages"
                 :currLang="value?.language?.title"
+                class="card-detail"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {
@@ -963,6 +1050,7 @@ watch(
                 :data="entityDetailData"
                 :isLoading="entityDetailLoading"
                 :headerData="subItemHeaderData"
+                class="card-item-detail"
                 v-else-if="currMode === 2"
                 @backtoItem="backtoHome"
                 @showImage="
@@ -976,6 +1064,7 @@ watch(
                 :data="value"
                 :detail="detail"
                 :img="value?.image"
+                class="card-review"
                 v-else-if="currMode === 3"
                 :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
@@ -1204,7 +1293,7 @@ watch(
 
 .skipall {
   animation: swipeCardRight 0.3s;
-  transform: translateX(1000px);
+  transform: translateX(2000px);
 }
 
 @keyframes swipeCardRight {
@@ -1219,7 +1308,7 @@ watch(
     opacity: 0;
   }
   100% {
-    transform: translateX(1000px);
+    transform: translateX(2000px);
     opacity: 0;
   }
 }

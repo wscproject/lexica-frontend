@@ -48,6 +48,19 @@ const toVuetify = (event) => {
     window.location.href = "https://vuetifyjs.com/";
   }
 };
+const toInter = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href = "https://github.com/rsms/inter";
+  }
+};
+const toAtkinson = (event) => {
+  if (event.code === "Space") {
+    event.preventDefault(); // Prevent default scrolling behavior
+    window.location.href =
+      "https://github.com/googlefonts/atkinson-hyperlegible";
+  }
+};
 
 onMounted(() => {
   const linkGNU = document.querySelector("#GNU");
@@ -56,6 +69,8 @@ onMounted(() => {
   const linkVue = document.querySelector("#vue");
   const linkInteract = document.querySelector("#interact");
   const linkVuetify = document.querySelector("#vuetify");
+  const linkInter = document.querySelector("#inter");
+  const linkAtkinson = document.querySelector("#inter");
 
   linkGNU.addEventListener("keydown", toGNU);
   linkCC0.addEventListener("keydown", toCC0);
@@ -63,6 +78,8 @@ onMounted(() => {
   linkVue.addEventListener("keydown", toVue);
   linkInteract.addEventListener("keydown", toInteract);
   linkVuetify.addEventListener("keydown", toVuetify);
+  linkInter.addEventListener("keydown", toInter);
+  linkAtkinson.addEventListener("keydown", toAtkinson);
 });
 
 onBeforeUnmount(() => {
@@ -72,6 +89,8 @@ onBeforeUnmount(() => {
   const linkVue = document.querySelector("#vue");
   const linkInteract = document.querySelector("#interact");
   const linkVuetify = document.querySelector("#vuetify");
+  const linkInter = document.querySelector("#inter");
+  const linkAtkinson = document.querySelector("#inter");
 
   linkGNU.removeEventListener("keydown", toGNU);
   linkCC0.removeEventListener("keydown", toCC0);
@@ -79,6 +98,8 @@ onBeforeUnmount(() => {
   linkVue.removeEventListener("keydown", toVue);
   linkInteract.removeEventListener("keydown", toInteract);
   linkVuetify.removeEventListener("keydown", toVuetify);
+  linkInter.removeEventListener("keydown", toInter);
+  linkAtkinson.removeEventListener("keydown", toAtkinson);
 });
 </script>
 
@@ -184,6 +205,22 @@ onBeforeUnmount(() => {
               class="cdx-docs-link is-underlined"
               >Vuetify</a
             >, MIT
+          </li>
+          <li>
+            <a
+              id="inter"
+              href="https://github.com/rsms/inter"
+              class="cdx-docs-link is-underlined"
+              >Inter</a
+            >, OFL-1.1
+          </li>
+          <li>
+            <a
+              id="atkinson"
+              href="https://github.com/googlefonts/atkinson-hyperlegible"
+              class="cdx-docs-link is-underlined"
+              >Atkinson Hyperlegible</a
+            >, OFL-1.1
           </li>
         </ul>
       </div>

@@ -10,6 +10,7 @@
       "light": "Terang",
       "dark": "Gelap",
       "language": "Bahasa Indonesia",
+      "accessibility": "Aksesibilitas",
       "loggingout": "Sedang keluar log...",
       "logoutsuccess": "Anda berhasil keluar log.",
       "ok": "Oke"
@@ -21,6 +22,15 @@
     "privacy": "Privasi",
     "license": "Lisensi"
   },
+  "accessibilityDialog": {
+    "title": "Aksesibilitas",
+    "apply": "Terapkan",
+    "close": "Tutup",
+    "subtitle": "Teks",
+    "option1": "Gunakan fon alternatif (Atkinson Hyperlegible)",
+    "option1Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini"
+  },
+
   "localeDialog": {
     "title": "Bahasa tampilan",
     "cancel": "Batal",

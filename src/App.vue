@@ -48,6 +48,22 @@ onMounted(() => {
       : "en";
 
   locale.value = cookies?.get("locale") || lang;
+
+  console.log(localStorage.getItem("altFont"));
+
+  if (localStorage?.getItem("altFont") === "true") {
+    console.log("setset");
+
+    document.documentElement.style.setProperty(
+      "--font-family",
+      "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+    );
+  } else {
+    document.documentElement.style.setProperty(
+      "--font-family",
+      "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+    );
+  }
 });
 </script>
 

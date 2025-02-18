@@ -114,8 +114,9 @@ watch(script, () => {
           <CdxIcon
             :aria-label="t('aria.showLexemeDetail')"
             :icon="cdxIconInfoFilled"
-            class="cursor-pointer"
+            class="cursor-pointer interactable"
             @click.stop="(e) => emit('gotoDetail', e)"
+            @keydown.space="(e) => emit('gotoDetail', e)"
           />
         </div>
       </div>
@@ -156,7 +157,7 @@ watch(script, () => {
           ref="textAreaRef"
           autofocus
           :placeholder="t('session.scriptWriting.placeholder')"
-          class="leading-[35px] text-[28px] textarea-script"
+          class="leading-[35px] text-[28px] textarea-script interactable"
           v-model="script"
         />
       </div>
@@ -167,7 +168,7 @@ watch(script, () => {
       <CdxButton
         weight="primary"
         action="progressive"
-        class="w-full"
+        class="w-full interactable"
         :disabled="!script"
         @click="emit('gotoReview', script)"
         >{{ t("session.main.button2") }}</CdxButton

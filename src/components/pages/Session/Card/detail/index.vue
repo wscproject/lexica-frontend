@@ -12,7 +12,16 @@ import {
   cdxIconLanguage,
   cdxIconArrowPrevious,
 } from "@wikimedia/codex-icons";
-import { computed, onMounted, reactive, ref, toRaw, toRef, watch } from "vue";
+import {
+  computed,
+  onMounted,
+  onUnmounted,
+  reactive,
+  ref,
+  toRaw,
+  toRef,
+  watch,
+} from "vue";
 import placeholder from "@/assets/placeholder.svg";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
@@ -70,8 +79,18 @@ const langs = computed(() => {
   });
 });
 
+const handleKeyPress = (event) => {
+  if (event.key === "Escape") {
+    emit("backtoItem");
+  }
+};
+
 onMounted(() => {
-  console.log("test", toRaw(data.value));
+  window.addEventListener("keydown", handleKeyPress);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeyPress);
 });
 </script>
 
@@ -96,8 +115,9 @@ onMounted(() => {
           <CdxIcon
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
-            class="text-white cursor-pointer mx-[var(--spacing-25)]"
+            class="text-white cursor-pointer mx-[var(--spacing-25)] interactable"
             @click="emit('backtoItem')"
+            @keydown.space="emit('backtoItem')"
           />
           <CdxLabel class="text-[18px] leading-[22.5px]">{{
             props?.headerData?.lemma
@@ -442,7 +462,7 @@ onMounted(() => {
             />
           </div>
           <v-expand-transition
-            class="duration-[250ms] ease-out pb-[var(--spacing-75)]"
+            class="duration-[250ms] ease-out pb-[var(--spacing-75)] interactable"
           >
             <div v-show="isExpand">
               <div v-for="(item, i) in langs" :key="item.senseNumber">

@@ -5,7 +5,13 @@ import LogoDark from "@/assets/lexica_logo_dark.svg";
 import ButtonIcon from "@/components/buttons/ButtonIcon/index.vue";
 import { onMounted, ref, watch, toRaw, computed } from "vue";
 import { useCookies } from "vue3-cookies";
-import { CdxIcon, CdxButton, CdxMenuButton, CdxLabel } from "@wikimedia/codex";
+import {
+  CdxIcon,
+  CdxButton,
+  CdxMenuButton,
+  CdxLabel,
+  CdxMenuItem,
+} from "@wikimedia/codex";
 import {
   cdxIconUserAvatar,
   cdxIconLogOut,
@@ -14,8 +20,12 @@ import {
   cdxIconBright,
   cdxIconMoon,
 } from "@wikimedia/codex-icons";
+import accIconDark from "@/assets/accessibility-dark.svg";
+import accIcon from "@/assets/accessibility.svg";
+
 import ChooseLocale from "@/components/dialog/localization/index.vue";
 import ChooseTheme from "@/components/dialog/darkMode/index.vue";
+import ChooseAccessibility from "@/components/dialog/accessibility/index.vue";
 
 import { useI18n } from "vue-i18n";
 import { useMediaQuery } from "@vueuse/core";
@@ -32,6 +42,7 @@ const selection = ref(null);
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
 const changeLanguage = ref(false);
 const changeTheme = ref(false);
+const changeAccessibility = ref(false);
 const unauthClass = ref("");
 const authClass = ref("");
 
@@ -97,6 +108,11 @@ const authMenu = computed(() => {
       icon: cdxIconLanguage,
       description: t("header.menu.language"),
     },
+    {
+      label: t("header.menu.accessibility"),
+      value: "accessibility",
+      icon: vuex.getters["profile/isDark"] ? accIconDark : accIcon,
+    },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
   ];
 });
@@ -120,6 +136,8 @@ onMounted(() => {
 });
 
 const onSelect = (newSelection) => {
+  console.log(newSelection);
+
   switch (newSelection) {
     case "logout":
       emit("logout");
@@ -127,11 +145,15 @@ const onSelect = (newSelection) => {
     case "locale":
       changeLanguage.value = true;
       break;
-
     case "theme":
       changeTheme.value = true;
       break;
-
+    case "login":
+      window.location.href = loginUrl;
+      break;
+    case "accessibility":
+      changeAccessibility.value = true;
+      break;
     default:
       break;
   }
@@ -173,6 +195,32 @@ watch(isThemeDark, () => {
           @update:selected="onSelect"
         >
           <cdx-icon :icon="cdxIconUserAvatar" />
+          <template #menu-item="{ menuItem }">
+            <div
+              class="flex gap-x-[var(--spacing-50)]"
+              @click="onSelect(menuItem.value)"
+            >
+              <CdxIcon
+                v-if="menuItem.value !== 'accessibility'"
+                :icon="menuItem.icon"
+              />
+              <img
+                v-if="menuItem.value === 'accessibility'"
+                :src="menuItem.icon"
+              />
+
+              <div>
+                <div class="cdx-menu-item__label">
+                  <bdi>{{ menuItem.label }}</bdi>
+                </div>
+                <div
+                  class="cdx-menu-item__description text-[var(--color-subtle)]"
+                >
+                  {{ menuItem.description }}
+                </div>
+              </div>
+            </div>
+          </template>
         </CdxMenuButton>
 
         <ChooseLocale
@@ -183,6 +231,11 @@ watch(isThemeDark, () => {
         <ChooseTheme
           :open="changeTheme"
           @onPrimaryAction="changeTheme = false"
+        />
+
+        <ChooseAccessibility
+          :open="changeAccessibility"
+          @onPrimaryAction="changeAccessibility = false"
         />
       </div>
     </div>
@@ -289,6 +342,9 @@ watch(isThemeDark, () => {
 }
 
 .cdx-menu-item:nth-child(2) {
+  border-bottom: unset;
+}
+.cdx-menu-item:nth-child(3) {
   border-bottom: unset;
 }
 
