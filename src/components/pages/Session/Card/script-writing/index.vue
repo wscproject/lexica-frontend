@@ -129,7 +129,7 @@ watch(script, () => {
         >
 
         <span v-else class="text-[var(--color-subtle)]">
-          ><i
+          <i
             >{{ t("session.emptyDescriptionHead") }}
             {{ props?.data?.language?.title }}</i
           ></span
