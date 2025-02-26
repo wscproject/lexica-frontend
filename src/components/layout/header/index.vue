@@ -111,7 +111,7 @@ const authMenu = computed(() => {
     {
       label: t("header.menu.accessibility"),
       value: "accessibility",
-      icon: vuex.getters["profile/isDark"] ? accIconDark : accIcon,
+      icon: accIcon,
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
   ];
@@ -203,6 +203,7 @@ watch(isThemeDark, () => {
               <CdxIcon
                 v-if="menuItem.value !== 'accessibility'"
                 :icon="menuItem.icon"
+                class="text-[var(--color-subtle)]"
               />
               <img
                 v-if="menuItem.value === 'accessibility'"
@@ -210,7 +211,7 @@ watch(isThemeDark, () => {
               />
 
               <div>
-                <div class="cdx-menu-item__label">
+                <div class="cdx-menu-item__label text-[var(--color-base)]">
                   <bdi>{{ menuItem.label }}</bdi>
                 </div>
                 <div

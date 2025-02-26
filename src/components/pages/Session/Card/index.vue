@@ -151,7 +151,7 @@ onMounted(() => {
     }"
     ref="cardRef"
     :class="[
-      'absolute bg-white rounded-[16px] w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5]',
+      'absolute bg-white rounded-[16px] w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
     ]"
   >
     <slot />
@@ -170,7 +170,7 @@ onMounted(() => {
 }
 
 .shadow-custom {
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0 1px #c8ccd1;
 }
 
 .next-card {
