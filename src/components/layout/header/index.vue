@@ -55,34 +55,35 @@ const props = defineProps({
 
 const storeTheme = ref();
 
-const unauthMenu = computed(() => {
-  return [
-    {
-      label: t("header.menu.login"),
-      value: "login",
-      icon: cdxIconLogIn,
-      url: loginUrl,
-    },
-    {
-      label: t("header.menu.theme"),
-      value: "theme",
-      icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
-      description:
-        storeTheme.value === "auto" || !storeTheme.value
-          ? t("header.menu.auto")
-          : vuex.getters["profile/isDark"]
-          ? t("header.menu.dark")
-          : t("header.menu.light"),
-    },
-    {
-      label: t("header.menu.locale"),
-      value: "locale",
-      icon: cdxIconLanguage,
-      description: t("header.menu.language"),
-    },
-  ];
-});
 const authMenu = computed(() => {
+  if (!isAuth.value && !props.isLogout) {
+    return [
+      {
+        label: t("header.menu.login"),
+        value: "login",
+        icon: cdxIconLogIn,
+        url: loginUrl,
+      },
+      {
+        label: t("header.menu.theme"),
+        value: "theme",
+        icon: vuex.getters["profile/isDark"] ? cdxIconMoon : cdxIconBright,
+        description:
+          storeTheme.value === "auto" || !storeTheme.value
+            ? t("header.menu.auto")
+            : vuex.getters["profile/isDark"]
+            ? t("header.menu.dark")
+            : t("header.menu.light"),
+      },
+      {
+        label: t("header.menu.locale"),
+        value: "locale",
+        icon: cdxIconLanguage,
+        description: t("header.menu.language"),
+      },
+    ];
+  }
+
   return [
     {
       label: vuex.getters["profile/name"],
@@ -111,7 +112,7 @@ const authMenu = computed(() => {
     {
       label: t("header.menu.accessibility"),
       value: "accessibility",
-      icon: accIcon,
+      icon: vuex.getters["profile/isDark"] ? accIconDark : accIcon,
     },
     { label: t("header.menu.logout"), value: "logout", icon: cdxIconLogOut },
   ];
@@ -136,8 +137,6 @@ onMounted(() => {
 });
 
 const onSelect = (newSelection) => {
-  console.log(newSelection);
-
   switch (newSelection) {
     case "logout":
       emit("logout");
@@ -186,7 +185,7 @@ watch(isThemeDark, () => {
           top-right
           v-tooltip:bottom="t('tooltips.account')"
           v-model="selection"
-          :menu-items="isAuth && !props.isLogout ? authMenu : unauthMenu"
+          :menu-items="authMenu"
           :class="[
             'z-[5] top-[58px] p-[4px]',
             isAuth && !props.isLogout ? authClass : unauthClass,

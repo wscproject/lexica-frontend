@@ -440,6 +440,14 @@ h1 {
   display: none;
 }
 
+.cdx-label__label__text {
+  color: var(--color-base);
+}
+
+.cdx-dialog__header__title {
+  color: var(--color-base);
+}
+
 /* .cdx-select-vue--enabled .cdx-select-vue__handle {
   background-color: #202122 !important;
   color: #eaecf0 !important;

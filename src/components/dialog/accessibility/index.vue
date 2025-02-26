@@ -4,6 +4,7 @@ import {
   CdxDialog,
   CdxIcon,
   CdxButton,
+  CdxLabel,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
@@ -65,9 +66,9 @@ const apply = async () => {
       <div class="w-full">
         <div class="w-full">
           <div class="flex w-full justify-between items-center">
-            <CdxLabel class="text-[18px]">{{
-              t("accessibilityDialog.title")
-            }}</CdxLabel>
+            <h4 class="text-[18px] text-[var(--color-base)] font-bold">
+              {{ t("accessibilityDialog.title") }}
+            </h4>
             <CdxButton
               :aria-label="t('aria.close')"
               @click="close"
@@ -80,9 +81,9 @@ const apply = async () => {
       </div>
     </template>
     <div class="w-full px-[16px] py-[12px]">
-      <h5 class="pb-[var(--spacing-50)] font-bold">
+      <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle") }}
-      </h5>
+      </h4>
       <CdxToggleSwitch
         v-model="isAlternateFont"
         class="flex justify-between gap-x-[var(--spacing-100)] items-start"

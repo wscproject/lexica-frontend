@@ -1089,7 +1089,7 @@ watch(
         >
           <div
             class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
-            style="box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2)"
+            style="box-shadow: var(--box-shadow-large)"
           >
             <v-progress-linear
               v-model="progress.number"
