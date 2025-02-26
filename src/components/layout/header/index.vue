@@ -203,7 +203,9 @@ watch(isThemeDark, () => {
               <CdxIcon
                 v-if="menuItem.value !== 'accessibility'"
                 :icon="menuItem.icon"
-                class="text-[var(--color-subtle)]"
+                :class="[
+                  menuItem.value !== 'user' && 'text-[var(--color-subtle)]',
+                ]"
               />
               <img
                 v-if="menuItem.value === 'accessibility'"
