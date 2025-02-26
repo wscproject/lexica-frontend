@@ -89,9 +89,9 @@ onUnmounted(() => {
             @click="emit('backtoItem')"
             @keydown.space="emit('backtoItem')"
           />
-          <CdxLabel class="text-[18px] leading-[22.5px]">{{
-            props?.headerData?.lemma
-          }}</CdxLabel>
+          <h4 class="font-bold text-[18px] leading-[22.5px]">
+            {{ props?.headerData?.lemma }} ({{ props?.data?.externalLexemeId }})
+          </h4>
         </div>
 
         <div

@@ -1170,9 +1170,7 @@ watch(
           :disabled="currCount === 1 || submittingData || data?.length === 0"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <CdxLabel class="text-[16px] pb-0">{{
-            t("session.button2")
-          }}</CdxLabel>
+          <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>

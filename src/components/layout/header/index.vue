@@ -212,7 +212,12 @@ watch(isThemeDark, () => {
               />
 
               <div>
-                <div class="cdx-menu-item__label text-[var(--color-base)]">
+                <div
+                  :class="[
+                    'cdx-menu-item__label text-[var(--color-base)]',
+                    menuItem.value === 'user' && 'font-bold',
+                  ]"
+                >
                   <bdi>{{ menuItem.label }}</bdi>
                 </div>
                 <div
