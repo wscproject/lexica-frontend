@@ -401,6 +401,9 @@ const test1 = async (id, headerData) => {
 
   currMode.value = 1;
   detailHeaderData.value = headerData;
+
+  console.log(headerData);
+
   flip.value = true;
 
   await getDetail(id);
@@ -409,6 +412,9 @@ const test2 = async (id, data) => {
   zIndex.value = "";
 
   subItemHeaderData.value = data;
+
+  console.log(toRaw(data));
+
   currMode.value = 2;
   flip.value = true;
 
@@ -1017,6 +1023,7 @@ watch(
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
+                    id: value?.externalLexemeSenseId,
                   })
                 "
                 @gotoSubItemDetail="(value) => test2(value?.id, value)"

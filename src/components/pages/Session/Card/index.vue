@@ -170,7 +170,8 @@ onMounted(() => {
 }
 
 .shadow-custom {
-  box-shadow: 0 0 0 1px #c8ccd1;
+  /* box-shadow: 0 0 0 1px #c8ccd1; */
+  box-shadow: var(--box-shadow-medium);
 }
 
 .next-card {

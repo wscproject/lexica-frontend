@@ -135,11 +135,11 @@ watch(recs, async () => {
           minWidth: '200px',
         }"
       >
-        <CdxLabel class="text-[18px] pb-0"
-          >{{ props?.data?.lemma }} ({{
-            props?.data?.externalLexemeSenseId
-          }})</CdxLabel
+        <h4
+          class="font-bold text-[18px] pb-0 text-[var(--color-inverted-fixed)]"
         >
+          {{ props?.data?.lemma }} ({{ props?.data?.externalLexemeSenseId }})
+        </h4>
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
 
         <p

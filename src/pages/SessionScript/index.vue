@@ -975,6 +975,7 @@ watch([splash, flip, currMode, entities], async () => {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
+                    id: value?.externalLexemeId,
                   })
                 "
                 @gotoSubItemDetail="(value) => test2(value?.id, value)"
@@ -1126,9 +1127,7 @@ watch([splash, flip, currMode, entities], async () => {
           :disabled="currCount === 1 || submittingData || data?.length === 0"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <CdxLabel class="text-[16px] pb-0">{{
-            t("session.button2")
-          }}</CdxLabel>
+          <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>

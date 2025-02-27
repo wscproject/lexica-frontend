@@ -91,9 +91,12 @@ onUnmounted(() => {
             @click="emit('backtoItem')"
             @keydown.space="emit('backtoItem')"
           />
-          <CdxLabel class="text-[18px] pb-0">{{
-            props?.headerData?.label
-          }}</CdxLabel>
+          <h4 class="font-bold text-[18px] pb-0">
+            {{ props?.headerData?.label }}
+            <span v-if="props?.headerData?.id">
+              ({{ props?.headerData?.id }})</span
+            >
+          </h4>
         </div>
 
         <div
