@@ -67,7 +67,9 @@
     "script": {
       "title": "Script variants",
       "description": "Add script variants for a Lexeme"
-    }
+    },
+    "cancel": "Cancel",
+    "apply": "Apply"
   },
 
   "home": {
