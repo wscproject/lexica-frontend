@@ -16,8 +16,15 @@ const props = defineProps({
     class="absolute z-[99] w-full flex justify-center flex-col text-center p-[16px] h-full"
   >
     <div v-if="!isNotCurrent">
-      <CdxLabel>{{ t("session.title") }} {{ props.currCount }}</CdxLabel>
-      <p class="text-[28px]">
+      <span
+        :class="[
+          props?.data?.externalLexemeSenseId &&
+            'text-[var(--color-inverted-fixed)]',
+          'font-bold',
+        ]"
+        >{{ t("session.title") }} {{ props.currCount }}</span
+      >
+      <p class="text-[28px] py-[var(--spacing-100)]">
         {{ props?.data?.lemma }} ({{
           props?.data?.externalLexemeSenseId ||
           props?.data?.externalLexemeId ||

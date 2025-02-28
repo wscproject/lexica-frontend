@@ -62,7 +62,9 @@
     "script": {
       "title": "Variasi aksara",
       "description": "Masukkan variasi aksara dari sebuah Leksem"
-    }
+    },
+    "cancel": "Batal",
+    "apply": "Terapkan"
   },
   "home": {
     "unauth": {

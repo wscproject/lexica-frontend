@@ -401,6 +401,9 @@ const test1 = async (id, headerData) => {
 
   currMode.value = 1;
   detailHeaderData.value = headerData;
+
+  console.log(headerData);
+
   flip.value = true;
 
   await getDetail(id);
@@ -409,6 +412,9 @@ const test2 = async (id, data) => {
   zIndex.value = "";
 
   subItemHeaderData.value = data;
+
+  console.log(toRaw(data));
+
   currMode.value = 2;
   flip.value = true;
 
@@ -1017,6 +1023,7 @@ watch(
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
+                    id: value?.externalLexemeSenseId,
                   })
                 "
                 @gotoSubItemDetail="(value) => test2(value?.id, value)"
@@ -1089,7 +1096,7 @@ watch(
         >
           <div
             class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
-            style="box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2)"
+            style="box-shadow: var(--box-shadow-large)"
           >
             <v-progress-linear
               v-model="progress.number"
@@ -1170,9 +1177,7 @@ watch(
           :disabled="currCount === 1 || submittingData || data?.length === 0"
         >
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <CdxLabel class="text-[16px] pb-0">{{
-            t("session.button2")
-          }}</CdxLabel>
+          <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>

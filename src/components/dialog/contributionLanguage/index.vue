@@ -1,11 +1,11 @@
 <script setup>
 import {
   CdxDialog,
-  CdxLabel,
   CdxButton,
   CdxIcon,
   CdxRadio,
   CdxSearchInput,
+  CdxLabel,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import debounce from "lodash.debounce";

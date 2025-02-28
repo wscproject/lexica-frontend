@@ -63,7 +63,7 @@ defineExpose({ openModal });
     close-button-label="Close"
   >
     <div class="px-[16px]">
-      <p>
+      <p class="text-[var(--color-base)]">
         {{ t("session.warning.content") }}
         <b>
           {{ props.count }}

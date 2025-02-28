@@ -24,12 +24,12 @@ const props = defineProps({
 });
 
 const primaryAction = {
-  label: "Save",
+  label: t("activityDialog.apply"),
   actionType: "progressive",
 };
 
 const defaultAction = {
-  label: "Cancel",
+  label: t("activityDialog.cancel"),
 };
 
 const emit = defineEmits(["onClose", "applyActivity"]);
