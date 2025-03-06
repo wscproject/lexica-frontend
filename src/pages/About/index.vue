@@ -1,129 +1,108 @@
 <script setup>
-import { CdxButton, CdxIcon } from "@wikimedia/codex";
-import { cdxIconArrowPrevious } from "@wikimedia/codex-icons";
-import { useRouter } from "vue-router";
-import { useI18n, I18nT } from "vue-i18n";
-import { onBeforeUnmount, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 
-const { t } = useI18n();
+const containerRef = ref(null);
+const itemsRef = ref([]);
 
-const router = useRouter();
+const scrollToItem = (index) => {
+  const container = containerRef.value;
+  const item = itemsRef.value[index];
 
-const toPage = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://www.wikidata.org/wiki/Wikidata:Lexica";
+  console.log("set", index);
+
+  if (container && item) {
+    container.scrollTo({
+      left: item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2,
+      behavior: "smooth",
+    });
   }
 };
+
+const scrollPrev = () => {
+  const container = containerRef.value;
+  const currentIndex = itemsRef.value.findIndex(
+    (item) => item.offsetLeft >= container.scrollLeft
+  );
+  let targetIndex = currentIndex - 2;
+  if (targetIndex < 0) {
+    targetIndex = 0;
+  }
+  scrollToItem(targetIndex);
+};
+
+const scrollNext = () => {
+  const content = document.getElementById("content");
+
+  setTimeout(() => {
+    content.scrollLeft = 200;
+    console.log(content.scrollWidth, content.clientWidth);
+  }, 100);
+};
+
 onMounted(() => {
-  const linkPage = document.querySelector("#to-page");
-
-  linkPage.addEventListener("keydown", toPage);
-});
-
-onBeforeUnmount(() => {
-  const linkPage = document.querySelector("#to-page");
-
-  linkPage.removeEventListener("keydown", toPage);
+  // Ensure itemsRef is populated with the correct elements
+  itemsRef.value = Array.from(containerRef.value.querySelectorAll(".item"));
 });
 </script>
 
 <template>
-  <div
-    class="min-h-screen flex flex-col bg-[var(--background-color-base)] text-[#54595D] dark:text-[#A2A9B1]"
-  >
+  <div class="h-screen flex items-center justify-center">
     <div
-      class="flex gap-x-[8px] border-b border-[#C8CCD1] dark:border-[#54595D] max-[639px]:h-[54px] h-[64px] bg-[var(--background-color-neutral)] breakpoints-2"
+      class="min-w-[500px] overflow relative"
+      id="content"
+      ref="containerRef"
+      style="white-space: nowrap"
     >
       <div
-        class="max-w-[908px] w-full flex items-center h-full relative"
-        style="display: block; margin-left: auto; margin-right: auto"
-      >
-        <CdxButton
-          :aria-label="t('aria.back')"
-          weight="quiet"
-          class="absolute left-[0px] p-[var(--spacing-75)]"
-          @click="router.back"
-          v-tooltip:bottom-start="t('tooltips.back')"
+        class="border-r-[2px] h-[100px] border-[green] absolute left-[50%] top-[0px]"
+      ></div>
+      <div class="flex gap-x-4 x mandatory-scroll-snapping">
+        <div
+          v-for="(slide, index) in [
+            'a',
+            '',
+            'd',
+            '',
+            'i',
+            '',
+            'k',
+            '',
+            'a',
+            '',
+            'r',
+            '',
+            'y',
+            '',
+            'a',
+          ]"
+          class="bg-red text-[96px] item"
+          :style="{
+            scrollSnapAlign: slide % 2 === 0 ? 'start' : 'unset',
+            flex: 'none',
+          }"
+          :key="index"
         >
-          <CdxIcon :icon="cdxIconArrowPrevious" />
-        </CdxButton>
-      </div>
-    </div>
-    <div class="max-[639px]:p-[16px] p-[32px] flex flex-col items-center">
-      <div class="max-w-[896px]">
-        <div class="border-b border-[#C8CCD1] dark:border-[#72777D] mb-[12px]">
-          <h1
-            class="p-0 text-[28px] leading-[35px] pb-[12px] text-[var(--color-emphasized)]"
-          >
-            {{ t("about.title") }}
-          </h1>
+          <span v-if="slide">{{ slide }}</span>
+          <div v-else class="border-r-[2px] h-[100px] border-[black]"></div>
         </div>
-        <I18nT
-          keypath="about.content1"
-          tag="p"
-          class="p-0 text-[16px] text-[var(--color-base)]"
-        >
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT
-          keypath="about.content2"
-          tag="p"
-          class="p-0 text-[16px] text-[var(--color-base)]"
-        >
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT
-          keypath="about.content3"
-          tag="p"
-          class="p-0 text-[16px] text-[var(--color-base)]"
-        >
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT
-          keypath="about.content4"
-          tag="p"
-          class="p-0 text-[16px] text-[var(--color-base)]"
-        >
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-          <template #link>
-            <a
-              id="to-page"
-              class="cdx-docs-link is-underlined"
-              href="https://www.wikidata.org/wiki/Wikidata:Lexica"
-            >
-              {{ t("about.page") }}</a
-            >
-          </template>
-        </I18nT>
       </div>
     </div>
   </div>
+  <button @click="scrollPrev">Prev</button>
+  <button @click="scrollNext">Next</button>
 </template>
 
-<style lang="less">
-@import (reference) "@wikimedia/codex-design-tokens/theme-wikimedia-ui.less";
-@import (reference)
-  "@wikimedia/codex-design-tokens/theme-wikimedia-ui-mixin-dark.less";
-@import (reference) "@wikimedia/codex/mixins/link.less";
-
-.cdx-docs-link {
-  .cdx-mixin-link();
-
-  // stylelint-disable-next-line selector-class-pattern
-  .cdx-icon {
-    color: inherit;
-  }
+<style>
+.x.mandatory-scroll-snapping {
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 50%;
+  padding-left: 50%;
+  padding-right: 50%;
+}
+.x {
+  flex-flow: row nowrap;
+  overflow-y: hidden;
+  width: 100%;
+  height: 128px;
 }
 </style>
