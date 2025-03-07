@@ -1,20 +1,16 @@
 <script setup>
-import { ref, onMounted, nextTick } from "vue";
+import { ref, onMounted, nextTick, toRaw } from "vue";
 
 const containerRef = ref(null);
 const itemsRef = ref([]);
 
 const scrollToItem = (index) => {
   const container = containerRef.value;
+  const itemPrev = itemsRef.value[index - 1];
   const item = itemsRef.value[index];
 
-  console.log("set", index);
-
   if (container && item) {
-    container.scrollTo({
-      left: item.offsetLeft - container.offsetWidth / 2 + item.offsetWidth / 2,
-      behavior: "smooth",
-    });
+    container.scrollLeft = container.scrollLeft + 75;
   }
 };
 
@@ -23,7 +19,7 @@ const scrollPrev = () => {
   const currentIndex = itemsRef.value.findIndex(
     (item) => item.offsetLeft >= container.scrollLeft
   );
-  let targetIndex = currentIndex - 2;
+  let targetIndex = currentIndex - 1;
   if (targetIndex < 0) {
     targetIndex = 0;
   }
@@ -31,12 +27,30 @@ const scrollPrev = () => {
 };
 
 const scrollNext = () => {
-  const content = document.getElementById("content");
+  const container = containerRef.value;
 
-  setTimeout(() => {
-    content.scrollLeft = 200;
-    console.log(content.scrollWidth, content.clientWidth);
-  }, 100);
+  // Find the current index by checking the position of the first visible item
+  const currentIndex = itemsRef.value.findIndex((item) => {
+    return item.offsetLeft >= container.scrollLeft;
+  });
+
+  console.log(toRaw(itemsRef.value));
+
+  for (let i = 0; i < itemsRef.value.length; i++) {
+    console.log(itemsRef.value[i].offsetWidth);
+  }
+
+  // Calculate the target index by moving forward by 2 items
+  let targetIndex = currentIndex + 1;
+  console.log("setttt", currentIndex);
+
+  // Ensure that the target index does not go beyond the last item
+  if (targetIndex >= itemsRef.value.length) {
+    targetIndex = itemsRef.value.length - 1;
+  }
+
+  // Scroll to the target item
+  scrollToItem(targetIndex);
 };
 
 onMounted(() => {
@@ -47,16 +61,15 @@ onMounted(() => {
 
 <template>
   <div class="h-screen flex items-center justify-center">
-    <div
-      class="min-w-[500px] overflow relative"
-      id="content"
-      ref="containerRef"
-      style="white-space: nowrap"
-    >
+    <div class="min-w-[500px] relative" style="white-space: nowrap">
       <div
         class="border-r-[2px] h-[100px] border-[green] absolute left-[50%] top-[0px]"
       ></div>
-      <div class="flex gap-x-4 x mandatory-scroll-snapping">
+      <div
+        class="flex gap-x-4 x mandatory-scroll-snapping"
+        id="content"
+        ref="containerRef"
+      >
         <div
           v-for="(slide, index) in [
             'a',
@@ -98,6 +111,7 @@ onMounted(() => {
   scroll-padding-left: 50%;
   padding-left: 50%;
   padding-right: 50%;
+  scroll-behavior: smooth;
 }
 .x {
   flex-flow: row nowrap;
