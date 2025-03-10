@@ -1246,7 +1246,7 @@ watch([splash, flip, currMode, entities], async () => {
 }
 
 .skipall {
-  animation: swipeCardRight 750ms;
+  animation: swipeCardRight 0.3s;
   transform: translateX(2000px);
 }
 

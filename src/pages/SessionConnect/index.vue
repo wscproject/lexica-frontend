@@ -233,7 +233,9 @@ const submitCard = async (item) => {
     } else {
       isSuccess.value = true;
 
-      slideRightWithSuccess();
+      setTimeout(() => {
+        slideRightWithSuccess();
+      }, 750);
     }
   } else if (response.statusCode === 503) {
     isLoading.value = false;
@@ -1387,7 +1389,7 @@ watch(
 }
 
 .skipall {
-  animation: swipeCardRight 750ms;
+  animation: swipeCardRight 0.3s;
   transform: translateX(2000px);
 }
 
