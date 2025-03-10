@@ -149,6 +149,7 @@ const slideRightWithSuccess = () => {
       // flip.value = false;
       flip.value = false;
       submit.value = false;
+      zIndex.value = "z-[1]";
       disableSplash();
     }, 100);
   }, 750);
@@ -169,12 +170,14 @@ const slideRight = () => {
     // flip.value = false;
     flip.value = false;
     submit.value = false;
+    zIndex.value = "z-[1]";
     disableSplash();
   }, 200);
 };
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
+  zIndex.value = "z-[1]";
   count.value = count.value - 1;
 };
 
@@ -198,7 +201,7 @@ const nextCard = (isButton, id) => {
 
     onHideCard();
     setUndoWarn(id);
-
+    zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
     noLoad.value = false;
@@ -1384,7 +1387,7 @@ watch(
 }
 
 .skipall {
-  animation: swipeCardRight 0.3s;
+  animation: swipeCardRight 750ms;
   transform: translateX(2000px);
 }
 

@@ -1116,9 +1116,7 @@ watch([splash, flip, currMode, entities], async () => {
             "
           />
 
-          <CdxLabel class="text-[16px] pb-0">{{
-            t("session.button1")
-          }}</CdxLabel>
+          <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
         </CdxButton>
         <CdxButton
           weight="quiet"
@@ -1248,7 +1246,7 @@ watch([splash, flip, currMode, entities], async () => {
 }
 
 .skipall {
-  animation: swipeCardRight 0.3s;
+  animation: swipeCardRight 750ms;
   transform: translateX(2000px);
 }
 
