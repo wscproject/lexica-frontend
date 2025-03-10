@@ -231,6 +231,8 @@ const submitCard = async (item) => {
 
       slideRight();
     } else {
+      submittingData.value = false;
+
       isSuccess.value = true;
 
       setTimeout(() => {
