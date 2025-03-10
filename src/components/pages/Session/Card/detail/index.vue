@@ -36,6 +36,8 @@ const props = defineProps({
   isLoading: Boolean,
   languages: Object,
   currLang: String,
+  isCurrent: Boolean,
+  isFlip: Boolean,
 });
 
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
@@ -115,7 +117,8 @@ onUnmounted(() => {
           <CdxIcon
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
-            class="text-white cursor-pointer mx-[var(--spacing-25)] interactable"
+            class="text-white cursor-pointer mx-[var(--spacing-25)] interactableeee"
+            :tabindex="props.isCurrent && props.isFlip && '0'"
             @click="emit('backtoItem')"
             @keydown.space="emit('backtoItem')"
           />

@@ -21,6 +21,8 @@ const props = defineProps({
   data: Object,
   isLoading: Boolean,
   headerData: Object,
+  isCurrent: Boolean,
+  isFlip: Boolean,
 });
 
 const translate = (data) => {
@@ -88,6 +90,7 @@ onUnmounted(() => {
             :aria-label="t('aria.close')"
             :icon="cdxIconArrowPrevious"
             class="text-white cursor-pointer mx-[var(--spacing-25)] interactable"
+            :tabindex="props.isCurrent && props.isFlip && '0'"
             @click="emit('backtoItem')"
             @keydown.space="emit('backtoItem')"
           />
@@ -208,6 +211,9 @@ onUnmounted(() => {
                 class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
               >
                 {{ value?.[1]?.data?.[0]?.value }}
+                {{
+                  value?.[1]?.data?.[0]?.id && `(${value?.[1]?.data?.[0]?.id})`
+                }}
               </p>
             </div>
           </div>

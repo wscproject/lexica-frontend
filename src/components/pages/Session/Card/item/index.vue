@@ -42,8 +42,11 @@ const props = defineProps({
   recommendedLoading: Boolean,
   loadmoreLoading: Boolean,
   noLoadData: Boolean,
+  isCurrent: Boolean,
 });
 const recs = toRef(props, "recommendation");
+
+const isScrollBar = ref(false);
 
 const recommendationSearch = ref([]);
 
@@ -106,6 +109,11 @@ const onInput = debounce(() => {
 watch(recs, async () => {
   await nextTick();
 
+  // const div = document.getElementById("rec-container");
+  // isScrollBar.value = div.scrollHeight > div.clientHeight;
+
+  // console.log(div.scrollHeight > div.clientHeight);
+
   if (radioButtons2.value) {
     const test = toRaw(radioButtons2?.value);
     test?.[recs?.value?.length - 10]?.focus();
@@ -163,6 +171,7 @@ watch(recs, async () => {
         <CdxIcon
           :aria-label="t('aria.showLexemeDetail')"
           :icon="cdxIconInfoFilled"
+          :tabindex="props.isCurrent && '0'"
           class="text-white cursor-pointer interactable"
           @click.stop="(e) => emit('gotoDetail', e)"
           @keydown.space="(e) => emit('gotoDetail', e)"
@@ -170,7 +179,11 @@ watch(recs, async () => {
       </div>
     </div>
     <div
-      class="px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418]"
+      :class="[
+        'px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418] ',
+        props.isCurrent ? '' : 'hidden',
+        // isScrollBar && 'interactable',
+      ]"
     >
       <CdxLabel
         class="text-[16px] dark:text-[#EAECF0]"
@@ -226,6 +239,7 @@ watch(recs, async () => {
           !props.searchLoading &&
           !props.recommendedLoading
         "
+        class="container"
       >
         <h6
           class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
@@ -239,6 +253,7 @@ watch(recs, async () => {
               (item, i) => i <= 2
             )"
             ref="radioButtons"
+            tabindex="0"
             role="radio"
             :key="index"
             :class="[
@@ -317,6 +332,7 @@ watch(recs, async () => {
             !props.searchLoading &&
             !props.recommendedLoading
           "
+          class="container"
         >
           <h6
             class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
@@ -326,6 +342,7 @@ watch(recs, async () => {
           </h6>
           <div
             v-for="(value, index) in props?.recommendation"
+            tabindex="0"
             :key="index"
             :class="[
               value.id === selectedItem
@@ -449,7 +466,7 @@ watch(recs, async () => {
       class="w-full h-66px border-t border-[#A2A9B1] dark:border-[#72777D] p-[16px] flex align-center bg-white gap-x-[12px] rounded-b-[16px] dark:bg-[#101418]"
     >
       <CdxButton
-        class="w-full interactable"
+        class="w-full"
         @click="
           () => {
             selectedItem = null;
@@ -462,7 +479,7 @@ watch(recs, async () => {
         :disabled="!selectedItem"
         weight="primary"
         action="progressive"
-        class="w-full interactable"
+        class="w-full"
         @click="emit('gotoReview', detailData)"
         >{{ t("session.main.button2") }}</CdxButton
       >

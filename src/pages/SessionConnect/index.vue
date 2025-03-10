@@ -28,6 +28,7 @@ import {
   reactive,
   toRaw,
   nextTick,
+  onBeforeUnmount,
 } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
 import SkipDarkIcon from "@/components/icons/skipdark/index.vue";
@@ -123,6 +124,10 @@ const languages = ref(null);
 const isSuccess = ref(false);
 const submitAction = ref("");
 
+const sialan = ref(false);
+
+const hideBack = ref(true);
+
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
@@ -144,6 +149,7 @@ const slideRightWithSuccess = () => {
       // flip.value = false;
       flip.value = false;
       submit.value = false;
+      zIndex.value = "z-[1]";
       disableSplash();
     }, 100);
   }, 750);
@@ -164,12 +170,14 @@ const slideRight = () => {
     // flip.value = false;
     flip.value = false;
     submit.value = false;
+    zIndex.value = "z-[1]";
     disableSplash();
   }, 200);
 };
 
 const onHideCard = () => {
   tempData.value = data.value.pop();
+  zIndex.value = "z-[1]";
   count.value = count.value - 1;
 };
 
@@ -193,7 +201,7 @@ const nextCard = (isButton, id) => {
 
     onHideCard();
     setUndoWarn(id);
-
+    zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
     noLoad.value = false;
@@ -225,7 +233,9 @@ const submitCard = async (item) => {
     } else {
       isSuccess.value = true;
 
-      slideRightWithSuccess();
+      setTimeout(() => {
+        slideRightWithSuccess();
+      }, 750);
     }
   } else if (response.statusCode === 503) {
     isLoading.value = false;
@@ -261,7 +271,7 @@ const undoCard = () => {
 };
 
 const disableSplash = () => {
-  setTimeout(() => {
+  setTimeout(async () => {
     splash.value = false;
   }, 1500);
 };
@@ -367,10 +377,6 @@ const setUndoWarn = async (id) => {
   timeout = setTimeout(increment, interval);
 };
 
-watch(timeoutLoading, () => {
-  console.log(timeout);
-});
-
 const updateDetail = async (data) => {
   const response = await UpdateConnectCardDetail({
     contributionDetailId: data?.contributionDetailId,
@@ -401,10 +407,15 @@ const test1 = async (id, headerData) => {
 
   currMode.value = 1;
   detailHeaderData.value = headerData;
-
-  console.log(headerData);
-
+  hideBack.value = false;
   flip.value = true;
+
+  setTimeout(() => {
+    const div = document.querySelector(`.card-${currCount.value}`);
+
+    const front = div.querySelector(".card-front");
+    front.style.setProperty("display", "none", "important");
+  }, 350);
 
   await getDetail(id);
 };
@@ -413,26 +424,48 @@ const test2 = async (id, data) => {
 
   subItemHeaderData.value = data;
 
-  console.log(toRaw(data));
-
   currMode.value = 2;
   flip.value = true;
+  hideBack.value = false;
+  setTimeout(() => {
+    const div = document.querySelector(`.card-${currCount.value}`);
+
+    const front = div.querySelector(".card-front");
+    front.style.setProperty("display", "none", "important");
+  }, 350);
 
   await getEntityDetail(id);
 };
-const test3 = (data) => {
+const test3 = async (data) => {
   zIndex.value = "";
 
   currMode.value = 3;
   flip.value = true;
   detail.value = data;
+  hideBack.value = false;
+
+  setTimeout(() => {
+    const div = document.querySelector(`.card-${currCount.value}`);
+
+    const front = div.querySelector(".card-front");
+    front.style.setProperty("display", "none", "important");
+  }, 350);
+
+  await nextTick();
 };
 
 const backtoHome = () => {
   flip.value = false;
+  const div = document.querySelector(`.card-${currCount.value}`);
+
+  console.log(div);
+
+  const front = div.querySelector(".card-front");
+  front.style.setProperty("display", "", "important");
 
   setTimeout(() => {
     zIndex.value = "z-[1]";
+    hideBack.value = true;
   }, 300);
 };
 
@@ -512,7 +545,6 @@ const getLanguages = async () => {
   const response = await GetLanguages();
 
   if (response.statusCode === 200) {
-    console.log("response", response.data);
     languages.value = response.data;
     isLoading.value = false;
   }
@@ -579,7 +611,18 @@ const getRecommendation = async () => {
   }
 };
 
+const handleGlobalFocus = (event) => {
+  const focusedElement = event.target;
+  console.log("focusedElement", focusedElement);
+};
+
+onBeforeUnmount(() => {
+  window.removeEventListener("focus", handleGlobalFocus, true);
+});
+
 onMounted(async () => {
+  window.addEventListener("focus", handleGlobalFocus, true);
+
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
       if (localStorage.getItem("theme") === "light") {
@@ -606,8 +649,6 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      console.log("testing123");
-
       document.documentElement.className = "dark";
       document
         .querySelector('meta[name="theme-color"]')
@@ -664,89 +705,128 @@ watch([currCount, undoWarn], async () => {
 
 watch([currCount, data], async () => {
   await getRecommendation();
-
-  console.log(cardRef.value);
 });
 
-watch([splash, flip, currMode, entities], async () => {
-  // const div = document.querySelector();
+// watch([splash, flip, currMode, entities], async () => {
+//   // const div = document.querySelector();
 
-  for (let i = 1; i <= totalCount.value; i++) {
-    if (currCount.value !== i && currCount.value < i) {
-      const div = document?.querySelector(`.card-${i}`);
-      if (div) {
-        div?.setAttribute("tabindex", "-1");
+//   for (let i = 1; i <= totalCount.value; i++) {
+//     if (currCount.value !== i && currCount.value < i) {
+//       const div = document?.querySelector(`.card-${i}`);
+//       if (div) {
+//         div?.setAttribute("tabindex", "-1");
 
-        const children = div.querySelectorAll("*");
-        children?.forEach((child) => {
-          child.setAttribute("tabindex", "-1");
-        });
-      }
-    } else {
-      const div = document?.querySelector(`.card-${i}`);
-      if (div) {
-        if (!flip.value) {
-          await nextTick();
+//         const children = div.querySelectorAll("*");
+//         const recommendation = section.querySelector("#rec-container");
+//         recommendation.style.display = "none";
+//         sialan.value = true;
+//         await nextTick();
 
-          cardDisableAccessibilityConnect("inactive", div, currMode.value);
+//         children?.forEach((child) => {
+//           child.setAttribute("tabindex", "-1");
+//         });
+//       }
+//     } else {
+//       const div = document?.querySelector(`.card-${i}`);
 
-          const section = div.querySelector(".card-front");
+//       if (div) {
+//         if (!flip.value) {
+//           cardDisableAccessibilityConnect("inactive", div, currMode.value);
 
-          if (section) {
-            const children = section?.querySelectorAll(".interactable");
+//           const section = div.querySelector(".card-front");
+//           if (section) {
+//             const recommendation = section.querySelector("#rec-container");
 
-            children?.forEach((child) => {
-              if (child.className.includes("cdx-search-input")) {
-                child
-                  .querySelector(".cdx-text-input__input")
-                  .setAttribute("tabindex", "");
-              } else {
-                child.setAttribute("tabindex", "0");
-              }
-            });
+//             await nextTick();
+//             sialan.value = false;
+//             recommendation.style.display = "";
 
-            nextTick(() => {
-              const recBox = section?.querySelectorAll(".recommendation-box");
-              console.log("asdasdasd", recBox);
+//             // if (recommendation) {
+//             //   console.log("recommendation", recommendation);
 
-              recBox?.forEach((child) => {
-                child.setAttribute("tabindex", "0");
-              });
-            });
-          }
-        } else if (flip.value && currMode.value === 1) {
-          await nextTick();
+//             //   recommendation.setAttribute("tabindex", "0");
+//             //   await nextTick();
+//             //   recommendation.focus();
 
-          cardDisableAccessibilityConnect("active", div);
+//             //   const recChild = recommendation?.querySelectorAll("*");
 
-          const section = div.querySelector(".card-detail");
-          const children = section.querySelectorAll(".interactable");
-          children?.forEach((child) => {
-            child.setAttribute("tabindex", "0");
-          });
-        } else if (flip.value && currMode.value === 2) {
-          await nextTick();
+//             //   recChild?.forEach(async (child) => {
+//             //     if (child?.className?.includes("container")) {
+//             //       child.style.display = "none";
+//             //       await nextTick();
+//             //       child.offsetHeight;
+//             //       child.style.display = "";
+//             //       child.setAttribute("tabindex", "");
+//             //     } else {
+//             //       child.setAttribute("tabindex", "");
+//             //     }
+//             //   });
+//             // }
 
-          cardDisableAccessibilityConnect("active", div);
+//             // if (recommendation) {
+//             //   recommendation.style.display = "none";
+//             //   await nextTick(() => {
+//             // recommendation.setAttribute("tabindex", "0");
+//             //     recommendation.classList.add("trigger-reflow");
+//             //     recommendation.offsetHeight;
+//             //     recommendation.classList.remove("trigger-reflow");
+//             //     recommendation.style.display = "";
+//             //   });
+//             // }
 
-          const section = div.querySelector(".card-item-detail");
+//             const children = section?.querySelectorAll(".interactable");
 
-          const children = section.querySelector(".interactable");
-          children.setAttribute("tabindex", "0");
-        } else if (flip.value && currMode.value === 3) {
-          await nextTick();
-          cardDisableAccessibilityConnect("active", div);
-          const section = div.querySelector(".card-review");
+//             children?.forEach((child) => {
+//               if (child.className.includes("cdx-search-input")) {
+//                 child
+//                   .querySelector(".cdx-text-input__input")
+//                   .setAttribute("tabindex", "");
+//               } else {
+//                 child.setAttribute("tabindex", "0");
+//               }
+//             });
 
-          const children = section.querySelectorAll(".interactable");
-          children?.forEach((child) => {
-            child.setAttribute("tabindex", "0");
-          });
-        }
-      }
-    }
-  }
-});
+//             await nextTick(() => {
+//               const recBox = section?.querySelectorAll(".recommendation-box");
+
+//               recBox?.forEach((child) => {
+//                 child.setAttribute("tabindex", "0");
+//               });
+//             });
+//           }
+//         } else if (flip.value && currMode.value === 1) {
+//           await nextTick();
+
+//           cardDisableAccessibilityConnect("active", div, currMode.value);
+
+//           const section = div.querySelector(".card-detail");
+//           const children = section.querySelectorAll(".interactable");
+//           children?.forEach((child) => {
+//             child.setAttribute("tabindex", "0");
+//           });
+//         } else if (flip.value && currMode.value === 2) {
+//           await nextTick();
+
+//           cardDisableAccessibilityConnect("active", div, currMode.value);
+
+//           const section = div.querySelector(".card-item-detail");
+
+//           const children = section.querySelector(".interactable");
+//           children.setAttribute("tabindex", "0");
+//         } else if (flip.value && currMode.value === 3) {
+//           await nextTick();
+//           cardDisableAccessibilityConnect("active", div, currMode.value);
+//           const section = div.querySelector(".card-review");
+
+//           const children = section.querySelectorAll(".interactable");
+//           children?.forEach((child) => {
+//             child.setAttribute("tabindex", "0");
+//           });
+//         }
+//       }
+//     }
+//   }
+// });
 
 // watch(currCount, async () => {
 //   if (currCount?.value <= totalCount?.value)
@@ -1017,7 +1097,8 @@ watch(
                 :recommendedLoading="recommendedLoading"
                 :loadmoreLoading="loadmoreLoading"
                 :noLoadData="noLoad"
-                class="card-front"
+                :class="['card-front', data?.length !== index + 1 && 'hidden']"
+                :isCurrent="data?.length === index + 1"
                 @gotoDetail="
                   test1(value?.externalLexemeSenseId, {
                     category: value?.category,
@@ -1045,7 +1126,12 @@ watch(
                 :headerData="detailHeaderData"
                 :languages="languages"
                 :currLang="value?.language?.title"
-                class="card-detail"
+                :isCurrent="data?.length === index + 1"
+                :class="[
+                  'card-detail',
+                  (data?.length !== index + 1 || hideBack) && 'hidden',
+                ]"
+                :isFlip="flip"
                 @backtoItem="backtoHome"
                 @showImage="
                   (data) => {
@@ -1057,7 +1143,12 @@ watch(
                 :data="entityDetailData"
                 :isLoading="entityDetailLoading"
                 :headerData="subItemHeaderData"
-                class="card-item-detail"
+                :isCurrent="data?.length === index + 1"
+                :isFlip="flip"
+                :class="[
+                  'card-item-detail',
+                  (data?.length !== index + 1 || hideBack) && 'hidden',
+                ]"
                 v-else-if="currMode === 2"
                 @backtoItem="backtoHome"
                 @showImage="
@@ -1071,7 +1162,10 @@ watch(
                 :data="value"
                 :detail="detail"
                 :img="value?.image"
-                class="card-review"
+                :class="[
+                  'card-review',
+                  (data?.length !== index + 1 || hideBack) && 'hidden',
+                ]"
                 v-else-if="currMode === 3"
                 :currLang="value?.language?.title"
                 @backtoItem="backtoHome"
@@ -1166,9 +1260,7 @@ watch(
             "
           />
 
-          <CdxLabel class="text-[16px] pb-0">{{
-            t("session.button1")
-          }}</CdxLabel>
+          <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
         </CdxButton>
         <CdxButton
           weight="quiet"
