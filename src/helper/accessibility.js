@@ -1,6 +1,11 @@
 const disableFront = (item) => {
   const div = item.querySelector(".card-front");
   const children = div.querySelectorAll(".interactable");
+  const recommendation = div.querySelector("#rec-container");
+  recommendation.style.display = "none";
+
+  // div?.querySelector("#rec-container").setAttribute("tabindex", "-1");
+
   children?.forEach((child) => {
     if (child.className.includes("cdx-search-input")) {
       child
@@ -23,10 +28,13 @@ const disableFront = (item) => {
 
 const disableDetail = (item) => {
   const section = item?.querySelector(".card-detail");
-  const children = section.querySelectorAll(".interactable");
-  children?.forEach((child) => {
-    child.setAttribute("tabindex", "");
-  });
+
+  if (section) {
+    const children = section.querySelectorAll(".interactable");
+    children?.forEach((child) => {
+      child.setAttribute("tabindex", "");
+    });
+  }
 };
 
 const disableItemDetail = (item) => {
@@ -48,7 +56,6 @@ const disableReview = (item) => {
 export const cardDisableAccessibilityConnect = (status, item, curr) => {
   if (status === "active") {
     disableFront(item);
-    console.log("ssss");
   } else {
     if (curr === 1) {
       disableDetail(item);
