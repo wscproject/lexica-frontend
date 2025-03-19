@@ -134,3 +134,9 @@ const { t, locale } = useI18n({ useScope: "global" });
     </div>
   </footer>
 </template>
+
+<style scoped>
+a {
+  color: var(--color-progressive);
+}
+</style>

@@ -7,100 +7,6 @@ import { onBeforeUnmount, onMounted } from "vue";
 
 const { t } = useI18n({ useScope: "global" });
 const router = useRouter();
-
-const toGNU = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href =
-      "https://www.gnu.org/licenses/old-licenses/gpl-2.0.html";
-  }
-};
-
-const toCC0 = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://creativecommons.org/public-domain/cc0/";
-  }
-};
-
-const toWikimedia = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href =
-      "https://gerrit.wikimedia.org/r/admin/repos/design/codex,general";
-  }
-};
-const toVue = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://vuejs.org/";
-  }
-};
-const toInteract = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://interactjs.io/";
-  }
-};
-const toVuetify = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://vuetifyjs.com/";
-  }
-};
-const toInter = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href = "https://github.com/rsms/inter";
-  }
-};
-const toAtkinson = (event) => {
-  if (event.code === "Space") {
-    event.preventDefault(); // Prevent default scrolling behavior
-    window.location.href =
-      "https://github.com/googlefonts/atkinson-hyperlegible";
-  }
-};
-
-onMounted(() => {
-  const linkGNU = document.querySelector("#GNU");
-  const linkCC0 = document.querySelector("#CC0");
-  const linkWikimedia = document.querySelector("#wikimedia");
-  const linkVue = document.querySelector("#vue");
-  const linkInteract = document.querySelector("#interact");
-  const linkVuetify = document.querySelector("#vuetify");
-  const linkInter = document.querySelector("#inter");
-  const linkAtkinson = document.querySelector("#inter");
-
-  linkGNU.addEventListener("keydown", toGNU);
-  linkCC0.addEventListener("keydown", toCC0);
-  linkWikimedia.addEventListener("keydown", toWikimedia);
-  linkVue.addEventListener("keydown", toVue);
-  linkInteract.addEventListener("keydown", toInteract);
-  linkVuetify.addEventListener("keydown", toVuetify);
-  linkInter.addEventListener("keydown", toInter);
-  linkAtkinson.addEventListener("keydown", toAtkinson);
-});
-
-onBeforeUnmount(() => {
-  const linkGNU = document.querySelector("#GNU");
-  const linkCC0 = document.querySelector("#CC0");
-  const linkWikimedia = document.querySelector("#wikimedia");
-  const linkVue = document.querySelector("#vue");
-  const linkInteract = document.querySelector("#interact");
-  const linkVuetify = document.querySelector("#vuetify");
-  const linkInter = document.querySelector("#inter");
-  const linkAtkinson = document.querySelector("#inter");
-
-  linkGNU.removeEventListener("keydown", toGNU);
-  linkCC0.removeEventListener("keydown", toCC0);
-  linkWikimedia.removeEventListener("keydown", toWikimedia);
-  linkVue.removeEventListener("keydown", toVue);
-  linkInteract.removeEventListener("keydown", toInteract);
-  linkVuetify.removeEventListener("keydown", toVuetify);
-  linkInter.removeEventListener("keydown", toInter);
-  linkAtkinson.removeEventListener("keydown", toAtkinson);
-});
 </script>
 
 <template>
@@ -135,7 +41,7 @@ onBeforeUnmount(() => {
           </h1>
         </div>
         <I18nT
-          keypath="license.section1"
+          keypath="license.section1.content1"
           tag="p"
           class="p-0 text-[16px] text-[var(--color-base)]"
         >
@@ -145,7 +51,7 @@ onBeforeUnmount(() => {
               class="cdx-docs-link is-underlined"
               href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html"
             >
-              GNU GPL-2.0</a
+              GNU General Public License version 2.0</a
             >
           </template>
           <template #lexica>
@@ -154,12 +60,28 @@ onBeforeUnmount(() => {
           <template #cc0>
             <a
               id="CC0"
-              href="https://creativecommons.org/public-domain/cc0/"
+              href="https://creativecommons.org/publicdomain/zero/1.0/"
               class="cdx-docs-link is-underlined"
-              >CC0</a
+              >Creative Commons Zero</a
             >
           </template>
         </I18nT>
+        <br />
+        <div class="text-[var(--color-base)]">
+          <span class="text-[16px]">
+            {{ t("license.section1.content2") }}
+          </span>
+          <ul>
+            <li>
+              Frontend:
+              <a href="https://github.com/wscproject/lexica-frontend">GitHub</a>
+            </li>
+            <li>
+              Backend:
+              <a href="https://github.com/wscproject/lexica-backend">GitHub</a>
+            </li>
+          </ul>
+        </div>
 
         <div
           class="border-b border-[#C8CCD1] mb-[12px] mt-[24px] dark:border-[#72777D]"
@@ -170,18 +92,31 @@ onBeforeUnmount(() => {
             {{ t("license.title2") }}
           </h2>
         </div>
-        <p class="p-0 text-[16px] mb-[12px] text-[var(--color-base)]">
+        <p class="p-0 text-[16px] text-[var(--color-base)]">
           {{ t("license.section2.content") }}
         </p>
+        <br />
+        <h3 class="text-[20px] font-bold text-[var(--color-base)] pb-[8px]">
+          {{ t("license.section2.subtitle1") }}
+        </h3>
         <ul class="text-[var(--color-base)]">
           <li>
             <a
-              id="wikimedia"
-              href="https://gerrit.wikimedia.org/r/admin/repos/design/codex,general"
+              id="axios"
+              href="https://axios-http.com/"
               class="cdx-docs-link is-underlined"
-              >Wikimedia Codex Design System</a
-            >, GNU GPL-2.0
+              >Axios</a
+            >, MIT
           </li>
+          <li>
+            <a
+              id="interact"
+              href="https://interactjs.io/"
+              class="cdx-docs-link is-underlined"
+              >Interact.js</a
+            >, MIT
+          </li>
+
           <li>
             <a
               id="vue"
@@ -192,10 +127,18 @@ onBeforeUnmount(() => {
           </li>
           <li>
             <a
-              id="interact"
-              href="https://interactjs.io/"
+              id="vuex"
+              href="https://vuex.vuejs.org/"
               class="cdx-docs-link is-underlined"
-              >Interact.js</a
+              >Vuex</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="vueuse"
+              href="https://vuex.vuejs.org/"
+              class="cdx-docs-link is-underlined"
+              >VueUse</a
             >, MIT
           </li>
           <li>
@@ -208,22 +151,138 @@ onBeforeUnmount(() => {
           </li>
           <li>
             <a
-              id="inter"
-              href="https://github.com/rsms/inter"
+              id="vue3-cookies"
+              href="https://www.npmjs.com/package/vue3-cookies"
               class="cdx-docs-link is-underlined"
-              >Inter</a
-            >, OFL-1.1
+              >Vue3-Cookies</a
+            >, MIT
           </li>
           <li>
             <a
-              id="atkinson"
-              href="https://github.com/googlefonts/atkinson-hyperlegible"
+              id="wikimedia"
+              href="https://gerrit.wikimedia.org/r/admin/repos/design/codex,general"
+              class="cdx-docs-link is-underlined"
+              >Wikimedia Codex Design System</a
+            >, GNU GPL-2.0
+          </li>
+        </ul>
+        <br />
+        <h3 class="text-[20px] font-bold text-[var(--color-base)] pb-[8px]">
+          {{ t("license.section2.subtitle2") }}
+        </h3>
+        <ul class="text-[var(--color-base)]">
+          <li>
+            <a
+              id="axios"
+              href="https://axios-http.com/"
+              class="cdx-docs-link is-underlined"
+              >Axios</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="express"
+              href="https://expressjs.com/"
+              class="cdx-docs-link is-underlined"
+              >Express</a
+            >, MIT
+          </li>
+
+          <li>
+            <a
+              id="joi"
+              href="https://joi.dev/"
+              class="cdx-docs-link is-underlined"
+              >Joi</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="jsonwebtoken"
+              href="https://jwt.io/"
+              class="cdx-docs-link is-underlined"
+              >Jsonwebtoken</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="node-cron"
+              href="https://github.com/node-cron/node-cron"
+              class="cdx-docs-link is-underlined"
+              >Node-cron</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="Swagger UI Express"
+              href="https://github.com/scottie1984/swagger-ui-express"
+              class="cdx-docs-link is-underlined"
+              >Swagger UI Express</a
+            >, MIT
+          </li>
+          <li>
+            <a
+              id="Sequelize"
+              href="https://sequelize.org/"
+              class="cdx-docs-link is-underlined"
+              >Sequelize</a
+            >, MIT
+          </li>
+        </ul>
+        <br />
+        <h3 class="text-[20px] font-bold text-[var(--color-base)] pb-[8px]">
+          {{ t("license.section2.subtitle3") }}
+        </h3>
+        <ul class="text-[var(--color-base)]">
+          <li>
+            <a
+              id="Atkinson Hyperlegible"
+              href="https://brailleinstitute.org/freefont"
               class="cdx-docs-link is-underlined"
               >Atkinson Hyperlegible</a
-            >, OFL-1.1
+            >, SIL Open Font License 1.1 (OFL-1.1)
+          </li>
+          <li>
+            <a
+              id="Inter"
+              href="https://rsms.me/inter/"
+              class="cdx-docs-link is-underlined"
+              >Inter</a
+            >, SIL Open Font License 1.1 (OFL-1.1)
+          </li>
+
+          <li>
+            <a
+              id="Noto Sans Balinese"
+              href="https://fonts.google.com/noto/specimen/Noto+Sans+Balinese"
+              class="cdx-docs-link is-underlined"
+              >Noto Sans Balinese</a
+            >, SIL Open Font License 1.1 (OFL-1.1)
+          </li>
+          <li>
+            <a
+              id="Noto Sans Javanese"
+              href="https://fonts.google.com/noto/specimen/Noto+Sans+Javanese"
+              class="cdx-docs-link is-underlined"
+              >Noto Sans Javanese</a
+            >, SIL Open Font License 1.1 (OFL-1.1)
+          </li>
+          <li>
+            <a
+              id="Noto Sans Sundanese"
+              href="https://fonts.google.com/noto/specimen/Noto+Sans+Sundanese"
+              class="cdx-docs-link is-underlined"
+              >Noto Sans Sundanese</a
+            >, SIL Open Font License 1.1 (OFL-1.1)
           </li>
         </ul>
       </div>
     </div>
   </div>
 </template>
+
+<style scoped>
+a {
+  color: var(--color-progressive);
+}
+</style>

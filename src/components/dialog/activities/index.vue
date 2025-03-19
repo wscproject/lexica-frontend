@@ -150,6 +150,19 @@ watch(props, () => {
             >
               {{ t("activityDialog.script.description") }}
             </p>
+
+            <p
+              v-if="activity.type === 'hyphenation'"
+              class="text-[16px] text-[var(--color-base)]"
+            >
+              <b>{{ t("activityDialog.hyphenation.title") }}</b>
+            </p>
+            <p
+              v-if="activity.type === 'hyphenation'"
+              class="text-[16px] text-[var(--color-subtle)]"
+            >
+              {{ t("activityDialog.hyphenation.description") }}
+            </p>
           </div>
         </div>
       </div>

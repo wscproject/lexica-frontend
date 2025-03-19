@@ -68,6 +68,10 @@
       "title": "Script variants",
       "description": "Add script variants for a Lexeme"
     },
+    "hyphenation": {
+      "title": "Hyphenation",
+      "description": "Divide a lexeme into its syllables"
+    },
     "cancel": "Cancel",
     "apply": "Apply"
   },
@@ -183,6 +187,11 @@
       "placeholder": "Write here"
     },
 
+    "hyphenation": {
+      "button1": "Divide here",
+      "button2": "Next"
+    },
+
     "detail": {
       "lexeme": "Lexeme",
       "loading": "Loading...",
@@ -206,7 +215,8 @@
       "itemForThisSense": "item for this sense",
       "otherGlosses": "In other languages",
       "allSense": "All Senses",
-      "sense": "Sense"
+      "sense": "Sense",
+      "grammaticalFeature": "This Form’s grammatical features:"
     },
 
     "item": {
@@ -235,6 +245,10 @@
 
     "scriptPreview": {
       "newStatement": "Lemma added: {lang} ({code})"
+    },
+
+    "hyphenationPreview": {
+      "newStatement": "New Statement: hyphenation (P5279)"
     },
 
     "upload": "Uploading contribution...",
@@ -314,10 +328,16 @@
 
   "license": {
     "title1": "License",
-    "section1": "{lexica} and all its components are published under the {gnu} license. All data added with this tool will be stored on Wikidata under the {cc0} license.",
+    "section1": {
+      "content1": "{lexica} and all its components are published under the {gnu} (GNU GPL-2.0) license. All data added with this tool will be stored on Wikidata under the {cc0} (CC0) license.",
+      "content2": "The source code for Lexica is available in the following repositories:"
+    },
     "title2": "Open source components",
     "section2": {
-      "content": "The following are the open source components used by Lexica:"
+      "content": "The following are the open source components used by Lexica:",
+      "subtitle1": "Frontend libraries and frameworks",
+      "subtitle2": "Backend libraries and frameworks",
+      "subtitle3": "Fonts"
     }
   },
   "aria": {
