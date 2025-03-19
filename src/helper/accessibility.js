@@ -2,7 +2,7 @@ const disableFront = (item) => {
   const div = item.querySelector(".card-front");
   const children = div.querySelectorAll(".interactable");
   const recommendation = div.querySelector("#rec-container");
-  recommendation.style.display = "none";
+  // recommendation.style.display = "none";
 
   // div?.querySelector("#rec-container").setAttribute("tabindex", "-1");
 

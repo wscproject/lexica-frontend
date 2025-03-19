@@ -7,6 +7,7 @@ import About from "./pages/About/index.vue";
 import Guide from "./pages/Guide/index.vue";
 import SessionConnect from "./pages/SessionConnect/index.vue";
 import SessionScript from "./pages/SessionScript/index.vue";
+import SessionHyphenation from "./pages/SessionHyphenation/index.vue";
 
 import Success from "./pages/Success/index.vue";
 import Privacy from "./pages/Privacy/index.vue";
@@ -99,6 +100,17 @@ const routes = [
     path: "/session-script",
     name: "session-script",
     component: SessionScript,
+    meta: { layout: SessionLayout },
+    beforeEnter: (to, from) => {
+      if (!cookies("auth")) {
+        return "/";
+      }
+    },
+  },
+  {
+    path: "/session-hyphenation",
+    name: "session-hyphenation",
+    component: SessionHyphenation,
     meta: { layout: SessionLayout },
     beforeEnter: (to, from) => {
       if (!cookies("auth")) {

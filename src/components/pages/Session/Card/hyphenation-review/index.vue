@@ -37,9 +37,9 @@ const props = defineProps({
       }"
       :ref="props.headerRef"
     >
-      <CdxLabel class="text-[18px] pb-0 text-white leading-[22px]">{{
-        t("session.preview.title")
-      }}</CdxLabel>
+      <h4 class="text-[18px] pb-0 text-white font-bold leading-[22px]">
+        {{ t("session.preview.title") }}
+      </h4>
     </div>
     <div
       class="px-[16px] pt-[70px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"
@@ -75,7 +75,7 @@ const props = defineProps({
             <CdxLabel
               class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
               >{{ props?.data?.lemma }} ({{
-                props?.data?.externalLexemeId
+                props?.data?.externalLexemeFormId
               }})</CdxLabel
             >
             <p
@@ -105,17 +105,14 @@ const props = defineProps({
               class="text-[16px] dark:text-[#EAECF0] pb-0"
               style="padding-bottom: 16px"
             >
-              {{
-                t("session.scriptPreview.newStatement", {
-                  lang: props.data?.language?.languageVariant?.title,
-                  code: props.data?.language?.languageVariant?.codePreview,
-                })
-              }}
+              {{ t("session.hyphenationPreview.newStatement") }}
             </CdxLabel>
 
-            <span class="text-[16px] text-[var(--color-subtle)]">{{
-              props.detail
-            }}</span>
+            <span
+              class="text-[16px] text-[var(--color-subtle)]"
+              style="letter-spacing: 0.5px"
+              >{{ props?.detail?.split(",").join("‧") }}</span
+            >
           </div>
         </div>
       </div>
@@ -132,8 +129,7 @@ const props = defineProps({
         class="w-full"
         @click="
           emit('onDone', {
-            contributionDetailId: props?.data?.id,
-            lemma: props?.detail || '',
+            hyphenation: props?.detail?.split(',') || '',
           })
         "
         >{{ t("session.preview.button2") }}</CdxButton

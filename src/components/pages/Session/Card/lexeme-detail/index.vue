@@ -140,6 +140,16 @@ onUnmounted(() => {
       </div>
 
       <div class="h-full w-full" v-if="senses.length !== 0 && !props.isLoading">
+        <div
+          v-if="props?.data?.grammaticalFeatures"
+          class="rounded-[2px] mb-[var(--spacing-100)] p-[var(--spacing-50)] bg-[var(--background-color-neutral)] border border-[var(--border-color-base)]"
+        >
+          <span class="text-[16px]"
+            >{{ t("session.detail.grammaticalFeature") }}
+            <b>{{ props?.data?.grammaticalFeatures }}</b></span
+          >
+        </div>
+
         <div class="pb-[var(--spacing-50)] w-full">
           <span class="text-[var(--color-base)] font-[700]"
             >{{ t("session.detail.allSense") }}
@@ -231,7 +241,7 @@ onUnmounted(() => {
 
             <div
               v-else-if="data.label === 'images'"
-              class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full"
+              class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] rounded-[2px] p-[12px] w-full"
             >
               <div class="relative">
                 <CdxThumbnail
@@ -267,7 +277,7 @@ onUnmounted(() => {
                 data.label !== 'otherGlosses'
                 // data.label !== 'otherGlosses'
               "
-              class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] flex flex-col w-full"
+              class="mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] rounded-[2px] flex flex-col w-full"
             >
               <span class="text-[var(--color-base)] font-[700]"
                 >{{ t(`session.detail.${data.label}`) }} ({{

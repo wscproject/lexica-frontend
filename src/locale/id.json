@@ -63,6 +63,10 @@
       "title": "Variasi aksara",
       "description": "Masukkan variasi aksara dari sebuah Leksem"
     },
+    "hyphenation": {
+      "title": "Hyphenation",
+      "description": "Bagi Leksem ke dalam beberapa suku kata"
+    },
     "cancel": "Batal",
     "apply": "Terapkan"
   },
@@ -174,6 +178,11 @@
       "placeholder": "Tulis di sini"
     },
 
+    "hyphenation": {
+      "button1": "Bagi di sini",
+      "button2": "Selanjutnya"
+    },
+
     "detail": {
       "lexeme": "leksem",
       "loading": "Memuat...",
@@ -197,7 +206,8 @@
       "itemForThisSense": "butir untuk makna ini",
       "otherGlosses": "Dalam bahasa lain",
       "allSense": "Semua Makna",
-      "sense": "Makna"
+      "sense": "Makna",
+      "grammaticalFeature": "Fitur gramatikal Bentuk ini: "
     },
 
     "item": {
@@ -226,6 +236,10 @@
 
     "scriptPreview": {
       "newStatement": "Lema ditambahkan: {lang} ({code})"
+    },
+
+    "hyphenationPreview": {
+      "newStatement": "Pernyataan baru: pemenggalan suku kata (P5279)"
     },
 
     "upload": "Mengunggah kontribusi...",
@@ -301,10 +315,16 @@
   },
   "license": {
     "title1": "Lisensi",
-    "section1": "{lexica} dan seluruh komponennya dipublikasikan dengan lisensi {gnu}. Semua data yang ditambahkan dengan perkakas ini akan disimpan di Wikidata dengan lisensi {cc0}.",
+    "section1": {
+      "content1": "{lexica} adan seluruh komponennya dipublikasikan dengan lisensi {gnu} (GNU GPL-2.0). Semua data yang ditambahkan dengan peralatan ini akan disimpan di Wikidata dengan lisensi {cc0} (CC0).",
+      "content2": "Kode sumber Lexica dapat diakses pada repositori berikut:"
+    },
     "title2": "Komponen sumber terbuka",
     "section2": {
-      "content": "Berikut adalah komponen sumber terbuka yang digunakan Lexica:"
+      "content": "Berikut adalah komponen sumber terbuka yang digunakan Lexica:",
+      "subtitle1": "Kerangka kerja dan pustaka frontend",
+      "subtitle2": "Kerangka kerja dan pustaka backend",
+      "subtitle3": "Fon"
     }
   },
   "aria": {

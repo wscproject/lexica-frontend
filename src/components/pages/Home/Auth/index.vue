@@ -183,12 +183,15 @@ const gotoSession = async () => {
   await vuex.dispatch("profile/addData", {
     ...vuex.getters["profile/allData"],
     languageCode: selectedLang?.value?.value || "",
+    activityType: selectedAct?.value || "connect",
   });
 
   if (selectedAct.value === "connect") {
     await router.push("/session-connect");
-  } else {
+  } else if (selectedAct.value === "script") {
     await router.push("/session-script");
+  } else {
+    await router.push("/session-hyphenation");
   }
 };
 
@@ -257,6 +260,11 @@ const gotoSession = async () => {
             v-else-if="selectedAct === 'script'"
             class="text-[#54595D] dark:text-[#A2A9B1]"
             >{{ t("activityDialog.script.title") }}</span
+          >
+          <span
+            v-else-if="selectedAct === 'hyphenation'"
+            class="text-[#54595D] dark:text-[#A2A9B1]"
+            >{{ t("activityDialog.hyphenation.title") }}</span
           >
         </div>
       </div>
@@ -349,6 +357,8 @@ const gotoSession = async () => {
     "
     @applyActivity="
       (value) => {
+        console.log(value);
+
         selectedAct = value;
         isActivity = false;
       }
