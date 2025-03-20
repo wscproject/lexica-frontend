@@ -147,7 +147,7 @@ const nextCard = (isButton, id, contributionId) => {
 
     setUndoWarn(id, contributionId);
     onHideCard();
-
+    zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
     noLoad.value = false;
@@ -181,6 +181,7 @@ const slideRightWithSuccess = () => {
       // flip.value = false;
       flip.value = false;
       submit.value = false;
+      zIndex.value = "z-[1]";
       disableSplash();
     }, 100);
   }, 750);
@@ -986,7 +987,7 @@ watch([splash, flip, currMode, entities], async () => {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
-                    id: value?.externalLexemeId,
+                    id: value?.externalLexemeFormId,
                   })
                 "
                 @gotoSubItemDetail="(value) => test2(value?.id, value)"

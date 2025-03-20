@@ -122,14 +122,19 @@ const updateCurrentIndex = () => {
     return item.offsetLeft >= container.scrollLeft + container.offsetWidth / 2;
   });
 
-  console.log(tempIndex);
-
   if (tempIndex % 2 !== 0) {
     currentIndex.value = tempIndex;
   } else {
     currentIndex.value = tempIndex - 1;
   }
 };
+
+watch(
+  () => currentIndex.value,
+  (value) => {
+    console.log(value);
+  }
+);
 
 const tagHyphenation = async () => {
   selectedIndexes.value.push(currentIndex.value);
@@ -213,17 +218,14 @@ onMounted(async () => {
             class="text-white m-[var(--spacing-25)]"
           />
         </div>
-
-        <div class="triangle" />
       </div>
     </div>
     <div
       class="max-h-[650px] h-100 flex items-center relative py-[24px] bg-[var(--background-color-base)]"
       style="white-space: nowrap"
     >
-      <div
-        class="h-[100%] max-h-[315px] bg-[#9F3526] w-[2px] absolute left-[49.89%] top-[20px] z-[88]"
-      ></div>
+      <div class="triangle" />
+
       <div class="w-full max-w-[450px] relative">
         <div v-if="isThemeDark" class="gradient h-full w-full"></div>
         <div v-if="!isThemeDark" class="gradient-light h-full w-full"></div>
@@ -239,7 +241,8 @@ onMounted(async () => {
               'min-w-[52px] text-[96px] item h-full font-bold leading-[108px] flex justify-center items-center',
             ]"
             :style="{
-              scrollSnapAlign: index % 2 !== 0 ? 'start' : 'unset',
+              scrollSnapAlign: index % 2 !== 0 ? 'start' : 'none',
+              scrollSnapStop: index % 2 !== 0 ? 'always' : 'normal',
               flex: 'none',
             }"
             :key="index"
@@ -263,9 +266,12 @@ onMounted(async () => {
           </div>
         </div>
       </div>
+      <div
+        class="h-[100%] max-h-[500px] bg-[#9F3526] w-[2px] absolute left-[49.75%] top-[20px]"
+      ></div>
     </div>
     <div
-      class="hyphenation-footer relative p-[var(--spacing-100)] border-y border-y-[var(--border-color-base)] bg-[var(--background-color-neutral)] flex gap-x-[var(--spacing-75)] z-[89]"
+      class="hyphenation-footer relative p-[var(--spacing-100)] border-y border-y-[var(--border-color-base)] bg-[var(--background-color-neutral)] flex gap-x-[var(--spacing-75)]"
     >
       <CdxButton
         aria-label="Back"
@@ -292,7 +298,10 @@ onMounted(async () => {
         class="interactable"
         aria-label="Next"
         @click="scrollNext"
-        :disabled="splitWithEmptySlots(word).length - 2 === currentIndex"
+        :disabled="
+          currentIndex < 0 ||
+          currentIndex >= splitWithEmptySlots(word).length - 2
+        "
       >
         <CdxIcon :icon="cdxIconPrevious" dir="rtl" />
       </CdxButton>
@@ -312,8 +321,11 @@ onMounted(async () => {
 
 <style>
 .triangle {
+  /* z-index: 1; */
+  content: "";
   position: absolute;
-  bottom: -22.5px;
+  /* bottom: -22.5px; */
+  top: 0;
   left: 50%;
   width: 0;
   height: 0;
@@ -321,7 +333,6 @@ onMounted(async () => {
   border-right: 24px solid transparent;
   border-top: 24px solid #9f3526;
   transform: translateX(-50%);
-  z-index: 4;
 }
 
 .hyphenation-footer::after {
@@ -335,7 +346,6 @@ onMounted(async () => {
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 25px solid var(--background-color-neutral); /* Same as the background color */
-  z-index: 1;
 }
 
 .hyphenation-footer::before {
@@ -349,7 +359,6 @@ onMounted(async () => {
   border-left: 25px solid transparent;
   border-right: 25px solid transparent;
   border-bottom: 25px solid var(--border-color-base); /* Same as border */
-  z-index: 0;
 }
 
 .x.mandatory-scroll-snapping {
