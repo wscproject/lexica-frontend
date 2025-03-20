@@ -150,6 +150,7 @@ const nextCard = (isButton, id, contributionId) => {
     zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
+    isSubmitError.value = false;
     noLoad.value = false;
     if (isButton) {
       next.value = false;

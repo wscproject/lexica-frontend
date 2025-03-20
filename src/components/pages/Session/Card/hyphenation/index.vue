@@ -227,9 +227,6 @@ onMounted(async () => {
       <div class="triangle" />
 
       <div class="w-full max-w-[450px] relative">
-        <div v-if="isThemeDark" class="gradient h-full w-full"></div>
-        <div v-if="!isThemeDark" class="gradient-light h-full w-full"></div>
-
         <div
           :class="['flex x mandatory-scroll-snapping h-[108px] interactable']"
           id="content"
@@ -265,6 +262,11 @@ onMounted(async () => {
             </div>
           </div>
         </div>
+        <div v-if="isThemeDark" class="gradient h-full w-full absolute"></div>
+        <div
+          v-if="!isThemeDark"
+          class="gradient-light h-full w-full absolute"
+        ></div>
       </div>
       <div
         class="h-[100%] max-h-[500px] bg-[#9F3526] w-[2px] absolute left-[49.75%] top-[20px]"
@@ -376,7 +378,8 @@ onMounted(async () => {
 .gradient {
   position: absolute;
   background: url("@/assets/gradient.svg");
-  z-index: 20;
+  /* z-index: 20; */
+  top: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: center;
@@ -386,7 +389,8 @@ onMounted(async () => {
 .gradient-light {
   position: absolute;
   background: url("@/assets/gradient-light.svg");
-  z-index: 20;
+  /* z-index: 20; */
+  top: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position-y: center;
@@ -415,6 +419,6 @@ onMounted(async () => {
   top: 0;
   width: 27px;
   height: auto;
-  z-index: 2;
+  /* z-index: 2; */
 }
 </style>
