@@ -136,7 +136,7 @@ const router = useRouter();
           <li>
             <a
               id="vueuse"
-              href="https://vuex.vuejs.org/"
+              href="https://vueuse.org/"
               class="cdx-docs-link is-underlined"
               >VueUse</a
             >, MIT
