@@ -131,7 +131,7 @@ const currCount = computed(() => {
   return totalCount.value + 1 - data?.value?.length;
 });
 
-const nextCard = (isButton, id) => {
+const nextCard = (isButton, id, contributionId) => {
   if (isButton) {
     next.value = true;
   }
@@ -144,7 +144,7 @@ const nextCard = (isButton, id) => {
   setTimeout(async () => {
     splash.value = true;
 
-    setUndoWarn(id);
+    setUndoWarn(id, contributionId);
     onHideCard();
 
     currMode.value = 1;
@@ -204,13 +204,17 @@ const slideRightWithSuccess = () => {
 //   }, 200);
 // };
 
-const submitCard = async (item) => {
+const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
   let action = "";
 
   action = "add";
 
-  const response = await updateDetail({ ...item, action: action });
+  const response = await updateDetail({
+    data: { ...item, action: action },
+    contributionId,
+    id,
+  });
 
   if (response.statusCode === 200) {
     isSuccess.value = true;
@@ -321,7 +325,7 @@ const endEarly = async () => {
   }
 };
 
-const setUndoWarn = async (id) => {
+const setUndoWarn = async (id, contributionId) => {
   undoWarn.value = true;
 
   const duration = 2750; // Total duration in milliseconds
@@ -341,11 +345,7 @@ const setUndoWarn = async (id) => {
       undoWarn.value = false;
 
       if (currCount.value <= totalCount.value)
-        await updateDetail({
-          contributionDetailId: id,
-          action: "skip",
-          itemId: "",
-        });
+        await updateDetail({ data: { action: "skip" }, contributionId, id });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -364,11 +364,11 @@ watch(timeoutLoading, () => {
   console.log(timeout);
 });
 
-const updateDetail = async (data) => {
+const updateDetail = async ({ data, contributionId, id }) => {
   const response = await UpdateScriptCardDetail({
-    contributionDetailId: data?.contributionDetailId,
-    lemma: data?.lemma || "",
-    action: data?.action || "",
+    data,
+    contributionId,
+    id,
   });
 
   return response;
@@ -910,7 +910,7 @@ watch([splash, flip, currMode, entities], async () => {
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.id)"
+            @hideCard="nextCard(false, value?.id, value?.contributionId)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -1032,7 +1032,7 @@ watch([splash, flip, currMode, entities], async () => {
                 @backtoItem="backtoHome"
                 @onDone="
                   (data) => {
-                    submitCard(data);
+                    submitCard(data, value?.contributionId, value?.id);
                   }
                 "
               />
@@ -1097,10 +1097,11 @@ watch([splash, flip, currMode, entities], async () => {
             nextCard(
               true,
               data?.find((item) => {
-                console.log(currCount);
-
                 return item.order === totalCount + 1 - currCount;
-              })?.id
+              })?.id,
+              data?.find((item) => {
+                return item.order === totalCount + 1 - currCount;
+              })?.contributionId
             )
           "
           :disabled="
@@ -1254,7 +1255,7 @@ watch([splash, flip, currMode, entities], async () => {
 }
 
 .skipall {
-  animation: swipeCardRight 0.3s;
+  animation: swipeCardRight 750ms;
   transform: translateX(2000px);
 }
 

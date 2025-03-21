@@ -186,7 +186,7 @@ const currCount = computed(() => {
   return totalCount.value + 1 - data?.value?.length;
 });
 
-const nextCard = (isButton, id) => {
+const nextCard = (isButton, id, contributionId) => {
   if (isButton) {
     next.value = true;
   }
@@ -200,7 +200,7 @@ const nextCard = (isButton, id) => {
     splash.value = true;
 
     onHideCard();
-    setUndoWarn(id);
+    setUndoWarn(id, contributionId);
     zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
@@ -212,7 +212,7 @@ const nextCard = (isButton, id) => {
   }, 300);
 };
 
-const submitCard = async (item) => {
+const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
   let action = "";
 
@@ -224,7 +224,11 @@ const submitCard = async (item) => {
     submitAction.value = "add";
   }
 
-  const response = await updateDetail({ ...item, action: action });
+  const response = await updateDetail({
+    data: { ...item, action: action },
+    contributionId,
+    id,
+  });
   if (response.statusCode === 200) {
     if (action === "noItem") {
       submittingData.value = false;
@@ -342,7 +346,7 @@ const endEarly = async () => {
   }
 };
 
-const setUndoWarn = async (id) => {
+const setUndoWarn = async (id, contributionId) => {
   undoWarn.value = true;
 
   const duration = 2750; // Total duration in milliseconds
@@ -360,11 +364,7 @@ const setUndoWarn = async (id) => {
 
     if (progress.number === 100) {
       undoWarn.value = false;
-      await updateDetail({
-        contributionDetailId: id,
-        action: "skip",
-        itemId: "",
-      });
+      await updateDetail({ data: { action: "skip" }, contributionId, id });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -379,11 +379,11 @@ const setUndoWarn = async (id) => {
   timeout = setTimeout(increment, interval);
 };
 
-const updateDetail = async (data) => {
+const updateDetail = async ({ data, contributionId, id }) => {
   const response = await UpdateConnectCardDetail({
-    contributionDetailId: data?.contributionDetailId,
-    itemId: data?.itemId || "",
-    action: data?.action || "",
+    data,
+    contributionId,
+    id,
   });
 
   return response;
@@ -1041,7 +1041,7 @@ watch(
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.id)"
+            @hideCard="nextCard(false, value?.id, value?.contributionId)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -1181,7 +1181,7 @@ watch(
                 @backtoItem="backtoHome"
                 @onDone="
                   (data) => {
-                    submitCard(data);
+                    submitCard(data, value?.contributionId, value?.id);
                   }
                 "
               />
@@ -1245,8 +1245,12 @@ watch(
           @click="
             nextCard(
               true,
-              data?.find((item) => item.order === totalCount + 1 - currCount)
-                ?.id
+              data?.find((item) => {
+                return item.order === totalCount + 1 - currCount;
+              })?.id,
+              data?.find((item) => {
+                return item.order === totalCount + 1 - currCount;
+              })?.contributionId
             )
           "
           :disabled="
@@ -1399,7 +1403,7 @@ watch(
 }
 
 .skipall {
-  animation: swipeCardRight 0.3s;
+  animation: swipeCardRight 750ms;
   transform: translateX(2000px);
 }
 

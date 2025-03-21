@@ -37,9 +37,9 @@ const props = defineProps({
       }"
       :ref="props.headerRef"
     >
-      <CdxLabel class="text-[18px] pb-0 text-white leading-[22px]">{{
-        t("session.preview.title")
-      }}</CdxLabel>
+      <h4 class="text-[18px] pb-0 text-white font-bold leading-[22px]">
+        {{ t("session.preview.title") }}
+      </h4>
     </div>
     <div
       class="px-[16px] pt-[70px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"

@@ -1102,10 +1102,11 @@ watch([splash, flip, currMode, entities], async () => {
             nextCard(
               true,
               data?.find((item) => {
-                console.log(currCount);
-
                 return item.order === totalCount + 1 - currCount;
-              })?.id
+              })?.id,
+              data?.find((item) => {
+                return item.order === totalCount + 1 - currCount;
+              })?.contributionId
             )
           "
           :disabled="
@@ -1259,7 +1260,7 @@ watch([splash, flip, currMode, entities], async () => {
 }
 
 .skipall {
-  animation: swipeCardRight 0.3s;
+  animation: swipeCardRight 750ms;
   transform: translateX(2000px);
 }
 
