@@ -64,16 +64,16 @@ export const GetEntityDetail = async (entityId) => {
   return response.get(`/entites/${entityId}`);
 };
 
-export const UpdateConnectCardDetail = async (data) => {
+export const UpdateConnectCardDetail = async ({ data, contributionId, id }) => {
   const response = await api();
-  return response.put(`/contributions/connect/${data.contributionDetailId}`, {
+  return response.put(`/contributions/${contributionId}/connect/${id}`, {
     ...data,
   });
 };
 
-export const UpdateScriptCardDetail = async (data) => {
+export const UpdateScriptCardDetail = async ({ data, contributionId, id }) => {
   const response = await api();
-  return response.put(`/contributions/script/${data.contributionDetailId}`, {
+  return response.put(`/contributions/${contributionId}/script/${id}`, {
     ...data,
   });
 };
