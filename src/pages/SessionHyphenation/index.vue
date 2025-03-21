@@ -1,9 +1,9 @@
 <script setup>
 import Card from "@/components/pages/Session/Card/index.vue";
-import CardItem from "@/components/pages/Session/Card/script-writing/index.vue";
+import CardItem from "@/components/pages/Session/Card/hyphenation/index.vue";
 import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
 import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
-import CardReview from "@/components/pages/Session/Card/script-review/index.vue";
+import CardReview from "@/components/pages/Session/Card/hyphenation-review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
 import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index.vue";
@@ -46,11 +46,12 @@ import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
   GetCards,
   SearchEntity,
-  GetScriptDetail,
+  GetLexemeDetail,
   GetEntityDetail,
-  UpdateScriptCardDetail,
+  UpdateHyphenationCardDetail,
   EndContribution,
   GetLanguages,
+  GetHyphenationDetail,
 } from "@/api/Session";
 import { GetProfile } from "@/api/Home";
 
@@ -131,7 +132,7 @@ const currCount = computed(() => {
   return totalCount.value + 1 - data?.value?.length;
 });
 
-const nextCard = (isButton, id) => {
+const nextCard = (isButton, id, contributionId) => {
   if (isButton) {
     next.value = true;
   }
@@ -144,11 +145,12 @@ const nextCard = (isButton, id) => {
   setTimeout(async () => {
     splash.value = true;
 
-    setUndoWarn(id);
+    setUndoWarn(id, contributionId);
     onHideCard();
-
+    zIndex.value = "z-[1]";
     currMode.value = 1;
     flip.value = false;
+    isSubmitError.value = false;
     noLoad.value = false;
     if (isButton) {
       next.value = false;
@@ -180,6 +182,7 @@ const slideRightWithSuccess = () => {
       // flip.value = false;
       flip.value = false;
       submit.value = false;
+      zIndex.value = "z-[1]";
       disableSplash();
     }, 100);
   }, 750);
@@ -204,15 +207,21 @@ const slideRightWithSuccess = () => {
 //   }, 200);
 // };
 
-const submitCard = async (item) => {
+const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
   let action = "";
 
   action = "add";
 
-  const response = await updateDetail({ ...item, action: action });
+  const response = await updateDetail({
+    data: { ...item, action: action },
+    contributionId,
+    id,
+  });
 
   if (response.statusCode === 200) {
+    submittingData.value = false;
+
     isSuccess.value = true;
 
     slideRightWithSuccess();
@@ -321,7 +330,7 @@ const endEarly = async () => {
   }
 };
 
-const setUndoWarn = async (id) => {
+const setUndoWarn = async (id, contributionId) => {
   undoWarn.value = true;
 
   const duration = 2750; // Total duration in milliseconds
@@ -341,11 +350,7 @@ const setUndoWarn = async (id) => {
       undoWarn.value = false;
 
       if (currCount.value <= totalCount.value)
-        await updateDetail({
-          contributionDetailId: id,
-          action: "skip",
-          itemId: "",
-        });
+        await updateDetail({ data: { action: "skip" }, contributionId, id });
 
       // if (data?.value?.length === 0) {
       //   const completeInput = await completeRef?.value?.openModal();
@@ -364,11 +369,11 @@ watch(timeoutLoading, () => {
   console.log(timeout);
 });
 
-const updateDetail = async (data) => {
-  const response = await UpdateScriptCardDetail({
-    contributionDetailId: data?.contributionDetailId,
-    lemma: data?.lemma || "",
-    action: data?.action || "",
+const updateDetail = async ({ data, contributionId, id }) => {
+  const response = await UpdateHyphenationCardDetail({
+    data,
+    contributionId,
+    id,
   });
 
   return response;
@@ -461,7 +466,7 @@ const searchData = async () => {
 const getDetail = async ({ contributionId, id }) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
-  const response = await GetScriptDetail({ contributionId, id });
+  const response = await GetHyphenationDetail({ contributionId, id });
 
   if (response.statusCode === 200) {
     cardDetailLoading.value = false;
@@ -471,7 +476,7 @@ const getDetail = async ({ contributionId, id }) => {
 };
 
 // const getImage = async (id) => {
-//   const response = await GetScriptDetail(id);
+//   const response = await GetLexemeDetail(id);
 
 //   if (response.statusCode === 200) {
 //     img.value =
@@ -527,7 +532,7 @@ const getCardsData = async (code, type) => {
       ? type
       : vuex.getters["profile/activityType"]
       ? vuex.getters["profile/activityType"]
-      : "script",
+      : "hyphenation",
   });
 
   if (response.statusCode === 200) {
@@ -910,7 +915,7 @@ watch([splash, flip, currMode, entities], async () => {
                   ? 'none'
                   : 'block',
             }"
-            @hideCard="nextCard(false, value?.id)"
+            @hideCard="nextCard(false, value?.id, value?.contributionId)"
             @onStarting="aa"
             @onEnd="ab"
             :headerRef="cardRef"
@@ -928,7 +933,7 @@ watch([splash, flip, currMode, entities], async () => {
                 :class="[
                   data?.length !== index + 1
                     ? 'bg-white dark:bg-[#101418]'
-                    : 'bg-[#FFA758]',
+                    : 'bg-[#9F3526]',
                   'custom-height z-[1] text-[#361D13] rounded-[16px] max-h-[650px]',
                 ]"
                 :data="value"
@@ -983,7 +988,7 @@ watch([splash, flip, currMode, entities], async () => {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
-                    id: value?.externalLexemeId,
+                    id: value?.externalLexemeFormId,
                   })
                 "
                 @gotoSubItemDetail="(value) => test2(value?.id, value)"
@@ -1032,7 +1037,7 @@ watch([splash, flip, currMode, entities], async () => {
                 @backtoItem="backtoHome"
                 @onDone="
                   (data) => {
-                    submitCard(data);
+                    submitCard(data, value?.contributionId, value?.id);
                   }
                 "
               />

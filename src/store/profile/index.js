@@ -17,6 +17,7 @@ const getters = {
   displayTheme: (state) => state?.data?.displayTheme,
   allData: (state) => state?.data,
   contributionType: (state) => state?.data?.activityType,
+  activityType: (state) => state?.data?.activityType,
   isDark: (state) => state?.isThemeDark,
   isLoading: (state) => state?.loading,
 };

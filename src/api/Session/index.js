@@ -12,6 +12,12 @@ export const GetScriptCards = async (data) => {
   return response.post("/contributions/script/start", { ...data });
 };
 
+export const GetCards = async (data) => {
+  const response = await api();
+
+  return response.post("/contributions/start", { ...data });
+};
+
 export const SearchEntity = async (params) => {
   const response = await api();
 
@@ -26,6 +32,21 @@ export const GetRecommendations = async (params) => {
   return response.get(
     `/entites/recommendations?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
   );
+};
+
+export const GetConnectDetail = async ({ contributionId, id }) => {
+  const response = await api();
+  return response.get(`/contributions/${contributionId}/connect/${id}`);
+};
+
+export const GetScriptDetail = async ({ contributionId, id }) => {
+  const response = await api();
+  return response.get(`/contributions/${contributionId}/script/${id}`);
+};
+
+export const GetHyphenationDetail = async ({ contributionId, id }) => {
+  const response = await api();
+  return response.get(`/contributions/${contributionId}/hyphenation/${id}`);
 };
 
 export const GetCardDetail = async (senseId) => {
@@ -53,6 +74,17 @@ export const UpdateConnectCardDetail = async (data) => {
 export const UpdateScriptCardDetail = async (data) => {
   const response = await api();
   return response.put(`/contributions/script/${data.contributionDetailId}`, {
+    ...data,
+  });
+};
+
+export const UpdateHyphenationCardDetail = async ({
+  data,
+  contributionId,
+  id,
+}) => {
+  const response = await api();
+  return response.put(`/contributions/${contributionId}/hyphenation/${id}`, {
     ...data,
   });
 };

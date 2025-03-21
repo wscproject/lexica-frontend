@@ -37,12 +37,12 @@ const props = defineProps({
       }"
       :ref="props.headerRef"
     >
-      <CdxLabel class="text-[18px] pb-0 text-white">{{
+      <CdxLabel class="text-[18px] pb-0 text-white leading-[22px]">{{
         t("session.preview.title")
       }}</CdxLabel>
     </div>
     <div
-      class="px-[16px] pt-[68px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"
+      class="px-[16px] pt-[70px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"
     >
       <CdxLabel
         class="text-[16px] dark:text-[#EAECF0]"

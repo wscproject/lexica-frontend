@@ -44,9 +44,9 @@ import happy from "@/assets/happy.svg";
 import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
-  GetConnectCards,
+  GetCards,
   SearchEntity,
-  GetCardDetail,
+  GetConnectDetail,
   GetEntityDetail,
   UpdateConnectCardDetail,
   EndContribution,
@@ -404,7 +404,7 @@ const ab = () => {
   }, 350);
 };
 
-const test1 = async (id, headerData) => {
+const test1 = async (id, contributionId, headerData) => {
   zIndex.value = "";
 
   currMode.value = 1;
@@ -419,7 +419,7 @@ const test1 = async (id, headerData) => {
     front.style.setProperty("display", "none", "important");
   }, 350);
 
-  await getDetail(id);
+  await getDetail({ contributionId, id });
 };
 const test2 = async (id, data) => {
   zIndex.value = "";
@@ -506,10 +506,10 @@ const searchData = async () => {
   }
 };
 
-const getDetail = async (id) => {
+const getDetail = async ({ contributionId, id }) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
-  const response = await GetCardDetail(id);
+  const response = await GetConnectDetail({ contributionId, id });
 
   if (response.statusCode === 200) {
     cardDetailLoading.value = false;
@@ -533,7 +533,10 @@ const getProfile = async () => {
 
   const response = await GetProfile();
   if (response?.statusCode === 200) {
-    await getCardsData(response?.data?.languageCode);
+    await getCardsData(
+      response?.data?.languageCode,
+      response?.data?.activityType
+    );
   } else if (response.statusCode === 503) {
     isLoading.value = false;
     noInternet.value = true;
@@ -552,10 +555,15 @@ const getLanguages = async () => {
   }
 };
 
-const getCardsData = async (code) => {
+const getCardsData = async (code, type) => {
   isLoading.value = true;
-  const response = await GetConnectCards({
+  const response = await GetCards({
     languageCode: code ? code : vuex.getters["profile/language"],
+    activityType: type
+      ? type
+      : vuex.getters["profile/activityType"]
+      ? vuex.getters["profile/activityType"]
+      : "connect",
   });
 
   if (response.statusCode === 200) {
@@ -1102,7 +1110,7 @@ watch(
                 :class="['card-front', data?.length !== index + 1 && 'hidden']"
                 :isCurrent="data?.length === index + 1"
                 @gotoDetail="
-                  test1(value?.externalLexemeSenseId, {
+                  test1(value?.id, value?.contributionId, {
                     category: value?.category,
                     lemma: value?.lemma,
                     gloss: value?.gloss,
