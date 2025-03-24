@@ -184,7 +184,7 @@ onMounted(() => {
 }
 
 .submit-card {
-  animation: swipeCardRight 1.25s;
+  animation: swipeCardRight 1.125s;
 }
 
 @keyframes swipeCardUp {
