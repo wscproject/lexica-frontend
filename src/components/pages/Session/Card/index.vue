@@ -151,7 +151,7 @@ onMounted(() => {
     }"
     ref="cardRef"
     :class="[
-      'absolute bg-white rounded-[16px] w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
+      'absolute bg-[var(--background-color-base)] rounded-[16px] w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
     ]"
   >
     <slot />
@@ -184,7 +184,7 @@ onMounted(() => {
 }
 
 .submit-card {
-  animation: swipeCardRight 750ms;
+  animation: swipeCardRight 1.25s;
 }
 
 @keyframes swipeCardUp {
