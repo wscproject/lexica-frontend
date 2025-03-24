@@ -146,6 +146,7 @@ const nextCard = (isButton, id, contributionId) => {
 
     setUndoWarn(id, contributionId);
     onHideCard();
+    zIndex.value = "z-[1]";
 
     currMode.value = 1;
     flip.value = false;
@@ -180,6 +181,8 @@ const slideRightWithSuccess = () => {
       // flip.value = false;
       flip.value = false;
       submit.value = false;
+      zIndex.value = "z-[1]";
+
       disableSplash();
     }, 100);
   }, 750);
