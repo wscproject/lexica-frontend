@@ -253,7 +253,6 @@ watch(recs, async () => {
               (item, i) => i <= 2
             )"
             ref="radioButtons"
-            3333333333
             tabindex="0"
             role="radio"
             :key="index"
