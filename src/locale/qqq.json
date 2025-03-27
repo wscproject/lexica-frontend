@@ -61,6 +61,10 @@
     "script": {
       "title": "Title for the activity of adding script variants",
       "description": "Text that leads to user add script variants for a Lexeme"
+    },
+    "hyphenation": {
+      "title": "Title for the activity of adding hyphenation to Lexeme Form",
+      "description": "Text that leads to user divide a Lexeme into its syllables"
     }
   },
   "home": {
@@ -133,6 +137,11 @@
       "placeholder": "Placeholder for adding script variants"
     },
 
+    "hyphenation": {
+      "button1": "Button text to divide Lexeme into its syllables",
+      "button2": "Button text to proceed to the preview page"
+    },
+
     "detail": {
       "lexeme": "Text that displays the lexeme in the card header",
       "loading": "Message that shown when loading lexeme detail ",
@@ -155,8 +164,9 @@
       "glossQuote": "Text indicating the properties label for translation (P8394) property in Wikidata",
       "itemForThisSense": "Text indicating the properties label for translation (P5137) property in Wikidata",
       "otherGlosses": "Text indicating glosses in other languages",
-      "allSense": "Text that shows all available senses",
-      "sense": "Text that shows the available senses"
+      "allSense": "Text that shows the available Senses",
+      "sense": "Text that shows the available senses",
+      "grammaticalFeature": "Text preceeding the listing of the grammatical features of a Lexeme Form"
     },
 
     "item": {
@@ -185,6 +195,10 @@
 
     "scriptPreview": {
       "newStatement": "Text displaying the addition of lemma for script variant activities in the preview page"
+    },
+
+    "hyphenationPreview": {
+      "newStatement": "Text on the preview page that indicates the addition of hyphenation as a new statement"
     },
 
     "upload": "Message shown when the user confirms the activity to be added to Lexica",
@@ -233,7 +247,7 @@
     "page": "Text containing a link to the Lexica product page on Wikidata"
   },
   "privacy": {
-    "header": "Label in the footer that links to the page containing Lexica's privacy",
+    "header": "Label in the header that links to the page containing Lexica's privacy",
     "title1": " Title of the text on the Lexica privacy page ",
     "version": "Versi",
     "section1": "Contains content about Lexica's privacy policy",
@@ -243,7 +257,7 @@
       "point1": "Contains content about Lexica's Collection of Personal Data Information",
       "point2": "Contains content about Lexica's Collection of Personal Data Information",
       "point3": "Contains content about Lexica's Collection of Personal Data Information",
-      "privacy": "Teks yang berisi link menuju halaman Wikimedia Foundation Privacy Policy"
+      "privacy": "Text containing the links to Wikimedia Foundation Privacy Policy"
     },
     "title3": "Text containing Lexica's license",
     "section3": "Text that links to the page containing Lexica's license",
@@ -259,11 +273,17 @@
     }
   },
   "license": {
-    "title1": "Label in the footer that links to the page containing Lexica's license",
-    "section1": "Text containing Lexica's license",
-    "title2": "Title of the text on the Lexica license page",
+    "title1": "Title for the page containing declaration for Lexica's license",
+    "section1": {
+      "content1": "Text containing Lexica's license",
+      "content2": "Text to show the location of Lexica's source code"
+    },
+    "title2": "Subtitle on the Lexica license page leading to the list of open source components",
     "section2": {
-      "content": "Text containing Lexica's Open source components"
+      "content": "Text preceeding the listing of Lexica's open source components",
+      "subtitle1": "Text preceeding the listing of components used in frontend",
+      "subtitle2": "Text preceeding the listing of components used in backend",
+      "subtitle3": "Text preceeding the listing of fonts used in Lexica"
     }
   },
   "aria": {

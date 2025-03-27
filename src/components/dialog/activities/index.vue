@@ -106,7 +106,7 @@ watch(props, () => {
           <div
             :class="[
               selectedType === activity.type &&
-                'border-[var(--border-color-progressive)]',
+                'border-[var(--border-color-progressive--focus)]',
               selectedType !== activity.type &&
                 'border-[var(--border-color-subtle)]',
               'w-[40px] h-[40px] border rounded-[2px] overflow-hidden shrink-0',

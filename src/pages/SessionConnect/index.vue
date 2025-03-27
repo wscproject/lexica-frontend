@@ -1403,7 +1403,7 @@ watch(
 }
 
 .skipall {
-  animation: swipeCardRight 750ms;
+  animation: swipeCardRight 1.125s;
   transform: translateX(2000px);
 }
 

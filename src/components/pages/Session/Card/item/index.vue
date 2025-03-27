@@ -258,7 +258,7 @@ watch(recs, async () => {
             :key="index"
             :class="[
               value.id === selectedItem
-                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
+                ? 'border-[2px] border-[var(--border-color-progressive--focus)] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[var(--border-color-base)] ',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
               !isSearch && 'recommendation-box',
@@ -346,7 +346,7 @@ watch(recs, async () => {
             :key="index"
             :class="[
               value.id === selectedItem
-                ? 'border-[2px] border-[#3366CC] bg-[#EAF3FF] dark:bg-[#1C2940]'
+                ? 'border-[2px] border-[var(--border-color-progressive--focus)] bg-[#EAF3FF] dark:bg-[#1C2940]'
                 : 'border border-[var(--border-color-base)]',
               'rounded-[2px] p-[12px] flex items-center gap-x-2 mb-[8px] cursor-pointer justify-between',
               'recommendation-box',
