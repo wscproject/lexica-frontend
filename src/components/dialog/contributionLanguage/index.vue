@@ -135,7 +135,8 @@ watch(language, () => {
 
       <div
         role="radiogroup"
-        class="py-[12px] max-h-[360px] px-[16px] overflow-auto"
+        class="px-[16px] py-[12px] overflow-y-auto"
+        style="max-height: calc(100vh - 360px)"
       >
         <CdxRadio
           :id="`my-radio-${option.full}`"
@@ -189,6 +190,10 @@ watch(language, () => {
 <style>
 .contributionLang .cdx-dialog__header {
   @apply pt-[16px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
+}
+
+.contributionLang .cdx-dialog__body {
+  overflow: unset !important;
 }
 
 .contributionLang .cdx-dialog__footer {
