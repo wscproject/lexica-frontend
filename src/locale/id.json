@@ -27,8 +27,9 @@
     "apply": "Terapkan",
     "close": "Tutup",
     "subtitle": "Teks",
-    "option1": "Gunakan fon alternatif (Atkinson Hyperlegible)",
-    "option1Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini"
+    "option1": "Tebalkan teks",
+    "option2": "Gunakan fon alternatif (Atkinson Hyperlegible)",
+    "option2Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini."
   },
 
   "localeDialog": {
@@ -220,7 +221,8 @@
       "partOf": "bagian dari",
       "subclass": "subkelas dari",
       "hasParts": "terdiri dari",
-      "taxonName": "nama takson"
+      "taxonName": "nama takson",
+      "aliases": "Juga dikenal sebagai:"
     },
 
     "preview": {

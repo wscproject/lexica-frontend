@@ -142,7 +142,7 @@ onUnmounted(() => {
       <div class="h-full w-full" v-if="senses.length !== 0 && !props.isLoading">
         <div
           v-if="props?.data?.grammaticalFeatures"
-          class="rounded-[2px] mb-[var(--spacing-100)] p-[var(--spacing-50)] bg-[var(--background-color-neutral)] border border-[var(--border-color-base)]"
+          class="rounded-[2px] mb-[var(--spacing-100)] text-[var(--color-base)] p-[var(--spacing-50)] bg-[var(--background-color-neutral)] border border-[var(--border-color-base)]"
         >
           <span class="text-[16px]"
             >{{ t("session.detail.grammaticalFeature") }}

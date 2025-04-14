@@ -23,6 +23,8 @@ const isAlternateFont = ref(
   localStorage.getItem("altFont") === "true" ? true : false
 );
 
+const isBold = ref(localStorage.getItem("bold") === "true" ? true : false);
+
 const emit = defineEmits(["onPrimaryAction"]);
 
 const close = () => {
@@ -32,20 +34,36 @@ const close = () => {
 const apply = async () => {
   updateUserPreference({
     isAlternateFont: isAlternateFont.value,
+    isBold: isBold.value,
   });
 
   localStorage.setItem("altFont", isAlternateFont.value);
+  localStorage.setItem("bold", isBold.value);
 
   if (isAlternateFont.value) {
-    document.documentElement.style.setProperty(
-      "--font-family",
-      "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-    );
+    if (isBold.value) {
+      document.documentElement.style.setProperty(
+        "--font-family",
+        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+      );
+    } else {
+      document.documentElement.style.setProperty(
+        "--font-family",
+        "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+      );
+    }
   } else {
-    document.documentElement.style.setProperty(
-      "--font-family",
-      "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-    );
+    if (isBold.value) {
+      document.documentElement.style.setProperty(
+        "--font-family",
+        "InterBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+      );
+    } else {
+      document.documentElement.style.setProperty(
+        "--font-family",
+        "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+      );
+    }
   }
 
   close();
@@ -85,14 +103,22 @@ const apply = async () => {
         {{ t("accessibilityDialog.subtitle") }}
       </h4>
       <CdxToggleSwitch
-        v-model="isAlternateFont"
+        v-model="isBold"
         class="flex justify-between gap-x-[var(--spacing-100)] items-start"
       >
         <div class="text-[16px] text-[var(--color-base)]">
           {{ t("accessibilityDialog.option1") }}
         </div>
+      </CdxToggleSwitch>
+      <CdxToggleSwitch
+        v-model="isAlternateFont"
+        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
+      >
+        <div class="text-[16px] text-[var(--color-base)]">
+          {{ t("accessibilityDialog.option2") }}
+        </div>
         <div class="text-[16px] text-[var(--color-subtle)]">
-          {{ t("accessibilityDialog.option1Note") }}
+          {{ t("accessibilityDialog.option2Note") }}
         </div>
       </CdxToggleSwitch>
     </div>

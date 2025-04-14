@@ -141,6 +141,16 @@ onUnmounted(() => {
       </div>
 
       <div
+        v-if="props?.data?.aliases"
+        class="rounded-[2px] mb-[var(--spacing-100)] text-[var(--color-base)] p-[var(--spacing-50)] bg-[var(--background-color-neutral)] border border-[var(--border-color-base)]"
+      >
+        <span class="text-[16px]"
+          >{{ t("session.item.aliases") }}
+          <b>{{ props?.data?.aliases }}</b></span
+        >
+      </div>
+
+      <div
         class="h-full"
         v-if="
           statements?.filter((item) => item?.[0] !== 'translation')?.length >
