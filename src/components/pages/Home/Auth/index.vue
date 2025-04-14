@@ -74,19 +74,34 @@ const fetchProfile = async (lang) => {
       };
     }
 
-    if (!localStorage.getItem("altFont")) {
-      localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
+    localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
+    localStorage.setItem("bold", response?.data?.isBold || false);
 
+    if (!localStorage.getItem("altFont")) {
       if (response?.data?.isAlternateFont) {
-        document.documentElement.style.setProperty(
-          "--font-family",
-          "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-        );
+        if (response?.data?.isBold) {
+          document.documentElement.style.setProperty(
+            "--font-family",
+            "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+          );
+        } else {
+          document.documentElement.style.setProperty(
+            "--font-family",
+            "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+          );
+        }
       } else {
-        document.documentElement.style.setProperty(
-          "--font-family",
-          "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
-        );
+        if (response?.data?.isBold) {
+          document.documentElement.style.setProperty(
+            "--font-family",
+            "InterBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+          );
+        } else {
+          document.documentElement.style.setProperty(
+            "--font-family",
+            "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+          );
+        }
       }
     }
 
