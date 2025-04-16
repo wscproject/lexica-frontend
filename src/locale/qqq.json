@@ -26,7 +26,7 @@
     "apply": "Button text to apply an alternative font",
     "close": "Button text to undo the application of an alternative font",
     "subtitle": "Text that directs the user to change the font in Lexica",
-    "option1": "Text containing options that guide the user to change the font to Atkinson Hyperlegible",
+    "option1": "Text containing options that guide the user to change the font to Atkinson Hyperlegible Next",
     "option1Note": "Text message containing a notification some characters may not be displayed in this font"
   },
 
