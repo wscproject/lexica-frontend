@@ -338,7 +338,7 @@ watch(recs, async () => {
             class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[8px]"
             style="padding-bottom: 16px"
           >
-            {{ t("session.main.result") }}
+            <b>{{ t("session.main.result") }}</b>
           </h6>
           <div
             v-for="(value, index) in props?.recommendation"
