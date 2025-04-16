@@ -76,31 +76,49 @@
 }
 /* **************************************************** */
 
-/* Atkinson */
+/* AtkinsonHyperlegibleNext */
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-Regular.ttf") format("truetype");
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 800;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegible-Bold.ttf") format("truetype");
-  font-weight: 700 800;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-Italic.ttf") format("truetype");
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-BoldItalic.ttf")
+    format("truetype");
   font-weight: 100 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegible-BoldItalic.ttf")
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-Black.ttf")
+    format("truetype");
+  font-weight: 700 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-BlackItalic.ttf")
     format("truetype");
   font-weight: 700 800;
   font-style: italic;

@@ -236,10 +236,10 @@ const router = useRouter();
         <ul class="text-[var(--color-base)]">
           <li>
             <a
-              id="Atkinson Hyperlegible"
+              id="Atkinson Hyperlegible Next"
               href="https://brailleinstitute.org/freefont"
               class="cdx-docs-link is-underlined"
-              >Atkinson Hyperlegible</a
+              >Atkinson Hyperlegible Next</a
             >, SIL Open Font License 1.1 (OFL-1.1)
           </li>
           <li>
