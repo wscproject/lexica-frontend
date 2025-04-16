@@ -110,7 +110,7 @@
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-Black.ttf")
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBold.ttf")
     format("truetype");
   font-weight: 700 800;
   font-style: normal;
@@ -118,7 +118,7 @@
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-BlackItalic.ttf")
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBoldItalic.ttf")
     format("truetype");
   font-weight: 700 800;
   font-style: italic;
