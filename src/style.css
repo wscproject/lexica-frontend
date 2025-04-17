@@ -76,33 +76,51 @@
 }
 /* **************************************************** */
 
-/* Atkinson */
+/* AtkinsonHyperlegibleNext */
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-Regular.ttf") format("truetype");
-  font-weight: 400;
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-Bold.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-Italic.ttf") format("truetype");
-  font-weight: 400;
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf")
+    format("truetype");
+  font-weight: 100 800;
   font-style: italic;
 }
 
 @font-face {
-  font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegible-BoldItalic.ttf")
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
+  font-weight: 100 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-BoldItalic.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 600;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBold.ttf")
+    format("truetype");
+  font-weight: 700 800;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBoldItalic.ttf")
+    format("truetype");
+  font-weight: 700 800;
   font-style: italic;
 }
 /* **************************************************** */

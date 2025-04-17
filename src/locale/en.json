@@ -29,8 +29,9 @@
     "apply": "Apply",
     "close": "Close",
     "subtitle": "Text",
-    "option1": "Use alternative font (Atkinson Hyperlegible)",
-    "option1Note": "Note: Some characters may not be rendered in this font."
+    "option1": "Bold text",
+    "option2": "Use alternative font (Atkinson Hyperlegible Next)",
+    "option2Note": "Note: Some characters may not be rendered in this font."
   },
 
   "localeDialog": {
@@ -229,7 +230,8 @@
       "partOf": "part of",
       "subclass": "subclass of",
       "hasParts": "has parts",
-      "taxonName": "taxon name"
+      "taxonName": "taxon name",
+      "aliases": "Also known as:"
     },
 
     "preview": {
