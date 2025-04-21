@@ -13,15 +13,33 @@ const route = useRoute();
 const { locale } = useI18n();
 const { cookies } = useCookies();
 
-// const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
-watch(isPreferredDark, () => {
+const changeTheme = () => {
   if (
     !localStorage.getItem("theme") ||
     localStorage.getItem("theme") === "auto"
   ) {
     if (isPreferredDark.value) {
-      console.log("testing123");
+      document.documentElement.className = "dark";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#27292D" : "#101418"
+        );
+    } else {
+      document.documentElement.className = "";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
+        );
+    }
+  } else {
+    if (isThemeDark.value) {
+      console.log("dark");
 
       document.documentElement.className = "dark";
       document
@@ -41,9 +59,15 @@ watch(isPreferredDark, () => {
     }
   }
   vuex.dispatch("profile/changeTheme");
+};
+
+watch([() => route.path, isThemeDark], () => {
+  console.log("testing123", route.path);
+  changeTheme();
 });
 
 onMounted(() => {
+  changeTheme();
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
     window?.navigator?.language?.split("-")?.[0] === "id"
@@ -51,8 +75,6 @@ onMounted(() => {
       : "en";
 
   locale.value = cookies?.get("locale") || lang;
-
-  console.log(localStorage.getItem("altFont"));
 
   if (localStorage?.getItem("altFont") === "true") {
     if (localStorage?.getItem("bold") === "true") {
