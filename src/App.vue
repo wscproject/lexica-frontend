@@ -12,33 +12,34 @@ const route = useRoute();
 const { locale } = useI18n();
 const { cookies } = useCookies();
 
-watch(isPreferredDark, () => {
-  if (
-    !localStorage.getItem("theme") ||
-    localStorage.getItem("theme") === "auto"
-  ) {
-    if (isPreferredDark.value) {
-      console.log("testing123");
-
-      document.documentElement.className = "dark";
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute(
-          "content",
-          route.path.includes("/session") ? "#27292D" : "#101418"
-        );
-    } else {
-      document.documentElement.className = "";
-      document
-        .querySelector('meta[name="theme-color"]')
-        .setAttribute(
-          "content",
-          route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
-        );
+watch(
+  () => route.path,
+  () => {
+    if (
+      !localStorage.getItem("theme") ||
+      localStorage.getItem("theme") === "auto"
+    ) {
+      if (isPreferredDark.value) {
+        document.documentElement.className = "dark";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute(
+            "content",
+            route.path.includes("/session") ? "#27292D" : "#101418"
+          );
+      } else {
+        document.documentElement.className = "";
+        document
+          .querySelector('meta[name="theme-color"]')
+          .setAttribute(
+            "content",
+            route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
+          );
+      }
     }
+    vuex.dispatch("profile/changeTheme");
   }
-  vuex.dispatch("profile/changeTheme");
-});
+);
 
 onMounted(() => {
   const lang =
@@ -50,6 +51,7 @@ onMounted(() => {
   locale.value = cookies?.get("locale") || lang;
 
   console.log(localStorage.getItem("altFont"));
+  console.log();
 
   if (localStorage?.getItem("altFont") === "true") {
     if (localStorage?.getItem("bold") === "true") {
