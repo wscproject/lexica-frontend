@@ -5,6 +5,7 @@ import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
+import { computed } from "vue";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const vuex = useStore();
@@ -12,34 +13,35 @@ const route = useRoute();
 const { locale } = useI18n();
 const { cookies } = useCookies();
 
-watch(
-  () => route.path,
-  () => {
-    if (
-      !localStorage.getItem("theme") ||
-      localStorage.getItem("theme") === "auto"
-    ) {
-      if (isPreferredDark.value) {
-        document.documentElement.className = "dark";
-        document
-          .querySelector('meta[name="theme-color"]')
-          .setAttribute(
-            "content",
-            route.path.includes("/session") ? "#27292D" : "#101418"
-          );
-      } else {
-        document.documentElement.className = "";
-        document
-          .querySelector('meta[name="theme-color"]')
-          .setAttribute(
-            "content",
-            route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
-          );
-      }
+// const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+
+watch(isPreferredDark, () => {
+  if (
+    !localStorage.getItem("theme") ||
+    localStorage.getItem("theme") === "auto"
+  ) {
+    if (isPreferredDark.value) {
+      console.log("testing123");
+
+      document.documentElement.className = "dark";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#27292D" : "#101418"
+        );
+    } else {
+      document.documentElement.className = "";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
+        );
     }
-    vuex.dispatch("profile/changeTheme");
   }
-);
+  vuex.dispatch("profile/changeTheme");
+});
 
 onMounted(() => {
   const lang =
@@ -51,7 +53,6 @@ onMounted(() => {
   locale.value = cookies?.get("locale") || lang;
 
   console.log(localStorage.getItem("altFont"));
-  console.log();
 
   if (localStorage?.getItem("altFont") === "true") {
     if (localStorage?.getItem("bold") === "true") {
