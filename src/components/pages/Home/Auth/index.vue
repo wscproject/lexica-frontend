@@ -1,5 +1,8 @@
 <script setup>
-import "@wikimedia/codex/dist/codex.style.css";
+// import "@wikimedia/codex/dist/codex.style.css";
+import "@wikimedia/codex/dist/codex.style-bidi.css";
+import displayLang from "@/locale/displayLang.json";
+
 import Logo from "@/assets/home_logo.svg";
 import LogoDark from "@/assets/home_logo_dark.svg";
 import GuideDialog from "@/components/dialog/guide/index.vue";
@@ -24,6 +27,7 @@ import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
 
 import { EndContribution } from "@/api/Session";
+import { useTextDirection } from "@vueuse/core";
 
 const vuex = useStore();
 
@@ -37,6 +41,7 @@ const isContributeLang = ref(false);
 const searchQuery = ref("");
 const searchLoading = ref(false);
 const activityList = ref([]);
+const dir = useTextDirection();
 
 const isActivity = ref(false);
 const selectedLang = ref({});
@@ -108,6 +113,9 @@ const fetchProfile = async (lang) => {
     selectedAct.value = response?.data?.activityType || "connect";
     vuex.dispatch("profile/addData", response?.data || lang);
     locale.value = response?.data?.displayLanguageCode || lang;
+    dir.value = displayLang.lang.find(
+      (item) => item.value === (response?.data?.displayLanguageCode || lang)
+    )?.dir;
     cookies.set("locale", response?.data?.displayLanguageCode || lang);
 
     if (response?.data?.displayTheme !== "default") {

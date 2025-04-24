@@ -477,39 +477,33 @@ h1 {
 } */
 
 .breakpoints {
-  padding-right: var(--spacing-125);
-  padding-left: var(--spacing-200);
+  @apply pr-[var(--spacing-125)] pl-[var(--spacing-200)] rtl:pr-[var(--spacing-200)] rtl:pl-[var(--spacing-125)];
 }
 
 @media (max-width: 1023px) and (min-width: 640px) {
   .breakpoints {
-    padding-right: var(--spacing-125);
-    padding-left: var(--spacing-200);
+    @apply pr-[var(--spacing-125)] pl-[var(--spacing-200)] rtl:pr-[var(--spacing-200)] rtl:pl-[var(--spacing-125)];
   }
 }
 
 @media (max-width: 639px) {
   .breakpoints {
-    padding-right: var(--spacing-25);
-    padding-left: var(--spacing-100);
+    @apply pr-[var(--spacing-25)] pl-[var(--spacing-100)] rtl:pr-[var(--spacing-100)] rtl:pl-[var(--spacing-25)];
   }
 }
 
 .breakpoints-2 {
-  padding-right: var(--spacing-200);
-  padding-left: var(--spacing-125);
+  @apply pr-[var(--spacing-200)] pl-[var(--spacing-125)] rtl:pr-[var(--spacing-125)] rtl:pl-[var(--spacing-200)];
 }
 
 @media (max-width: 1023px) and (min-width: 640px) {
   .breakpoints-2 {
-    padding-right: var(--spacing-200);
-    padding-left: var(--spacing-125);
+    @apply pr-[var(--spacing-200)] pl-[var(--spacing-125)] rtl:pr-[var(--spacing-125)] rtl:pl-[var(--spacing-200)];
   }
 }
 
 @media (max-width: 639px) {
   .breakpoints-2 {
-    padding-right: var(--spacing-100);
-    padding-left: var(--spacing-25);
+    @apply pr-[var(--spacing-100)] pl-[var(--spacing-25)] rtl:pr-[var(--spacing-25)] rtl:pl-[var(--spacing-100)];
   }
 }

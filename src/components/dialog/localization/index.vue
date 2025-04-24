@@ -14,6 +14,7 @@ import { updateUserPreference } from "@/api/Home";
 import displayLang from "@/locale/displayLang.json";
 
 import { useCookies } from "vue3-cookies";
+import { useTextDirection } from "@vueuse/core";
 
 const { cookies } = useCookies();
 
@@ -23,6 +24,8 @@ const currentLocale = ref(
   cookies?.get("locale") || window.navigator.language.split("-")[0]
 );
 
+const currentDir = ref("");
+
 const props = defineProps({
   open: {
     type: Boolean,
@@ -31,6 +34,7 @@ const props = defineProps({
 });
 
 const emit = defineEmits(["onPrimaryAction"]);
+const dir = useTextDirection();
 
 const close = () => {
   emit("onPrimaryAction", false);
@@ -44,7 +48,13 @@ const setLocale = async () => {
   }
 
   locale.value = currentLocale.value;
+  dir.value = currentDir.value;
   cookies.set("locale", currentLocale.value);
+  cookies.set("dir", currentDir.value);
+};
+
+const changeDir = (value) => {
+  currentDir.value = value.dir;
 };
 
 watch(locale, () => {
@@ -98,6 +108,7 @@ watch(locale, () => {
           v-model="currentLocale"
           name="radio-group"
           :input-value="radio.value"
+          @update:modelValue="changeDir(radio)"
         >
           {{ radio.label }}
         </CdxRadio>

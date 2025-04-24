@@ -173,16 +173,18 @@ watch(isThemeDark, () => {
   <header
     class="h-[64px] fixed w-full bg-white dark:bg-[#101418] left-0 z-[10] flex justify-center breakpoints"
   >
-    <div class="flex items-center max-w-[908px] w-full relative">
+    <div
+      class="flex items-center justify-between max-w-[908px] w-full relative"
+    >
       <div class="flex justify-center items-center h-full">
         <img v-if="!isThemeDark" :src="Logo" alt="Lexica logo" />
         <img v-else :src="LogoDark" alt="Lexica logo" />
       </div>
-      <div class="absolute right-[0px] edited">
+      <div>
         <CdxMenuButton
           :key="locale"
           :aria-label="t('aria.account')"
-          top-right
+          top-left
           v-tooltip:bottom="t('tooltips.account')"
           v-model="selection"
           :menu-items="authMenu"
