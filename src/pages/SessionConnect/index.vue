@@ -12,6 +12,7 @@ import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -64,6 +65,8 @@ const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 
 const { t } = useI18n({ useScope: "global" });
 const vuex = useStore();
+
+const { dir } = useDirWatcher();
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const language = computed(() => vuex.getters["profile/language"]);
@@ -885,10 +888,10 @@ watch(
         >
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
-        <div class="absolute mx-auto left-0 right-0 w-fit top-[10px]">
+        <div class="mx-auto left-0 right-0 w-fit">
           <CdxLabel
             v-if="data?.length !== 0 && !isLoading"
-            class="text-[16px] pb-0"
+            class="text-[16px] pb-0 text-[var(--color-base)]"
             >{{ t("session.title") }} {{ currCount }}</CdxLabel
           >
         </div>
@@ -1213,7 +1216,7 @@ watch(
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
-                class="flex gap-x-2 items-center cursor-pointer text-white"
+                class="flex gap-x-2 items-center cursor-pointer text-white skip"
                 @click="undoCard"
               >
                 <CdxIcon
@@ -1259,6 +1262,7 @@ watch(
         >
           <SkipIcon
             v-if="!isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -1267,6 +1271,7 @@ watch(
           />
           <SkipDarkIcon
             v-if="isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -1309,6 +1314,11 @@ watch(
 </template>
 
 <style>
+[dir] .cdx-button:enabled.cdx-button--weight-quiet:hover {
+  /* background-color: white !important; */
+  mix-blend-mode: unset !important;
+}
+
 .session-container {
   height: 100%;
   min-height: stretch;

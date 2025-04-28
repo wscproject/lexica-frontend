@@ -12,6 +12,7 @@ import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -69,6 +70,7 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const language = computed(() => vuex.getters["profile/language"]);
 
 const router = useRouter();
+const { dir } = useDirWatcher();
 
 const completeRef = ref(null);
 const count = ref(3);
@@ -758,7 +760,7 @@ watch([splash, flip, currMode, entities], async () => {
         >
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
-        <div class="absolute mx-auto left-0 right-0 w-fit top-[10px]">
+        <div class="absolute mx-auto left-0 right-0 w-fit">
           <CdxLabel
             v-if="data?.length !== 0 && !isLoading"
             class="text-[16px] pb-0"
@@ -1115,6 +1117,7 @@ watch([splash, flip, currMode, entities], async () => {
         >
           <SkipIcon
             v-if="!isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -1123,6 +1126,7 @@ watch([splash, flip, currMode, entities], async () => {
           />
           <SkipDarkIcon
             v-if="isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'

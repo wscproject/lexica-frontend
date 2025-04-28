@@ -2,14 +2,15 @@
 import { CdxIcon, CdxLabel, CdxButton } from "@wikimedia/codex";
 import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
 import { useI18n } from "vue-i18n";
-
+import { useDirWatcher } from "@/helper/useDirWatcher";
 import HomeImage from "@/assets/home_image.svg";
 
-import { computed, onBeforeUnmount, onMounted } from "vue";
+import { computed, onBeforeUnmount, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 
 const vuex = useStore();
 
+const { dir } = useDirWatcher();
 const { t } = useI18n({ useScope: "global" });
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
@@ -59,7 +60,7 @@ onBeforeUnmount(() => {
           action="progressive"
           weight="primary"
           class="py-[12px] rounded-[2px] w-full max-w-[160px] h-[44px] my-[var(--spacing-100)]"
-          ><CdxIcon :icon="cdxIconLogIn" />
+          ><CdxIcon :dir="dir" :icon="cdxIconLogIn" />
           {{ t("home.unauth.login") }}</CdxButton
         >
       </a>

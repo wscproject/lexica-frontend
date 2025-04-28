@@ -374,6 +374,8 @@ body {
   min-height: 100%;
   font-weight: 400;
   font-family: var(--font-family);
+  color: var(--color-base);
+
   /* font-style: oblique 10deg; */
 }
 
@@ -456,10 +458,6 @@ h1 {
 
 .detail .v-expansion-panel-title__icon {
   display: none;
-}
-
-.cdx-label__label__text {
-  color: var(--color-base);
 }
 
 .cdx-dialog__header__title {

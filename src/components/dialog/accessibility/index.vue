@@ -102,24 +102,14 @@ const apply = async () => {
       <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle") }}
       </h4>
-      <CdxToggleSwitch
-        v-model="isBold"
-        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
-      >
-        <div class="text-[16px] text-[var(--color-base)]">
-          {{ t("accessibilityDialog.option1") }}
-        </div>
+      <CdxToggleSwitch v-model="isBold" alignSwitch>
+        {{ t("accessibilityDialog.option1") }}
       </CdxToggleSwitch>
-      <CdxToggleSwitch
-        v-model="isAlternateFont"
-        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
-      >
-        <div class="text-[16px] text-[var(--color-base)]">
-          {{ t("accessibilityDialog.option2") }}
-        </div>
-        <div class="text-[16px] text-[var(--color-subtle)]">
+      <CdxToggleSwitch v-model="isAlternateFont" alignSwitch>
+        {{ t("accessibilityDialog.option2") }}
+        <template #description>
           {{ t("accessibilityDialog.option2Note") }}
-        </div>
+        </template>
       </CdxToggleSwitch>
     </div>
     <template #footer>

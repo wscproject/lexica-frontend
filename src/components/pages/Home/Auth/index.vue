@@ -1,6 +1,5 @@
 <script setup>
 // import "@wikimedia/codex/dist/codex.style.css";
-import "@wikimedia/codex/dist/codex.style-bidi.css";
 import displayLang from "@/locale/displayLang.json";
 
 import Logo from "@/assets/home_logo.svg";
@@ -9,6 +8,7 @@ import GuideDialog from "@/components/dialog/guide/index.vue";
 import ContributeLanguageDialog from "@/components/dialog/contributionLanguage/index.vue";
 import ActivityDialog from "@/components/dialog/activities/index.vue";
 import { GetProfile } from "@/api/Home";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay, cdxIconGlobe, cdxIconNext } from "@wikimedia/codex-icons";
@@ -42,6 +42,9 @@ const searchQuery = ref("");
 const searchLoading = ref(false);
 const activityList = ref([]);
 const dir = useTextDirection();
+
+//this one is for the render. useTextDirection for some reason does not update when there is changes
+const { dir: currDir } = useDirWatcher();
 
 const isActivity = ref(false);
 const selectedLang = ref({});
@@ -116,6 +119,14 @@ const fetchProfile = async (lang) => {
     dir.value = displayLang.lang.find(
       (item) => item.value === (response?.data?.displayLanguageCode || lang)
     )?.dir;
+
+    cookies.set(
+      "dir",
+      displayLang.lang.find(
+        (item) => item.value === (response?.data?.displayLanguageCode || lang)
+      )?.dir
+    );
+
     cookies.set("locale", response?.data?.displayLanguageCode || lang);
 
     if (response?.data?.displayTheme !== "default") {
@@ -252,7 +263,7 @@ const gotoSession = async () => {
           >
         </div>
       </div>
-      <CdxIcon :icon="cdxIconNext" />
+      <CdxIcon :dir="currDir" :icon="cdxIconNext" />
     </div>
   </div>
 
@@ -291,7 +302,7 @@ const gotoSession = async () => {
           >
         </div>
       </div>
-      <CdxIcon :icon="cdxIconNext" />
+      <CdxIcon :dir="currDir" :icon="cdxIconNext" />
     </div>
   </div>
 

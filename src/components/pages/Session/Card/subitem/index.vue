@@ -103,7 +103,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)]"
+          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)] rtl:pl-0 rtl:pr-[var(--spacing-50)]""
         >
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
           <p>
@@ -116,7 +116,7 @@ onUnmounted(() => {
         <p
           v-if="props?.headerData?.description"
           :key="2"
-          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)]"
+          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)] rtl:pl-0 rtl:pr-[var(--spacing-50)]""
           :style="{
             whiteSpace: 'wrap',
           }"
