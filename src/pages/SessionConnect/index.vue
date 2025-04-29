@@ -1211,12 +1211,17 @@ watch(
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
             <div
-              class="p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
+              class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
             >
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
-                class="flex gap-x-2 items-center cursor-pointer text-white skip"
+                :class="[
+                  'flex gap-x-2 items-center cursor-pointer text-white skip',
+                  isPreferredDark
+                    ? 'hover:dark:bg-[#27292d]'
+                    : 'hover:bg-[#EAECF0]',
+                ]"
                 @click="undoCard"
               >
                 <CdxIcon
@@ -1314,9 +1319,8 @@ watch(
 </template>
 
 <style>
-[dir] .cdx-button:enabled.cdx-button--weight-quiet:hover {
-  /* background-color: white !important; */
-  mix-blend-mode: unset !important;
+[dir] .skip-button .cdx-button:enabled.cdx-button--weight-quiet:hover {
+  mix-blend-mode: normal !important;
 }
 
 .session-container {
