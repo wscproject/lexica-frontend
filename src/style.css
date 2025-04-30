@@ -48,6 +48,22 @@
 }
 
 @font-face {
+  font-family: "NotoSansArabic";
+  src: url("@/assets/font/NotoSansArabic-VariableFont_wdth,wght.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSansHebrew";
+  src: url("@/assets/font/NotoSansHebrew-VariableFont_wdth,wght.ttf")
+    format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "InterBold";
   src: url("@/assets/font/Inter-Bold.ttf") format("truetype");
   font-weight: 100 600;
