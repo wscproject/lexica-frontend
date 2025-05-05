@@ -35,7 +35,7 @@
   font-family: "NotoSansSundanese";
   src: url("@/assets/font/NotoSansSundanese-VariableFont_wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
   font-style: normal;
 }
 
@@ -43,7 +43,7 @@
   font-family: "NotoSansBalinese";
   src: url("@/assets/font/NotoSansBalinese-VariableFont_wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
   font-style: normal;
 }
 
@@ -51,7 +51,7 @@
   font-family: "NotoSansArabic";
   src: url("@/assets/font/NotoSansArabic-VariableFont_wdth,wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
   font-style: normal;
 }
 
@@ -59,7 +59,7 @@
   font-family: "NotoSansHebrew";
   src: url("@/assets/font/NotoSansHebrew-VariableFont_wdth,wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
   font-style: normal;
 }
 
