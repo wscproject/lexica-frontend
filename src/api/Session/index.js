@@ -22,7 +22,7 @@ export const SearchEntity = async (params) => {
   const response = await api();
 
   return response.get(
-    `/entites?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
+    `/entities?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
   );
 };
 
@@ -30,7 +30,7 @@ export const GetRecommendations = async (params) => {
   const response = await api();
 
   return response.get(
-    `/entites/recommendations?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
+    `/entities/recommendations?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
   );
 };
 
@@ -61,7 +61,7 @@ export const GetLexemeDetail = async (lexemeId) => {
 
 export const GetEntityDetail = async (entityId) => {
   const response = await api();
-  return response.get(`/entites/${entityId}`);
+  return response.get(`/entities/${entityId}`);
 };
 
 export const UpdateConnectCardDetail = async ({ data, contributionId, id }) => {
