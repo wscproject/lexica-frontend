@@ -645,7 +645,7 @@ onMounted(async () => {
       } else {
         document
           .querySelector('meta[name="theme-color"]')
-          .setAttribute("content", "#EAECF0");
+          .setAttribute("content", "#27292D");
       }
     } else {
       if (isPreferredDark.value) {

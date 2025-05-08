@@ -61,7 +61,7 @@ const changeTheme = () => {
   vuex.dispatch("profile/changeTheme");
 };
 
-watch([() => route.path, isThemeDark], () => {
+watch([() => route.path, isThemeDark, isPreferredDark], () => {
   changeTheme();
 });
 
