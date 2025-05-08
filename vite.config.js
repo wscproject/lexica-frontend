@@ -20,7 +20,8 @@ export default defineConfig({
       manifest: {
         name: "Lexica",
         short_name: "Lexica",
-
+        background_color: "#101418",
+        theme_color: "#101418",
         description:
           "Lexica is a web-based tool optimized for mobile users, designed to facilitate microcontributions to lexicographical data on Wikidata. Currently, it allows you to quickly link Lexeme's Senses to Wikidata Items through a responsive card view interface, with more functionalities planned for the future.",
         display: "standalone",
