@@ -35,7 +35,7 @@
   font-family: "NotoSansSundanese";
   src: url("@/assets/font/NotoSansSundanese-VariableFont_wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
   font-style: normal;
 }
 
@@ -43,7 +43,23 @@
   font-family: "NotoSansBalinese";
   src: url("@/assets/font/NotoSansBalinese-VariableFont_wght.ttf")
     format("truetype");
-  font-weight: 700;
+  font-weight: 100 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSansArabic";
+  src: url("@/assets/font/NotoSansArabic-VariableFont_wdth,wght.ttf")
+    format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NotoSansHebrew";
+  src: url("@/assets/font/NotoSansHebrew-VariableFont_wdth,wght.ttf")
+    format("truetype");
+  font-weight: 100 700;
   font-style: normal;
 }
 
@@ -374,6 +390,8 @@ body {
   min-height: 100%;
   font-weight: 400;
   font-family: var(--font-family);
+  color: var(--color-base);
+
   /* font-style: oblique 10deg; */
 }
 
@@ -458,10 +476,6 @@ h1 {
   display: none;
 }
 
-.cdx-label__label__text {
-  color: var(--color-base);
-}
-
 .cdx-dialog__header__title {
   color: var(--color-base);
 }
@@ -477,39 +491,33 @@ h1 {
 } */
 
 .breakpoints {
-  padding-right: var(--spacing-125);
-  padding-left: var(--spacing-200);
+  @apply pr-[var(--spacing-125)] pl-[var(--spacing-200)] rtl:pr-[var(--spacing-200)] rtl:pl-[var(--spacing-125)];
 }
 
 @media (max-width: 1023px) and (min-width: 640px) {
   .breakpoints {
-    padding-right: var(--spacing-125);
-    padding-left: var(--spacing-200);
+    @apply pr-[var(--spacing-125)] pl-[var(--spacing-200)] rtl:pr-[var(--spacing-200)] rtl:pl-[var(--spacing-125)];
   }
 }
 
 @media (max-width: 639px) {
   .breakpoints {
-    padding-right: var(--spacing-25);
-    padding-left: var(--spacing-100);
+    @apply pr-[var(--spacing-25)] pl-[var(--spacing-100)] rtl:pr-[var(--spacing-100)] rtl:pl-[var(--spacing-25)];
   }
 }
 
 .breakpoints-2 {
-  padding-right: var(--spacing-200);
-  padding-left: var(--spacing-125);
+  @apply pr-[var(--spacing-200)] pl-[var(--spacing-125)] rtl:pr-[var(--spacing-125)] rtl:pl-[var(--spacing-200)];
 }
 
 @media (max-width: 1023px) and (min-width: 640px) {
   .breakpoints-2 {
-    padding-right: var(--spacing-200);
-    padding-left: var(--spacing-125);
+    @apply pr-[var(--spacing-200)] pl-[var(--spacing-125)] rtl:pr-[var(--spacing-125)] rtl:pl-[var(--spacing-200)];
   }
 }
 
 @media (max-width: 639px) {
   .breakpoints-2 {
-    padding-right: var(--spacing-100);
-    padding-left: var(--spacing-25);
+    @apply pr-[var(--spacing-100)] pl-[var(--spacing-25)] rtl:pr-[var(--spacing-25)] rtl:pl-[var(--spacing-100)];
   }
 }

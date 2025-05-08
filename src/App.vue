@@ -1,25 +1,46 @@
 <script setup>
-import { useMediaQuery } from "@vueuse/core";
+import { useMediaQuery, useTextDirection } from "@vueuse/core";
 import { onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
+import { computed } from "vue";
+import displayLang from "@/locale/displayLang.json";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const vuex = useStore();
 const route = useRoute();
 const { locale } = useI18n();
 const { cookies } = useCookies();
+const dir = useTextDirection();
 
-watch(isPreferredDark, () => {
+const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
+
+const changeTheme = () => {
   if (
     !localStorage.getItem("theme") ||
     localStorage.getItem("theme") === "auto"
   ) {
     if (isPreferredDark.value) {
-      console.log("testing123");
-
+      document.documentElement.className = "dark";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#27292D" : "#101418"
+        );
+    } else {
+      document.documentElement.className = "";
+      document
+        .querySelector('meta[name="theme-color"]')
+        .setAttribute(
+          "content",
+          route.path.includes("/session") ? "#EAECF0" : "#FFFFFF"
+        );
+    }
+  } else {
+    if (isThemeDark.value) {
       document.documentElement.className = "dark";
       document
         .querySelector('meta[name="theme-color"]')
@@ -38,41 +59,50 @@ watch(isPreferredDark, () => {
     }
   }
   vuex.dispatch("profile/changeTheme");
+};
+
+watch([() => route.path, isThemeDark, isPreferredDark], () => {
+  changeTheme();
 });
 
 onMounted(() => {
+  changeTheme();
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
-    window?.navigator?.language?.split("-")?.[0] === "id"
+    window?.navigator?.language?.split("-")?.[0] === "id" ||
+    window?.navigator?.language?.split("-")?.[0] === "ar"
       ? window?.navigator?.language?.split("-")?.[0]
       : "en";
 
   locale.value = cookies?.get("locale") || lang;
+  dir.value = displayLang.lang.find(
+    (item) => item.value === (cookies?.get("locale") || lang)
+  )?.dir;
 
-  console.log(localStorage.getItem("altFont"));
+  console.log(window?.navigator?.language);
 
   if (localStorage?.getItem("altFont") === "true") {
     if (localStorage?.getItem("bold") === "true") {
       document.documentElement.style.setProperty(
         "--font-family",
-        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   } else {
     if (localStorage?.getItem("bold") === "true") {
       document.documentElement.style.setProperty(
         "--font-family",
-        "InterBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   }

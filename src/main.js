@@ -28,7 +28,7 @@ import { cookies } from "@/helper/cookies";
 import { i18n } from "./plugins/i18n";
 import { CdxTooltip } from "@wikimedia/codex";
 
-import "@wikimedia/codex/dist/codex.style.css";
+import "@wikimedia/codex/dist/codex.style-bidi.css";
 import "@wikimedia/codex-design-tokens/theme-wikimedia-ui.css";
 
 if (localStorage?.getItem("theme")) {

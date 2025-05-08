@@ -12,6 +12,7 @@ import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 
 import { onBeforeRouteLeave, useRouter } from "vue-router";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
 import {
@@ -66,6 +67,7 @@ const vuex = useStore();
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const language = computed(() => vuex.getters["profile/language"]);
+const { dir } = useDirWatcher();
 
 const router = useRouter();
 
@@ -582,7 +584,7 @@ onMounted(async () => {
       } else {
         document
           .querySelector('meta[name="theme-color"]')
-          .setAttribute("content", "#EAECF0");
+          .setAttribute("content", "#27292D");
       }
     } else {
       if (isPreferredDark.value) {
@@ -751,12 +753,12 @@ watch([splash, flip, currMode, entities], async () => {
           :aria-label="t('aria.backToHome')"
           v-tooltip:bottom-start="t('tooltips.home')"
           weight="quiet"
-          class="w-[44px] h-[44px] px-0 absolute left-[3px]"
+          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]"
           @click="endEarly"
         >
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
-        <div class="absolute mx-auto left-0 right-0 w-fit top-[10px]">
+        <div class="absolute mx-auto left-0 right-0 w-fit">
           <CdxLabel
             v-if="data?.length !== 0 && !isLoading"
             class="text-[16px] pb-0"
@@ -1062,12 +1064,17 @@ watch([splash, flip, currMode, entities], async () => {
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
             <div
-              class="p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
+              class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
             >
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton
                 weight="quiet"
-                class="flex gap-x-2 items-center cursor-pointer text-white"
+                :class="[
+                  'flex gap-x-2 items-center cursor-pointer text-white skip',
+                  isPreferredDark
+                    ? 'hover:dark:bg-[#27292d]'
+                    : 'hover:bg-[#EAECF0]',
+                ]"
                 @click="undoCard"
               >
                 <CdxIcon
@@ -1113,6 +1120,7 @@ watch([splash, flip, currMode, entities], async () => {
         >
           <SkipIcon
             v-if="!isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -1121,6 +1129,7 @@ watch([splash, flip, currMode, entities], async () => {
           />
           <SkipDarkIcon
             v-if="isThemeDark"
+            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
             :color="
               undoWarn || submittingData || data?.length === 0 || currCount > 5
                 ? '#72777d'
@@ -1163,6 +1172,10 @@ watch([splash, flip, currMode, entities], async () => {
 </template>
 
 <style>
+[dir] .skip-button .cdx-button:enabled.cdx-button--weight-quiet:hover {
+  mix-blend-mode: normal !important;
+}
+
 .session-container {
   height: 100%;
   min-height: stretch;

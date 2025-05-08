@@ -44,24 +44,24 @@ const apply = async () => {
     if (isBold.value) {
       document.documentElement.style.setProperty(
         "--font-family",
-        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Atkinson, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   } else {
     if (isBold.value) {
       document.documentElement.style.setProperty(
         "--font-family",
-        "InterBold, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Inter, NotoSansSundanese, NotoSansBalinese, system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   }
@@ -102,24 +102,14 @@ const apply = async () => {
       <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle") }}
       </h4>
-      <CdxToggleSwitch
-        v-model="isBold"
-        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
-      >
-        <div class="text-[16px] text-[var(--color-base)]">
-          {{ t("accessibilityDialog.option1") }}
-        </div>
+      <CdxToggleSwitch v-model="isBold" alignSwitch>
+        {{ t("accessibilityDialog.option1") }}
       </CdxToggleSwitch>
-      <CdxToggleSwitch
-        v-model="isAlternateFont"
-        class="flex justify-between gap-x-[var(--spacing-100)] items-start"
-      >
-        <div class="text-[16px] text-[var(--color-base)]">
-          {{ t("accessibilityDialog.option2") }}
-        </div>
-        <div class="text-[16px] text-[var(--color-subtle)]">
+      <CdxToggleSwitch v-model="isAlternateFont" alignSwitch>
+        {{ t("accessibilityDialog.option2") }}
+        <template #description>
           {{ t("accessibilityDialog.option2Note") }}
-        </div>
+        </template>
       </CdxToggleSwitch>
     </div>
     <template #footer>

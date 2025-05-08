@@ -3,11 +3,13 @@
     {
       "label": "Bahasa Indonesia",
       "value": "id",
+      "dir": "ltr",
       "disabled": false
     },
     {
       "label": "English",
       "value": "en",
+      "dir": "ltr",
       "disabled": false
     }
   ]

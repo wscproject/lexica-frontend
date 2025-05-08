@@ -23,7 +23,7 @@ const router = useRouter();
         <CdxButton
           :aria-label="t('aria.back')"
           weight="quiet"
-          class="absolute left-[0px] p-[var(--spacing-75)]"
+          class="p-[var(--spacing-75)]"
           @click="router.back"
           v-tooltip:bottom-start="t('tooltips.back')"
         >
