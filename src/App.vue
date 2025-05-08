@@ -41,8 +41,6 @@ const changeTheme = () => {
     }
   } else {
     if (isThemeDark.value) {
-      console.log("dark");
-
       document.documentElement.className = "dark";
       document
         .querySelector('meta[name="theme-color"]')
@@ -64,7 +62,6 @@ const changeTheme = () => {
 };
 
 watch([() => route.path, isThemeDark], () => {
-  console.log("testing123", route.path);
   changeTheme();
 });
 
