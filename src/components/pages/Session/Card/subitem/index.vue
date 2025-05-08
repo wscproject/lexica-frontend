@@ -71,7 +71,7 @@ onUnmounted(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)]] text-white flex test justify-between gap-x-2 relative rounded-t-[14px]"
+      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)]] rtl:pl-[var(--spacing-100)] rtl:pr-[var(--spacing-50)] text-white flex test justify-between gap-x-2 relative rounded-t-[14px]"
       :style="{
         background: '#196551',
         alignItems: 'flex-start',
@@ -103,7 +103,7 @@ onUnmounted(() => {
         </div>
 
         <div
-          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)]"
+          class="flex items-center gap-x-2 pb-[var(--spacing-25)] pl-[var(--spacing-50)] rtl:pl-0 rtl:pr-[var(--spacing-50)]"
         >
           <CdxIcon :icon="cdxIconLogoWikidata" class="text-white" />
           <p>
@@ -116,7 +116,7 @@ onUnmounted(() => {
         <p
           v-if="props?.headerData?.description"
           :key="2"
-          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)]"
+          class="overflow-hidden text-ellipsis pl-[var(--spacing-50)] rtl:pl-0 rtl:pr-[var(--spacing-50)]"
           :style="{
             whiteSpace: 'wrap',
           }"

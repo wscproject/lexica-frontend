@@ -8,14 +8,25 @@ import {
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
-import { computed, nextTick, ref, toRaw, toRef, watch } from "vue";
+import {
+  computed,
+  nextTick,
+  onBeforeUnmount,
+  onMounted,
+  ref,
+  toRaw,
+  toRef,
+  watch,
+} from "vue";
 import debounce from "lodash.debounce";
 import { useI18n } from "vue-i18n";
 import noData from "@/assets/endofresult.svg";
 import noDataDark from "@/assets/endofresult-dark.svg";
 import { useStore } from "vuex";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 const vuex = useStore();
+const { dir } = useDirWatcher();
 
 const { t } = useI18n({ useScope: "global" });
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
@@ -121,6 +132,18 @@ watch(recs, async () => {
     // radioButtons2?.value
   }
 });
+
+const glossAlign = computed(() => {
+  if (dir.value === "rtl") {
+    if (props?.data?.language?.isRtl === "ltr") {
+      return "right";
+    } else {
+      return "right";
+    }
+  } else {
+    return "left";
+  }
+});
 </script>
 
 <template>
@@ -128,7 +151,7 @@ watch(recs, async () => {
     class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
   >
     <div
-      class="p-[16px] text-white flex test justify-between gap-x-1 header w-full"
+      class="p-[16px] text-white test flex header gap-x-2 w-full"
       :style="{
         background: '#3056A9',
         alignItems: 'center',
@@ -141,6 +164,8 @@ watch(recs, async () => {
       <div
         :style="{
           minWidth: '200px',
+          width: '100%',
+          position: 'relative',
         }"
       >
         <h4
@@ -152,9 +177,11 @@ watch(recs, async () => {
 
         <p
           v-if="props?.data?.gloss"
-          class="overflow-hidden text-ellipsis"
+          :dir="data?.language?.isRtl ? 'rtl' : 'ltr'"
+          :class="['overflow-hidden text-ellipsis']"
           :style="{
             whiteSpace: 'nowrap',
+            textAlign: glossAlign,
           }"
         >
           {{ props.data.gloss }}
@@ -225,10 +252,10 @@ watch(recs, async () => {
           !props.recommendedLoading
         "
       >
-        <p class="text-[16px] text-[#54595D]">
+        <p class="text-[16px] text-[var(--color-subtle)]">
           <i>{{ t("session.main.emptySuggestion1") }}</i>
         </p>
-        <p class="text-[16px] text-[#54595D]">
+        <p class="text-[16px] text-[var(--color-subtle)]">
           <i>{{ t("session.main.emptySuggestion2") }}</i>
         </p>
       </div>
@@ -453,10 +480,10 @@ watch(recs, async () => {
             props?.recommendation?.length === 0 && !props.searchLoading
           "
         >
-          <CdxLabel class="text-[16px] text-[#D73333]">{{
+          <CdxLabel class="text-[16px] text-[var(--color-error)]">{{
             t("session.main.emptySearch1")
           }}</CdxLabel>
-          <CdxLabel class="text-[16px] text-[#D73333]">{{
+          <CdxLabel class="text-[16px] text-[var(--color-error)]">{{
             t("session.main.emptySearch2")
           }}</CdxLabel>
         </div>
