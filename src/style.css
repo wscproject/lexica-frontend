@@ -255,7 +255,7 @@
   line-height: 1.5;
   font-weight: 400;
 
-  background-color: #ffffff;
+  background-color: var(--background-color-base);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
