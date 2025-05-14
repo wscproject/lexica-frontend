@@ -1,0 +1,353 @@
+{
+  "header": {
+    "menu": {
+      "login": "دخول",
+      "logout": "خروج",
+      "locale": "لغة العرض",
+      "theme": "سمة",
+      "auto": "أوتوماتيكي",
+      "autoDesc": "اتبع مظهر النظام أو المتصفح",
+      "light": "ضوء",
+      "dark": "داكن",
+      "language": "إنجليزي",
+      "accessibility": "إمكانية الوصول",
+      "loggingout": "تسجيل الخروج ...",
+      "logoutsuccess": "لقد قمت بتسجيل الخروج.",
+      "ok": "حسناً"
+    }
+  },
+
+  "footer": {
+    "label": "Lexica هي أداة مقدمة لكم من {wikidata}",
+    "about": "نبذة عن",
+    "privacy": "الخصوصية",
+    "license": "الترخيص"
+  },
+
+  "accessibilityDialog": {
+    "title": "إمكانية الوصول",
+    "apply": "قدم طلبك",
+    "close": "إغلاق",
+    "subtitle": "نص",
+    "option1": "نص غامق",
+    "option2": "استخدم خطاً بديلاً (Atkinson Hyperlegible Next)",
+    "option2Note": "ملاحظة: قد لا يتم عرض بعض الأحرف في هذا الخط."
+  },
+
+  "localeDialog": {
+    "title": "لغة العرض",
+    "cancel": "إلغاء",
+    "apply": "قدم طلبك"
+  },
+
+  "darkmodeDialog": {
+    "title": "سمة",
+    "auto": "أوتوماتيكي",
+    "desc": "اتبع سمة المتصفح الخاص بك",
+    "light": "ضوء",
+    "dark": "داكن",
+    "cancel": "إلغاء",
+    "apply": "قدم طلبك"
+  },
+
+  "contributionLangDialog": {
+    "title": "ساهم في المعجميات بـ",
+    "placeholder": "لغة البحث",
+    "cancel": "إلغاء",
+    "apply": "قدم طلبك",
+    "emptySearch1": "لم يتم العثور على أي لغات.",
+    "emptySearch2": "جرّب استخدام كلمات مفتاحية مختلفة."
+  },
+
+  "activityDialog": {
+    "title": "نوع المساهمة",
+    "connect": {
+      "title": "معجم إلى عنصر",
+      "description": "ربط معجم بعنصر بنفس المفهوم"
+    },
+    "script": {
+      "title": "متغيرات النص",
+      "description": "إضافة متغيرات البرنامج النصي للكلمة المعجمية"
+    },
+    "hyphenation": {
+      "title": "الوصل",
+      "description": "تقسيم المعجم إلى مقاطعها المقطعية"
+    },
+    "cancel": "إلغاء",
+    "apply": "قدم طلبك"
+  },
+
+  "home": {
+    "unauth": {
+      "title": "مرحباً!",
+      "title2": "أكمِل البيانات المعجمية على ويكي بيانات بسهولة",
+      "body1": "هي أداة مبتكرة صُممت لتمكينك من المساهمة بسلاسة في البيانات المعجمية على ويكيبيديا.",
+      "body2": "باستخدام Lexica، فإنك توافق على ",
+      "privacyPolicy": "سياسة خصوصية Lexica",
+      "login": "دخول",
+      "info": "Lexica ما زالت قيد التطوير. قد تتغير الميزات مع مرور الوقت."
+    },
+    "auth": {
+      "title": "مرحبًا",
+      "languageSelect": "ساهم في اللكاسيم في",
+      "start": "ابدأ المساهمة",
+      "tutorial": "اقرأ البرنامج التعليمي"
+    },
+    "loading": "جاري التحميل..."
+  },
+
+  "tutorial": {
+    "title": "Tutorial",
+    "of": "of",
+    "start": "Start contributing",
+    "one": {
+      "title": "What is Lexica?",
+      "content": "Lexica is a tool to find new ways to edit lexicographical data on Wikidata. Here, Lexica provides an editing view for lexicographical data on Wikidata to make quick contributions easier. You will be given Lexemes that need to be connected to Items on Wikidata."
+    },
+    "two": {
+      "title": "How to use",
+      "point1Title": "Homepage",
+      "point1Content": "end your contribution session and return to the Homepage.",
+      "point2Title": "Card number",
+      "point2Content": "displays the sequence of the cards currently shown.",
+      "point3Title": "Card gesture",
+      "point3Content": "swipe up on the card’s header to skip the current card.",
+      "point4Title": "Skip button",
+      "point4Content": "use this button as another way to skip a card.",
+      "point5Title": "End session",
+      "point5Content": "end your contribution session and return to the Homepage."
+    },
+    "three": {
+      "title": "Anatomy of a contribution card",
+      "point1Title": "Header",
+      "point1Content": "includes the Lemma, Lexeme ID, definition of the Lexeme, and button to view additional information about the Lexeme.",
+      "point2Title": "Card content",
+      "point2Content": "includes question, search box, and Item or search results.",
+      "point3Title": "Action buttons",
+      "point3Content": "select “Next” after choosing the correct Item or select “Item not found” if you do not find any."
+    },
+    "four": {
+      "title": "All done!",
+      "content1": "Happy contributing to lexicographical data on Wikidata with Lexica!",
+      "content2": "Tip: You can view this tutorial again from the Homepage."
+    }
+  },
+
+  "tooltips": {
+    "home": "العودة إلى الصفحة الرئيسية",
+    "account": "حساب",
+    "info": "عرض معلومات الليكسيم",
+    "item": "عرض معلومات العنصر",
+    "back": "ارجع"
+  },
+
+  "session": {
+    "loading": "جاري تحميل البطاقات...",
+
+    "error": {
+      "title": "حدث خطأ ما",
+      "description": "حاول إعادة تحميل هذه الصفحة.",
+      "button": "إعادة التحميل"
+    },
+
+    "noInternet": {
+      "title": "غير قادر على تحميل المساهمة",
+      "description": "تحقق من اتصالك بالإنترنت، ثم حاول مرة أخرى.",
+      "button": "حاول مرة أخرى"
+    },
+
+    "empty": {
+      "title": "لا توجد بطاقات يمكن ملؤها مرة أخرى في الوقت الحالي.",
+      "button": "العودة إلى الصفحة الرئيسية"
+    },
+
+    "title": "بطاقة",
+    "button1": "يتخطى",
+    "button2": "إنهاء الجلسة",
+
+    "main": {
+      "title": "أي عنصر أدناه يعبّر عن نفس المفهوم مثل معنى المعجمية أعلاه؟",
+      "search": "ابحث عن عنصر أو QID",
+      "recommendation": "توصيات",
+      "result": "نتائج البحث",
+      "button1": "العنصر غير موجود",
+      "button2": "التالي",
+      "emptySearch1": "لم يتم العثور على نتائج.",
+      "emptySearch2": "جرّب استخدام كلمات مفتاحية مختلفة.",
+      "emptySuggestion1": "لم يتم العثور على التوصية.",
+      "emptySuggestion2": "جرّب البحث عن العنصر يدويًا.",
+      "loadmore": "تحميل المزيد",
+      "loading": "جاري التحميل...",
+      "emptyLoad": "لقد وصلت إلى نهاية نتائج البحث"
+    },
+
+    "scriptWriting": {
+      "title1": "إعادة كتابة",
+      "title2": "بـ {lang}",
+      "button": "التالي",
+      "placeholder": "اكتب هنا"
+    },
+
+    "hyphenation": {
+      "button1": "تقسيم هنا",
+      "button2": "التالي"
+    },
+
+    "detail": {
+      "lexeme": "معجمية",
+      "loading": "جاري التحميل...",
+      "title1": "هذه المعجمية",
+      "title2": "هذا المعنى",
+      "subtitle1": "بيانات",
+      "subtitle2": "بلغات أخرى",
+      "title3": "معانٍ أخرى",
+      "senseCount": "المعاني {count}",
+      "usageExample": "مثال الاستخدام",
+      "hasCharacteristics": "له ميزة",
+      "combinesLexemes": "مركبة من",
+      "images": "الصورة",
+      "languageStyle": "النمط اللغوي",
+      "fieldOfUsage": "مجال الاستعمال العلمي",
+      "locationOfSenseUsage": "مكان استخدام المعنى",
+      "semanticGender": "الجنس الدلالي",
+      "synonym": "المرادف",
+      "antonym": "المعنى المناقض",
+      "glossQuotes": "اقتباس اللمعان",
+      "itemForThisSense": "عنصر لهذا المعنى",
+      "otherGlosses": "بلغات أخرى",
+      "allSense": "جميع المعاني",
+      "sense": "المعاني",
+      "grammaticalFeature": "الميزات النحوية"
+    },
+
+    "item": {
+      "wikidata": "ويكي بيانات الصفحة",
+      "statements": "بيانات",
+      "translations": "الترجمة",
+      "loading": "جاري التحميل...",
+      "images": "الصورة",
+      "instanceOf": "نموذج من",
+      "partOf": "جزء من",
+      "subclass": "صنف فرعي من",
+      "hasParts": "له جزء أو أجزاء",
+      "taxonName": "الاسم العلمي للأصنوفة",
+      "aliases": "يُعرف أيضًا باسم:"
+    },
+
+    "preview": {
+      "title": "معاينة",
+      "lexeme": "معجمية",
+      "newStatement": "بيان جديد: {statement}",
+      "statement": "عنصر لهذا المعنى",
+      "button1": "عدّل",
+      "button2": "تمّ",
+      "empty": "لن يتم إجراء أي تغييرات",
+      "reason": "السبب: لم يُعثر على العنصر"
+    },
+
+    "scriptPreview": {
+      "newStatement": "تمت إضافة المدخل: {lang} ({code})"
+    },
+
+    "hyphenationPreview": {
+      "newStatement": "بيان جديد: الواصلة (P5279) "
+    },
+
+    "upload": "جاري تحميل المساهمة...",
+    "recLoading": "جاري تحميل التوصية...",
+
+    "cardError": {
+      "title": "فشل التحميل",
+      "description": "تحقق من اتصالك بالإنترنت وحاول مرة أخرى.",
+      "button": "حاول مرة أخرى"
+    },
+
+    "done": {
+      "title": "شكراً لك على مساهمتك مع Lexica!",
+      "button": "العودة إلى الصفحة الرئيسية"
+    },
+
+    "skip": {
+      "title": "تم تخطي البطاقة.",
+      "button": "التراجع"
+    },
+
+    "warning": {
+      "title": "إنهاء جلسة المساهمة هذه؟",
+      "content": "لقد عملت على",
+      "subtext": "{card} حتى الآن",
+      "card": "بطاقة",
+      "button1": "استمر في التحرير",
+      "button2": "إنهاء الجلسة",
+      "loading": "الجلسة الختامية..."
+    },
+
+    "blank": {
+      "title": "لا توجد بطاقات يمكن ملؤها مرة أخرى في الوقت الحالي.",
+      "button": "العودة إلى الصفحة الرئيسية"
+    },
+
+    "emptyStatement": "لم يتم العثور على البيان",
+    "emptyDescriptionHead": "لم يتم العثور على التعريف في",
+    "emptyDescription": "لم يتم العثور على التعريف"
+  },
+
+  "about": {
+    "title": "نبذة عن",
+    "content1": "قد يكون تحرير البيانات المعجمية على ويكي بيانات عبر الأجهزة المحمولة أمرًا صعبًا على البعض. ولذلك، أُنشئت {lexica}. هدفنا واضح: تبسيط التحرير وجعله متاحًا للجميع في كل مكان.",
+    "content2": "{lexica} هي أداة مبتكرة صُممت لتمكينك من المساهمة بسلاسة في البيانات المعجمية على ويكيبيديا. وباعتبارها أداة قائمة على الويب ومُحسّنة للأجهزة المحمولة، تتيح لك {lexica} ربط حواس المعجم بالعناصر الموجودة على ويكيبيديا بسرعة من خلال واجهة بطاقة سهلة الاستخدام.",
+    "content3": "يُطوَّر {lexica} من قِبل مطوّرين برمجيات إندونيسيين بالتعاون مع Wikimedia Deutschland، وذلك ضمن إطار مشروع Wikidata Software Collaboration، وبدعم من منحة مقدّمة من Arcadia Philanthropic Fund.",
+    "content4": "نحن ملتزمون بالتطوير المستمر لـ {lexica} لتعزيز تجربة المستخدم. لمعرفة المزيد عن مشروعنا، يرجى زيارة {link}.",
+    "page": "هذه الصفحة"
+  },
+
+  "privacy": {
+    "header": "الخصوصية",
+    "title1": "سياسة الخصوصية",
+    "version": "Version",
+    "section1": "لا تزال Lexica في مراحلها الأولى من التطوير. سيتم تحديث سياسة الخصوصية باستمرار مع أي تغييرات تطرأ عليها. باستخدام Lexica، يُعتبر المستخدم موافقًا على سياسة الخصوصية هذه.",
+
+    "title2": "جمع معلومات البيانات الشخصية",
+    "section2": {
+      "point1": "لا تقوم Lexica بتخزين أي بيانات مرتبطة بالمستخدمين، مثل أسماء المستخدمين وكلمات المرور وعناوين IP وسجل التفاعل وإحصائيات الاستخدام، على سبيل المثال لا الحصر.",
+      "point2": "لا تحصل Lexica على تفويض لاتخاذ إجراءات نيابةً عن المستخدمين إلا عندما يقوم المستخدمون بتسجيل الدخول من خلال حساب مستخدم ويكيميديا الخاص بهم.",
+      "point3": "سيتم تخزين سجلات مساهمات المستخدمين على ويكي بيانات، والتي تخضع ل {privacy}",
+      "privacy": "سياسة الخصوصية الخاصة بـ Wikimedia Foundation"
+    },
+    "title3": "الترخيص",
+    "section3": "راجع صفحة {license}.",
+    "license": "الترخيص",
+    "title4": "تغييرات على سياسة الخصوصية",
+    "section4": {
+      "point1": "قد تقوم شركة Lexica بتغيير سياسة الخصوصية الخاصة بها في أي وقت.",
+      "point2": "قبل إجراء أي تغييرات على سياسة الخصوصية، ستقوم Lexica بتقديم إشعار مسبق بشأن التغييرات التي تطرأ على سياسة الخصوصية قبل تنفيذها بشكل دائم.",
+      "point3": "سيتم الإعلان عن إشعارات التغييرات التي تطرأ على سياسة الخصوصية من خلال Lexica.",
+      "point4": "هناك فترة زمنية يشار إليها باسم “فترة الانتظار”، والتي تغطي سبعة أيام بعد الإعلان عن تغيير سياسة الخصوصية وتنفيذ سياسة الخصوصية الجديدة.",
+      "point5": "توصي Lexica المستخدمين بالتحقق بانتظام من التغييرات التي تطرأ على سياسة الخصوصية التي يمكن العثور عليها في هذه الصفحة، وصفحة المستخدم على ويكيبيديا، وسياسة الخصوصية الخاصة بمؤسسة ويكيميديا.",
+      "point6": "من خلال الاستمرار في استخدام Lexica بعد تغييرات سياسة الخصوصية، فإن المستخدم يوافق على تغيير سياسة الخصوصية المنقحة."
+    }
+  },
+
+  "license": {
+    "title1": "الترخيص",
+    "section1": {
+      "content1": "يتم نشر {lexica} وجميع مكوناته بموجب رخصة {gnu} (GNU GPL-2.0). جميع البيانات المُضافة باستخدام هذه الأداة ستُخزَّن في ويكي بيانات بموجب رخصة {cc0} (CC0).",
+      "content2": "يتوفر الكود المصدر لـ Lexica في المستودعات التالية:"
+    },
+    "title2": "مكونات مفتوحة المصدر",
+    "section2": {
+      "content": "وفيما يلي مكونات المصدر المفتوح التي تستخدمها Lexica:",
+      "subtitle1": "مكتبات الواجهة الأمامية وأطر العمل",
+      "subtitle2": "المكتبات والأطر الخلفية",
+      "subtitle3": "الخطوط"
+    }
+  },
+  "aria": {
+    "account": "حساب",
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "showLexemeDetail": "إظهار تفاصيل الليكسيم",
+    "showItemDetail": "إظهار تفاصيل العنصر",
+    "back": "رجوع",
+    "close": "إغلاق"
+  }
+}
