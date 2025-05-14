@@ -179,7 +179,7 @@ onMounted(() => {
 }
 
 .next-card-rtl {
-  animation: swipeCardUpRTL 2s;
+  animation: swipeCardUpRTL 0.4s;
 }
 
 .prev-card {
@@ -189,7 +189,7 @@ onMounted(() => {
 
 .prev-card-rtl {
   transition: unset !important;
-  animation: swipeCardDownRTL 2s !important;
+  animation: swipeCardDownRTL 0.5s !important;
 }
 
 .submit-card {
