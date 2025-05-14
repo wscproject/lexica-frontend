@@ -24,6 +24,9 @@ const isAlternateFont = ref(
 );
 
 const isBold = ref(localStorage.getItem("bold") === "true" ? true : false);
+const isUnderline = ref(
+  localStorage.getItem("underline") === "true" ? true : false
+);
 
 const emit = defineEmits(["onPrimaryAction"]);
 
@@ -35,33 +38,47 @@ const apply = async () => {
   updateUserPreference({
     isAlternateFont: isAlternateFont.value,
     isBold: isBold.value,
+    isUnderline: isUnderline.value,
   });
 
   localStorage.setItem("altFont", isAlternateFont.value);
   localStorage.setItem("bold", isBold.value);
+  localStorage.setItem("underline", isUnderline.value);
+
+  const links = document.querySelectorAll("a");
+
+  if (isUnderline.value) {
+    links.forEach((link) => {
+      link.style.textDecoration = "underline";
+    });
+  } else {
+    links.forEach((link) => {
+      link.style.textDecoration = "none";
+    });
+  }
 
   if (isAlternateFont.value) {
     if (isBold.value) {
       document.documentElement.style.setProperty(
         "--font-family",
-        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   } else {
     if (isBold.value) {
       document.documentElement.style.setProperty(
         "--font-family",
-        "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     } else {
       document.documentElement.style.setProperty(
         "--font-family",
-        "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+        "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
       );
     }
   }
@@ -102,6 +119,9 @@ const apply = async () => {
       <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle") }}
       </h4>
+      <CdxToggleSwitch v-model="isUnderline" alignSwitch>
+        {{ t("accessibilityDialog.option3") }}
+      </CdxToggleSwitch>
       <CdxToggleSwitch v-model="isBold" alignSwitch>
         {{ t("accessibilityDialog.option1") }}
       </CdxToggleSwitch>

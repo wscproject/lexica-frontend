@@ -84,30 +84,42 @@ const fetchProfile = async (lang) => {
 
     localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
     localStorage.setItem("bold", response?.data?.isBold || false);
+    localStorage.setItem("underline", response?.data?.isUnderline || false);
+
+    const links = document.querySelectorAll("a");
+    if (response?.data?.isUnderline) {
+      links.forEach((link) => {
+        link.style.textDecoration = "underline";
+      });
+    } else {
+      links.forEach((link) => {
+        link.style.textDecoration = "none";
+      });
+    }
 
     if (!localStorage.getItem("altFont")) {
       if (response?.data?.isAlternateFont) {
         if (response?.data?.isBold) {
           document.documentElement.style.setProperty(
             "--font-family",
-            "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+            "AtkinsonBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
           );
         } else {
           document.documentElement.style.setProperty(
             "--font-family",
-            "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+            "Atkinson, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
           );
         }
       } else {
         if (response?.data?.isBold) {
           document.documentElement.style.setProperty(
             "--font-family",
-            "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+            "InterBold, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
           );
         } else {
           document.documentElement.style.setProperty(
             "--font-family",
-            "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew,  system-ui, Avenir, Helvetica, Arial, sans-serif"
+            "Inter, NotoSansSundanese, NotoSansBalinese, NotoSansArabic, NotoSansHebrew, NotoSansJP, NotoSansKR, NotoSansSC, NotoSansTC, NotoSansThai, system-ui, Avenir, Helvetica, Arial, sans-serif"
           );
         }
       }

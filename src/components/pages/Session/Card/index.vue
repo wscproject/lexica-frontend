@@ -178,13 +178,26 @@ onMounted(() => {
   animation: swipeCardUp 0.4s;
 }
 
+.next-card-rtl {
+  animation: swipeCardUpRTL 2s;
+}
+
 .prev-card {
   transition: unset !important;
   animation: swipeCardDown 0.5s !important;
 }
 
+.prev-card-rtl {
+  transition: unset !important;
+  animation: swipeCardDownRTL 2s !important;
+}
+
 .submit-card {
   animation: swipeCardRight 1.125s;
+}
+
+.submit-card-rtl {
+  animation: swipeCardLeft 1.125s;
 }
 
 @keyframes swipeCardUp {
@@ -222,6 +235,41 @@ onMounted(() => {
   }
 }
 
+@keyframes swipeCardUpRTL {
+  0% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-825px) rotate(-2deg);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeCardDownRTL {
+  0% {
+    transform: translateY(-825px) rotate(-2deg);
+    opacity: 0;
+  }
+  30% {
+    opacity: 0;
+  }
+
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
 @keyframes swipeCardRight {
   0% {
     transform: translateX(0) rotate(0);
@@ -235,6 +283,23 @@ onMounted(() => {
   }
   100% {
     transform: translateX(2000px) rotate(2deg);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeCardLeft {
+  0% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-2000px) rotate(-2deg);
     opacity: 0;
   }
 }

@@ -64,6 +64,38 @@
 }
 
 @font-face {
+  font-family: "NotoSansJP";
+  src: url("@/assets/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NotoSansKR";
+  src: url("@/assets/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NotoSansSC";
+  src: url("@/assets/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NotoSansTC";
+  src: url("@/assets/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NotoSansThai";
+  src: url("@/assets/font/NotoSansThai-VariableFont_wdth,wght.ttf")
+    format("truetype");
+  font-weight: 100 700;
+  font-style: normal;
+}
+
+@font-face {
   font-family: "InterBold";
   src: url("@/assets/font/Inter-Bold.ttf") format("truetype");
   font-weight: 100 600;
