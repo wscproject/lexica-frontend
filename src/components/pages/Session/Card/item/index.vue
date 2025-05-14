@@ -219,6 +219,7 @@ const glossAlign = computed(() => {
       >
       <div class="relative">
         <CdxSearchInput
+          :dir="dir"
           aria-label="SearchInput default demo"
           :placeholder="t('session.main.search')"
           class="pb-[16px] relative interactable"
