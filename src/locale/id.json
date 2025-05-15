@@ -319,7 +319,7 @@
   "license": {
     "title1": "Lisensi",
     "section1": {
-      "content1": "{lexica} adan seluruh komponennya dipublikasikan dengan lisensi {gnu} (GNU GPL-2.0). Semua data yang ditambahkan dengan peralatan ini akan disimpan di Wikidata dengan lisensi {cc0} (CC0).",
+      "content1": "{lexica} dan seluruh komponennya dipublikasikan dengan lisensi {gnu} (GNU GPL-2.0). Semua data yang ditambahkan dengan peralatan ini akan disimpan di Wikidata dengan lisensi {cc0} (CC0).",
       "content2": "Kode sumber Lexica dapat diakses pada repositori berikut:"
     },
     "title2": "Komponen sumber terbuka",
