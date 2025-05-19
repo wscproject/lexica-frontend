@@ -95,10 +95,10 @@ defineExpose({ openModal });
 
 <style>
 [dir] .cdx-dialog--dividers .cdx-dialog__header {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 [dir] .cdx-dialog--dividers .cdx-dialog__footer {
-  border-top: none;
+  border-top: none !important;
 }
 </style>
