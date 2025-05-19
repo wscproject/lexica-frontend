@@ -11,12 +11,6 @@
       "value": "en",
       "dir": "ltr",
       "disabled": false
-    },
-    {
-      "label": "Arab",
-      "value": "ar",
-      "dir": "rtl",
-      "disabled": false
     }
   ]
 }
