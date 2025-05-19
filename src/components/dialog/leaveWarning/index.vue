@@ -57,7 +57,7 @@ defineExpose({ openModal });
 <template>
   <CdxDialog
     v-model:open="open"
-    class="mx-[16px] w-full max-w-[512px]"
+    class="mx-[16px] w-full max-w-[512px] leave-warning-dialog"
     :title="t('session.warning.title')"
     @update:open="handleUserInput(false)"
     close-button-label="Close"
@@ -92,3 +92,13 @@ defineExpose({ openModal });
     </template>
   </CdxDialog>
 </template>
+
+<style>
+[dir] .cdx-dialog--dividers .cdx-dialog__header {
+  border-bottom: none !important;
+}
+
+[dir] .cdx-dialog--dividers .cdx-dialog__footer {
+  border-top: none !important;
+}
+</style>

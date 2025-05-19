@@ -29,7 +29,8 @@
     "subtitle": "Teks",
     "option1": "Tebalkan teks",
     "option2": "Gunakan fon alternatif (Atkinson Hyperlegible Next)",
-    "option2Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini."
+    "option2Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini.",
+    "option3": "Garis bawahi pranala"
   },
 
   "localeDialog": {

@@ -15,9 +15,11 @@ import Divide from "@/assets/divide.svg";
 import DivideDark from "@/assets/divide_dark.svg";
 import { useStore } from "vuex";
 import { useI18n } from "vue-i18n";
+import { useDirWatcher } from "@/helper/useDirWatcher";
 
 const vuex = useStore();
 const { t } = useI18n({ useScope: "global" });
+const { dir } = useDirWatcher();
 
 const emit = defineEmits(["gotoDetail", "gotoReview"]);
 
@@ -177,7 +179,13 @@ onMounted(async () => {
     >
       <div class="flex items-center justify-between">
         <div>
-          <div class="flex gap-x-[var(--spacing-25)] relative">
+          <div
+            class="flex gap-x-[var(--spacing-25)] relative"
+            dir="ltr"
+            :style="{
+              justifyContent: dir === 'rtl' ? 'flex-end' : 'flex-start',
+            }"
+          >
             <div
               v-for="item in editedWord.split(',')"
               class="bg-white p-[var(--spacing-25)] w-fit rounded-[8px]"
@@ -226,7 +234,7 @@ onMounted(async () => {
     >
       <div class="triangle" />
 
-      <div class="w-full max-w-[450px] relative">
+      <div class="w-full max-w-[450px] relative" dir="ltr">
         <div
           :class="['flex x mandatory-scroll-snapping h-[108px] interactable']"
           id="content"
@@ -273,6 +281,7 @@ onMounted(async () => {
       ></div>
     </div>
     <div
+      dir="ltr"
       class="hyphenation-footer relative p-[var(--spacing-100)] border-y border-y-[var(--border-color-base)] bg-[var(--background-color-neutral)] flex gap-x-[var(--spacing-75)]"
     >
       <CdxButton
@@ -281,10 +290,11 @@ onMounted(async () => {
         :disabled="currentIndex === 1"
         class="interactable"
       >
-        <CdxIcon :icon="cdxIconPrevious" />
+        <CdxIcon :icon="cdxIconPrevious" dir="ltr" />
       </CdxButton>
 
       <CdxButton
+        :dir="dir"
         class="flex gap-x-[var(--spacing-25)] w-full interactable"
         @click="
           selectedIndexes.find((item) => item === currentIndex)

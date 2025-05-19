@@ -743,6 +743,54 @@ watch([splash, flip, currMode, entities], async () => {
     }
   }
 });
+
+const submitCardAnim = (condition) => {
+  if (condition) {
+    if (dir.value === "rtl") {
+      return "submit-card-rtl";
+    } else {
+      return "submit-card";
+    }
+  } else {
+    return "";
+  }
+};
+
+const skipAllAnim = () => {
+  if (skipAll.value) {
+    if (dir.value === "rtl") {
+      return "skipall-rtl";
+    } else {
+      return "skipall";
+    }
+  } else {
+    return "";
+  }
+};
+
+const skipCardAnim = (condition) => {
+  if (condition) {
+    if (dir.value === "rtl") {
+      return "next-card-rtl";
+    } else {
+      return "next-card";
+    }
+  } else {
+    return "";
+  }
+};
+
+const undoCardAnim = (condition) => {
+  if (condition) {
+    if (dir.value === "rtl") {
+      return "prev-card-rtl";
+    } else {
+      return "prev-card";
+    }
+  } else {
+    return "";
+  }
+};
 </script>
 
 <template>
@@ -885,7 +933,7 @@ watch([splash, flip, currMode, entities], async () => {
         backgroundPosition: 'center',
       }"
     >
-      <div :class="[skipAll && 'skipall', 'px-[16px] w-full']">
+      <div :class="[skipAllAnim(), 'px-[16px] w-full']">
         <div
           class="flex justify-center w-full relative custom-height items-center z-[2]"
           :style="{
@@ -924,9 +972,9 @@ watch([splash, flip, currMode, entities], async () => {
             :preventSwipe="undoWarn"
             :class="[
               data?.length === index + 1 && flip ? 'is-flipped' : '',
-              data?.length === index + 1 && next ? 'next-card' : '',
-              data?.length === index + 1 && prev ? 'prev-card' : '',
-              data?.length === index + 1 && submit ? 'submit-card' : '',
+              skipCardAnim(data?.length === index + 1 && next),
+              undoCardAnim(data?.length === index + 1 && prev),
+              submitCardAnim(data?.length === index + 1 && submit),
               `card-${totalCount - index}`,
             ]"
           >
@@ -1277,6 +1325,11 @@ watch([splash, flip, currMode, entities], async () => {
   transform: translateX(2000px);
 }
 
+.skipall-rtl {
+  animation: swipeCardLeft 1.125s;
+  transform: translateX(-2000px);
+}
+
 @keyframes swipeCardRight {
   0% {
     transform: translateX(0);
@@ -1290,6 +1343,23 @@ watch([splash, flip, currMode, entities], async () => {
   }
   100% {
     transform: translateX(2000px);
+    opacity: 0;
+  }
+}
+
+@keyframes swipeCardLeft {
+  0% {
+    transform: translateX(0) rotate(0);
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-2000px);
     opacity: 0;
   }
 }
