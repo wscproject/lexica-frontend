@@ -65,7 +65,9 @@ import { useHtmlHasClass } from "../../helper/hasClass";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const isReduceMotion = usePreferredReducedMotion();
-const hasClass = useHtmlHasClass("reduced-motion");
+const { hasClass } = useHtmlHasClass("reduced-motion");
+
+const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
 const { t } = useI18n({ useScope: "global" });
 const vuex = useStore();
@@ -143,14 +145,14 @@ const slideRightWithSuccess = () => {
     submit.value = true;
     noLoad.value = false;
     // isSuccess.value = false;
-    if (isReduceMotion.value !== "reduce" || !hasClass) {
+    if (!isPreferredMotion.value) {
       setTimeout(() => {
         isSuccess.value = false;
       }, 50);
     }
 
     setTimeout(async () => {
-      if (isReduceMotion.value === "reduce" || hasClass) {
+      if (isPreferredMotion.value) {
         isSuccess.value = false;
       }
 
@@ -439,12 +441,12 @@ const test1 = async (id, contributionId, headerData) => {
   detailHeaderData.value = headerData;
   hideBack.value = false;
   flip.value = true;
-  if (isReduceMotion.value !== "reduce" || !hasClass) {
+  if (!isPreferredMotion.value) {
     zIndex.value = "";
   }
 
   setTimeout(() => {
-    if (isReduceMotion.value === "reduce" || hasClass) {
+    if (isPreferredMotion.value) {
       zIndex.value = "";
     }
 
@@ -457,7 +459,7 @@ const test1 = async (id, contributionId, headerData) => {
   await getDetail({ contributionId, id });
 };
 const test2 = async (id, data) => {
-  if (isReduceMotion.value !== "reduce" || !hasClass) {
+  if (!sPreferredMotion.value) {
     zIndex.value = "";
   }
   subItemHeaderData.value = data;
@@ -466,7 +468,7 @@ const test2 = async (id, data) => {
   flip.value = true;
   hideBack.value = false;
   setTimeout(() => {
-    if (isReduceMotion.value === "reduce" || hasClass) {
+    if (isPreferredMotion.value) {
       zIndex.value = "";
     }
     const div = document.querySelector(`.card-${currCount.value}`);
@@ -478,7 +480,7 @@ const test2 = async (id, data) => {
   await getEntityDetail(id);
 };
 const test3 = async (data) => {
-  if (isReduceMotion.value !== "reduce" || !hasClass) {
+  if (!isPreferredMotion.value) {
     zIndex.value = "";
   }
   currMode.value = 3;
@@ -487,7 +489,7 @@ const test3 = async (data) => {
   hideBack.value = false;
 
   setTimeout(() => {
-    if (isReduceMotion.value === "reduce" || hasClass) {
+    if (isPreferredMotion.value) {
       zIndex.value = "";
     }
     const div = document.querySelector(`.card-${currCount.value}`);
@@ -687,12 +689,16 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        document.documentElement.className = "dark";
+        document.documentElement.classList.add("dark");
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#27292D");
       } else {
-        document.documentElement.className = "";
+        if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("light");
+        } else if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("dark");
+        }
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#EAECF0");
@@ -700,12 +706,16 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#27292D");
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("dark");
+      }
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#EAECF0");
@@ -914,7 +924,7 @@ watch(
 
 const submitCardAnim = (condition) => {
   if (condition) {
-    if (isReduceMotion.value !== "reduce" || !hasClass) {
+    if (!isPreferredMotion.value) {
       if (dir.value === "rtl") {
         return "submit-card-rtl";
       } else {
@@ -938,7 +948,7 @@ const submitCardAnim = (condition) => {
 
 const skipAllAnim = () => {
   if (skipAll.value) {
-    if (isReduceMotion.value !== "reduce" || !hasClass) {
+    if (!isPreferredMotion.value) {
       if (dir.value === "rtl") {
         return "skipall-rtl";
       } else {
@@ -956,7 +966,7 @@ const skipCardAnim = (condition) => {
   console.log("yes");
 
   if (condition) {
-    if (isReduceMotion.value !== "reduce" || !hasClass) {
+    if (!isPreferredMotion.value) {
       if (dir.value === "rtl") {
         return "next-card-rtl";
       } else {
@@ -980,7 +990,7 @@ const skipCardAnim = (condition) => {
 
 const undoCardAnim = (condition) => {
   if (condition) {
-    if (isReduceMotion.value) {
+    if (isPreferredMotion.value) {
       return "card-fade-in";
     } else {
       if (dir.value === "rtl") {
@@ -1230,7 +1240,7 @@ const animClass = (index) => {
               :class="[
                 zIndex,
                 'front absolute top-0 h-full w-full',
-                isReduceMotion === 'reduce' && flip ? 'card-fade' : '',
+                isPreferredMotion && flip ? 'card-fade' : '',
               ]"
             >
               <CardItem
@@ -1262,7 +1272,7 @@ const animClass = (index) => {
             <div
               :class="[
                 'back absolute top-0 left-0 h-full w-full rounded-[16px]',
-                isReduceMotion === 'reduce' && !flip ? 'card-fade' : '',
+                isPreferredMotion && !flip ? 'card-fade' : '',
               ]"
             >
               <CardItemDetail
@@ -1340,7 +1350,7 @@ const animClass = (index) => {
           >
             <v-progress-linear
               v-model="progress.number"
-              v-if="isReduceMotion !== 'reduce'"
+              v-if="!isPreferredMotion"
               color="#3366CC"
               class="absolute rounded-t-[2px]"
             ></v-progress-linear>
@@ -1602,44 +1612,6 @@ const animClass = (index) => {
 
 .session .cdx-dialog__footer {
   padding: 24px 16px !important;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-      // display: none;
-    }
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-      // display: none;
-    }
-  }
-
-  .back {
-    transform: none !important;
-  }
-
-  .card-fade {
-    animation: fadeOut 250ms ease-out forwards !important;
-  }
-
-  .card-fade-in {
-    animation: fadeIn 250ms ease-out forwards !important;
-  }
-
-  .is-flipped {
-    transform: none !important;
-  }
 }
 
 html.reduced-motion {

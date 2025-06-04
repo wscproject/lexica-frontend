@@ -22,7 +22,7 @@ const dir = useTextDirection();
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const isReducedMotion = usePreferredReducedMotion();
-const hasClass = useHtmlHasClass("reduced-motion");
+const { hasClass } = useHtmlHasClass("reduced-motion");
 
 const loadTheme = (href, name) => {
   const link = document.createElement("link");
@@ -38,7 +38,9 @@ const changeTheme = () => {
     localStorage.getItem("theme") === "auto"
   ) {
     if (isPreferredDark.value) {
-      document.documentElement.className = "dark";
+      console.log("Dark mode is preferred by the user");
+
+      document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
@@ -46,7 +48,11 @@ const changeTheme = () => {
           route.path.includes("/session") ? "#27292D" : "#101418"
         );
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("dark")) {
+        document.documentElement.classList.remove("dark");
+      }
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
@@ -56,7 +62,7 @@ const changeTheme = () => {
     }
   } else {
     if (isThemeDark.value) {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
@@ -64,7 +70,11 @@ const changeTheme = () => {
           route.path.includes("/session") ? "#27292D" : "#101418"
         );
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("dark");
+      }
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute(
@@ -82,6 +92,7 @@ watch([() => route.path, isThemeDark, isPreferredDark], () => {
 
 onMounted(() => {
   changeTheme();
+
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
     window?.navigator?.language?.split("-")?.[0] === "id" ||
@@ -94,9 +105,9 @@ onMounted(() => {
     (item) => item.value === (cookies?.get("locale") || lang)
   )?.dir;
 
-  if (isReducedMotion.value === "reduce" || hasClass) {
+  if (isReducedMotion.value === "reduce") {
     if (localStorage?.getItem("reduceMotion") === "true") {
-      loadTheme("./reduce-motion.css");
+      loadTheme("src/reduce-motion.css");
     }
   } else {
     if (localStorage?.getItem("reduceMotion") === "true") {

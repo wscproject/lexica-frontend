@@ -42,7 +42,11 @@ const close = () => {
 };
 
 const light = () => {
-  document.documentElement.className = "light";
+  if (document.documentElement.classList.contains("dark")) {
+    document.documentElement.classList.replace("dark", "light");
+  } else {
+    document.documentElement.classList.add("light");
+  }
   localStorage.setItem("theme", "light");
   document
     .querySelector('meta[name="theme-color"]')
@@ -52,7 +56,11 @@ const light = () => {
 };
 
 const dark = () => {
-  document.documentElement.className = "dark";
+  if (document.documentElement.classList.contains("light")) {
+    document.documentElement.classList.replace("light", "dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
   localStorage.setItem("theme", "dark");
   document
     .querySelector('meta[name="theme-color"]')
@@ -63,12 +71,20 @@ const dark = () => {
 
 const auto = () => {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.documentElement.className = "dark";
+    if (document.documentElement.classList.contains("light")) {
+      document.documentElement.classList.replace("light", "dark");
+    } else {
+      document.documentElement.classList.add("dark");
+    }
     document
       .querySelector('meta[name="theme-color"]')
       .setAttribute("content", "#101418");
   } else {
-    document.documentElement.className = "";
+    if (document.documentElement.classList.contains("light")) {
+      document.documentElement.classList.remove("light");
+    } else if (document.documentElement.classList.contains("light")) {
+      document.documentElement.classList.remove("dark");
+    }
     document
       .querySelector('meta[name="theme-color"]')
       .setAttribute("content", "#FFFFFF");

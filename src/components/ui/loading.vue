@@ -2,7 +2,7 @@
 import { usePreferredReducedMotion } from "@vueuse/core";
 import { CdxProgressIndicator } from "@wikimedia/codex";
 import LoadingReduce from "@/components/icons/loading-reduce/index.vue";
-import { useHtmlHasClass } from "../../helper/hasClass";
+import { ref } from "vue";
 
 const props = defineProps({
   variant: {
@@ -14,13 +14,14 @@ const props = defineProps({
   },
 });
 
+const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
+
 const isReducedMotion = usePreferredReducedMotion();
-const hasClass = useHtmlHasClass("reduced-motion");
 </script>
 
 <template>
   <div
-    v-if="isReducedMotion !== 'reduce' || !hasClass"
+    v-if="!isPreferredMotion"
     :class="[
       'flex',
       props.variant === 'default'

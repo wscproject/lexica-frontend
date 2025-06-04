@@ -34,22 +34,30 @@ import "@wikimedia/codex-design-tokens/theme-wikimedia-ui.css";
 if (localStorage?.getItem("theme")) {
   if (localStorage?.getItem("theme") !== "auto") {
     if (localStorage.getItem("theme") === "dark") {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
     } else if (localStorage.getItem("theme") === "light") {
-      document.documentElement.className = "light";
+      document.documentElement.classList.add("light");
     }
   } else {
     if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("dark");
+      }
     }
   }
 } else {
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    document.documentElement.className = "dark";
+    document.documentElement.classList.add("dark");
   } else {
-    document.documentElement.className = "";
+    if (document.documentElement.classList.contains("light")) {
+      document.documentElement.classList.remove("light");
+    } else if (document.documentElement.classList.contains("light")) {
+      document.documentElement.classList.remove("dark");
+    }
   }
 }
 

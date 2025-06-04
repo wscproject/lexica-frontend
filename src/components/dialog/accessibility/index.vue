@@ -10,7 +10,6 @@ import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { updateUserPreference } from "@/api/Home";
-import { useHtmlHasClass } from "@/helper/hasClass";
 import { usePreferredReducedMotion } from "@vueuse/core";
 
 const props = defineProps({
@@ -20,7 +19,6 @@ const props = defineProps({
   },
 });
 const { t, locale } = useI18n({ useScope: "global" });
-const hasClass = useHtmlHasClass("reduced-motion");
 
 const isAlternateFont = ref(
   localStorage.getItem("altFont") === "true" ? true : false
@@ -70,13 +68,15 @@ const apply = async () => {
   localStorage.setItem("reduceMotion", isReducedMotion.value);
 
   if (isReducedMotion.value) {
-    if (isReducedMotion.value === "reduce") {
-      loadTheme("./reduce-motion.css", "reduced-motion");
+    if (isSystemPreferReduce.value === "reduce") {
+      console.log("setset");
+
+      loadTheme("src/reduce-motion.css", "reduced-motion");
     } else {
       document.documentElement.classList.add("reduced-motion");
     }
   } else {
-    if (isReducedMotion.value === "reduce") {
+    if (isSystemPreferReduce.value === "reduce") {
       removeTheme("reduced-motion");
     } else {
       document.documentElement.classList.remove("reduced-motion");
