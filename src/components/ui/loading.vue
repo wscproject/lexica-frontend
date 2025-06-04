@@ -1,7 +1,7 @@
 <script setup>
 import { usePreferredReducedMotion } from "@vueuse/core";
 import { CdxProgressIndicator } from "@wikimedia/codex";
-import LoadingReduce from "@/assets/loading-reduce.svg";
+import LoadingReduce from "@/components/icons/loading-reduce/index.vue";
 import { useHtmlHasClass } from "../../helper/hasClass";
 
 const props = defineProps({
@@ -40,8 +40,9 @@ const hasClass = useHtmlHasClass("reduced-motion");
   </div>
 
   <div
-    v-else:class="[
-      'flex',
+    v-else
+    :class="[
+      'flex items-center',
       props.variant === 'default'
         ? ' gap-x-[var(--spacing-50)]'
         : 'gap-y-[var(--spacing-50)] flex-col-reverse',

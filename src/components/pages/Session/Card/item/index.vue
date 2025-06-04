@@ -237,9 +237,7 @@ const glossAlign = computed(() => {
       </div>
 
       <div v-if="props.recommendedLoading" class="h-full">
-        <div
-          class="w-full max-w-[896px] h-full flex flex-col justify-center items-center"
-        >
+        <div class="w-full h-full flex flex-col justify-center items-center">
           <Loading :text="t('session.recLoading')" variant="default" />
         </div>
       </div>

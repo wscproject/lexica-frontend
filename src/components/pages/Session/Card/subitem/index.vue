@@ -133,9 +133,7 @@ onUnmounted(() => {
       class="p-[16px] overflow-auto bg-white dark:bg-[#101418] h-full rounded-b-[16px]"
     >
       <div v-if="props.isLoading" class="h-full flex flex-col">
-        <div
-          class="w-full max-w-[896px] h-full flex flex-col justify-center items-center"
-        >
+        <div class="w-full h-full flex flex-col justify-center items-center">
           <Loading :text="t('session.item.loading')" variant="default" />
         </div>
       </div>
