@@ -193,11 +193,11 @@ onMounted(() => {
 }
 
 .submit-card {
-  animation: swipeCardRight 1.125s;
+  animation: swipeCardRight 1125ms;
 }
 
 .submit-card-rtl {
-  animation: swipeCardLeft 1.125s;
+  animation: swipeCardLeft 1125ms;
 }
 
 @keyframes swipeCardUp {
