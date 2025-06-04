@@ -1,0 +1,35 @@
+@media (prefers-reduced-motion: reduce) {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .back {
+    transform: none !important;
+  }
+
+  .card-fade {
+    animation: fadeOut 250ms ease-out forwards !important;
+  }
+
+  .card-fade-in {
+    animation: fadeIn 250ms ease-out forwards !important;
+  }
+
+  .is-flipped {
+    transform: none !important;
+  }
+}

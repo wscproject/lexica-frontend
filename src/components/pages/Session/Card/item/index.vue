@@ -24,6 +24,7 @@ import noData from "@/assets/endofresult.svg";
 import noDataDark from "@/assets/endofresult-dark.svg";
 import { useStore } from "vuex";
 import { useDirWatcher } from "@/helper/useDirWatcher";
+import Loading from "@/components/ui/loading.vue";
 
 const vuex = useStore();
 const { dir } = useDirWatcher();
@@ -207,7 +208,7 @@ const glossAlign = computed(() => {
     </div>
     <div
       :class="[
-        'px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418] ',
+        'px-[16px] overflow-auto bg-white h-full pt-[12px] pb-[12px] dark:bg-[#101418] flex flex-col',
         props.isCurrent ? '' : 'hidden',
         // isScrollBar && 'interactable',
       ]"
@@ -235,13 +236,11 @@ const glossAlign = computed(() => {
         </div>
       </div>
 
-      <div v-if="props.recommendedLoading">
-        <div class="w-full max-w-[896px]">
-          <span
-            class="mb-[8px] text-[#54595D] text-[16px] dark:text-[#A2A9B1]"
-            >{{ t("session.recLoading") }}</span
-          >
-          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
+      <div v-if="props.recommendedLoading" class="h-full">
+        <div
+          class="w-full max-w-[896px] h-full flex flex-col justify-center items-center"
+        >
+          <Loading :text="t('session.recLoading')" variant="default" />
         </div>
       </div>
 

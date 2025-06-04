@@ -26,11 +26,15 @@
     "title": "Aksesibilitas",
     "apply": "Terapkan",
     "close": "Tutup",
-    "subtitle": "Teks",
+    "subtitle1": "Teks",
+    "subtitle2": "Animasi",
+
     "option1": "Tebalkan teks",
     "option2": "Gunakan fon alternatif (Atkinson Hyperlegible Next)",
     "option2Note": "Catatan: Beberapa karakter mungkin tidak dapat ditampilkan dalam fon ini.",
-    "option3": "Garis bawahi pranala"
+    "option3": "Garis bawahi pranala",
+    "option4": "Mengurangi animasi",
+    "option4Note": "Minimalkan animasi dan transisi"
   },
 
   "localeDialog": {
@@ -187,7 +191,7 @@
 
     "detail": {
       "lexeme": "leksem",
-      "loading": "Memuat...",
+      "loading": "Mendapatkan info Leksem",
       "title1": "Leksem ini",
       "title2": "Makna ini",
       "subtitle1": "Pernyataan",
@@ -216,7 +220,7 @@
       "wikidata": "Butir Wikidata",
       "statements": "Pernyataan",
       "translations": "Terjemahan",
-      "loading": "Memuat...",
+      "loading": "Mendapatkan info Butir",
       "images": "gambar",
       "instanceOf": "adalah",
       "partOf": "bagian dari",
@@ -246,7 +250,7 @@
     },
 
     "upload": "Mengunggah kontribusi...",
-    "recLoading": "Memuat rekomendasi...",
+    "recLoading": "Mendapatkan rekomendasi",
 
     "cardError": {
       "title": "Tidak dapat mengunggah kontribusi",

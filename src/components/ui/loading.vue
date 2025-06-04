@@ -2,11 +2,11 @@
 import { usePreferredReducedMotion } from "@vueuse/core";
 import { CdxProgressIndicator } from "@wikimedia/codex";
 import LoadingReduce from "@/assets/loading-reduce.svg";
+import { useHtmlHasClass } from "../../helper/hasClass";
 
 const props = defineProps({
   variant: {
     type: String,
-    default: "default",
   },
   text: {
     type: String,
@@ -15,11 +15,12 @@ const props = defineProps({
 });
 
 const isReducedMotion = usePreferredReducedMotion();
+const hasClass = useHtmlHasClass("reduced-motion");
 </script>
 
 <template>
   <div
-    v-if="!isReducedMotion"
+    v-if="isReducedMotion !== 'reduce' || !hasClass"
     :class="[
       'flex',
       props.variant === 'default'

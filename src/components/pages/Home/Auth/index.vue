@@ -27,13 +27,16 @@ import { useCookies } from "vue3-cookies";
 import { useStore } from "vuex";
 
 import { EndContribution } from "@/api/Session";
-import { useTextDirection } from "@vueuse/core";
+import { usePreferredReducedMotion, useTextDirection } from "@vueuse/core";
+import { useHtmlHasClass } from "@/helper/hasClass";
 
 const vuex = useStore();
 
 const { cookies } = useCookies();
 
 const { t, locale } = useI18n({ useScope: "global" });
+const isReducedMotion = usePreferredReducedMotion();
+const hasClass = useHtmlHasClass("reduced-motion");
 
 const selection = ref([]);
 const isGuide = ref(false);
@@ -85,6 +88,14 @@ const fetchProfile = async (lang) => {
     localStorage.setItem("altFont", response?.data?.isAlternateFont || false);
     localStorage.setItem("bold", response?.data?.isBold || false);
     localStorage.setItem("underline", response?.data?.isUnderline || false);
+
+    if (!localStorage.getItem("reduceMotion")) {
+      if (isReducedMotion.value === "reduce" || hasClass) {
+        localStorage.setItem("reduceMotion", "true");
+      } else {
+        localStorage.setItem("reduceMotion", response?.data?.isReducedMotion);
+      }
+    }
 
     const links = document.querySelectorAll("a");
     if (response?.data?.isUnderline) {
