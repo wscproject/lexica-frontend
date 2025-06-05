@@ -20,7 +20,7 @@ jobs:
         npm install
         npm run build
 
-    - name: Copy files via SCP to Toolforge
+    - name: Upload build to Toolforge home dir
       uses: appleboy/scp-action@v0.1.4
       with:
         host: login.toolforge.org
@@ -28,4 +28,20 @@ jobs:
         key: ${{ secrets.TOOLFORGE_KEY }}
         port: 22
         source: "dist/*"
-        target: "/data/project/lexica-staging/www/js/lexica-frontend/dist"
+        target: "~/tmp_dist/"
+      
+    - name: SSH into Toolforge, become tool, and deploy
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: login.toolforge.org
+        username: faridhmaulanawsc
+        key: ${{ secrets.TOOLFORGE_KEY }}
+        port: 22
+        script: |
+          mkdir -p ~/tmp_upload/
+          become lexica-staging bash -c '
+            mkdir -p /www/js/lexica-frontend/dist
+            cp -r /home/faridhmaulanawsc/tmp_dist/* /www/js/lexica-frontend/dist/ &&
+            webservice stop &&
+            webservice start
+          '
