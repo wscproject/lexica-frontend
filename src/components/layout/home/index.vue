@@ -48,7 +48,7 @@ onMounted(() => {
 <template>
   <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div
-      v-if="!isLoading"
+      v-if="isLoading"
       class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[16px] absolute z-[1000] top-0 items-center"
     >
       <Loading :text="t('home.loading')" variant="big" />
@@ -63,7 +63,7 @@ onMounted(() => {
       <div
         class="container-home max-[639px]:pt-[54px] pt-[64px] w-full bg-white dark:bg-[#101418] relative z-[0]"
       >
-        <slot v-if="!logout && loading" />
+        <slot v-if="!logout && !loading" />
 
         <div
           v-if="logout && !success"

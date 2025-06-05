@@ -23,7 +23,7 @@ const isReducedMotion = usePreferredReducedMotion();
   <div
     v-if="!isPreferredMotion"
     :class="[
-      'flex',
+      'flex items-center',
       props.variant === 'default'
         ? ' gap-x-[var(--spacing-50)]'
         : 'gap-y-[var(--spacing-50)] flex-col-reverse',
