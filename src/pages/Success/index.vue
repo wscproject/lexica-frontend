@@ -27,6 +27,7 @@ onMounted(async () => {
   });
 
   if (response.statusCode === 200) {
+    cookies.set("auth", response?.data?.token);
     if (isReducedMotion.value === "reduce") {
       localStorage.setItem("reduceMotion", "true");
     } else {
