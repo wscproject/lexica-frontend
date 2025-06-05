@@ -42,6 +42,7 @@ const close = () => {
 const loadTheme = (href, name) => {
   const link = document.createElement("link");
   link.rel = "stylesheet";
+  link.type = "text/css";
   link.href = href;
   link.dataset.theme = name; // tag it so we can find it later
   document.head.appendChild(link);

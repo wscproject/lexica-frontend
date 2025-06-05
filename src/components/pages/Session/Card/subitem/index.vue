@@ -1,10 +1,5 @@
 <script setup>
-import {
-  CdxLabel,
-  CdxIcon,
-  CdxProgressBar,
-  CdxThumbnail,
-} from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxThumbnail } from "@wikimedia/codex";
 import {
   cdxIconClose,
   cdxIconLogoWikidata,

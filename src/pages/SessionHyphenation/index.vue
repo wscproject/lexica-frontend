@@ -14,7 +14,7 @@ import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 import { useDirWatcher } from "@/helper/useDirWatcher";
 
-import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxButton } from "@wikimedia/codex";
 import {
   cdxIconHome,
   cdxIconSuccess,
@@ -61,6 +61,7 @@ import { useMediaQuery, usePreferredReducedMotion } from "@vueuse/core";
 import { useStore } from "vuex";
 import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
 import { useHtmlHasClass } from "@/helper/hasClass";
+import Loading from "@/components/ui/loading.vue";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const isReduceMotion = usePreferredReducedMotion();
@@ -1003,8 +1004,7 @@ const animClass = (index) => {
       <div
         class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
       >
-        <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
-        <CdxProgressBar class="w-full"></CdxProgressBar>
+        <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>
     <div
@@ -1495,6 +1495,17 @@ html.reduced-motion {
 
   .is-flipped {
     transform: none !important;
+  }
+
+  .undo-enter-active,
+  .undo-leave-active {
+    transform: none !important;
+    transition: opacity 0.5s !important;
+  }
+
+  .undo-enter-from,
+  .undo-leave-to {
+    opacity: 0 !important;
   }
 }
 </style>

@@ -1,11 +1,12 @@
 <script setup>
-import { CdxProgressBar, CdxLabel } from "@wikimedia/codex";
+import { CdxLabel } from "@wikimedia/codex";
 import { onMounted } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useCookies } from "vue3-cookies";
 import { Login } from "@/api/Auth";
 import { useI18n } from "vue-i18n";
 import { usePreferredReducedMotion } from "@vueuse/core";
+import Loading from "@/components/ui/loading.vue";
 
 const { t } = useI18n({ useScope: "global" });
 const route = useRoute();
@@ -50,10 +51,7 @@ onMounted(async () => {
     <div
       class="w-full text-center max-w-[896px] flex justify-center items-center flex-col"
     >
-      <CdxLabel class="pb-[16px] dark:text-[#EAECF0]">{{
-        t("home.loading")
-      }}</CdxLabel>
-      <CdxProgressBar class="w-full max-w-[448px]"></CdxProgressBar>
+      <Loading :text="t('home.loading')" variant="big" />
     </div>
   </div>
 </template>
