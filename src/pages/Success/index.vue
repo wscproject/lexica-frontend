@@ -31,7 +31,11 @@ onMounted(async () => {
     if (isReducedMotion.value === "reduce") {
       localStorage.setItem("reduceMotion", "true");
     } else {
-      localStorage.setItem("reduceMotion", isReducedMotion.value);
+      localStorage.setItem("reduceMotion", response?.data?.isReducedMotion);
+
+      if (response?.data?.isReducedMotion) {
+        document.documentElement.classList.add("reduced-motion");
+      }
     }
 
     router.push("/");
