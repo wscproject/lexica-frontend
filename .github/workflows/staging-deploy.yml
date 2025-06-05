@@ -28,7 +28,7 @@ jobs:
         key: ${{ secrets.TOOLFORGE_KEY }}
         port: 22
         source: "dist/*"
-        target: "~/tmp_dist/"
+        target: "~/tmp_upload/"
       
     - name: SSH into Toolforge, become tool, and deploy
       uses: appleboy/ssh-action@v1.0.3
