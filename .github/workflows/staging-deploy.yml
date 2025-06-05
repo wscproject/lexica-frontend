@@ -38,10 +38,8 @@ jobs:
         key: ${{ secrets.TOOLFORGE_KEY }}
         port: 22
         script: |
-          mkdir -p ~/tmp_upload/
           become lexica-staging bash -c '
-            mkdir -p /www/js/lexica-frontend/dist
-            cp -r /home/faridhmaulanawsc/tmp_dist/* /www/js/lexica-frontend/dist/ &&
+            cp -r /home/faridhmaulanawsc/tmp_upload/* /www/js/lexica-frontend/ &&
             webservice stop &&
             webservice start
           '
