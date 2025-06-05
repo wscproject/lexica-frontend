@@ -40,5 +40,6 @@ jobs:
         script: |
           become lexica-staging bash -c '
             cp -r /home/faridhmaulanawsc/tmp_upload/* www/js/lexica-frontend/ &&
-            webservice restart
+            webservice --backend=kubernetes node18 stop &&
+            webservice --backend=kubernetes node18 start
           '
