@@ -18,7 +18,7 @@ jobs:
       run: |
         # Your build steps, e.g.
         npm install
-        npm run build
+        VITE_BASE_URL=${{ vars.VITE_BASE_URL }} VITE_LOGIN_URL=${{ vars.VITE_LOGIN_URL }} npm run build
 
     - name: Upload build to Toolforge home dir
       uses: appleboy/scp-action@v0.1.4
