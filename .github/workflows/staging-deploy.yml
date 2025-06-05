@@ -1,0 +1,30 @@
+name: Staging Build and Deploy
+
+on:
+  push:
+    branches:
+      - staging
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v3
+
+    - name: Build your app
+      run: |
+        # Your build steps, e.g.
+        npm install
+        npm run build
+
+    - name: Copy files via SCP to Toolforge
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: login.toolforge.org
+        username: faridhmaulanawsc
+        key: ${{ secrets.TOOLFORGE_KEY }}
+        port: 22
+        source: "dist/*"
+        target: "/data/project/lexica-staging/www/js/lexica-frontend/dist"
