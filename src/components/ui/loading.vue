@@ -2,7 +2,7 @@
 import { usePreferredReducedMotion } from "@vueuse/core";
 import { CdxProgressIndicator, CdxProgressBar } from "@wikimedia/codex";
 import LoadingReduce from "@/components/icons/loading-reduce/index.vue";
-import { ref, toRef, watch } from "vue";
+import { ref, toRef } from "vue";
 
 const props = defineProps({
   variant: {
@@ -24,10 +24,6 @@ const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
 const isReducedMotion = usePreferredReducedMotion();
 
-watch(isNotUsingIndicator, () => {
-  console.log(isNotUsingIndicator.value);
-})
-
 </script>
 
 <template>
@@ -37,8 +33,8 @@ watch(isNotUsingIndicator, () => {
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <CdxProgressIndicator v-if="props.variant === 'default' && !props.isNotUsingIndicator" class="w-[18px] h-[18px]" />
-    <div v-else-if="props.variant !== 'default' && !props.isNotUsingIndicator" class="w-full max-w-[448px]">
+    <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator" class="w-[18px] h-[18px]" />
+    <div v-else-if="props.variant !== 'default' && !isNotUsingIndicator" class="w-full max-w-[448px]">
       <CdxProgressBar />
     </div>
     <span :class="[
@@ -54,7 +50,7 @@ watch(isNotUsingIndicator, () => {
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <LoadingReduce v-if="!props.isNotUsingIndicator" />
+    <LoadingReduce v-if="!isNotUsingIndicator" />
     <span :class="[
       props.variant === 'default'
         ? 'text-[16px] text-[var(--color-subtle)]'
