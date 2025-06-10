@@ -13,7 +13,7 @@ const route = useRoute();
 const router = useRouter();
 const isReducedMotion = usePreferredReducedMotion();
 
-const responseAPI = ref(null);
+const responseAPI = ref(false);
 
 const { cookies } = useCookies();
 
@@ -30,7 +30,7 @@ onMounted(async () => {
   });
 
   if (response.statusCode === 200) {
-    responseAPI.value = response.data;
+    responseAPI.value = true;
     cookies.set("auth", response?.data?.token);
     if (isReducedMotion.value === "reduce") {
       localStorage.setItem("reduceMotion", "true");
