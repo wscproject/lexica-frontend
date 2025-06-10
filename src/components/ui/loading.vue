@@ -12,6 +12,10 @@ const props = defineProps({
     type: String,
     required: true,
   },
+  isNotUsingIndicator: {
+    type: Boolean,
+    default: false,
+  },
 });
 
 const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
@@ -26,8 +30,8 @@ const isReducedMotion = usePreferredReducedMotion();
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <CdxProgressIndicator v-if="props.variant === 'default'" class="w-[18px] h-[18px]" />
-    <div v-else class="w-full max-w-[448px]">
+    <CdxProgressIndicator v-if="props.variant === 'default' && !props.isNotUsingIndicator" class="w-[18px] h-[18px]" />
+    <div v-else-if="props.variant !== 'default' && !props.isNotUsingIndicator" class="w-full max-w-[448px]">
       <CdxProgressBar />
     </div>
     <span :class="[
@@ -43,7 +47,7 @@ const isReducedMotion = usePreferredReducedMotion();
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <LoadingReduce />
+    <LoadingReduce v-if="!props.isNotUsingIndicator" />
     <span :class="[
       props.variant === 'default'
         ? 'text-[16px] text-[var(--color-subtle)]'

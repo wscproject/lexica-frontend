@@ -460,7 +460,7 @@ const test1 = async (id, contributionId, headerData) => {
   await getDetail({ contributionId, id });
 };
 const test2 = async (id, data) => {
-  if (!sPreferredMotion.value) {
+  if (!isPreferredMotion.value) {
     zIndex.value = "";
   }
   subItemHeaderData.value = data;
@@ -607,8 +607,8 @@ const getCardsData = async (code, type) => {
     activityType: type
       ? type
       : vuex.getters["profile/activityType"]
-      ? vuex.getters["profile/activityType"]
-      : "connect",
+        ? vuex.getters["profile/activityType"]
+        : "connect",
   });
 
   if (response.statusCode === 200) {
@@ -1019,35 +1019,21 @@ const animClass = (index) => {
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center"
-    >
+      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center">
       <div class="max-w-[920px] w-full h-full flex items-center relative">
-        <CdxButton
-          :aria-label="t('aria.backToHome')"
-          v-tooltip:bottom-start="t('tooltips.home')"
-          weight="quiet"
-          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]"
-          @click="endEarly"
-        >
+        <CdxButton :aria-label="t('aria.backToHome')" v-tooltip:bottom-start="t('tooltips.home')" weight="quiet"
+          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]" @click="endEarly">
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
         <div class="mx-auto left-0 right-0 w-fit">
-          <CdxLabel
-            v-if="data?.length !== 0 && !isLoading"
-            class="text-[16px] pb-0 text-[var(--color-base)]"
-            >{{ t("session.title") }} {{ currCount }}</CdxLabel
-          >
+          <CdxLabel v-if="data?.length !== 0 && !isLoading" class="text-[16px] pb-0 text-[var(--color-base)]">{{
+            t("session.title") }} {{ currCount }}</CdxLabel>
         </div>
       </div>
     </div>
 
-    <div
-      v-if="!isLoading && noInternet"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="!isLoading && noInternet" class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="error" alt="error" />
         </div>
@@ -1057,23 +1043,14 @@ const animClass = (index) => {
         <p class="text-[16px] pb-[16px]">
           {{ t("session.noInternet.description") }}
         </p>
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="reload"
-          >{{ t("session.noInternet.button") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="reload">{{
+          t("session.noInternet.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
+      class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="sad" alt="home" />
         </div>
@@ -1088,33 +1065,22 @@ const animClass = (index) => {
           {{ errorLog?.code || "" }} {{ errorLog?.message || "" }}
         </p>
 
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="
-            () => {
-              getProfile();
-              isError = false;
-            }
-          "
-          >{{ t("session.error.button") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="
+          () => {
+            getProfile();
+            isError = false;
+          }
+        ">{{ t("session.error.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="
-        totalCount === 0 &&
-        !isLoading &&
-        isError &&
-        errorLog?.message === 'Lexemes not found.'
-      "
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="
+      totalCount === 0 &&
+      !isLoading &&
+      isError &&
+      errorLog?.message === 'Lexemes not found.'
+    " class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="happy" alt="happy" />
         </div>
@@ -1123,137 +1089,85 @@ const animClass = (index) => {
           t("session.blank.title")
         }}</CdxLabel>
 
-        <CdxButton
-          :aria-label="t('aria.backToHome')"
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="router.push('/')"
-          >{{ t("session.blank.button") }}</CdxButton
-        >
+        <CdxButton :aria-label="t('aria.backToHome')" weight="primary" action="progressive"
+          class="w-full max-w-[448px] h-[44px]" @click="router.push('/')">{{ t("session.blank.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="isLoading && !isError && !noInternet"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
-      >
+    <div v-if="isLoading && !isError && !noInternet" class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]">
         <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>
-    <div
-      v-else-if="!isLoading && !isError && !noInternet"
-      class="w-full flex justify-center items-center pb-[62px] h-full"
-      :style="{
+    <div v-else-if="!isLoading && !isError && !noInternet"
+      class="w-full flex justify-center items-center pb-[62px] h-full" :style="{
         backgroundImage: `url(${isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
-      }"
-    >
+      }">
       <div :class="[skipAllAnim(), 'px-[16px] w-full']">
-        <div
-          class="flex justify-center w-full relative custom-height items-center z-[2]"
-          :style="{
-            marginTop: currMargin + 'px',
-            perspective: '1000px',
-          }"
-        >
-          <Card
-            :key="value"
-            :isFlipped="flip"
-            v-for="(value, index) in data"
-            :style="{
-              marginTop: -12 * index + 1 + 'px',
-              ...(prev && { transition: 'unset !important' }),
-              ...(!isMove && { transition: 'transform 0.5s ease-out' }),
-              ...(springBack && { transition: 'transform 0.35s' }),
+        <div class="flex justify-center w-full relative custom-height items-center z-[2]" :style="{
+          marginTop: currMargin + 'px',
+          perspective: '1000px',
+        }">
+          <Card :key="value" :isFlipped="flip" v-for="(value, index) in data" :style="{
+            marginTop: -12 * index + 1 + 'px',
+            ...(prev && { transition: 'unset !important' }),
+            ...(!isMove && { transition: 'transform 0.5s ease-out' }),
+            ...(springBack && { transition: 'transform 0.35s' }),
 
-              // transition: !isMove
-              //   ? ''
-              //   : springBack
-              //   ? 'transform 0.35s'
-              //   : 'transform 0.5s ease-out',
-              transformStyle: 'preserve-3d',
-              zIndex: '2',
-              display:
-                data?.length === 5 && index < 2
-                  ? 'none'
-                  : data?.length === 4 && index === 0
+            // transition: !isMove
+            //   ? ''
+            //   : springBack
+            //   ? 'transform 0.35s'
+            //   : 'transform 0.5s ease-out',
+            transformStyle: 'preserve-3d',
+            zIndex: '2',
+            display:
+              data?.length === 5 && index < 2
+                ? 'none'
+                : data?.length === 4 && index === 0
                   ? 'none'
                   : 'block',
-            }"
-            @hideCard="nextCard(false, value?.id, value?.contributionId)"
-            @onStarting="aa"
-            @onEnd="ab"
-            :headerRef="cardRef"
-            :preventSwipe="undoWarn"
-            :class="[...animClass(index)]"
-          >
+          }" @hideCard="nextCard(false, value?.id, value?.contributionId)" @onStarting="aa" @onEnd="ab"
+            :headerRef="cardRef" :preventSwipe="undoWarn" :class="[...animClass(index)]">
             <transition name="fade">
-              <CardSplash
-                :class="[
-                  data?.length !== index + 1
-                    ? 'bg-white dark:bg-[#101418]'
-                    : 'bg-[#3056A9]',
-                  'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
-                ]"
-                :currLang="value?.language?.title"
-                :data="value"
-                v-if="splash === true || data?.length !== index + 1"
-                :key="123"
-                :currCount="currCount"
-                :isNotCurrent="data?.length !== index + 1"
-              ></CardSplash>
+              <CardSplash :class="[
+                data?.length !== index + 1
+                  ? 'bg-white dark:bg-[#101418]'
+                  : 'bg-[#3056A9]',
+                'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
+              ]" :currLang="value?.language?.title" :data="value"
+                v-if="splash === true || data?.length !== index + 1" :key="123" :currCount="currCount"
+                :isNotCurrent="data?.length !== index + 1"></CardSplash>
             </transition>
 
             <transition name="fade">
-              <CardSuccess
-                v-if="isSuccess && data?.length === index + 1"
-                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']"
-              >
+              <CardSuccess v-if="isSuccess && data?.length === index + 1"
+                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']">
               </CardSuccess>
             </transition>
 
             <transition name="fade">
-              <CardSubmitFailed
-                class="custom-height rounded-[16px] back max-h-[650px] h-full"
-                v-if="isSubmitError === true"
-                :key="3"
-                @back="isSubmitError = false"
-              ></CardSubmitFailed>
+              <CardSubmitFailed class="custom-height rounded-[16px] back max-h-[650px] h-full"
+                v-if="isSubmitError === true" :key="3" @back="isSubmitError = false"></CardSubmitFailed>
             </transition>
 
             <transition name="fade">
-              <CardSubmitting
-                class="custom-height rounded-[16px] back max-h-[650px] h-full"
-                v-if="submittingData === true"
-                :key="1"
-                :submitAction="submitAction"
-              ></CardSubmitting>
+              <CardSubmitting class="custom-height rounded-[16px] back max-h-[650px] h-full"
+                v-if="submittingData === true" :key="1" :submitAction="submitAction"></CardSubmitting>
             </transition>
 
-            <div
-              :class="[
-                zIndex,
-                'front absolute top-0 h-full w-full',
-                isPreferredMotion && flip ? 'card-fade' : '',
-              ]"
-            >
-              <CardItem
-                :key="0"
-                :recommendation="entities"
-                :data="value"
-                :keyword="params.keyword"
-                :searchLoading="searchLoading"
-                :recommendedLoading="recommendedLoading"
-                :loadmoreLoading="loadmoreLoading"
-                :noLoadData="noLoad"
-                :class="['card-front', data?.length !== index + 1 && 'hidden']"
-                :isCurrent="data?.length === index + 1"
+            <div :class="[
+              zIndex,
+              'front absolute top-0 h-full w-full',
+              isPreferredMotion && flip ? 'card-fade' : '',
+            ]">
+              <CardItem :key="0" :recommendation="entities" :data="value" :keyword="params.keyword"
+                :searchLoading="searchLoading" :recommendedLoading="recommendedLoading"
+                :loadmoreLoading="loadmoreLoading" :noLoadData="noLoad"
+                :class="['card-front', data?.length !== index + 1 && 'hidden']" :isCurrent="data?.length === index + 1"
                 @gotoDetail="
                   test1(value?.id, value?.contributionId, {
                     category: value?.category,
@@ -1261,122 +1175,65 @@ const animClass = (index) => {
                     gloss: value?.gloss,
                     id: value?.externalLexemeSenseId,
                   })
-                "
-                @gotoSubItemDetail="(value) => test2(value?.id, value)"
-                @gotoReview="test3"
-                @setSearch="searchKeyword"
-                @loadMore="loadMore"
-              />
+                  " @gotoSubItemDetail="(value) => test2(value?.id, value)" @gotoReview="test3"
+                @setSearch="searchKeyword" @loadMore="loadMore" />
             </div>
 
-            <div
-              :class="[
-                'back absolute top-0 left-0 h-full w-full rounded-[16px]',
-                isPreferredMotion && !flip ? 'card-fade' : '',
-              ]"
-            >
-              <CardItemDetail
-                v-if="currMode === 1"
-                :isLoading="cardDetailLoading"
-                :data="cardDetailData ?? {}"
-                :headerData="detailHeaderData"
-                :languages="languages"
-                :currLang="value?.language?.title"
-                :isCurrent="data?.length === index + 1"
-                :class="[
+            <div :class="[
+              'back absolute top-0 left-0 h-full w-full rounded-[16px]',
+              isPreferredMotion && !flip ? 'card-fade' : '',
+            ]">
+              <CardItemDetail v-if="currMode === 1" :isLoading="cardDetailLoading" :data="cardDetailData ?? {}"
+                :headerData="detailHeaderData" :languages="languages" :currLang="value?.language?.title"
+                :isCurrent="data?.length === index + 1" :class="[
                   'card-detail',
                   (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                :isFlip="flip"
-                @backtoItem="backtoHome"
-                @showImage="
+                ]" :isFlip="flip" @backtoItem="backtoHome" @showImage="
                   (data) => {
                     shownImage = data;
                   }
-                "
-              />
-              <CardSubItemDetail
-                :data="entityDetailData"
-                :isLoading="entityDetailLoading"
-                :headerData="subItemHeaderData"
-                :isCurrent="data?.length === index + 1"
-                :isFlip="flip"
-                :class="[
+                " />
+              <CardSubItemDetail :data="entityDetailData" :isLoading="entityDetailLoading"
+                :headerData="subItemHeaderData" :isCurrent="data?.length === index + 1" :isFlip="flip" :class="[
                   'card-item-detail',
                   (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                v-else-if="currMode === 2"
-                @backtoItem="backtoHome"
-                @showImage="
+                ]" v-else-if="currMode === 2" @backtoItem="backtoHome" @showImage="
                   (data) => {
                     shownImage = data;
                   }
-                "
-              />
+                " />
 
-              <CardReview
-                :data="value"
-                :detail="detail"
-                :img="value?.image"
-                :class="[
-                  'card-review',
-                  (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                v-else-if="currMode === 3"
-                :currLang="value?.language?.title"
-                @backtoItem="backtoHome"
-                @onDone="
+              <CardReview :data="value" :detail="detail" :img="value?.image" :class="[
+                'card-review',
+                (data?.length !== index + 1 || hideBack) && 'hidden',
+              ]" v-else-if="currMode === 3" :currLang="value?.language?.title" @backtoItem="backtoHome" @onDone="
                   (data) => {
                     submitCard(data, value?.contributionId, value?.id);
                   }
-                "
-              />
+                " />
             </div>
           </Card>
         </div>
       </div>
 
       <Transition name="undo" mode="out-in">
-        <div
-          :key="undoWarn"
-          v-if="undoWarn"
-          :class="[
-            'absolute bottom-[8px] flex justify-center w-full left-[0] z-[3]',
-          ]"
-        >
-          <div
-            class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
-            style="box-shadow: var(--box-shadow-large)"
-          >
-            <v-progress-linear
-              v-model="progress.number"
-              v-if="!isPreferredMotion"
-              color="#3366CC"
-              class="absolute rounded-t-[2px]"
-            ></v-progress-linear>
-            <div
-              class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
-            >
+        <div :key="undoWarn" v-if="undoWarn" :class="[
+          'absolute bottom-[8px] flex justify-center w-full left-[0] z-[3]',
+        ]">
+          <div class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
+            style="box-shadow: var(--box-shadow-large)">
+            <v-progress-linear v-model="progress.number" v-if="!isPreferredMotion" color="#3366CC"
+              class="absolute rounded-t-[2px]"></v-progress-linear>
+            <div class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between">
               <p>{{ t("session.skip.title") }}</p>
-              <CdxButton
-                weight="quiet"
-                :class="[
-                  'flex gap-x-2 items-center cursor-pointer text-white skip',
-                  isPreferredDark
-                    ? 'hover:dark:bg-[#27292d]'
-                    : 'hover:bg-[#EAECF0]',
-                ]"
-                @click="undoCard"
-              >
-                <CdxIcon
-                  class="text-white dark:text-[#101418]"
-                  :icon="cdxIconUndo"
-                  alt="undo"
-                />
-                <p
-                  style="padding-bottom: 0px"
-                  class="text-[16px] font-[700] dark:text-[#101418]"
-                >
+              <CdxButton weight="quiet" :class="[
+                'flex gap-x-2 items-center cursor-pointer text-white skip',
+                isPreferredDark
+                  ? 'hover:dark:bg-[#27292d]'
+                  : 'hover:bg-[#EAECF0]',
+              ]" @click="undoCard">
+                <CdxIcon class="text-white dark:text-[#101418]" :icon="cdxIconUndo" alt="undo" />
+                <p style="padding-bottom: 0px" class="text-[16px] font-[700] dark:text-[#101418]">
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -1386,77 +1243,45 @@ const animClass = (index) => {
       </Transition>
     </div>
 
-    <div
-      v-if="!isLoading && !isError && !noInternet"
-      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute"
-    >
+    <div v-if="!isLoading && !isError && !noInternet"
+      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute">
       <div class="flex max-w-[450px] gap-x-[12px] w-full">
-        <CdxButton
-          weight="quiet"
-          class="h-[34px] w-full"
-          @click="
-            nextCard(
-              true,
-              data?.find((item) => {
-                return item.order === totalCount + 1 - currCount;
-              })?.id,
-              data?.find((item) => {
-                return item.order === totalCount + 1 - currCount;
-              })?.contributionId
-            )
-          "
-          :disabled="
-            undoWarn || submittingData || data?.length === 0 || currCount > 5
-          "
-        >
-          <SkipIcon
-            v-if="!isThemeDark"
-            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
-            :color="
-              undoWarn || submittingData || data?.length === 0 || currCount > 5
-                ? '#72777d'
-                : '#202122'
-            "
-          />
-          <SkipDarkIcon
-            v-if="isThemeDark"
-            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
-            :color="
-              undoWarn || submittingData || data?.length === 0 || currCount > 5
-                ? '#72777d'
-                : '#EAECF0'
-            "
-          />
+        <CdxButton weight="quiet" class="h-[34px] w-full" @click="
+          nextCard(
+            true,
+            data?.find((item) => {
+              return item.order === totalCount + 1 - currCount;
+            })?.id,
+            data?.find((item) => {
+              return item.order === totalCount + 1 - currCount;
+            })?.contributionId
+          )
+          " :disabled="undoWarn || submittingData || data?.length === 0 || currCount > 5
+            ">
+          <SkipIcon v-if="!isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
+              ? '#72777d'
+              : '#202122'
+            " />
+          <SkipDarkIcon v-if="isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
+              ? '#72777d'
+              : '#EAECF0'
+            " />
 
           <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
         </CdxButton>
-        <CdxButton
-          weight="quiet"
-          class="h-[34px] w-full"
-          @click="endEarly"
-          :disabled="currCount === 1 || submittingData || data?.length === 0"
-        >
+        <CdxButton weight="quiet" class="h-[34px] w-full" @click="endEarly"
+          :disabled="currCount === 1 || submittingData || data?.length === 0">
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>
 
-    <WarningDialog
-      class="session"
-      :count="currCount - 1"
-      ref="testing"
-      :loading="endLoading"
-    />
+    <WarningDialog class="session" :count="currCount - 1" ref="testing" :loading="endLoading" />
     <CompleteDialog class="session" ref="completeRef" />
 
     <transition name="fadebox">
-      <Lightbox
-        v-if="Boolean(shownImage)"
-        @close="shownImage = ''"
-        :img="shownImage"
-        class="z-[999]"
-      >
+      <Lightbox v-if="Boolean(shownImage)" @close="shownImage = ''" :img="shownImage" class="z-[999]">
       </Lightbox>
     </transition>
   </div>
@@ -1477,6 +1302,7 @@ const animClass = (index) => {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
 .fadebox-enter-active,
 .fadebox-leave-active {
   transition: opacity 250ms ease-out;
@@ -1484,7 +1310,9 @@ const animClass = (index) => {
 
 .fadebox-enter-from,
 .fadebox-leave-to
-/* .fade-leave-active in <2.1.8 */ {
+
+/* .fade-leave-active in <2.1.8 */
+  {
   opacity: 0;
 }
 
@@ -1575,12 +1403,15 @@ const animClass = (index) => {
     transform: translateX(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
     transform: translateX(2000px);
     opacity: 0;
@@ -1592,12 +1423,15 @@ const animClass = (index) => {
     transform: translateX(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
     transform: translateX(-2000px) rotate(-2deg);
     opacity: 0;
@@ -1619,6 +1453,7 @@ html.reduced-motion {
     from {
       opacity: 1;
     }
+
     to {
       opacity: 0;
       // display: none;
@@ -1629,6 +1464,7 @@ html.reduced-motion {
     from {
       opacity: 0;
     }
+
     to {
       opacity: 1;
       // display: none;
