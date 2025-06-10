@@ -2,7 +2,7 @@
 import { usePreferredReducedMotion } from "@vueuse/core";
 import { CdxProgressIndicator, CdxProgressBar } from "@wikimedia/codex";
 import LoadingReduce from "@/components/icons/loading-reduce/index.vue";
-import { ref } from "vue";
+import { ref, toRef, watch } from "vue";
 
 const props = defineProps({
   variant: {
@@ -18,9 +18,16 @@ const props = defineProps({
   },
 });
 
+const isNotUsingIndicator = toRef(props, "isNotUsingIndicator");
+
 const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
 const isReducedMotion = usePreferredReducedMotion();
+
+watch(isNotUsingIndicator, () => {
+  console.log(isNotUsingIndicator.value);
+})
+
 </script>
 
 <template>

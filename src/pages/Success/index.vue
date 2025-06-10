@@ -17,6 +17,16 @@ const responseAPI = ref(false);
 
 const { cookies } = useCookies();
 
+const loadTheme = (href, name) => {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.crossOrigin = "anonymous";
+  link.href = href;
+  link.dataset.theme = name; // tag it so we can find it later
+  document.head.appendChild(link);
+};
+
 onMounted(async () => {
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
@@ -34,6 +44,7 @@ onMounted(async () => {
     cookies.set("auth", response?.data?.token);
     if (isReducedMotion.value === "reduce") {
       localStorage.setItem("reduceMotion", "true");
+      loadTheme("/reduce-motion.css");
     } else {
       localStorage.setItem("reduceMotion", response?.data?.isReducedMotion);
 
