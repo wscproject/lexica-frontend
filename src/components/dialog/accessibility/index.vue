@@ -73,7 +73,7 @@ const apply = async () => {
     if (isSystemPreferReduce.value === "reduce") {
       console.log("setset");
 
-      loadTheme("src/reduce-motion.css", "reduced-motion");
+      loadTheme("/reduce-motion.css", "reduced-motion");
     } else {
       document.documentElement.classList.add("reduced-motion");
     }

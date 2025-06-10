@@ -109,7 +109,7 @@ onMounted(() => {
 
   if (isReducedMotion.value === "reduce") {
     if (localStorage?.getItem("reduceMotion") === "true") {
-      loadTheme("src/reduce-motion.css");
+      loadTheme("/reduce-motion.css");
     }
   } else {
     if (localStorage?.getItem("reduceMotion") === "true") {
