@@ -208,6 +208,7 @@ const currCount = computed(() => {
 });
 
 const nextCard = (isButton, id, contributionId) => {
+  params.keyword = "";
   if (isButton) {
     next.value = true;
   }
@@ -646,23 +647,23 @@ const getRecommendation = async () => {
 
   const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
 
-  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
+  const lemmaParts = typeof lemma === "string" ? lemma.split(" / ") : [];
+  const keyword = lemmaParts.find((item) => item.match(/[a-zA-Z]+/));
+
+  console.log("keyword", keyword);
 
   const response = await GetRecommendations({
     ...params,
     page: 1,
-    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
+    keyword: keyword || lemmaParts[0],
   });
 
   if (response?.statusCode) {
     recommendedLoading.value = false;
-
-    entities.value = [...response?.data?.entities];
-  } else {
-    if (response.statusCode === 503) {
-      isLoading.value = false;
-      noInternet.value = true;
-    }
+    entities.value = [...(response?.data?.entities || [])];
+  } else if (response?.statusCode === 503) {
+    isLoading.value = false;
+    noInternet.value = true;
   }
 };
 
@@ -900,7 +901,7 @@ watch([currCount, data], async () => {
 // });
 
 watch(
-  () => ({ ...params }),
+  () => ({ ...params, }),
   async (newParams, oldParams) => {
     noLoad.value = false;
 
@@ -916,11 +917,15 @@ watch(
     }
 
     if (newParams.keyword) {
+      console.log('asdasdasd');
+
       await searchData();
     } else {
+      console.log('asdasdasd');
+
       await getRecommendation();
     }
-  }
+  },
 );
 
 const submitCardAnim = (condition) => {
@@ -1138,9 +1143,8 @@ const animClass = (index) => {
                   ? 'bg-white dark:bg-[#101418]'
                   : 'bg-[#3056A9]',
                 'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
-              ]" :currLang="value?.language?.title" :data="value"
-                v-if="splash === true || data?.length !== index + 1" :key="123" :currCount="currCount"
-                :isNotCurrent="data?.length !== index + 1"></CardSplash>
+              ]" :currLang="value?.language?.title" :data="value" v-if="splash === true || data?.length !== index + 1"
+                :key="123" :currCount="currCount" :isNotCurrent="data?.length !== index + 1"></CardSplash>
             </transition>
 
             <transition name="fade">
@@ -1207,10 +1211,10 @@ const animClass = (index) => {
                 'card-review',
                 (data?.length !== index + 1 || hideBack) && 'hidden',
               ]" v-else-if="currMode === 3" :currLang="value?.language?.title" @backtoItem="backtoHome" @onDone="
-                  (data) => {
-                    submitCard(data, value?.contributionId, value?.id);
-                  }
-                " />
+                (data) => {
+                  submitCard(data, value?.contributionId, value?.id);
+                }
+              " />
             </div>
           </Card>
         </div>
@@ -1259,12 +1263,12 @@ const animClass = (index) => {
           " :disabled="undoWarn || submittingData || data?.length === 0 || currCount > 5
             ">
           <SkipIcon v-if="!isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
-              ? '#72777d'
-              : '#202122'
+            ? '#72777d'
+            : '#202122'
             " />
           <SkipDarkIcon v-if="isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
-              ? '#72777d'
-              : '#EAECF0'
+            ? '#72777d'
+            : '#EAECF0'
             " />
 
           <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
