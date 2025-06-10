@@ -34,6 +34,13 @@ const loadTheme = (href, name) => {
   document.head.appendChild(link);
 };
 
+function removeTheme(name) {
+  const link = document.querySelector(`link[data-theme="${name}"]`);
+  if (link) {
+    link.remove();
+  }
+}
+
 const changeTheme = () => {
   if (
     !localStorage.getItem("theme") ||
@@ -92,13 +99,46 @@ watch([() => route.path, isThemeDark, isPreferredDark], () => {
   changeTheme();
 });
 
+const updatePreference = (event) => {
+  if (event.matches) {
+    document.documentElement.classList.remove("reduced-motion");
+
+    if (localStorage.getItem("reduceMotion") === "true") {
+      loadTheme("/reduce-motion.css");
+    } else {
+      removeTheme("reduced-motion");
+    }
+  } else {
+    removeTheme("reduced-motion");
+
+    if (localStorage.getItem("reduceMotion") === "true") {
+      document.documentElement.classList.add("reduced-motion");
+    } else {
+      document.documentElement.classList.remove("reduced-motion");
+    }
+  }
+};
+
+let mediaQueryList;
+
+
 onMounted(() => {
+  mediaQueryList = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+  if (mediaQueryList.addEventListener) {
+    mediaQueryList.addEventListener("change", updatePreference);
+  } else {
+    // For older browsers
+    mediaQueryList.addListener(updatePreference);
+  }
+
+
   changeTheme();
 
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
-    window?.navigator?.language?.split("-")?.[0] === "id" ||
-    window?.navigator?.language?.split("-")?.[0] === "ar"
+      window?.navigator?.language?.split("-")?.[0] === "id" ||
+      window?.navigator?.language?.split("-")?.[0] === "ar"
       ? window?.navigator?.language?.split("-")?.[0]
       : "en";
 
