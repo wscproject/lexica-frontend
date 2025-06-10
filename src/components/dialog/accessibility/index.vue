@@ -71,7 +71,6 @@ const apply = async () => {
 
   if (isReducedMotion.value) {
     if (isSystemPreferReduce.value === "reduce") {
-      console.log("setset");
 
       loadTheme("/reduce-motion.css", "reduced-motion");
     } else {
