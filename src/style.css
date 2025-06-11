@@ -3,122 +3,115 @@
 /* Inter */
 @font-face {
   font-family: "Inter";
-  src: url("@/assets/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("@/assets/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
+  src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("@/assets/font/Inter-Italic-VariableFont_opsz,wght.ttf")
-    format("truetype");
+  src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("@/assets/font/Inter-Italic-VariableFont_opsz,wght.ttf")
-    format("truetype");
+  src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "NotoSansSundanese";
-  src: url("@/assets/font/NotoSansSundanese-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/font/NotoSansSundanese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "NotoSansBalinese";
-  src: url("@/assets/font/NotoSansBalinese-VariableFont_wght.ttf")
-    format("truetype");
+  src: url("/font/NotoSansBalinese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "NotoSansArabic";
-  src: url("@/assets/font/NotoSansArabic-VariableFont_wdth,wght.ttf")
-    format("truetype");
+  src: url("/font/NotoSansArabic-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "NotoSansHebrew";
-  src: url("@/assets/font/NotoSansHebrew-VariableFont_wdth,wght.ttf")
-    format("truetype");
+  src: url("/font/NotoSansHebrew-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "NotoSansJP";
-  src: url("@/assets/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 @font-face {
   font-family: "NotoSansKR";
-  src: url("@/assets/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 @font-face {
   font-family: "NotoSansSC";
-  src: url("@/assets/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 @font-face {
   font-family: "NotoSansTC";
-  src: url("@/assets/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 @font-face {
   font-family: "NotoSansThai";
-  src: url("@/assets/font/NotoSansThai-VariableFont_wdth,wght.ttf")
-    format("truetype");
+  src: url("/font/NotoSansThai-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "InterBold";
-  src: url("@/assets/font/Inter-Bold.ttf") format("truetype");
+  src: url("/font/Inter-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "InterBold";
-  src: url("@/assets/font/Inter-BoldItalic.ttf") format("truetype");
+  src: url("/font/Inter-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "InterBold";
-  src: url("@/assets/font/Inter-Black.ttf") format("truetype");
+  src: url("/font/Inter-Black.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "InterBold";
-  src: url("@/assets/font/Inter-BlackItalic.ttf") format("truetype");
+  src: url("/font/Inter-BlackItalic.ttf") format("truetype");
   font-weight: 700 800;
   font-style: italic;
 }
@@ -127,7 +120,7 @@
 /* AtkinsonHyperlegibleNext */
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
+  src: url("/font/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
     format("truetype");
   font-weight: 100 800;
   font-style: normal;
@@ -135,7 +128,7 @@
 
 @font-face {
   font-family: "Atkinson";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf")
+  src: url("/font/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf")
     format("truetype");
   font-weight: 100 800;
   font-style: italic;
@@ -143,30 +136,28 @@
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
+  src: url("/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-BoldItalic.ttf")
-    format("truetype");
+  src: url("/font/AtkinsonHyperlegibleNext-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBold.ttf")
-    format("truetype");
+  src: url("/font/AtkinsonHyperlegibleNext-ExtraBold.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "AtkinsonBold";
-  src: url("@/assets/font/AtkinsonHyperlegibleNext-ExtraBoldItalic.ttf")
+  src: url("/font/AtkinsonHyperlegibleNext-ExtraBoldItalic.ttf")
     format("truetype");
   font-weight: 700 800;
   font-style: italic;
@@ -176,105 +167,105 @@
 /* Lexend */
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-ThinItalic.ttf") format("truetype");
+  src: url("/font/Lexend-ThinItalic.ttf") format("truetype");
   font-weight: 100;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-ExtraLightItalic.ttf") format("truetype");
+  src: url("/font/Lexend-ExtraLightItalic.ttf") format("truetype");
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-LightItalic.ttf") format("truetype");
+  src: url("/font/Lexend-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-RegularItalic.ttf") format("truetype");
+  src: url("/font/Lexend-RegularItalic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-MediumItalic.ttf") format("truetype");
+  src: url("/font/Lexend-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-SemiBoldItalic.ttf") format("truetype");
+  src: url("/font/Lexend-SemiBoldItalic.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-BoldItalic.ttf") format("truetype");
+  src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-ExtraBoldItalic.ttf") format("truetype");
+  src: url("/font/Lexend-ExtraBoldItalic.ttf") format("truetype");
   font-weight: 800;
   font-style: italic;
 }
 
 @font-face {
   font-family: "Lexend";
-  src: url("@/assets/font/Lexend-BlackItalic.ttf") format("truetype");
+  src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
   font-weight: 900;
   font-style: italic;
 }
 
 @font-face {
   font-family: "LexendBold";
-  src: url("@/assets/font/Lexend-Bold.ttf") format("truetype");
+  src: url("/font/Lexend-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
 }
 
 @font-face {
   font-family: "LexendBold";
-  src: url("@/assets/font/Lexend-Black.ttf") format("truetype");
+  src: url("/font/Lexend-Black.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
 }
 
 @font-face {
   font-family: "LexendBold";
-  src: url("@/assets/font/Lexend-BoldItalic.ttf") format("truetype");
+  src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
 }
 
 @font-face {
   font-family: "LexendBold";
-  src: url("@/assets/font/Lexend-BlackItalic.ttf") format("truetype");
+  src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
   font-weight: 700 800;
   font-style: italic;
 }
