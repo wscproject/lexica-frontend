@@ -6,6 +6,7 @@
   src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -13,6 +14,7 @@
   src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -20,6 +22,7 @@
   src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -27,6 +30,7 @@
   src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -34,6 +38,7 @@
   src: url("/font/NotoSansSundanese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -41,6 +46,7 @@
   src: url("/font/NotoSansBalinese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -48,6 +54,7 @@
   src: url("/font/NotoSansArabic-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -55,6 +62,7 @@
   src: url("/font/NotoSansHebrew-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -62,30 +70,35 @@
   src: url("/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansKR";
   src: url("/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansSC";
   src: url("/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansTC";
   src: url("/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansThai";
   src: url("/font/NotoSansThai-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -93,6 +106,7 @@
   src: url("/font/Inter-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -100,6 +114,7 @@
   src: url("/font/Inter-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -107,6 +122,7 @@
   src: url("/font/Inter-Black.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -114,6 +130,7 @@
   src: url("/font/Inter-BlackItalic.ttf") format("truetype");
   font-weight: 700 800;
   font-style: italic;
+  font-display: swap;
 }
 /* **************************************************** */
 
@@ -124,6 +141,7 @@
     format("truetype");
   font-weight: 100 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -132,6 +150,7 @@
     format("truetype");
   font-weight: 100 800;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -139,6 +158,7 @@
   src: url("/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -146,6 +166,7 @@
   src: url("/font/AtkinsonHyperlegibleNext-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -153,6 +174,7 @@
   src: url("/font/AtkinsonHyperlegibleNext-ExtraBold.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -161,6 +183,7 @@
     format("truetype");
   font-weight: 700 800;
   font-style: italic;
+  font-display: swap;
 }
 /* **************************************************** */
 
@@ -170,6 +193,7 @@
   src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
   font-weight: 400;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -177,6 +201,7 @@
   src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
   font-weight: 700;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -184,6 +209,7 @@
   src: url("/font/Lexend-ThinItalic.ttf") format("truetype");
   font-weight: 100;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -191,6 +217,7 @@
   src: url("/font/Lexend-ExtraLightItalic.ttf") format("truetype");
   font-weight: 200;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -198,6 +225,7 @@
   src: url("/font/Lexend-LightItalic.ttf") format("truetype");
   font-weight: 300;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -205,6 +233,7 @@
   src: url("/font/Lexend-RegularItalic.ttf") format("truetype");
   font-weight: 400;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -212,6 +241,7 @@
   src: url("/font/Lexend-MediumItalic.ttf") format("truetype");
   font-weight: 500;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -219,6 +249,7 @@
   src: url("/font/Lexend-SemiBoldItalic.ttf") format("truetype");
   font-weight: 600;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -226,6 +257,7 @@
   src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
   font-weight: 700;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -233,6 +265,7 @@
   src: url("/font/Lexend-ExtraBoldItalic.ttf") format("truetype");
   font-weight: 800;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -240,6 +273,7 @@
   src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
   font-weight: 900;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -247,6 +281,7 @@
   src: url("/font/Lexend-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -254,6 +289,7 @@
   src: url("/font/Lexend-Black.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -261,6 +297,7 @@
   src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -268,6 +305,7 @@
   src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
   font-weight: 700 800;
   font-style: italic;
+  font-display: swap;
 }
 
 /* **************************************************** */
