@@ -10,6 +10,7 @@ import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import { updateUserPreference } from "@/api/Home";
+import { usePreferredReducedMotion } from "@vueuse/core";
 
 const props = defineProps({
   open: {
@@ -22,10 +23,14 @@ const { t, locale } = useI18n({ useScope: "global" });
 const isAlternateFont = ref(
   localStorage.getItem("altFont") === "true" ? true : false
 );
+const isSystemPreferReduce = usePreferredReducedMotion();
 
 const isBold = ref(localStorage.getItem("bold") === "true" ? true : false);
 const isUnderline = ref(
   localStorage.getItem("underline") === "true" ? true : false
+);
+const isReducedMotion = ref(
+  localStorage.getItem("reduceMotion") === "true" ? true : false
 );
 
 const emit = defineEmits(["onPrimaryAction"]);
@@ -34,16 +39,50 @@ const close = () => {
   emit("onPrimaryAction", false);
 };
 
+const loadTheme = (href, name) => {
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
+  link.type = "text/css";
+  link.crossOrigin = "anonymous";
+  link.href = href;
+  link.dataset.theme = name; // tag it so we can find it later
+  document.head.appendChild(link);
+};
+
+function removeTheme(name) {
+  const link = document.querySelector(`link[data-theme="${name}"]`);
+  if (link) {
+    link.remove();
+  }
+}
+
 const apply = async () => {
   updateUserPreference({
     isAlternateFont: isAlternateFont.value,
     isBold: isBold.value,
     isUnderline: isUnderline.value,
+    isReducedMotion: isReducedMotion.value,
   });
 
   localStorage.setItem("altFont", isAlternateFont.value);
   localStorage.setItem("bold", isBold.value);
   localStorage.setItem("underline", isUnderline.value);
+  localStorage.setItem("reduceMotion", isReducedMotion.value);
+
+  if (isReducedMotion.value) {
+    if (isSystemPreferReduce.value === "reduce") {
+
+      loadTheme("/reduce-motion.css", "reduced-motion");
+    } else {
+      document.documentElement.classList.add("reduced-motion");
+    }
+  } else {
+    if (isSystemPreferReduce.value === "reduce") {
+      removeTheme("reduced-motion");
+    } else {
+      document.documentElement.classList.remove("reduced-motion");
+    }
+  }
 
   const links = document.querySelectorAll("a");
 
@@ -117,7 +156,18 @@ const apply = async () => {
     </template>
     <div class="w-full px-[16px] py-[12px]">
       <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
-        {{ t("accessibilityDialog.subtitle") }}
+        {{ t("accessibilityDialog.subtitle2") }}
+      </h4>
+      <CdxToggleSwitch v-model="isReducedMotion" alignSwitch>
+        {{ t("accessibilityDialog.option4") }}
+        <template #description>
+          {{ t("accessibilityDialog.option4Note") }}
+        </template>
+      </CdxToggleSwitch>
+      <h4
+        class="pb-[var(--spacing-50)] mt-[var(--spacing-100)] text-[var(--color-base)] font-bold"
+      >
+        {{ t("accessibilityDialog.subtitle1") }}
       </h4>
       <CdxToggleSwitch v-model="isUnderline" alignSwitch>
         {{ t("accessibilityDialog.option3") }}

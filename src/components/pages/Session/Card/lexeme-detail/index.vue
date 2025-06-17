@@ -1,10 +1,5 @@
 <script setup>
-import {
-  CdxLabel,
-  CdxIcon,
-  CdxProgressBar,
-  CdxThumbnail,
-} from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxThumbnail } from "@wikimedia/codex";
 import {
   cdxIconLogoWikidata,
   cdxIconArrowPrevious,
@@ -14,6 +9,7 @@ import { computed, onMounted, onUnmounted, ref, watch } from "vue";
 import wikimedia from "@/assets/WikidataLexeme.svg";
 import { useI18n } from "vue-i18n";
 import expand from "@/assets/expand.svg";
+import Loading from "@/components/ui/loading.vue";
 
 const { t } = useI18n({ useScope: "global" });
 
@@ -130,12 +126,9 @@ onUnmounted(() => {
     <div
       class="p-[16px] overflow-auto bg-white dark:bg-[#101418] rounded-b-[16px] h-full"
     >
-      <div v-if="props.isLoading">
-        <div class="w-full max-w-[896px]">
-          <span class="text-[#54595D] text-[16px] dark:text-[#A2A9B1]">{{
-            t("session.detail.loading")
-          }}</span>
-          <CdxProgressBar class="w-full mt-[8px]"></CdxProgressBar>
+      <div v-if="props.isLoading" class="h-full">
+        <div class="w-full h-full flex justify-center items-center">
+          <Loading :text="t('session.detail.loading')" variant="default" />
         </div>
       </div>
 

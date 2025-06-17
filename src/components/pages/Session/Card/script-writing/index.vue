@@ -4,7 +4,6 @@ import {
   CdxIcon,
   CdxButton,
   CdxTextArea,
-  CdxProgressBar,
   CdxThumbnail,
 } from "@wikimedia/codex";
 import { cdxIconInfoFilled } from "@wikimedia/codex-icons";

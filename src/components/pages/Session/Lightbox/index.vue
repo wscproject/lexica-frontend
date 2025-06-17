@@ -1,8 +1,9 @@
 <script setup>
-import { CdxButton, CdxIcon, CdxProgressBar } from "@wikimedia/codex";
+import { CdxButton, CdxIcon } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { onMounted, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
+import Loading from "@/components/ui/loading.vue";
 
 const props = defineProps({
   img: {
@@ -66,10 +67,8 @@ onMounted(async () => {
       @keydown="console.log('asdasd')"
       class="object-contain w-100 h-100"
     />
-    <CdxProgressBar
-      v-else
-      class="w-full mt-[8px] px-[16px] max-w-[448px] darking"
-    ></CdxProgressBar>
+
+    <Loading text=" " variant="big" v-else />
   </div>
 </template>
 

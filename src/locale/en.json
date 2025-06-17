@@ -28,11 +28,14 @@
     "title": "Accessibility",
     "apply": "Apply",
     "close": "Close",
-    "subtitle": "Text",
+    "subtitle1": "Text",
+    "subtitle2": "Animation",
     "option1": "Bold text",
     "option2": "Use alternative font (Atkinson Hyperlegible Next)",
     "option2Note": "Note: Some characters may not be rendered in this font.",
-    "option3": "Underline links"
+    "option3": "Underline links",
+    "option4": "Reduce motion",
+    "option4Note": "Minimize animations and transitions"
   },
 
   "localeDialog": {
@@ -196,7 +199,7 @@
 
     "detail": {
       "lexeme": "Lexeme",
-      "loading": "Loading...",
+      "loading": "Getting Lexeme info",
       "title1": "This Lexeme",
       "title2": "This Sense",
       "subtitle1": "Statements",
@@ -225,7 +228,7 @@
       "wikidata": "Wikidata Item",
       "statements": "Statements",
       "translations": "Translation",
-      "loading": "Loading...",
+      "loading": "Getting Item info",
       "images": "image",
       "instanceOf": "instance of",
       "partOf": "part of",
@@ -255,7 +258,7 @@
     },
 
     "upload": "Uploading contribution...",
-    "recLoading": "Loading recommendation...",
+    "recLoading": "Getting recommendations",
 
     "cardError": {
       "title": "Upload failed",

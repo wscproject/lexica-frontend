@@ -152,8 +152,8 @@ const props = defineProps({
 }
 
 .custom-thumbnail .cdx-thumbnail__image {
-  background-size: initial;
-  background-position: center;
-  background-color: #f8f9fa;
+  background-size: auto !important;
+  background-position: center !important;
+  background-color: transparent !important;
 }
 </style>

@@ -14,7 +14,7 @@ import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 import { useDirWatcher } from "@/helper/useDirWatcher";
 
-import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxButton } from "@wikimedia/codex";
 import {
   cdxIconHome,
   cdxIconSuccess,
@@ -57,11 +57,18 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
-import { useMediaQuery } from "@vueuse/core";
+import { useMediaQuery, usePreferredReducedMotion } from "@vueuse/core";
 import { useStore } from "vuex";
 import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
+import { fa } from "vuetify/locale";
+import { useHtmlHasClass } from "../../helper/hasClass";
+import Loading from "@/components/ui/loading.vue";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
+const isReduceMotion = usePreferredReducedMotion();
+const { hasClass } = useHtmlHasClass("reduced-motion");
+
+const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
 const { t } = useI18n({ useScope: "global" });
 const vuex = useStore();
@@ -72,6 +79,9 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const language = computed(() => vuex.getters["profile/language"]);
 
 const router = useRouter();
+
+//Used to differentiate between skip button and skip gesture
+const isSkipButton = ref(false);
 
 const completeRef = ref(null);
 const count = ref(3);
@@ -134,37 +144,45 @@ const hideBack = ref(true);
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
-
     noLoad.value = false;
-
     // isSuccess.value = false;
-
-    setTimeout(() => {
-      isSuccess.value = false;
-    }, 50);
+    if (!isPreferredMotion.value) {
+      setTimeout(() => {
+        isSuccess.value = false;
+      }, 50);
+    }
 
     setTimeout(async () => {
-      currMode.value = 1;
-      splash.value = true;
+      if (isPreferredMotion.value) {
+        isSuccess.value = false;
+      }
 
       onHideCard();
+
+      splash.value = true;
+
+      // isSuccess.value = false;
+
+      currMode.value = 1;
+
       submittingData.value = false;
       // flip.value = false;
       flip.value = false;
       submit.value = false;
-      zIndex.value = "z-[1]";
+      // zIndex.value = "z-[1]";
       disableSplash();
-    }, 100);
-  }, 750);
+    }, 400);
+  }, 1000);
 };
 
 const slideRight = () => {
   submit.value = true;
 
-  submittingData.value = false;
   noLoad.value = false;
 
   setTimeout(async () => {
+    submittingData.value = false;
+
     currMode.value = 1;
     splash.value = true;
 
@@ -190,9 +208,13 @@ const currCount = computed(() => {
 });
 
 const nextCard = (isButton, id, contributionId) => {
+  params.keyword = "";
   if (isButton) {
     next.value = true;
   }
+
+  isSkipButton.value = isButton;
+
   // springBack.value = true;
 
   // setTimeout(() => {
@@ -217,7 +239,16 @@ const nextCard = (isButton, id, contributionId) => {
 
 const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
+
   let action = "";
+
+  // setTimeout(() => {
+  //   isSuccess.value = true;
+
+  //   submittingData.value = false;
+
+  //   slideRightWithSuccess();
+  // }, 1125);
 
   if (item?.itemId === "") {
     action = "noItem";
@@ -234,7 +265,7 @@ const submitCard = async (item, contributionId, id) => {
   });
   if (response.statusCode === 200) {
     if (action === "noItem") {
-      submittingData.value = false;
+      // submittingData.value = false;
 
       slideRight();
     } else {
@@ -244,7 +275,7 @@ const submitCard = async (item, contributionId, id) => {
 
       setTimeout(() => {
         slideRightWithSuccess();
-      }, 750);
+      }, 1125);
     }
   } else if (response.statusCode === 503) {
     isLoading.value = false;
@@ -408,14 +439,19 @@ const ab = () => {
 };
 
 const test1 = async (id, contributionId, headerData) => {
-  zIndex.value = "";
-
   currMode.value = 1;
   detailHeaderData.value = headerData;
   hideBack.value = false;
   flip.value = true;
+  if (!isPreferredMotion.value) {
+    zIndex.value = "";
+  }
 
   setTimeout(() => {
+    if (isPreferredMotion.value) {
+      zIndex.value = "";
+    }
+
     const div = document.querySelector(`.card-${currCount.value}`);
 
     const front = div.querySelector(".card-front");
@@ -425,14 +461,18 @@ const test1 = async (id, contributionId, headerData) => {
   await getDetail({ contributionId, id });
 };
 const test2 = async (id, data) => {
-  zIndex.value = "";
-
+  if (!isPreferredMotion.value) {
+    zIndex.value = "";
+  }
   subItemHeaderData.value = data;
 
   currMode.value = 2;
   flip.value = true;
   hideBack.value = false;
   setTimeout(() => {
+    if (isPreferredMotion.value) {
+      zIndex.value = "";
+    }
     const div = document.querySelector(`.card-${currCount.value}`);
 
     const front = div.querySelector(".card-front");
@@ -442,15 +482,20 @@ const test2 = async (id, data) => {
   await getEntityDetail(id);
 };
 const test3 = async (data) => {
-  zIndex.value = "";
-
+  if (!isPreferredMotion.value) {
+    zIndex.value = "";
+  }
   currMode.value = 3;
   flip.value = true;
   detail.value = data;
   hideBack.value = false;
 
   setTimeout(() => {
+    if (isPreferredMotion.value) {
+      zIndex.value = "";
+    }
     const div = document.querySelector(`.card-${currCount.value}`);
+    console.log(div);
 
     const front = div.querySelector(".card-front");
     front.style.setProperty("display", "none", "important");
@@ -462,8 +507,6 @@ const test3 = async (data) => {
 const backtoHome = () => {
   flip.value = false;
   const div = document.querySelector(`.card-${currCount.value}`);
-
-  console.log(div);
 
   const front = div.querySelector(".card-front");
   front.style.setProperty("display", "", "important");
@@ -565,8 +608,8 @@ const getCardsData = async (code, type) => {
     activityType: type
       ? type
       : vuex.getters["profile/activityType"]
-      ? vuex.getters["profile/activityType"]
-      : "connect",
+        ? vuex.getters["profile/activityType"]
+        : "connect",
   });
 
   if (response.statusCode === 200) {
@@ -604,29 +647,28 @@ const getRecommendation = async () => {
 
   const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma;
 
-  let keyword = lemma.split(" / ").find((item) => item.match(/[a-zA-Z]+/));
+  const lemmaParts = typeof lemma === "string" ? lemma.split(" / ") : [];
+  const keyword = lemmaParts.find((item) => item.match(/[a-zA-Z]+/));
+
+  console.log("keyword", keyword);
 
   const response = await GetRecommendations({
     ...params,
     page: 1,
-    keyword: keyword ? keyword : lemma?.split(" / ")?.[0],
+    keyword: keyword || lemmaParts[0],
   });
 
   if (response?.statusCode) {
     recommendedLoading.value = false;
-
-    entities.value = [...response?.data?.entities];
-  } else {
-    if (response.statusCode === 503) {
-      isLoading.value = false;
-      noInternet.value = true;
-    }
+    entities.value = [...(response?.data?.entities || [])];
+  } else if (response?.statusCode === 503) {
+    isLoading.value = false;
+    noInternet.value = true;
   }
 };
 
 const handleGlobalFocus = (event) => {
   const focusedElement = event.target;
-  console.log("focusedElement", focusedElement);
 };
 
 onBeforeUnmount(() => {
@@ -649,12 +691,16 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        document.documentElement.className = "dark";
+        document.documentElement.classList.add("dark");
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#27292D");
       } else {
-        document.documentElement.className = "";
+        if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("light");
+        } else if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("dark");
+        }
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#EAECF0");
@@ -662,12 +708,16 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#27292D");
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("dark");
+      }
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#EAECF0");
@@ -687,7 +737,9 @@ watch(
     // currMargin.value = currMargin.value - (count.value < 5 ? 8 : 0);
 
     if (newData?.length < oldData?.length) {
-      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 4 : 0);
+      // console.log("asdasd");
+
+      currMargin.value = currMargin.value - 12;
     } else if (newData?.length > oldData?.length)
       currMargin.value = currMargin.value + 4;
   },
@@ -849,7 +901,7 @@ watch([currCount, data], async () => {
 // });
 
 watch(
-  () => ({ ...params }),
+  () => ({ ...params, }),
   async (newParams, oldParams) => {
     noLoad.value = false;
 
@@ -865,19 +917,35 @@ watch(
     }
 
     if (newParams.keyword) {
+      console.log('asdasdasd');
+
       await searchData();
     } else {
+      console.log('asdasdasd');
+
       await getRecommendation();
     }
-  }
+  },
 );
 
 const submitCardAnim = (condition) => {
   if (condition) {
-    if (dir.value === "rtl") {
-      return "submit-card-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "submit-card-rtl";
+      } else {
+        return "submit-card";
+      }
     } else {
-      return "submit-card";
+      if (isSkipButton.value) {
+        return "card-fade";
+      } else {
+        if (dir.value === "rtl") {
+          return "submit-card-rtl";
+        } else {
+          return "submit-card";
+        }
+      }
     }
   } else {
     return "";
@@ -886,10 +954,14 @@ const submitCardAnim = (condition) => {
 
 const skipAllAnim = () => {
   if (skipAll.value) {
-    if (dir.value === "rtl") {
-      return "skipall-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "skipall-rtl";
+      } else {
+        return "skipall";
+      }
     } else {
-      return "skipall";
+      return "card-fade";
     }
   } else {
     return "";
@@ -897,11 +969,25 @@ const skipAllAnim = () => {
 };
 
 const skipCardAnim = (condition) => {
+  console.log("yes");
+
   if (condition) {
-    if (dir.value === "rtl") {
-      return "next-card-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "next-card-rtl";
+      } else {
+        return "next-card";
+      }
     } else {
-      return "next-card";
+      if (isSkipButton.value) {
+        return "card-fade";
+      } else {
+        if (dir.value === "rtl") {
+          return "next-card-rtl";
+        } else {
+          return "next-card";
+        }
+      }
     }
   } else {
     return "";
@@ -910,49 +996,49 @@ const skipCardAnim = (condition) => {
 
 const undoCardAnim = (condition) => {
   if (condition) {
-    if (dir.value === "rtl") {
-      return "prev-card-rtl";
+    if (isPreferredMotion.value) {
+      return "card-fade-in";
     } else {
-      return "prev-card";
+      if (dir.value === "rtl") {
+        return "prev-card-rtl";
+      } else {
+        return "prev-card";
+      }
     }
   } else {
     return "";
   }
+};
+
+const animClass = (index) => {
+  return [
+    data?.value?.length === index + 1 && flip.value ? "is-flipped" : "",
+    skipCardAnim(data?.value?.length === index + 1 && next.value),
+    undoCardAnim(data?.value?.length === index + 1 && prev.value),
+    submitCardAnim(data?.value?.length === index + 1 && submit.value),
+    `card-${totalCount.value - index}`,
+  ];
 };
 </script>
 
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center"
-    >
+      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center">
       <div class="max-w-[920px] w-full h-full flex items-center relative">
-        <CdxButton
-          :aria-label="t('aria.backToHome')"
-          v-tooltip:bottom-start="t('tooltips.home')"
-          weight="quiet"
-          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]"
-          @click="endEarly"
-        >
+        <CdxButton :aria-label="t('aria.backToHome')" v-tooltip:bottom-start="t('tooltips.home')" weight="quiet"
+          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]" @click="endEarly">
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
         <div class="mx-auto left-0 right-0 w-fit">
-          <CdxLabel
-            v-if="data?.length !== 0 && !isLoading"
-            class="text-[16px] pb-0 text-[var(--color-base)]"
-            >{{ t("session.title") }} {{ currCount }}</CdxLabel
-          >
+          <CdxLabel v-if="data?.length !== 0 && !isLoading" class="text-[16px] pb-0 text-[var(--color-base)]">{{
+            t("session.title") }} {{ currCount }}</CdxLabel>
         </div>
       </div>
     </div>
 
-    <div
-      v-if="!isLoading && noInternet"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="!isLoading && noInternet" class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="error" alt="error" />
         </div>
@@ -962,23 +1048,14 @@ const undoCardAnim = (condition) => {
         <p class="text-[16px] pb-[16px]">
           {{ t("session.noInternet.description") }}
         </p>
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="reload"
-          >{{ t("session.noInternet.button") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="reload">{{
+          t("session.noInternet.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
+      class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="sad" alt="home" />
         </div>
@@ -993,33 +1070,22 @@ const undoCardAnim = (condition) => {
           {{ errorLog?.code || "" }} {{ errorLog?.message || "" }}
         </p>
 
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="
-            () => {
-              getProfile();
-              isError = false;
-            }
-          "
-          >{{ t("session.error.button") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="
+          () => {
+            getProfile();
+            isError = false;
+          }
+        ">{{ t("session.error.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="
-        totalCount === 0 &&
-        !isLoading &&
-        isError &&
-        errorLog?.message === 'Lexemes not found.'
-      "
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]"
-      >
+    <div v-if="
+      totalCount === 0 &&
+      !isLoading &&
+      isError &&
+      errorLog?.message === 'Lexemes not found.'
+    " class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
         <div class="w-full flex justify-center pb-[16px]">
           <img :src="happy" alt="happy" />
         </div>
@@ -1028,138 +1094,84 @@ const undoCardAnim = (condition) => {
           t("session.blank.title")
         }}</CdxLabel>
 
-        <CdxButton
-          :aria-label="t('aria.backToHome')"
-          weight="primary"
-          action="progressive"
-          class="w-full max-w-[448px] h-[44px]"
-          @click="router.push('/')"
-          >{{ t("session.blank.button") }}</CdxButton
-        >
+        <CdxButton :aria-label="t('aria.backToHome')" weight="primary" action="progressive"
+          class="w-full max-w-[448px] h-[44px]" @click="router.push('/')">{{ t("session.blank.button") }}</CdxButton>
       </div>
     </div>
 
-    <div
-      v-if="isLoading && !isError && !noInternet"
-      class="relative custom-height flex justify-center"
-    >
-      <div
-        class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
-      >
-        <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
-        <CdxProgressBar class="w-full"></CdxProgressBar>
+    <div v-if="isLoading && !isError && !noInternet" class="relative custom-height flex justify-center">
+      <div class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]">
+        <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>
-    <div
-      v-else-if="!isLoading && !isError && !noInternet"
-      class="w-full flex justify-center items-center pb-[62px] h-full"
-      :style="{
+    <div v-else-if="!isLoading && !isError && !noInternet"
+      class="w-full flex justify-center items-center pb-[62px] h-full" :style="{
         backgroundImage: `url(${isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
-      }"
-    >
+      }">
       <div :class="[skipAllAnim(), 'px-[16px] w-full']">
-        <div
-          class="flex justify-center w-full relative custom-height items-center z-[2]"
-          :style="{
-            marginTop: currMargin + 'px',
-            perspective: '1000px',
-          }"
-        >
-          <Card
-            :key="value"
-            :isFlipped="flip"
-            v-for="(value, index) in data"
-            :style="{
-              marginTop: -12 * index + 1 + 'px',
-              ...(prev && { transition: 'unset !important' }),
-              ...(!isMove && { transition: 'transform 0.5s ease-out' }),
-              ...(springBack && { transition: 'transform 0.35s' }),
+        <div class="flex justify-center w-full relative custom-height items-center z-[2]" :style="{
+          marginTop: currMargin + 'px',
+          perspective: '1000px',
+        }">
+          <Card :key="value" :isFlipped="flip" v-for="(value, index) in data" :style="{
+            marginTop: -12 * index + 1 + 'px',
+            ...(prev && { transition: 'unset !important' }),
+            ...(!isMove && { transition: 'transform 0.5s ease-out' }),
+            ...(springBack && { transition: 'transform 0.35s' }),
 
-              // transition: !isMove
-              //   ? ''
-              //   : springBack
-              //   ? 'transform 0.35s'
-              //   : 'transform 0.5s ease-out',
-              transformStyle: 'preserve-3d',
-              zIndex: '2',
-              display:
-                data?.length === 5 && index < 2
-                  ? 'none'
-                  : data?.length === 4 && index === 0
+            // transition: !isMove
+            //   ? ''
+            //   : springBack
+            //   ? 'transform 0.35s'
+            //   : 'transform 0.5s ease-out',
+            transformStyle: 'preserve-3d',
+            zIndex: '2',
+            display:
+              data?.length === 5 && index < 2
+                ? 'none'
+                : data?.length === 4 && index === 0
                   ? 'none'
                   : 'block',
-            }"
-            @hideCard="nextCard(false, value?.id, value?.contributionId)"
-            @onStarting="aa"
-            @onEnd="ab"
-            :headerRef="cardRef"
-            :preventSwipe="undoWarn"
-            :class="[
-              data?.length === index + 1 && flip ? 'is-flipped' : '',
-              skipCardAnim(data?.length === index + 1 && next),
-              undoCardAnim(data?.length === index + 1 && prev),
-              submitCardAnim(data?.length === index + 1 && submit),
-              `card-${totalCount - index}`,
-            ]"
-          >
+          }" @hideCard="nextCard(false, value?.id, value?.contributionId)" @onStarting="aa" @onEnd="ab"
+            :headerRef="cardRef" :preventSwipe="undoWarn" :class="[...animClass(index)]">
             <transition name="fade">
-              <CardSplash
-                :class="[
-                  data?.length !== index + 1
-                    ? 'bg-white dark:bg-[#101418]'
-                    : 'bg-[#3056A9]',
-                  'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
-                ]"
-                :currLang="value?.language?.title"
-                :data="value"
-                v-if="splash === true || data?.length !== index + 1"
-                :key="123"
-                :currCount="currCount"
-                :isNotCurrent="data?.length !== index + 1"
-              ></CardSplash>
+              <CardSplash :class="[
+                data?.length !== index + 1
+                  ? 'bg-white dark:bg-[#101418]'
+                  : 'bg-[#3056A9]',
+                'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
+              ]" :currLang="value?.language?.title" :data="value" v-if="splash === true || data?.length !== index + 1"
+                :key="123" :currCount="currCount" :isNotCurrent="data?.length !== index + 1"></CardSplash>
             </transition>
 
             <transition name="fade">
-              <CardSuccess
-                v-if="isSuccess && data?.length === index + 1"
-                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']"
-              >
+              <CardSuccess v-if="isSuccess && data?.length === index + 1"
+                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']">
               </CardSuccess>
             </transition>
 
             <transition name="fade">
-              <CardSubmitFailed
-                class="custom-height rounded-[16px] back max-h-[650px] h-full"
-                v-if="isSubmitError === true"
-                :key="3"
-                @back="isSubmitError = false"
-              ></CardSubmitFailed>
+              <CardSubmitFailed class="custom-height rounded-[16px] back max-h-[650px] h-full"
+                v-if="isSubmitError === true" :key="3" @back="isSubmitError = false"></CardSubmitFailed>
             </transition>
 
             <transition name="fade">
-              <CardSubmitting
-                class="custom-height rounded-[16px] back max-h-[650px] h-full"
-                v-if="submittingData === true"
-                :key="1"
-                :submitAction="submitAction"
-              ></CardSubmitting>
+              <CardSubmitting class="custom-height rounded-[16px] back max-h-[650px] h-full"
+                v-if="submittingData === true" :key="1" :submitAction="submitAction"></CardSubmitting>
             </transition>
 
-            <div :class="[zIndex, 'front absolute top-0 h-full w-full']">
-              <CardItem
-                :key="0"
-                :recommendation="entities"
-                :data="value"
-                :keyword="params.keyword"
-                :searchLoading="searchLoading"
-                :recommendedLoading="recommendedLoading"
-                :loadmoreLoading="loadmoreLoading"
-                :noLoadData="noLoad"
-                :class="['card-front', data?.length !== index + 1 && 'hidden']"
-                :isCurrent="data?.length === index + 1"
+            <div :class="[
+              zIndex,
+              'front absolute top-0 h-full w-full',
+              isPreferredMotion && flip ? 'card-fade' : '',
+            ]">
+              <CardItem :key="0" :recommendation="entities" :data="value" :keyword="params.keyword"
+                :searchLoading="searchLoading" :recommendedLoading="recommendedLoading"
+                :loadmoreLoading="loadmoreLoading" :noLoadData="noLoad"
+                :class="['card-front', data?.length !== index + 1 && 'hidden']" :isCurrent="data?.length === index + 1"
                 @gotoDetail="
                   test1(value?.id, value?.contributionId, {
                     category: value?.category,
@@ -1167,120 +1179,65 @@ const undoCardAnim = (condition) => {
                     gloss: value?.gloss,
                     id: value?.externalLexemeSenseId,
                   })
-                "
-                @gotoSubItemDetail="(value) => test2(value?.id, value)"
-                @gotoReview="test3"
-                @setSearch="searchKeyword"
-                @loadMore="loadMore"
-              />
+                  " @gotoSubItemDetail="(value) => test2(value?.id, value)" @gotoReview="test3"
+                @setSearch="searchKeyword" @loadMore="loadMore" />
             </div>
 
-            <div
-              :class="[
-                'back absolute top-0 left-0 h-full w-full rounded-[16px]',
-              ]"
-            >
-              <CardItemDetail
-                v-if="currMode === 1"
-                :isLoading="cardDetailLoading"
-                :data="cardDetailData ?? {}"
-                :headerData="detailHeaderData"
-                :languages="languages"
-                :currLang="value?.language?.title"
-                :isCurrent="data?.length === index + 1"
-                :class="[
+            <div :class="[
+              'back absolute top-0 left-0 h-full w-full rounded-[16px]',
+              isPreferredMotion && !flip ? 'card-fade' : '',
+            ]">
+              <CardItemDetail v-if="currMode === 1" :isLoading="cardDetailLoading" :data="cardDetailData ?? {}"
+                :headerData="detailHeaderData" :languages="languages" :currLang="value?.language?.title"
+                :isCurrent="data?.length === index + 1" :class="[
                   'card-detail',
                   (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                :isFlip="flip"
-                @backtoItem="backtoHome"
-                @showImage="
+                ]" :isFlip="flip" @backtoItem="backtoHome" @showImage="
                   (data) => {
                     shownImage = data;
                   }
-                "
-              />
-              <CardSubItemDetail
-                :data="entityDetailData"
-                :isLoading="entityDetailLoading"
-                :headerData="subItemHeaderData"
-                :isCurrent="data?.length === index + 1"
-                :isFlip="flip"
-                :class="[
+                " />
+              <CardSubItemDetail :data="entityDetailData" :isLoading="entityDetailLoading"
+                :headerData="subItemHeaderData" :isCurrent="data?.length === index + 1" :isFlip="flip" :class="[
                   'card-item-detail',
                   (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                v-else-if="currMode === 2"
-                @backtoItem="backtoHome"
-                @showImage="
+                ]" v-else-if="currMode === 2" @backtoItem="backtoHome" @showImage="
                   (data) => {
                     shownImage = data;
                   }
-                "
-              />
+                " />
 
-              <CardReview
-                :data="value"
-                :detail="detail"
-                :img="value?.image"
-                :class="[
-                  'card-review',
-                  (data?.length !== index + 1 || hideBack) && 'hidden',
-                ]"
-                v-else-if="currMode === 3"
-                :currLang="value?.language?.title"
-                @backtoItem="backtoHome"
-                @onDone="
-                  (data) => {
-                    submitCard(data, value?.contributionId, value?.id);
-                  }
-                "
-              />
+              <CardReview :data="value" :detail="detail" :img="value?.image" :class="[
+                'card-review',
+                (data?.length !== index + 1 || hideBack) && 'hidden',
+              ]" v-else-if="currMode === 3" :currLang="value?.language?.title" @backtoItem="backtoHome" @onDone="
+                (data) => {
+                  submitCard(data, value?.contributionId, value?.id);
+                }
+              " />
             </div>
           </Card>
         </div>
       </div>
 
       <Transition name="undo" mode="out-in">
-        <div
-          :key="undoWarn"
-          v-if="undoWarn"
-          :class="[
-            'absolute bottom-[8px] flex justify-center w-full left-[0] z-[3]',
-          ]"
-        >
-          <div
-            class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
-            style="box-shadow: var(--box-shadow-large)"
-          >
-            <v-progress-linear
-              v-model="progress.number"
-              color="#3366CC"
-              class="absolute rounded-t-[2px]"
-            ></v-progress-linear>
-            <div
-              class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between"
-            >
+        <div :key="undoWarn" v-if="undoWarn" :class="[
+          'absolute bottom-[8px] flex justify-center w-full left-[0] z-[3]',
+        ]">
+          <div class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
+            style="box-shadow: var(--box-shadow-large)">
+            <v-progress-linear v-model="progress.number" v-if="!isPreferredMotion" color="#3366CC"
+              class="absolute rounded-t-[2px]"></v-progress-linear>
+            <div class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between">
               <p>{{ t("session.skip.title") }}</p>
-              <CdxButton
-                weight="quiet"
-                :class="[
-                  'flex gap-x-2 items-center cursor-pointer text-white skip',
-                  isPreferredDark
-                    ? 'hover:dark:bg-[#27292d]'
-                    : 'hover:bg-[#EAECF0]',
-                ]"
-                @click="undoCard"
-              >
-                <CdxIcon
-                  class="text-white dark:text-[#101418]"
-                  :icon="cdxIconUndo"
-                  alt="undo"
-                />
-                <p
-                  style="padding-bottom: 0px"
-                  class="text-[16px] font-[700] dark:text-[#101418]"
-                >
+              <CdxButton weight="quiet" :class="[
+                'flex gap-x-2 items-center cursor-pointer text-white skip',
+                isPreferredDark
+                  ? 'hover:dark:bg-[#27292d]'
+                  : 'hover:bg-[#EAECF0]',
+              ]" @click="undoCard">
+                <CdxIcon class="text-white dark:text-[#101418]" :icon="cdxIconUndo" alt="undo" />
+                <p style="padding-bottom: 0px" class="text-[16px] font-[700] dark:text-[#101418]">
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -1290,83 +1247,51 @@ const undoCardAnim = (condition) => {
       </Transition>
     </div>
 
-    <div
-      v-if="!isLoading && !isError && !noInternet"
-      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute"
-    >
+    <div v-if="!isLoading && !isError && !noInternet"
+      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute">
       <div class="flex max-w-[450px] gap-x-[12px] w-full">
-        <CdxButton
-          weight="quiet"
-          class="h-[34px] w-full"
-          @click="
-            nextCard(
-              true,
-              data?.find((item) => {
-                return item.order === totalCount + 1 - currCount;
-              })?.id,
-              data?.find((item) => {
-                return item.order === totalCount + 1 - currCount;
-              })?.contributionId
-            )
-          "
-          :disabled="
-            undoWarn || submittingData || data?.length === 0 || currCount > 5
-          "
-        >
-          <SkipIcon
-            v-if="!isThemeDark"
-            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
-            :color="
-              undoWarn || submittingData || data?.length === 0 || currCount > 5
-                ? '#72777d'
-                : '#202122'
-            "
-          />
-          <SkipDarkIcon
-            v-if="isThemeDark"
-            :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'"
-            :color="
-              undoWarn || submittingData || data?.length === 0 || currCount > 5
-                ? '#72777d'
-                : '#EAECF0'
-            "
-          />
+        <CdxButton weight="quiet" class="h-[34px] w-full" @click="
+          nextCard(
+            true,
+            data?.find((item) => {
+              return item.order === totalCount + 1 - currCount;
+            })?.id,
+            data?.find((item) => {
+              return item.order === totalCount + 1 - currCount;
+            })?.contributionId
+          )
+          " :disabled="undoWarn || submittingData || data?.length === 0 || currCount > 5
+            ">
+          <SkipIcon v-if="!isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
+            ? '#72777d'
+            : '#202122'
+            " />
+          <SkipDarkIcon v-if="isThemeDark" :class="dir === 'rtl' ? 'rotate-180' : 'rotate-0'" :color="undoWarn || submittingData || data?.length === 0 || currCount > 5
+            ? '#72777d'
+            : '#EAECF0'
+            " />
 
           <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
         </CdxButton>
-        <CdxButton
-          weight="quiet"
-          class="h-[34px] w-full"
-          @click="endEarly"
-          :disabled="currCount === 1 || submittingData || data?.length === 0"
-        >
+        <CdxButton weight="quiet" class="h-[34px] w-full" @click="endEarly"
+          :disabled="currCount === 1 || submittingData || data?.length === 0">
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
           <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>
 
-    <WarningDialog
-      class="session"
-      :count="currCount - 1"
-      ref="testing"
-      :loading="endLoading"
-    />
+    <WarningDialog class="session" :count="currCount - 1" ref="testing" :loading="endLoading" />
     <CompleteDialog class="session" ref="completeRef" />
 
     <transition name="fadebox">
-      <Lightbox
-        v-if="Boolean(shownImage)"
-        @close="shownImage = ''"
-        :img="shownImage"
-        class="z-[999]"
-      >
+      <Lightbox v-if="Boolean(shownImage)" @close="shownImage = ''" :img="shownImage" class="z-[999]">
       </Lightbox>
     </transition>
   </div>
 </template>
 
-<style>
+<style lang="scss">
 [dir] .skip-button .cdx-button:enabled.cdx-button--weight-quiet:hover {
   mix-blend-mode: normal !important;
 }
@@ -1381,6 +1306,7 @@ const undoCardAnim = (condition) => {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
+
 .fadebox-enter-active,
 .fadebox-leave-active {
   transition: opacity 250ms ease-out;
@@ -1388,7 +1314,9 @@ const undoCardAnim = (condition) => {
 
 .fadebox-enter-from,
 .fadebox-leave-to
-/* .fade-leave-active in <2.1.8 */ {
+
+/* .fade-leave-active in <2.1.8 */
+  {
   opacity: 0;
 }
 
@@ -1465,12 +1393,12 @@ const undoCardAnim = (condition) => {
 }
 
 .skipall {
-  animation: swipeCardRight 1.125s;
+  animation: swipeCardRight 1125ms;
   transform: translateX(2000px);
 }
 
 .skipall-rtl {
-  animation: swipeCardLeft 1.125s;
+  animation: swipeCardLeft 1125ms;
   transform: translateX(-2000px);
 }
 
@@ -1479,12 +1407,15 @@ const undoCardAnim = (condition) => {
     transform: translateX(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
     transform: translateX(2000px);
     opacity: 0;
@@ -1496,12 +1427,15 @@ const undoCardAnim = (condition) => {
     transform: translateX(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
     transform: translateX(-2000px) rotate(-2deg);
     opacity: 0;
@@ -1516,5 +1450,56 @@ const undoCardAnim = (condition) => {
 
 .session .cdx-dialog__footer {
   padding: 24px 16px !important;
+}
+
+html.reduced-motion {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+      // display: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+      // display: none;
+    }
+  }
+
+  .back {
+    transform: none !important;
+  }
+
+  .card-fade {
+    animation: fadeOut 250ms ease-out forwards !important;
+  }
+
+  .card-fade-in {
+    animation: fadeIn 250ms ease-out forwards !important;
+  }
+
+  .is-flipped {
+    transform: none !important;
+  }
+
+  .undo-enter-active,
+  .undo-leave-active {
+    transform: none !important;
+    transition: opacity 0.5s !important;
+  }
+
+  .undo-enter-from,
+  .undo-leave-to {
+    opacity: 0 !important;
+  }
 }
 </style>

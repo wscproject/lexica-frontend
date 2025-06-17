@@ -10,11 +10,11 @@ import CardSubmitFailed from "@/components/pages/Session/Card/submitFailed/index
 import CardSuccess from "@/components/pages/Session/Card/success/index.vue";
 
 import Lightbox from "@/components/pages/Session/Lightbox/index.vue";
-
+import Loading from "@/components/ui/loading.vue";
 import { onBeforeRouteLeave, useRouter } from "vue-router";
 import { useDirWatcher } from "@/helper/useDirWatcher";
 
-import { CdxLabel, CdxIcon, CdxButton, CdxProgressBar } from "@wikimedia/codex";
+import { CdxLabel, CdxIcon, CdxButton } from "@wikimedia/codex";
 import {
   cdxIconHome,
   cdxIconSuccess,
@@ -56,20 +56,27 @@ import {
 import { GetProfile } from "@/api/Home";
 
 import { useI18n } from "vue-i18n";
-import { useMediaQuery } from "@vueuse/core";
+import { useMediaQuery, usePreferredReducedMotion } from "@vueuse/core";
 import { useStore } from "vuex";
 import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
+import { useHtmlHasClass } from "@/helper/hasClass";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
+const isReduceMotion = usePreferredReducedMotion();
+const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
 const { t } = useI18n({ useScope: "global" });
 const vuex = useStore();
+const { hasClass } = useHtmlHasClass("reduced-motion");
 
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const language = computed(() => vuex.getters["profile/language"]);
 const { dir } = useDirWatcher();
 
 const router = useRouter();
+
+//Used to differentiate between skip button and skip gesture
+const isSkipButton = ref(false);
 
 const completeRef = ref(null);
 const count = ref(3);
@@ -137,6 +144,9 @@ const nextCard = (isButton, id, contributionId) => {
   if (isButton) {
     next.value = true;
   }
+
+  isSkipButton.value = isButton;
+
   // springBack.value = true;
 
   // setTimeout(() => {
@@ -163,31 +173,35 @@ const nextCard = (isButton, id, contributionId) => {
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
-
-    // submittingData.value = false;
     noLoad.value = false;
-
     // isSuccess.value = false;
-
-    setTimeout(() => {
-      isSuccess.value = false;
-    }, 50);
+    if (!isPreferredMotion.value) {
+      setTimeout(() => {
+        isSuccess.value = false;
+      }, 50);
+    }
 
     setTimeout(async () => {
-      currMode.value = 1;
-      splash.value = true;
+      if (isPreferredMotion.value) {
+        isSuccess.value = false;
+      }
 
       onHideCard();
-      submittingData.value = false;
 
+      splash.value = true;
+
+      // isSuccess.value = false;
+
+      currMode.value = 1;
+
+      submittingData.value = false;
       // flip.value = false;
       flip.value = false;
       submit.value = false;
-      zIndex.value = "z-[1]";
-
+      // zIndex.value = "z-[1]";
       disableSplash();
-    }, 100);
-  }, 750);
+    }, 400);
+  }, 1000);
 };
 
 // const slideRight = () => {
@@ -224,7 +238,9 @@ const submitCard = async (item, contributionId, id) => {
   if (response.statusCode === 200) {
     isSuccess.value = true;
 
-    slideRightWithSuccess();
+    setTimeout(() => {
+      slideRightWithSuccess();
+    }, 1125);
   } else if (response.statusCode === 503) {
     isLoading.value = false;
     noInternet.value = true;
@@ -395,7 +411,15 @@ const ab = () => {
 };
 
 const test1 = async (id, contributionId, headerData) => {
-  zIndex.value = "";
+  if (!isPreferredMotion.value) {
+    zIndex.value = "";
+  }
+
+  setTimeout(() => {
+    if (isPreferredMotion.value) {
+      zIndex.value = "";
+    }
+  }, 350);
 
   currMode.value = 1;
   detailHeaderData.value = headerData;
@@ -413,8 +437,15 @@ const test2 = async (id, data) => {
   await getEntityDetail(id);
 };
 const test3 = (data) => {
-  zIndex.value = "";
+  if (!isPreferredMotion.value) {
+    zIndex.value = "";
+  }
 
+  setTimeout(() => {
+    if (isPreferredMotion.value) {
+      zIndex.value = "";
+    }
+  }, 350);
   currMode.value = 3;
   flip.value = true;
   detail.value = data;
@@ -588,12 +619,16 @@ onMounted(async () => {
       }
     } else {
       if (isPreferredDark.value) {
-        document.documentElement.className = "dark";
+        document.documentElement.classList.add("dark");
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#27292D");
       } else {
-        document.documentElement.className = "";
+        if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("light");
+        } else if (document.documentElement.classList.contains("light")) {
+          document.documentElement.classList.remove("dark");
+        }
         document
           .querySelector('meta[name="theme-color"]')
           .setAttribute("content", "#EAECF0");
@@ -601,12 +636,16 @@ onMounted(async () => {
     }
   } else {
     if (isPreferredDark.value) {
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#27292D");
     } else {
-      document.documentElement.className = "";
+      if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("light");
+      } else if (document.documentElement.classList.contains("light")) {
+        document.documentElement.classList.remove("dark");
+      }
       document
         .querySelector('meta[name="theme-color"]')
         .setAttribute("content", "#EAECF0");
@@ -626,7 +665,7 @@ watch(
     // currMargin.value = currMargin.value - (count.value < 5 ? 8 : 0);
 
     if (newData?.length < oldData?.length) {
-      currMargin.value = currMargin.value - (data?.value?.length < 5 ? 4 : 0);
+      currMargin.value = currMargin.value - 12;
     } else if (newData?.length > oldData?.length)
       currMargin.value = currMargin.value + 4;
   },
@@ -744,10 +783,22 @@ watch([splash, flip, currMode, entities], async () => {
 
 const submitCardAnim = (condition) => {
   if (condition) {
-    if (dir.value === "rtl") {
-      return "submit-card-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "submit-card-rtl";
+      } else {
+        return "submit-card";
+      }
     } else {
-      return "submit-card";
+      if (isSkipButton.value) {
+        return "card-fade";
+      } else {
+        if (dir.value === "rtl") {
+          return "submit-card-rtl";
+        } else {
+          return "submit-card";
+        }
+      }
     }
   } else {
     return "";
@@ -756,10 +807,14 @@ const submitCardAnim = (condition) => {
 
 const skipAllAnim = () => {
   if (skipAll.value) {
-    if (dir.value === "rtl") {
-      return "skipall-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "skipall-rtl";
+      } else {
+        return "skipall";
+      }
     } else {
-      return "skipall";
+      return "card-fade";
     }
   } else {
     return "";
@@ -767,11 +822,25 @@ const skipAllAnim = () => {
 };
 
 const skipCardAnim = (condition) => {
+  console.log("yes");
+
   if (condition) {
-    if (dir.value === "rtl") {
-      return "next-card-rtl";
+    if (!isPreferredMotion.value) {
+      if (dir.value === "rtl") {
+        return "next-card-rtl";
+      } else {
+        return "next-card";
+      }
     } else {
-      return "next-card";
+      if (isSkipButton.value) {
+        return "card-fade";
+      } else {
+        if (dir.value === "rtl") {
+          return "next-card-rtl";
+        } else {
+          return "next-card";
+        }
+      }
     }
   } else {
     return "";
@@ -780,14 +849,28 @@ const skipCardAnim = (condition) => {
 
 const undoCardAnim = (condition) => {
   if (condition) {
-    if (dir.value === "rtl") {
-      return "prev-card-rtl";
+    if (isPreferredMotion) {
+      return "card-fade-in";
     } else {
-      return "prev-card";
+      if (dir.value === "rtl") {
+        return "prev-card-rtl";
+      } else {
+        return "prev-card";
+      }
     }
   } else {
     return "";
   }
+};
+
+const animClass = (index) => {
+  return [
+    data?.value?.length === index + 1 && flip.value ? "is-flipped" : "",
+    skipCardAnim(data?.value?.length === index + 1 && next.value),
+    undoCardAnim(data?.value?.length === index + 1 && prev.value),
+    submitCardAnim(data?.value?.length === index + 1 && submit.value),
+    `card-${totalCount.value - index}`,
+  ];
 };
 </script>
 
@@ -917,8 +1000,7 @@ const undoCardAnim = (condition) => {
       <div
         class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]"
       >
-        <CdxLabel class="pb-[16px]">{{ t("session.loading") }}</CdxLabel>
-        <CdxProgressBar class="w-full"></CdxProgressBar>
+        <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>
     <div
@@ -968,13 +1050,7 @@ const undoCardAnim = (condition) => {
             @onEnd="ab"
             :headerRef="cardRef"
             :preventSwipe="undoWarn"
-            :class="[
-              data?.length === index + 1 && flip ? 'is-flipped' : '',
-              skipCardAnim(data?.length === index + 1 && next),
-              undoCardAnim(data?.length === index + 1 && prev),
-              submitCardAnim(data?.length === index + 1 && submit),
-              `card-${totalCount - index}`,
-            ]"
+            :class="[...animClass(index)]"
           >
             <transition name="fade">
               <CardSplash
@@ -1019,7 +1095,13 @@ const undoCardAnim = (condition) => {
               ></CardSubmitting>
             </transition>
 
-            <div :class="[zIndex, 'front absolute top-0 h-full w-full']">
+            <div
+              :class="[
+                zIndex,
+                'front absolute top-0 h-full w-full',
+                isPreferredMotion && flip ? 'card-fade' : '',
+              ]"
+            >
               <CardItem
                 :key="0"
                 :recommendation="entities"
@@ -1049,6 +1131,7 @@ const undoCardAnim = (condition) => {
             <div
               :class="[
                 'back absolute top-0 left-0 h-full w-full rounded-[16px]',
+                isPreferredMotion && !flip ? 'card-fade' : '',
               ]"
             >
               <CardItemDetail
@@ -1107,6 +1190,7 @@ const undoCardAnim = (condition) => {
             style="box-shadow: var(--box-shadow-large)"
           >
             <v-progress-linear
+              v-if="!isPreferredMotion"
               v-model="progress.number"
               color="#3366CC"
               class="absolute rounded-t-[2px]"
@@ -1219,7 +1303,7 @@ const undoCardAnim = (condition) => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 [dir] .skip-button .cdx-button:enabled.cdx-button--weight-quiet:hover {
   mix-blend-mode: normal !important;
 }
@@ -1319,12 +1403,12 @@ const undoCardAnim = (condition) => {
 }
 
 .skipall {
-  animation: swipeCardRight 1.125s;
+  animation: swipeCardRight 1125ms;
   transform: translateX(2000px);
 }
 
 .skipall-rtl {
-  animation: swipeCardLeft 1.125s;
+  animation: swipeCardLeft 1125ms;
   transform: translateX(-2000px);
 }
 
@@ -1370,5 +1454,54 @@ const undoCardAnim = (condition) => {
 
 .session .cdx-dialog__footer {
   padding: 24px 16px !important;
+}
+
+html.reduced-motion {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+      // display: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+      // display: none;
+    }
+  }
+
+  .back {
+    transform: none !important;
+  }
+
+  .card-fade {
+    animation: fadeOut 250ms ease-out forwards !important;
+  }
+
+  .card-fade-in {
+    animation: fadeIn 250ms ease-out forwards !important;
+  }
+
+  .is-flipped {
+    transform: none !important;
+  }
+
+  .undo-enter-active,
+  .undo-leave-active {
+    transform: none !important;
+    transition: opacity 0.5s !important;
+  }
+
+  .undo-enter-from,
+  .undo-leave-to {
+    opacity: 0 !important;
+  }
 }
 </style>
