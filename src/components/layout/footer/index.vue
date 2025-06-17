@@ -72,52 +72,33 @@ const { t, locale } = useI18n({ useScope: "global" });
 
 <template>
   <footer
-    class="flex items-center jusitfy-center w-full left-0 bottom-0 flex-col px-[16px] bg-[#EAECF0] dark:bg-[#27292D] py-[var(--spacing-100)] px-[var(--spacing-200)] max-[639px]:px-[var(--spacing-100)]"
-  >
+    class="flex items-center jusitfy-center w-full left-0 bottom-0 flex-col px-[1rem] bg-[#EAECF0] dark:bg-[#27292D] py-[var(--spacing-100)] px-[var(--spacing-200)] max-[639px]:px-[var(--spacing-100)]">
     <div
-      class="max-w-[896px] w-full flex items-center justify-between h-full gap-x-[var(--spacing-200)] max-[639px]:flex-col max-[639px]:items-start max-[639px]:gap-y-[var(--spacing-50)]"
-    >
-      <div
-        class="flex flex-col max-[639px]:w-fit h-full justify-between gap-y-[var(--spacing-50)]"
-      >
+      class="max-w-[56rem] w-full flex items-center justify-between h-full gap-x-[var(--spacing-200)] max-[639px]:flex-col max-[639px]:items-start max-[639px]:gap-y-[var(--spacing-50)]">
+      <div class="flex flex-col max-[639px]:w-fit h-full justify-between gap-y-[var(--spacing-50)]">
         <div class="flex items-center gap-x-[var(--spacing-50)]">
           <div>
             <img v-if="!isThemeDark" :src="LogoLexica" alt="lexica_footer" />
             <img v-else :src="LogoLexicaDark" alt="lexica_footer" />
           </div>
-          <CdxIcon
-            :icon="cdxIconHeart"
-            size="extra-small"
-            dir="rtl"
-            class="text-[#BF3C2C] w-[12px] h-[12px]"
-          />
+          <CdxIcon :icon="cdxIconHeart" size="extra-small" dir="rtl" class="text-[#BF3C2C] w-[0.75rem] h-[0.75rem]" />
           <div>
             <img v-if="!isThemeDark" :src="Logo" alt="lexica_footer" />
             <img v-else :src="LogoDark" alt="lexica_footer" />
           </div>
         </div>
         <div class="text-[#54595D] dark:text-[#A2A9B1]">
-          <I18nT
-            keypath="footer.label"
-            tag="p"
-            class="p-0 text-[14px] dark:text-[#EAECF0] font-[700]"
-          >
+          <I18nT keypath="footer.label" tag="p" class="p-0 text-[0.875rem] dark:text-[#EAECF0] font-[700]">
             <template #wikidata>
-              <a
-                id="wikidata"
-                class="cdx-docs-link"
-                href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata"
-              >
-                <b> Wikidata Software Collaboration</b></a
-              >
+              <a id="wikidata" class="cdx-docs-link"
+                href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata">
+                <b> Wikidata Software Collaboration</b></a>
             </template>
           </I18nT>
         </div>
       </div>
       <div class="flex items-end max-[639px]:w-fit justify-end h-full">
-        <div
-          class="text-center text-[14px] font-[700] flex gap-x-[var(--spacing-50)] items-center"
-        >
+        <div class="text-center text-[0.875rem] font-[700] flex gap-x-[var(--spacing-50)] items-center">
           <a class="cdx-docs-link" id="about" href="/about">{{
             t("footer.about")
           }}</a>

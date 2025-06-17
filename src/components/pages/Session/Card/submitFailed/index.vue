@@ -15,30 +15,22 @@ const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 </script>
 
 <template>
-  <div
-    class="absolute z-[99] w-full bg-white dark:bg-[#101418] flex justify-center flex-col text-center p-[16px]"
-  >
+  <div class="absolute z-[99] w-full bg-white dark:bg-[#101418] flex justify-center flex-col text-center p-[1rem]">
     <div class="w-full text-center">
-      <div class="w-full flex justify-center pb-[16px]">
+      <div class="w-full flex justify-center pb-[1rem]">
         <img v-if="!isThemeDark" :src="error" alt="home" />
         <img v-if="isThemeDark" :src="errordark" alt="home" />
       </div>
 
-      <CdxLabel class="pb-[16px] text-[18px] dark:text-[#EAECF0]">{{
+      <CdxLabel class="pb-[1rem] text-[1.125rem] dark:text-[#EAECF0]">{{
         t("session.cardError.title")
       }}</CdxLabel>
-      <p class="w-full text-[16px] dark:text-[#EAECF0]">
+      <p class="w-full text-[1rem] dark:text-[#EAECF0]">
         {{ t("session.cardError.description") }}
       </p>
 
-      <CdxButton
-        class="w-full h-[44px] mt-[16px]"
-        weight="primary"
-        action="progressive"
-        @click="emit('back')"
-      >
-        {{ t("session.cardError.button") }}</CdxButton
-      >
+      <CdxButton class="w-full h-[2.75rem] mt-[1rem]" weight="primary" action="progressive" @click="emit('back')">
+        {{ t("session.cardError.button") }}</CdxButton>
     </div>
   </div>
 </template>

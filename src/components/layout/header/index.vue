@@ -72,8 +72,8 @@ const authMenu = computed(() => {
           storeTheme.value === "auto" || !storeTheme.value
             ? t("header.menu.auto")
             : vuex.getters["profile/isDark"]
-            ? t("header.menu.dark")
-            : t("header.menu.light"),
+              ? t("header.menu.dark")
+              : t("header.menu.light"),
       },
       {
         label: t("header.menu.locale"),
@@ -100,8 +100,8 @@ const authMenu = computed(() => {
         storeTheme.value === "auto"
           ? t("header.menu.auto")
           : vuex.getters["profile/isDark"]
-          ? t("header.menu.dark")
-          : t("header.menu.light"),
+            ? t("header.menu.dark")
+            : t("header.menu.light"),
     },
     {
       label: t("header.menu.locale"),
@@ -170,61 +170,35 @@ watch(isThemeDark, () => {
 </script>
 
 <template>
-  <header
-    class="h-[64px] fixed w-full bg-white dark:bg-[#101418] left-0 z-[10] flex justify-center breakpoints"
-  >
-    <div
-      class="flex items-center justify-between max-w-[908px] w-full relative"
-    >
+  <header class="h-[4rem] fixed w-full bg-white dark:bg-[#101418] left-0 z-[10] flex justify-center breakpoints">
+    <div class="flex items-center justify-between max-w-[56.75rem] w-full relative">
       <div class="flex justify-center items-center h-full">
         <img v-if="!isThemeDark" :src="Logo" alt="Lexica logo" />
         <img v-else :src="LogoDark" alt="Lexica logo" />
       </div>
       <div>
-        <CdxMenuButton
-          :key="locale"
-          :aria-label="t('aria.account')"
-          top-left
-          v-tooltip:bottom="t('tooltips.account')"
-          v-model="selection"
-          :menu-items="authMenu"
-          :class="[
-            'z-[5] top-[58px] p-[4px]',
+        <CdxMenuButton :key="locale" :aria-label="t('aria.account')" top-left v-tooltip:bottom="t('tooltips.account')"
+          v-model="selection" :menu-items="authMenu" :class="[
+            'z-[5] top-[3.625rem] p-[0.25rem]',
             isAuth && !props.isLogout ? authClass : unauthClass,
             'dark:text-[#fff]',
-          ]"
-          @update:selected="onSelect"
-        >
+          ]" @update:selected="onSelect">
           <cdx-icon :icon="cdxIconUserAvatar" />
           <template #menu-item="{ menuItem }">
-            <div
-              class="flex gap-x-[var(--spacing-50)]"
-              @click="onSelect(menuItem.value)"
-            >
-              <CdxIcon
-                v-if="menuItem.value !== 'accessibility'"
-                :icon="menuItem.icon"
-                :class="[
-                  menuItem.value !== 'user' && 'text-[var(--color-subtle)]',
-                ]"
-              />
-              <img
-                v-if="menuItem.value === 'accessibility'"
-                :src="menuItem.icon"
-              />
+            <div class="flex gap-x-[var(--spacing-50)]" @click="onSelect(menuItem.value)">
+              <CdxIcon v-if="menuItem.value !== 'accessibility'" :icon="menuItem.icon" :class="[
+                menuItem.value !== 'user' && 'text-[var(--color-subtle)]',
+              ]" />
+              <img v-if="menuItem.value === 'accessibility'" :src="menuItem.icon" />
 
               <div>
-                <div
-                  :class="[
-                    'cdx-menu-item__label text-[var(--color-base)]',
-                    menuItem.value === 'user' && 'font-bold',
-                  ]"
-                >
+                <div :class="[
+                  'cdx-menu-item__label text-[var(--color-base)]',
+                  menuItem.value === 'user' && 'font-bold',
+                ]">
                   <bdi>{{ menuItem.label }}</bdi>
                 </div>
-                <div
-                  class="cdx-menu-item__description text-[var(--color-subtle)]"
-                >
+                <div class="cdx-menu-item__description text-[var(--color-subtle)]">
                   {{ menuItem.description }}
                 </div>
               </div>
@@ -232,20 +206,11 @@ watch(isThemeDark, () => {
           </template>
         </CdxMenuButton>
 
-        <ChooseLocale
-          :open="changeLanguage"
-          @onPrimaryAction="changeLanguage = false"
-        />
+        <ChooseLocale :open="changeLanguage" @onPrimaryAction="changeLanguage = false" />
 
-        <ChooseTheme
-          :open="changeTheme"
-          @onPrimaryAction="changeTheme = false"
-        />
+        <ChooseTheme :open="changeTheme" @onPrimaryAction="changeTheme = false" />
 
-        <ChooseAccessibility
-          :open="changeAccessibility"
-          @onPrimaryAction="changeAccessibility = false"
-        />
+        <ChooseAccessibility :open="changeAccessibility" @onPrimaryAction="changeAccessibility = false" />
       </div>
     </div>
   </header>
@@ -255,39 +220,40 @@ watch(isThemeDark, () => {
 .edited .cdx-menu {
   right: unset !important;
   left: 0px !important;
-  transform: translate(-212px, 4px) !important;
+  transform: translate(-13.25rem, 0.25rem) !important;
 }
+
 .home-button:active {
-  border-radius: 2px !important;
+  border-radius: 0.125rem !important;
   border-color: #72777d !important;
-  border: 1px solid;
+  border: 0.0625rem solid;
   background: #eaecf0 !important;
 }
 
 /* .active {
-  border-radius: 2px !important;
+  border-radius: 0.125rem !important;
   border-color: #72777d !important;
-  border: 1px solid;
+  border: 0.0625rem solid;
   background: #eaecf0 !important;
 } */
 .dropdown-content {
   position: absolute;
-  right: 4px;
-  top: 58px;
-  border-radius: 2px;
+  right: 0.25rem;
+  top: 3.625rem;
+  border-radius: 0.125rem;
   background-color: white;
   min-width: 288px;
-  border: 1px solid #a2a9b1;
+  border: 0.0625rem solid #a2a9b1;
   z-index: 9999;
-  padding: 8px 0;
+  padding: 0.5rem 0;
 
   flex-direction: column;
-  row-gap: 24px;
-  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.2);
+  row-gap: 1.5rem;
+  box-shadow: 0px 0.125rem 0.125rem 0px rgba(0, 0, 0, 0.2);
 }
 
 .cdx-menu {
-  top: 4px !important;
+  top: 0.25rem !important;
 }
 
 .cdx-menu-button__menu-wrapper {
@@ -300,7 +266,7 @@ watch(isThemeDark, () => {
 }
 
 .cdx-toggle-button {
-  padding: 12px !important;
+  padding: 0.75rem !important;
 }
 
 .first-child .cdx-menu-item:first-child {
@@ -336,23 +302,25 @@ watch(isThemeDark, () => {
 }
 
 .first-child-dark .cdx-menu-item {
-  border-bottom: 1px solid #72777d;
+  border-bottom: 0.0625rem solid #72777d;
 }
 
 .first-child .cdx-menu-item {
-  border-bottom: 1px solid #a2a9b1;
+  border-bottom: 0.0625rem solid #a2a9b1;
 }
 
 .unauth-dark .cdx-menu-item {
-  border-bottom: 1px solid #72777d;
+  border-bottom: 0.0625rem solid #72777d;
 }
+
 .unauth .cdx-menu-item {
-  border-bottom: 1px solid #a2a9b1;
+  border-bottom: 0.0625rem solid #a2a9b1;
 }
 
 .cdx-menu-item:nth-child(2) {
   border-bottom: unset;
 }
+
 .cdx-menu-item:nth-child(3) {
   border-bottom: unset;
 }

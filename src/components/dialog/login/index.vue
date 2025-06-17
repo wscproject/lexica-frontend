@@ -41,34 +41,22 @@ const moveCurr = (action) => {
 <template>
   <div>
     <!-- <client-only> -->
-    <CdxDialog
-      :open="open"
-      close-button-label="Close"
-      @update:open="close"
-      :class="['min-w-full min-h-full']"
-    >
+    <CdxDialog :open="open" close-button-label="Close" @update:open="close" :class="['min-w-full min-h-full']">
       <template #header>
         <div>
           <div class="w-full">
             <div class="flex w-full justify-between items-center">
-              <CdxLabel class="text-[18px]">Masuk</CdxLabel>
-              <CdxIcon
-                :aria-label="t('aria.close')"
-                :icon="cdxIconClose"
-                dir="rtl"
-                class="cursor-pointer"
-                @click="close"
-              />
+              <CdxLabel class="text-[1.125rem]">Masuk</CdxLabel>
+              <CdxIcon :aria-label="t('aria.close')" :icon="cdxIconClose" dir="rtl" class="cursor-pointer"
+                @click="close" />
             </div>
           </div>
         </div>
       </template>
       <div>
-        <iframe
-          class="h-[80vh] w-full"
+        <iframe class="h-[80vh] w-full"
           src="https://www.mediawiki.org/w/rest.php/oauth2/authorize?client_id=d804e6e8527faede6443d8add46084d8&response_type=code"
-          title="Login"
-        ></iframe>
+          title="Login"></iframe>
       </div>
     </CdxDialog>
     <!-- </client-only> -->
@@ -76,23 +64,23 @@ const moveCurr = (action) => {
 </template>
 
 <style>
-.cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__header {
-  border-bottom: 1px solid #c8ccd1;
+.cdx-dialog-backdrop>.guide-dialog>.cdx-dialog__header {
+  border-bottom: 0.0625rem solid #c8ccd1;
 }
 
-.cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__header {
+.cdx-dialog-backdrop>.guide-dialog-2>.cdx-dialog__header {
   border-bottom: unset;
 }
 
-.cdx-dialog-backdrop > .guide-dialog > .cdx-dialog__footer {
-  border-top: 1px solid #c8ccd1;
+.cdx-dialog-backdrop>.guide-dialog>.cdx-dialog__footer {
+  border-top: 0.0625rem solid #c8ccd1;
 }
 
-.cdx-dialog-backdrop > .guide-dialog-2 > .cdx-dialog__footer {
+.cdx-dialog-backdrop>.guide-dialog-2>.cdx-dialog__footer {
   border-top: unset;
 }
 
 .cdx-dialog__footer {
-  padding: 12px !important;
+  padding: 0.75rem !important;
 }
 </style>

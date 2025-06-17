@@ -127,34 +127,24 @@ const apply = async () => {
 </script>
 
 <template>
-  <CdxDialog
-    :open="props.open"
-    title="Save changes"
-    close-button-label="Close"
-    @update:open="close"
-    :class="[
-      'locale rounded-[2px] max-w-[512px] min-w-[288px] w-100 mx-[16px]',
-    ]"
-  >
+  <CdxDialog :open="props.open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
+    'locale rounded-[0.125rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+  ]">
     <template #header>
       <div class="w-full">
         <div class="w-full">
           <div class="flex w-full justify-between items-center">
-            <h4 class="text-[18px] text-[var(--color-base)] font-bold">
+            <h4 class="text-[1.125rem] text-[var(--color-base)] font-bold">
               {{ t("accessibilityDialog.title") }}
             </h4>
-            <CdxButton
-              :aria-label="t('aria.close')"
-              @click="close"
-              weight="quiet"
-            >
+            <CdxButton :aria-label="t('aria.close')" @click="close" weight="quiet">
               <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
             </CdxButton>
           </div>
         </div>
       </div>
     </template>
-    <div class="w-full px-[16px] py-[12px]">
+    <div class="w-full px-[1rem] py-[0.75rem]">
       <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle2") }}
       </h4>
@@ -164,9 +154,7 @@ const apply = async () => {
           {{ t("accessibilityDialog.option4Note") }}
         </template>
       </CdxToggleSwitch>
-      <h4
-        class="pb-[var(--spacing-50)] mt-[var(--spacing-100)] text-[var(--color-base)] font-bold"
-      >
+      <h4 class="pb-[var(--spacing-50)] mt-[var(--spacing-100)] text-[var(--color-base)] font-bold">
         {{ t("accessibilityDialog.subtitle1") }}
       </h4>
       <CdxToggleSwitch v-model="isUnderline" alignSwitch>
@@ -183,16 +171,11 @@ const apply = async () => {
       </CdxToggleSwitch>
     </div>
     <template #footer>
-      <div class="flex gap-x-[12px] w-full justify-end">
-        <CdxButton class="w-fit h-[34px]" @click="close">{{
+      <div class="flex gap-x-[0.75rem] w-full justify-end">
+        <CdxButton class="w-fit h-[2.125rem]" @click="close">{{
           t("darkmodeDialog.cancel")
         }}</CdxButton>
-        <CdxButton
-          :class="['h-[34px]', 'w-fit']"
-          weight="primary"
-          action="progressive"
-          @click="apply"
-        >
+        <CdxButton :class="['h-[2.125rem]', 'w-fit']" weight="primary" action="progressive" @click="apply">
           {{ t("darkmodeDialog.apply") }}
         </CdxButton>
       </div>

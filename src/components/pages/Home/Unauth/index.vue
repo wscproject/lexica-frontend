@@ -36,47 +36,34 @@ onBeforeUnmount(() => {
 
 <template>
   <div
-    class="h-full flex justify-center max-[1023px]:flex-col max-[1023px]:gap-y-[var(--spacing-150)] min-[1024px]:flex-row min-[1024px]:gap-x-[var(--spacing-150)] font-[400] items-center"
-  >
+    class="h-full flex justify-center max-[1023px]:flex-col max-[1023px]:gap-y-[var(--spacing-150)] min-[1024px]:flex-row min-[1024px]:gap-x-[var(--spacing-150)] font-[400] items-center">
     <div>
-      <h1
-        class="text-[28px] text-[var(--color-emphasized)] pb-[var(--spacing-50)] leading-[35px]"
-      >
+      <h1 class="text-[1.75rem] text-[var(--color-emphasized)] pb-[var(--spacing-50)] leading-[2.1875rem]">
         {{ t("home.unauth.title2") }}
       </h1>
 
-      <div class="text-[16px] dark:text-[#EAECF0]">
-        <span>{{ t("home.unauth.body2") }}</span
-        ><a
-          class="cdx-docs-link is-underlined"
-          href="/privacy-policy"
-          id="privacy-policy"
-          >{{ t("home.unauth.privacyPolicy") }}</a
-        >.
+      <div class="text-[1rem] dark:text-[#EAECF0]">
+        <span>{{ t("home.unauth.body2") }}</span><a class="cdx-docs-link is-underlined" href="/privacy-policy"
+          id="privacy-policy">{{ t("home.unauth.privacyPolicy") }}</a>.
       </div>
 
       <a :href="loginUrl" class="" tabindex="-1">
-        <CdxButton
-          action="progressive"
-          weight="primary"
-          class="py-[12px] rounded-[2px] w-full max-w-[160px] h-[44px] my-[var(--spacing-100)]"
-          ><CdxIcon :dir="dir" :icon="cdxIconLogIn" />
-          {{ t("home.unauth.login") }}</CdxButton
-        >
+        <CdxButton action="progressive" weight="primary"
+          class="py-[0.75rem] rounded-[0.125rem] w-full max-w-[10rem] h-[2.75rem] my-[var(--spacing-100)]">
+          <CdxIcon :dir="dir" :icon="cdxIconLogIn" />
+          {{ t("home.unauth.login") }}
+        </CdxButton>
       </a>
 
       <div
-        class="flex gap-x-2 p-[var(--spacing-100)] rounded-[var(--border-radius-base)] border-[1px] border-[var(--border-color-notice)] bg-[var(--background-color-notice-subtle)] text-[var(--color-base)]"
-      >
+        class="flex gap-x-2 p-[var(--spacing-100)] rounded-[var(--border-radius-base)] border-[0.0625rem] border-[var(--border-color-notice)] bg-[var(--background-color-notice-subtle)] text-[var(--color-base)]">
         <CdxIcon :icon="cdxIconInfoFilled" />
-        <span class="p-0 font-[400] text-[16px]">{{
+        <span class="p-0 font-[400] text-[1rem]">{{
           t("home.unauth.info")
         }}</span>
       </div>
     </div>
-    <div
-      class="w-[360px] h-[360px] shrink-0 flex justify-center items-center max-[639px]:hidden"
-    >
+    <div class="w-[22.5rem] h-[22.5rem] shrink-0 min-[640px]:flex justify-center items-center max-[639px]:hidden">
       <img :src="HomeImage" alt="home" />
     </div>
   </div>

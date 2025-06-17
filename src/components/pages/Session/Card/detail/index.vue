@@ -95,7 +95,7 @@ onUnmounted(() => {
 <template>
   <div class="relative w-full overflow-hidden flex flex-col h-full">
     <div
-      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)] rtl:pl-[var(--spacing-100)] rtl:pr-[var(--spacing-50)] text-white flex test justify-between relative rounded-t-[15px]"
+      class="header pt-[var(--spacing-100)] pl-[var(--spacing-50)] pb-[var(--spacing-75)] pr-[var(--spacing-100)] rtl:pl-[var(--spacing-100)] rtl:pr-[var(--spacing-50)] text-white flex test justify-between relative rounded-t-[0.9375rem]"
       :style="{
         background: '#3056A9',
         alignItems: 'flex-start',
@@ -108,7 +108,7 @@ onUnmounted(() => {
             class="text-white cursor-pointer mx-[var(--spacing-25)] interactableeee"
             :tabindex="props.isCurrent && props.isFlip && '0'" @click="emit('backtoItem')"
             @keydown.space="emit('backtoItem')" />
-          <h4 class="font-bold text-[18px] leading-[22.5px]">
+          <h4 class="font-bold text-[1.125rem] leading-[1.406rem]">
             {{ props?.headerData?.lemma }}
             <span v-if="props?.headerData?.id">
               ({{ props?.headerData?.id }})</span>
@@ -132,12 +132,12 @@ onUnmounted(() => {
           {{ props.headerData.gloss }}
         </p>
 
-        <p v-else class="text-[16px] pb-0 pl-[var(--spacing-50)]">
+        <p v-else class="text-[1rem] pb-0 pl-[var(--spacing-50)]">
           <i> {{ t("session.emptyDescriptionHead") }} {{ props?.currLang }} </i>
         </p>
       </div>
     </div>
-    <div class="p-[16px] overflow-auto bg-white dark:bg-[#101418] rounded-b-[16px] h-full">
+    <div class="p-[1rem] overflow-auto bg-white dark:bg-[#101418] rounded-b-[1rem] h-full">
       <div v-if="props.isLoading" class="h-full flex flex-col">
         <div class="w-full h-full flex flex-col justify-center items-center">
           <Loading :text="t('session.detail.loading')" variant="default" />
@@ -152,36 +152,37 @@ onUnmounted(() => {
           !noGlosses)
       ">
         <div v-if="!props.isLoading && isThisLexeme" class="mb-[var(--spacing-100)]">
-          <CdxLabel class="text-[16px] dark:text-[#EAECF0] p-0" style="padding-bottom: 12px">{{
+          <CdxLabel class="text-[1rem] dark:text-[#EAECF0] p-0" style="padding-bottom: 0.75rem">{{
             t("session.detail.title1") }}</CdxLabel>
 
           <div v-if="data?.usageExamples"
-            class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-            <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+            class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+            <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
               t("session.detail.usageExample") }} ({{
                 data?.usageExamples?.property
               }})</span>
-            <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{ data?.usageExamples?.data?.[0]?.value
-              }}</span>
+            <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
+              data?.usageExamples?.data?.[0]?.value
+            }}</span>
           </div>
 
           <div v-if="data?.hasCharacteristics"
-            class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-            <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+            class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+            <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
               t("session.detail.hasCharacteristics") }} ({{
                 data?.hasCharacteristics?.property
               }})</span>
-            <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
               data?.hasCharacteristics?.data?.[0]?.value }}</span>
           </div>
 
           <div v-if="data?.combinesLexemes"
-            class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-            <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+            class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+            <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
               t("session.detail.combinesLexemes") }} ({{
                 data?.combinesLexemes?.property
               }})</span>
-            <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+            <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
               data?.combinesLexemes?.data
                 ?.map((item) => {
                   return `${item.value} (${item.id})`;
@@ -192,14 +193,15 @@ onUnmounted(() => {
         </div>
 
         <div v-if="!isNoStatement || !noGlosses" class="mb-[var(--spacing-100)]">
-          <CdxLabel class="text-[16px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0" style="padding-bottom: 12px">{{
-            t("session.detail.title2") }}</CdxLabel>
+          <CdxLabel class="text-[1rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0" style="padding-bottom: 0.75rem">
+            {{
+              t("session.detail.title2") }}</CdxLabel>
           <div class="mb-[var(--spacing-50)]" v-if="!isNoStatement">
-            <CdxLabel class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
+            <CdxLabel class="text-[0.875rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
               t("session.detail.subtitle1") }}</CdxLabel>
 
             <div v-if="data?.sense?.images"
-              class="flex gap-x-[12px] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[12px] w-full cursor-pointer"
+              class="flex gap-x-[0.75rem] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[0.75rem] w-full cursor-pointer"
               @click="
                 () => {
                   emit('showImage', data?.sense?.images?.data?.[0]?.url);
@@ -209,104 +211,104 @@ onUnmounted(() => {
                 <CdxThumbnail :thumbnail="{
                   url: data?.sense?.images?.data?.[0]?.url,
                 }" :placeholder-icon="cdxIconLogoWikidata" />
-                <div class="w-[40px] h-[40px] absolute top-0">
+                <div class="w-[2.5rem] h-[2.5rem] absolute top-0">
                   <img :src="expand" />
                 </div>
               </div>
               <div>
-                <CdxLabel class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none">
+                <CdxLabel class="text-[1rem] pb-[0.25rem] leading-[1.25rem] dark:text-[#EAECF0] pointer-events-none">
                   {{ t("session.detail.images") }} ({{
                     data?.sense?.images?.property
                   }})</CdxLabel>
-                <p class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]">
+                <p class="text-[1rem] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[1.375rem]">
                   {{ data?.sense?.images?.data?.[0]?.value }}
                 </p>
               </div>
             </div>
 
             <div v-if="data?.sense?.antonym"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.antonym") }} ({{
                   data?.sense?.antonym?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.antonym?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.synonym"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.synonym") }} ({{
                   data?.sense?.synonym?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.synonym?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.locationOfSenseUsage"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.locationOfSenseUsage") }} ({{
                   data?.sense?.locationOfSenseUsage?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.locationOfSenseUsage?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.languageStyle"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.languageStyle") }} ({{
                   data?.sense?.languageStyle?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.languageStyle?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.describedAtUrl"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.describedAtUrl") }} ({{
                   data?.sense?.describedAtUrl?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.describedAtUrl?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.glossQuotes"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.glossQuotes") }} ({{
                   data?.sense?.glossQuotes?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.glossQuotes?.data?.[0]?.value }}</span>
             </div>
 
             <div v-if="data?.sense?.sematicGender"
-              class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-              <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+              class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+              <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                 t("session.detail.sematicGender") }} ({{
                   data?.sense?.sematicGender?.property
                 }})</span>
-              <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{
+              <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{
                 data?.sense?.sematicGender?.data?.[0]?.value }}</span>
             </div>
           </div>
 
           <div v-if="!props.isLoading && !noGlosses">
-            <CdxLabel class="text-[14px] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
+            <CdxLabel class="text-[0.875rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
               t("session.detail.subtitle2") }}</CdxLabel>
 
             <div v-for="item in data?.sense?.otherGlosses">
               <div
-                class="border-[1px] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[2px] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
-                <span class="text-[var(--color-base)] text-[16px] font-[700] leading-[20px]">{{
+                class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.125rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
+                <span class="text-[var(--color-base)] text-[1rem] font-[700] leading-[1.25rem]">{{
                   props?.languages?.[item?.language]?.autonym }} ({{
                     item?.language
                   }})</span>
-                <span class="text-[var(--color-subtle)] text-[16px] leading-[22px]">{{ item?.value }}</span>
+                <span class="text-[var(--color-subtle)] text-[1rem] leading-[1.375rem]">{{ item?.value }}</span>
               </div>
             </div>
           </div>
@@ -320,7 +322,7 @@ onUnmounted(() => {
           >
             <template #title>
               <div
-                class="bg-[green] text-[var(--color-base)] font-[700] text-[16px]"
+                class="bg-[green] text-[var(--color-base)] font-[700] text-[1rem]"
               >
                 {{ t("session.detail.title3") }}
               </div>
@@ -331,7 +333,7 @@ onUnmounted(() => {
         <div
           class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-color-base)] mb-[var(--spacing-100)]"
           v-if="data?.otherSenses?.length > 0">
-          <div class="font-[700] text-[16px] pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
+          <div class="font-[700] text-[1rem] pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
             @click="isExpand = !isExpand">
             <span>{{ t("session.detail.title3") }}</span>
 
@@ -341,14 +343,14 @@ onUnmounted(() => {
             <div v-show="isExpand">
               <div v-for="(item, i) in langs" :key="item.senseNumber">
                 <div :class="[
-                  'text-[14px] font-[700]',
+                  'text-[0.875rem] font-[700]',
                   i !== 0 && 'mt-[var(--spacing-50)]',
                 ]">
                   {{ t("session.detail.sense") }} {{ item?.senseNumber }}:
                   {{ item?.gloss }}
                 </div>
                 <div
-                  class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px]"
+                  class="text-[1rem] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[0.125rem]"
                   v-if="item?.itemForThisSense?.data?.[0]?.value">
                   <div class="font-[700]">
                     {{ t("session.detail.itemForThisSense") }} ({{
@@ -361,10 +363,10 @@ onUnmounted(() => {
                 </div>
 
                 <div
-                  class="text-[16px] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[2px] flex"
+                  class="text-[1rem] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[0.125rem] flex"
                   v-if="item?.otherGlosses?.length > 0">
                   <CdxIcon :icon="cdxIconLanguage" />
-                  <div class="text-[16px] pl-[var(--spacing-75)]">
+                  <div class="text-[1rem] pl-[var(--spacing-75)]">
                     <div class="font-[700]">
                       {{ t("session.detail.otherGlosses") }}
                     </div>
@@ -375,7 +377,7 @@ onUnmounted(() => {
                 </div>
 
                 <div
-                  class="flex gap-x-[12px] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] p-[var(--spacing-75)] w-full text-[16px] cursor-pointer"
+                  class="flex gap-x-[0.75rem] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] p-[var(--spacing-75)] w-full text-[1rem] cursor-pointer"
                   v-if="item.images" @click="
                     () => {
                       emit('showImage', item?.images?.data?.[0]?.url);
@@ -385,16 +387,17 @@ onUnmounted(() => {
                     <CdxThumbnail :thumbnail="{
                       url: item?.images?.data?.[0]?.url,
                     }" :placeholder-icon="cdxIconLogoWikidata" />
-                    <div class="w-[40px] h-[40px] absolute top-0">
+                    <div class="w-[2.5rem] h-[2.5rem] absolute top-0">
                       <img :src="expand" />
                     </div>
                   </div>
                   <div>
-                    <CdxLabel class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0] pointer-events-none">
+                    <CdxLabel
+                      class="text-[1rem] pb-[0.25rem] leading-[1.25rem] dark:text-[#EAECF0] pointer-events-none">
                       {{ t("session.detail.images") }} ({{
                         item?.images?.property
                       }})</CdxLabel>
-                    <p class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]">
+                    <p class="text-[1rem] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[1.375rem]">
                       {{ item?.images?.data?.[0]?.value }}
                     </p>
                   </div>
@@ -411,7 +414,7 @@ onUnmounted(() => {
         data?.otherSenses?.length === 0 &&
         noGlosses
       ">
-        <p class="text-[16px] text-[#54595D] dark:text-[#A2A9B1]">
+        <p class="text-[1rem] text-[#54595D] dark:text-[#A2A9B1]">
           <i>{{ t("session.emptyStatement") }}</i>
         </p>
       </div>
@@ -441,7 +444,7 @@ onUnmounted(() => {
 
 .fade-detail-enter-from,
 .fade-detail-leave-to {
-  transform: translateY(-20px);
+  transform: translateY(-1.25rem);
   opacity: 0;
 }
 

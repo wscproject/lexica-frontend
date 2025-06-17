@@ -134,46 +134,26 @@ const applyTheme = async () => {
 
 <template>
   <div>
-    <CdxDialog
-      :open="props.open"
-      title="Save changes"
-      close-button-label="Close"
-      @update:open="close"
-      :class="[
-        'locale rounded-[2px] max-w-[512px] min-w-[288px] w-100 mx-[16px]',
-      ]"
-    >
+    <CdxDialog :open="props.open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
+      'locale rounded-[0.125rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+    ]">
       <template #header>
         <div class="w-full">
           <div class="w-full">
             <div class="flex w-full justify-between items-center">
-              <CdxLabel class="text-[18px]">{{
+              <CdxLabel class="text-[1.125rem]">{{
                 t("darkmodeDialog.title")
               }}</CdxLabel>
-              <CdxButton
-                :aria-label="t('aria.close')"
-                @click="close"
-                weight="quiet"
-              >
-                <CdxIcon
-                  :icon="cdxIconClose"
-                  dir="rtl"
-                  class="cursor-pointer"
-                />
+              <CdxButton :aria-label="t('aria.close')" @click="close" weight="quiet">
+                <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
               </CdxButton>
             </div>
           </div>
         </div>
       </template>
-      <div class="w-full px-[16px] py-[12px]">
-        <CdxRadio
-          @keydown.enter="applyTheme"
-          v-for="menu in menus"
-          :key="locale"
-          v-model="currTheme"
-          name="radio-group"
-          :input-value="menu.value"
-        >
+      <div class="w-full px-[1rem] py-[0.75rem]">
+        <CdxRadio @keydown.enter="applyTheme" v-for="menu in menus" :key="locale" v-model="currTheme" name="radio-group"
+          :input-value="menu.value">
           {{ menu.label }}
 
           <template #description>
@@ -182,16 +162,11 @@ const applyTheme = async () => {
         </CdxRadio>
       </div>
       <template #footer>
-        <div class="flex gap-x-[12px] w-full justify-end">
-          <CdxButton class="w-fit h-[34px]" @click="close">{{
+        <div class="flex gap-x-[0.75rem] w-full justify-end">
+          <CdxButton class="w-fit h-[2.125rem]" @click="close">{{
             t("darkmodeDialog.cancel")
           }}</CdxButton>
-          <CdxButton
-            :class="['h-[34px]', 'w-fit']"
-            weight="primary"
-            action="progressive"
-            @click="applyTheme"
-          >
+          <CdxButton :class="['h-[2.125rem]', 'w-fit']" weight="primary" action="progressive" @click="applyTheme">
             {{ t("darkmodeDialog.apply") }}
           </CdxButton>
         </div>
@@ -205,12 +180,12 @@ const applyTheme = async () => {
 .locale .cdx-dialog__header {
   display: flex !important;
   align-items: center !important;
-  padding: 16px 16px !important;
+  padding: 1rem 1rem !important;
   border: 0 !important;
 }
 
 .locale .cdx-dialog__footer {
-  padding: 16px 16px 24px !important;
+  padding: 1rem 1rem 1.5rem !important;
   border: 0 !important;
 }
 </style>

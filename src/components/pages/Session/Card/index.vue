@@ -44,9 +44,8 @@ const transformString = computed(() => {
   if (!positions.isInteractAnimating || positions.isInteractDragged) {
     const { x, y, rotation } = positions.interactPosition;
     // return `translate3D(${x}px, ${y}px, 0) rotate(${rotation}deg)`;
-    return `translate3D(0, ${y}px, 0) rotate(${rotation}deg) ${
-      props.isFlipped ? "rotateY(-180deg)" : ""
-    }`;
+    return `translate3D(0, ${y}px, 0) rotate(${rotation}deg) ${props.isFlipped ? "rotateY(-180deg)" : ""
+      }`;
   }
 
   return null;
@@ -143,17 +142,13 @@ onMounted(() => {
 </script>
 
 <template>
-  <div
-    :style="{
-      transform: transformString,
-      display: positions.isShowing ? 'block' : 'none',
-      touchAction: 'none',
-    }"
-    ref="cardRef"
-    :class="[
-      'absolute bg-[var(--background-color-base)] rounded-[16px] w-full h-full max-h-[650px] min-w-[288px] max-w-[450px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
-    ]"
-  >
+  <div :style="{
+    transform: transformString,
+    display: positions.isShowing ? 'block' : 'none',
+    touchAction: 'none',
+  }" ref="cardRef" :class="[
+    'absolute bg-[var(--background-color-base)] rounded-[1rem] w-full h-full max-h-[40.625rem] min-w-[18rem] max-w-[28.125rem] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
+  ]">
     <slot />
   </div>
 </template>
@@ -170,7 +165,7 @@ onMounted(() => {
 }
 
 .shadow-custom {
-  /* box-shadow: 0 0 0 1px #c8ccd1; */
+  /* box-shadow: 0 0 0 0.0625rem #c8ccd1; */
   box-shadow: var(--box-shadow-medium);
 }
 
@@ -205,12 +200,15 @@ onMounted(() => {
     transform: translateY(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(-825px) rotate(2deg);
     opacity: 0;
@@ -222,6 +220,7 @@ onMounted(() => {
     transform: translateY(-825px) rotate(2deg);
     opacity: 0;
   }
+
   30% {
     opacity: 0;
   }
@@ -229,6 +228,7 @@ onMounted(() => {
   80% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(0) rotate(0);
     opacity: 1;
@@ -240,12 +240,15 @@ onMounted(() => {
     transform: translateY(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(-825px) rotate(-2deg);
     opacity: 0;
@@ -257,6 +260,7 @@ onMounted(() => {
     transform: translateY(-825px) rotate(-2deg);
     opacity: 0;
   }
+
   30% {
     opacity: 0;
   }
@@ -264,6 +268,7 @@ onMounted(() => {
   80% {
     opacity: 1;
   }
+
   100% {
     transform: translateY(0) rotate(0);
     opacity: 1;
@@ -275,14 +280,17 @@ onMounted(() => {
     transform: translateX(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
-    transform: translateX(2000px) rotate(2deg);
+    transform: translateX(125rem) rotate(2deg);
     opacity: 0;
   }
 }
@@ -292,14 +300,17 @@ onMounted(() => {
     transform: translateX(0) rotate(0);
     opacity: 1;
   }
+
   30% {
     opacity: 1;
   }
+
   80% {
     opacity: 0;
   }
+
   100% {
-    transform: translateX(-2000px) rotate(-2deg);
+    transform: translateX(-125rem) rotate(-2deg);
     opacity: 0;
   }
 }

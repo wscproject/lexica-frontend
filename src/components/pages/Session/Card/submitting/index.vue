@@ -11,9 +11,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    class="absolute z-[99] w-full bg-white dark:bg-[#101418] flex justify-center flex-col text-center p-[16px]"
-  >
+  <div class="absolute z-[99] w-full bg-white dark:bg-[#101418] flex justify-center flex-col text-center p-[1rem]">
     <div class="w-full text-center">
       <Loading :text="t('session.upload')" variant="big" />
     </div>

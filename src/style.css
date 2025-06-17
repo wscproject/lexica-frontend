@@ -34,6 +34,8 @@
   src: url("/font/NotoSansSundanese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+1B80-1BBF, U+1CC0-1CCF; /* Sundanese */
 }
 
 @font-face {
@@ -41,6 +43,8 @@
   src: url("/font/NotoSansBalinese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+1B00-1B7F; /* Balinese */
 }
 
 @font-face {
@@ -48,6 +52,9 @@
   src: url("/font/NotoSansArabic-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+08A0-08FF, U+FB50-FDFF, U+FE70-FEFF,
+    U+1EE00-1EEFF; /* Arabic */
 }
 
 @font-face {
@@ -55,37 +62,56 @@
   src: url("/font/NotoSansHebrew-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+0590-05FF, U+200C-200F, U+2010-201F, U+20AA, U+25CC,
+    U+FB1D-FB4F; /* Hebrew */
 }
 
 @font-face {
   font-family: "NotoSansJP";
-  src: url("/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansJP-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+3000-30FF, U+FF00-FFEF, U+4E00-9FAF; /* Japanese */
 }
+
 @font-face {
   font-family: "NotoSansKR";
-  src: url("/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansKR-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+AC00-D7AF, U+1100-11FF, U+3130-318F, U+A960-A97F, U+D7B0-D7FF; /* Korean */
 }
+
 @font-face {
   font-family: "NotoSansSC";
-  src: url("/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansSC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F,
+    U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F; /* Simplified Chinese */
 }
+
 @font-face {
   font-family: "NotoSansTC";
-  src: url("/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansTC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+4E00-9FFF, U+3400-4DBF, U+20000-2A6DF, U+2A700-2B73F,
+    U+2B740-2B81F, U+2B820-2CEAF, U+F900-FAFF, U+2F800-2FA1F; /* Traditional Chinese */
 }
+
 @font-face {
   font-family: "NotoSansThai";
   src: url("/font/NotoSansThai-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
+  font-display: swap;
+  unicode-range: U+0E00-0E7F; /* Thai */
 }
 
 @font-face {
@@ -277,6 +303,7 @@
     Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  font-size: 16px;
 
   background-color: var(--background-color-base);
 
@@ -409,7 +436,7 @@ body {
   margin: 0;
   display: flex;
   place-items: center;
-  min-width: 320px;
+  min-width: 20rem;
   min-height: 100%;
   font-weight: 400;
   font-family: var(--font-family);
@@ -424,8 +451,8 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  border: 0.0625rem solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -439,7 +466,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 0.25rem auto -webkit-focus-ring-color;
 }
 
 .card {
@@ -459,8 +486,8 @@ ol {
 
 ul {
   list-style-type: initial !important;
-  padding-left: 16px !important;
-  margin-left: 8px !important;
+  padding-left: 1rem !important;
+  margin-left: 0.5rem !important;
 }
 
 html {
@@ -480,11 +507,11 @@ html {
 }
 
 h1 {
-  font-size: 28px !important;
+  font-size: 1.75rem !important;
 }
 
 .cdx-dialog__footer {
-  padding: 12px !important;
+  padding: 0.75rem !important;
 }
 
 .cdx-dialog__body {

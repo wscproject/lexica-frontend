@@ -2,6 +2,8 @@ import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import VueCookies from "vue3-cookies";
 import "./style.css";
+import "./index.css";
+
 import Home from "./pages/Home/index.vue";
 import About from "./pages/About/index.vue";
 import Guide from "./pages/Guide/index.vue";
@@ -21,7 +23,6 @@ import App from "./App.vue";
 import { createVuetify } from "vuetify";
 import * as directives from "vuetify/directives";
 import * as components from "vuetify/components";
-import "./index.css";
 
 import store from "./store";
 import { cookies } from "@/helper/cookies";

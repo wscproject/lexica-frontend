@@ -26,35 +26,23 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    class="relative w-full flex flex-col overflow-hidden rounded-[15px] flex flex-col h-full"
-  >
-    <div
-      class="p-[16px] text-white flex test justify-between gap-x-2 header fixed w-full rounded-t-[16px]"
-      :style="{
-        background: '#54595D',
-        alignItems: 'center',
-      }"
-      :ref="props.headerRef"
-    >
-      <h4 class="text-[18px] pb-0 text-white font-bold leading-[22px]">
+  <div class="relative w-full flex flex-col overflow-hidden rounded-[0.9375rem] flex flex-col h-full">
+    <div class="p-[1rem] text-white flex test justify-between gap-x-2 header fixed w-full rounded-t-[1rem]" :style="{
+      background: '#54595D',
+      alignItems: 'center',
+    }" :ref="props.headerRef">
+      <h4 class="text-[1.125rem] pb-0 text-white font-bold leading-[1.375rem]">
         {{ t("session.preview.title") }}
       </h4>
     </div>
     <div
-      class="px-[16px] pt-[70px] pb-[65px] overflow-auto pb-[45px] custom-maxheight bg-white dark:bg-[#101418] h-full"
-    >
-      <CdxLabel
-        class="text-[16px] dark:text-[#EAECF0]"
-        style="padding-bottom: 16px"
-        >{{ t("session.preview.lexeme") }}</CdxLabel
-      >
-      <div
-        class="border border-[var(--border-color-base)] rounded-[2px] p-[12px] mb-[8px]"
-      >
-        <div class="flex gap-x-[12px]">
+      class="px-[1rem] pt-[4.375rem] pb-[4.0625rem] overflow-auto pb-[2.8125rem] custom-maxheight bg-white dark:bg-[#101418] h-full">
+      <CdxLabel class="text-[1rem] dark:text-[#EAECF0]" style="padding-bottom: 1rem">{{ t("session.preview.lexeme") }}
+      </CdxLabel>
+      <div class="border border-[var(--border-color-base)] rounded-[0.125rem] p-[0.75rem] mb-[0.5rem]">
+        <div class="flex gap-x-[0.75rem]">
           <!-- <div
-            class="border border-[#C8CCD1] rounded-[2px] overflow-hidden w-[48px] h-[48px] shrink-0"
+            class="border border-[#C8CCD1] rounded-[0.125rem] overflow-hidden w-[3rem] h-[3rem] shrink-0"
           >
             <img
               :src="
@@ -64,31 +52,21 @@ const props = defineProps({
             />
           </div> -->
 
-          <CdxThumbnail
-            :thumbnail="{
-              url: props.img || wikimedia,
-            }"
-            :class="[!img && 'custom-thumbnail']"
-          />
+          <CdxThumbnail :thumbnail="{
+            url: props.img || wikimedia,
+          }" :class="[!img && 'custom-thumbnail']" />
 
           <div>
-            <CdxLabel
-              class="text-[16px] pb-[4px] leading-[20px] dark:text-[#EAECF0]"
-              >{{ props?.data?.lemma }} ({{
+            <CdxLabel class="text-[1rem] pb-[0.25rem] leading-[1.25rem] dark:text-[#EAECF0]">{{ props?.data?.lemma }}
+              ({{
                 props?.data?.externalLexemeId
-              }})</CdxLabel
-            >
-            <p
-              class="text-[16px] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[22px]"
-            >
+              }})</CdxLabel>
+            <p class="text-[1rem] font-normal text-[#54595D] dark:text-[#A2A9B1] pb-[0] leading-[1.375rem]">
               <span v-if="props?.data?.gloss">{{ props?.data?.gloss }}</span>
 
               <span v-else>
-                <i
-                  >{{ t("session.emptyDescriptionHead") }}
-                  {{ props?.currLang }}</i
-                ></span
-              >
+                <i>{{ t("session.emptyDescriptionHead") }}
+                  {{ props?.currLang }}</i></span>
             </p>
           </div>
         </div>
@@ -97,14 +75,11 @@ const props = defineProps({
       <div class="flex justify-center">
         <div class="arrow dark:border-b-[#27292D]"></div>
       </div>
-      <div class="p-[12px] bg-[#eaecf0] dark:bg-[#27292D]">
+      <div class="p-[0.75rem] bg-[#eaecf0] dark:bg-[#27292D]">
         <div class="flex gap-x-2 items-start">
           <img :src="isThemeDark ? LogoDark : Logo" alt="lexica_footer" />
           <div class="">
-            <CdxLabel
-              class="text-[16px] dark:text-[#EAECF0] pb-0"
-              style="padding-bottom: 16px"
-            >
+            <CdxLabel class="text-[1rem] dark:text-[#EAECF0] pb-0" style="padding-bottom: 1rem">
               {{
                 t("session.scriptPreview.newStatement", {
                   lang: props.data?.language?.languageVariant?.title,
@@ -113,7 +88,7 @@ const props = defineProps({
               }}
             </CdxLabel>
 
-            <span class="text-[16px] text-[var(--color-subtle)]">{{
+            <span class="text-[1rem] text-[var(--color-subtle)]">{{
               props.detail
             }}</span>
           </div>
@@ -121,23 +96,16 @@ const props = defineProps({
       </div>
     </div>
     <div
-      class="fixed bottom-0 w-full h-66px border-t border-[var(--border-color-base)] p-[16px] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[12px] rounded-b-[16px]"
-    >
+      class="fixed bottom-0 w-full h-4.125rem border-t border-[var(--border-color-base)] p-[1rem] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[0.75rem] rounded-b-[1rem]">
       <CdxButton @click="emit('backtoItem')" class="w-full">{{
         t("session.preview.button1")
       }}</CdxButton>
-      <CdxButton
-        weight="primary"
-        action="progressive"
-        class="w-full"
-        @click="
-          emit('onDone', {
-            contributionDetailId: props?.data?.id,
-            lemma: props?.detail || '',
-          })
-        "
-        >{{ t("session.preview.button2") }}</CdxButton
-      >
+      <CdxButton weight="primary" action="progressive" class="w-full" @click="
+        emit('onDone', {
+          contributionDetailId: props?.data?.id,
+          lemma: props?.detail || '',
+        })
+        ">{{ t("session.preview.button2") }}</CdxButton>
     </div>
   </div>
 </template>
@@ -146,9 +114,9 @@ const props = defineProps({
 .arrow {
   width: 0;
   height: 0;
-  border-left: 12px solid transparent;
-  border-right: 12px solid transparent;
-  border-bottom: 12px solid #eaecf0;
+  border-left: 0.75rem solid transparent;
+  border-right: 0.75rem solid transparent;
+  border-bottom: 0.75rem solid #eaecf0;
 }
 
 .custom-thumbnail .cdx-thumbnail__image {

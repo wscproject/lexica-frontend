@@ -40,33 +40,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div
-    ref="refs"
+  <div ref="refs"
     class="absolute w-100 h-100 bg-[#101418] z-[99] flex justify-center items-center py-[var(--spacing-100)]"
-    tabindex="0"
-    @keydown.esc="emit('close')"
-  >
-    <div class="absolute right-[4px] top-[4px] z-[999]">
-      <CdxButton
-        :aria-label="t('aria.close')"
-        @click="emit('close')"
-        weight="quiet"
-        class="w-[var(--size-275)] h-[var(--size-275)] bg-[#101418]"
-      >
-        <CdxIcon
-          :icon="cdxIconClose"
-          dir="rtl"
-          class="cursor-pointer text-[#EAECF0]"
-        />
+    tabindex="0" @keydown.esc="emit('close')">
+    <div class="absolute right-[0.25rem] top-[0.25rem] z-[999]">
+      <CdxButton :aria-label="t('aria.close')" @click="emit('close')" weight="quiet"
+        class="w-[var(--size-275)] h-[var(--size-275)] bg-[#101418]">
+        <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer text-[#EAECF0]" />
       </CdxButton>
     </div>
 
-    <img
-      v-if="!loading"
-      :src="newImage"
-      @keydown="console.log('asdasd')"
-      class="object-contain w-100 h-100"
-    />
+    <img v-if="!loading" :src="newImage" @keydown="console.log('asdasd')" class="object-contain w-100 h-100" />
 
     <Loading text=" " variant="big" v-else />
   </div>
