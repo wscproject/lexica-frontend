@@ -1,0 +1,48 @@
+name: Production Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    environment: Production
+
+    steps:
+    - name: Checkout source
+      uses: actions/checkout@v3
+
+    - name: Build your app
+      env:
+          VITE_BASE_URL: ${{ vars.VITE_BASE_URL }}
+          VITE_LOGIN_URL: ${{ vars.VITE_LOGIN_URL }}
+      run: |
+        # Your build steps, e.g.
+        npm install
+        npm run build
+
+    - name: Upload build to Toolforge home dir
+      uses: appleboy/scp-action@v0.1.4
+      with:
+        host: login.toolforge.org
+        username: faridhmaulanawsc
+        key: ${{ secrets.TOOLFORGE_KEY }}
+        port: 22
+        source: "dist/*"
+        target: "~/production_tmp_upload/"
+      
+    - name: SSH into Toolforge, become tool, and deploy
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: login.toolforge.org
+        username: faridhmaulanawsc
+        key: ${{ secrets.TOOLFORGE_KEY }}
+        port: 22
+        script: |
+          become lexica-tool bash -c '
+            cp -r /home/faridhmaulanawsc/production_tmp_upload/* www/js/lexica-frontend/ &&
+            webservice --backend=kubernetes node18 stop &&
+            webservice --backend=kubernetes node18 start
+          '
