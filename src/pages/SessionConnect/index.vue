@@ -89,7 +89,7 @@ const totalData = ref(0);
 const data = ref([]);
 const tempData = ref(null);
 const detail = ref(null);
-const currMargin = ref(48);
+const currMargin = ref(3); // 48px -> 3rem
 const flip = ref(false);
 const currMode = ref(1);
 const next = ref(false);
@@ -620,9 +620,7 @@ const getCardsData = async (code, type) => {
       ...response.data.filter((item) => item.status === "pending"),
     ].length;
     currMargin.value =
-      ([...response.data.filter((item) => item.status === "pending")]?.length -
-        1) *
-      4;
+      ([...response.data.filter((item) => item.status === "pending")]?.length - 1) * 0.25; // 4px -> 0.25rem
     await getLanguages();
     isLoading.value = false;
     disableSplash();
@@ -739,9 +737,9 @@ watch(
     if (newData?.length < oldData?.length) {
       // console.log("asdasd");
 
-      currMargin.value = currMargin.value - 12;
+      currMargin.value = currMargin.value - 0.75; // 12px -> 0.75rem
     } else if (newData?.length > oldData?.length)
-      currMargin.value = currMargin.value + 4;
+      currMargin.value = currMargin.value + 0.25; // 4px -> 0.25rem
   },
   { immediate: true }
 );
@@ -1024,53 +1022,53 @@ const animClass = (index) => {
 <template>
   <div class="session-container w-full flex flex-col relative">
     <div
-      class="max-[639px]:h-[54px] h-[64px] w-full left-0 flex items-center top-0 py-[4px] px-[4px] min-[640px]:px-[20px] shrink-0 justify-center">
+      class="max-[639px]:h-[3.375rem] h-[4rem] w-full left-0 flex items-center top-0 py-[0.2500rem] px-[0.2500rem] min-[640px]:px-[1.25rem] shrink-0 justify-center">
       <div class="max-w-[920px] w-full h-full flex items-center relative">
         <CdxButton :aria-label="t('aria.backToHome')" v-tooltip:bottom-start="t('tooltips.home')" weight="quiet"
-          class="w-[44px] h-[44px] px-0 absolute left-[3px] rtl:right-[3px]" @click="endEarly">
+          class="w-[2.75rem] h-[2.75rem] px-0 absolute left-[0.1875rem] rtl:right-[0.1875rem]" @click="endEarly">
           <CdxIcon :icon="cdxIconHome" alt="home" />
         </CdxButton>
         <div class="mx-auto left-0 right-0 w-fit">
-          <CdxLabel v-if="data?.length !== 0 && !isLoading" class="text-[16px] pb-0 text-[var(--color-base)]">{{
+          <CdxLabel v-if="data?.length !== 0 && !isLoading" class="text-[1rem] pb-0 text-[var(--color-base)]">{{
             t("session.title") }} {{ currCount }}</CdxLabel>
         </div>
       </div>
     </div>
 
     <div v-if="!isLoading && noInternet" class="relative custom-height flex justify-center">
-      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
-        <div class="w-full flex justify-center pb-[16px]">
+      <div class="w-full text-center max-w-[56rem] absolute top-[40%] px-[1rem]">
+        <div class="w-full flex justify-center pb-[1rem]">
           <img :src="error" alt="error" />
         </div>
-        <CdxLabel class="text-[16px] p-0">{{
+        <CdxLabel class="text-[1rem] p-0">{{
           t("session.noInternet.title")
         }}</CdxLabel>
-        <p class="text-[16px] pb-[16px]">
+        <p class="text-[1rem] pb-[1rem]">
           {{ t("session.noInternet.description") }}
         </p>
-        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="reload">{{
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[28rem] h-[2.75rem]" @click="reload">{{
           t("session.noInternet.button") }}</CdxButton>
       </div>
     </div>
 
     <div v-if="!isLoading && isError && errorLog?.message !== 'Lexemes not found.'"
       class="relative custom-height flex justify-center">
-      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
-        <div class="w-full flex justify-center pb-[16px]">
+      <div class="w-full text-center max-w-[56rem] absolute top-[40%] px-[1rem]">
+        <div class="w-full flex justify-center pb-[1rem]">
           <img :src="sad" alt="home" />
         </div>
-        <CdxLabel class="text-[16px] p-0">{{
+        <CdxLabel class="text-[1rem] p-0">{{
           t("session.error.title")
         }}</CdxLabel>
-        <p class="text-[16px] pb-[16px]">
+        <p class="text-[1rem] pb-[1rem]">
           {{ t("session.error.description") }}
         </p>
 
-        <p class="text-[14px] pb-[16px]" style="font-family: monospace">
+        <p class="text-[0.8750rem] pb-[1rem]" style="font-family: monospace">
           {{ errorLog?.code || "" }} {{ errorLog?.message || "" }}
         </p>
 
-        <CdxButton weight="primary" action="progressive" class="w-full max-w-[448px] h-[44px]" @click="
+        <CdxButton weight="primary" action="progressive" class="w-full max-w-[28rem] h-[2.75rem]" @click="
           () => {
             getProfile();
             isError = false;
@@ -1085,35 +1083,35 @@ const animClass = (index) => {
       isError &&
       errorLog?.message === 'Lexemes not found.'
     " class="relative custom-height flex justify-center">
-      <div class="w-full text-center max-w-[896px] absolute top-[40%] px-[16px]">
-        <div class="w-full flex justify-center pb-[16px]">
+      <div class="w-full text-center max-w-[56rem] absolute top-[40%] px-[1rem]">
+        <div class="w-full flex justify-center pb-[1rem]">
           <img :src="happy" alt="happy" />
         </div>
 
-        <CdxLabel class="text-[16px] px-0 pb-[16px]">{{
+        <CdxLabel class="text-[1rem] px-0 pb-[1rem]">{{
           t("session.blank.title")
         }}</CdxLabel>
 
         <CdxButton :aria-label="t('aria.backToHome')" weight="primary" action="progressive"
-          class="w-full max-w-[448px] h-[44px]" @click="router.push('/')">{{ t("session.blank.button") }}</CdxButton>
+          class="w-full max-w-[28rem] h-[2.75rem]" @click="router.push('/')">{{ t("session.blank.button") }}</CdxButton>
       </div>
     </div>
 
     <div v-if="isLoading && !isError && !noInternet" class="relative custom-height flex justify-center">
-      <div class="w-full text-center max-w-[448px] absolute top-[50%] px-[16px]">
+      <div class="w-full text-center max-w-[28rem] absolute top-[50%] px-[1rem]">
         <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>
     <div v-else-if="!isLoading && !isError && !noInternet"
-      class="w-full flex justify-center items-center pb-[62px] h-full" :style="{
+      class="w-full flex justify-center items-center pb-[3.875rem] h-full" :style="{
         backgroundImage: `url(${isThemeDark ? blankdark : blank})`,
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
         backgroundPosition: 'center',
       }">
-      <div :class="[skipAllAnim(), 'px-[16px] w-full']">
+      <div :class="[skipAllAnim(), 'px-[1rem] w-full']">
         <div class="flex justify-center w-full relative custom-height items-center z-[2]" :style="{
-          marginTop: currMargin + 'px',
+          marginTop: currMargin + 'rem',
           perspective: '1000px',
         }">
           <Card :key="value" :isFlipped="flip" v-for="(value, index) in data" :style="{
@@ -1142,24 +1140,24 @@ const animClass = (index) => {
                 data?.length !== index + 1
                   ? 'bg-white dark:bg-[#101418]'
                   : 'bg-[#3056A9]',
-                'custom-height z-[1] text-white rounded-[16px] max-h-[650px]',
+                'custom-height z-[1] text-white rounded-[1rem] max-h-[40.625rem]',
               ]" :currLang="value?.language?.title" :data="value" v-if="splash === true || data?.length !== index + 1"
                 :key="123" :currCount="currCount" :isNotCurrent="data?.length !== index + 1"></CardSplash>
             </transition>
 
             <transition name="fade">
               <CardSuccess v-if="isSuccess && data?.length === index + 1"
-                :class="[submit ? 'front' : 'back', 'max-h-[650px] z-[100]']">
+                :class="[submit ? 'front' : 'back', 'max-h-[40.625rem] z-[100]']">
               </CardSuccess>
             </transition>
 
             <transition name="fade">
-              <CardSubmitFailed class="custom-height rounded-[16px] back max-h-[650px] h-full"
+              <CardSubmitFailed class="custom-height rounded-[1rem] back max-h-[40.625rem] h-full"
                 v-if="isSubmitError === true" :key="3" @back="isSubmitError = false"></CardSubmitFailed>
             </transition>
 
             <transition name="fade">
-              <CardSubmitting class="custom-height rounded-[16px] back max-h-[650px] h-full"
+              <CardSubmitting class="custom-height rounded-[1rem] back max-h-[40.625rem] h-full"
                 v-if="submittingData === true" :key="1" :submitAction="submitAction"></CardSubmitting>
             </transition>
 
@@ -1184,7 +1182,7 @@ const animClass = (index) => {
             </div>
 
             <div :class="[
-              'back absolute top-0 left-0 h-full w-full rounded-[16px]',
+              'back absolute top-0 left-0 h-full w-full rounded-[1rem]',
               isPreferredMotion && !flip ? 'card-fade' : '',
             ]">
               <CardItemDetail v-if="currMode === 1" :isLoading="cardDetailLoading" :data="cardDetailData ?? {}"
@@ -1222,13 +1220,14 @@ const animClass = (index) => {
 
       <Transition name="undo" mode="out-in">
         <div :key="undoWarn" v-if="undoWarn" :class="[
-          'absolute bottom-[8px] flex justify-center w-full left-[0] z-[3]',
+          'absolute bottom-[0.5rem] flex justify-center w-full left-[0] z-[3]',
         ]">
-          <div class="w-full max-w-[450px] min-w-[288px] bg-black dark:bg-white relative mx-[8px] rounded-[2px]"
+          <div
+            class="w-full max-w-[28.125rem] min-w-[18rem] bg-black dark:bg-white relative mx-[0.5rem] rounded-[0.1250rem]"
             style="box-shadow: var(--box-shadow-large)">
             <v-progress-linear v-model="progress.number" v-if="!isPreferredMotion" color="#3366CC"
-              class="absolute rounded-t-[2px]"></v-progress-linear>
-            <div class="skip-button p-[16px] text-white dark:text-[#101418] flex items-center justify-between">
+              class="absolute rounded-t-[0.1250rem]"></v-progress-linear>
+            <div class="skip-button p-[1rem] text-white dark:text-[#101418] flex items-center justify-between">
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton weight="quiet" :class="[
                 'flex gap-x-2 items-center cursor-pointer text-white skip',
@@ -1237,7 +1236,7 @@ const animClass = (index) => {
                   : 'hover:bg-[#EAECF0]',
               ]" @click="undoCard">
                 <CdxIcon class="text-white dark:text-[#101418]" :icon="cdxIconUndo" alt="undo" />
-                <p style="padding-bottom: 0px" class="text-[16px] font-[700] dark:text-[#101418]">
+                <p style="padding-bottom: 0px" class="text-[1rem] font-[700] dark:text-[#101418]">
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -1248,9 +1247,9 @@ const animClass = (index) => {
     </div>
 
     <div v-if="!isLoading && !isError && !noInternet"
-      class="flex bottom-0 w-full p-[14px] justify-center left-0 z-[1] absolute">
-      <div class="flex max-w-[450px] gap-x-[12px] w-full">
-        <CdxButton weight="quiet" class="h-[34px] w-full" @click="
+      class="flex bottom-0 w-full p-[0.8750rem] justify-center left-0 z-[1] absolute">
+      <div class="flex max-w-[28.125rem] gap-x-[0.75rem] w-full">
+        <CdxButton weight="quiet" class="h-[2.125rem] w-full" @click="
           nextCard(
             true,
             data?.find((item) => {
@@ -1271,12 +1270,12 @@ const animClass = (index) => {
             : '#EAECF0'
             " />
 
-          <span class="text-[16px] pb-0">{{ t("session.button1") }}</span>
+          <span class="text-[1rem] pb-0">{{ t("session.button1") }}</span>
         </CdxButton>
-        <CdxButton weight="quiet" class="h-[34px] w-full" @click="endEarly"
+        <CdxButton weight="quiet" class="h-[2.125rem] w-full" @click="endEarly"
           :disabled="currCount === 1 || submittingData || data?.length === 0">
           <CdxIcon :icon="cdxIconSuccess" alt="home" />
-          <span class="text-[16px] pb-0">{{ t("session.button2") }}</span>
+          <span class="text-[1rem] pb-0">{{ t("session.button2") }}</span>
         </CdxButton>
       </div>
     </div>
@@ -1394,12 +1393,12 @@ const animClass = (index) => {
 
 .skipall {
   animation: swipeCardRight 1125ms;
-  transform: translateX(2000px);
+  transform: translateX(125rem);
 }
 
 .skipall-rtl {
   animation: swipeCardLeft 1125ms;
-  transform: translateX(-2000px);
+  transform: translateX(-125rem);
 }
 
 @keyframes swipeCardRight {
@@ -1417,7 +1416,7 @@ const animClass = (index) => {
   }
 
   100% {
-    transform: translateX(2000px);
+    transform: translateX(125rem);
     opacity: 0;
   }
 }
@@ -1437,7 +1436,7 @@ const animClass = (index) => {
   }
 
   100% {
-    transform: translateX(-2000px) rotate(-2deg);
+    transform: translateX(-125rem) rotate(-2deg);
     opacity: 0;
   }
 }
@@ -1445,11 +1444,11 @@ const animClass = (index) => {
 .session .cdx-dialog__header {
   display: flex !important;
   align-items: center !important;
-  padding: 16px 16px 20px !important;
+  padding: 1rem 1rem 20px !important;
 }
 
 .session .cdx-dialog__footer {
-  padding: 24px 16px !important;
+  padding: 1.5rem 1rem !important;
 }
 
 html.reduced-motion {

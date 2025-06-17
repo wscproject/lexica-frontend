@@ -3,12 +3,7 @@ import { CdxButton } from "@wikimedia/codex";
 </script>
 
 <template>
-  <CdxButton
-    weight="primary"
-    action="progressive"
-    :ripple="false"
-    class="w-full p-[12px]"
-  >
+  <CdxButton weight="primary" action="progressive" :ripple="false" class="w-full p-[0.75rem]">
     <slot />
   </CdxButton>
 </template>
@@ -17,7 +12,7 @@ import { CdxButton } from "@wikimedia/codex";
 /* .primary {
   color: white;
   background-color: #3366cc;
-  border-radius: 2px;
+  border-radius: 0.125rem;
   box-shadow: unset !important;
 }
 

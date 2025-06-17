@@ -21,21 +21,19 @@ onMounted(async () => {
 
 <template>
   <div
-    class="max-[639px]:p-[var(--spacing-100)] max-[1023px]:p-[var(--spacing-200)] bg-white dark:bg-[#101418] h-full flex justify-center"
-  >
-    <!-- <div class="pt-[100px]">
-      <CdxLabel class="mb-[12px] text-[18px] p-0 text-black dark:text-white">
+    class="max-[639px]:p-[var(--spacing-100)] max-[1023px]:p-[var(--spacing-200)] bg-white dark:bg-[#101418] h-full flex justify-center">
+    <!-- <div class="pt-[6.25rem]">
+      <CdxLabel class="mb-[0.75rem] text-[1.125rem] p-0 text-black dark:text-white">
         asdasd</CdxLabel
       >
     </div> -->
 
-    <div
-      v-if="isAuth"
-      class="flex align-center flex-col w-full justify-center h-full max-w-[448px]"
-    >
+    <div v-if="isAuth" class="flex align-center flex-col w-full justify-center h-full max-w-[28rem]">
       <Auth />
     </div>
 
-    <div v-else-if="!isAuth" class="w-full max-w-[896px]"><Unauth /></div>
+    <div v-else-if="!isAuth" class="w-full max-w-[56rem]">
+      <Unauth />
+    </div>
   </div>
 </template>

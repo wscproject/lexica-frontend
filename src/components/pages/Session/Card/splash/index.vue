@@ -12,27 +12,20 @@ const props = defineProps({
 </script>
 
 <template>
-  <div
-    class="absolute z-[99] w-full flex justify-center flex-col text-center p-[16px] h-full"
-  >
+  <div class="absolute z-[99] w-full flex justify-center flex-col text-center p-[1rem] h-full">
     <div v-if="!isNotCurrent">
-      <span
-        :class="[
-          (props?.data?.externalLexemeSenseId ||
-            props?.data?.externalLexemeFormId) &&
-            'text-[var(--color-inverted-fixed)]',
-          'font-bold',
-        ]"
-        >{{ t("session.title") }} {{ props.currCount }}</span
-      >
-      <p
-        :class="[
-          (props?.data?.externalLexemeSenseId ||
-            props?.data?.externalLexemeFormId) &&
-            'text-[var(--color-inverted-fixed)]',
-          'text-[28px] py-[var(--spacing-100)]',
-        ]"
-      >
+      <span :class="[
+        (props?.data?.externalLexemeSenseId ||
+          props?.data?.externalLexemeFormId) &&
+        'text-[var(--color-inverted-fixed)]',
+        'font-bold',
+      ]">{{ t("session.title") }} {{ props.currCount }}</span>
+      <p :class="[
+        (props?.data?.externalLexemeSenseId ||
+          props?.data?.externalLexemeFormId) &&
+        'text-[var(--color-inverted-fixed)]',
+        'text-[1.75rem] py-[var(--spacing-100)]',
+      ]">
         {{ props?.data?.lemma }} ({{
           props?.data?.externalLexemeSenseId ||
           props?.data?.externalLexemeFormId ||
@@ -40,26 +33,20 @@ const props = defineProps({
           ""
         }})
       </p>
-      <p
-        v-if="props?.data?.gloss"
-        :class="[
-          (props?.data?.externalLexemeSenseId ||
-            props?.data?.externalLexemeFormId) &&
-            'text-[var(--color-inverted-fixed)]',
-          'text-[16px]',
-        ]"
-      >
+      <p v-if="props?.data?.gloss" :class="[
+        (props?.data?.externalLexemeSenseId ||
+          props?.data?.externalLexemeFormId) &&
+        'text-[var(--color-inverted-fixed)]',
+        'text-[1rem]',
+      ]">
         {{ props?.data?.gloss }}
       </p>
-      <p
-        v-else
-        :class="[
-          (props?.data?.externalLexemeSenseId ||
-            props?.data?.externalLexemeFormId) &&
-            'text-[var(--color-inverted-fixed)]',
-          'text-[16px]',
-        ]"
-      >
+      <p v-else :class="[
+        (props?.data?.externalLexemeSenseId ||
+          props?.data?.externalLexemeFormId) &&
+        'text-[var(--color-inverted-fixed)]',
+        'text-[1rem]',
+      ]">
         <i>{{ t("session.emptyDescriptionHead") }} {{ props?.currLang }}</i>
       </p>
     </div>

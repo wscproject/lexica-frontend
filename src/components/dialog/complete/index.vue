@@ -43,27 +43,17 @@ defineExpose({ openModal });
 </script>
 
 <template>
-  <CdxDialog
-    v-model:open="open"
-    class="text-center max-w-[512px]"
-    @update:open="handleUserInput(true)"
-  >
+  <CdxDialog v-model:open="open" class="text-center max-w-[32rem]" @update:open="handleUserInput(true)">
     <div class="flex flex-col items-center">
       <img :src="check" alt="check" rel="preload" />
-      <CdxLabel class="text-[18px] px-[16px] pb-[16px]">
+      <CdxLabel class="text-[1.125rem] px-[1rem] pb-[1rem]">
         {{ t("session.done.title") }}
       </CdxLabel>
     </div>
     <template #footer>
       <div class="flex gap-x-2 justify-center">
-        <CdxButton
-          :aria-label="t('aria.backToHome')"
-          class="w-full"
-          weight="primary"
-          action="progressive"
-          @click="handleUserInput(true)"
-          >{{ t("session.done.button") }}</CdxButton
-        >
+        <CdxButton :aria-label="t('aria.backToHome')" class="w-full" weight="primary" action="progressive"
+          @click="handleUserInput(true)">{{ t("session.done.button") }}</CdxButton>
       </div>
     </template>
   </CdxDialog>

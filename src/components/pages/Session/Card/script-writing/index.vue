@@ -75,103 +75,66 @@ watch(script, () => {
 </script>
 
 <template>
-  <div
-    class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[15px]"
-  >
-    <div
-      class="bg-white px-[16px] dark:bg-[#101418] h-full flex flex-col justify-between header"
-    >
-      <div class="py-[16px] header">
-        <CdxLabel class="text-[18px] pb-0 text-[var(--color-base)]">{{
+  <div class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[0.9375rem]">
+    <div class="bg-white px-[1rem] dark:bg-[#101418] h-full flex flex-col justify-between header">
+      <div class="py-[1rem] header">
+        <CdxLabel class="text-[1.125rem] pb-0 text-[var(--color-base)]">{{
           t("session.scriptWriting.title1")
         }}</CdxLabel>
         <!-- This is for header Expand animation helper. Sudden change on header's height will screw with the animation, so we need to delay the text changes so the height can adapt  -->
       </div>
-      <div class="flex align-center gap-x-[16px] justify-between">
-        <div
-          ref="scrollRef"
-          id="yes"
-          :class="[
-            'overflow-auto h-[10vh] text-[var(--color-base)] text-[28px] w-full ',
-            !isScrollbar && 'flex items-center',
-          ]"
-          lang="de"
-          style="
+      <div class="flex align-center gap-x-[1rem] justify-between">
+        <div ref="scrollRef" id="yes" :class="[
+          'overflow-auto h-[10vh] text-[var(--color-base)] text-[1.75rem] w-full ',
+          !isScrollbar && 'flex items-center',
+        ]" lang="de" style="
             -webkit-hyphens: auto;
             -moz-hyphens: auto;
             -ms-hyphens: auto;
             hyphens: auto;
             word-wrap: break-word;
             width: 100%;
-          "
-        >
+          ">
           <p>
             {{ props?.data?.lemma }}
           </p>
         </div>
         <div>
-          <CdxIcon
-            :aria-label="t('aria.showLexemeDetail')"
-            :icon="cdxIconInfoFilled"
-            class="cursor-pointer interactable"
-            @click.stop="(e) => emit('gotoDetail', e)"
-            @keydown.space="(e) => emit('gotoDetail', e)"
-          />
+          <CdxIcon :aria-label="t('aria.showLexemeDetail')" :icon="cdxIconInfoFilled"
+            class="cursor-pointer interactable" @click.stop="(e) => emit('gotoDetail', e)"
+            @keydown.space="(e) => emit('gotoDetail', e)" />
         </div>
       </div>
 
-      <div class="pt-[16px] pb-[12px] text-[16px] leading-[25.6px]">
-        <span
-          v-if="props?.data?.gloss"
-          class="text-[var(--color-subtle)] elipsis"
-          >{{ props?.data?.gloss }}</span
-        >
+      <div class="pt-[1rem] pb-[0.75rem] text-[1rem] leading-[1.6rem]">
+        <span v-if="props?.data?.gloss" class="text-[var(--color-subtle)] elipsis">{{ props?.data?.gloss }}</span>
 
         <span v-else class="text-[var(--color-subtle)]">
-          <i
-            >{{ t("session.emptyDescriptionHead") }}
-            {{ props?.data?.language?.title }}</i
-          ></span
-        >
+          <i>{{ t("session.emptyDescriptionHead") }}
+            {{ props?.data?.language?.title }}</i></span>
       </div>
     </div>
 
-    <div class="relative px-[16px] bg-[#FFA758] h-full flex flex-col">
-      <div class="py-[16px] top-[16px]">
-        <span class="text-[#361D13] text-[18px] font-[700]">
+    <div class="relative px-[1rem] bg-[#FFA758] h-full flex flex-col">
+      <div class="py-[1rem] top-[1rem]">
+        <span class="text-[#361D13] text-[1.125rem] font-[700]">
           {{
             t("session.scriptWriting.title2", {
               lang: props?.data?.language?.languageVariant?.title,
             })
           }}
-          ({{ props?.data?.language?.languageVariant?.codePreview }})</span
-        >
+          ({{ props?.data?.language?.languageVariant?.codePreview }})</span>
       </div>
 
-      <div
-        class="relative flex items-center justify-start grow"
-        :dir="props?.data?.language?.languageVariant?.isRtl ? 'rtl' : 'ltr'"
-      >
-        <CdxTextArea
-          ref="textAreaRef"
-          autofocus
-          :placeholder="t('session.scriptWriting.placeholder')"
-          class="leading-[35px] text-[28px] textarea-script interactable"
-          v-model="script"
-        />
+      <div class="relative flex items-center justify-start grow"
+        :dir="props?.data?.language?.languageVariant?.isRtl ? 'rtl' : 'ltr'">
+        <CdxTextArea ref="textAreaRef" autofocus :placeholder="t('session.scriptWriting.placeholder')"
+          class="leading-[2.1875rem] text-[1.75rem] textarea-script interactable" v-model="script" />
       </div>
     </div>
-    <div
-      class="w-full bottom-0 left-0 h-[66px] p-[16px] bg-[#FFA758] flex items-center"
-    >
-      <CdxButton
-        weight="primary"
-        action="progressive"
-        class="w-full interactable"
-        :disabled="!script"
-        @click="emit('gotoReview', script)"
-        >{{ t("session.main.button2") }}</CdxButton
-      >
+    <div class="w-full bottom-0 left-0 h-[4.125rem] p-[1rem] bg-[#FFA758] flex items-center">
+      <CdxButton weight="primary" action="progressive" class="w-full interactable" :disabled="!script"
+        @click="emit('gotoReview', script)">{{ t("session.main.button2") }}</CdxButton>
     </div>
   </div>
 </template>
@@ -184,6 +147,7 @@ watch(script, () => {
   text-overflow: ellipsis;
   display: inline-block;
 }
+
 .textarea-script .cdx-text-area__textarea:enabled {
   background-color: #ffa758 !important;
   color: #361d13 !important;
@@ -196,8 +160,7 @@ watch(script, () => {
   border: none;
 }
 
-.textarea-script .cdx-text-area__textarea:enabled {
-}
+.textarea-script .cdx-text-area__textarea:enabled {}
 
 .textarea-script.cdx-text-area {
   width: 100%;
@@ -210,11 +173,13 @@ watch(script, () => {
 .textarea-script .cdx-text-area__textarea {
   height: 100%;
 }
+
 .heighted {
   height: 100%;
 }
+
 .cdx-text-input__input {
-  height: 34px;
+  height: 2.125rem;
 }
 
 .script .cdx-text-area__textarea {
@@ -224,13 +189,13 @@ watch(script, () => {
 .script .cdx-text-area__textarea {
   resize: none;
   height: 100%;
-  font-size: 28px;
+  font-size: 1.75rem;
 }
 
 @media (max-height: 575px) {
   .textarea-script .cdx-text-area__textarea:enabled {
-    font-size: 16px !important ;
-    height: 30px;
+    font-size: 1rem !important;
+    height: 1.875rem;
   }
 }
 
@@ -260,8 +225,8 @@ watch(script, () => {
 
 .progress {
   overflow: hidden;
-  height: 34px;
-  border-radius: 2px;
+  height: 2.125rem;
+  border-radius: 0.125rem;
   width: 100%;
   opacity: 0.3;
 }
@@ -272,17 +237,15 @@ watch(script, () => {
 
 .progress-bar-striped,
 .progress-striped .progress-bar {
-  background-image: linear-gradient(
-    -45deg,
-    hsla(0, 0%, 95%, 0.8) 25%,
-    transparent 0,
-    transparent 50%,
-    hsla(0, 0%, 95%, 0.8) 0,
-    hsla(0, 0%, 95%, 0.8) 75%,
-    transparent 0,
-    transparent
-  );
-  background-size: 75px 75px;
+  background-image: linear-gradient(-45deg,
+      hsla(0, 0%, 95%, 0.8) 25%,
+      transparent 0,
+      transparent 50%,
+      hsla(0, 0%, 95%, 0.8) 0,
+      hsla(0, 0%, 95%, 0.8) 75%,
+      transparent 0,
+      transparent);
+  background-size: 4.6875rem 4.6875rem;
   background-repeat: repeat-x;
 }
 
@@ -297,16 +260,14 @@ watch(script, () => {
 }
 
 .progress-striped .progress-bar-info {
-  background-image: linear-gradient(
-    45deg,
-    hsla(0, 0%, 95%, 0.8) 25%,
-    transparent 0,
-    transparent 50%,
-    hsla(0, 0%, 95%, 0.8) 0,
-    hsla(0, 0%, 95%, 0.8) 75%,
-    transparent 0,
-    transparent
-  );
+  background-image: linear-gradient(45deg,
+      hsla(0, 0%, 95%, 0.8) 25%,
+      transparent 0,
+      transparent 50%,
+      hsla(0, 0%, 95%, 0.8) 0,
+      hsla(0, 0%, 95%, 0.8) 75%,
+      transparent 0,
+      transparent);
 }
 
 @-webkit-keyframes f {
@@ -315,7 +276,7 @@ watch(script, () => {
   }
 
   to {
-    background-position: 75px 0;
+    background-position: 4.6875rem 0;
   }
 }
 
@@ -325,7 +286,7 @@ watch(script, () => {
   }
 
   to {
-    background-position: 75px 0;
+    background-position: 4.6875rem 0;
   }
 }
 </style>

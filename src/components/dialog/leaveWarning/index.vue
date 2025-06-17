@@ -55,21 +55,15 @@ defineExpose({ openModal });
 </script>
 
 <template>
-  <CdxDialog
-    v-model:open="open"
-    class="mx-[16px] w-full max-w-[512px] leave-warning-dialog"
-    :title="t('session.warning.title')"
-    @update:open="handleUserInput(false)"
-    close-button-label="Close"
-  >
-    <div class="px-[16px]">
+  <CdxDialog v-model:open="open" class="mx-[1rem] w-full max-w-[32rem] leave-warning-dialog"
+    :title="t('session.warning.title')" @update:open="handleUserInput(false)" close-button-label="Close">
+    <div class="px-[1rem]">
       <p class="text-[var(--color-base)]">
         {{ t("session.warning.content") }}
         <b>
           {{ props.count }}
           {{ locale === "en" ? t("session.warning.card", props.count) : "" }}
-          {{ t("session.warning.subtext") }}</b
-        >
+          {{ t("session.warning.subtext") }}</b>
       </p>
     </div>
 
@@ -78,12 +72,8 @@ defineExpose({ openModal });
         <CdxButton @click="handleUserInput(false)">{{
           t("session.warning.button1")
         }}</CdxButton>
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          @click="handleUserInput(true)"
-          >{{ t("session.warning.button2") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" @click="handleUserInput(true)">{{ t("session.warning.button2")
+        }}</CdxButton>
       </div>
 
       <div class="flex gap-x-2 justify-end" v-if="props.loading">
