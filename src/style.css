@@ -106,6 +106,7 @@
   src: url("/font/Inter-Bold.ttf") format("truetype");
   font-weight: 100 600;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -113,6 +114,7 @@
   src: url("/font/Inter-BoldItalic.ttf") format("truetype");
   font-weight: 100 600;
   font-style: italic;
+  font-display: swap;
 }
 
 @font-face {
@@ -120,6 +122,7 @@
   src: url("/font/Inter-Black.ttf") format("truetype");
   font-weight: 700 800;
   font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
@@ -127,6 +130,7 @@
   src: url("/font/Inter-BlackItalic.ttf") format("truetype");
   font-weight: 700 800;
   font-style: italic;
+  font-display: swap;
 }
 /* **************************************************** */
 
