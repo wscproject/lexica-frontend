@@ -63,10 +63,12 @@ import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
 import { fa } from "vuetify/locale";
 import { useHtmlHasClass } from "../../helper/hasClass";
 import Loading from "@/components/ui/loading.vue";
+import { useCookies } from "vue3-cookies";
 
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const isReduceMotion = usePreferredReducedMotion();
 const { hasClass } = useHtmlHasClass("reduced-motion");
+const { cookies } = useCookies();
 
 const isPreferredMotion = ref(localStorage.getItem("reduceMotion") === "true");
 
@@ -533,6 +535,9 @@ const searchData = async () => {
     keyword:
       params.keyword ||
       data?.value?.[totalCount.value - currCount.value]?.lemma,
+    languageCode: data?.value?.[totalCount.value - currCount.value]?.language?.code,
+    displayLanguageCode: cookies.get("locale"),
+
   });
 
   if (response?.statusCode) {
@@ -566,7 +571,10 @@ const getDetail = async ({ contributionId, id }) => {
 const getEntityDetail = async (id) => {
   entityDetailData.value = null;
   entityDetailLoading.value = true;
-  const response = await GetEntityDetail(id);
+  const response = await GetEntityDetail(id, {
+    languageCode: data?.value?.[totalCount.value - currCount.value]?.language?.code,
+    displayLanguageCode: cookies.get("locale"),
+  });
 
   if (response.statusCode === 200) {
     entityDetailLoading.value = false;
@@ -648,12 +656,15 @@ const getRecommendation = async () => {
   const lemmaParts = typeof lemma === "string" ? lemma.split(" / ") : [];
   const keyword = lemmaParts.find((item) => item.match(/[a-zA-Z]+/));
 
-  console.log("keyword", keyword);
+  console.log("keyword", data.value);
+
 
   const response = await GetRecommendations({
     ...params,
     page: 1,
     keyword: keyword || lemmaParts[0],
+    languageCode: data?.value?.[totalCount.value - currCount.value]?.language?.code,
+    displayLanguageCode: cookies.get("locale"),
   });
 
   if (response?.statusCode) {
@@ -915,11 +926,9 @@ watch(
     }
 
     if (newParams.keyword) {
-      console.log('asdasdasd');
 
       await searchData();
     } else {
-      console.log('asdasdasd');
 
       await getRecommendation();
     }
