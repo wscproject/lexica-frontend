@@ -7,15 +7,15 @@ const { t } = useI18n({ useScope: "global" });
 </script>
 
 <template>
-  <div class="w-full pb-[8px]">
-    <div class="pb-[12px] pt-[20px] px-[15px] w-full flex justify-center">
+  <div class="w-full pb-[0.5rem]">
+    <div class="pb-[0.75rem] pt-[1.25rem] px-[0.9375rem] w-full flex justify-center">
       <img :src="Image" alt="image" class="w-100 max-w-[320px]" rel="preload" />
     </div>
-    <div class="px-[14px]">
-      <CdxLabel class="text-[18px] pb-[12px]">{{
+    <div class="px-[0.8750rem]">
+      <CdxLabel class="text-[1.125rem] pb-[0.75rem]">{{
         t("tutorial.two.title")
       }}</CdxLabel>
-      <ol class="px-[16px]">
+      <ol class="px-[1rem]">
         <li class="content">
           <b>{{ t("tutorial.two.point1Title") }}:</b>
           {{ t("tutorial.two.point1Content") }}
@@ -43,12 +43,12 @@ const { t } = useI18n({ useScope: "global" });
 
 <style scoped>
 .content {
-  font-size: 16px;
-  line-height: 25.6px;
+  font-size: 1rem;
+  line-height: 1.6rem;
   letter-spacing: -0.048px;
 }
 
-ol > li::marker {
+ol>li::marker {
   font-weight: bold;
 }
 </style>

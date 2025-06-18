@@ -26,18 +26,9 @@ onMounted(() => {
 
 <template>
   <div
-    class="absolute z-[99] bg-[#14876B] w-full flex justify-center align-center text-center p-[16px] h-full rounded-[16px]"
-  >
-    <LottieAnimation
-      v-if="!isReducedMotion"
-      class="w-[128px] h-[128px]"
-      :animation-data="Anim"
-      :auto-play="false"
-      :loop="false"
-      :speed="1"
-      ref="anim"
-      @complete="emit('complete')"
-    />
+    class="absolute z-[99] bg-[#14876B] w-full flex justify-center align-center text-center p-[1rem] h-full rounded-[1rem]">
+    <LottieAnimation v-if="!isReducedMotion" class="w-[8rem] h-[8rem]" :animation-data="Anim" :auto-play="false"
+      :loop="false" :speed="1" ref="anim" @complete="emit('complete')" />
 
     <img :src="Success" v-else />
   </div>

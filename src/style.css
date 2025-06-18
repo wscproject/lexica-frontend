@@ -67,28 +67,28 @@
 
 @font-face {
   font-family: "NotoSansJP";
-  src: url("/font/NotoSansJP-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansJP-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "NotoSansKR";
-  src: url("/font/NotoSansKR-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansKR-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "NotoSansSC";
-  src: url("/font/NotoSansSC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansSC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "NotoSansTC";
-  src: url("/font/NotoSansTC-VariableFont_wght.ttf") format("truetype");
+  src: url("/font/NotoSansTC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
   font-display: swap;
@@ -185,129 +185,6 @@
   font-style: italic;
   font-display: swap;
 }
-/* **************************************************** */
-
-/* Lexend */
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-VariableFont_wght.ttf") format("truetype");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-ThinItalic.ttf") format("truetype");
-  font-weight: 100;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-ExtraLightItalic.ttf") format("truetype");
-  font-weight: 200;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-LightItalic.ttf") format("truetype");
-  font-weight: 300;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-RegularItalic.ttf") format("truetype");
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-MediumItalic.ttf") format("truetype");
-  font-weight: 500;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-SemiBoldItalic.ttf") format("truetype");
-  font-weight: 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
-  font-weight: 700;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-ExtraBoldItalic.ttf") format("truetype");
-  font-weight: 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Lexend";
-  src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
-  font-weight: 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "LexendBold";
-  src: url("/font/Lexend-Bold.ttf") format("truetype");
-  font-weight: 100 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "LexendBold";
-  src: url("/font/Lexend-Black.ttf") format("truetype");
-  font-weight: 700 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "LexendBold";
-  src: url("/font/Lexend-BoldItalic.ttf") format("truetype");
-  font-weight: 100 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "LexendBold";
-  src: url("/font/Lexend-BlackItalic.ttf") format("truetype");
-  font-weight: 700 800;
-  font-style: italic;
-  font-display: swap;
-}
-
 /* **************************************************** */
 
 :root {
@@ -462,7 +339,7 @@ h1 {
 }
 
 button {
-  border-radius: 8px;
+  border-radius: 0.5rem;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
   font-size: 1em;
@@ -477,7 +354,7 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 0.25rem auto -webkit-focus-ring-color;
 }
 
 .card {
@@ -497,7 +374,7 @@ ol {
 
 ul {
   list-style-type: initial !important;
-  padding-left: 16px !important;
+  padding-left: 1rem !important;
   margin-left: 8px !important;
 }
 
@@ -522,7 +399,7 @@ h1 {
 }
 
 .cdx-dialog__footer {
-  padding: 12px !important;
+  padding: 0.75rem !important;
 }
 
 .cdx-dialog__body {

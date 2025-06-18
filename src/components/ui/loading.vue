@@ -33,14 +33,15 @@ const isReducedMotion = usePreferredReducedMotion();
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator" class="w-[18px] h-[18px]" />
-    <div v-else-if="props.variant !== 'default' && !isNotUsingIndicator" class="w-full max-w-[448px]">
+    <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator"
+      class="w-[1.125rem] h-[1.125rem]" />
+    <div v-else-if="props.variant !== 'default' && !isNotUsingIndicator" class="w-full max-w-[28rem]">
       <CdxProgressBar />
     </div>
     <span :class="[
       props.variant === 'default'
-        ? 'text-[16px] text-[var(--color-subtle)]'
-        : 'text-[18px] font-[700] text-[var(--color-emphasized)]',
+        ? 'text-[1rem] text-[var(--color-subtle)]'
+        : 'text-[1.125rem] font-[700] text-[var(--color-emphasized)]',
     ]">{{ props.text }}</span>
   </div>
 
@@ -53,8 +54,8 @@ const isReducedMotion = usePreferredReducedMotion();
     <LoadingReduce v-if="!isNotUsingIndicator" />
     <span :class="[
       props.variant === 'default'
-        ? 'text-[16px] text-[var(--color-subtle)]'
-        : 'text-[18px] font-[700] text-[var(--color-emphasized)]',
+        ? 'text-[1rem] text-[var(--color-subtle)]'
+        : 'text-[1.125rem] font-[700] text-[var(--color-emphasized)]',
     ]">{{ props.text }}</span>
   </div>
 </template>
