@@ -152,8 +152,8 @@ onUnmounted(() => {
           !noGlosses)
       ">
         <div v-if="!props.isLoading && isThisLexeme" class="mb-[var(--spacing-100)]">
-          <CdxLabel class="text-[1rem] dark:text-[#EAECF0] p-0" style="padding-bottom: 0.75rem">{{
-            t("session.detail.title1") }}</CdxLabel>
+          <h5 style="padding-bottom: var(---spacing-50)">{{
+            t("session.detail.title1") }}</h5>
 
           <div v-if="data?.usageExamples"
             class="border-[0.0625rem] border-[var(--border-color-base)] bg-[var(--background-color-base)] p-[var(--spacing-75)] rounded-[0.1250rem] flex flex-col gap-y-[var(--spacing-25)] mt-[var(--spacing-50)]">
@@ -193,12 +193,12 @@ onUnmounted(() => {
         </div>
 
         <div v-if="!isNoStatement || !noGlosses" class="mb-[var(--spacing-100)]">
-          <CdxLabel class="text-[1rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0" style="padding-bottom: 0.75rem">
+          <h5 style="padding-bottom: var(--spacing-50)">
             {{
-              t("session.detail.title2") }}</CdxLabel>
+              t("session.detail.title2") }}</h5>
           <div class="mb-[var(--spacing-50)]" v-if="!isNoStatement">
-            <CdxLabel class="text-[0.8750rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
-              t("session.detail.subtitle1") }}</CdxLabel>
+            <h6 class="mb-[var(--spacing-50)]">{{
+              t("session.detail.subtitle1") }}</h6>
 
             <div v-if="data?.sense?.images"
               class="flex gap-x-[0.75rem] mb-[var(--spacing-50)] border border-[var(--border-color-base)] p-[0.75rem] w-full cursor-pointer"
@@ -298,8 +298,8 @@ onUnmounted(() => {
           </div>
 
           <div v-if="!props.isLoading && !noGlosses">
-            <CdxLabel class="text-[0.8750rem] dark:text-[#EAECF0] mb-[var(--spacing-50)] p-0">{{
-              t("session.detail.subtitle2") }}</CdxLabel>
+            <h6 class="mb-[var(--spacing-50)]">{{
+              t("session.detail.subtitle2") }}</h6>
 
             <div v-for="item in data?.sense?.otherGlosses">
               <div
@@ -333,22 +333,21 @@ onUnmounted(() => {
         <div
           class="px-[var(--spacing-75)] pt-[var(--spacing-75)] bg-[var(--background-color-neutral)] text-[var(--color-base)] rounded-[var(--border-radius-base)] border border-[var(--border-color-base)] mb-[var(--spacing-100)]"
           v-if="data?.otherSenses?.length > 0">
-          <div class="font-[700] text-[1rem] pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
+          <div class="pb-[var(--spacing-75)] flex align-center justify-between cursor-pointer"
             @click="isExpand = !isExpand">
-            <span>{{ t("session.detail.title3") }}</span>
+            <h5>{{ t("session.detail.title3") }}</h5>
 
             <CdxIcon :icon="cdxIconExpand" :class="`icon ${isExpand && 'open'}`" />
           </div>
           <v-expand-transition class="duration-[250ms] ease-out pb-[var(--spacing-75)] interactable">
             <div v-show="isExpand">
               <div v-for="(item, i) in langs" :key="item.senseNumber">
-                <div :class="[
-                  'text-[0.8750rem] font-[700]',
+                <h6 :class="[
                   i !== 0 && 'mt-[var(--spacing-50)]',
                 ]">
                   {{ t("session.detail.sense") }} {{ item?.senseNumber }}:
                   {{ item?.gloss }}
-                </div>
+                </h6>
                 <div
                   class="text-[1rem] p-[var(--spacing-75)] mt-[var(--spacing-50)] bg-[var(--background-color-base)] border border-[var(--border-color-base)] rounded-[0.1250rem]"
                   v-if="item?.itemForThisSense?.data?.[0]?.value">

@@ -125,9 +125,9 @@ onUnmounted(() => {
         statements?.filter((item) => item?.[0] !== 'translation')?.length >
         0 && !props.isLoading
       ">
-        <CdxLabel class="text-[1rem] dark:text-[#EAECF0]" style="padding-bottom: 0.75rem">{{
+        <h5 style="padding-bottom: var(--spacing-50)">{{
           t("session.item.statements")
-          }}</CdxLabel>
+        }}</h5>
         <div v-for="(value, index) in statements.filter(
           (item) => item?.[0] !== 'translation'
         )" :key="index" class="border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem] mb-[0.75rem]"
@@ -181,8 +181,8 @@ onUnmounted(() => {
           </div>
         </div>
 
-        <CdxLabel v-if="statements.find((item) => item?.[0] === 'translation')" class="text-[1rem] pt-[0.2500rem]"
-          style="padding-bottom: 0.75rem">{{ t("session.item.translation") }} (P5972)</CdxLabel>
+        <h5 v-if="statements.find((item) => item?.[0] === 'translation')" style="padding-bottom: var(--spacing-50)">{{
+          t("session.item.translation") }} (P5972)</h5>
 
         <div v-for="(value, index) in statements.filter(
           (item) => item?.[0] === 'translation'

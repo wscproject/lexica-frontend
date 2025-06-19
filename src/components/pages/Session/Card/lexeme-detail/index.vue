@@ -119,11 +119,11 @@ onUnmounted(() => {
         </div>
 
         <div class="pb-[var(--spacing-50)] w-full">
-          <span class="text-[var(--color-base)] font-[700]">{{ t("session.detail.allSense") }}
-          </span>
+          <h5>{{ t("session.detail.allSense") }}
+          </h5>
         </div>
 
-        <div v-for="sense in senses" class="pb-[0.2500rem] w-full">
+        <div v-for="sense in senses" class="pb-[0.25rem] w-full">
           <div v-for="data in sense?.data?.filter((i) => i.value !== null)" class="w-full" @mouseover="
             () => {
               if (data.label === 'images' && !hovered) hovered = true;
@@ -141,9 +141,9 @@ onUnmounted(() => {
             }
           ">
             <div v-if="data.label === 'gloss'" class="pb-[var(--spacing-50)] w-full">
-              <span class="text-[var(--color-base)] font-[700] text-[0.8750rem]">{{ t("session.detail.sense") }} {{
+              <h6>{{ t("session.detail.sense") }} {{
                 sense.number }}:
-                {{ data.value }}</span>
+                {{ data.value }}</h6>
             </div>
 
             <div v-else-if="

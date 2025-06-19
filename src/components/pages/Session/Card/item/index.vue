@@ -191,8 +191,8 @@ const glossAlign = computed(() => {
       props.isCurrent ? '' : 'hidden',
       // isScrollBar && 'interactable',
     ]">
-      <CdxLabel class="text-[1rem] dark:text-[#EAECF0]" style="padding-bottom: 1rem">{{ t("session.main.title") }}
-      </CdxLabel>
+      <h5 style="padding-bottom: 1rem">{{ t("session.main.title") }}
+      </h5>
       <div class="relative">
         <CdxSearchInput :dir="dir" aria-label="SearchInput default demo" :placeholder="t('session.main.search')"
           class="pb-[1rem] relative interactable" v-model="search" @input="onInput" />

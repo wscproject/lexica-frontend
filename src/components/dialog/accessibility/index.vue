@@ -5,6 +5,7 @@ import {
   CdxIcon,
   CdxButton,
   CdxLabel,
+  CdxField,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
@@ -128,7 +129,7 @@ const apply = async () => {
 
 <template>
   <CdxDialog :open="props.open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
-    'locale rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+    'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
   ]">
     <template #header>
       <div class="w-full">
@@ -144,31 +145,43 @@ const apply = async () => {
         </div>
       </div>
     </template>
-    <div class="w-full px-[1rem] py-[0.75rem]">
-      <h4 class="pb-[var(--spacing-50)] text-[var(--color-base)] font-bold">
-        {{ t("accessibilityDialog.subtitle2") }}
-      </h4>
-      <CdxToggleSwitch v-model="isReducedMotion" alignSwitch>
-        {{ t("accessibilityDialog.option4") }}
-        <template #description>
-          {{ t("accessibilityDialog.option4Note") }}
+    <div class="w-full px-[var(--spacing-150)]">
+      <CdxField>
+        <template #label>
+          <h4 class="text-[var(--color-base)] font-bold">
+            {{ t("accessibilityDialog.subtitle2") }}
+          </h4>
         </template>
-      </CdxToggleSwitch>
-      <h4 class="pb-[var(--spacing-50)] mt-[var(--spacing-100)] text-[var(--color-base)] font-bold">
-        {{ t("accessibilityDialog.subtitle1") }}
-      </h4>
-      <CdxToggleSwitch v-model="isUnderline" alignSwitch>
-        {{ t("accessibilityDialog.option3") }}
-      </CdxToggleSwitch>
-      <CdxToggleSwitch v-model="isBold" alignSwitch>
-        {{ t("accessibilityDialog.option1") }}
-      </CdxToggleSwitch>
-      <CdxToggleSwitch v-model="isAlternateFont" alignSwitch>
-        {{ t("accessibilityDialog.option2") }}
-        <template #description>
-          {{ t("accessibilityDialog.option2Note") }}
+
+        <CdxToggleSwitch v-model="isReducedMotion" alignSwitch class="items-start">
+          {{ t("accessibilityDialog.option4") }}
+          <template #description>
+            {{ t("accessibilityDialog.option4Note") }}
+          </template>
+        </CdxToggleSwitch>
+      </CdxField>
+
+
+      <CdxField>
+        <template #label>
+          <h4 class="text-[var(--color-base)] font-bold">
+            {{ t("accessibilityDialog.subtitle1") }}
+          </h4>
         </template>
-      </CdxToggleSwitch>
+
+        <CdxToggleSwitch v-model="isUnderline" alignSwitch>
+          {{ t("accessibilityDialog.option3") }}
+        </CdxToggleSwitch>
+        <CdxToggleSwitch v-model="isBold" alignSwitch>
+          {{ t("accessibilityDialog.option1") }}
+        </CdxToggleSwitch>
+        <CdxToggleSwitch v-model="isAlternateFont" alignSwitch class="items-start gap-x-[var(--spacing-100)]">
+          {{ t("accessibilityDialog.option2") }}
+          <template #description>
+            {{ t("accessibilityDialog.option2Note") }}
+          </template>
+        </CdxToggleSwitch>
+      </CdxField>
     </div>
     <template #footer>
       <div class="flex gap-x-[0.75rem] w-full justify-end">

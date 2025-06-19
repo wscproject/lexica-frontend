@@ -75,16 +75,17 @@ watch(props, () => {
     <CdxDialog :open="props.open" @update:open="emit('onClose')" :use-close-button="true" class="activities"
       :title="t('activityDialog.title')" :primary-action="primaryAction" :default-action="defaultAction"
       @primary="apply" @default="emit('onClose')" @keydown.enter="apply">
-      <div class="p-[1rem]" role="radiogroup" @keydown="keydown" tabindex="0">
+      <div class="px-[var(--spacing-150)]" role="radiogroup" @keydown="keydown" tabindex="0">
         <div v-for="(activity, index) in props.options" :key="activity.type" @click="
           () => {
             selectedType = activity?.type;
             focusedIndex = index;
           }
         " @focus="setFocusedIndex(index)" :tabindex="focusedIndex === index ? 0 : -1" name="activity" :class="[
-          'border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem] flex gap-x-[0.75rem] mb-[var(--spacing-50)] focused',
+          'border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem] flex gap-x-[0.75rem] focused',
           selectedType === activity.type &&
           'border-[0.1250rem] border-[var(--border-color-progressive--focus)] bg-[var(--background-color-progressive-subtle)] ',
+          index !== props.options.length - 1 && 'mb-[var(--spacing-50)]',
         ]">
           <div :class="[
             selectedType === activity.type &&
@@ -123,9 +124,3 @@ watch(props, () => {
     </CdxDialog>
   </div>
 </template>
-
-<style>
-.activities .cdx-dialog__header {
-  padding: 1rem;
-}
-</style>

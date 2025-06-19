@@ -62,7 +62,6 @@ const splitWord = () => {
 const scrollToItem = (index) => {
   const container = containerRef.value;
   const item = itemsRef.value[index];
-  console.log(item);
 
   if (container && item) {
     container.scrollTo({
@@ -106,7 +105,6 @@ const scrollNext = () => {
   });
 
   let targetIndex = (tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1) + 2;
-  console.log("tempIndex", targetIndex);
 
   currentIndex.value = targetIndex;
 
@@ -206,11 +204,11 @@ onMounted(async () => {
         </div>
       </div>
     </div>
-    <div class="max-h-[40.625rem] h-100 flex items-center relative py-[1.5rem] bg-[var(--background-color-base)]"
+    <div class="max-h-[640px] h-100 flex items-center relative py-[1.5rem] bg-[var(--background-color-base)]"
       style="white-space: nowrap">
       <div class="triangle" />
 
-      <div class="w-full max-w-[28.125rem] relative" dir="ltr">
+      <div class="w-full max-w-[448px] relative" dir="ltr">
         <div :class="['flex x mandatory-scroll-snapping h-[6.75rem] interactable']" id="content" ref="containerRef">
           <div v-for="(slide, index) in splitWithEmptySlots(word)" :class="[
             'min-w-[3.25rem] text-[6rem] item h-full font-bold leading-[6.75rem] flex justify-center items-center',
@@ -225,7 +223,7 @@ onMounted(async () => {
             <div v-else :class="[
               'no-slide h-full flex justify-center items-center ',
               selectedIndexes?.find((item) => item === index) &&
-              'letter-divider',
+              'letter-divider dark:letter-divider-dark',
             ]">
               <div v-if="!selectedIndexes?.find((item) => item === index)"
                 class="border-r-[0.1250rem] h-full border-[#C8CCD1] ml-[-1px]"></div>
@@ -370,6 +368,15 @@ onMounted(async () => {
 
 .letter-divider::after {
   content: url("/src/assets/letter_divider.svg");
+  position: absolute;
+  top: 0;
+  width: 1.6875rem;
+  height: auto;
+  /* z-index: 2; */
+}
+
+.letter-divider-dark::after {
+  content: url("/src/assets/letter_divider_dark.svg");
   position: absolute;
   top: 0;
   width: 1.6875rem;

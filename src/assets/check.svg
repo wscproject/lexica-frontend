@@ -1,7 +1,5 @@
-<svg width="64" height="65" viewBox="0 0 64 65" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g id="Check Circle">
-<g id="Illustration">
-<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M32 56.4999C45.2548 56.4999 56 45.7547 56 32.4999C56 19.245 45.2548 8.49988 32 8.49988C18.7452 8.49988 8 19.245 8 32.4999C8 45.7547 18.7452 56.4999 32 56.4999ZM21.1013 33.0677L27.3159 39.2823L43.0984 23.4999L45.1997 25.6161L27.3159 43.4999L19 35.169L21.1013 33.0677Z" fill="#3366CC"/>
-</g>
-</g>
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M32 62.1818C48.669 62.1818 62.1818 48.669 62.1818 32C62.1818 15.331 48.669 1.81818 32 1.81818C15.331 1.81818 1.81818 15.331 1.81818 32C1.81818 48.669 15.331 62.1818 32 62.1818ZM32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 0 32 0C14.3269 0 0 14.3269 0 32C0 49.6731 14.3269 64 32 64Z" fill="#3366CC" fill-opacity="0.5"/>
+<circle cx="32" cy="32" r="24" fill="#3366CC"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M46 25L28 42L18 32L21 29L28 36L43 22L46 25Z" fill="white"/>
 </svg>

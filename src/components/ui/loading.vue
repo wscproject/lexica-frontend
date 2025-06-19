@@ -33,8 +33,7 @@ const isReducedMotion = usePreferredReducedMotion();
       ? ' gap-x-[var(--spacing-50)]'
       : 'gap-y-[var(--spacing-50)] flex-col-reverse',
   ]">
-    <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator"
-      class="w-[1.125rem] h-[1.125rem]" />
+    <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator" class="w-[1.25] h-[1.25]" />
     <div v-else-if="props.variant !== 'default' && !isNotUsingIndicator" class="w-full max-w-[28rem]">
       <CdxProgressBar />
     </div>

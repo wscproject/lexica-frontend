@@ -43,10 +43,10 @@ defineExpose({ openModal });
 </script>
 
 <template>
-  <CdxDialog v-model:open="open" class="text-center max-w-[32rem]" @update:open="handleUserInput(true)">
-    <div class="flex flex-col items-center">
+  <CdxDialog v-model:open="open" class="text-center max-w-[32rem] dialog-complete" @update:open="handleUserInput(true)">
+    <div class="flex flex-col items-center pt-[var(--spacing-125)] gap-y-[var(--spacing-100)]">
       <img :src="check" alt="check" rel="preload" />
-      <CdxLabel class="text-[1.125rem] px-[1rem] pb-[1rem]">
+      <CdxLabel class="text-[1.125rem] px-[var(--spacing-150)]">
         {{ t("session.done.title") }}
       </CdxLabel>
     </div>
@@ -58,3 +58,9 @@ defineExpose({ openModal });
     </template>
   </CdxDialog>
 </template>
+
+<style>
+.dialog-complete .cdx-dialog__header {
+  display: none;
+}
+</style>

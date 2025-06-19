@@ -5,6 +5,7 @@ import {
   CdxButton,
   CdxIcon,
   CdxRadio,
+  CdxField,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { useI18n } from "vue-i18n";
@@ -135,7 +136,7 @@ const applyTheme = async () => {
 <template>
   <div>
     <CdxDialog :open="props.open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
-      'locale rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
     ]">
       <template #header>
         <div class="w-full">
@@ -151,15 +152,18 @@ const applyTheme = async () => {
           </div>
         </div>
       </template>
-      <div class="w-full px-[1rem] py-[0.75rem]">
-        <CdxRadio @keydown.enter="applyTheme" v-for="menu in menus" :key="locale" v-model="currTheme" name="radio-group"
-          :input-value="menu.value">
-          {{ menu.label }}
+      <div class="w-full px-[var(--spacing-150)]">
+        <CdxField :is-fieldset="true">
+          <CdxRadio @keydown.enter="applyTheme" v-for="menu in menus" :key="locale" v-model="currTheme"
+            name="radio-group" :input-value="menu.value">
+            {{ menu.label }}
 
-          <template #description>
-            {{ menu.description }}
-          </template>
-        </CdxRadio>
+            <template #description>
+              {{ menu.description }}
+            </template>
+          </CdxRadio>
+        </CdxField>
+
       </div>
       <template #footer>
         <div class="flex gap-x-[0.75rem] w-full justify-end">
@@ -180,12 +184,12 @@ const applyTheme = async () => {
 .locale .cdx-dialog__header {
   display: flex !important;
   align-items: center !important;
-  padding: 1rem 1rem !important;
-  border: 0 !important;
+  /* padding: 1rem 1rem !important;
+  border: 0 !important; */
 }
 
 .locale .cdx-dialog__footer {
-  padding: 1rem 1rem 1.5rem !important;
+  /* padding: 1rem 1rem 1.5rem !important; */
   border: 0 !important;
 }
 </style>

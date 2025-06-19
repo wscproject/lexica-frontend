@@ -6,6 +6,7 @@ import {
   CdxRadio,
   CdxSearchInput,
   CdxLabel,
+  CdxField,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import debounce from "lodash.debounce";
@@ -122,15 +123,19 @@ watch(language, () => {
         </div>
       </template>
 
-      <div role="radiogroup" class="px-[1rem] py-[0.75rem] overflow-y-auto" style="max-height: calc(100vh - 360px)">
-        <CdxRadio :id="`my-radio-${option.full}`" ref="radioRef" autofocus @keydown.enter="apply"
-          v-if="props.options.length > 0" v-for="option in props.options" :key="option.label" :input-value="{
-            value: option?.value,
-            full: option?.full,
-            id: option?.id,
-          }" v-model="selected" @update:modelValue="selected" name="as">
-          {{ option.label }}
-        </CdxRadio>
+      <div role="radiogroup" class="px-[var(--spacing-150)] py-[0.5rem] overflow-y-auto"
+        style="max-height: calc(100vh - 360px)">
+        <CdxField v-if="props.options.length > 0" :is-fieldset="true">
+          <CdxRadio :id="`my-radio-${option.full}`" ref="radioRef" autofocus @keydown.enter="apply"
+            v-for="option in props.options" :key="option.label" :input-value="{
+              value: option?.value,
+              full: option?.full,
+              id: option?.id,
+            }" v-model="selected" @update:modelValue="selected" name="as">
+            {{ option.label }}
+          </CdxRadio>
+        </CdxField>
+
 
         <div v-else>
           <CdxLabel class="text-[#D73333] dark:text-[#FD7865]">{{

@@ -1149,24 +1149,24 @@ const animClass = (index) => {
                 data?.length !== index + 1
                   ? 'bg-white dark:bg-[#101418]'
                   : 'bg-[#3056A9]',
-                'custom-height z-[1] text-white rounded-[1rem] max-h-[40.625rem]',
+                'custom-height z-[1] text-white rounded-[1rem] max-h-[640px]',
               ]" :currLang="value?.language?.title" :data="value" v-if="splash === true || data?.length !== index + 1"
                 :key="123" :currCount="currCount" :isNotCurrent="data?.length !== index + 1"></CardSplash>
             </transition>
 
             <transition name="fade">
               <CardSuccess v-if="isSuccess && data?.length === index + 1"
-                :class="[submit ? 'front' : 'back', 'max-h-[40.625rem] z-[100]']">
+                :class="[submit ? 'front' : 'back', 'max-h-[640px] z-[100]']">
               </CardSuccess>
             </transition>
 
             <transition name="fade">
-              <CardSubmitFailed class="custom-height rounded-[1rem] back max-h-[40.625rem] h-full"
+              <CardSubmitFailed class="custom-height rounded-[1rem] back max-h-[640px] h-full"
                 v-if="isSubmitError === true" :key="3" @back="isSubmitError = false"></CardSubmitFailed>
             </transition>
 
             <transition name="fade">
-              <CardSubmitting class="custom-height rounded-[1rem] back max-h-[40.625rem] h-full"
+              <CardSubmitting class="custom-height rounded-[1rem] back max-h-[640px] h-full"
                 v-if="submittingData === true" :key="1" :submitAction="submitAction"></CardSubmitting>
             </transition>
 
@@ -1232,20 +1232,18 @@ const animClass = (index) => {
           'absolute bottom-[0.5rem] flex justify-center w-full left-[0] z-[3]',
         ]">
           <div
-            class="w-full max-w-[28.125rem] min-w-[18rem] bg-black dark:bg-white relative mx-[0.5rem] rounded-[0.1250rem]"
+            class="w-full max-w-[448px] min-w-[18rem] bg-[var(--background-color-base)] relative mx-[0.5rem] rounded-[0.1250rem]"
             style="box-shadow: var(--box-shadow-large)">
             <v-progress-linear v-model="progress.number" v-if="!isPreferredMotion" color="#3366CC"
               class="absolute rounded-t-[0.1250rem]"></v-progress-linear>
-            <div class="skip-button p-[1rem] text-white dark:text-[#101418] flex items-center justify-between">
+            <div class="skip-button p-[1rem] text-[var(--color-base)] flex items-center justify-between">
               <p>{{ t("session.skip.title") }}</p>
               <CdxButton weight="quiet" :class="[
-                'flex gap-x-2 items-center cursor-pointer text-white skip',
-                isPreferredDark
-                  ? 'hover:dark:bg-[#27292d]'
-                  : 'hover:bg-[#EAECF0]',
+                'flex gap-x-2 items-center cursor-pointer  skip',
+
               ]" @click="undoCard">
-                <CdxIcon class="text-white dark:text-[#101418]" :icon="cdxIconUndo" alt="undo" />
-                <p style="padding-bottom: 0px" class="text-[1rem] font-[700] dark:text-[#101418]">
+                <CdxIcon class="text-[var(--color-base)]" :icon="cdxIconUndo" alt="undo" />
+                <p style="padding-bottom: 0px" class="text-[1rem] font-[700] text-[var(--color-base)]">
                   {{ t("session.skip.button") }}
                 </p>
               </CdxButton>
@@ -1257,7 +1255,7 @@ const animClass = (index) => {
 
     <div v-if="!isLoading && !isError && !noInternet"
       class="flex bottom-0 w-full p-[0.8750rem] justify-center left-0 z-[1] absolute">
-      <div class="flex max-w-[28.125rem] gap-x-[0.75rem] w-full">
+      <div class="flex max-w-[448px] gap-x-[0.75rem] w-full">
         <CdxButton weight="quiet" class="h-[2.125rem] w-full" @click="
           nextCard(
             true,
@@ -1450,15 +1448,7 @@ const animClass = (index) => {
   }
 }
 
-.session .cdx-dialog__header {
-  display: flex !important;
-  align-items: center !important;
-  padding: 1rem 1rem 20px !important;
-}
 
-.session .cdx-dialog__footer {
-  padding: 1.5rem 1rem !important;
-}
 
 html.reduced-motion {
   @keyframes fadeOut {

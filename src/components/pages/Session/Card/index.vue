@@ -147,7 +147,7 @@ onMounted(() => {
     display: positions.isShowing ? 'block' : 'none',
     touchAction: 'none',
   }" ref="cardRef" :class="[
-    'absolute bg-[var(--background-color-base)] rounded-[1rem] w-full h-full max-h-[40.625rem] min-w-[18rem] max-w-[28.125rem] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
+    'absolute bg-[var(--background-color-base)] rounded-[1rem] w-full h-full max-h-[640px] min-w-[18rem] max-w-[448px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
   ]">
     <slot />
   </div>

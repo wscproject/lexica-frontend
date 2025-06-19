@@ -398,10 +398,6 @@ h1 {
   font-size: 28px !important;
 }
 
-.cdx-dialog__footer {
-  padding: 0.75rem !important;
-}
-
 .cdx-dialog__body {
   padding: 0 !important;
 }
@@ -458,4 +454,18 @@ h1 {
   .breakpoints-2 {
     @apply pr-[var(--spacing-100)] pl-[var(--spacing-25)] rtl:pr-[var(--spacing-25)] rtl:pl-[var(--spacing-100)];
   }
+}
+
+h5 {
+  font-weight: 700 !important;
+  font-size: var(--font-size-medium) !important;
+  color: var(--color-base);
+  font-style: normal;
+}
+
+h6 {
+  font-weight: 700 !important;
+  font-size: var(--font-size-small) !important;
+  color: var(--color-base);
+  font-style: normal;
 }
