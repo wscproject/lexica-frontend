@@ -121,7 +121,7 @@ onUnmounted(() => {
           <b>{{ props?.data?.aliases }}</b></span>
       </div>
 
-      <div class="h-full" v-if="
+      <div v-if="
         statements?.filter((item) => item?.[0] !== 'translation')?.length >
         0 && !props.isLoading
       ">
@@ -130,12 +130,13 @@ onUnmounted(() => {
         }}</h5>
         <div v-for="(value, index) in statements.filter(
           (item) => item?.[0] !== 'translation'
-        )" :key="index" class="border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem] mb-[0.75rem]"
-          @mouseover="
-            () => {
-              if (value?.[0] === 'images') hovered = true;
-            }
-          " @mouseout="
+        )" :key="index" :class="['border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem]',
+          index !== statements.length - 1 ? 'mb-[0.75rem]' : ''
+        ]" @mouseover="
+          () => {
+            if (value?.[0] === 'images') hovered = true;
+          }
+        " @mouseout="
             () => {
               if (value?.[0] === 'images') hovered = false;
             }
@@ -186,7 +187,8 @@ onUnmounted(() => {
 
         <div v-for="(value, index) in statements.filter(
           (item) => item?.[0] === 'translation'
-        )" :key="index" class="border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem] mb-[0.75rem]">
+        )" :key="index"
+          :class="['border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem]', index !== statements.length - 1 ? 'mb-[0.75rem]' : '']">
           <div class="flex gap-x-[0.75rem]">
             <div>
               <CdxLabel class="text-[1rem] pb-[0.2500rem] leading-[1.25rem]">{{ value?.[1]?.data?.[0]?.language }} ({{

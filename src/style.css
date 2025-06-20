@@ -469,3 +469,7 @@ h6 {
   color: var(--color-base);
   font-style: normal;
 }
+
+.cdx-field_control {
+  font-family: var(--font-family-system-sans);
+}

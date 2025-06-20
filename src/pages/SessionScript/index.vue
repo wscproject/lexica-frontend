@@ -918,7 +918,7 @@ const animClass = (index) => {
           {{ t("session.error.description") }}
         </p>
 
-        <p class="text-[0.8750rem] pb-[1rem]" style="font-family: monospace">
+        <p class="text-[0.8750rem] pb-[1rem]" style="font-family: var(--font-family-monospace)">
           {{ errorLog?.code || "" }} {{ errorLog?.message || "" }}
         </p>
 
