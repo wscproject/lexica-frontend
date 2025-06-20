@@ -68,10 +68,11 @@ onMounted(() => {
         <div v-else-if="logout && success"
           class="w-full text-center flex flex-col justify-center items-center h-[80vh] p-[1rem]">
           <img :src="successlogo" alt="success" />
-          <CdxLabel class="pb-[1rem] dark:text-[#EAECF0]">{{
+          <h3 class="text-[var(--color-base)] font-[700] text-[1.25rem] pb-[var(--spacing-100)]">{{
             t("header.menu.logoutsuccess")
-          }}</CdxLabel>
-          <CdxButton weight="primary" action="progressive" class="w-full" @click="reload">{{ t("header.menu.ok") }}
+          }}</h3>
+          <CdxButton weight="primary" action="progressive" class="w-full h-[44px]" @click="reload">{{
+            t("header.menu.ok") }}
           </CdxButton>
         </div>
       </div>

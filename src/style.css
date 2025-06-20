@@ -470,6 +470,6 @@ h6 {
   font-style: normal;
 }
 
-.cdx-field_control {
-  font-family: var(--font-family-system-sans);
+.cdx-dialog__body .cdx-radio .cdx-label__label__text {
+  font-family: var(--font-family-system-sans) !important;
 }
