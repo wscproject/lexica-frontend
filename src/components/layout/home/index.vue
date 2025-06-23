@@ -50,7 +50,7 @@ onMounted(() => {
 <template>
   <div class="bg-white dark:bg-[#101418] w-full container-home w-full relative">
     <div v-if="isLoading"
-      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[1rem] absolute z-[1000] top-0 items-center">
+      class="bg-white dark:bg-[#101418] w-full text-center flex flex-col justify-center align-center h-[100vh] p-[1rem] absolute z-[1000] top-0 items-center px-[1rem]">
       <Loading :text="t('home.loading')" variant="big" />
     </div>
     <div :class="[
@@ -62,7 +62,7 @@ onMounted(() => {
         <slot v-if="!logout && !loading" />
 
         <div v-if="logout && !success"
-          class="w-full text-center flex flex-col justify-center h-[80vh] p-[1rem] items-center">
+          class="w-full text-center flex flex-col justify-center h-[80vh] p-[1rem] items-center px-[1rem]">
           <Loading :text="t('header.menu.loggingout')" variant="big" />
         </div>
         <div v-else-if="logout && success"

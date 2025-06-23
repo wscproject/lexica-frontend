@@ -1106,8 +1106,8 @@ const animClass = (index) => {
       </div>
     </div>
 
-    <div v-if="isLoading && !isError && !noInternet" class="relative custom-height flex justify-center">
-      <div class="w-full text-center max-w-[28rem] absolute top-[50%]">
+    <div v-if="isLoading && !isError && !noInternet" class="relative custom-height flex justify-center px-[1rem]">
+      <div class="w-full text-center absolute top-[50%] px-[1rem]">
         <Loading :text="t('session.loading')" variant="big" />
       </div>
     </div>

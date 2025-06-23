@@ -35,7 +35,7 @@ const isReducedMotion = usePreferredReducedMotion();
   ]">
     <CdxProgressIndicator v-if="props.variant === 'default' && !isNotUsingIndicator" class="w-[1.25] h-[1.25]" />
     <div v-else-if="props.variant !== 'default' && !isNotUsingIndicator" class="w-full max-w-[28rem]">
-      <CdxProgressBar class="w-full" />
+      <CdxProgressBar class="w-full " />
     </div>
     <span v-if="props.variant === 'default'" class="text-[1rem] text-[var(--color-subtle)]">{{ props.text }}</span>
     <h3 v-else class="text-[1.25rem] font-[700] text-[var(--color-emphasized)]">
