@@ -43,8 +43,8 @@ onBeforeUnmount(() => {
       </h1>
 
       <div class="text-[1rem] dark:text-[#EAECF0]">
-        <span>{{ t("home.unauth.body2") }}</span><a class="cdx-docs-link is-underlined" href="/privacy-policy"
-          id="privacy-policy">{{ t("home.unauth.privacyPolicy") }}</a>.
+        <span>{{ t("home.unauth.body2") }}</span><a class="cdx-docs-link " href="/privacy-policy" id="privacy-policy">{{
+          t("home.unauth.privacyPolicy") }}</a>.
       </div>
 
       <a :href="loginUrl" class="" tabindex="-1">

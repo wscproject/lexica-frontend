@@ -65,15 +65,15 @@ onBeforeUnmount(() => {
     <div class="max-[639px]:p-[1rem] p-[2rem] flex flex-col items-center">
       <div class="max-w-[56rem]">
         <div class="border-b border-[#C8CCD1] mb-[0.75rem] dark:border-[#72777D]">
-          <h1 class="p-0 text-[1.75rem] leading-[2.1875rem] pb-[0.75rem] text-[var(--color-emphasized)]">
+          <h1 class="p-0 text-[1.75rem] leading-[2.1875rem] pb-[0.5rem] text-[var(--color-emphasized)]">
             {{ t("privacy.title1") }}
           </h1>
         </div>
         <p class="p-0 text-[1rem] text-[var(--color-base)]">
           {{ t("privacy.section1") }}
         </p>
-        <div class="border-b border-[#C8CCD1] my-[0.75rem] dark:border-[#72777D]">
-          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.75rem] text-[var(--color-emphasized)]">
+        <div class="border-b border-[#C8CCD1] mb-[0.75rem] mt-[1.5rem] dark:border-[#72777D]">
+          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.5rem] text-[var(--color-emphasized)]">
             {{ t("privacy.title2") }}
           </h2>
         </div>
@@ -86,27 +86,27 @@ onBeforeUnmount(() => {
           </li>
           <I18nT keypath="privacy.section2.point3" tag="li">
             <template #privacy>
-              <a id="privacy-policy" class="cdx-docs-link is-underlined"
+              <a id="privacy-policy" class="cdx-docs-link "
                 href="https://foundation.wikimedia.org/wiki/Policy:Privacy_policy">
                 {{ t("privacy.section2.privacy") }}</a>.
             </template>
           </I18nT>
         </ul>
-        <div class="border-b border-[#C8CCD1] my-[0.75rem] dark:border-[#72777D]">
-          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.75rem] text-[var(--color-emphasized)]">
+        <div class="border-b border-[#C8CCD1] mb-[0.75rem] mt-[1.5rem] dark:border-[#72777D]">
+          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.5rem] text-[var(--color-emphasized)]">
             {{ t("privacy.title3") }}
           </h2>
         </div>
 
         <I18nT keypath="privacy.section3" tag="p" class="text-[var(--color-base)]">
           <template #license>
-            <a id="license" class="cdx-docs-link is-underlined" href="/license-list">
+            <a id="license" class="cdx-docs-link " href="/license-list">
               {{ t("privacy.license") }}</a>
           </template>
         </I18nT>
 
-        <div class="border-b border-[#C8CCD1] my-[0.75rem] dark:border-[#72777D]">
-          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.75rem] text-[var(--color-emphasized)]">
+        <div class="border-b border-[#C8CCD1] mb-[0.75rem] mt-[1.5rem] dark:border-[#72777D]">
+          <h2 class="p-0 text-[1.5rem] leading-[2.1875rem] pb-[0.5rem] text-[var(--color-emphasized)]">
             {{ t("privacy.title4") }}
           </h2>
         </div>

@@ -43,37 +43,24 @@ onBeforeUnmount(() => {
     <div class="max-[639px]:p-[1rem] p-[2rem] flex flex-col items-center">
       <div class="max-w-[56rem]">
         <div class="border-b border-[#C8CCD1] dark:border-[#72777D] mb-[0.75rem]">
-          <h1 class="p-0 text-[1.75rem] leading-[2.1875rem] pb-[0.75rem] text-[var(--color-emphasized)]">
+          <h1 class="p-0 text-[1.75rem] leading-[2.1875rem] pb-[0.5rem] text-[var(--color-emphasized)]">
             {{ t("about.title") }}
           </h1>
         </div>
-        <I18nT keypath="about.content1" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT keypath="about.content2" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT keypath="about.content3" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-        </I18nT>
-        <br />
-        <I18nT keypath="about.content4" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
-          <template #lexica>
-            <span>Lexica</span>
-          </template>
-          <template #link>
-            <a id="to-page" class="cdx-docs-link is-underlined" href="https://www.wikidata.org/wiki/Wikidata:Lexica">
-              {{ t("about.page") }}</a>
-          </template>
-        </I18nT>
+        <div class="flex gap-y-[var(--spacing-75)] flex-col">
+          <I18nT keypath="about.content1" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
+          </I18nT>
+          <I18nT keypath="about.content2" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
+          </I18nT>
+          <I18nT keypath="about.content3" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
+          </I18nT>
+          <I18nT keypath="about.content4" tag="p" class="p-0 text-[1rem] text-[var(--color-base)]">
+            <template #link>
+              <a id="to-page" class="cdx-docs-link " href="https://www.wikidata.org/wiki/Wikidata:Lexica">
+                {{ t("about.page") }}</a>
+            </template>
+          </I18nT>
+        </div>
       </div>
     </div>
   </div>
