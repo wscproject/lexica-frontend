@@ -59,8 +59,8 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="min-h-screen flex justify-center items-center w-full p-[16px] dark:bg-[#101418] w-full">
-    <div class="w-full text-center max-w-[896px] flex justify-center items-center flex-col">
+  <div class="min-h-screen flex justify-center items-center p-[1rem] dark:bg-[#101418] w-full">
+    <div class="w-full text-center max-w-[56rem] flex justify-center items-center flex-col">
       <Loading :isNotUsingIndicator="responseAPI" :text="t('home.loading')" variant="big" />
     </div>
   </div>

@@ -28,7 +28,7 @@
 }
 
 .cdx-button--action-default {
-  @apply border-[1px] dark:bg-[#202122] dark:text-[#EAECF0] dark:border-[#a2a9b1];
+  @apply border-[0.0625rem] dark:bg-[#202122] dark:text-[#EAECF0] dark:border-[#a2a9b1];
 }
 
 .cdx-button--action-default:hover {

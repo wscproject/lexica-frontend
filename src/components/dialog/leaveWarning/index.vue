@@ -55,39 +55,31 @@ defineExpose({ openModal });
 </script>
 
 <template>
-  <CdxDialog
-    v-model:open="open"
-    class="mx-[16px] w-full max-w-[512px] leave-warning-dialog"
-    :title="t('session.warning.title')"
-    @update:open="handleUserInput(false)"
-    close-button-label="Close"
-  >
-    <div class="px-[16px]">
+  <CdxDialog v-model:open="open" class="mx-[1rem] w-full max-w-[32rem] leave-warning-dialog"
+    :title="t('session.warning.title')" @update:open="handleUserInput(false)" close-button-label="Close">
+    <div class="px-[var(--spacing-150)]">
       <p class="text-[var(--color-base)]">
         {{ t("session.warning.content") }}
         <b>
           {{ props.count }}
           {{ locale === "en" ? t("session.warning.card", props.count) : "" }}
-          {{ t("session.warning.subtext") }}</b
-        >
+          {{ t("session.warning.subtext") }}</b>
       </p>
     </div>
 
     <template #footer>
-      <div class="flex gap-x-2 justify-end" v-if="!props.loading">
-        <CdxButton @click="handleUserInput(false)">{{
+      <div class="flex gap-y-[var(--spacing-75)] flex-col-reverse w-full" v-if="!props.loading">
+        <CdxButton @click="handleUserInput(false)" class="h-[2.125rem] w-full max-w-[unset]">{{
           t("session.warning.button1")
         }}</CdxButton>
-        <CdxButton
-          weight="primary"
-          action="progressive"
-          @click="handleUserInput(true)"
-          >{{ t("session.warning.button2") }}</CdxButton
-        >
+        <CdxButton weight="primary" action="progressive" @click="handleUserInput(true)"
+          class="h-[2.125rem] w-full max-w-[unset]">{{
+            t("session.warning.button2")
+          }}</CdxButton>
       </div>
 
-      <div class="flex gap-x-2 justify-end" v-if="props.loading">
-        <CdxButton disabled>{{ t("session.warning.loading") }}</CdxButton>
+      <div class="flex w-full" v-if="props.loading">
+        <CdxButton disabled class="h-[2.125rem] w-full max-w-[unset]">{{ t("session.warning.loading") }}</CdxButton>
       </div>
     </template>
   </CdxDialog>

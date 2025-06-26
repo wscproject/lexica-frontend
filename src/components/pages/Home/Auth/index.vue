@@ -219,7 +219,7 @@ const getLexemeLanguage = async (search) => {
 onMounted(async () => {
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
-    window?.navigator?.language?.split("-")?.[0] === "id"
+      window?.navigator?.language?.split("-")?.[0] === "id"
       ? window?.navigator?.language?.split("-")?.[0]
       : "en";
 
@@ -264,69 +264,43 @@ const gotoSession = async () => {
 <template>
   <div class="flex flex-col items-center w-full text-center">
     <h1
-      class="font-[400] text-[28px] p-0 text-black dark:text-[#F8F9FA] mb-[12px] break-normal w-fit leading-[35px]"
-    >
+      class="font-[400] text-[1.75rem] p-0 text-black dark:text-[#F8F9FA] mb-[0.75rem] break-normal w-fit leading-[2.1875rem]">
       {{ t("home.auth.title") }}, <br />
       {{ name }}!
     </h1>
   </div>
 
-  <div
-    class="menu mb-[12px] cursor-pointer w-100"
-    tabindex="0"
-    @click="isContributeLang = true"
-    @keydown.enter="isContributeLang = true"
-    @keydown.space="isContributeLang = true"
-  >
-    <div class="flex align-center justify-between gap-x-[12px]">
-      <div class="flex gap-x-[12px]">
+  <div class="menu mb-[0.75rem] cursor-pointer w-100" tabindex="0" @click="isContributeLang = true"
+    @keydown.enter="isContributeLang = true" @keydown.space="isContributeLang = true">
+    <div class="flex align-center justify-between gap-x-[0.75rem]">
+      <div class="flex gap-x-[0.75rem]">
         <CdxIcon :icon="cdxIconGlobe" />
         <div class="flex flex-col">
           <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
             t("contributionLangDialog.title")
           }}</CdxLabel>
-          <span class="text-[#54595D] dark:text-[#A2A9B1]"
-            >{{ selectedLang?.full }} ({{ selectedLang?.value }})</span
-          >
+          <span class="text-[#54595D] dark:text-[#A2A9B1]">{{ selectedLang?.full }} ({{ selectedLang?.value }})</span>
         </div>
       </div>
       <CdxIcon :dir="currDir" :icon="cdxIconNext" />
     </div>
   </div>
 
-  <div
-    class="menu mb-[12px] cursor-pointer w-100"
-    @click="isActivity = true"
-    @keydown.enter="isActivity = true"
-    @keydown.space="isActivity = true"
-    tabindex="0"
-  >
-    <div class="flex align-center justify-between gap-x-[12px]">
-      <div class="flex gap-x-[12px]">
-        <img
-          :src="isThemeDark ? ChangesDark : Changes"
-          alt="Changes"
-          class="h-[100%]"
-        />
+  <div class="menu mb-[0.75rem] cursor-pointer w-100" @click="isActivity = true" @keydown.enter="isActivity = true"
+    @keydown.space="isActivity = true" tabindex="0">
+    <div class="flex align-center justify-between gap-x-[0.75rem]">
+      <div class="flex gap-x-[0.75rem]">
+        <img :src="isThemeDark ? ChangesDark : Changes" alt="Changes" class="h-[100%]" />
         <div class="flex flex-col">
           <CdxLabel class="text-[#202122] dark:text-[#EAECF0]">{{
             t("activityDialog.title")
           }}</CdxLabel>
-          <span
-            v-if="selectedAct === 'connect'"
-            class="text-[#54595D] dark:text-[#A2A9B1]"
-            >{{ t("activityDialog.connect.title") }}</span
-          >
-          <span
-            v-else-if="selectedAct === 'script'"
-            class="text-[#54595D] dark:text-[#A2A9B1]"
-            >{{ t("activityDialog.script.title") }}</span
-          >
-          <span
-            v-else-if="selectedAct === 'hyphenation'"
-            class="text-[#54595D] dark:text-[#A2A9B1]"
-            >{{ t("activityDialog.hyphenation.title") }}</span
-          >
+          <span v-if="selectedAct === 'connect'" class="text-[#54595D] dark:text-[#A2A9B1]">{{
+            t("activityDialog.connect.title") }}</span>
+          <span v-else-if="selectedAct === 'script'" class="text-[#54595D] dark:text-[#A2A9B1]">{{
+            t("activityDialog.script.title") }}</span>
+          <span v-else-if="selectedAct === 'hyphenation'" class="text-[#54595D] dark:text-[#A2A9B1]">{{
+            t("activityDialog.hyphenation.title") }}</span>
         </div>
       </div>
       <CdxIcon :dir="currDir" :icon="cdxIconNext" />
@@ -334,11 +308,11 @@ const gotoSession = async () => {
   </div>
 
   <!-- <div
-    class="text-[16px] pt-[24px] pb-[12px] font-[700] text-black dark:text-white text-left w-100"
+    class="text-[1rem] pt-[1.5rem] pb-[0.75rem] font-[700] text-black dark:text-white text-left w-100"
   >
     <span>{{ t("home.auth.languageSelect") }}</span>
   </div>
-  <div class="text-[16px] pb-[24px] w-full">
+  <div class="text-[1rem] pb-[1.5rem] w-full">
     <CdxSelect
       v-model:selected="contributeLang"
       class="w-full cont-lang"
@@ -348,7 +322,7 @@ const gotoSession = async () => {
     />
   </div> -->
 
-  <!-- <div class="flex gap-x-2 pb-[24px]">
+  <!-- <div class="flex gap-x-2 pb-[1.5rem]">
       <CdxIcon :icon="cdxIconInfoFilled" />
       <CdxLabel
         >Untuk sementara, Lexica hanya tersedia untuk leksem Bahasa
@@ -356,76 +330,49 @@ const gotoSession = async () => {
       >
     </div> -->
 
-  <div
-    class="w-full flex flex-col min-[616px]:gap-x-[12px] gap-y-[12px] items-center justify-center"
-  >
-    <CdxButton
-      weight="primary"
-      action="progressive"
-      class="w-full py-[5px] max-w-[unset] rounded-[2px] h-[44px]"
-      @click="gotoSession"
-    >
-      <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}</CdxButton
-    >
-    <a
-      href="https://www.wikidata.org/wiki/Wikidata:Lexica#How_to_use"
-      class="w-100"
-      tabindex="-1"
-    >
-      <CdxButton class="w-100 py-[5px] max-w-[unset] rounded-[2px] h-[44px]">
+  <div class="w-full flex flex-col min-[616px]:gap-x-[0.75rem] gap-y-[0.75rem] items-center justify-center">
+    <CdxButton weight="primary" action="progressive"
+      class="w-full py-[0.3125rem] max-w-[unset] rounded-[0.1250rem] h-[2.75rem]" @click="gotoSession">
+      <CdxIcon :icon="cdxIconPlay" /> {{ t("home.auth.start") }}
+    </CdxButton>
+    <a href="https://www.wikidata.org/wiki/Wikidata:Lexica#How_to_use" class="w-100" tabindex="-1">
+      <CdxButton class="w-100 py-[0.3125rem] max-w-[unset] rounded-[0.1250rem] h-[2.75rem]">
         <img :src="isThemeDark ? LightbulbDark : Lightbulb" alt="Lightbulb" />
-        {{ t("home.auth.tutorial") }}</CdxButton
-      >
+        {{ t("home.auth.tutorial") }}
+      </CdxButton>
     </a>
   </div>
 
-  <GuideDialog
-    :open="isGuide"
-    @onPrimaryAction="isGuide = false"
-    @toSession="gotoSession"
-  />
+  <GuideDialog :open="isGuide" @onPrimaryAction="isGuide = false" @toSession="gotoSession" />
 
-  <ContributeLanguageDialog
-    :open="isContributeLang"
-    :options="selection"
-    :searchLoading="searchLoading"
-    :defaultLang="selectedLang"
-    @onClose="
+  <ContributeLanguageDialog :open="isContributeLang" :options="selection" :searchLoading="searchLoading"
+    :defaultLang="selectedLang" @onClose="
       () => {
         searchQuery = '';
         isContributeLang = false;
       }
-    "
-    @setSearch="
+    " @setSearch="
       (search) => {
         searchQuery = search;
       }
-    "
-    @applyLanguage="
+    " @applyLanguage="
       (value) => {
         selectedLang = value;
       }
-    "
-  />
+    " />
 
-  <ActivityDialog
-    :open="isActivity"
-    :options="activityList"
-    @onClose="
-      () => {
-        isActivity = false;
-      }
-    "
-    @applyActivity="
-      (value) => {
-        console.log(value);
+  <ActivityDialog :open="isActivity" :options="activityList" @onClose="
+    () => {
+      isActivity = false;
+    }
+  " @applyActivity="
+    (value) => {
+      console.log(value);
 
-        selectedAct = value;
-        isActivity = false;
-      }
-    "
-    :defaultValue="selectedAct"
-  />
+      selectedAct = value;
+      isActivity = false;
+    }
+  " :defaultValue="selectedAct" />
 </template>
 
 <style>
@@ -435,6 +382,6 @@ const gotoSession = async () => {
 }
 
 .menu {
-  @apply border border-[var(--border-color-base)] rounded-[2px] p-[12px];
+  @apply border border-[var(--border-color-base)] rounded-[0.1250rem] p-[0.75rem];
 }
 </style>

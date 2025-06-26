@@ -4,7 +4,7 @@ import {
   usePreferredReducedMotion,
   useTextDirection,
 } from "@vueuse/core";
-import { onMounted, watch } from "vue";
+import { nextTick, onMounted, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
 import { useI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
@@ -16,6 +16,7 @@ import { useHtmlHasClass } from "@/helper/hasClass";
 const isPreferredDark = useMediaQuery("(prefers-color-scheme: dark)");
 const vuex = useStore();
 const route = useRoute();
+const router = useRouter();
 const { locale } = useI18n();
 const { cookies } = useCookies();
 const dir = useTextDirection();
@@ -47,8 +48,6 @@ const changeTheme = () => {
     localStorage.getItem("theme") === "auto"
   ) {
     if (isPreferredDark.value) {
-      console.log("Dark mode is preferred by the user");
-
       document.documentElement.classList.add("dark");
       document
         .querySelector('meta[name="theme-color"]')
@@ -121,8 +120,34 @@ const updatePreference = (event) => {
 
 let mediaQueryList;
 
+const addUnderline = async () => {
+  const links = document.querySelectorAll("a");
 
-onMounted(() => {
+  if (localStorage.getItem("underline") === "true") {
+
+    links.forEach((link) => {
+      link.style.textDecoration = "underline";
+    });
+  } else {
+    links.forEach((link) => {
+      link.style.textDecoration = "none";
+    });
+  }
+}
+
+watch(
+  () => route.fullPath,
+  async () => {
+    await nextTick();
+    addUnderline();
+  }
+);
+
+
+onMounted(async () => {
+  await nextTick();
+  addUnderline();
+
   mediaQueryList = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   if (mediaQueryList.addEventListener) {
@@ -131,7 +156,6 @@ onMounted(() => {
     // For older browsers
     mediaQueryList.addListener(updatePreference);
   }
-
 
   changeTheme();
 

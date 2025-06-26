@@ -22,7 +22,11 @@ export const SearchEntity = async (params) => {
   const response = await api();
 
   return response.get(
-    `/entites?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
+    `/entities?page=${params?.page}&limit=${params?.limit}&search=${
+      params?.keyword
+    }&displayLanguageCode=${params?.displayLanguageCode || ""}&languageCode=${
+      params?.languageCode || ""
+    }`
   );
 };
 
@@ -30,7 +34,11 @@ export const GetRecommendations = async (params) => {
   const response = await api();
 
   return response.get(
-    `/entites/recommendations?page=${params?.page}&limit=${params?.limit}&search=${params?.keyword}`
+    `/entities/recommendations?page=${params?.page}&limit=${
+      params?.limit
+    }&search=${params?.keyword}&displayLanguageCode=${
+      params?.displayLanguageCode || ""
+    }&languageCode=${params?.languageCode || ""}`
   );
 };
 
@@ -59,9 +67,13 @@ export const GetLexemeDetail = async (lexemeId) => {
   return response.get(`/lexemes/${lexemeId}`);
 };
 
-export const GetEntityDetail = async (entityId) => {
+export const GetEntityDetail = async (entityId, params) => {
   const response = await api();
-  return response.get(`/entites/${entityId}`);
+  return response.get(
+    `/entities/${entityId}?displayLanguageCode=${
+      params?.displayLanguageCode || ""
+    }&languageCode=${params?.languageCode || ""}`
+  );
 };
 
 export const UpdateConnectCardDetail = async ({ data, contributionId, id }) => {

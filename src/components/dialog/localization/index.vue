@@ -5,6 +5,7 @@ import {
   CdxButton,
   CdxIcon,
   CdxRadio,
+  CdxField,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import { ref, watch } from "vue";
@@ -64,71 +65,47 @@ watch(locale, () => {
 
 <template>
   <div>
-    <CdxDialog
-      :open="open"
-      title="Save changes"
-      close-button-label="Close"
-      @update:open="close"
-      :class="[
-        'locale rounded-[2px] max-w-[512px] min-w-[288px] w-100 mx-[16px]',
-      ]"
-    >
+    <CdxDialog :open="open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
+      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+    ]">
       <template #header>
         <div class="w-full">
           <div class="w-full">
             <div class="flex w-full justify-between items-center">
-              <CdxLabel class="text-[18px]">{{
+              <CdxLabel class="text-[1.125rem]">{{
                 t("localeDialog.title")
               }}</CdxLabel>
-              <CdxButton
-                :aria-label="t('aria.close')"
-                @click="close"
-                weight="quiet"
-              >
-                <CdxIcon
-                  :icon="cdxIconClose"
-                  dir="rtl"
-                  class="cursor-pointer"
-                />
+              <CdxButton :aria-label="t('aria.close')" @click="close" weight="quiet">
+                <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
               </CdxButton>
             </div>
           </div>
         </div>
       </template>
-      <div class="w-full px-[16px] py-[12px]">
-        <CdxRadio
-          @keydown.enter="
+      <div class="w-full px-[var(--spacing-150)]">
+        <CdxField :is-fieldset="true">
+          <CdxRadio @keydown.enter="
             () => {
               setLocale();
               emit('onPrimaryAction');
             }
-          "
-          v-for="radio in radios"
-          :key="'radio-' + radio.value"
-          v-model="currentLocale"
-          name="radio-group"
-          :input-value="radio.value"
-          @update:modelValue="changeDir(radio)"
-        >
-          {{ radio.label }}
-        </CdxRadio>
+          " v-for="radio in radios" :key="'radio-' + radio.value" v-model="currentLocale" name="radio-group"
+            :input-value="radio.value" @update:modelValue="changeDir(radio)">
+            {{ radio.label }}
+          </CdxRadio>
+        </CdxField>
       </div>
       <template #footer>
-        <div class="flex gap-x-[12px] w-full justify-end">
-          <CdxButton class="w-fit h-[34px]" @click="emit('onPrimaryAction')">{{
+        <div class="flex gap-x-[0.75rem] w-full justify-end">
+          <CdxButton class="w-fit h-[2.125rem]" @click="emit('onPrimaryAction')">{{
             t("localeDialog.cancel")
           }}</CdxButton>
-          <CdxButton
-            :class="['h-[34px]', 'w-fit']"
-            weight="primary"
-            action="progressive"
-            @click="
-              () => {
-                setLocale();
-                emit('onPrimaryAction');
-              }
-            "
-          >
+          <CdxButton :class="['h-[2.125rem]', 'w-fit']" weight="primary" action="progressive" @click="
+            () => {
+              setLocale();
+              emit('onPrimaryAction');
+            }
+          ">
             {{ t("localeDialog.apply") }}
           </CdxButton>
         </div>
@@ -142,12 +119,12 @@ watch(locale, () => {
 .locale .cdx-dialog__header {
   display: flex !important;
   align-items: center !important;
-  padding: 16px 16px !important;
+  padding: 1rem 1rem !important;
   border: 0 !important;
 }
 
 .locale .cdx-dialog__footer {
-  padding: 16px 16px 24px !important;
+  padding: 1rem 1rem 1.5rem !important;
   border: 0 !important;
 }
 </style>

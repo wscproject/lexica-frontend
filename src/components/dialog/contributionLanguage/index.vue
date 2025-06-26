@@ -6,6 +6,7 @@ import {
   CdxRadio,
   CdxSearchInput,
   CdxLabel,
+  CdxField,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
 import debounce from "lodash.debounce";
@@ -104,59 +105,37 @@ watch(language, () => {
   <div>
     <CdxDialog :open="props.open" @update:open="close" class="contributionLang">
       <template #header>
-        <div class="flex justify-between align-center pb-[12px]">
-          <CdxLabel class="text-[18px] p-0">{{
+        <div class="flex justify-between align-center pb-[0.75rem]">
+          <CdxLabel class="text-[1.125rem] p-0">{{
             t("contributionLangDialog.title")
           }}</CdxLabel>
-          <CdxButton
-            :aria-label="t('aria.close')"
-            @click="close"
-            weight="quiet"
-          >
+          <CdxButton :aria-label="t('aria.close')" @click="close" weight="quiet">
             <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
           </CdxButton>
         </div>
         <div class="relative">
-          <CdxSearchInput
-            :placeholder="t('contributionLangDialog.placeholder')"
-            class="relative"
-            v-model="search"
-            @input="onInput"
-          />
+          <CdxSearchInput :placeholder="t('contributionLangDialog.placeholder')" class="relative" v-model="search"
+            @input="onInput" />
 
           <div class="progress absolute top-0" v-if="props.searchLoading">
-            <div
-              class="progress-bar progress-bar-info progress-bar-striped active"
-              style="width: 100%"
-            ></div>
+            <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%"></div>
           </div>
         </div>
       </template>
 
-      <div
-        role="radiogroup"
-        class="px-[16px] py-[12px] overflow-y-auto"
-        style="max-height: calc(100vh - 360px)"
-      >
-        <CdxRadio
-          :id="`my-radio-${option.full}`"
-          ref="radioRef"
-          autofocus
-          @keydown.enter="apply"
-          v-if="props.options.length > 0"
-          v-for="option in props.options"
-          :key="option.label"
-          :input-value="{
-            value: option?.value,
-            full: option?.full,
-            id: option?.id,
-          }"
-          v-model="selected"
-          @update:modelValue="selected"
-          name="as"
-        >
-          {{ option.label }}
-        </CdxRadio>
+      <div role="radiogroup" class="px-[var(--spacing-150)] py-[0.5rem] overflow-y-auto"
+        style="max-height: calc(100vh - 360px)">
+        <CdxField v-if="props.options.length > 0" :is-fieldset="true">
+          <CdxRadio :id="`my-radio-${option.full}`" ref="radioRef" autofocus @keydown.enter="apply"
+            v-for="option in props.options" :key="option.label" :input-value="{
+              value: option?.value,
+              full: option?.full,
+              id: option?.id,
+            }" v-model="selected" @update:modelValue="selected" name="as">
+            {{ option.label }}
+          </CdxRadio>
+        </CdxField>
+
 
         <div v-else>
           <CdxLabel class="text-[#D73333] dark:text-[#FD7865]">{{
@@ -169,16 +148,11 @@ watch(language, () => {
       </div>
 
       <template #footer>
-        <div class="flex gap-x-[12px] w-full justify-end">
-          <CdxButton class="w-fit h-[34px]" @click="close">{{
+        <div class="flex gap-x-[0.75rem] w-full justify-end">
+          <CdxButton class="w-fit h-[2.125rem]" @click="close">{{
             t("contributionLangDialog.cancel")
           }}</CdxButton>
-          <CdxButton
-            :class="['h-[34px]', 'w-fit']"
-            weight="primary"
-            action="progressive"
-            @click="apply"
-          >
+          <CdxButton :class="['h-[2.125rem]', 'w-fit']" weight="primary" action="progressive" @click="apply">
             {{ t("contributionLangDialog.apply") }}
           </CdxButton>
         </div>
@@ -189,7 +163,7 @@ watch(language, () => {
 
 <style>
 .contributionLang .cdx-dialog__header {
-  @apply pt-[16px] pr-[12px] pb-[16px] pl-[16px] border-b border-[#A2A9B1] dark:border-[#72777D];
+  @apply pt-[1rem] pr-[0.75rem] pb-[1rem] pl-[1rem] border-b border-[#A2A9B1] dark:border-[#72777D];
 }
 
 .contributionLang .cdx-dialog__body {
@@ -197,13 +171,13 @@ watch(language, () => {
 }
 
 .contributionLang .cdx-dialog__footer {
-  @apply p-[16px] border-t border-[#A2A9B1] dark:border-[#72777D];
+  @apply p-[1rem] border-t border-[#A2A9B1] dark:border-[#72777D];
 }
 
 .progress {
   overflow: hidden;
-  height: 34px;
-  border-radius: 2px;
+  height: 2.125rem;
+  border-radius: 0.125rem;
   width: 100%;
   opacity: 0.3;
 }
@@ -214,17 +188,15 @@ watch(language, () => {
 
 .progress-bar-striped,
 .progress-striped .progress-bar {
-  background-image: linear-gradient(
-    -45deg,
-    hsla(0, 0%, 95%, 0.8) 25%,
-    transparent 0,
-    transparent 50%,
-    hsla(0, 0%, 95%, 0.8) 0,
-    hsla(0, 0%, 95%, 0.8) 75%,
-    transparent 0,
-    transparent
-  );
-  background-size: 75px 75px;
+  background-image: linear-gradient(-45deg,
+      hsla(0, 0%, 95%, 0.8) 25%,
+      transparent 0,
+      transparent 50%,
+      hsla(0, 0%, 95%, 0.8) 0,
+      hsla(0, 0%, 95%, 0.8) 75%,
+      transparent 0,
+      transparent);
+  background-size: 4.6875rem 4.6875rem;
   background-repeat: repeat-x;
 }
 
@@ -239,16 +211,14 @@ watch(language, () => {
 }
 
 .progress-striped .progress-bar-info {
-  background-image: linear-gradient(
-    45deg,
-    hsla(0, 0%, 95%, 0.8) 25%,
-    transparent 0,
-    transparent 50%,
-    hsla(0, 0%, 95%, 0.8) 0,
-    hsla(0, 0%, 95%, 0.8) 75%,
-    transparent 0,
-    transparent
-  );
+  background-image: linear-gradient(45deg,
+      hsla(0, 0%, 95%, 0.8) 25%,
+      transparent 0,
+      transparent 50%,
+      hsla(0, 0%, 95%, 0.8) 0,
+      hsla(0, 0%, 95%, 0.8) 75%,
+      transparent 0,
+      transparent);
 }
 
 @-webkit-keyframes f {
@@ -257,7 +227,7 @@ watch(language, () => {
   }
 
   to {
-    background-position: 75px 0;
+    background-position: 4.6875rem 0;
   }
 }
 
@@ -267,7 +237,7 @@ watch(language, () => {
   }
 
   to {
-    background-position: 75px 0;
+    background-position: 4.6875rem 0;
   }
 }
 </style>
