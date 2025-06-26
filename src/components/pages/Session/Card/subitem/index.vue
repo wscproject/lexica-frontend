@@ -137,10 +137,10 @@ onUnmounted(() => {
             if (value?.[0] === 'images') hovered = true;
           }
         " @mouseout="
-            () => {
-              if (value?.[0] === 'images') hovered = false;
-            }
-          " :style="hovered && 'cursor: pointer'" @click="
+          () => {
+            if (value?.[0] === 'images') hovered = false;
+          }
+        " :style="hovered && 'cursor: pointer'" @click="
             () => {
               if (value?.[0] === 'images' && value?.[1]?.data?.[0]?.url)
                 emit('showImage', value?.[1]?.data?.[0]?.url);

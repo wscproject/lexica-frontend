@@ -1335,4 +1335,55 @@ html.reduced-motion {
     opacity: 0 !important;
   }
 }
+
+html.reduced-motion {
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+      // display: none;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+      // display: none;
+    }
+  }
+
+  .back {
+    transform: none !important;
+  }
+
+  .card-fade {
+    animation: fadeOut 250ms ease-out forwards !important;
+  }
+
+  .card-fade-in {
+    animation: fadeIn 250ms ease-out forwards !important;
+  }
+
+  .is-flipped {
+    transform: none !important;
+  }
+
+  .undo-enter-active,
+  .undo-leave-active {
+    transform: none !important;
+    transition: opacity 0.5s !important;
+  }
+
+  .undo-enter-from,
+  .undo-leave-to {
+    opacity: 0 !important;
+  }
+}
 </style>

@@ -157,10 +157,7 @@ onMounted(async () => {
     mediaQueryList.addListener(updatePreference);
   }
 
-
   changeTheme();
-
-
 
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
