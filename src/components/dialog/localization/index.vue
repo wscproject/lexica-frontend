@@ -89,8 +89,8 @@ const onInput = (e) => {
               </CdxButton>
             </div>
             <div class="relative">
-              <CdxSearchInput :placeholder="t('contributionLangDialog.placeholder')" class="relative" v-model="search"
-                @input="onInput" />
+              <CdxSearchInput clearable="true" :placeholder="t('contributionLangDialog.placeholder')" class="relative"
+                v-model="search" @input="onInput" />
             </div>
           </div>
         </div>
