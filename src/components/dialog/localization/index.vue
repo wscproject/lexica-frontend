@@ -95,8 +95,9 @@ const onInput = (e) => {
           </div>
         </div>
       </template>
-      <div class="w-full px-[var(--spacing-150)] py-[var(--spacing-50)]" style="max-height: calc(100vh - 360px)">
-        <CdxField :is-fieldset="true">
+      <div class="w-full px-[var(--spacing-150)] py-[var(--spacing-50)]"
+        style="max-height: calc(100vh - 360px); min-height: 16rem;">
+        <CdxField :is-fieldset="true" v-if="radios.length > 0">
           <CdxRadio @keydown.enter="
             () => {
               setLocale();
@@ -107,13 +108,22 @@ const onInput = (e) => {
             {{ radio.label }}
           </CdxRadio>
         </CdxField>
+
+        <div v-else>
+          <CdxLabel class="text-[#D73333] dark:text-[#FD7865]">{{
+            t("contributionLangDialog.emptySearch1")
+          }}</CdxLabel>
+          <CdxLabel class="text-[#D73333] dark:text-[#FD7865]">{{
+            t("contributionLangDialog.emptySearch2")
+          }}</CdxLabel>
+        </div>
       </div>
       <template #footer>
-        <p class="text-[var(--color-subtle)] text-[14px]">{{ t('localeDialog.footerText') }} <a
+        <p class="text-[var(--color-subtle)] text-[14px] ">{{ t('localeDialog.footerText') }} <a
             href="https://translatewiki.net/wiki/Translating:Lexica" target="_blank"
             class="text-[var(--color-progressive)]">{{
               t('localeDialog.footerLink') }}</a></p>
-        <div class="flex gap-x-[0.75rem] w-full justify-end">
+        <div class="flex gap-x-[0.75rem] w-full justify-end mt-[var(--spacing-50)]">
           <CdxButton class="w-fit h-[2.125rem]" @click="emit('onPrimaryAction')">{{
             t("localeDialog.cancel")
           }}</CdxButton>
