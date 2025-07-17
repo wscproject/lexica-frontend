@@ -119,6 +119,13 @@ const onInput = debounce(() => {
   }
 }, 500);
 
+watch(search, () => {
+  if (search.value === '') {
+    isSearch.value = false;
+    emit("setSearch", search.value);
+  }
+})
+
 watch(recs, async () => {
   await nextTick();
 
@@ -134,6 +141,7 @@ watch(recs, async () => {
     // radioButtons2?.value
   }
 });
+
 
 const glossAlign = computed(() => {
   if (dir.value === "rtl") {
@@ -195,7 +203,7 @@ const glossAlign = computed(() => {
       </h5>
       <div class="relative">
         <CdxSearchInput :dir="dir" aria-label="SearchInput default demo" :placeholder="t('session.main.search')"
-          class="pb-[1rem] relative interactable" v-model="search" @input="onInput" />
+          class="pb-[1rem] relative interactable" v-model="search" @input="onInput" clearable="true" />
 
         <div class="progress absolute top-0" v-if="props.searchLoading">
           <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%"></div>
