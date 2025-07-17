@@ -75,6 +75,12 @@ const onInput = debounce(() => {
 //   selected.value= props.defaultLang;
 // });
 
+watch(search, () => {
+  if (search.value === '') {
+    emit("setSearch", search.value);
+  }
+})
+
 watch(
   () => props.open,
   async (newVal) => {
@@ -115,7 +121,7 @@ watch(language, () => {
         </div>
         <div class="relative">
           <CdxSearchInput :placeholder="t('contributionLangDialog.placeholder')" class="relative" v-model="search"
-            @input="onInput" />
+            @input="onInput" clearable="true" />
 
           <div class="progress absolute top-0" v-if="props.searchLoading">
             <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%"></div>
@@ -124,7 +130,7 @@ watch(language, () => {
       </template>
 
       <div role="radiogroup" class="px-[var(--spacing-150)] py-[0.5rem] overflow-y-auto"
-        style="max-height: calc(100vh - 360px)">
+        style="max-height: calc(100vh - 360px); min-height: 16rem;">
         <CdxField v-if="props.options.length > 0" :is-fieldset="true">
           <CdxRadio :id="`my-radio-${option.full}`" ref="radioRef" autofocus @keydown.enter="apply"
             v-for="option in props.options" :key="option.label" :input-value="{

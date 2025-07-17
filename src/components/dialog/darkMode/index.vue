@@ -187,9 +187,4 @@ const applyTheme = async () => {
   /* padding: 1rem 1rem !important;
   border: 0 !important; */
 }
-
-.locale .cdx-dialog__footer {
-  /* padding: 1rem 1rem 1.5rem !important; */
-  border: 0 !important;
-}
 </style>

@@ -86,11 +86,11 @@ defineExpose({ openModal });
 </template>
 
 <style>
-[dir] .cdx-dialog--dividers .cdx-dialog__header {
+.leave-warning-dialog [dir] .cdx-dialog--dividers .cdx-dialog__header {
   border-bottom: none !important;
 }
 
-[dir] .cdx-dialog--dividers .cdx-dialog__footer {
+.leave-warning-dialog [dir] .cdx-dialog--dividers .cdx-dialog__footer {
   border-top: none !important;
 }
 </style>
