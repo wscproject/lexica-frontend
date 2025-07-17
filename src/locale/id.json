@@ -39,6 +39,8 @@
 
   "localeDialog": {
     "title": "Bahasa tampilan",
+    "footerText": "Tertarik untuk menambahkan atau memperbaiki terjemahan dalam bahasa Anda?",
+    "footerLink": "Bantu terjemahkan Lexica.",
     "cancel": "Batal",
     "apply": "Terapkan"
   },

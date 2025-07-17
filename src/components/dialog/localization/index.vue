@@ -6,9 +6,10 @@ import {
   CdxIcon,
   CdxRadio,
   CdxField,
+  CdxSearchInput,
 } from "@wikimedia/codex";
 import { cdxIconClose } from "@wikimedia/codex-icons";
-import { ref, watch } from "vue";
+import { computed, ref, watch } from "vue";
 
 import { useI18n } from "vue-i18n";
 import { updateUserPreference } from "@/api/Home";
@@ -27,6 +28,8 @@ const currentLocale = ref(
 
 const currentDir = ref("");
 
+const search = ref("");
+
 const props = defineProps({
   open: {
     type: Boolean,
@@ -41,7 +44,9 @@ const close = () => {
   emit("onPrimaryAction", false);
 };
 
-const radios = displayLang.lang;
+const radios = computed(() => {
+  return !search.value ? displayLang.lang : displayLang.lang.filter(item => item.label.toLowerCase().includes(search.value.toLocaleLowerCase()))
+});
 
 const setLocale = async () => {
   if (!!cookies?.get("auth")) {
@@ -61,16 +66,20 @@ const changeDir = (value) => {
 watch(locale, () => {
   currentLocale.value = cookies?.get("locale") || locale.value;
 });
+
+const onInput = (e) => {
+  search.value = e.target.value
+}
 </script>
 
 <template>
   <div>
     <CdxDialog :open="open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
-      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem]',
+      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem] locale',
     ]">
       <template #header>
         <div class="w-full">
-          <div class="w-full">
+          <div class="w-full flex flex-col gap-y-[var(--spacing-100)]">
             <div class="flex w-full justify-between items-center">
               <CdxLabel class="text-[1.125rem]">{{
                 t("localeDialog.title")
@@ -79,10 +88,14 @@ watch(locale, () => {
                 <CdxIcon :icon="cdxIconClose" dir="rtl" class="cursor-pointer" />
               </CdxButton>
             </div>
+            <div class="relative">
+              <CdxSearchInput :placeholder="t('contributionLangDialog.placeholder')" class="relative" v-model="search"
+                @input="onInput" />
+            </div>
           </div>
         </div>
       </template>
-      <div class="w-full px-[var(--spacing-150)]">
+      <div class="w-full px-[var(--spacing-150)] py-[var(--spacing-50)]" style="max-height: calc(100vh - 360px)">
         <CdxField :is-fieldset="true">
           <CdxRadio @keydown.enter="
             () => {
@@ -96,6 +109,10 @@ watch(locale, () => {
         </CdxField>
       </div>
       <template #footer>
+        <p class="text-[var(--color-subtle)] text-[14px]">{{ t('localeDialog.footerText') }} <a
+            href="https://translatewiki.net/wiki/Translating:Lexica" target="_blank"
+            class="text-[var(--color-progressive)]">{{
+              t('localeDialog.footerLink') }}</a></p>
         <div class="flex gap-x-[0.75rem] w-full justify-end">
           <CdxButton class="w-fit h-[2.125rem]" @click="emit('onPrimaryAction')">{{
             t("localeDialog.cancel")
@@ -117,14 +134,19 @@ watch(locale, () => {
 
 <style>
 .locale .cdx-dialog__header {
-  display: flex !important;
-  align-items: center !important;
-  padding: 1rem 1rem !important;
-  border: 0 !important;
+  padding-top: var(--spacing-125) !important;
+  padding-bottom: var(--spacing-75) !important;
+  padding-left: var(--spacing-150) !important;
+  padding-right: var(--spacing-150) !important;
+  border-bottom: 1px solid var(--border-color-subtle) !important;
+}
+
+[dir] .locale .cdx-dialog--dividers .cdx-dialog__header {
+  border-bottom: 1px solid var(--border-color-subtle) !important;
 }
 
 .locale .cdx-dialog__footer {
-  padding: 1rem 1rem 1.5rem !important;
-  border: 0 !important;
+  padding: var(--spacing-125) var(--spacing-150) var(--spacing-150) !important;
+  border-top: 1px solid var(--border-color-subtle) !important;
 }
 </style>

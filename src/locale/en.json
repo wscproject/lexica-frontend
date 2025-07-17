@@ -40,6 +40,8 @@
 
   "localeDialog": {
     "title": "Display language",
+    "footerText": "Want to add or improve translation in your language?",
+    "footerLink": "Help translate Lexica.",
     "cancel": "Cancel",
     "apply": "Apply"
   },
