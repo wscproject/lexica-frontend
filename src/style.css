@@ -38,7 +38,7 @@
   src: url("/font/NotoSansSundanese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -46,7 +46,7 @@
   src: url("/font/NotoSansBalinese-VariableFont_wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -54,7 +54,7 @@
   src: url("/font/NotoSansArabic-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -62,7 +62,7 @@
   src: url("/font/NotoSansHebrew-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -70,35 +70,35 @@
   src: url("/font/NotoSansJP-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansKR";
   src: url("/font/NotoSansKR-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansSC";
   src: url("/font/NotoSansSC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansTC";
   src: url("/font/NotoSansTC-VariableFont_wght.woff2") format("woff2");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 @font-face {
   font-family: "NotoSansThai";
   src: url("/font/NotoSansThai-VariableFont_wdth,wght.ttf") format("truetype");
   font-weight: 100 700;
   font-style: normal;
-  font-display: fallback;
+  font-display: swap;
 }
 
 @font-face {
@@ -476,7 +476,7 @@ h6 {
   font-family: unset !important;
 }
 
-/* .cdx-dialog__body .cdx-radio .cdx-label__label__text {
+.cdx-dialog__body .cdx-radio .cdx-label__label__text {
   font-family: var(--font-family-system-sans) !important;
 }
 
@@ -486,4 +486,4 @@ h6 {
 
 .cdx-dialog__body .cdx-toggle-switch .cdx-label__description {
   font-family: var(--font-family-system-sans) !important;
-} */
+}
