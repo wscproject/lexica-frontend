@@ -10,7 +10,9 @@ import {
   reactive,
   watch,
   toRef,
+  onBeforeUnmount,
 } from "vue";
+import debounce from "lodash.debounce";
 import Divide from "@/assets/divide.svg";
 import DivideDark from "@/assets/divide_dark.svg";
 import { useStore } from "vuex";
@@ -122,10 +124,16 @@ const updateCurrentIndex = () => {
     return item.offsetLeft >= container.scrollLeft + container.offsetWidth / 2;
   });
 
-  if (tempIndex % 2 !== 0) {
-    currentIndex.value = tempIndex;
-  } else {
-    currentIndex.value = tempIndex - 1;
+  const newIndex = tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1;
+  
+  // Only vibrate if the index actually changed
+  if (newIndex !== currentIndex.value) {
+    currentIndex.value = newIndex;
+    
+    // Trigger vibration if supported
+    if ('vibrate' in navigator) {
+      navigator.vibrate(10); // Short 10ms vibration
+    }
   }
 };
 
@@ -154,6 +162,9 @@ const untagHyphenation = async () => {
   splitWord();
 };
 
+// Create a debounced version of updateCurrentIndex for smoother detection
+const debouncedUpdateCurrentIndex = debounce(updateCurrentIndex, 50);
+
 onMounted(async () => {
   // Ensure itemsRef is populated with the correct elements
   editedWord.value = props?.data?.lemma;
@@ -164,7 +175,14 @@ onMounted(async () => {
   itemsRef.value = Array.from(containerRef.value.querySelectorAll(".item"));
 
   // Add scroll event listener to update currentIndex
-  containerRef.value.addEventListener("scroll", updateCurrentIndex);
+  containerRef.value.addEventListener("scroll", debouncedUpdateCurrentIndex);
+});
+
+onBeforeUnmount(() => {
+  // Clean up event listener
+  if (containerRef.value) {
+    containerRef.value.removeEventListener("scroll", debouncedUpdateCurrentIndex);
+  }
 });
 </script>
 

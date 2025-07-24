@@ -474,7 +474,7 @@ h6 {
   font-family: unset !important;
 }
 
-.cdx-dialog__body .cdx-radio .cdx-label__label__text {
+/* .cdx-dialog__body .cdx-radio .cdx-label__label__text {
   font-family: var(--font-family-system-sans) !important;
 }
 
@@ -484,4 +484,4 @@ h6 {
 
 .cdx-dialog__body .cdx-toggle-switch .cdx-label__description {
   font-family: var(--font-family-system-sans) !important;
-}
+} */
