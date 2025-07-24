@@ -118,8 +118,30 @@ const scrollNext = () => {
   scrollToItem(targetIndex);
 };
 
-// Track the last divider index that triggered a vibration
-const lastDividerIndex = ref(-1);
+// Track the last index for vibration
+const lastVibrateIndex = ref(-1);
+
+// Handle vibration on scroll (immediate, not debounced)
+const handleScrollVibration = () => {
+  const container = containerRef.value;
+  const centerPosition = container.scrollLeft + container.offsetWidth / 2;
+  
+  // Find which item is at the center
+  const tempIndex = itemsRef.value.findIndex((item) => {
+    return item.offsetLeft >= centerPosition;
+  });
+  
+  // Check if we crossed a divider (even index)
+  if (tempIndex !== lastVibrateIndex.value && tempIndex >= 0) {
+    // Only vibrate when crossing dividers (even indexes)
+    if (tempIndex % 2 === 0) {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10); // Short 10ms vibration
+      }
+    }
+    lastVibrateIndex.value = tempIndex;
+  }
+};
 
 const updateCurrentIndex = () => {
   const container = containerRef.value;
@@ -132,16 +154,6 @@ const updateCurrentIndex = () => {
   // Update current index for UI
   if (newIndex !== currentIndex.value) {
     currentIndex.value = newIndex;
-  }
-  
-  // Check if we're at a divider position (even indexes)
-  if (tempIndex % 2 === 0 && tempIndex !== lastDividerIndex.value && tempIndex >= 0) {
-    lastDividerIndex.value = tempIndex;
-    
-    // Trigger vibration when passing a divider
-    if ('vibrate' in navigator) {
-      navigator.vibrate(10); // Short 10ms vibration
-    }
   }
 };
 
@@ -182,13 +194,15 @@ onMounted(async () => {
 
   itemsRef.value = Array.from(containerRef.value.querySelectorAll(".item"));
 
-  // Add scroll event listener to update currentIndex
-  containerRef.value.addEventListener("scroll", debouncedUpdateCurrentIndex);
+  // Add scroll event listeners
+  containerRef.value.addEventListener("scroll", handleScrollVibration); // Immediate for vibration
+  containerRef.value.addEventListener("scroll", debouncedUpdateCurrentIndex); // Debounced for UI
 });
 
 onBeforeUnmount(() => {
-  // Clean up event listener
+  // Clean up event listeners
   if (containerRef.value) {
+    containerRef.value.removeEventListener("scroll", handleScrollVibration);
     containerRef.value.removeEventListener("scroll", debouncedUpdateCurrentIndex);
   }
 });
