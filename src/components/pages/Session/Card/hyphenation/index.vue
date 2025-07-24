@@ -118,6 +118,9 @@ const scrollNext = () => {
   scrollToItem(targetIndex);
 };
 
+// Track the last divider index that triggered a vibration
+const lastDividerIndex = ref(-1);
+
 const updateCurrentIndex = () => {
   const container = containerRef.value;
   const tempIndex = itemsRef.value.findIndex((item) => {
@@ -126,11 +129,16 @@ const updateCurrentIndex = () => {
 
   const newIndex = tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1;
   
-  // Only vibrate if the index actually changed
+  // Update current index for UI
   if (newIndex !== currentIndex.value) {
     currentIndex.value = newIndex;
+  }
+  
+  // Check if we're at a divider position (even indexes)
+  if (tempIndex % 2 === 0 && tempIndex !== lastDividerIndex.value && tempIndex >= 0) {
+    lastDividerIndex.value = tempIndex;
     
-    // Trigger vibration if supported
+    // Trigger vibration when passing a divider
     if ('vibrate' in navigator) {
       navigator.vibrate(10); // Short 10ms vibration
     }
