@@ -75,7 +75,7 @@ const onInput = (e) => {
 <template>
   <div>
     <CdxDialog :open="open" title="Save changes" close-button-label="Close" @update:open="close" :class="[
-      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem] locale',
+      'rounded-[0.1250rem] max-w-[32rem] min-w-[18rem] w-100 mx-[1rem] locale fontLang',
     ]">
       <template #header>
         <div class="w-full">

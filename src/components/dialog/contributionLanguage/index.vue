@@ -109,7 +109,7 @@ watch(language, () => {
 
 <template>
   <div>
-    <CdxDialog :open="props.open" @update:open="close" class="contributionLang">
+    <CdxDialog :open="props.open" @update:open="close" class="contributionLang fontLang">
       <template #header>
         <div class="flex justify-between align-center pb-[0.75rem]">
           <CdxLabel class="text-[1.125rem] p-0">{{
