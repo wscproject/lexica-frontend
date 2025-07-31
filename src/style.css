@@ -188,8 +188,9 @@
 /* **************************************************** */
 
 :root {
-  --font-family: "Inter", "NotoSansSundanese", "NotoSansBalinese", system-ui,
-    Avenir, Helvetica, Arial, sans-serif;
+  --font-family: "NotoSansSundanese", "NotoSansBalinese", "NotoSansArabic",
+    "NotoSansHebrew", "NotoSansJP", "NotoSansKR", "NotoSansSC", "NotoSansTC",
+    "NotoSansThai", system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 

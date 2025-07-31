@@ -122,12 +122,12 @@ const onInput = debounce(() => {
 
 }, 500);
 
-// watch(search, () => {
-//   if (search.value === '') {
-//     isSearch.value = false;
-//     emit("setSearch", search.value);
-//   }
-// })
+watch(search, () => {
+  if (search.value === '') {
+    isSearch.value = false;
+    emit("setSearch", search.value);
+  }
+})
 
 // watch(recs, async () => {
 //   await nextTick();
