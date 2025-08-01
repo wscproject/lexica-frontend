@@ -10,7 +10,9 @@ import {
   reactive,
   watch,
   toRef,
+  onBeforeUnmount,
 } from "vue";
+import debounce from "lodash.debounce";
 import Divide from "@/assets/divide.svg";
 import DivideDark from "@/assets/divide_dark.svg";
 import { useStore } from "vuex";
@@ -116,16 +118,42 @@ const scrollNext = () => {
   scrollToItem(targetIndex);
 };
 
+// Track the last index for vibration
+const lastVibrateIndex = ref(-1);
+
+// Handle vibration on scroll (immediate, not debounced)
+const handleScrollVibration = () => {
+  const container = containerRef.value;
+  const centerPosition = container.scrollLeft + container.offsetWidth / 2;
+  
+  // Find which item is at the center
+  const tempIndex = itemsRef.value.findIndex((item) => {
+    return item.offsetLeft >= centerPosition;
+  });
+  
+  // Check if we crossed a divider (even index)
+  if (tempIndex !== lastVibrateIndex.value && tempIndex >= 0) {
+    // Only vibrate when crossing dividers (even indexes)
+    if (tempIndex % 2 === 0) {
+      if ('vibrate' in navigator) {
+        navigator.vibrate(10); // Short 10ms vibration
+      }
+    }
+    lastVibrateIndex.value = tempIndex;
+  }
+};
+
 const updateCurrentIndex = () => {
   const container = containerRef.value;
   const tempIndex = itemsRef.value.findIndex((item) => {
     return item.offsetLeft >= container.scrollLeft + container.offsetWidth / 2;
   });
 
-  if (tempIndex % 2 !== 0) {
-    currentIndex.value = tempIndex;
-  } else {
-    currentIndex.value = tempIndex - 1;
+  const newIndex = tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1;
+  
+  // Update current index for UI
+  if (newIndex !== currentIndex.value) {
+    currentIndex.value = newIndex;
   }
 };
 
@@ -154,6 +182,9 @@ const untagHyphenation = async () => {
   splitWord();
 };
 
+// Create a debounced version of updateCurrentIndex for smoother detection
+const debouncedUpdateCurrentIndex = debounce(updateCurrentIndex, 50);
+
 onMounted(async () => {
   // Ensure itemsRef is populated with the correct elements
   editedWord.value = props?.data?.lemma;
@@ -163,8 +194,17 @@ onMounted(async () => {
 
   itemsRef.value = Array.from(containerRef.value.querySelectorAll(".item"));
 
-  // Add scroll event listener to update currentIndex
-  containerRef.value.addEventListener("scroll", updateCurrentIndex);
+  // Add scroll event listeners
+  containerRef.value.addEventListener("scroll", handleScrollVibration); // Immediate for vibration
+  containerRef.value.addEventListener("scroll", debouncedUpdateCurrentIndex); // Debounced for UI
+});
+
+onBeforeUnmount(() => {
+  // Clean up event listeners
+  if (containerRef.value) {
+    containerRef.value.removeEventListener("scroll", handleScrollVibration);
+    containerRef.value.removeEventListener("scroll", debouncedUpdateCurrentIndex);
+  }
 });
 </script>
 

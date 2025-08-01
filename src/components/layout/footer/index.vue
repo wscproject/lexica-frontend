@@ -90,9 +90,9 @@ const { t, locale } = useI18n({ useScope: "global" });
         <div class="text-[#54595D] dark:text-[#A2A9B1]">
           <I18nT keypath="footer.label" tag="p" class="p-0 text-[0.8750rem] dark:text-[#EAECF0] font-[700]">
             <template #wikidata>
-              <a id="wikidata" class="cdx-docs-link"
+              <a id="wikidata" class="cdx-docs-link" aria-label="Visit Wikicollabs page (in this tab)"
                 href="https://meta.wikimedia.org/wiki/Software_Collaboration_for_Wikidata">
-                <b> Wikidata Software Collaboration</b></a>
+                <b> Wikicollabs</b></a>
             </template>
           </I18nT>
         </div>

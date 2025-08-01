@@ -30,7 +30,7 @@ const { dir } = useDirWatcher();
 
 const { t } = useI18n({ useScope: "global" });
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
-
+const searchRef = ref(null)
 const isInfo = ref(false);
 const selectedItem = ref(null);
 const detailData = ref(null);
@@ -117,6 +117,9 @@ const onInput = debounce(() => {
     isSearch.value = true;
     emit("setSearch", search.value);
   }
+
+  searchRef.value.focus()
+
 }, 500);
 
 watch(search, () => {
@@ -126,21 +129,21 @@ watch(search, () => {
   }
 })
 
-watch(recs, async () => {
-  await nextTick();
+// watch(recs, async () => {
+//   await nextTick();
 
-  // const div = document.getElementById("rec-container");
-  // isScrollBar.value = div.scrollHeight > div.clientHeight;
+//   // const div = document.getElementById("rec-container");
+//   // isScrollBar.value = div.scrollHeight > div.clientHeight;
 
-  // console.log(div.scrollHeight > div.clientHeight);
+//   // console.log(div.scrollHeight > div.clientHeight);
 
-  if (radioButtons2.value) {
-    const test = toRaw(radioButtons2?.value);
-    test?.[recs?.value?.length - 10]?.focus();
+//   if (radioButtons2.value) {
+//     const test = toRaw(radioButtons2?.value);
+//     test?.[recs?.value?.length - 10]?.focus();
 
-    // radioButtons2?.value
-  }
-});
+//     // radioButtons2?.value
+//   }
+// });
 
 
 const glossAlign = computed(() => {
@@ -157,7 +160,7 @@ const glossAlign = computed(() => {
 </script>
 
 <template>
-  <div class="relative w-full flex flex-col overflow-hidden flex flex-col h-full dark:bg-black rounded-[0.9375rem]">
+  <div class="relative w-full overflow-hidden flex flex-col h-full dark:bg-black rounded-[0.9375rem]">
     <div class="p-[1rem] text-white test flex header gap-x-2 w-full" :style="{
       background: '#3056A9',
       alignItems: 'center',
@@ -203,7 +206,7 @@ const glossAlign = computed(() => {
       </h5>
       <div class="relative">
         <CdxSearchInput :dir="dir" aria-label="SearchInput default demo" :placeholder="t('session.main.search')"
-          class="pb-[1rem] relative interactable" v-model="search" @input="onInput" clearable="true" />
+          ref="searchRef" class="pb-[1rem] relative interactable" v-model="search" @input="onInput" clearable="true" />
 
         <div class="progress absolute top-0" v-if="props.searchLoading">
           <div class="progress-bar progress-bar-info progress-bar-striped active" style="width: 100%"></div>

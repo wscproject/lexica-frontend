@@ -262,7 +262,7 @@
 
     "done": {
       "title": "Terima kasih telah berkontribusi dengan Lexica!",
-      "button": "Kembail ke Beranda"
+      "button": "Kembali ke Beranda"
     },
 
     "skip": {
@@ -292,7 +292,7 @@
     "title": "Tentang",
     "content1": "Menyunting data leksikografis di Wikidata melalui ponsel merupakan kegiatan yang menantang bagi sebagian pengguna. Hal itulah yang mendasari hadirnya Lexica. Tujuan kami sederhana: membuat proses menyunting menjadi lebih mudah dan dapat dilakukan oleh siapa saja, di mana saja.",
     "content2": "Lexica merupakan alat inovatif yang dirancang untuk membantu Anda berkontribusi ke data leksikografis di Wikidata. Sebagai perkakas berbasis web yang dioptimalkan untuk pengguna ponsel, Lexica memungkinkan Anda untuk menautkan Makna pada Leksem ke Butir di Wikidata secara cepat melalui tampilan kartu yang intuitif.",
-    "content3": "Lexica dikembangkan oleh tim pengembangan perangkat lunak dari Indonesia bersama Wikimedia Deutschland. Kerja sama ini merupakan bagian dari Wikidata Software Collaboration yang didukung oleh hibah dari Arcadia Philanthropic Fund.",
+    "content3": "Lexica dikembangkan oleh Wikicollabs bersama Wikimedia Deutschland. Kerja sama ini merupakan bagian dari Wikidata Software Collaboration yang didukung oleh hibah dari Arcadia Philanthropic Fund.",
     "content4": "Kami berkomitmen untuk terus mengembangkan Lexica agar dapat memberikan pengalaman pengguna yang lebih baik. Untuk mempelajari proyek kami lebih lanjut, silakan kunjungi {link}.",
     "page": "halaman berikut"
   },
