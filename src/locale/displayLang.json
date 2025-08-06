@@ -11,6 +11,12 @@
       "value": "en",
       "dir": "ltr",
       "disabled": false
+    },
+    {
+      "label": "Norwegian Bokmål",
+      "value": "nb-NO",
+      "dir": "ltr",
+      "disabled": false
     }
   ]
 }
