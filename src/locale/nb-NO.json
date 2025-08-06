@@ -1,0 +1,300 @@
+{
+  "header": {
+    "menu": {
+      "login": "Logg inn",
+      "logout": "Logg ut",
+      "locale": "Visningsspråk",
+      "theme": "Tema",
+      "auto": "Automatisk",
+      "autoDesc": "Følg system-/nettlesertema",
+      "light": "Lyst",
+      "dark": "Mørkt",
+      "language": "Engelsk",
+      "accessibility": "Tilgjengelighet",
+      "loggingout": "Logger ut...",
+      "logoutsuccess": "Du er logget ut.",
+      "ok": "OK"
+    }
+  },
+
+  "footer": {
+    "label": "Lexica er et verktøy levert av {wikidata}",
+    "about": "Om",
+    "privacy": "Personvern",
+    "license": "Lisens"
+  },
+
+  "accessibilityDialog": {
+    "title": "Tilgjengelighet",
+    "apply": "Bruk",
+    "close": "Lukk",
+    "subtitle1": "Tekst",
+    "subtitle2": "Animasjon",
+    "option1": "Fet tekst",
+    "option2": "Bruk alternativ skrifttype (Atkinson Hyperlegible Next)",
+    "option2Note": "Merk: Enkelte tegn vises kanskje ikke med denne skrifttypen.",
+    "option3": "Understrek lenker",
+    "option4": "Reduser bevegelser",
+    "option4Note": "Minimer animasjoner og overganger"
+  },
+
+  "localeDialog": {
+    "title": "Visningsspråk",
+    "footerText": "Vil du legge til eller forbedre oversettelsen på ditt språk?",
+    "footerLink": "Hjelp til med å oversette Lexica.",
+    "cancel": "Avbryt",
+    "apply": "Bruk"
+  },
+
+  "darkmodeDialog": {
+    "title": "Tema",
+    "auto": "Automatisk",
+    "desc": "Følg nettleserens tema",
+    "light": "Lyst",
+    "dark": "Mørkt",
+    "cancel": "Avbryt",
+    "apply": "Bruk"
+  },
+
+  "contributionLangDialog": {
+    "title": "Bidra til leksmer på",
+    "placeholder": "Søk etter språk",
+    "cancel": "Avbryt",
+    "apply": "Bruk",
+    "emptySearch1": "Ingen språk funnet.",
+    "emptySearch2": "Prøv andre søkeord."
+  },
+
+  "activityDialog": {
+    "title": "Bidragstype",
+    "connect": {
+      "title": "Leksme til element",
+      "description": "Koble et leksme til et element med samme betydning"
+    },
+    "script": {
+      "title": "Skriftvarianter",
+      "description": "Legg til skriftvarianter for et leksme"
+    },
+    "hyphenation": {
+      "title": "Stavelsesdeling",
+      "description": "Del et leksme opp i stavelser"
+    },
+    "cancel": "Avbryt",
+    "apply": "Bruk"
+  },
+
+  "home": {
+    "unauth": {
+      "title": "Velkommen!",
+      "title2": "Fullfør leksikografiske data på Wikidata med letthet",
+      "body1": "er et innovativt verktøy laget for å gjøre det enkelt å bidra til leksikografiske data på Wikidata.",
+      "body2": "Ved å bruke Lexica godtar du ",
+      "privacyPolicy": "Lexicas personvernerklæring",
+      "login": "Logg inn",
+      "info": "Lexica er fortsatt under utvikling. Funksjonaliteten kan endre seg over tid."
+    },
+    "auth": {
+      "title": "Hei",
+      "languageSelect": "Bidra til leksmer på",
+      "start": "Start å bidra",
+      "tutorial": "Les veiledningen"
+    },
+    "loading": "Laster..."
+  },
+
+  "tutorial": {
+    "title": "Veiledning",
+    "of": "av",
+    "start": "Start å bidra",
+    "one": {
+      "title": "Hva er Lexica?",
+      "content": "Lexica er et verktøy for å finne nye måter å redigere leksikografiske data på Wikidata. Her får du en redigeringsvisning som gjør det lettere å bidra raskt. Du vil få leksmer som må kobles til elementer på Wikidata."
+    },
+    "two": {
+      "title": "Hvordan bruke",
+      "point1Title": "Hjemmeside",
+      "point1Content": "avslutt bidragssøkten og gå tilbake til hjemmesiden.",
+      "point2Title": "Kortnummer",
+      "point2Content": "viser rekkefølgen på kortene som vises nå.",
+      "point3Title": "Kortbevegelse",
+      "point3Content": "dra opp på kortets topptekst for å hoppe over det.",
+      "point4Title": "Hopp over-knapp",
+      "point4Content": "bruk denne knappen som et alternativ for å hoppe over et kort.",
+      "point5Title": "Avslutt økt",
+      "point5Content": "avslutt bidragssøkten og gå tilbake til hjemmesiden."
+    },
+    "three": {
+      "title": "Et bidragskorts oppbygning",
+      "point1Title": "Topptekst",
+      "point1Content": "inneholder lemma, leksme-ID, definisjon og knapp for mer informasjon.",
+      "point2Title": "Kortinnhold",
+      "point2Content": "inneholder spørsmål, søkeboks og søkeresultater.",
+      "point3Title": "Handlingsknapper",
+      "point3Content": "velg «Neste» etter å ha valgt riktig element, eller «Fant ikke element» hvis ingen passer."
+    },
+    "four": {
+      "title": "Alt klart!",
+      "content1": "God bidragstid til leksikografiske data på Wikidata med Lexica!",
+      "content2": "Tips: Du kan se denne veiledningen igjen fra hjemmesiden."
+    }
+  },
+
+  "tooltips": {
+    "home": "Tilbake til hjemmesiden",
+    "account": "Konto",
+    "info": "Vis leksmeinformasjon",
+    "item": "Vis elementinformasjon",
+    "back": "Gå tilbake"
+  },
+
+  "session": {
+    "loading": "Laster kort...",
+
+    "error": {
+      "title": "Noe gikk galt",
+      "description": "Prøv å laste inn siden på nytt.",
+      "button": "Last inn på nytt"
+    },
+
+    "noInternet": {
+      "title": "Kan ikke laste opp bidrag",
+      "description": "Sjekk internettforbindelsen og prøv igjen.",
+      "button": "Prøv igjen"
+    },
+
+    "empty": {
+      "title": "Ingen kort tilgjengelig for øyeblikket.",
+      "button": "Tilbake til hjemmesiden"
+    },
+
+    "title": "Kort",
+    "button1": "Hopp over",
+    "button2": "Avslutt økt",
+
+    "main": {
+      "title": "Hvilket av elementene under har samme betydning som leksmebetydningen over?",
+      "search": "Søk etter element eller QID",
+      "recommendation": "Anbefalinger",
+      "result": "Søkeresultater",
+      "button1": "Fant ikke element",
+      "button2": "Neste",
+      "emptySearch1": "Ingen treff.",
+      "emptySearch2": "Prøv med andre søkeord.",
+      "emptySuggestion1": "Ingen anbefalinger funnet.",
+      "emptySuggestion2": "Prøv å søke manuelt.",
+      "loadmore": "Last flere",
+      "loading": "Laster...",
+      "emptyLoad": "Slutten av søkeresultatene"
+    },
+
+    "scriptWriting": {
+      "title1": "Omskriv",
+      "title2": "på {lang}",
+      "button": "Neste",
+      "placeholder": "Skriv her"
+    },
+
+    "hyphenation": {
+      "button1": "Del her",
+      "button2": "Neste"
+    },
+
+    "detail": {
+      "lexeme": "Leksme",
+      "loading": "Henter leksmeinformasjon",
+      "title1": "Dette leksmet",
+      "title2": "Denne betydningen",
+      "subtitle1": "Påstander",
+      "subtitle2": "På andre språk",
+      "title3": "Andre betydninger",
+      "senseCount": "Betydning {count}",
+      "usageExample": "brukseksempel",
+      "hasCharacteristics": "har egenskaper",
+      "combinesLexemes": "kombinerer leksmer",
+      "images": "bilde",
+      "languageStyle": "språkstil",
+      "fieldOfUsage": "bruksområde",
+      "locationOfSenseUsage": "brukslokasjon",
+      "semanticGender": "semantisk kjønn",
+      "synonym": "synonym",
+      "antonym": "antonym",
+      "glossQuotes": "forklaringssitat",
+      "itemForThisSense": "element for denne betydningen",
+      "otherGlosses": "På andre språk",
+      "allSense": "Alle betydninger",
+      "sense": "Betydning",
+      "grammaticalFeature": "Denne formens grammatiske egenskaper:"
+    },
+
+    "item": {
+      "wikidata": "Wikidata-element",
+      "statements": "Påstander",
+      "translations": "Oversettelser",
+      "loading": "Henter elementinformasjon",
+      "images": "bilde",
+      "instanceOf": "er en",
+      "partOf": "del av",
+      "subclass": "underklasse av",
+      "hasParts": "har deler",
+      "taxonName": "taksonnavn",
+      "aliases": "Også kjent som:"
+    },
+
+    "preview": {
+      "title": "Forhåndsvisning",
+      "lexeme": "Leksme",
+      "newStatement": "Ny påstand: {statement}",
+      "statement": "element for denne betydningen",
+      "button1": "Rediger",
+      "button2": "Ferdig",
+      "empty": "Ingen endringer vil bli gjort",
+      "reason": "Årsak: Fant ikke element"
+    },
+
+    "scriptPreview": {
+      "newStatement": "Lemma lagt til: {lang} ({code})"
+    },
+
+    "hyphenationPreview": {
+      "newStatement": "Ny påstand: stavelsesdeling (P5279)"
+    },
+
+    "upload": "Laster opp bidrag...",
+    "recLoading": "Henter anbefalinger",
+
+    "cardError": {
+      "title": "Opplasting mislyktes",
+      "description": "Sjekk internettforbindelsen og prøv igjen.",
+      "button": "Prøv igjen"
+    },
+
+    "done": {
+      "title": "Takk for at du bidro med Lexica!",
+      "button": "Tilbake til hjemmesiden"
+    },
+
+    "skip": {
+      "title": "Kort hoppet over.",
+      "button": "Angre"
+    },
+
+    "warning": {
+      "title": "Avslutte bidragssøkten?",
+      "content": "Du har jobbet med",
+      "subtext": "{card} så langt.",
+      "card": "ingen kort | ett kort | {card} kort",
+      "button1": "Fortsett å redigere",
+      "button2": "Avslutt økt",
+      "loading": "Avslutter økt..."
+    },
+
+    "blank": {
+      "title": "Ingen kort tilgjengelig for øyeblikket.",
+      "button": "Tilbake til hjemmesiden"
+    },
+
+    "emptyStatement": "Påstand ikke funnet",
+    "emptyDescriptionHead": "Definisjon ikke funnet i",
+    "emptyDescription": "Definisjon ikke funnet"
+  }
+}
