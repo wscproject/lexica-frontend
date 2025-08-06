@@ -9,7 +9,7 @@
       "autoDesc": "Følg system-/nettlesertema",
       "light": "Lyst",
       "dark": "Mørkt",
-      "language": "Engelsk",
+      "language": "Norwegian Bokmål",
       "accessibility": "Tilgjengelighet",
       "loggingout": "Logger ut...",
       "logoutsuccess": "Du er logget ut.",
@@ -57,7 +57,7 @@
   },
 
   "contributionLangDialog": {
-    "title": "Bidra til leksmer på",
+    "title": "Bidra til leksemer på",
     "placeholder": "Søk etter språk",
     "cancel": "Avbryt",
     "apply": "Bruk",
@@ -68,16 +68,16 @@
   "activityDialog": {
     "title": "Bidragstype",
     "connect": {
-      "title": "Leksme til element",
-      "description": "Koble et leksme til et element med samme betydning"
+      "title": "lekseme til element",
+      "description": "Koble et lekseme til et element med samme betydning"
     },
     "script": {
       "title": "Skriftvarianter",
-      "description": "Legg til skriftvarianter for et leksme"
+      "description": "Legg til skriftvarianter for et lekseme"
     },
     "hyphenation": {
       "title": "Stavelsesdeling",
-      "description": "Del et leksme opp i stavelser"
+      "description": "Del et lekseme opp i stavelser"
     },
     "cancel": "Avbryt",
     "apply": "Bruk"
@@ -95,7 +95,7 @@
     },
     "auth": {
       "title": "Hei",
-      "languageSelect": "Bidra til leksmer på",
+      "languageSelect": "Bidra til leksemer på",
       "start": "Start å bidra",
       "tutorial": "Les veiledningen"
     },
@@ -108,7 +108,7 @@
     "start": "Start å bidra",
     "one": {
       "title": "Hva er Lexica?",
-      "content": "Lexica er et verktøy for å finne nye måter å redigere leksikografiske data på Wikidata. Her får du en redigeringsvisning som gjør det lettere å bidra raskt. Du vil få leksmer som må kobles til elementer på Wikidata."
+      "content": "Lexica er et verktøy for å finne nye måter å redigere leksikografiske data på Wikidata. Her får du en redigeringsvisning som gjør det lettere å bidra raskt. Du vil få leksemer som må kobles til elementer på Wikidata."
     },
     "two": {
       "title": "Hvordan bruke",
@@ -126,7 +126,7 @@
     "three": {
       "title": "Et bidragskorts oppbygning",
       "point1Title": "Topptekst",
-      "point1Content": "inneholder lemma, leksme-ID, definisjon og knapp for mer informasjon.",
+      "point1Content": "inneholder lemma, lekseme-ID, definisjon og knapp for mer informasjon.",
       "point2Title": "Kortinnhold",
       "point2Content": "inneholder spørsmål, søkeboks og søkeresultater.",
       "point3Title": "Handlingsknapper",
@@ -134,7 +134,7 @@
     },
     "four": {
       "title": "Alt klart!",
-      "content1": "God bidragstid til leksikografiske data på Wikidata med Lexica!",
+      "content1": "Så bra at du vil bidra til leksikografiske data på Wikidata med Lexica!",
       "content2": "Tips: Du kan se denne veiledningen igjen fra hjemmesiden."
     }
   },
@@ -142,7 +142,7 @@
   "tooltips": {
     "home": "Tilbake til hjemmesiden",
     "account": "Konto",
-    "info": "Vis leksmeinformasjon",
+    "info": "Vis leksemeinformasjon",
     "item": "Vis elementinformasjon",
     "back": "Gå tilbake"
   },
@@ -172,7 +172,7 @@
     "button2": "Avslutt økt",
 
     "main": {
-      "title": "Hvilket av elementene under har samme betydning som leksmebetydningen over?",
+      "title": "Hvilket av elementene under har samme betydning som leksemebetydningen over?",
       "search": "Søk etter element eller QID",
       "recommendation": "Anbefalinger",
       "result": "Søkeresultater",
@@ -200,17 +200,17 @@
     },
 
     "detail": {
-      "lexeme": "Leksme",
-      "loading": "Henter leksmeinformasjon",
-      "title1": "Dette leksmet",
+      "lexeme": "lekseme",
+      "loading": "Henter leksemeinformasjon",
+      "title1": "Dette leksemet",
       "title2": "Denne betydningen",
-      "subtitle1": "Påstander",
+      "subtitle1": "utsagner",
       "subtitle2": "På andre språk",
       "title3": "Andre betydninger",
       "senseCount": "Betydning {count}",
       "usageExample": "brukseksempel",
       "hasCharacteristics": "har egenskaper",
-      "combinesLexemes": "kombinerer leksmer",
+      "combinesLexemes": "kombinerer leksemer",
       "images": "bilde",
       "languageStyle": "språkstil",
       "fieldOfUsage": "bruksområde",
@@ -228,7 +228,7 @@
 
     "item": {
       "wikidata": "Wikidata-element",
-      "statements": "Påstander",
+      "statements": "utsagner",
       "translations": "Oversettelser",
       "loading": "Henter elementinformasjon",
       "images": "bilde",
@@ -242,8 +242,8 @@
 
     "preview": {
       "title": "Forhåndsvisning",
-      "lexeme": "Leksme",
-      "newStatement": "Ny påstand: {statement}",
+      "lexeme": "lekseme",
+      "newStatement": "Ny utsagn: {statement}",
       "statement": "element for denne betydningen",
       "button1": "Rediger",
       "button2": "Ferdig",
@@ -256,7 +256,7 @@
     },
 
     "hyphenationPreview": {
-      "newStatement": "Ny påstand: stavelsesdeling (P5279)"
+      "newStatement": "Ny utsagn: stavelsesdeling (P5279)"
     },
 
     "upload": "Laster opp bidrag...",
@@ -293,7 +293,7 @@
       "button": "Tilbake til hjemmesiden"
     },
 
-    "emptyStatement": "Påstand ikke funnet",
+    "emptyStatement": "utsagn ikke funnet",
     "emptyDescriptionHead": "Definisjon ikke funnet i",
     "emptyDescription": "Definisjon ikke funnet"
   }
