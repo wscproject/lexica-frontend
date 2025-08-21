@@ -54,14 +54,6 @@ onBeforeUnmount(() => {
           {{ t("home.unauth.login") }}
         </CdxButton>
       </a>
-
-      <div
-        class="flex gap-x-2 p-[var(--spacing-100)] rounded-[var(--border-radius-base)] border-[0.0625rem] border-[var(--border-color-notice)] bg-[var(--background-color-notice-subtle)] text-[var(--color-base)]">
-        <CdxIcon :icon="cdxIconInfoFilled" />
-        <span class="p-0 font-[400] text-[1rem]">{{
-          t("home.unauth.info")
-        }}</span>
-      </div>
     </div>
     <div class="w-[360px] h-[360px] shrink-0 flex justify-center items-center max-[639px]:hidden">
       <img :src="HomeImage" alt="home" />
