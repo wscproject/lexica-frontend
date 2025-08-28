@@ -1,4 +1,12 @@
 <script setup>
+/**
+ * Review Component - Final confirmation interface for lexeme-entity connections
+ * 
+ * Displays a preview of the connection between a lexeme and Wikidata entity,
+ * allowing users to review and confirm or modify their selection before submission.
+ * 
+ * @component
+ */
 import { CdxLabel, CdxIcon, CdxButton, CdxThumbnail } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { computed, ref } from "vue";
@@ -13,9 +21,27 @@ const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
 const vuex = useStore();
+/**
+ * Computed property that determines if dark theme is active
+ * @returns {boolean} True if dark theme is enabled
+ */
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
+/**
+ * Component event emitters
+ * @emits backtoItem - Triggered when user wants to go back to selection
+ * @emits onDone - Triggered when user confirms the connection with payload {contributionDetailId, itemId}
+ */
 const emit = defineEmits(["backtoItem, onDone"]);
+
+/**
+ * Component props definition
+ * @prop {Object} headerRef - Reference to header element for styling control
+ * @prop {Object} data - Lexeme information including lemma, gloss, and ID
+ * @prop {Object} detail - Selected Wikidata entity information (null for "no item")
+ * @prop {String} img - URL for lexeme's associated image
+ * @prop {String} currLang - Current language code for display
+ */
 const props = defineProps({
   headerRef: Object,
   data: Object,

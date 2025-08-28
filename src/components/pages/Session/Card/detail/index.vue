@@ -1,4 +1,13 @@
 <script setup>
+/**
+ * Detail Component - Comprehensive view of lexeme connection information
+ * 
+ * Displays detailed linguistic data organized into structured sections including
+ * lexeme properties, sense-specific information, and related senses with
+ * expandable interface for exploring additional language variants.
+ * 
+ * @component
+ */
 import { CdxLabel, CdxIcon, CdxThumbnail } from "@wikimedia/codex";
 import {
   cdxIconLogoWikidata,
@@ -26,6 +35,16 @@ import Loading from "@/components/ui/loading.vue";
 const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
+/**
+ * Component props definition
+ * @prop {Object} data - Complete lexeme connection information
+ * @prop {Object} headerData - Header information for display
+ * @prop {Boolean} isLoading - Loading state indicator
+ * @prop {Object} languages - Language lookup table
+ * @prop {String} currLang - Current language code
+ * @prop {Boolean} isCurrent - Whether this is the active card
+ * @prop {Boolean} isFlip - Whether card is in flipped state
+ */
 const props = defineProps({
   data: Object,
   headerData: Object,
@@ -36,11 +55,32 @@ const props = defineProps({
   isFlip: Boolean,
 });
 
+/**
+ * Component event emitters
+ * @emits backtoItem - Navigate back to main card interface
+ * @emits onHold - Start of header interaction for drag operations
+ * @emits onRelease - End of header interaction
+ * @emits showImage - Request image display in lightbox with URL payload
+ */
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 
+/**
+ * Controls expansion state of "Other Senses" section
+ * @type {import('vue').Ref<boolean>}
+ */
 const isExpand = ref(false);
+
+/**
+ * Reactive reference to props data for computed properties
+ * @type {import('vue').Ref<Object>}
+ */
 const data = toRef(props, "data");
 
+/**
+ * Determines if lexeme-level properties are available for display
+ * @returns {boolean} True if any lexeme-level properties exist
+ * @see {@link ./DOCS.md#isThisLexeme-computed} For detailed documentation
+ */
 const isThisLexeme = computed(() => {
   return (
     data?.value?.usageExamples ||
@@ -49,6 +89,11 @@ const isThisLexeme = computed(() => {
   );
 });
 
+/**
+ * Checks if current sense has any properties to display
+ * @returns {boolean} True if no sense properties are available
+ * @see {@link ./DOCS.md#isNoStatement-computed} For detailed documentation
+ */
 const isNoStatement = computed(() => {
   return (
     !data?.value?.sense?.images &&
@@ -62,10 +107,20 @@ const isNoStatement = computed(() => {
   );
 });
 
+/**
+ * Determines if alternative glosses are available
+ * @returns {boolean} True if no alternative glosses exist
+ * @see {@link ./DOCS.md#noGlosses-computed} For detailed documentation
+ */
 const noGlosses = computed(() => {
   return data?.value?.sense?.otherGlosses?.length === 0;
 });
 
+/**
+ * Processes other senses data with formatted language names
+ * @returns {Array<Object>} Processed senses with formatted alternative glosses
+ * @see {@link ./DOCS.md#langs-computed} For detailed documentation
+ */
 const langs = computed(() => {
   return data?.value?.otherSenses?.map((item) => {
     return {
@@ -77,16 +132,29 @@ const langs = computed(() => {
   });
 });
 
+/**
+ * Handles global keyboard events for component navigation
+ * @param {KeyboardEvent} event - Keyboard event object
+ * @see {@link ./DOCS.md#handleKeyPress} For detailed documentation
+ */
 const handleKeyPress = (event) => {
   if (event.key === "Escape") {
     emit("backtoItem");
   }
 };
 
+/**
+ * Sets up global keyboard event listeners when component mounts
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(() => {
   window.addEventListener("keydown", handleKeyPress);
 });
 
+/**
+ * Cleans up global keyboard event listeners when component unmounts
+ * @see {@link ./DOCS.md#onUnmounted} For detailed documentation
+ */
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeyPress);
 });

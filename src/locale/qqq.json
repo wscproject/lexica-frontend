@@ -25,16 +25,24 @@
     "title": "Text that leads to the user enabling accessibility features",
     "apply": "Button text to apply an alternative font",
     "close": "Button text to undo the application of an alternative font",
-    "subtitle": "Text that directs the user to change the font in Lexica",
-    "option1": "Text containing options that guide the user to change the font to Atkinson Hyperlegible Next",
-    "option1Note": "Text message containing a notification some characters may not be displayed in this font"
+    "subtitle1": "Heading text that directs the user to change the font in Lexica",
+    "subtitle2": "Heading text that directs the user to change the animation motion",
+    "option1": "Text containing options that guide the user to make the text to bold",
+    "option2": "Text containing options that guide the user to change the font to Atkinson Hyperlegible",
+    "option2Note": "Text message containing a notification that some characters may not be displayed in the chosen font",
+    "option3": "Text containing options that guide the user to create a link is underlined.",
+    "option4": "Text containing options that guide the user to reduce motion",
+    "option4Note": "Text containing options that guide the user to minimize animations and transitions"
   },
 
   "localeDialog": {
     "title": "Title text of the dialog for user choosing the display language of Lexica",
     "cancel": "Button text to cancel display language selection",
-    "apply": "Button text to apply the selected display language"
+    "apply": "Button text to apply the selected display language",
+    "footerText": "Text that invite user to translate Lexica",
+    "footerLink": "Text containing link that guide the user to translate Lexica"
   },
+
   "darkmodeDialog": {
     "title": "Title text of the dialog for user choosing the theme of Lexica",
     "auto": "User selectable theme options where it automatically follows the user browser's theme",
@@ -65,7 +73,9 @@
     "hyphenation": {
       "title": "Title for the activity of adding hyphenation to Lexeme Form",
       "description": "Text that leads to user divide a Lexeme into its syllables"
-    }
+    },
+    "cancel": "Button text to cancel activity selection",
+    "apply": "Button text to apply the selected activity"
   },
   "home": {
     "unauth": {
@@ -179,7 +189,8 @@
       "partOf": "Text indicating the properties label for translation (P361) property in Wikidata",
       "subclass": "Text indicating the properties label for translation (P279) property in Wikidata",
       "hasParts": "Text indicating the properties label for translation (P527) property in Wikidata",
-      "taxonName": "Text indicating the properties label for translation (P225) property in Wikidata"
+      "taxonName": "Text indicating the properties label for translation (P225) property in Wikidata",
+      "aliases": "Text that displays an aliases name in Wikidata item"
     },
 
     "preview": {

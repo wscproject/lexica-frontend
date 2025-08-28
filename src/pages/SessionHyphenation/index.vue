@@ -2,7 +2,6 @@
 import Card from "@/components/pages/Session/Card/index.vue";
 import CardItem from "@/components/pages/Session/Card/hyphenation/index.vue";
 import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
-import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
 import CardReview from "@/components/pages/Session/Card/hyphenation-review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
@@ -46,9 +45,7 @@ import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
   GetCards,
-  SearchEntity,
   GetLexemeDetail,
-  GetEntityDetail,
   UpdateHyphenationCardDetail,
   EndContribution,
   GetLanguages,
@@ -104,23 +101,11 @@ const testing = ref(false);
 const springBack = ref(false);
 const zIndex = ref("z-[1]");
 const isLoading = ref(false);
-const entities = ref([]);
-const params = reactive({
-  page: 1,
-  limit: 3,
-  keyword: "",
-});
-const searchLoading = ref(false);
-const recommendedLoading = ref(false);
-const loadmoreLoading = ref(false);
 const cardDetailData = ref(null);
 const cardDetailLoading = ref(false);
-const entityDetailData = ref(null);
-const entityDetailLoading = ref(false);
 const isError = ref(false);
 const detailHeaderData = ref(null);
 const isSubmitError = ref(false);
-const subItemHeaderData = ref(null);
 const shownImage = ref("");
 
 const timeoutLoading = ref(null);
@@ -129,7 +114,6 @@ const errorLog = ref(null);
 const endLoading = ref(false);
 const totalCount = ref(0);
 
-const noLoad = ref(false);
 const isSuccess = ref(false);
 const languages = ref(null);
 
@@ -165,7 +149,6 @@ const nextCard = (isButton, id, contributionId) => {
     currMode.value = 1;
     flip.value = false;
     isSubmitError.value = false;
-    noLoad.value = false;
     if (isButton) {
       next.value = false;
     }
@@ -176,7 +159,6 @@ const nextCard = (isButton, id, contributionId) => {
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
-    noLoad.value = false;
     // isSuccess.value = false;
     if (!isPreferredMotion.value) {
       setTimeout(() => {
@@ -432,15 +414,6 @@ const test1 = async (id, contributionId, headerData) => {
 
   await getDetail({ contributionId, id });
 };
-const test2 = async (id, data) => {
-  zIndex.value = "";
-
-  subItemHeaderData.value = data;
-  currMode.value = 2;
-  flip.value = true;
-
-  await getEntityDetail(id);
-};
 const test3 = (data) => {
   if (!isPreferredMotion.value) {
     zIndex.value = "";
@@ -465,40 +438,6 @@ const backtoHome = () => {
   }, 300);
 };
 
-const searchKeyword = (keyword) => {
-  params.page = 1;
-  params.keyword = keyword;
-};
-
-const loadMore = () => {
-  params.page = params.page + 1;
-};
-
-const searchData = async () => {
-  const response = await SearchEntity({
-    page: params.page,
-    limit: params.keyword ? 10 : 3,
-    keyword:
-      params.keyword ||
-      data?.value?.[totalCount.value - currCount.value]?.lemma,
-  });
-
-  if (response?.statusCode) {
-    if (response?.data?.entities?.length === 0) {
-      noLoad.value = true;
-    }
-
-    if (params.page === 1) {
-      entities.value = [...response?.data?.entities];
-      searchLoading.value = false;
-      loadmoreLoading.value = false;
-    } else {
-      entities.value = [...entities?.value, ...response?.data?.entities];
-      searchLoading.value = false;
-      loadmoreLoading.value = false;
-    }
-  }
-};
 
 const getDetail = async ({ contributionId, id }) => {
   cardDetailData.value = null;
@@ -522,16 +461,6 @@ const getDetail = async ({ contributionId, id }) => {
 //   }
 // };
 
-const getEntityDetail = async (id) => {
-  entityDetailData.value = null;
-  entityDetailLoading.value = true;
-  const response = await GetEntityDetail(id);
-
-  if (response.statusCode === 200) {
-    entityDetailLoading.value = false;
-    entityDetailData.value = response?.data;
-  }
-};
 
 const getLanguages = async () => {
   const response = await GetLanguages();
@@ -705,7 +634,7 @@ watch([currCount, undoWarn], async () => {
   }
 });
 
-watch([splash, flip, currMode, entities], async () => {
+watch([splash, flip, currMode], async () => {
   // const div = document.querySelector();
 
   for (let i = 1; i <= totalCount.value; i++) {
@@ -761,15 +690,6 @@ watch([splash, flip, currMode, entities], async () => {
           children?.forEach((child) => {
             child.setAttribute("tabindex", "0");
           });
-        } else if (flip.value && currMode.value === 2) {
-          await nextTick();
-
-          cardDisableAccessibilityConnect("active", div);
-
-          const section = div.querySelector(".card-item-detail");
-
-          const children = section.querySelector(".interactable");
-          children.setAttribute("tabindex", "0");
         } else if (flip.value && currMode.value === 3) {
           await nextTick();
           cardDisableAccessibilityConnect("active", div);
@@ -1024,9 +944,7 @@ const animClass = (index) => {
               'front absolute top-0 h-full w-full',
               isPreferredMotion && flip ? 'card-fade' : '',
             ]">
-              <CardItem :key="0" :recommendation="entities" :data="value" :keyword="params.keyword"
-                :searchLoading="searchLoading" :recommendedLoading="recommendedLoading"
-                :loadmoreLoading="loadmoreLoading" :noLoadData="noLoad" :currCount="currCount" class="card-front"
+              <CardItem :key="0" :data="value" :currCount="currCount" class="card-front"
                 @gotoDetail="
                   test1(value?.id, value?.contributionId, {
                     category: value?.category,
@@ -1034,8 +952,7 @@ const animClass = (index) => {
                     gloss: value?.gloss,
                     id: value?.externalLexemeFormId,
                   })
-                  " @gotoSubItemDetail="(value) => test2(value?.id, value)" @gotoReview="test3"
-                @setSearch="searchKeyword" @loadMore="loadMore" />
+                  " @gotoReview="test3" />
             </div>
 
             <div :class="[
@@ -1049,8 +966,6 @@ const animClass = (index) => {
                     shownImage = data;
                   }
                 " />
-              <CardSubItemDetail :data="entityDetailData" class="card-item-detail" :isLoading="entityDetailLoading"
-                :headerData="subItemHeaderData" v-else-if="currMode === 2" @backtoItem="backtoHome" />
 
               <CardReview class="card-review" :data="value" :detail="detail" :img="value?.image"
                 v-else-if="currMode === 3" :currLang="value?.language?.title" @backtoItem="backtoHome" @onDone="

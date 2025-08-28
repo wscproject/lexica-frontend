@@ -21,6 +21,12 @@ const props = defineProps({
   isFlip: Boolean,
 });
 
+/**
+ * Translates statement property keys to localized display text
+ * @param {string} data - Property key to translate (e.g., "images", "instanceOf")
+ * @returns {string} Localized translation string
+ * @see {@link ./DOCS.md#translate} For detailed documentation
+ */
 const translate = (data) => {
   if (data === "images") {
     return t("session.item.images");
@@ -41,6 +47,11 @@ const translate = (data) => {
 
 const hovered = ref(false);
 
+/**
+ * Computes filtered and processed statement data from entity information
+ * @returns {Array<[string, Object]>} Array of statement entries with valid data
+ * @see {@link ./DOCS.md#statements} For detailed documentation
+ */
 const statements = computed(() => {
   return props?.data?.statements
     ? [...Object.entries(props?.data?.statements)].filter(
@@ -49,16 +60,29 @@ const statements = computed(() => {
     : [];
 });
 
+/**
+ * Handles global keyboard events for component navigation
+ * @param {KeyboardEvent} event - Keyboard event object
+ * @see {@link ./DOCS.md#handleKeyPress} For detailed documentation
+ */
 const handleKeyPress = (event) => {
   if (event.key === "Escape") {
     emit("backtoItem");
   }
 };
 
+/**
+ * Sets up global keyboard event listeners on component mount
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(() => {
   window.addEventListener("keydown", handleKeyPress);
 });
 
+/**
+ * Cleans up global keyboard event listeners on component unmount
+ * @see {@link ./DOCS.md#onUnmounted} For detailed documentation
+ */
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeyPress);
 });

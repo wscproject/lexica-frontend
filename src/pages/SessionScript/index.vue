@@ -2,7 +2,6 @@
 import Card from "@/components/pages/Session/Card/index.vue";
 import CardItem from "@/components/pages/Session/Card/script-writing/index.vue";
 import CardItemDetail from "@/components/pages/Session/Card/lexeme-detail/index.vue";
-import CardSubItemDetail from "@/components/pages/Session/Card/subitem/index.vue";
 import CardReview from "@/components/pages/Session/Card/script-review/index.vue";
 import CardSplash from "@/components/pages/Session/Card/splash/index.vue";
 import CardSubmitting from "@/components/pages/Session/Card/submitting/index.vue";
@@ -27,7 +26,6 @@ import {
   Transition,
   onMounted,
   reactive,
-  toRaw,
   nextTick,
 } from "vue";
 import SkipIcon from "@/components/icons/skip/index.vue";
@@ -46,9 +44,7 @@ import WarningDialog from "@/components/dialog/leaveWarning/index.vue";
 import CompleteDialog from "@/components/dialog/complete/index.vue";
 import {
   GetCards,
-  SearchEntity,
   GetScriptDetail,
-  GetEntityDetail,
   UpdateScriptCardDetail,
   EndContribution,
   GetLanguages,
@@ -101,23 +97,11 @@ const testing = ref(false);
 const springBack = ref(false);
 const zIndex = ref("z-[1]");
 const isLoading = ref(false);
-const entities = ref([]);
-const params = reactive({
-  page: 1,
-  limit: 3,
-  keyword: "",
-});
-const searchLoading = ref(false);
-const recommendedLoading = ref(false);
-const loadmoreLoading = ref(false);
 const cardDetailData = ref(null);
 const cardDetailLoading = ref(false);
-const entityDetailData = ref(null);
-const entityDetailLoading = ref(false);
 const isError = ref(false);
 const detailHeaderData = ref(null);
 const isSubmitError = ref(false);
-const subItemHeaderData = ref(null);
 const shownImage = ref("");
 
 const timeoutLoading = ref(null);
@@ -126,10 +110,13 @@ const errorLog = ref(null);
 const endLoading = ref(false);
 const totalCount = ref(0);
 
-const noLoad = ref(false);
 const isSuccess = ref(false);
 const languages = ref(null);
 
+/**
+ * Removes the current card from the stack and updates counters
+ * @see {@link ./DOCS.md#onHideCard} For detailed documentation
+ */
 const onHideCard = () => {
   tempData.value = data.value.pop();
   count.value = count.value - 1;
@@ -140,6 +127,13 @@ const currCount = computed(() => {
   return totalCount.value + 1 - data?.value?.length;
 });
 
+/**
+ * Initiates the skip/next card sequence
+ * @param {boolean} isButton - Whether action was triggered by button or gesture
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @see {@link ./DOCS.md#nextCard} For detailed documentation
+ */
 const nextCard = (isButton, id, contributionId) => {
   if (isButton) {
     next.value = true;
@@ -162,7 +156,6 @@ const nextCard = (isButton, id, contributionId) => {
 
     currMode.value = 1;
     flip.value = false;
-    noLoad.value = false;
     if (isButton) {
       next.value = false;
     }
@@ -170,10 +163,13 @@ const nextCard = (isButton, id, contributionId) => {
   }, 300);
 };
 
+/**
+ * Handles successful script submission animation and state reset
+ * @see {@link ./DOCS.md#slideRightWithSuccess} For detailed documentation
+ */
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
-    noLoad.value = false;
     // isSuccess.value = false;
     if (!isPreferredMotion.value) {
       setTimeout(() => {
@@ -223,6 +219,13 @@ const slideRightWithSuccess = () => {
 //   }, 200);
 // };
 
+/**
+ * Submits user's script input for the current card
+ * @param {Object} item - Script data item
+ * @param {string} contributionId - Contribution session ID
+ * @param {string} id - Card ID
+ * @see {@link ./DOCS.md#submitCard} For detailed documentation
+ */
 const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
   let action = "";
@@ -256,6 +259,10 @@ const submitCard = async (item, contributionId, id) => {
 
 let timeout = null;
 
+/**
+ * Restores the previously skipped card
+ * @see {@link ./DOCS.md#undoCard} For detailed documentation
+ */
 const undoCard = () => {
   clearTimeout(timeout);
 
@@ -276,16 +283,28 @@ const undoCard = () => {
   }, 600);
 };
 
+/**
+ * Hides the splash screen after a 1.5-second delay
+ * @see {@link ./DOCS.md#disableSplash} For detailed documentation
+ */
 const disableSplash = () => {
   setTimeout(() => {
     splash.value = false;
   }, 1500);
 };
 
+/**
+ * Reloads the page for error recovery
+ * @see {@link ./DOCS.md#reload} For detailed documentation
+ */
 const reload = () => {
   window.location.reload();
 };
 
+/**
+ * Route guard for session preservation
+ * @see {@link ./DOCS.md#onBeforeRouteLeave} For detailed documentation
+ */
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
     if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
@@ -315,6 +334,10 @@ onBeforeRouteLeave(async (to, from) => {
   // cancel the navigation and stay on the same page
 });
 
+/**
+ * Handles early session termination with confirmation
+ * @see {@link ./DOCS.md#endEarly} For detailed documentation
+ */
 const endEarly = async () => {
   if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
     const userInput = await testing?.value?.openModal();
@@ -346,6 +369,12 @@ const endEarly = async () => {
   }
 };
 
+/**
+ * Sets up undo warning timer and progress indicator
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @see {@link ./DOCS.md#setUndoWarn} For detailed documentation
+ */
 const setUndoWarn = async (id, contributionId) => {
   undoWarn.value = true;
 
@@ -381,10 +410,15 @@ const setUndoWarn = async (id, contributionId) => {
   timeout = setTimeout(increment, interval);
 };
 
-watch(timeoutLoading, () => {
-  console.log(timeout);
-});
 
+/**
+ * Updates card details on backend using script-specific API
+ * @param {Object} params - Update parameters
+ * @param {Object} params.data - Update data including script content
+ * @param {string} params.contributionId - Contribution session ID
+ * @param {string} params.id - Card ID
+ * @see {@link ./DOCS.md#updateDetail} For detailed documentation
+ */
 const updateDetail = async ({ data, contributionId, id }) => {
   const response = await UpdateScriptCardDetail({
     data,
@@ -395,6 +429,10 @@ const updateDetail = async ({ data, contributionId, id }) => {
   return response;
 };
 
+/**
+ * Sets movement state for card interactions
+ * @see {@link ./DOCS.md#aa} For detailed documentation
+ */
 const aa = () => {
   isMove.value = true;
   // if (flip) {
@@ -402,6 +440,10 @@ const aa = () => {
   // }
 };
 
+/**
+ * Handles spring-back animation after card interaction
+ * @see {@link ./DOCS.md#ab} For detailed documentation
+ */
 const ab = () => {
   springBack.value = true;
   isMove.value = false;
@@ -410,6 +452,13 @@ const ab = () => {
   }, 350);
 };
 
+/**
+ * Switches to detail view mode (mode 1)
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @param {Object} headerData - Header information for detail view
+ * @see {@link ./DOCS.md#test1} For detailed documentation
+ */
 const test1 = async (id, contributionId, headerData) => {
   if (!isPreferredMotion.value) {
     zIndex.value = "";
@@ -427,15 +476,11 @@ const test1 = async (id, contributionId, headerData) => {
 
   await getDetail({ contributionId, id });
 };
-const test2 = async (id, data) => {
-  zIndex.value = "";
-
-  subItemHeaderData.value = data;
-  currMode.value = 2;
-  flip.value = true;
-
-  await getEntityDetail(id);
-};
+/**
+ * Switches to review mode (mode 3)
+ * @param {Object} data - Review data
+ * @see {@link ./DOCS.md#test3} For detailed documentation
+ */
 const test3 = (data) => {
   if (!isPreferredMotion.value) {
     zIndex.value = "";
@@ -451,6 +496,10 @@ const test3 = (data) => {
   detail.value = data;
 };
 
+/**
+ * Returns to front card view from any detail mode
+ * @see {@link ./DOCS.md#backtoHome} For detailed documentation
+ */
 const backtoHome = () => {
   flip.value = false;
 
@@ -459,41 +508,14 @@ const backtoHome = () => {
   }, 300);
 };
 
-const searchKeyword = (keyword) => {
-  params.page = 1;
-  params.keyword = keyword;
-};
 
-const loadMore = () => {
-  params.page = params.page + 1;
-};
-
-const searchData = async () => {
-  const response = await SearchEntity({
-    page: params.page,
-    limit: params.keyword ? 10 : 3,
-    keyword:
-      params.keyword ||
-      data?.value?.[totalCount.value - currCount.value]?.lemma,
-  });
-
-  if (response?.statusCode) {
-    if (response?.data?.entities?.length === 0) {
-      noLoad.value = true;
-    }
-
-    if (params.page === 1) {
-      entities.value = [...response?.data?.entities];
-      searchLoading.value = false;
-      loadmoreLoading.value = false;
-    } else {
-      entities.value = [...entities?.value, ...response?.data?.entities];
-      searchLoading.value = false;
-      loadmoreLoading.value = false;
-    }
-  }
-};
-
+/**
+ * Loads detailed information for a specific lexeme card
+ * @param {Object} params - Detail parameters
+ * @param {string} params.contributionId - Contribution session ID
+ * @param {string} params.id - Card ID
+ * @see {@link ./DOCS.md#getDetail} For detailed documentation
+ */
 const getDetail = async ({ contributionId, id }) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
@@ -516,27 +538,24 @@ const getDetail = async ({ contributionId, id }) => {
 //   }
 // };
 
-const getEntityDetail = async (id) => {
-  entityDetailData.value = null;
-  entityDetailLoading.value = true;
-  const response = await GetEntityDetail(id);
 
-  if (response.statusCode === 200) {
-    entityDetailLoading.value = false;
-    entityDetailData.value = response?.data;
-  }
-};
-
+/**
+ * Loads available language options
+ * @see {@link ./DOCS.md#getLanguages} For detailed documentation
+ */
 const getLanguages = async () => {
   const response = await GetLanguages();
 
   if (response.statusCode === 200) {
-    console.log("response", response.data);
     languages.value = response.data;
     isLoading.value = false;
   }
 };
 
+/**
+ * Fetches user profile and initiates session data loading
+ * @see {@link ./DOCS.md#getProfile} For detailed documentation
+ */
 const getProfile = async () => {
   isLoading.value = true;
 
@@ -555,6 +574,12 @@ const getProfile = async () => {
   }
 };
 
+/**
+ * Loads session cards based on language and activity type
+ * @param {string} code - Language code
+ * @param {string} type - Activity type (defaults to "script")
+ * @see {@link ./DOCS.md#getCardsData} For detailed documentation
+ */
 const getCardsData = async (code, type) => {
   isLoading.value = true;
   const response = await GetCards({
@@ -603,6 +628,10 @@ const getCardsData = async (code, type) => {
   }
 };
 
+/**
+ * Component initialization and theme setup
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(async () => {
   if (localStorage.getItem("theme")) {
     if (localStorage.getItem("theme") !== "auto") {
@@ -699,7 +728,7 @@ watch([currCount, undoWarn], async () => {
   }
 });
 
-watch([splash, flip, currMode, entities], async () => {
+watch([splash, flip, currMode], async () => {
   // const div = document.querySelector();
 
   for (let i = 1; i <= totalCount.value; i++) {
@@ -738,7 +767,6 @@ watch([splash, flip, currMode, entities], async () => {
 
             nextTick(() => {
               const recBox = section?.querySelectorAll(".recommendation-box");
-              console.log("asdasdasd", recBox);
 
               recBox?.forEach((child) => {
                 child.setAttribute("tabindex", "0");
@@ -755,15 +783,6 @@ watch([splash, flip, currMode, entities], async () => {
           children?.forEach((child) => {
             child.setAttribute("tabindex", "0");
           });
-        } else if (flip.value && currMode.value === 2) {
-          await nextTick();
-
-          cardDisableAccessibilityConnect("active", div);
-
-          const section = div.querySelector(".card-item-detail");
-
-          const children = section.querySelector(".interactable");
-          children.setAttribute("tabindex", "0");
         } else if (flip.value && currMode.value === 3) {
           await nextTick();
           cardDisableAccessibilityConnect("active", div);
@@ -779,6 +798,11 @@ watch([splash, flip, currMode, entities], async () => {
   }
 });
 
+/**
+ * Returns appropriate CSS class for submit animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#submitCardAnim} For detailed documentation
+ */
 const submitCardAnim = (condition) => {
   if (condition) {
     if (!isPreferredMotion.value) {
@@ -803,6 +827,10 @@ const submitCardAnim = (condition) => {
   }
 };
 
+/**
+ * Returns CSS class for skip-all animation
+ * @see {@link ./DOCS.md#skipAllAnim} For detailed documentation
+ */
 const skipAllAnim = () => {
   if (skipAll.value) {
     if (!isPreferredMotion.value) {
@@ -819,8 +847,12 @@ const skipAllAnim = () => {
   }
 };
 
+/**
+ * Returns appropriate CSS class for skip animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#skipCardAnim} For detailed documentation
+ */
 const skipCardAnim = (condition) => {
-  console.log("yes");
 
   if (condition) {
     if (!isPreferredMotion.value) {
@@ -845,6 +877,11 @@ const skipCardAnim = (condition) => {
   }
 };
 
+/**
+ * Returns appropriate CSS class for undo animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#undoCardAnim} For detailed documentation
+ */
 const undoCardAnim = (condition) => {
   if (condition) {
     if (isPreferredMotion) {
@@ -861,6 +898,11 @@ const undoCardAnim = (condition) => {
   }
 };
 
+/**
+ * Generates combined animation classes for card at given index
+ * @param {number} index - Card index in the array
+ * @see {@link ./DOCS.md#animClass} For detailed documentation
+ */
 const animClass = (index) => {
   return [
     data?.value?.length === index + 1 && flip.value ? "is-flipped" : "",
@@ -1020,9 +1062,7 @@ const animClass = (index) => {
               'front absolute top-0 h-full w-full',
               isPreferredMotion && flip ? 'card-fade' : '',
             ]">
-              <CardItem :key="0" :recommendation="entities" :data="value" :keyword="params.keyword"
-                :searchLoading="searchLoading" :recommendedLoading="recommendedLoading"
-                :loadmoreLoading="loadmoreLoading" :noLoadData="noLoad" :currCount="currCount" class="card-front"
+              <CardItem :key="0" :data="value" :currCount="currCount" class="card-front"
                 @gotoDetail="
                   test1(value?.id, value?.contributionId, {
                     category: value?.category,
@@ -1030,8 +1070,8 @@ const animClass = (index) => {
                     gloss: value?.gloss,
                     id: value?.externalLexemeId,
                   })
-                  " @gotoSubItemDetail="(value) => test2(value?.id, value)" @gotoReview="test3"
-                @setSearch="searchKeyword" @loadMore="loadMore" />
+                  " @gotoReview="test3"
+                />
             </div>
 
             <div :class="[
@@ -1045,8 +1085,6 @@ const animClass = (index) => {
                     shownImage = data;
                   }
                 " />
-              <CardSubItemDetail :data="entityDetailData" class="card-item-detail" :isLoading="entityDetailLoading"
-                :headerData="subItemHeaderData" v-else-if="currMode === 2" @backtoItem="backtoHome" />
 
               <CardReview class="card-review" :data="value" :detail="detail" :img="value?.image"
                 v-else-if="currMode === 3" :currLang="value?.language?.title" @backtoItem="backtoHome" @onDone="
