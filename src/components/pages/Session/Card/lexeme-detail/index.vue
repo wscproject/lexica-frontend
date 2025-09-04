@@ -24,6 +24,11 @@ const props = defineProps({
 const emit = defineEmits(["backtoItem, onHold, onRelease, showImage"]);
 const hovered = ref(false);
 
+/**
+ * Computes processed sense data from lexeme information for display
+ * @returns {Array<Object>} Array of sense objects with number and processed data
+ * @see {@link ./DOCS.md#senses} For detailed documentation
+ */
 const senses = computed(() => {
   const data =
     props?.data?.senses?.map((item, idx) => {
@@ -45,16 +50,29 @@ watch(senses, () => {
   console.log(senses.value);
 });
 
+/**
+ * Handles global keyboard events for component navigation
+ * @param {KeyboardEvent} event - Keyboard event object
+ * @see {@link ./DOCS.md#handleKeyPress} For detailed documentation
+ */
 const handleKeyPress = (event) => {
   if (event.key === "Escape") {
     emit("backtoItem");
   }
 };
 
+/**
+ * Sets up global keyboard event listeners on component mount
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(() => {
   window.addEventListener("keydown", handleKeyPress);
 });
 
+/**
+ * Cleans up global keyboard event listeners on component unmount
+ * @see {@link ./DOCS.md#onUnmounted} For detailed documentation
+ */
 onUnmounted(() => {
   window.removeEventListener("keydown", handleKeyPress);
 });

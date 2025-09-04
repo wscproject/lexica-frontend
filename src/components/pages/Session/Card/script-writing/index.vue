@@ -23,6 +23,11 @@ const scrollRef = ref(null);
 const textAreaRef = ref(null);
 const script = ref("");
 
+/**
+ * Computes current theme state from Vuex store
+ * @returns {boolean} True if dark theme is active
+ * @see {@link ./DOCS.md#isThemeDark} For detailed documentation
+ */
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
 const isScrollbar = ref(false);
@@ -44,12 +49,20 @@ const props = defineProps({
 
 const changing = toRef(props, "currCount");
 
+/**
+ * Sets up initial focus on the text area after component mount
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(() => {
   setTimeout(() => {
     textAreaRef.value.textarea.focus();
   }, 1500);
 });
 
+/**
+ * Watches for card changes to refocus text area
+ * @see {@link ./DOCS.md#changing-watcher} For detailed documentation
+ */
 watch(changing, () => {
   setTimeout(() => {
     textAreaRef.value.textarea.focus();
@@ -58,6 +71,10 @@ watch(changing, () => {
 
 // watch(textareaREf);
 
+/**
+ * Watches scroll container to detect scrollbar presence
+ * @see {@link ./DOCS.md#scrollRef-watcher} For detailed documentation
+ */
 watch(scrollRef, () => {
   const hasVerticalScrollbar =
     scrollRef?.value?.scrollHeight > scrollRef?.value?.clientHeight;
@@ -69,6 +86,10 @@ watch(scrollRef, () => {
   }
 });
 
+/**
+ * Watches script input changes for debugging purposes
+ * @see {@link ./DOCS.md#script-watcher} For detailed documentation
+ */
 watch(script, () => {
   console.log(script.value);
 });

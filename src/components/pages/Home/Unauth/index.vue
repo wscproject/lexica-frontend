@@ -1,32 +1,42 @@
 <script setup>
-import { CdxIcon, CdxLabel, CdxButton } from "@wikimedia/codex";
-import { cdxIconLogIn, cdxIconInfoFilled } from "@wikimedia/codex-icons";
+import { CdxIcon, CdxButton } from "@wikimedia/codex";
+import { cdxIconLogIn } from "@wikimedia/codex-icons";
 import { useI18n } from "vue-i18n";
 import { useDirWatcher } from "@/helper/useDirWatcher";
 import HomeImage from "@/assets/home_image.svg";
 
-import { computed, onBeforeUnmount, onMounted, ref } from "vue";
-import { useStore } from "vuex";
-
-const vuex = useStore();
+import { onBeforeUnmount, onMounted } from "vue";
 
 const { dir } = useDirWatcher();
 const { t } = useI18n({ useScope: "global" });
 const loginUrl = import.meta.env.VITE_LOGIN_URL;
-const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
+/**
+ * Handles keyboard navigation for privacy policy link
+ * @param {KeyboardEvent} event - The keyboard event object
+ * @description Redirects to privacy policy page when Space key is pressed
+ */
 const toPrivacy = (event) => {
   if (event.code === "Space") {
     event.preventDefault(); // Prevent default scrolling behavior
     window.location.href = "/privacy-policy";
   }
 };
+
+/**
+ * Component lifecycle hook - runs after component is mounted to DOM
+ * @description Sets up keyboard event listener for privacy policy link accessibility
+ */
 onMounted(() => {
   const linkPrivacy = document.querySelector("#privacy-policy");
 
   linkPrivacy.addEventListener("keydown", toPrivacy);
 });
 
+/**
+ * Component lifecycle hook - runs before component is unmounted from DOM
+ * @description Removes keyboard event listener to prevent memory leaks
+ */
 onBeforeUnmount(() => {
   const linkPrivacy = document.querySelector("#privacy-policy");
 

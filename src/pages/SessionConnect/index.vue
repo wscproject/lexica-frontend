@@ -60,7 +60,6 @@ import { useI18n } from "vue-i18n";
 import { useMediaQuery, usePreferredReducedMotion } from "@vueuse/core";
 import { useStore } from "vuex";
 import { cardDisableAccessibilityConnect } from "@/helper/accessibility";
-import { fa } from "vuetify/locale";
 import { useHtmlHasClass } from "../../helper/hasClass";
 import Loading from "@/components/ui/loading.vue";
 import { useCookies } from "vue3-cookies";
@@ -139,10 +138,13 @@ const languages = ref(null);
 const isSuccess = ref(false);
 const submitAction = ref("");
 
-const sialan = ref(false);
 
 const hideBack = ref(true);
 
+/**
+ * Handles successful card submission animation and state reset
+ * @see {@link ./DOCS.md#slideRightWithSuccess} For detailed documentation
+ */
 const slideRightWithSuccess = () => {
   setTimeout(() => {
     submit.value = true;
@@ -177,6 +179,10 @@ const slideRightWithSuccess = () => {
   }, 1000);
 };
 
+/**
+ * Handles standard card transition without success animation
+ * @see {@link ./DOCS.md#slideRight} For detailed documentation
+ */
 const slideRight = () => {
   submit.value = true;
 
@@ -198,6 +204,10 @@ const slideRight = () => {
   }, 200);
 };
 
+/**
+ * Removes the current card from the stack and updates counters
+ * @see {@link ./DOCS.md#onHideCard} For detailed documentation
+ */
 const onHideCard = () => {
   tempData.value = data.value.pop();
   zIndex.value = "z-[1]";
@@ -209,6 +219,13 @@ const currCount = computed(() => {
   return totalCount.value + 1 - data?.value?.length;
 });
 
+/**
+ * Initiates the skip/next card sequence
+ * @param {boolean} isButton - Whether action was triggered by button or gesture
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @see {@link ./DOCS.md#nextCard} For detailed documentation
+ */
 const nextCard = (isButton, id, contributionId) => {
   params.keyword = "";
   if (isButton) {
@@ -239,6 +256,13 @@ const nextCard = (isButton, id, contributionId) => {
   }, 300);
 };
 
+/**
+ * Submits user's connection choice for the current card
+ * @param {Object} item - Selected entity item
+ * @param {string} contributionId - Contribution session ID
+ * @param {string} id - Card ID
+ * @see {@link ./DOCS.md#submitCard} For detailed documentation
+ */
 const submitCard = async (item, contributionId, id) => {
   submittingData.value = true;
 
@@ -292,6 +316,10 @@ const submitCard = async (item, contributionId, id) => {
 
 let timeout = null;
 
+/**
+ * Restores the previously skipped card
+ * @see {@link ./DOCS.md#undoCard} For detailed documentation
+ */
 const undoCard = () => {
   clearTimeout(timeout);
 
@@ -312,16 +340,28 @@ const undoCard = () => {
   }, 600);
 };
 
+/**
+ * Hides the splash screen after a delay
+ * @see {@link ./DOCS.md#disableSplash} For detailed documentation
+ */
 const disableSplash = () => {
   setTimeout(async () => {
     splash.value = false;
   }, 1500);
 };
 
+/**
+ * Reloads the page for error recovery
+ * @see {@link ./DOCS.md#reload} For detailed documentation
+ */
 const reload = () => {
   window.location.reload();
 };
 
+/**
+ * Route guard for session preservation
+ * @see {@link ./DOCS.md#onBeforeRouteLeave} For detailed documentation
+ */
 onBeforeRouteLeave(async (to, from) => {
   if (!skipAll.value) {
     if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
@@ -351,6 +391,10 @@ onBeforeRouteLeave(async (to, from) => {
   // cancel the navigation and stay on the same page
 });
 
+/**
+ * Handles early session termination with confirmation
+ * @see {@link ./DOCS.md#endEarly} For detailed documentation
+ */
 const endEarly = async () => {
   if (currCount.value > 1 && currCount.value < totalCount.value + 1) {
     const userInput = await testing?.value?.openModal();
@@ -382,6 +426,12 @@ const endEarly = async () => {
   }
 };
 
+/**
+ * Sets up undo warning timer and progress indicator
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @see {@link ./DOCS.md#setUndoWarn} For detailed documentation
+ */
 const setUndoWarn = async (id, contributionId) => {
   undoWarn.value = true;
 
@@ -415,6 +465,14 @@ const setUndoWarn = async (id, contributionId) => {
   timeout = setTimeout(increment, interval);
 };
 
+/**
+ * Updates card details on the backend
+ * @param {Object} params - Update parameters
+ * @param {Object} params.data - Update data including action type
+ * @param {string} params.contributionId - Contribution session ID
+ * @param {string} params.id - Card ID
+ * @see {@link ./DOCS.md#updateDetail} For detailed documentation
+ */
 const updateDetail = async ({ data, contributionId, id }) => {
   const response = await UpdateConnectCardDetail({
     data,
@@ -425,6 +483,10 @@ const updateDetail = async ({ data, contributionId, id }) => {
   return response;
 };
 
+/**
+ * Sets movement state for card interactions
+ * @see {@link ./DOCS.md#aa} For detailed documentation
+ */
 const aa = () => {
   isMove.value = true;
   // if (flip) {
@@ -432,6 +494,10 @@ const aa = () => {
   // }
 };
 
+/**
+ * Handles spring-back animation after card interaction
+ * @see {@link ./DOCS.md#ab} For detailed documentation
+ */
 const ab = () => {
   springBack.value = true;
   isMove.value = false;
@@ -440,6 +506,13 @@ const ab = () => {
   }, 350);
 };
 
+/**
+ * Switches to detail view mode (mode 1)
+ * @param {string} id - Card ID
+ * @param {string} contributionId - Contribution session ID
+ * @param {Object} headerData - Header information for detail view
+ * @see {@link ./DOCS.md#test1} For detailed documentation
+ */
 const test1 = async (id, contributionId, headerData) => {
   currMode.value = 1;
   detailHeaderData.value = headerData;
@@ -462,6 +535,12 @@ const test1 = async (id, contributionId, headerData) => {
 
   await getDetail({ contributionId, id });
 };
+/**
+ * Switches to sub-item detail view mode (mode 2)
+ * @param {string} id - Entity ID
+ * @param {Object} data - Sub-item data
+ * @see {@link ./DOCS.md#test2} For detailed documentation
+ */
 const test2 = async (id, data) => {
   if (!isPreferredMotion.value) {
     zIndex.value = "";
@@ -483,6 +562,11 @@ const test2 = async (id, data) => {
 
   await getEntityDetail(id);
 };
+/**
+ * Switches to review mode (mode 3)
+ * @param {Object} data - Review data
+ * @see {@link ./DOCS.md#test3} For detailed documentation
+ */
 const test3 = async (data) => {
   if (!isPreferredMotion.value) {
     zIndex.value = "";
@@ -497,8 +581,7 @@ const test3 = async (data) => {
       zIndex.value = "";
     }
     const div = document.querySelector(`.card-${currCount.value}`);
-    console.log(div);
-
+  
     const front = div.querySelector(".card-front");
     front.style.setProperty("display", "none", "important");
   }, 350);
@@ -506,6 +589,10 @@ const test3 = async (data) => {
   await nextTick();
 };
 
+/**
+ * Returns to front card view from any detail mode
+ * @see {@link ./DOCS.md#backtoHome} For detailed documentation
+ */
 const backtoHome = () => {
   flip.value = false;
   const div = document.querySelector(`.card-${currCount.value}`);
@@ -519,15 +606,28 @@ const backtoHome = () => {
   }, 300);
 };
 
+/**
+ * Initiates entity search with keyword
+ * @param {string} keyword - Search term
+ * @see {@link ./DOCS.md#searchKeyword} For detailed documentation
+ */
 const searchKeyword = (keyword) => {
   params.page = 1;
   params.keyword = keyword;
 };
 
+/**
+ * Loads additional search results for pagination
+ * @see {@link ./DOCS.md#loadMore} For detailed documentation
+ */
 const loadMore = () => {
   params.page = params.page + 1;
 };
 
+/**
+ * Performs entity search API call
+ * @see {@link ./DOCS.md#searchData} For detailed documentation
+ */
 const searchData = async () => {
   const response = await SearchEntity({
     page: params.page,
@@ -557,6 +657,13 @@ const searchData = async () => {
   }
 };
 
+/**
+ * Loads detailed information for a specific card
+ * @param {Object} params - Detail parameters
+ * @param {string} params.contributionId - Contribution session ID
+ * @param {string} params.id - Card ID
+ * @see {@link ./DOCS.md#getDetail} For detailed documentation
+ */
 const getDetail = async ({ contributionId, id }) => {
   cardDetailData.value = null;
   cardDetailLoading.value = true;
@@ -568,6 +675,11 @@ const getDetail = async ({ contributionId, id }) => {
   }
 };
 
+/**
+ * Loads detailed information for a specific entity
+ * @param {string} id - Entity ID
+ * @see {@link ./DOCS.md#getEntityDetail} For detailed documentation
+ */
 const getEntityDetail = async (id) => {
   entityDetailData.value = null;
   entityDetailLoading.value = true;
@@ -582,6 +694,10 @@ const getEntityDetail = async (id) => {
   }
 };
 
+/**
+ * Fetches user profile and initiates session data loading
+ * @see {@link ./DOCS.md#getProfile} For detailed documentation
+ */
 const getProfile = async () => {
   isLoading.value = true;
 
@@ -600,6 +716,10 @@ const getProfile = async () => {
   }
 };
 
+/**
+ * Loads available language options
+ * @see {@link ./DOCS.md#getLanguages} For detailed documentation
+ */
 const getLanguages = async () => {
   const response = await GetLanguages();
 
@@ -609,6 +729,12 @@ const getLanguages = async () => {
   }
 };
 
+/**
+ * Loads session cards based on language and activity type
+ * @param {string} code - Language code
+ * @param {string} type - Activity type
+ * @see {@link ./DOCS.md#getCardsData} For detailed documentation
+ */
 const getCardsData = async (code, type) => {
   isLoading.value = true;
   const response = await GetCards({
@@ -648,6 +774,10 @@ const getCardsData = async (code, type) => {
   }
 };
 
+/**
+ * Fetches AI-powered entity recommendations
+ * @see {@link ./DOCS.md#getRecommendation} For detailed documentation
+ */
 const getRecommendation = async () => {
   recommendedLoading.value = true;
 
@@ -673,14 +803,27 @@ const getRecommendation = async () => {
   }
 };
 
+/**
+ * Global focus event handler for accessibility
+ * @param {Event} event - Focus event
+ * @see {@link ./DOCS.md#handleGlobalFocus} For detailed documentation
+ */
 const handleGlobalFocus = (event) => {
   const focusedElement = event.target;
 };
 
+/**
+ * Cleanup event listeners on component unmount
+ * @see {@link ./DOCS.md#onBeforeUnmount} For detailed documentation
+ */
 onBeforeUnmount(() => {
   window.removeEventListener("focus", handleGlobalFocus, true);
 });
 
+/**
+ * Component initialization and theme setup
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(async () => {
   window.addEventListener("focus", handleGlobalFocus, true);
 
@@ -932,6 +1075,11 @@ watch(
   },
 );
 
+/**
+ * Returns appropriate CSS class for submit animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#submitCardAnim} For detailed documentation
+ */
 const submitCardAnim = (condition) => {
   if (condition) {
     if (!isPreferredMotion.value) {
@@ -956,6 +1104,10 @@ const submitCardAnim = (condition) => {
   }
 };
 
+/**
+ * Returns CSS class for skip-all animation
+ * @see {@link ./DOCS.md#skipAllAnim} For detailed documentation
+ */
 const skipAllAnim = () => {
   if (skipAll.value) {
     if (!isPreferredMotion.value) {
@@ -972,8 +1124,12 @@ const skipAllAnim = () => {
   }
 };
 
+/**
+ * Returns appropriate CSS class for skip animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#skipCardAnim} For detailed documentation
+ */
 const skipCardAnim = (condition) => {
-  console.log("yes");
 
   if (condition) {
     if (!isPreferredMotion.value) {
@@ -998,6 +1154,11 @@ const skipCardAnim = (condition) => {
   }
 };
 
+/**
+ * Returns appropriate CSS class for undo animation
+ * @param {boolean} condition - Whether to apply animation
+ * @see {@link ./DOCS.md#undoCardAnim} For detailed documentation
+ */
 const undoCardAnim = (condition) => {
   if (condition) {
     if (isPreferredMotion.value) {
@@ -1014,6 +1175,11 @@ const undoCardAnim = (condition) => {
   }
 };
 
+/**
+ * Generates combined animation classes for card at given index
+ * @param {number} index - Card index in the array
+ * @see {@link ./DOCS.md#animClass} For detailed documentation
+ */
 const animClass = (index) => {
   return [
     data?.value?.length === index + 1 && flip.value ? "is-flipped" : "",

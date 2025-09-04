@@ -1,16 +1,13 @@
 <script setup>
-// import "@wikimedia/codex/dist/codex.style.css";
 import displayLang from "@/locale/displayLang.json";
 
-import Logo from "@/assets/home_logo.svg";
-import LogoDark from "@/assets/home_logo_dark.svg";
 import GuideDialog from "@/components/dialog/guide/index.vue";
 import ContributeLanguageDialog from "@/components/dialog/contributionLanguage/index.vue";
 import ActivityDialog from "@/components/dialog/activities/index.vue";
 import { GetProfile } from "@/api/Home";
 import { useDirWatcher } from "@/helper/useDirWatcher";
 
-import { CdxIcon, CdxLabel, CdxSelect, CdxButton } from "@wikimedia/codex";
+import { CdxIcon, CdxLabel, CdxButton } from "@wikimedia/codex";
 import { cdxIconPlay, cdxIconGlobe, cdxIconNext } from "@wikimedia/codex-icons";
 
 import Lightbulb from "@/assets/lightbulb.svg";
@@ -39,7 +36,6 @@ const isReducedMotion = usePreferredReducedMotion();
 const { hasClass } = useHtmlHasClass("reduced-motion");
 
 const selection = ref([]);
-const isGuide = ref(false);
 const isContributeLang = ref(false);
 const searchQuery = ref("");
 const searchLoading = ref(false);
@@ -62,12 +58,14 @@ const props = defineProps({
 //vuex
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 const name = computed(() => vuex.getters["profile/name"]);
-// const language = computed(() => vuex.getters["profile/language"]);
-// const languageCode = computed(() => vuex.getters["profile/language"]);
-// const languageName = computed(() => vuex.getters["profile/fullLang"]);
-// const languageId = computed(() => vuex.getters["profile/langId"]);
 const activityType = computed(() => vuex.getters["profile/contributionType"]);
 
+/**
+ * Fetches user profile data and applies user preferences
+ * @param {string} lang - The language code to use as fallback
+ * @description Retrieves user profile, sets language/theme preferences, and applies accessibility settings
+ * @see {@link ./DOCS.md#fetchProfile-conditionals} For detailed conditional logic breakdown
+ */
 const fetchProfile = async (lang) => {
   const response = await GetProfile();
   if (response?.statusCode === 200) {
@@ -166,7 +164,7 @@ const fetchProfile = async (lang) => {
       if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
         document.documentElement.classList.add("dark");
       } else {
-        if (document.documentElement.classList.contains("light")) {
+        if (document.documentElement.classList.contains("dark")) {
           document.documentElement.classList.remove("light");
         } else if (document.documentElement.classList.contains("light")) {
           document.documentElement.classList.remove("dark");
@@ -182,6 +180,12 @@ const fetchProfile = async (lang) => {
   }
 };
 
+/**
+ * Fetches available activities for a specific language
+ * @param {number} id - The language ID to fetch activities for
+ * @description Retrieves and sets available contribution activities for the selected language
+ * @see {@link ./DOCS.md#getActivities} For detailed documentation
+ */
 const getActivities = async (id) => {
   const response = await GetActivities({ id: id });
 
@@ -198,6 +202,12 @@ const getActivities = async (id) => {
   }
 };
 
+/**
+ * Fetches available lexeme languages with optional search filter
+ * @param {string} search - Optional search query to filter languages
+ * @description Retrieves list of available languages for lexeme contribution
+ * @see {@link ./DOCS.md#getLexemeLanguage} For detailed documentation
+ */
 const getLexemeLanguage = async (search) => {
   searchLoading.value = true;
 
@@ -216,6 +226,11 @@ const getLexemeLanguage = async (search) => {
   }
 };
 
+/**
+ * Component lifecycle hook - initializes component data on mount
+ * @description Sets up default language, fetches profile and language data
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(async () => {
   const lang =
     window?.navigator?.language?.split("-")?.[0] === "en" ||
@@ -232,14 +247,29 @@ onMounted(async () => {
   await vuex.dispatch("profile/setLoadingState");
 });
 
+/**
+ * Watcher for search query changes
+ * @description Triggers language search when search query changes
+ * @see {@link ./DOCS.md#searchQuery-watcher} For detailed documentation
+ */
 watch(searchQuery, async () => {
   await getLexemeLanguage(searchQuery.value);
 });
 
+/**
+ * Watcher for selected language changes
+ * @description Fetches activities when language selection changes
+ * @see {@link ./DOCS.md#selectedLang-watcher} For detailed documentation
+ */
 watch(selectedLang, async () => {
   await getActivities(selectedLang?.value?.id);
 });
 
+/**
+ * Navigates to the appropriate session page based on selected activity
+ * @description Updates store with current selections and routes to session page
+ * @see {@link ./DOCS.md#gotoSession} For detailed documentation
+ */
 const gotoSession = async () => {
   await vuex.dispatch("profile/addData", {
     ...vuex.getters["profile/allData"],
@@ -256,9 +286,6 @@ const gotoSession = async () => {
   }
 };
 
-// watch(store, () => {
-//   contributeLang.value = store?.language || cookies?.get("locale") || "en";
-// });
 </script>
 
 <template>
@@ -367,8 +394,6 @@ const gotoSession = async () => {
     }
   " @applyActivity="
     (value) => {
-      console.log(value);
-
       selectedAct = value;
       isActivity = false;
     }

@@ -40,6 +40,10 @@ const positions = reactive({
   },
 });
 
+/**
+ * Generates CSS transform string for card positioning and animations
+ * @see {@link ./DOCS.md#transformString} For detailed documentation
+ */
 const transformString = computed(() => {
   if (!positions.isInteractAnimating || positions.isInteractDragged) {
     const { x, y, rotation } = positions.interactPosition;
@@ -51,20 +55,37 @@ const transformString = computed(() => {
   return null;
 });
 
+/**
+ * Sets the card's position and rotation coordinates
+ * @param {Object} coordinates - Position data with x, y, rotation properties
+ * @see {@link ./DOCS.md#interactSetPosition} For detailed documentation
+ */
 const interactSetPosition = (coordinates) => {
   const { x = 0, y = 0, rotation = 0 } = coordinates;
   positions.interactPosition = { x, y, rotation };
 };
 
+/**
+ * Disables further drag interactions and marks card as dragged
+ * @see {@link ./DOCS.md#interactUnsetElement} For detailed documentation
+ */
 const interactUnsetElement = () => {
   interact(cardRef.value).unset();
   positions.isInteractDragged = true;
 };
 
+/**
+ * Resets card to center position for spring-back effect
+ * @see {@link ./DOCS.md#resetCardPosition} For detailed documentation
+ */
 const resetCardPosition = () => {
   interactSetPosition({ x: 0, y: 0, rotation: 0 });
 };
 
+/**
+ * Initiates card removal sequence with 300ms delay
+ * @see {@link ./DOCS.md#hideCard} For detailed documentation
+ */
 const hideCard = () => {
   setTimeout(() => {
     positions.isShowing = false;
@@ -72,6 +93,11 @@ const hideCard = () => {
   }, 300);
 };
 
+/**
+ * Executes card exit animations based on interaction type
+ * @param {String} interaction - Animation type ("SKIP_CARD")
+ * @see {@link ./DOCS.md#playCard} For detailed documentation
+ */
 const playCard = (interaction) => {
   const {
     interactOutOfSightXCoordinate,
@@ -93,10 +119,18 @@ const playCard = (interaction) => {
   hideCard();
 };
 
+/**
+ * Cleanup Interact.js listeners to prevent memory leaks
+ * @see {@link ./DOCS.md#onBeforeUnmount} For detailed documentation
+ */
 onBeforeUnmount(() => {
   interact(cardRef.value).unset();
 });
 
+/**
+ * Initializes Interact.js drag system with gesture recognition
+ * @see {@link ./DOCS.md#onMounted} For detailed documentation
+ */
 onMounted(() => {
   const element = cardRef.value;
 

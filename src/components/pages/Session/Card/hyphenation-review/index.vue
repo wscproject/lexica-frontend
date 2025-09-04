@@ -1,4 +1,12 @@
 <script setup>
+/**
+ * Hyphenation Review Component - Final confirmation interface for hyphenation patterns
+ * 
+ * Displays a preview of the hyphenation pattern that will be applied to a lexeme,
+ * allowing users to review hyphenation marks before final submission.
+ * 
+ * @component
+ */
 import { CdxLabel, CdxIcon, CdxButton, CdxThumbnail } from "@wikimedia/codex";
 import { cdxIconInfoFilled, cdxIconLogoWikidata } from "@wikimedia/codex-icons";
 import { computed, ref } from "vue";
@@ -13,9 +21,27 @@ const { t } = useI18n({ useScope: "global" });
 const isInfo = ref(false);
 
 const vuex = useStore();
+/**
+ * Computed property that determines if dark theme is active
+ * @returns {boolean} True if dark theme is enabled
+ */
 const isThemeDark = computed(() => vuex.getters["profile/isDark"]);
 
+/**
+ * Component event emitters
+ * @emits backtoItem - Triggered when user wants to go back to hyphenation input
+ * @emits onDone - Triggered when user confirms with payload {hyphenation: Array}
+ */
 const emit = defineEmits(["backtoItem, onDone"]);
+
+/**
+ * Component props definition
+ * @prop {Object} headerRef - Reference to header element for DOM manipulation
+ * @prop {Object} data - Lexeme information including lemma and metadata
+ * @prop {Object} detail - Hyphenation pattern as comma-separated string
+ * @prop {String} img - URL for lexeme's associated image
+ * @prop {String} currLang - Current language code for display
+ */
 const props = defineProps({
   headerRef: Object,
   data: Object,
@@ -91,10 +117,10 @@ const props = defineProps({
     </div>
     <div
       class="fixed bottom-0 w-full h-66px border-t border-[var(--border-color-base)] p-[1rem] flex justify-between align-center bg-white dark:bg-[#101418] gap-x-[0.75rem] rounded-b-[1rem]">
-      <CdxButton @click="emit('backtoItem')" class="w-full">{{
+      <CdxButton @click="emit('backtoItem')" class="w-full interactable">{{
         t("session.preview.button1")
       }}</CdxButton>
-      <CdxButton weight="primary" action="progressive" class="w-full" @click="
+      <CdxButton weight="primary" action="progressive" class="w-full interactable" @click="
         emit('onDone', {
           hyphenation: props?.detail?.split(',') || '',
         })

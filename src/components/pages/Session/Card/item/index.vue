@@ -63,10 +63,19 @@ const isScrollBar = ref(false);
 
 const recommendationSearch = ref([]);
 
+/**
+ * Toggles the info display state
+ * @see {@link ./DOCS.md#setInfo} For detailed documentation
+ */
 const setInfo = () => {
   isInfo.value = !isInfo.value;
 };
 
+/**
+ * Moves focus to the specified recommendation item
+ * @param {number} newIndex - Index of the recommendation item to focus on
+ * @see {@link ./DOCS.md#moveSelectionRec} For detailed documentation
+ */
 const moveSelectionRec = (newIndex) => {
   if (
     isSearch.value &&
@@ -81,6 +90,11 @@ const moveSelectionRec = (newIndex) => {
   });
 };
 
+/**
+ * Moves focus to the specified search result item
+ * @param {number} newIndex - Index of the search result item to focus on
+ * @see {@link ./DOCS.md#moveSelectionSearch} For detailed documentation
+ */
 const moveSelectionSearch = (newIndex) => {
   if (
     !isSearch.value &&
@@ -94,18 +108,35 @@ const moveSelectionSearch = (newIndex) => {
   });
 };
 
+/**
+ * Selects an item and stores its details
+ * @param {string|number} n - ID of the selected item
+ * @param {Object} value - Complete item data object
+ * @see {@link ./DOCS.md#selectItem} For detailed documentation
+ */
 const selectItem = (n, value) => {
   selectedItem.value = n;
   detailData.value = value;
   emit("selectItem");
 };
 
+/**
+ * Splits text into segments for highlighting search matches
+ * @param {string} text - Text to be highlighted
+ * @param {string} searchTerm - Search term to highlight
+ * @returns {Array<string>} Array of text segments
+ * @see {@link ./DOCS.md#highlightText} For detailed documentation
+ */
 const highlightText = (text, searchTerm) => {
   if (!searchTerm) return [text];
   const regex = new RegExp(`(${searchTerm})`, "gi");
   return text.split(regex);
 };
 
+/**
+ * Handles search input with debounced processing
+ * @see {@link ./DOCS.md#onInput} For detailed documentation
+ */
 const onInput = debounce(() => {
   if (search.value === "") {
     isSearch.value = false;
@@ -146,6 +177,11 @@ watch(search, () => {
 // });
 
 
+/**
+ * Computes text alignment for gloss based on language direction
+ * @returns {string} CSS text alignment value ("left" or "right")
+ * @see {@link ./DOCS.md#glossAlign} For detailed documentation
+ */
 const glossAlign = computed(() => {
   if (dir.value === "rtl") {
     if (props?.data?.language?.isRtl === "ltr") {
