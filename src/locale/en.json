@@ -281,8 +281,7 @@
     "warning": {
       "title": "End this contribution session?",
       "content": "You have worked on",
-      "subtext": "{card} so far.",
-      "card": "no card | card | cards",
+      "subtext": "no card so far. | card so far. | cards so far.",
       "button1": "Keep editing",
       "button2": "End session",
       "loading": "Ending session..."
