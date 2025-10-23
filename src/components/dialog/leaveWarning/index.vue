@@ -62,8 +62,7 @@ defineExpose({ openModal });
         {{ t("session.warning.content") }}
         <b>
           {{ props.count }}
-          {{ locale === "en" ? t("session.warning.card", props.count) : "" }}
-          {{ t("session.warning.subtext") }}</b>
+          {{ t("session.warning.subtext", props.count) }}</b>
       </p>
     </div>
 

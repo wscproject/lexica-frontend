@@ -141,17 +141,23 @@ Transforms raw lexeme sense data into a structured format suitable for template 
 1. **Input validation:** `props?.data?.senses?.map()` - Ensures senses array exists
 2. **Sense iteration:** Processes each sense object individually
 
-**Property processing:** 3. **Key extraction:** `Object.keys(item).map((key) => ({ ... }))` - Converts object properties to labeled data
+**Property processing:**
+
+3. **Key extraction:** `Object.keys(item).map((key) => ({ ... }))` - Converts object properties to labeled data
 
 - `label: key` - Property name (gloss, images, etc.)
 - `value: item[key]` - Property value/data
 
-**Sense structure creation:** 4. **Sense object construction:**
+**Sense structure creation:**
+
+4. **Sense object construction:**
 
 - `number: item.senseNumber` - Sense identifier for display
 - `data: inside` - Array of processed property objects
 
-**Fallback handling:** 5. **Empty fallback:** Returns `[]` if no senses exist
+**Fallback handling:**
+
+5. **Empty fallback:** Returns `[]` if no senses exist
 
 **Data structure example:**
 

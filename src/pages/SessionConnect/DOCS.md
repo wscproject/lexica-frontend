@@ -28,12 +28,25 @@ Manages the animation sequence when a card is successfully submitted, including 
 
 1. **`setTimeout(() => { ... }, 1000)`** - Waits 1 second (1000ms) to allow success animation to display
 
-**Inside the first timeout (after 1000ms):** 2. **`submit.value = true`** - Triggers submit animation for card transition 3. **`noLoad.value = false`** - Resets no-load state for future data loading 4. **Motion preference handling:**
+**Inside the first timeout (after 1000ms):**
+
+2. **`submit.value = true`** - Triggers submit animation for card transition
+3. **`noLoad.value = false`** - Resets no-load state for future data loading
+4. **Motion preference handling:**
 
 - If normal motion: `setTimeout(() => { isSuccess.value = false }, 50)` - Hides success after 50ms
 - If reduced motion: Success will be hidden later in the flow
 
-**Second timeout (after additional 400ms):** 5. **`if (isPreferredMotion.value) { isSuccess.value = false }`** - Hides success for reduced motion users 6. **`onHideCard()`** - Removes current card from stack and updates counters 7. **`splash.value = true`** - Shows splash screen on next card 8. **`currMode.value = 1`** - Resets to main card view mode 9. **`submittingData.value = false`** - Stops submitting animation 10. **`flip.value = false`** - Ensures card is not flipped 11. **`submit.value = false`** - Resets submit animation flag 12. **`disableSplash()`** - Starts 1.5s timer to hide splash screen
+**Second timeout (after additional 400ms):**
+
+5. **`if (isPreferredMotion.value) { isSuccess.value = false }`** - Hides success for reduced motion users
+6. **`onHideCard()`** - Removes current card from stack and updates counters
+7. **`splash.value = true`** - Shows splash screen on next card
+8. **`currMode.value = 1`** - Resets to main card view mode
+9. **`submittingData.value = false`** - Stops submitting animation
+10. **`flip.value = false`** - Ensures card is not flipped
+11. **`submit.value = false`** - Resets submit animation flag
+12. **`disableSplash()`** - Starts 1.5s timer to hide splash screen
 
 **When this function is called:**
 
@@ -54,7 +67,16 @@ Manages quick card transition for cases like "no item" submissions.
 2. **`noLoad.value = false`** - Resets the no-load state to allow future data loading
 3. **`setTimeout(async () => { ... }, 200)`** - Delays the state reset by 200ms to allow animation to complete
 
-**Inside the timeout (after 200ms):** 4. **`submittingData.value = false`** - Stops the submitting animation/loading state 5. **`currMode.value = 1`** - Resets card mode to front view (mode 1 = main card view) 6. **`splash.value = true`** - Shows splash screen on the next card 7. **`onHideCard()`** - Removes current card from stack and updates counters 8. **`flip.value = false`** - Ensures card is not in flipped state 9. **`submit.value = false`** - Resets submit animation flag 10. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer 11. **`disableSplash()`** - Starts timer to hide splash screen after 1.5 seconds
+**Inside the timeout (after 200ms):**
+
+4. **`submittingData.value = false`** - Stops the submitting animation/loading state
+5. **`currMode.value = 1`** - Resets card mode to front view (mode 1 = main card view)
+6. **`splash.value = true`** - Shows splash screen on the next card
+7. **`onHideCard()`** - Removes current card from stack and updates counters
+8. **`flip.value = false`** - Ensures card is not in flipped state
+9. **`submit.value = false`** - Resets submit animation flag
+10. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer
+11. **`disableSplash()`** - Starts timer to hide splash screen after 1.5 seconds
 
 **When this function is called:**
 
@@ -89,7 +111,18 @@ Handles skipping to the next card with undo warning setup.
 2. **`if (isButton) { next.value = true }`** - Sets next animation flag only for button clicks (not gestures)
 3. **`isSkipButton.value = isButton`** - Tracks whether skip was triggered by button or gesture (affects animation)
 
-**Delayed actions (after 300ms):** 4. **`setTimeout(async () => { ... }, 300)`** - Waits 300ms for skip animation to complete 5. **`splash.value = true`** - Shows splash screen on the next card 6. **`onHideCard()`** - Removes current card from stack and updates counters 7. **`setUndoWarn(id, contributionId)`** - Starts undo warning timer with progress bar 8. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer 9. **`currMode.value = 1`** - Resets to main card view mode 10. **`flip.value = false`** - Ensures card is not in flipped state 11. **`noLoad.value = false`** - Resets no-load state for future data loading 12. **`if (isButton) { next.value = false }`** - Resets next animation flag for button clicks 13. **`disableSplash()`** - Starts 1.5s timer to hide splash screen
+**Delayed actions (after 300ms):**
+
+4. **`setTimeout(async () => { ... }, 300)`** - Waits 300ms for skip animation to complete
+5. **`splash.value = true`** - Shows splash screen on the next card
+6. **`onHideCard()`** - Removes current card from stack and updates counters
+7. **`setUndoWarn(id, contributionId)`** - Starts undo warning timer with progress bar
+8. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer
+9. **`currMode.value = 1`** - Resets to main card view mode
+10. **`flip.value = false`** - Ensures card is not in flipped state
+11. **`noLoad.value = false`** - Resets no-load state for future data loading
+12. **`if (isButton) { next.value = false }`** - Resets next animation flag for button clicks
+13. **`disableSplash()`** - Starts 1.5s timer to hide splash screen
 
 **When this function is called:**
 
@@ -112,9 +145,15 @@ Reverses the last skip action by restoring the card to the stack and clearing un
 2. **`prev.value = true`** - Sets previous/undo animation flag
 3. **`splash.value = false`** - Hides splash screen to show the restored card
 
-**Card restoration:** 4. **`data.value = [...data.value, tempData.value]`** - Adds the temporarily stored card back to the end of the array 5. **`tempData.value = null`** - Clears the temporary storage 6. **`undoWarn.value = false`** - Hides the undo warning UI
+**Card restoration:**
 
-**Animation cleanup:** 7. **`setTimeout(() => { prev.value = false }, 600)`** - Resets undo animation flag after 600ms
+4. **`data.value = [...data.value, tempData.value]`** - Adds the temporarily stored card back to the end of the array
+5. **`tempData.value = null`** - Clears the temporary storage
+6. **`undoWarn.value = false`** - Hides the undo warning UI
+
+**Animation cleanup:**
+
+7. **`setTimeout(() => { prev.value = false }, 600)`** - Resets undo animation flag after 600ms
 
 **When this function is called:**
 
@@ -147,13 +186,19 @@ Transitions card to flip state and loads detailed connection information.
 4. **`flip.value = true`** - Triggers card flip animation
 5. **Motion-aware z-index:** If normal motion, immediately sets `zIndex.value = ""`
 
-**Delayed DOM manipulation (after 350ms):** 6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete 7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""` 8. **DOM element access:**
+**Delayed DOM manipulation (after 350ms):**
+
+6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete
+7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""`
+8. **DOM element access:**
 
 - `const div = document.querySelector('.card-${currCount.value}')` - Gets current card element
 - `const front = div.querySelector(".card-front")` - Gets front face element
 - `front.style.setProperty("display", "none", "important")` - Hides front face completely
 
-**Data loading:** 9. **`await getDetail({ contributionId, id })`** - Loads detailed card information from API
+**Data loading:**
+
+9. **`await getDetail({ contributionId, id })`** - Loads detailed card information from API
 
 **When this function is called:**
 
@@ -183,13 +228,19 @@ Displays detailed information about a specific entity/sub-item.
 4. **`flip.value = true`** - Triggers card flip animation
 5. **`hideBack.value = false`** - Shows the back navigation button
 
-**Delayed DOM manipulation (after 350ms):** 6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete 7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""` 8. **DOM element access:**
+**Delayed DOM manipulation (after 350ms):**
+
+6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete
+7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""`
+8. **DOM element access:**
 
 - `const div = document.querySelector('.card-${currCount.value}')` - Gets current card element
 - `const front = div.querySelector(".card-front")` - Gets front face element
 - `front.style.setProperty("display", "none", "important")` - Hides front face completely
 
-**Data loading:** 9. **`await getEntityDetail(id)`** - Loads detailed entity information from API
+**Data loading:**
+
+9. **`await getEntityDetail(id)`** - Loads detailed entity information from API
 
 **When this function is called:**
 
@@ -218,13 +269,19 @@ Shows the final review interface before submission.
 4. **`detail.value = data`** - Stores review data for display
 5. **`hideBack.value = false`** - Shows the back navigation button
 
-**Delayed DOM manipulation (after 350ms):** 6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete 7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""` 8. **DOM element access:**
+**Delayed DOM manipulation (after 350ms):**
+
+6. **`setTimeout(() => { ... }, 350)`** - Waits for flip animation to complete
+7. **Reduced motion z-index:** If reduced motion, sets `zIndex.value = ""`
+8. **DOM element access:**
 
 - `const div = document.querySelector('.card-${currCount.value}')` - Gets current card element
 - `const front = div.querySelector(".card-front")` - Gets front face element
 - `front.style.setProperty("display", "none", "important")` - Hides front face completely
 
-**Vue lifecycle:** 9. **`await nextTick()`** - Waits for Vue to complete DOM updates
+**Vue lifecycle:**
+
+9. **`await nextTick()`** - Waits for Vue to complete DOM updates
 
 **When this function is called:**
 
@@ -249,7 +306,11 @@ Resets card flip state and restores front view visibility.
    - `const front = div.querySelector(".card-front")` - Gets front face element
    - `front.style.setProperty("display", "", "important")` - Restores front face visibility
 
-**Delayed cleanup (after 300ms):** 3. **`setTimeout(() => { ... }, 300)`** - Waits for flip animation to complete 4. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer 5. **`hideBack.value = true`** - Hides the back navigation button
+**Delayed cleanup (after 300ms):**
+
+3. **`setTimeout(() => { ... }, 300)`** - Waits for flip animation to complete
+4. **`zIndex.value = "z-[1]"`** - Resets z-index to default layer
+5. **`hideBack.value = true`** - Hides the back navigation button
 
 **When this function is called:**
 
@@ -279,14 +340,20 @@ Processes the user's selection and updates the backend with the connection choic
 1. **`submittingData.value = true`** - Shows submitting animation/loading state
 2. **`let action = ""`** - Initialize action variable
 
-**Action determination:** 3. **Action logic:**
+**Action determination:**
+
+3. **Action logic:**
 
 - If `item?.itemId === ""`: Sets `action = "noItem"` and `submitAction.value = "noItem"`
 - Else: Sets `action = "add"` and `submitAction.value = "add"`
 
-**API submission:** 4. **`const response = await updateDetail({ data: { ...item, action }, contributionId, id })`** - Sends update to backend
+**API submission:**
 
-**Response handling:** 5. **If response.statusCode === 200 (Success):**
+4. **`const response = await updateDetail({ data: { ...item, action }, contributionId, id })`** - Sends update to backend
+
+**Response handling:**
+
+5. **If response.statusCode === 200 (Success):**
 
 - **For "noItem" action:**
   - Calls `slideRight()` - Quick transition without success animation
@@ -364,7 +431,10 @@ Fetches entities based on current search parameters and lemma context.
    - `languageCode: data?.value?.[...].language.code` - Language of current card
    - `displayLanguageCode: cookies.get("locale")` - User's interface language
 
-**Response handling:** 2. **`if (response?.statusCode)`** - Checks if response is valid 3. **Empty results check:**
+**Response handling:**
+
+2. **`if (response?.statusCode)`** - Checks if response is valid
+3. **Empty results check:**
 
 - `if (response?.data?.entities?.length === 0)` - If no entities found
 - `noLoad.value = true` - Sets flag to show "no more results" message
@@ -399,9 +469,15 @@ Gets recommended entities based on the current lemma using intelligent matching.
 
 1. **`recommendedLoading.value = true`** - Shows loading state for recommendations
 
-**Lemma processing:** 2. **`const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma`** - Gets current card's lemma 3. **`const lemmaParts = typeof lemma === "string" ? lemma.split(" / ") : []`** - Splits lemma by " / " separator 4. **`const keyword = lemmaParts.find((item) => item.match(/[a-zA-Z]+/))`** - Finds first part with Latin characters
+**Lemma processing:**
 
-**API call:** 5. **`const response = await GetRecommendations({ ... })`** - Calls recommendation API with:
+2. **`const lemma = data?.value?.[totalCount.value - currCount.value]?.lemma`** - Gets current card's lemma
+3. **`const lemmaParts = typeof lemma === "string" ? lemma.split(" / ") : []`** - Splits lemma by " / " separator
+4. **`const keyword = lemmaParts.find((item) => item.match(/[a-zA-Z]+/))`** - Finds first part with Latin characters
+
+**API call:**
+
+5. **`const response = await GetRecommendations({ ... })`** - Calls recommendation API with:
 
 - `...params` - Spreads current search parameters
 - `page: 1` - Always gets first page of recommendations
@@ -409,7 +485,9 @@ Gets recommended entities based on the current lemma using intelligent matching.
 - `languageCode: data?.value?.[...].language.code` - Language of current card
 - `displayLanguageCode: cookies.get("locale")` - User's interface language
 
-**Response handling:** 6. **`if (response?.statusCode)`** - If successful response:
+**Response handling:**
+
+6. **`if (response?.statusCode)`** - If successful response:
 
 - `recommendedLoading.value = false` - Stops loading state
 - `entities.value = [...(response?.data?.entities || [])]` - Sets recommendation results
@@ -497,7 +575,10 @@ Allows users to end the session before completing all cards, with confirmation d
 
 1. **`if (currCount.value > 1 && currCount.value < totalCount.value + 1)`** - Checks if user is in middle of session
 
-   **If in middle of session:** 2. **`const userInput = await testing?.value?.openModal()`** - Shows warning dialog asking for confirmation 3. **`if (userInput)`** - If user confirms they want to end early:
+   **If in middle of session:**
+
+2. **`const userInput = await testing?.value?.openModal()`** - Shows warning dialog asking for confirmation
+3. **`if (userInput)`** - If user confirms they want to end early:
 
    - `skipAll.value = true` - Sets skip-all flag for animations
    - `endLoading.value = true` - Shows loading state
@@ -516,7 +597,9 @@ Allows users to end the session before completing all cards, with confirmation d
         - `isLoading.value = false` - Stops general loading
         - `noInternet.value = true` - Shows no internet error
 
-**If not in middle of session:** 5. **`else { router.push("/") }`** - Direct navigation to home (no confirmation needed)
+**If not in middle of session:**
+
+5. **`else { router.push("/") }`** - Direct navigation to home (no confirmation needed)
 
 **When this function is called:**
 
@@ -548,13 +631,21 @@ Creates a timed warning that allows users to undo their skip action.
    - `const steps = duration / interval` - Calculates total steps (100 steps)
    - `let currentStep = 0` - Initialize step counter
 
-**Progress animation (increment function):** 3. **`const increment = async () => { ... }`** - Recursive function for progress updates 4. **`progress.number = (currentStep / steps) * 100`** - Updates progress bar (0-100%) 5. **`currentStep++`** - Increments step counter 6. **`if (currentStep <= steps) { timeout = setTimeout(increment, interval) }`** - Schedules next update 7. **Completion check:**
+**Progress animation (increment function):**
+
+3. **`const increment = async () => { ... }`** - Recursive function for progress updates
+4. **`progress.number = (currentStep / steps) * 100`** - Updates progress bar (0-100%)
+5. **`currentStep++`** - Increments step counter
+6. **`if (currentStep <= steps) { timeout = setTimeout(increment, interval) }`** - Schedules next update
+7. **Completion check:**
 
 - If `progress.number === 100`:
   - `undoWarn.value = false` - Hides undo warning
   - `await updateDetail({ data: { action: "skip" }, contributionId, id })` - Finalizes skip action on backend
 
-**Timer start:** 8. **`timeout = setTimeout(increment, interval)`** - Starts the progress animation
+**Timer start:**
+
+8. **`timeout = setTimeout(increment, interval)`** - Starts the progress animation
 
 **When this function is called:**
 

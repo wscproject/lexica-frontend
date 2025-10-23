@@ -277,13 +277,18 @@ Dynamically calculates the CSS transform property value based on current positio
    - `!positions.isInteractAnimating` - True during active drag interactions
    - `positions.isInteractDragged` - True when card is being removed
 
-**Manual transform generation:** 2. **`const { x, y, rotation } = positions.interactPosition`** - Destructures current position values 3. **Transform string construction:**
+**Manual transform generation:**
+
+2. **`const { x, y, rotation } = positions.interactPosition`** - Destructures current position values
+3. **Transform string construction:**
 
 - `translate3D(0, ${y}px, 0)` - Vertical positioning (X disabled for performance)
 - `rotate(${rotation}deg)` - Rotation based on horizontal drag distance
 - `${props.isFlipped ? "rotateY(-180deg)" : ""}` - 3D flip for detail views
 
-**Automatic animation mode:** 4. **`return null`** - When CSS transitions should handle movement
+**Automatic animation mode:**
+
+4. **`return null`** - When CSS transitions should handle movement
 
 - Allows smooth spring-back animations
 - Enables CSS-driven exit animations
@@ -355,7 +360,9 @@ Sets up complete draggable behavior including gesture recognition, movement phys
 - `positions.isInteractAnimating = true` - Re-enables CSS transitions
 - `emit("onEnd")` - Notifies parent that drag interaction has ended
 
-16. **Action determination:** - **If skip threshold met:** `if (!props.preventSwipe && y < interactYThreshold) playCard("SKIP_CARD")` - **If threshold not met:** `resetCardPosition()` for spring-back effect
+16. **Action determination:**
+   - **If skip threshold met:** `if (!props.preventSwipe && y < interactYThreshold) playCard("SKIP_CARD")`
+   - **If threshold not met:** `resetCardPosition()` for spring-back effect
 
 **When this function is called:**
 
