@@ -1,0 +1,291 @@
+{
+	"@metadata": {
+		"authors": [
+			"Siebrand"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Aanmelden",
+			"logout": "Afmelden",
+			"locale": "Taal voor weergave",
+			"theme": "Thema",
+			"auto": "Automatisch",
+			"autoDesc": "Volg uw systeem-/browserthema",
+			"light": "Licht",
+			"dark": "Donker",
+			"language": "Engels",
+			"accessibility": "Toegankelijkheid",
+			"loggingout": "Bezig met afmelden...",
+			"logoutsuccess": "U bent afgemeld.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica is een hulpmiddel dat u wordt aangeboden door {wikidata}",
+		"about": "Over",
+		"privacy": "Privacy",
+		"license": "Licentie"
+	},
+	"accessibilityDialog": {
+		"title": "Toegankelijkheid",
+		"apply": "Toepassen",
+		"close": "Sluiten",
+		"subtitle1": "Tekst",
+		"subtitle2": "Animatie",
+		"option1": "Vetgedrukte tekst",
+		"option2Note": "Let op: Sommige tekens worden mogelijk niet in dit lettertype weergegeven.",
+		"option3": "Koppelingen onderstrepen",
+		"option4": "Beweging verminderen"
+	},
+	"localeDialog": {
+		"title": "Taal voor weergave",
+		"footerText": "Wilt u vertalingen in uw taal toevoegen of verbeteren?",
+		"footerLink": "Help Lexica vertalen.",
+		"cancel": "Annuleren",
+		"apply": "Toepassen"
+	},
+	"darkmodeDialog": {
+		"title": "Thema",
+		"auto": "Automatisch",
+		"desc": "Volg uw browserthema",
+		"light": "Licht",
+		"dark": "Donker",
+		"cancel": "Annuleren",
+		"apply": "Toepassen"
+	},
+	"contributionLangDialog": {
+		"title": "Draag bij aan Lexemen in",
+		"placeholder": "Taal zoeken",
+		"cancel": "Annuleren",
+		"apply": "Toepassen",
+		"emptySearch1": "Geen talen gevonden.",
+		"emptySearch2": "Probeer verschillende trefwoorden te gebruiken."
+	},
+	"activityDialog": {
+		"title": "Bijdragetype",
+		"connect": {
+			"title": "Lexeem naar Item",
+			"description": "Koppel een Lexeme aan een Item met hetzelfde concept"
+		},
+		"script": {
+			"title": "Scriptvarianten",
+			"description": "Scriptvarianten toevoegen voor een Lexeme"
+		},
+		"hyphenation": {
+			"title": "Afbreking"
+		},
+		"cancel": "Annuleren",
+		"apply": "Toepassen"
+	},
+	"home": {
+		"unauth": {
+			"title": "Welkom!",
+			"title2": "Vul eenvoudig lexicografische gegevens in op Wikidata",
+			"body1": "is een innovatief hulpprogramma waarmee u naadloos kunt bijdragen aan de lexicografische gegevens op Wikidata.",
+			"body2": "Door Lexica te gebruiken, gaat u akkoord met",
+			"privacyPolicy": "Lexica Privacybeleid",
+			"login": "Aanmelden"
+		},
+		"auth": {
+			"title": "Hallo",
+			"start": "Beginnen met bijdragen",
+			"tutorial": "Handleiding lezen"
+		},
+		"loading": "Bezig met laden…"
+	},
+	"tutorial": {
+		"title": "Zelfstudie",
+		"of": "van",
+		"start": "Beginnen met bijdragen",
+		"one": {
+			"title": "Wat is Lexica?"
+		},
+		"two": {
+			"title": "Hoe te gebruiken",
+			"point1Title": "Startpagina",
+			"point1Content": "Beëindig uw bijdragesessie en keer terug naar de startpagina.",
+			"point2Title": "Kaartnummer",
+			"point2Content": "geeft de volgorde weer van de kaarten die op dat moment worden weergegeven.",
+			"point3Title": "Kaartgebaar",
+			"point5Title": "Sessie beëindigen"
+		},
+		"three": {
+			"title": "Anatomie van een bijdragekaart",
+			"point1Title": "Koptekst",
+			"point2Title": "Kaartinhoud",
+			"point2Content": "bevat vraag, zoekvak en item of zoekresultaten.",
+			"point3Title": "Actieknoppen"
+		},
+		"four": {
+			"title": "Alles is klaar!",
+			"content1": "Veel plezier met het bijdragen aan lexicografische gegevens op Wikidata met Lexica!",
+			"content2": "Tip: U kunt deze zelfstudie opnieuw bekijken via de startpagina."
+		}
+	},
+	"tooltips": {
+		"home": "Terug naar startpagina",
+		"account": "Account",
+		"info": "Lexemegegevens weergeven",
+		"item": "Itemgegevens weergeven",
+		"back": "Terug"
+	},
+	"session": {
+		"loading": "Kaarten worden geladen…",
+		"error": {
+			"title": "Er is iets misgegaan",
+			"description": "Probeer deze pagina opnieuw te laden.",
+			"button": "Herladen"
+		},
+		"noInternet": {
+			"title": "Bijdrage uploaden is mislukt",
+			"description": "Controleer uw internetverbinding en probeer het opnieuw.",
+			"button": "Opnieuw proberen"
+		},
+		"empty": {
+			"title": "Er zijn momenteel geen kaarten die opnieuw ingevuld kunnen worden.",
+			"button": "Terug naar startpagina"
+		},
+		"title": "Kaart",
+		"button1": "Overslaan",
+		"button2": "Sessie beëindigen",
+		"main": {
+			"search": "Item of QID zoeken",
+			"recommendation": "Aanbevelingen",
+			"result": "Zoekresultaten",
+			"button2": "Volgende",
+			"emptySearch1": "Geen resultaten gevonden.",
+			"emptySearch2": "Probeer verschillende trefwoorden te gebruiken.",
+			"emptySuggestion1": "Aanbeveling niet gevonden.",
+			"emptySuggestion2": "Probeer handmatig naar het item te zoeken.",
+			"loadmore": "Meer laden",
+			"loading": "Bezig met laden…",
+			"emptyLoad": "U hebt het einde van de zoekresultaten bereikt"
+		},
+		"scriptWriting": {
+			"title1": "Herschrijven",
+			"title2": "in het {lang}",
+			"button": "Volgende",
+			"placeholder": "Hier tekst toevoegen"
+		},
+		"hyphenation": {
+			"button2": "Volgende"
+		},
+		"detail": {
+			"lexeme": "Lexeem",
+			"loading": "Lexemegegevens verkrijgen",
+			"title1": "Dit Lexeem",
+			"subtitle1": "Verklaringen",
+			"subtitle2": "In andere talen",
+			"usageExample": "gebruiksvoorbeeld",
+			"hasCharacteristics": "heeft kenmerken",
+			"combinesLexemes": "lexemen combineren",
+			"images": "afbeelding",
+			"languageStyle": "taalstijl",
+			"fieldOfUsage": "toepassingsgebied",
+			"semanticGender": "semantisch geslacht",
+			"synonym": "synoniem",
+			"antonym": "antoniem",
+			"otherGlosses": "In andere talen",
+			"grammaticalFeature": "Grammaticale kenmerken van dit formulier:"
+		},
+		"item": {
+			"wikidata": "Wikidata-item",
+			"statements": "Verklaringen",
+			"translations": "Vertaling",
+			"loading": "Itemgegevens verkrijgen",
+			"images": "afbeelding",
+			"instanceOf": "voorbeeld van",
+			"partOf": "onderdeel van",
+			"subclass": "subklasse van",
+			"hasParts": "heeft onderdelen",
+			"taxonName": "taxonnaam",
+			"aliases": "Ook bekend als:"
+		},
+		"preview": {
+			"title": "Voorvertoning",
+			"lexeme": "Lexeem",
+			"newStatement": "Nieuwe verklaring: {statement}",
+			"button1": "Bewerken",
+			"button2": "Afgerond",
+			"empty": "Er worden geen wijzigingen aangebracht",
+			"reason": "Reden: Item niet gevonden"
+		},
+		"scriptPreview": {
+			"newStatement": "Lemma toegevoegd: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Nieuwe verklaring: afbreking (P5279)"
+		},
+		"upload": "Bijdrage uploaden...",
+		"recLoading": "Aanbevelingen krijgen",
+		"cardError": {
+			"title": "Uploaden mislukt",
+			"description": "Controleer uw internetverbinding en probeer het opnieuw.",
+			"button": "Opnieuw proberen"
+		},
+		"done": {
+			"title": "Bedankt voor uw bijdrage aan Lexica!",
+			"button": "Terug naar startpagina"
+		},
+		"skip": {
+			"title": "Kaart overgeslagen.",
+			"button": "Ongedaan maken"
+		},
+		"warning": {
+			"title": "Deze bijdragesessie beëindigen?",
+			"content": "U hebt gewerkt aan",
+			"subtext": "nog geen kaart. | kaart tot nu toe. | kaarten tot nu toe.",
+			"button1": "Doorgaan met bewerken",
+			"button2": "Sessie beëindigen",
+			"loading": "Sessie beëindigen..."
+		},
+		"blank": {
+			"title": "Er zijn momenteel geen kaarten die opnieuw ingevuld kunnen worden.",
+			"button": "Terug naar startpagina"
+		},
+		"emptyStatement": "Verklaring niet gevonden",
+		"emptyDescriptionHead": "Definitie niet gevonden in",
+		"emptyDescription": "Definitie niet gevonden"
+	},
+	"about": {
+		"title": "Over",
+		"page": "deze pagina"
+	},
+	"privacy": {
+		"header": "Privacy",
+		"title1": "Privacybeleid",
+		"version": "Versie",
+		"title2": "Verzameling van persoonlijke gegevens",
+		"section2": {
+			"point1": "Lexica slaat geen gegevens op die aan gebruikers zijn gekoppeld, zoals maar niet beperkt tot gebruikersnamen, wachtwoorden, IP-adressen, interactiegeschiedenis en gebruiksstatistieken.",
+			"point3": "Registraties van gebruikersbijdragen worden opgeslagen op Wikidata, dat onderworpen is aan de {privacy}",
+			"privacy": "Privacybeleid van de Wikimedia Foundation"
+		},
+		"title3": "Licentie",
+		"section3": "Zie de {license}pagina.",
+		"license": "Licentie",
+		"section4": {
+			"point1": "Lexica kan haar privacybeleid op elk moment wijzigen.",
+			"point2": "Voordat Lexica wijzigingen in het privacybeleid doorvoert, stelt zij u vooraf op de hoogte van de wijzigingen in het privacybeleid voordat deze definitief worden doorgevoerd.",
+			"point6": "Door Lexica te blijven gebruiken nadat het privacybeleid is gewijzigd, gaat de gebruiker akkoord met de herziene wijzigingen in het privacybeleid."
+		}
+	},
+	"license": {
+		"title1": "Licentie",
+		"title2": "Open source-componenten",
+		"section2": {
+			"subtitle1": "Frontendbibliotheken en frameworks",
+			"subtitle2": "Backendbibliotheken en frameworks",
+			"subtitle3": "Lettertypen"
+		}
+	},
+	"aria": {
+		"account": "Account",
+		"backToHome": "Terug naar boven",
+		"showLexemeDetail": "Lexemedetails weergeven",
+		"showItemDetail": "Itemdetails weergeven",
+		"back": "Terug",
+		"close": "Sluiten"
+	}
+}
