@@ -1,0 +1,132 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "登入",
+			"logout": "登出",
+			"locale": "顯示語言",
+			"theme": "主題",
+			"auto": "自動",
+			"autoDesc": "依照您的系統/瀏覽器主題",
+			"accessibility": "無障礙",
+			"loggingout": "登出中…",
+			"logoutsuccess": "您已登出。",
+			"ok": "確定"
+		}
+	},
+	"footer": {
+		"about": "關於"
+	},
+	"accessibilityDialog": {
+		"apply": "套用",
+		"close": "關閉",
+		"subtitle1": "文字",
+		"subtitle2": "動態",
+		"option1": "粗體文字",
+		"option3": "底線連結"
+	},
+	"localeDialog": {
+		"title": "顯示語言",
+		"footerLink": "協助翻譯 Lexica。",
+		"cancel": "取消",
+		"apply": "套用"
+	},
+	"darkmodeDialog": {
+		"title": "主題",
+		"auto": "自動",
+		"desc": "依照您的瀏覽器主題",
+		"cancel": "取消",
+		"apply": "套用"
+	},
+	"contributionLangDialog": {
+		"placeholder": "搜尋語言",
+		"cancel": "取消",
+		"apply": "套用"
+	},
+	"activityDialog": {
+		"title": "貢獻類型",
+		"cancel": "取消"
+	},
+	"home": {
+		"unauth": {
+			"login": "登入"
+		},
+		"auth": {
+			"start": "開始貢獻"
+		}
+	},
+	"tutorial": {
+		"title": "教學",
+		"start": "開始貢獻",
+		"one": {
+			"title": "Lexica 是什麼？"
+		},
+		"two": {
+			"title": "如何使用",
+			"point1Title": "首頁"
+		}
+	},
+	"tooltips": {
+		"account": "帳號",
+		"item": "顯示項目資訊",
+		"back": "返回"
+	},
+	"session": {
+		"error": {
+			"title": "發生一些錯誤",
+			"description": "請嘗試重新載入此頁面。",
+			"button": "重新載入"
+		},
+		"noInternet": {
+			"title": "無法上傳貢獻",
+			"description": "請檢查您的網路連線後重試。",
+			"button": "重試"
+		},
+		"empty": {
+			"button": "返回首頁"
+		},
+		"title": "卡片",
+		"button1": "跳過",
+		"main": {
+			"result": "搜尋結果"
+		},
+		"scriptWriting": {
+			"title1": "改寫"
+		},
+		"detail": {
+			"images": "圖片",
+			"languageStyle": "語言風格",
+			"otherGlosses": "其他語言"
+		},
+		"item": {
+			"wikidata": "維基數據項目",
+			"translations": "翻譯",
+			"images": "圖片"
+		},
+		"preview": {
+			"title": "預覽",
+			"button1": "編輯"
+		}
+	},
+	"about": {
+		"page": "此頁面"
+	},
+	"privacy": {
+		"version": "版本"
+	},
+	"license": {
+		"section2": {
+			"subtitle3": "字型"
+		}
+	},
+	"aria": {
+		"account": "帳號",
+		"backToHome": "返回首頁",
+		"back": "返回",
+		"close": "關閉"
+	}
+}
