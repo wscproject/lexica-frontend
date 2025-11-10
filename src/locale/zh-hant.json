@@ -45,19 +45,27 @@
 	"contributionLangDialog": {
 		"placeholder": "搜尋語言",
 		"cancel": "取消",
-		"apply": "套用"
+		"apply": "套用",
+		"emptySearch1": "未找到語言。",
+		"emptySearch2": "嘗試使用不同關鍵字。"
 	},
 	"activityDialog": {
 		"title": "貢獻類型",
-		"cancel": "取消"
+		"cancel": "取消",
+		"apply": "套用"
 	},
 	"home": {
 		"unauth": {
+			"title": "歡迎！",
+			"body2": "透過使用 Lexica，代表您同意",
+			"privacyPolicy": "Lexica 隱私權政策",
 			"login": "登入"
 		},
 		"auth": {
+			"title": "您好",
 			"start": "開始貢獻"
-		}
+		},
+		"loading": "載入中…"
 	},
 	"tutorial": {
 		"title": "教學",
@@ -67,10 +75,17 @@
 		},
 		"two": {
 			"title": "如何使用",
-			"point1Title": "首頁"
+			"point1Title": "首頁",
+			"point2Title": "卡片號碼"
+		},
+		"three": {
+			"point1Title": "標頭",
+			"point2Content": "包含問題、搜尋框、項目、或是搜尋結果。",
+			"point3Title": "操作按鈕"
 		}
 	},
 	"tooltips": {
+		"home": "返回首頁",
 		"account": "帳號",
 		"item": "顯示項目資訊",
 		"back": "返回"
@@ -92,12 +107,21 @@
 		"title": "卡片",
 		"button1": "跳過",
 		"main": {
-			"result": "搜尋結果"
+			"search": "搜尋項目或 QID",
+			"recommendation": "建議",
+			"result": "搜尋結果",
+			"button1": "找不到項目",
+			"emptySearch1": "查無結果。",
+			"emptySearch2": "嘗試使用不同關鍵字。",
+			"loadmore": "載入更多",
+			"loading": "載入中…"
 		},
 		"scriptWriting": {
 			"title1": "改寫"
 		},
 		"detail": {
+			"subtitle2": "其他語言",
+			"usageExample": "使用範例",
 			"images": "圖片",
 			"languageStyle": "語言風格",
 			"otherGlosses": "其他語言"
@@ -105,21 +129,43 @@
 		"item": {
 			"wikidata": "維基數據項目",
 			"translations": "翻譯",
-			"images": "圖片"
+			"images": "圖片",
+			"aliases": "亦稱為："
 		},
 		"preview": {
 			"title": "預覽",
 			"button1": "編輯"
+		},
+		"upload": "正在上傳貢獻…",
+		"recLoading": "取得推薦",
+		"cardError": {
+			"title": "上傳失敗",
+			"description": "請檢查您的網路連線後重試。",
+			"button": "重試"
+		},
+		"done": {
+			"title": "感謝您使用 Lexica 作出貢獻！",
+			"button": "返回首頁"
+		},
+		"blank": {
+			"button": "返回首頁"
 		}
 	},
 	"about": {
+		"title": "關於",
 		"page": "此頁面"
 	},
 	"privacy": {
-		"version": "版本"
+		"title1": "隱私權政策",
+		"version": "版本",
+		"section2": {
+			"privacy": "維基媒體基金會隱私權政策"
+		}
 	},
 	"license": {
 		"section2": {
+			"subtitle1": "前端函式庫與框架",
+			"subtitle2": "後端函式庫與框架",
 			"subtitle3": "字型"
 		}
 	},
