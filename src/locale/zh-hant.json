@@ -12,6 +12,9 @@
 			"theme": "主題",
 			"auto": "自動",
 			"autoDesc": "依照您的系統/瀏覽器主題",
+			"light": "明亮",
+			"dark": "暗黑",
+			"language": "英語",
 			"accessibility": "無障礙",
 			"loggingout": "登出中…",
 			"logoutsuccess": "您已登出。",
@@ -19,18 +22,26 @@
 		}
 	},
 	"footer": {
-		"about": "關於"
+		"label": "Lexica 是由{wikidata}為您提供的工具。",
+		"about": "關於",
+		"privacy": "隱私",
+		"license": "授權條款"
 	},
 	"accessibilityDialog": {
+		"title": "無障礙",
 		"apply": "套用",
 		"close": "關閉",
 		"subtitle1": "文字",
 		"subtitle2": "動態",
 		"option1": "粗體文字",
-		"option3": "底線連結"
+		"option2": "使用替代字體（Atkinson Hyperlegible Next）",
+		"option2Note": "注意：此字體可能無法呈現出某些字元。",
+		"option3": "底線連結",
+		"option4": "減少動態"
 	},
 	"localeDialog": {
 		"title": "顯示語言",
+		"footerText": "想增加或改善您所使用語言的翻譯嗎？",
 		"footerLink": "協助翻譯 Lexica。",
 		"cancel": "取消",
 		"apply": "套用"
@@ -39,6 +50,8 @@
 		"title": "主題",
 		"auto": "自動",
 		"desc": "依照您的瀏覽器主題",
+		"light": "明亮",
+		"dark": "暗黑",
 		"cancel": "取消",
 		"apply": "套用"
 	},
@@ -51,19 +64,24 @@
 	},
 	"activityDialog": {
 		"title": "貢獻類型",
+		"hyphenation": {
+			"title": "連字號"
+		},
 		"cancel": "取消",
 		"apply": "套用"
 	},
 	"home": {
 		"unauth": {
 			"title": "歡迎！",
+			"title2": "輕鬆完善維基數據上的詞典資料",
 			"body2": "透過使用 Lexica，代表您同意",
 			"privacyPolicy": "Lexica 隱私權政策",
 			"login": "登入"
 		},
 		"auth": {
 			"title": "您好",
-			"start": "開始貢獻"
+			"start": "開始貢獻",
+			"tutorial": "閱讀教學"
 		},
 		"loading": "載入中…"
 	},
@@ -76,21 +94,34 @@
 		"two": {
 			"title": "如何使用",
 			"point1Title": "首頁",
-			"point2Title": "卡片號碼"
+			"point1Content": "結束您的貢獻階段並返回首頁。",
+			"point2Title": "卡片號碼",
+			"point2Content": "顯示目前列出卡片的順序。",
+			"point4Title": "略過按鈕",
+			"point4Content": "使用此按鈕可以略過一張卡片。",
+			"point5Title": "結束階段",
+			"point5Content": "結束您的貢獻階段並返回首頁。"
 		},
 		"three": {
 			"point1Title": "標頭",
+			"point2Title": "卡片內容",
 			"point2Content": "包含問題、搜尋框、項目、或是搜尋結果。",
 			"point3Title": "操作按鈕"
+		},
+		"four": {
+			"title": "全部完成！",
+			"content2": "提示：您可以在首頁再次查看此教學。"
 		}
 	},
 	"tooltips": {
 		"home": "返回首頁",
 		"account": "帳號",
+		"info": "顯示詞位資訊",
 		"item": "顯示項目資訊",
 		"back": "返回"
 	},
 	"session": {
+		"loading": "載入卡片中…",
 		"error": {
 			"title": "發生一些錯誤",
 			"description": "請嘗試重新載入此頁面。",
@@ -102,39 +133,61 @@
 			"button": "重試"
 		},
 		"empty": {
+			"title": "目前沒有任何卡片可以再次填寫。",
 			"button": "返回首頁"
 		},
 		"title": "卡片",
-		"button1": "跳過",
+		"button1": "略過",
+		"button2": "結束階段",
 		"main": {
 			"search": "搜尋項目或 QID",
 			"recommendation": "建議",
 			"result": "搜尋結果",
 			"button1": "找不到項目",
+			"button2": "下一個",
 			"emptySearch1": "查無結果。",
 			"emptySearch2": "嘗試使用不同關鍵字。",
+			"emptySuggestion1": "未找到推薦內容。",
+			"emptySuggestion2": "嘗試手動搜尋該項目。",
 			"loadmore": "載入更多",
-			"loading": "載入中…"
+			"loading": "載入中…",
+			"emptyLoad": "您已瀏覽完所有搜尋結果"
 		},
 		"scriptWriting": {
-			"title1": "改寫"
+			"title1": "改寫",
+			"title2": "在{lang}",
+			"button": "下一頁"
+		},
+		"hyphenation": {
+			"button2": "下一頁"
 		},
 		"detail": {
+			"lexeme": "詞位",
+			"loading": "取得詞位資訊",
+			"title1": "此詞位",
 			"subtitle2": "其他語言",
 			"usageExample": "使用範例",
 			"images": "圖片",
 			"languageStyle": "語言風格",
+			"synonym": "同義詞",
+			"antonym": "反義詞",
 			"otherGlosses": "其他語言"
 		},
 		"item": {
 			"wikidata": "維基數據項目",
 			"translations": "翻譯",
+			"loading": "取得項目資訊",
 			"images": "圖片",
 			"aliases": "亦稱為："
 		},
 		"preview": {
 			"title": "預覽",
-			"button1": "編輯"
+			"lexeme": "詞位",
+			"newStatement": "新陳述：{statement}",
+			"button1": "編輯",
+			"button2": "完成",
+			"empty": "不會做出任何變動。",
+			"reason": "原因：未找到項目"
 		},
 		"upload": "正在上傳貢獻…",
 		"recLoading": "取得推薦",
@@ -147,9 +200,23 @@
 			"title": "感謝您使用 Lexica 作出貢獻！",
 			"button": "返回首頁"
 		},
+		"skip": {
+			"title": "卡片已略過。",
+			"button": "還原"
+		},
+		"warning": {
+			"title": "結束此貢獻階段？",
+			"subtext": "目前沒有卡片。 | 目前有一張卡片。 | 目前有幾張卡片。",
+			"button1": "繼續編輯",
+			"button2": "結束階段",
+			"loading": "正在結束階段…"
+		},
 		"blank": {
+			"title": "目前沒有任何卡片可以再次填寫。",
 			"button": "返回首頁"
-		}
+		},
+		"emptyDescriptionHead": "未找到定義在",
+		"emptyDescription": "未找到定義"
 	},
 	"about": {
 		"title": "關於",
@@ -158,12 +225,27 @@
 	"privacy": {
 		"title1": "隱私權政策",
 		"version": "版本",
+		"title2": "個人資料資訊的收集",
 		"section2": {
+			"point1": "Lexica 不會儲存任何與使用者相關的資料，例如但不限於使用者名稱、密碼、IP 位址、互動歷史紀錄和使用統計數據。",
 			"privacy": "維基媒體基金會隱私權政策"
+		},
+		"title3": "授權條款",
+		"section3": "查看{license}頁面。",
+		"license": "授權條款",
+		"section4": {
+			"point3": "隱私權政策更改通知將透過 Lexica 公布。",
+			"point5": "Lexica 建議使用者定期查看此頁面、維基數據使用者頁面、和維基媒體基金會隱私權政策中的隱私權政策更改。"
 		}
 	},
 	"license": {
+		"title1": "授權條款",
+		"section1": {
+			"content2": "Lexica 的原始碼可在以下程式碼倉儲中找到："
+		},
+		"title2": "開放來源元件",
 		"section2": {
+			"content": "以下是 Lexica 使用到的開放來源元件：",
 			"subtitle1": "前端函式庫與框架",
 			"subtitle2": "後端函式庫與框架",
 			"subtitle3": "字型"
@@ -172,6 +254,8 @@
 	"aria": {
 		"account": "帳號",
 		"backToHome": "返回首頁",
+		"showLexemeDetail": "顯示詞位詳情",
+		"showItemDetail": "顯示項目詳情",
 		"back": "返回",
 		"close": "關閉"
 	}

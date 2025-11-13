@@ -34,9 +34,11 @@
 		"subtitle1": "Tekst",
 		"subtitle2": "Animatie",
 		"option1": "Vetgedrukte tekst",
+		"option2": "Alternatief lettertype gebruiken (Atkinson Hyperlegible Next)",
 		"option2Note": "Let op: Sommige tekens worden mogelijk niet in dit lettertype weergegeven.",
 		"option3": "Koppelingen onderstrepen",
-		"option4": "Beweging verminderen"
+		"option4": "Beweging verminderen",
+		"option4Note": "Animaties en overgangen beperken"
 	},
 	"localeDialog": {
 		"title": "Taal voor weergave",
@@ -73,7 +75,8 @@
 			"description": "Scriptvarianten toevoegen voor een Lexeme"
 		},
 		"hyphenation": {
-			"title": "Afbreking"
+			"title": "Afbreking",
+			"description": "Lexeem in zijn lettergrepen opdelen"
 		},
 		"cancel": "Annuleren",
 		"apply": "Toepassen"
@@ -85,10 +88,12 @@
 			"body1": "is een innovatief hulpprogramma waarmee u naadloos kunt bijdragen aan de lexicografische gegevens op Wikidata.",
 			"body2": "Door Lexica te gebruiken, gaat u akkoord met",
 			"privacyPolicy": "Lexica Privacybeleid",
-			"login": "Aanmelden"
+			"login": "Aanmelden",
+			"info": "We werken ons privacybeleid bij om te melden dat Lexica de ontwikkeling heeft voltooid, met ingang van 20 augustus 2025 om 20:00 uur AoE (Anywhere on Earth). Er zijn geen wijzigingen in de gegevensverwerking of privacyprocedures."
 		},
 		"auth": {
 			"title": "Hallo",
+			"languageSelect": "Bijdragen aan Lexemen in",
 			"start": "Beginnen met bijdragen",
 			"tutorial": "Handleiding lezen"
 		},
@@ -99,7 +104,8 @@
 		"of": "van",
 		"start": "Beginnen met bijdragen",
 		"one": {
-			"title": "Wat is Lexica?"
+			"title": "Wat is Lexica?",
+			"content": "Lexica is een hulpmiddel om nieuwe manieren te vinden om lexicografische gegevens op Wikidata te bewerken. Hier biedt Lexica een bewerkingsweergave voor lexicografische gegevens op Wikidata om snelle bijdragen eenvoudiger te maken. U krijgt Lexemen die moeten worden gekoppeld aan items op Wikidata."
 		},
 		"two": {
 			"title": "Hoe te gebruiken",
@@ -108,14 +114,20 @@
 			"point2Title": "Kaartnummer",
 			"point2Content": "geeft de volgorde weer van de kaarten die op dat moment worden weergegeven.",
 			"point3Title": "Kaartgebaar",
-			"point5Title": "Sessie beëindigen"
+			"point3Content": "veeg omhoog over de bovenkant van de kaart om de huidige kaart over te slaan.",
+			"point4Title": "Overslaan-knop",
+			"point4Content": "gebruik deze knop als een andere manier om een kaart over te slaan.",
+			"point5Title": "Sessie beëindigen",
+			"point5Content": "beëindig uw bijdragesessie en keer terug naar de startpagina."
 		},
 		"three": {
 			"title": "Anatomie van een bijdragekaart",
 			"point1Title": "Koptekst",
+			"point1Content": "bevat het Lemma, de Lexeem-ID, de definitie van het Lexeem en een knop om aanvullende gegevens over het Lexeem te bekijken.",
 			"point2Title": "Kaartinhoud",
 			"point2Content": "bevat vraag, zoekvak en item of zoekresultaten.",
-			"point3Title": "Actieknoppen"
+			"point3Title": "Actieknoppen",
+			"point3Content": "selecteer \"Volgende\" nadat u het juiste item hebt geselecteerd of selecteer \"Item niet gevonden\" als u er geen kunt vinden."
 		},
 		"four": {
 			"title": "Alles is klaar!",
@@ -153,6 +165,7 @@
 			"search": "Item of QID zoeken",
 			"recommendation": "Aanbevelingen",
 			"result": "Zoekresultaten",
+			"button1": "Item niet gevonden",
 			"button2": "Volgende",
 			"emptySearch1": "Geen resultaten gevonden.",
 			"emptySearch2": "Probeer verschillende trefwoorden te gebruiken.",
@@ -169,6 +182,7 @@
 			"placeholder": "Hier tekst toevoegen"
 		},
 		"hyphenation": {
+			"button1": "Hier opdelen",
 			"button2": "Volgende"
 		},
 		"detail": {
@@ -250,31 +264,46 @@
 	},
 	"about": {
 		"title": "Over",
+		"content1": "Het bewerken van lexicografische gegevens op Wikidata via mobiele apparaten kan voor sommigen een uitdaging zijn. Daarom is Lexica opgericht. Ons doel is eenvoudig: bewerken eenvoudiger en toegankelijker maken voor iedereen, overal.",
+		"content2": "Lexica is een innovatief hulpmiddel dat is ontworpen om u in staat te stellen naadloos bij te dragen aan de lexicografische gegevens op Wikidata. Als webgebaseerd hulpmiddel, geoptimaliseerd voor mobiele apparaten, stelt Lexica u in staat om snel Lexeme Senses te koppelen aan Items op Wikidata via een intuïtieve kaartinterface.",
+		"content3": "Lexica wordt ontwikkeld door Wikicollabs in samenwerking met Wikimedia Deutschland, als onderdeel van de Wikidata Software Collaboration, ondersteund door een subsidie van het Arcadia Philanthropic Fund.",
+		"content4": "We streven ernaar Lexica continu te ontwikkelen om de gebruikerservaring te verbeteren. Ga voor meer informatie over ons project naar {link}.",
 		"page": "deze pagina"
 	},
 	"privacy": {
 		"header": "Privacy",
 		"title1": "Privacybeleid",
 		"version": "Versie",
+		"section1": "Lexica heeft de ontwikkelingsfase afgerond en is nu beschikbaar als stabiele versie. Het privacybeleid kan indien nodig worden bijgewerkt. Door Lexica te gebruiken, gaan gebruikers akkoord met dit privacybeleid.",
 		"title2": "Verzameling van persoonlijke gegevens",
 		"section2": {
 			"point1": "Lexica slaat geen gegevens op die aan gebruikers zijn gekoppeld, zoals maar niet beperkt tot gebruikersnamen, wachtwoorden, IP-adressen, interactiegeschiedenis en gebruiksstatistieken.",
+			"point2": "Lexica verkrijgt alleen toestemming om namens gebruikers hangelingen uit te voeren wanneer deze aanmelden via hun Wikimedia-gebruikersaccount.",
 			"point3": "Registraties van gebruikersbijdragen worden opgeslagen op Wikidata, dat onderworpen is aan de {privacy}",
 			"privacy": "Privacybeleid van de Wikimedia Foundation"
 		},
 		"title3": "Licentie",
 		"section3": "Zie de {license}pagina.",
 		"license": "Licentie",
+		"title4": "Wijzigingen in het privacybeleid",
 		"section4": {
 			"point1": "Lexica kan haar privacybeleid op elk moment wijzigen.",
 			"point2": "Voordat Lexica wijzigingen in het privacybeleid doorvoert, stelt zij u vooraf op de hoogte van de wijzigingen in het privacybeleid voordat deze definitief worden doorgevoerd.",
+			"point3": "Wijzigingen in het privacybeleid worden via Lexica bekendgemaakt.",
+			"point4": "Er geldt een periode die de \"wachtperiode\" wordt genoemd. Deze periode beslaat zeven dagen na de aankondiging van de wijziging in het privacybeleid en de implementatie van het nieuwe privacybeleid.",
+			"point5": "Lexica raadt gebruikers aan om regelmatig te controleren of er wijzigingen zijn in het privacybeleid. Deze zijn te vinden op deze pagina, de gebruikerspagina op Wikidata en het privacybeleid van de Wikimedia Foundation.",
 			"point6": "Door Lexica te blijven gebruiken nadat het privacybeleid is gewijzigd, gaat de gebruiker akkoord met de herziene wijzigingen in het privacybeleid."
 		}
 	},
 	"license": {
 		"title1": "Licentie",
+		"section1": {
+			"content1": "{lexica} en al haar componenten worden gepubliceerd onder de {gnu} GNU GPL-2.0-licentie. Alle met dit hulpprogramma toegevoegde gegevens worden op Wikidata opgeslagen onder de {cc0} CC0-licentie.",
+			"content2": "De broncode voor Lexica is beschikbaar in de volgende repositories:"
+		},
 		"title2": "Open source-componenten",
 		"section2": {
+			"content": "Lexica gebruikt de volgende open source-componenten:",
 			"subtitle1": "Frontendbibliotheken en frameworks",
 			"subtitle2": "Backendbibliotheken en frameworks",
 			"subtitle3": "Lettertypen"
