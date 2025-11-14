@@ -30,14 +30,16 @@ const messages = Promise.all(mapLangs).then(function (results) {
   );
 });
 
+const getBrowserLanguage = () => {
+  const browserLang = window?.navigator?.language?.split("-")?.[0];
+  const supportedLangs = ["en", "id", "lb", "mk", "nl", "pt", "zh-hant"];
+  return supportedLangs.includes(browserLang) ? browserLang : "en";
+};
+
 export const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale:
-    cookies?.get("locale") ||
-    window?.navigator?.language?.split("-")?.[0] === "en" ||
-    window?.navigator?.language?.split("-")?.[0] === "id"
-      ? window?.navigator?.language?.split("-")?.[0]
-      : "en",
+  locale: cookies?.get("locale") || getBrowserLanguage(),
+  fallbackLocale: "en",
   messages: await messages,
 });
