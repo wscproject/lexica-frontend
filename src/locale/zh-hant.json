@@ -74,6 +74,7 @@
 		"unauth": {
 			"title": "歡迎！",
 			"title2": "輕鬆完善維基數據上的詞典資料",
+			"body1": "是一款創新工具，可幫助您輕鬆地為維基數據上的詞彙表資料做出貢獻",
 			"body2": "透過使用 Lexica，代表您同意",
 			"privacyPolicy": "Lexica 隱私權政策",
 			"login": "登入"
@@ -97,12 +98,14 @@
 			"point1Content": "結束您的貢獻階段並返回首頁。",
 			"point2Title": "卡片號碼",
 			"point2Content": "顯示目前列出卡片的順序。",
+			"point3Content": "在卡片頂端滑動即可略過目前的卡片。",
 			"point4Title": "略過按鈕",
 			"point4Content": "使用此按鈕可以略過一張卡片。",
 			"point5Title": "結束階段",
 			"point5Content": "結束您的貢獻階段並返回首頁。"
 		},
 		"three": {
+			"title": "貢獻卡片分析",
 			"point1Title": "標頭",
 			"point2Title": "卡片內容",
 			"point2Content": "包含問題、搜尋框、項目、或是搜尋結果。",
@@ -156,7 +159,8 @@
 		"scriptWriting": {
 			"title1": "改寫",
 			"title2": "在{lang}",
-			"button": "下一頁"
+			"button": "下一頁",
+			"placeholder": "在此編寫"
 		},
 		"hyphenation": {
 			"button2": "下一頁"
@@ -165,13 +169,20 @@
 			"lexeme": "詞位",
 			"loading": "取得詞位資訊",
 			"title1": "此詞位",
+			"title2": "此含意",
 			"subtitle2": "其他語言",
+			"title3": "其他含意",
+			"senseCount": "含意 {count}",
 			"usageExample": "使用範例",
 			"images": "圖片",
 			"languageStyle": "語言風格",
 			"synonym": "同義詞",
 			"antonym": "反義詞",
-			"otherGlosses": "其他語言"
+			"glossQuotes": "註釋引用",
+			"itemForThisSense": "此含意項目",
+			"otherGlosses": "其他語言",
+			"allSense": "所有含意",
+			"sense": "含意"
 		},
 		"item": {
 			"wikidata": "維基數據項目",
@@ -184,6 +195,7 @@
 			"title": "預覽",
 			"lexeme": "詞位",
 			"newStatement": "新陳述：{statement}",
+			"statement": "此含意項目",
 			"button1": "編輯",
 			"button2": "完成",
 			"empty": "不會做出任何變動。",
