@@ -1,0 +1,190 @@
+{
+	"@metadata": {
+		"authors": [
+			"Volvox"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Aloggen",
+			"logout": "Ausloggen",
+			"theme": "Faarfscheema",
+			"auto": "Automatesch",
+			"light": "Hell",
+			"dark": "Däischter",
+			"logoutsuccess": "Dir sidd ausgeloggt.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"about": "Iwwer",
+		"license": "Lizenz"
+	},
+	"accessibilityDialog": {
+		"close": "Zoumaachen",
+		"subtitle1": "Text",
+		"subtitle2": "Animatioun",
+		"option3": "Linken ënnersträichen",
+		"option4": "Beweegung reduzéieren"
+	},
+	"localeDialog": {
+		"footerLink": "Hëllef beim Iwwersetze vu Lexica.",
+		"cancel": "Ofbriechen"
+	},
+	"darkmodeDialog": {
+		"title": "Faarfscheema",
+		"auto": "Automatesch",
+		"light": "Hell",
+		"dark": "Däischter",
+		"cancel": "Ofbriechen"
+	},
+	"contributionLangDialog": {
+		"cancel": "Ofbriechen",
+		"emptySearch1": "Keng Sprooche fonnt."
+	},
+	"activityDialog": {
+		"hyphenation": {
+			"title": "Wuerttrennung"
+		},
+		"cancel": "Ofbriechen"
+	},
+	"home": {
+		"unauth": {
+			"title": "Wëllkomm!",
+			"login": "Aloggen"
+		},
+		"auth": {
+			"title": "Moien",
+			"tutorial": "Liest den Tutorial"
+		},
+		"loading": "Gëtt gelueden..."
+	},
+	"tutorial": {
+		"title": "Uleedung",
+		"one": {
+			"title": "Wat ass Lexica?"
+		},
+		"two": {
+			"point1Title": "Haaptsäit",
+			"point4Title": "Iwwersprangknäppchen"
+		}
+	},
+	"tooltips": {
+		"home": "Zeréck op d'Haaptsäit",
+		"account": "Kont",
+		"info": "Lexeeminformatioune weisen",
+		"item": "Elementinformatioune weisen",
+		"back": "Zeréck goen"
+	},
+	"session": {
+		"error": {
+			"title": "Et ass eppes schif gaangen",
+			"description": "Probéiert dës Säit nei ze lueden."
+		},
+		"noInternet": {
+			"description": "Iwwerpréift Är Internetverbindung a probéiert dann nach eng Kéier.",
+			"button": "Nach eng Kéier probéieren"
+		},
+		"empty": {
+			"button": "Zeréck op d'Haaptsäit"
+		},
+		"title": "Kaart",
+		"button1": "Iwwersprangen",
+		"main": {
+			"search": "Element oder QID sichen",
+			"button1": "Element net fonnt",
+			"button2": "Nächst",
+			"emptySearch1": "Keng Resultater fonnt.",
+			"loadmore": "Méi lueden",
+			"loading": "Gëtt gelueden..."
+		},
+		"scriptWriting": {
+			"title2": "op {lang}",
+			"button": "Nächst"
+		},
+		"hyphenation": {
+			"button2": "Nächst"
+		},
+		"detail": {
+			"lexeme": "Lexeem",
+			"title1": "Dëse Lexeem",
+			"subtitle1": "Aussoen",
+			"subtitle2": "An anere Sproochen",
+			"title3": "Aner Bedeitungen",
+			"senseCount": "Bedeitung {count}",
+			"hasCharacteristics": "charakteriséiert duerch",
+			"images": "Bild",
+			"languageStyle": "Sproochstil",
+			"semanticGender": "semantescht Geschlecht",
+			"synonym": "Synonym",
+			"antonym": "Antonym",
+			"itemForThisSense": "Element fir dës Bedeitung",
+			"otherGlosses": "An anere Sproochen",
+			"sense": "Bedeitung"
+		},
+		"item": {
+			"wikidata": "Wikidata-Element",
+			"statements": "Aussoen",
+			"translations": "Iwwersetzung",
+			"images": "Bild",
+			"instanceOf": "ass en(g)",
+			"partOf": "ass en Deel vun",
+			"subclass": "Ënnerklass vun",
+			"hasParts": "besteet aus",
+			"taxonName": "wëssenschaftlechen Numm",
+			"aliases": "Och bekannt als:"
+		},
+		"preview": {
+			"lexeme": "Lexeem",
+			"newStatement": "Nei Ausso: {statement}",
+			"statement": "Element fir dës Bedeitung",
+			"button1": "Änneren",
+			"reason": "Grond: Element net fonnt"
+		},
+		"scriptPreview": {
+			"newStatement": "Lemma derbäigesat: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Nei Ausso: Wuerttrennung (P5279)"
+		},
+		"cardError": {
+			"description": "Iwwerpréift Är Internetverbindung a probéiert nach eng Kéier.",
+			"button": "Nach eng Kéier probéieren"
+		},
+		"done": {
+			"button": "Zeréck op d'Haaptsäit"
+		},
+		"skip": {
+			"title": "Kaart iwwersprongen."
+		},
+		"blank": {
+			"button": "Zeréck op d'Haaptsäit"
+		},
+		"emptyStatement": "Ausso net fonnt",
+		"emptyDescription": "Definitioun net fonnt"
+	},
+	"about": {
+		"title": "Iwwer",
+		"page": "dës Säit"
+	},
+	"privacy": {
+		"version": "Versioun",
+		"title3": "Lizenz",
+		"section3": "Kuckt d'{Lizenz}-Säit.",
+		"license": "Lizenz"
+	},
+	"license": {
+		"title1": "Lizenz",
+		"title2": "Open-Source-Komponenten",
+		"section2": {
+			"subtitle3": "Schrëftaarten"
+		}
+	},
+	"aria": {
+		"account": "Kont",
+		"backToHome": "Zeréck op d'Haaptsäit",
+		"showLexemeDetail": "Lexeemdetailer weisen",
+		"back": "Zeréck",
+		"close": "Zoumaachen"
+	}
+}

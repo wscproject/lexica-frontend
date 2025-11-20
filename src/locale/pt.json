@@ -1,0 +1,263 @@
+{
+	"@metadata": {
+		"authors": [
+			"Mansil alfalb"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Iniciar sessão",
+			"logout": "Terminar sessão",
+			"locale": "Idioma a exibir",
+			"theme": "Tema",
+			"auto": "Automático",
+			"autoDesc": "Siga o tema do seu sistema/navegador",
+			"light": "Claro",
+			"dark": "Escuro",
+			"language": "Inglês",
+			"accessibility": "Acessibilidade",
+			"loggingout": "A terminar a sessão...",
+			"logoutsuccess": "Não está autenticado.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica é uma ferramenta oferecida para si pela {wikidata}",
+		"about": "Sobre",
+		"privacy": "Privacidade",
+		"license": "Licença"
+	},
+	"accessibilityDialog": {
+		"title": "Acessibilidade",
+		"apply": "Aplicar",
+		"close": "Fechar",
+		"subtitle1": "Texto",
+		"subtitle2": "Animação",
+		"option1": "Texto a negrito",
+		"option2": "Utilizar tipo de letra alternativo (Atkinson Hyperlegible Next)",
+		"option2Note": "Nota: Alguns carateres podem não ser renderizados neste tipo de letra.",
+		"option3": "Sublinhar hiperligações",
+		"option4": "Reduzir movimento",
+		"option4Note": "Minimizar animações e transições"
+	},
+	"localeDialog": {
+		"title": "Idioma a exibir",
+		"footerText": "Quer adicionar ou melhorar a tradução no seu idioma?",
+		"footerLink": "Ajude a traduzir Lexica.",
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"darkmodeDialog": {
+		"title": "Tema",
+		"auto": "Automático",
+		"desc": "Seguir o tema do seu navegador",
+		"light": "Claro",
+		"dark": "Escuro",
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"contributionLangDialog": {
+		"title": "Contribuir para Lexemes em",
+		"placeholder": "Procurar idioma",
+		"cancel": "Cancelar",
+		"apply": "Aplicar",
+		"emptySearch1": "Não foram encontrados idiomas.",
+		"emptySearch2": "Tente utilizar palavras-chave diferentes."
+	},
+	"activityDialog": {
+		"title": "Tipo de contribuição",
+		"connect": {
+			"title": "Lexeme para Item"
+		},
+		"hyphenation": {
+			"title": "Hifenização"
+		},
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"home": {
+		"unauth": {
+			"title": "Bem-vindo!",
+			"body2": "Ao utilizar Lexica, você concorda com a",
+			"privacyPolicy": "Política de Privacidade de Lexica",
+			"login": "Iniciar sessão"
+		},
+		"auth": {
+			"title": "Olá",
+			"languageSelect": "Contribuir para Lexemes em",
+			"start": "Começar a contribuir",
+			"tutorial": "Ler o tutorial"
+		},
+		"loading": "A carregar..."
+	},
+	"tutorial": {
+		"title": "Tutorial",
+		"of": "de",
+		"start": "Começar a contribuir",
+		"one": {
+			"title": "O que é Lexica?"
+		},
+		"two": {
+			"title": "Como utilizar",
+			"point1Title": "Página inicial",
+			"point2Title": "Número do cartão",
+			"point3Title": "Gesto de cartão",
+			"point4Title": "Botão Ignorar",
+			"point4Content": "utilize este botão como outra maneira para ignorar um cartão.",
+			"point5Title": "Terminar sessão"
+		},
+		"three": {
+			"point1Title": "Cabeçalho",
+			"point2Title": "Conteúdo do cartão",
+			"point3Title": "Botões de Ação"
+		},
+		"four": {
+			"title": "Tudo concluído!"
+		}
+	},
+	"tooltips": {
+		"home": "Voltar à página inicial",
+		"account": "Conta",
+		"info": "Mostrar informação de Lexeme",
+		"item": "Mostrar informação de Item",
+		"back": "Voltar"
+	},
+	"session": {
+		"loading": "A carregar os cartões...",
+		"error": {
+			"title": "Ocorreu um problema",
+			"description": "Tente recarregar esta página.",
+			"button": "Recarregar"
+		},
+		"noInternet": {
+			"title": "Não é possível enviar a contribuição",
+			"description": "Verifique a sua ligação à Internet, depois tente novamente.",
+			"button": "Tentar novamente"
+		},
+		"empty": {
+			"button": "Voltar à página inicial"
+		},
+		"title": "Cartão",
+		"button1": "Ignorar",
+		"button2": "Terminar sessão",
+		"main": {
+			"recommendation": "Recomendações",
+			"result": "Resultados da procura",
+			"button1": "Item não encontrado",
+			"button2": "Seguinte",
+			"emptySearch1": "Não foram encontrados resultados.",
+			"emptySearch2": "Tente utilizar palavras-chave diferentes.",
+			"emptySuggestion1": "Recomendação não encontrada.",
+			"loadmore": "Carregar mais",
+			"loading": "A carregar..."
+		},
+		"scriptWriting": {
+			"title1": "Reescrever",
+			"title2": "em {lang}",
+			"button": "Seguinte",
+			"placeholder": "Escreva aqui"
+		},
+		"hyphenation": {
+			"button1": "Divida aqui",
+			"button2": "Seguinte"
+		},
+		"detail": {
+			"lexeme": "Lexeme",
+			"loading": "Obter informação de Lexema",
+			"title1": "Este Lexeme",
+			"title2": "Este Sentido",
+			"subtitle1": "Declarações",
+			"subtitle2": "Em outros idiomas",
+			"title3": "Outros sentidos",
+			"senseCount": "Sentido {count}",
+			"usageExample": "exemplo de utilização",
+			"hasCharacteristics": "tem caraterísticas",
+			"combinesLexemes": "combinar lexemes",
+			"images": "imagem",
+			"languageStyle": "estilo de idioma",
+			"fieldOfUsage": "campo de utilização",
+			"synonym": "sinónimo",
+			"antonym": "antónimo",
+			"otherGlosses": "Em outros idiomas",
+			"allSense": "Todos os Sentidos",
+			"sense": "Sentido"
+		},
+		"item": {
+			"wikidata": "Item da Wikidados",
+			"statements": "Declarações",
+			"translations": "Tradução",
+			"loading": "Obter informação de Item",
+			"images": "imagem",
+			"instanceOf": "instância de",
+			"partOf": "parte de",
+			"subclass": "subclasse de",
+			"hasParts": "tem partes",
+			"aliases": "Também conhecido como:"
+		},
+		"preview": {
+			"title": "Pré-visualizar",
+			"lexeme": "Lexeme",
+			"newStatement": "Nova declaração: {statement}",
+			"button1": "Editar",
+			"button2": "Concluído",
+			"reason": "Razão: Item não encontrado"
+		},
+		"upload": "A enviar contribuição...",
+		"recLoading": "A obter as recomendações",
+		"cardError": {
+			"title": "Envio falhou",
+			"description": "Verifique a sua ligação à Internet e tente novamente.",
+			"button": "Tentar novamente"
+		},
+		"done": {
+			"title": "Obrigado por contribuir com Lexica!",
+			"button": "Voltar à Página inicial"
+		},
+		"skip": {
+			"button": "Anular"
+		},
+		"warning": {
+			"title": "Terminar esta sessão de contribuição?",
+			"button1": "Continuar a editar",
+			"button2": "Terminar sessão",
+			"loading": "A terminar a sessão..."
+		},
+		"blank": {
+			"button": "Voltar à Página Inicial"
+		},
+		"emptyStatement": "Declaração não encontrada",
+		"emptyDescriptionHead": "Definição não encontrada em",
+		"emptyDescription": "Definição não encontrada"
+	},
+	"about": {
+		"title": "Sobre",
+		"page": "esta página"
+	},
+	"privacy": {
+		"header": "Privacidade",
+		"title1": "Política de Privacidade",
+		"version": "Versão",
+		"section2": {
+			"privacy": "Política de Privacidade da Fundação Wikimédia"
+		},
+		"title3": "Licença",
+		"section3": "Veja a página de {license}.",
+		"license": "Licença",
+		"title4": "Alterações na Política de Privacidade"
+	},
+	"license": {
+		"title1": "Licença",
+		"title2": "Componentes de código aberto",
+		"section2": {
+			"subtitle3": "Tipos de Letra"
+		}
+	},
+	"aria": {
+		"account": "Conta",
+		"backToHome": "Voltar ao Início",
+		"showLexemeDetail": "Mostrar detalhe de Lexeme",
+		"showItemDetail": "Mostrar detalhe de Item",
+		"back": "Anterior",
+		"close": "Fechar"
+	}
+}

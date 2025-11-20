@@ -11,6 +11,36 @@
       "value": "en",
       "dir": "ltr",
       "disabled": false
+    },
+    {
+      "label": "Lëtzebuergesch",
+      "value": "lb",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "македонски",
+      "value": "mk",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "Nederlands",
+      "value": "nl",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "Português",
+      "value": "pt",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "中文（繁體）",
+      "value": "zh-hant",
+      "dir": "ltr",
+      "disabled": false
     }
   ]
 }
