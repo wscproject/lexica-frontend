@@ -7,14 +7,32 @@
       "disabled": false
     },
     {
+      "label": "Bahasa Melayu",
+      "value": "ms",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "English",
       "value": "en",
       "dir": "ltr",
       "disabled": false
     },
     {
+      "label": "Euskara",
+      "value": "eu",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "Lëtzebuergesch",
       "value": "lb",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "Minangkabau",
+      "value": "min",
       "dir": "ltr",
       "disabled": false
     },

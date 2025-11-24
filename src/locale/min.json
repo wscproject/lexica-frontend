@@ -1,0 +1,308 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kartika (WSC)"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Masuak log",
+			"logout": "Kalua log",
+			"locale": "Bahaso tampilan",
+			"theme": "Tema",
+			"auto": "Otomatih",
+			"autoDesc": "Ikuikan tema sistem/paramban Sanak",
+			"light": "Tarang",
+			"dark": "Galok",
+			"language": "bahaso Inggirih",
+			"accessibility": "Aksesibilitas",
+			"loggingout": "Sadang kalua log...",
+			"logoutsuccess": "Sanak alah kalua log.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica adolah sabuah pakakeh nan dikambangan dek {wikidata}",
+		"about": "Tantang",
+		"privacy": "Privasi",
+		"license": "Lisensi"
+	},
+	"accessibilityDialog": {
+		"title": "Aksesibilitas",
+		"apply": "Gunoan",
+		"close": "Tutuik",
+		"subtitle1": "Teks",
+		"subtitle2": "Animasi",
+		"option1": "Teks taba",
+		"option2": "Gunoan fon alternatif (Atkinson Hyperlegible Next)",
+		"option2Note": "Catatan: Babarapo karakter mungkin indak dapek ditampilan dalam fon iko.",
+		"option3": "Garih bawahan tautan",
+		"option4": "Mangurangan animasi",
+		"option4Note": "Kurangan animasi jo transisi"
+	},
+	"localeDialog": {
+		"title": "Bahaso tampilan",
+		"footerText": "Nio manambahan atau mamelokan tajamahan dalam bahaso Sanak?",
+		"footerLink": "Manolong manajamahan Lexica.",
+		"cancel": "Batal",
+		"apply": "Gunoan"
+	},
+	"darkmodeDialog": {
+		"title": "Tema",
+		"auto": "Otomatih",
+		"desc": "Ikuikan tema sistem/paramban Sanak",
+		"light": "Tarang",
+		"dark": "Galok",
+		"cancel": "Batal",
+		"apply": "Gunoan"
+	},
+	"contributionLangDialog": {
+		"title": "Bajariah untuak Leksem jo bahaso",
+		"placeholder": "Cari bahaso",
+		"cancel": "Batal",
+		"apply": "Gunoan",
+		"emptySearch1": "Bahaso indak basobok",
+		"emptySearch2": "Cubo gunoan kato kunci nan lain."
+	},
+	"activityDialog": {
+		"title": "Jinih jariah",
+		"connect": {
+			"title": "Leksem ka Butir",
+			"description": "Hubuangan Leksem ka Butir jo konsep nan sapadan"
+		},
+		"script": {
+			"title": "Variasi aksara",
+			"description": "Masuakan variasi aksara dari sabuah Leksem"
+		},
+		"hyphenation": {
+			"title": "Hifenasi",
+			"description": "Bagi Leksem ka babarapo suku kato"
+		},
+		"cancel": "Batal",
+		"apply": "Gunoan"
+	},
+	"home": {
+		"unauth": {
+			"title": "Salamaik datang!",
+			"title2": "Langkokan data leksikografis di Wikidata jo nan mudah",
+			"body1": "adolah pakakeh inovatif nan dibuek untuak mamudahan Sanak bajariah ka data leksikografis di Wikidata.",
+			"body2": "Dek manggunoan Lexica, Sanak satuju",
+			"privacyPolicy": "Kabijakan Privasi Lexica",
+			"login": "Masuak log",
+			"info": "Kami akan mampabarui kabijakan privasi kami untuak manyatoan basonyo Lexica alah salasai dikambangan, sajak dari pado 20 Agustus 2025 pukua 20.00 AoE (dima sajo di Dunia). Indak ado nan barubah dalam pananganan data jo praktik privasi."
+		},
+		"auth": {
+			"title": "Halo",
+			"languageSelect": "Bajariah untuak Leksem jo bahaso",
+			"start": "Mulai bajariah",
+			"tutorial": "Caliak panduan"
+		},
+		"loading": "Mamuek..."
+	},
+	"tutorial": {
+		"title": "Panduan",
+		"of": "dari",
+		"start": "Mulai bajariah",
+		"one": {
+			"title": "Apo Lexica tu?",
+			"content": "Lexica manyadioan bantuak panyuntiangan data leksikografis di Wikidata untuak mampamudah capek bajariah. Sanak akan mangarajoan iko: mangaikan sabuah Leksem jo Butir di Wikidata nan mukasuiknyo samo."
+		},
+		"two": {
+			"point1Title": "Laman Utamo",
+			"point1Content": "manyalasaian sesi jariah sarato baliak ka Laman Utamo.",
+			"point2Title": "Nomor kartu",
+			"point2Content": "mancaliakan urutan kartu nan sadang ditampilan.",
+			"point3Title": "Garik malewatan kartu",
+			"point3Content": "gesek kapalo kartu arah ka ateh untuak malewatan kartu nan indak dapek Sanak isi.",
+			"point4Title": "Tombol malewatan kartu",
+			"point4Content": "caro lain untuak malewatan kartu.",
+			"point5Title": "Salasaian sesi",
+			"point5Content": "salasaian sesi jariah sarato baliak ka Laman Utamo."
+		},
+		"three": {
+			"title": "Isi sabuah kartu jariah",
+			"point1Title": "Kapalo kartu",
+			"point1Content": "barisi Lema, ID Leksem, mukasuik dari Leksem, jo tombol untuak mancaliak informasi salanjuiknyo dari Leksem tu.",
+			"point2Title": "Isi kartu",
+			"point2Content": "barisi pertanyaan, kotak pancarian, jo rekomendasi atau hasil pancarian Butir di Wikidata.",
+			"point3Title": "Tombol aksi",
+			"point3Content": "piliah \"Salanjuiknyo\" sasudah mamiliah Butir nan sasuai atau \"Butir indak ado\" jikok Butir nan sasuai indak basuo."
+		},
+		"four": {
+			"title": "Salasai!",
+			"content1": "Salamaik bajariah ka data leksikografis di Wikidata jo Lexica!",
+			"content2": "Tip: Sanak dapek mancaliak panduan ko baliak dari Laman Utamo."
+		}
+	},
+	"tooltips": {
+		"home": "Baliak ka Laman Utamo",
+		"account": "Akun",
+		"info": "Caliakan informasi Leksem",
+		"item": "Caliakan informasi Butir",
+		"back": "Baliak"
+	},
+	"session": {
+		"loading": "Mamuek kartu...",
+		"error": {
+			"title": "Ado nan salah",
+			"description": "Cubo muek ulang laman ko.",
+			"button": "Muek ulang"
+		},
+		"noInternet": {
+			"title": "Indak dapek maunggah jariah",
+			"description": "Pareso sambuangan internet Sanak, sudah tu cubo baliak.",
+			"button": "Cubo baliak"
+		},
+		"empty": {
+			"title": "Alun ado kartu nan dapek Sanak isi lai kini ko.",
+			"button": "Baliak ka Laman Utamo"
+		},
+		"title": "Kartu",
+		"button1": "Lewatan",
+		"button2": "Salasaian sesi",
+		"main": {
+			"title": "Butir nan ma yang punyo konsep nan samo jo Makna Leksem di ateh?",
+			"search": "Cari Butir atau QID",
+			"recommendation": "Rekomendasi",
+			"result": "Hasil pancarian",
+			"button1": "Butir indak basuo",
+			"button2": "Salanjuiknyo",
+			"emptySearch1": "Hasil pancarian indak basuo.",
+			"emptySearch2": "Cubo gunoan kato kunci nan lain.",
+			"emptySuggestion1": "Rekomendasi indak basuo.",
+			"emptySuggestion2": "Cari Butir sacaro manual.",
+			"loadmore": "Muek labiah banyak",
+			"loading": "Mamuek...",
+			"emptyLoad": "Sanak alah sampai ka akhir dari hasil pancarian"
+		},
+		"scriptWriting": {
+			"title1": "Tulis ulang",
+			"button": "Salanjuiknyo",
+			"placeholder": "Tulih di siko"
+		},
+		"hyphenation": {
+			"button1": "Bagi di siko",
+			"button2": "Salanjuiknyo"
+		},
+		"detail": {
+			"lexeme": "Leksem",
+			"loading": "Mandapekkan info Leksem",
+			"title1": "Leksem ko",
+			"title2": "Makna ko",
+			"subtitle1": "Panyatoan",
+			"subtitle2": "Dalam bahaso lain",
+			"title3": "Makna lainnyo",
+			"usageExample": "contoh panggunoan",
+			"hasCharacteristics": "punyo karakteristik",
+			"combinesLexemes": "manggabuangan leksem",
+			"images": "gambar",
+			"languageStyle": "gaya bahaso",
+			"fieldOfUsage": "bidang panggunoan",
+			"locationOfSenseUsage": "lokasi panggunoan makna",
+			"semanticGender": "gender semantik",
+			"synonym": "sinonim",
+			"antonym": "antonim",
+			"glossQuotes": "kutipan glosa",
+			"itemForThisSense": "butir untuak makna ko",
+			"otherGlosses": "Dalam bahaso lain",
+			"allSense": "Sadolah Makna",
+			"sense": "Makna",
+			"grammaticalFeature": "Fitur gramatikal Bantuak ko:"
+		},
+		"item": {
+			"wikidata": "Butir Wikidata",
+			"statements": "Panyatoan",
+			"translations": "Tajamahan",
+			"loading": "Mandapekan info Butir",
+			"images": "gambar",
+			"instanceOf": "adolah",
+			"partOf": "bagian dari",
+			"subclass": "subkelas dari",
+			"hasParts": "tadiri dari",
+			"taxonName": "namo takson",
+			"aliases": "Dikana juo sabagai:"
+		},
+		"preview": {
+			"title": "Pratinjau",
+			"lexeme": "Leksem",
+			"newStatement": "Panyatoan Baru: {panyatoan}",
+			"statement": "butir untuak makna ko",
+			"button1": "Suntiang",
+			"button2": "Selesai",
+			"empty": "Indak ado parubahan",
+			"reason": "Alasan: Butir indak basuo"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Panyatoan baru: hifenasi (P5279)"
+		},
+		"upload": "Maunggah jariah...",
+		"recLoading": "Mandapekan rekomendasi",
+		"cardError": {
+			"title": "Indak dapek maunggah jariah",
+			"description": "Pareso sambuangan internet Sanak, sudah tu cubo baliak.",
+			"button": "Cubo baliak"
+		},
+		"done": {
+			"title": "Tarimo kasih alah bajariah jo Lexica!",
+			"button": "Baliak ka Laman Utamo"
+		},
+		"skip": {
+			"title": "Kartu dilewatan.",
+			"button": "Baliakan"
+		},
+		"warning": {
+			"title": "Sudahan sesi jariah ko?",
+			"content": "Sanak alah mangarajoan",
+			"button1": "Suntiang baliak",
+			"button2": "Salasaian sesi",
+			"loading": "Manyudahan sesi..."
+		},
+		"blank": {
+			"title": "Alun ado kartu nan dapek Sanak isi lai kini ko.",
+			"button": "Baliak ka Laman Utamo"
+		},
+		"emptyStatement": "Panyatoan indak basuo",
+		"emptyDescriptionHead": "Mukasuik indak basuo di",
+		"emptyDescription": "Mukasuik indak basuo"
+	},
+	"about": {
+		"title": "Tantang",
+		"content1": "Manyuntiang data leksikografis di Wikidata malalui ponsel marupoan kagiatan nan manantang dek sabagian pangguno. Hal itulah nan mandasari hadirnyo Lexica. Tujuan kami sederhana: mambuek proses manyuntiang manjadi labiah mudah jo dapek dilakuan dek sia se, di mano sajo.",
+		"content2": "Lexica marupoan pakakeh inovatif nan dibuek untuak mamudahan Sanak bajariah ka data leksikografis di Wikidata. Sabagai pakakek babasis web nan dioptimalan untuak pangguno seluler, Lexica mamungkinan Sanak untuak sacaro capek mangaikan Makna pado Leksem ka Butir di Wikidata malalui antarmuka kartu nan intuitif.",
+		"content3": "Lexica dikambangan dek Wikicollabs basamo Wikimedia Deutschland. Karajo samo ko marupoan bagian dari Wikidata Software Collaboration nan didukuang dek hibah dari Arcadia Philanthropic Fund.",
+		"content4": "Kami bakomitmen untuak taruih mangambangan Lexica supayo dapek maagiah pangalaman nan labiah rancak. Untuak mampalajari proyek kami labiah lanjuik, molah caliak  {link}.",
+		"page": "laman ko"
+	},
+	"privacy": {
+		"header": "Privasi",
+		"title1": "Kebijakan Privasi",
+		"version": "Versi",
+		"section1": "Lexica alah manyalasaian tahap pangambangannyo sarato kini dalam versi stabil. Kabijakan privasi dapek dipabarui sasuai kabutuhan. Dek manggunoan Lexica, pangguno dianggok manyatujui kabijakan privasi ko.",
+		"title2": "Pangumpuan Informasi Data Pribadi",
+		"section2": {
+			"point1": "Lexica indak manyimpan data apopun nan takaik jo pangguno, namun indak tabateh pado namo pangguno, kato sandi, alamaik IP, riwayaik interaksi, jo data statistik panggunoan.",
+			"privacy": "Kebijakan Privasi Wikimedia Foundation"
+		},
+		"title3": "Lisensi",
+		"section3": "Caliak laman {lisensi}.",
+		"license": "Lisensi",
+		"title4": "Parubahan Kabijakan Privasi",
+		"section4": {
+			"point1": "Lexica dapek maubah kabijakan privasinyo bilo sajo."
+		}
+	},
+	"license": {
+		"title1": "Lisensi",
+		"title2": "Komponen sumber tabukak",
+		"section2": {
+			"content": "Barikuik ko adolah komponen sumber tabukak nan digunoan Lexica:",
+			"subtitle1": "Karangko karajo jo pustaka frontend",
+			"subtitle2": "Karangko karajo jo pustaka backend",
+			"subtitle3": "Fon"
+		}
+	},
+	"aria": {
+		"account": "Akun",
+		"backToHome": "Baliak ka Laman Utamo"
+	}
+}

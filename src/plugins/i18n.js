@@ -32,7 +32,7 @@ const messages = Promise.all(mapLangs).then(function (results) {
 
 const getBrowserLanguage = () => {
   const browserLang = window?.navigator?.language?.split("-")?.[0];
-  const supportedLangs = ["en", "id", "lb", "mk", "nl", "pt", "zh-hant"];
+  const supportedLangs = ["en", "eu", "id", "lb", "min", "mk", "ms", "nl", "pt", "zh-hant"];
   return supportedLangs.includes(browserLang) ? browserLang : "en";
 };
 
