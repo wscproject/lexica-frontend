@@ -22,6 +22,7 @@ import {
 } from "@wikimedia/codex-icons";
 import accIconDark from "@/assets/accessibility-dark.svg";
 import accIcon from "@/assets/accessibility.svg";
+import displayLang from "@/locale/displayLang.json";
 
 import ChooseLocale from "@/components/dialog/localization/index.vue";
 import ChooseTheme from "@/components/dialog/darkMode/index.vue";
@@ -55,6 +56,11 @@ const props = defineProps({
 
 const storeTheme = ref();
 
+const currentLanguageAutonym = computed(() => {
+  const current = displayLang.lang.find(l => l.value === locale.value)
+  return current?.label || 'English'
+})
+
 const authMenu = computed(() => {
   if (!isAuth.value && !props.isLogout) {
     return [
@@ -79,7 +85,7 @@ const authMenu = computed(() => {
         label: t("header.menu.locale"),
         value: "locale",
         icon: cdxIconLanguage,
-        description: t("header.menu.language"),
+        description: currentLanguageAutonym.value,
       },
     ];
   }
@@ -107,7 +113,7 @@ const authMenu = computed(() => {
       label: t("header.menu.locale"),
       value: "locale",
       icon: cdxIconLanguage,
-      description: t("header.menu.language"),
+      description: currentLanguageAutonym.value,
     },
     {
       label: t("header.menu.accessibility"),
