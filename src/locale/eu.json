@@ -1,0 +1,117 @@
+{
+	"@metadata": {
+		"authors": [
+			"Theklan"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Hasi saioa",
+			"logout": "Saioa itxi",
+			"locale": "Bistaratze hizkuntza",
+			"theme": "Gaia",
+			"auto": "Automatikoa",
+			"autoDesc": "Jarrai ezazu zure sistemaren/nabigatzailearen gaia",
+			"light": "Argia",
+			"dark": "Iluna",
+			"language": "Ingelesa",
+			"accessibility": "Irisgarritasuna",
+			"loggingout": "Saioa ixten...",
+			"logoutsuccess": "Saioa itxi duzu.",
+			"ok": "Ados"
+		}
+	},
+	"footer": {
+		"label": "Lexica {wikidata}k eskaintzen dizun tresna bat da.",
+		"about": "Honi buruz",
+		"privacy": "Pribatutasuna",
+		"license": "Lizentzia"
+	},
+	"accessibilityDialog": {
+		"title": "Irisgarritasuna",
+		"apply": "Ezarri",
+		"close": "Itxi",
+		"subtitle1": "Testua",
+		"subtitle2": "Animazioa",
+		"option1": "Letra lodiko testua",
+		"option2": "Erabili letra-tipo alternatiboa (Atkinson Hyperlegible Next)",
+		"option2Note": "Oharra: Baliteke karaktere batzuk ez agertzea letra-tipo honetan.",
+		"option3": "Azpimarratu estekak",
+		"option4": "Murriztu mugimendua",
+		"option4Note": "Minimizatu animazioak eta trantsizioak"
+	},
+	"localeDialog": {
+		"title": "Bistaratze hizkuntza",
+		"footerText": "Zure hizkuntzan itzulpena gehitu edo hobetu nahi duzu?",
+		"footerLink": "Lagundu Lexica itzultzen.",
+		"cancel": "Utzi",
+		"apply": "Ezarri"
+	},
+	"darkmodeDialog": {
+		"title": "Gaia",
+		"auto": "Automatikoa",
+		"desc": "Jarrai ezazu zure nabigatzailearen gaia",
+		"light": "Argia",
+		"dark": "Iluna",
+		"cancel": "Utzi",
+		"apply": "Ezarri"
+	},
+	"contributionLangDialog": {
+		"title": "Hobetu lexemak hizkuntza honetan",
+		"placeholder": "Bilatu hizkuntza",
+		"cancel": "Utzi",
+		"apply": "Ezarri",
+		"emptySearch1": "Hizkuntzarik ez da aurkitu.",
+		"emptySearch2": "Saiatu gako-hitz desberdinak erabiltzen."
+	},
+	"activityDialog": {
+		"title": "Ekarpen mota",
+		"connect": {
+			"title": "Lexematik Itemera",
+			"description": "Lotu Lexema bat kontzeptu berbera adierazten duen Item batekin"
+		},
+		"script": {
+			"title": "Idazketa aldaerak",
+			"description": "Gehitu lexema baten idazketa aldaerak"
+		},
+		"hyphenation": {
+			"title": "Marratxoak",
+			"description": "Lexema silabatan banatu"
+		},
+		"cancel": "Utzi",
+		"apply": "Ezarri"
+	},
+	"home": {
+		"unauth": {
+			"title": "Ongi etorri!",
+			"title2": "Osatu datu lexikografikoak Wikidatan erraz",
+			"body1": "Wikidatako datu lexikografikoetan modu ezin hobean laguntzeko sortutako tresna berritzailea da.",
+			"body2": "Lexica erabiliz gero, onartzen duzu",
+			"privacyPolicy": "Lexicaren Pribatutasun Politika",
+			"login": "Hasi saioa",
+			"info": "Gure pribatutasun-politika eguneratuko dugu Lexicak garapena amaitu duela adierazteko, 2025eko abuztuaren 20an, 20:00etan indarrean sartuz. Ez dago aldaketarik datuen kudeaketan edo pribatutasun-jardunbideetan."
+		},
+		"auth": {
+			"title": "Kaixo",
+			"languageSelect": "Hobetu lexemak hizkuntza honetan",
+			"start": "Hasi ekarpenak egiten",
+			"tutorial": "Irakurri tutoriala"
+		},
+		"loading": "Kargatzen..."
+	},
+	"tutorial": {
+		"title": "Tutoriala",
+		"start": "Hasi ekarpenak egiten",
+		"one": {
+			"title": "Zer da Lexica?",
+			"content": "Lexica Wikidatan datu lexikografikoak editatzeko modu berriak aurkitzeko tresna bat da. Hemen, Lexicak Wikidatan datu lexikografikoak editatzeko ikuspegia eskaintzen du ekarpen azkarrak errazteko. Wikidatan dauden Elementuetara konektatu behar diren Lexemak emango dizkizute."
+		},
+		"two": {
+			"title": "Nola erabili",
+			"point1Title": "Hasiera orria",
+			"point1Content": "amaitu zure ekarpen saioa eta itzuli hasierako orrialdera.",
+			"point2Title": "Txartel zenbakia",
+			"point2Content": "une honetan ikusgai diren karten sekuentzia erakusten du."
+		}
+	}
+}

@@ -1,0 +1,117 @@
+{
+	"@metadata": {
+		"authors": [
+			"Hakimi97"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Log masuk",
+			"logout": "Log keluar",
+			"locale": "Bahasa paparan",
+			"theme": "Tema",
+			"auto": "Automatik",
+			"autoDesc": "Ikuti tema sistem/pelayar anda",
+			"light": "Terang",
+			"dark": "Gelap",
+			"language": "Bahasa Inggeris",
+			"accessibility": "Kebolehcapaian",
+			"loggingout": "Log keluar...",
+			"logoutsuccess": "Anda telah log keluar.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica merupakan sebuah alat yang dibawa kepada anda oleh pasukan {wikidata}",
+		"about": "Perihal",
+		"privacy": "Privasi",
+		"license": "Lesen"
+	},
+	"accessibilityDialog": {
+		"title": "Kebolehcapaian",
+		"apply": "Terapkan",
+		"close": "Tutup",
+		"subtitle1": "Teks",
+		"subtitle2": "Animasi",
+		"option1": "Teks tebal",
+		"option2": "Gunakan fon alternatif (Atkinson Hyperlegible Next)",
+		"option2Note": "Nota: Sesetengah aksara mungkin tidak dapat dipaparkan dalam fon ini.",
+		"option3": "Gariskan pautan",
+		"option4": "Kurangkan pergerakan",
+		"option4Note": "Minimumkan animasi dan peralihan"
+	},
+	"localeDialog": {
+		"title": "Bahasa paparan",
+		"footerText": "Ingin menambah atau menambah baik terjemahan dalam bahasa anda?",
+		"footerLink": "Bantu menterjemah Lexica.",
+		"cancel": "Batalkan",
+		"apply": "Terapkan"
+	},
+	"darkmodeDialog": {
+		"title": "Tema",
+		"auto": "Automatik",
+		"desc": "Ikut tema pelayar anda",
+		"light": "Terang",
+		"dark": "Gelap",
+		"cancel": "Batalkan",
+		"apply": "Terapkan"
+	},
+	"contributionLangDialog": {
+		"title": "Menyumbang untuk leksem berbahasa",
+		"placeholder": "Cari bahasa",
+		"cancel": "Batalkan",
+		"apply": "Terapkan",
+		"emptySearch1": "Tiada bahasa ditemui.",
+		"emptySearch2": "Cuba gunakan kata kunci yang berbeza."
+	},
+	"activityDialog": {
+		"title": "Jenis sumbangan",
+		"connect": {
+			"title": "Leksem ke Butir",
+			"description": "Pautkan Leksem kepada Butir dengan konsep yang sama"
+		},
+		"script": {
+			"title": "Kelainan tulisan",
+			"description": "Tambah kelainan tulisan untuk sesuatu Leksem"
+		},
+		"hyphenation": {
+			"title": "Penyempangan",
+			"description": "Bahagikan sesuatu Leksem kepada suku katanya"
+		},
+		"cancel": "Batalkan",
+		"apply": "Terapkan"
+	},
+	"home": {
+		"unauth": {
+			"title": "Selamat datang!",
+			"title2": "Lengkapkan data perkamusan pada Wikidata dengan mudah",
+			"body1": "merupakan suatu alat inovatif yang direka untuk membantu anda menyumbang dengan lancar kepada data perkamusan di Wikidata.",
+			"body2": "Dengan menggunakan Lexica, anda bersetuju dengan",
+			"privacyPolicy": "Dasar Privasi Lexica",
+			"login": "Log masuk",
+			"info": "Kami akan mengemas kini dasar privasi kami untuk menyatakan bahawa Lexica telah selesai pembangunan, berkuat kuasa 20 Ogos 2025, 20:00 AoE (Mana-mana di muka Bumi). Tiada perubahan tambah pada pengendalian data atau amalan privasi."
+		},
+		"auth": {
+			"title": "Salam sejahtera",
+			"languageSelect": "Menyumbang untuk leksem berbahasa",
+			"start": "Mula Menyumbang",
+			"tutorial": "Baca tutorial"
+		},
+		"loading": "Memuatkan..."
+	},
+	"tutorial": {
+		"title": "Tutorial",
+		"of": "bagi",
+		"start": "Mula Menyumbang",
+		"one": {
+			"title": "Apa itu Lexica?",
+			"content": "Lexica merupakan suatu alat untuk mencari cara baharu untuk menyunting data perkamusan pada Wikidata. Di sini, Lexica menyediakan paparan suntingan untuk data perkamusan pada Wikidata untuk membuat sumbangan pantas dengan lebih mudah. Anda akan diberikan Leksem yang perlu disambungkan kepada Butir di Wikidata."
+		},
+		"two": {
+			"title": "Cara penggunaan",
+			"point1Title": "Laman Utama",
+			"point1Content": "tamatkan sesi sumbangan anda dan kembali ke Laman Utama.",
+			"point2Title": "Nombor kad"
+		}
+	}
+}

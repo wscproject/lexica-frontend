@@ -14,7 +14,7 @@
 			"autoDesc": "依照您的系統/瀏覽器主題",
 			"light": "明亮",
 			"dark": "暗黑",
-			"language": "英語",
+			"language": "中文（繁體）",
 			"accessibility": "無障礙",
 			"loggingout": "登出中…",
 			"logoutsuccess": "您已登出。",
@@ -37,7 +37,8 @@
 		"option2": "使用替代字體（Atkinson Hyperlegible Next）",
 		"option2Note": "注意：此字體可能無法呈現出某些字元。",
 		"option3": "底線連結",
-		"option4": "減少動態"
+		"option4": "減少動態",
+		"option4Note": "最小化動態和轉變效果"
 	},
 	"localeDialog": {
 		"title": "顯示語言",
@@ -56,6 +57,7 @@
 		"apply": "套用"
 	},
 	"contributionLangDialog": {
+		"title": "選擇為詞位做出貢獻的語言",
 		"placeholder": "搜尋語言",
 		"cancel": "取消",
 		"apply": "套用",
@@ -64,8 +66,17 @@
 	},
 	"activityDialog": {
 		"title": "貢獻類型",
+		"connect": {
+			"title": "將詞位關聯到項目",
+			"description": "將詞位與具有相同概念的項目關聯起來"
+		},
+		"script": {
+			"title": "字母變體",
+			"description": "為詞位添加字母變體"
+		},
 		"hyphenation": {
-			"title": "連字號"
+			"title": "斷字",
+			"description": "將詞位拆分成音節"
 		},
 		"cancel": "取消",
 		"apply": "套用"
@@ -74,12 +85,15 @@
 		"unauth": {
 			"title": "歡迎！",
 			"title2": "輕鬆完善維基數據上的詞典資料",
+			"body1": "是一款創新工具，可幫助您輕鬆地為維基數據上的詞典資料做出貢獻",
 			"body2": "透過使用 Lexica，代表您同意",
 			"privacyPolicy": "Lexica 隱私權政策",
-			"login": "登入"
+			"login": "登入",
+			"info": "我們將更新隱私權政策來聲明 Lexica 已完成開發，更新將於 2025 年 8 月 20 日 20:00（AoE 時間）生效。資料處理和隱私保護不會有任何改變。"
 		},
 		"auth": {
 			"title": "您好",
+			"languageSelect": "選擇為詞位做出貢獻的語言",
 			"start": "開始貢獻",
 			"tutorial": "閱讀教學"
 		},
@@ -87,9 +101,11 @@
 	},
 	"tutorial": {
 		"title": "教學",
+		"of": "/",
 		"start": "開始貢獻",
 		"one": {
-			"title": "Lexica 是什麼？"
+			"title": "Lexica 是什麼？",
+			"content": "Lexica 是一個尋找編輯維基數據上詞典資料新方法的工具。在這裡，Lexica 提供了維基數據上詞典資料的編輯視圖，能更輕鬆地進行快速貢獻。您能取得需要連接到維基數據上項目的詞位。"
 		},
 		"two": {
 			"title": "如何使用",
@@ -97,19 +113,25 @@
 			"point1Content": "結束您的貢獻階段並返回首頁。",
 			"point2Title": "卡片號碼",
 			"point2Content": "顯示目前列出卡片的順序。",
+			"point3Title": "卡片記號",
+			"point3Content": "在卡片頂端滑動即可略過目前的卡片。",
 			"point4Title": "略過按鈕",
 			"point4Content": "使用此按鈕可以略過一張卡片。",
 			"point5Title": "結束階段",
 			"point5Content": "結束您的貢獻階段並返回首頁。"
 		},
 		"three": {
+			"title": "貢獻卡片分析",
 			"point1Title": "標頭",
+			"point1Content": "包括詞目、詞位 ID、詞位定義以及查看有關詞位額外資訊的按鈕。",
 			"point2Title": "卡片內容",
 			"point2Content": "包含問題、搜尋框、項目、或是搜尋結果。",
-			"point3Title": "操作按鈕"
+			"point3Title": "操作按鈕",
+			"point3Content": "選擇正確的項目後，選擇「下一個」；如果沒有找到任何項目，請選擇「找不到項目」。"
 		},
 		"four": {
 			"title": "全部完成！",
+			"content1": "很高興與 Lexica 一起為維基數據上的詞典資料做出貢獻！",
 			"content2": "提示：您可以在首頁再次查看此教學。"
 		}
 	},
@@ -140,6 +162,7 @@
 		"button1": "略過",
 		"button2": "結束階段",
 		"main": {
+			"title": "下列哪一個選項與上述詞位詞義的概念相同？",
 			"search": "搜尋項目或 QID",
 			"recommendation": "建議",
 			"result": "搜尋結果",
@@ -156,38 +179,67 @@
 		"scriptWriting": {
 			"title1": "改寫",
 			"title2": "在{lang}",
-			"button": "下一頁"
+			"button": "下一頁",
+			"placeholder": "在此編寫"
 		},
 		"hyphenation": {
+			"button1": "在此拆分",
 			"button2": "下一頁"
 		},
 		"detail": {
 			"lexeme": "詞位",
 			"loading": "取得詞位資訊",
 			"title1": "此詞位",
+			"title2": "此詞義",
+			"subtitle1": "陳述",
 			"subtitle2": "其他語言",
+			"title3": "其他詞義",
+			"senseCount": "詞義 {count}",
 			"usageExample": "使用範例",
+			"hasCharacteristics": "擁有特性",
+			"combinesLexemes": "合成詞",
 			"images": "圖片",
 			"languageStyle": "語言風格",
+			"fieldOfUsage": "使用領域",
+			"locationOfSenseUsage": "此詞義的使用地區",
+			"semanticGender": "語意性別",
 			"synonym": "同義詞",
 			"antonym": "反義詞",
-			"otherGlosses": "其他語言"
+			"glossQuotes": "註釋引用",
+			"itemForThisSense": "此詞義項目",
+			"otherGlosses": "其他語言",
+			"allSense": "所有詞義",
+			"sense": "詞義",
+			"grammaticalFeature": "此詞形的語法特點："
 		},
 		"item": {
 			"wikidata": "維基數據項目",
+			"statements": "陳述",
 			"translations": "翻譯",
 			"loading": "取得項目資訊",
 			"images": "圖片",
+			"instanceOf": "實例",
+			"partOf": "部分",
+			"subclass": "子類別",
+			"hasParts": "包含部分",
+			"taxonName": "學名",
 			"aliases": "亦稱為："
 		},
 		"preview": {
 			"title": "預覽",
 			"lexeme": "詞位",
 			"newStatement": "新陳述：{statement}",
+			"statement": "此詞義項目",
 			"button1": "編輯",
 			"button2": "完成",
 			"empty": "不會做出任何變動。",
 			"reason": "原因：未找到項目"
+		},
+		"scriptPreview": {
+			"newStatement": "已新增詞目：{lang}（{code}）"
+		},
+		"hyphenationPreview": {
+			"newStatement": "新陳述：斷字（P5279）"
 		},
 		"upload": "正在上傳貢獻…",
 		"recLoading": "取得推薦",
@@ -206,7 +258,8 @@
 		},
 		"warning": {
 			"title": "結束此貢獻階段？",
-			"subtext": "目前沒有卡片。 | 目前有一張卡片。 | 目前有幾張卡片。",
+			"content": "您參與貢獻的項目數量：",
+			"subtext": "目前沒有卡片。 | 目前有一張卡片。 | 目前有數張卡片。",
 			"button1": "繼續編輯",
 			"button2": "結束階段",
 			"loading": "正在結束階段…"
@@ -215,32 +268,47 @@
 			"title": "目前沒有任何卡片可以再次填寫。",
 			"button": "返回首頁"
 		},
+		"emptyStatement": "未找到陳述",
 		"emptyDescriptionHead": "未找到定義在",
 		"emptyDescription": "未找到定義"
 	},
 	"about": {
 		"title": "關於",
+		"content1": "對於某些使用者來說，透過行動裝置編輯維基數據上的詞典資料可能不容易。因此，我們開發出了 Lexica。我們的目標很簡單：讓每個人無論身在何處都能更輕鬆、更方便地進行編輯。",
+		"content2": "Lexica 是一個創新工具，旨在幫助您輕鬆地為維基數據上的詞典資料做出貢獻。作為一款針對行動裝置最佳化的基於網路工具，Lexica 透過直覺的卡片式介面，讓您能夠快速地將詞位詞義與維基數據上的項目關聯起來。",
+		"content3": "Lexica 是由 Wikicollabs 與德國維基媒體協會合作開發，是維基數據軟體協作的一部分，並獲得 Arcadia 慈善基金的資助。",
+		"content4": "我們致力於持續開發 Lexica，以提升使用者體驗。如需了解更多關於我們專案的消息，請參訪{link}。",
 		"page": "此頁面"
 	},
 	"privacy": {
+		"header": "隱私",
 		"title1": "隱私權政策",
 		"version": "版本",
+		"section1": "Lexica 為完成開發階段，現已發布穩定版本。隱私權政策可能會根據需求進行更新。使用 Lexica 即代表您同意本隱私權政策。",
 		"title2": "個人資料資訊的收集",
 		"section2": {
 			"point1": "Lexica 不會儲存任何與使用者相關的資料，例如但不限於使用者名稱、密碼、IP 位址、互動歷史紀錄和使用統計數據。",
+			"point2": "只有當使用者透過其維基媒體使用者帳號登入時，Lexica 才能取得代表使用者執行操作行為的授權。",
+			"point3": "使用者的貢獻紀錄將儲存在維基數據上，並受制於{privacy}。",
 			"privacy": "維基媒體基金會隱私權政策"
 		},
 		"title3": "授權條款",
 		"section3": "查看{license}頁面。",
 		"license": "授權條款",
+		"title4": "隱私權政策的更改",
 		"section4": {
+			"point1": "Lexica 可能隨時更改隱私權政策。",
+			"point2": "在隱私權政策更改前，Lexica 會提前通知使用者有關隱私權政策的更改內容後實施。",
 			"point3": "隱私權政策更改通知將透過 Lexica 公布。",
-			"point5": "Lexica 建議使用者定期查看此頁面、維基數據使用者頁面、和維基媒體基金會隱私權政策中的隱私權政策更改。"
+			"point4": "在隱私權政策變更公佈後至新隱私權政策實施期間，會有一段被稱為「等待期」的涵蓋七天時段。",
+			"point5": "Lexica 建議使用者定期查看此頁面、維基數據使用者頁面、和維基媒體基金會隱私權政策中的隱私權政策更改。",
+			"point6": "使用者在隱私權政策更改後繼續利用 Lexica，即代表使用者同意修訂後的隱私權政策。"
 		}
 	},
 	"license": {
 		"title1": "授權條款",
 		"section1": {
+			"content1": "{lexica} 及其所有元件均以 {gnu}（GNU GPL-2.0）授權發布。使用此工具新增的所有資料將以 {cc0}（CC0）授權儲放在維基數據上。",
 			"content2": "Lexica 的原始碼可在以下程式碼倉儲中找到："
 		},
 		"title2": "開放來源元件",
