@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Albertoleoncio",
 			"Mansil alfalb"
 		]
 	},
@@ -183,7 +184,7 @@
 			"sense": "Sentido"
 		},
 		"item": {
-			"wikidata": "Item da Wikidados",
+			"wikidata": "Item do Wikidata",
 			"statements": "Declarações",
 			"translations": "Tradução",
 			"loading": "Obter informação de Item",
