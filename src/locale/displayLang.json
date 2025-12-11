@@ -59,6 +59,12 @@
       "value": "zh-hant",
       "dir": "ltr",
       "disabled": false
+    },
+    {
+      "label": "日本語",
+      "value": "ja",
+      "dir": "ltr",
+      "disabled": false
     }
   ]
 }
