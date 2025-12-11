@@ -196,6 +196,7 @@
 
     "hyphenation": {
       "button1": "Divide here",
+      "button1alt": "Undo",
       "button2": "Next"
     },
 
