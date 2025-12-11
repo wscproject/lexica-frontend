@@ -1,6 +1,6 @@
 <script setup>
 import { CdxButton, CdxIcon } from "@wikimedia/codex";
-import { cdxIconInfoFilled, cdxIconPrevious } from "@wikimedia/codex-icons";
+import { cdxIconInfoFilled, cdxIconPrevious, cdxIconUndo } from "@wikimedia/codex-icons";
 import {
   ref,
   onMounted,
@@ -346,8 +346,13 @@ onBeforeUnmount(() => {
           ? untagHyphenation()
           : tagHyphenation()
         ">
-        <img :src="isThemeDark ? DivideDark : Divide" alt="divide" />
-        <span>{{ t("session.hyphenation.button1") }}</span>
+        <img v-if="selectedIndexes.find((item) => item !== currentIndex)" :src="isThemeDark ? DivideDark : Divide"
+          alt="divide" />
+        <CdxIcon v-else :icon="cdxIconUndo" />
+        <span v-if="selectedIndexes.find((item) => item !== currentIndex)">{{ t("session.hyphenation.button1") }}</span>
+        <span v-if="selectedIndexes.find((item) => item === currentIndex)">{{ t("session.hyphenation.button1alt")
+        }}</span>
+
       </CdxButton>
 
       <CdxButton class="interactable" aria-label="Next" @click="scrollNext" :disabled="currentIndex < 0 ||
