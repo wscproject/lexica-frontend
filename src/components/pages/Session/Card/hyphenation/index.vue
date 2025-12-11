@@ -12,7 +12,6 @@ import {
   toRef,
   onBeforeUnmount,
 } from "vue";
-import debounce from "lodash.debounce";
 import Divide from "@/assets/divide.svg";
 import DivideDark from "@/assets/divide_dark.svg";
 import { useStore } from "vuex";
@@ -118,19 +117,47 @@ const scrollNext = () => {
   scrollToItem(targetIndex);
 };
 
-// Track the last index for vibration
+// Track the last index for vibration and scroll position
 const lastVibrateIndex = ref(-1);
+const lastScrollLeft = ref(0);
+const isScrolling = ref(false);
+let scrollTimeout = null;
 
-// Handle vibration on scroll (immediate, not debounced)
+// Handle vibration and immediate index update on scroll
 const handleScrollVibration = () => {
   const container = containerRef.value;
   const centerPosition = container.scrollLeft + container.offsetWidth / 2;
-  
+  const currentScrollLeft = container.scrollLeft;
+
+  // Update last scroll position
+  lastScrollLeft.value = currentScrollLeft;
+
+  // Mark as scrolling
+  isScrolling.value = true;
+
+  // Clear previous timeout
+  if (scrollTimeout) clearTimeout(scrollTimeout);
+
+  // Set timeout to detect when scrolling stops
+  scrollTimeout = setTimeout(() => {
+    isScrolling.value = false;
+  }, 150);
+
   // Find which item is at the center
   const tempIndex = itemsRef.value.findIndex((item) => {
     return item.offsetLeft >= centerPosition;
   });
-  
+
+  // Immediately update currentIndex during scroll
+  if (tempIndex >= 0) {
+    const newIndex = tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1;
+
+    // Update current index immediately during scroll
+    if (newIndex !== currentIndex.value && newIndex >= 0) {
+      currentIndex.value = newIndex;
+    }
+  }
+
   // Check if we crossed a divider (even index)
   if (tempIndex !== lastVibrateIndex.value && tempIndex >= 0) {
     // Only vibrate when crossing dividers (even indexes)
@@ -143,18 +170,37 @@ const handleScrollVibration = () => {
   }
 };
 
-const updateCurrentIndex = () => {
+// Get the real-time current index without waiting for debounce
+const getRealTimeCurrentIndex = () => {
   const container = containerRef.value;
-  const tempIndex = itemsRef.value.findIndex((item) => {
-    return item.offsetLeft >= container.scrollLeft + container.offsetWidth / 2;
+  if (!container || !itemsRef.value || itemsRef.value.length === 0) {
+    return currentIndex.value; // Fallback to current index if refs not ready
+  }
+
+  const centerPosition = container.scrollLeft + container.offsetWidth / 2;
+
+  // Find the item closest to the center position
+  let closestIndex = -1;
+  let minDistance = Infinity;
+
+  itemsRef.value.forEach((item, index) => {
+    // Calculate the center of each item
+    const itemCenter = item.offsetLeft + item.offsetWidth / 2;
+    const distance = Math.abs(itemCenter - centerPosition);
+
+    if (distance < minDistance) {
+      minDistance = distance;
+      closestIndex = index;
+    }
   });
 
-  const newIndex = tempIndex % 2 !== 0 ? tempIndex : tempIndex - 1;
-  
-  // Update current index for UI
-  if (newIndex !== currentIndex.value) {
-    currentIndex.value = newIndex;
+  // If no item found or invalid index, return current index
+  if (closestIndex < 0) {
+    return currentIndex.value;
   }
+
+  // Ensure we always return an odd index (the divider positions)
+  return closestIndex % 2 !== 0 ? closestIndex : closestIndex - 1;
 };
 
 watch(
@@ -165,7 +211,16 @@ watch(
 );
 
 const tagHyphenation = async () => {
-  selectedIndexes.value.push(currentIndex.value);
+  // Get real-time index instead of debounced currentIndex
+  const realTimeIndex = getRealTimeCurrentIndex();
+
+  // Only add if not already in the array (prevent duplicates)
+  if (!selectedIndexes.value.includes(realTimeIndex)) {
+    selectedIndexes.value.push(realTimeIndex);
+  }
+
+  // Update the currentIndex immediately for UI consistency
+  currentIndex.value = realTimeIndex;
 
   await nextTick();
 
@@ -173,17 +228,19 @@ const tagHyphenation = async () => {
 };
 
 const untagHyphenation = async () => {
+  // Get real-time index instead of debounced currentIndex
+  const realTimeIndex = getRealTimeCurrentIndex();
   selectedIndexes.value = selectedIndexes.value.filter(
-    (item) => item !== currentIndex.value
+    (item) => item !== realTimeIndex
   );
+
+  // Update the currentIndex immediately for UI consistency
+  currentIndex.value = realTimeIndex;
 
   await nextTick();
 
   splitWord();
 };
-
-// Create a debounced version of updateCurrentIndex for smoother detection
-const debouncedUpdateCurrentIndex = debounce(updateCurrentIndex, 50);
 
 onMounted(async () => {
   // Ensure itemsRef is populated with the correct elements
@@ -194,16 +251,19 @@ onMounted(async () => {
 
   itemsRef.value = Array.from(containerRef.value.querySelectorAll(".item"));
 
-  // Add scroll event listeners
-  containerRef.value.addEventListener("scroll", handleScrollVibration); // Immediate for vibration
-  containerRef.value.addEventListener("scroll", debouncedUpdateCurrentIndex); // Debounced for UI
+  // Add scroll event listener - now handles both vibration and immediate index update
+  containerRef.value.addEventListener("scroll", handleScrollVibration);
 });
 
 onBeforeUnmount(() => {
-  // Clean up event listeners
+  // Clean up event listener and timeout
   if (containerRef.value) {
     containerRef.value.removeEventListener("scroll", handleScrollVibration);
-    containerRef.value.removeEventListener("scroll", debouncedUpdateCurrentIndex);
+  }
+
+  // Clear any pending timeout
+  if (scrollTimeout) {
+    clearTimeout(scrollTimeout);
   }
 });
 </script>

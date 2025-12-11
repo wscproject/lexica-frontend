@@ -148,8 +148,13 @@ onMounted(() => {
       const x = positions.interactPosition.x + event.dx;
       let y = positions.interactPosition.y + event.dy;
 
+      const maxDownwardDrag = 80; // Maximum pixels allowed to drag down
+
       if (y > 0) {
-        y = y / 1.35; // Do nothing if trying to move downward
+        // Hard cutoff: stop accepting drag input beyond threshold
+        if (y > maxDownwardDrag) {
+          y = maxDownwardDrag; // Lock at maximum position
+        }
       }
 
       let rotation = interactMaxRotation * (x / interactXThreshold);
@@ -180,6 +185,8 @@ onMounted(() => {
     transform: transformString,
     display: positions.isShowing ? 'block' : 'none',
     touchAction: 'none',
+    transition: positions.isInteractAnimating ? 'transform 0.4s cubic-bezier(0.25, 1, 0.5, 1)' : 'none',
+    willChange: positions.isInteractAnimating ? 'auto' : 'transform',
   }" ref="cardRef" :class="[
     'absolute bg-[var(--background-color-base)] rounded-[1rem] w-full h-full max-h-[640px] min-w-[18rem] max-w-[448px] minwidth border border-[#C8CCD1] dark:border-[#54595D] z-[5] shadow-custom',
   ]">
