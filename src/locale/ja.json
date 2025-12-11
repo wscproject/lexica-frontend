@@ -1,0 +1,149 @@
+{
+	"@metadata": {
+		"authors": [
+			"Largestone"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "ログイン",
+			"logout": "ログアウト",
+			"locale": "表示言語",
+			"theme": "テーマ",
+			"auto": "自動",
+			"autoDesc": "システムまたはブラウザのテーマに従う",
+			"light": "ライト",
+			"dark": "ダーク",
+			"language": "英語",
+			"accessibility": "アクセシビリティ",
+			"loggingout": "ログアウト中...",
+			"logoutsuccess": "ログアウトしました。",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexicaは{wikidata}が提供するツールです",
+		"about": "このサイトについて",
+		"privacy": "プライバシー",
+		"license": "ライセンス"
+	},
+	"accessibilityDialog": {
+		"title": "アクセシビリティ",
+		"apply": "適用",
+		"close": "閉じる",
+		"subtitle1": "テキスト",
+		"subtitle2": "アニメーション",
+		"option1": "太字テキスト",
+		"option2": "代替フォントを使用（Atkinson Hyperlegible Next）",
+		"option2Note": "注意: 一部の文字はこのフォントでは表示されない可能性があります。",
+		"option3": "リンクに下線を引く",
+		"option4": "動きを減らす"
+	},
+	"localeDialog": {
+		"title": "表示言語",
+		"footerText": "あなたの言語の翻訳を追加または改善したいですか?",
+		"footerLink": "Lexicaの翻訳を手伝ってください。",
+		"cancel": "キャンセル",
+		"apply": "適用"
+	},
+	"darkmodeDialog": {
+		"title": "テーマ",
+		"auto": "自動",
+		"desc": "ブラウザのテーマに従う",
+		"light": "ライト",
+		"dark": "ダーク",
+		"cancel": "キャンセル",
+		"apply": "適用"
+	},
+	"contributionLangDialog": {
+		"placeholder": "言語を選択",
+		"cancel": "キャンセル",
+		"apply": "適用",
+		"emptySearch1": "言語が見つかりません。"
+	},
+	"activityDialog": {
+		"cancel": "キャンセル",
+		"apply": "適用"
+	},
+	"home": {
+		"unauth": {
+			"title": "ようこそ!",
+			"privacyPolicy": "Lexicaプライバシーポリシー",
+			"login": "ログイン"
+		},
+		"auth": {
+			"title": "こんにちは",
+			"start": "貢献を始める",
+			"tutorial": "チュートリアルを読む"
+		},
+		"loading": "読み込み中..."
+	},
+	"tutorial": {
+		"title": "チュートリアル",
+		"of": "の",
+		"start": "貢献を始める",
+		"one": {
+			"title": "Lexicaとは何ですか?"
+		},
+		"two": {
+			"title": "使い方",
+			"point1Title": "ホームページ",
+			"point4Title": "スキップボタン",
+			"point5Title": "セッションを終了"
+		},
+		"three": {
+			"point3Title": "操作ボタン"
+		}
+	},
+	"tooltips": {
+		"home": "ホームページに戻る",
+		"account": "アカウント",
+		"info": "語彙素の情報を表示",
+		"item": "項目の情報を表示",
+		"back": "戻る"
+	},
+	"session": {
+		"error": {
+			"title": "エラーが発生しました",
+			"button": "再読み込み"
+		},
+		"noInternet": {
+			"button": "もう一度試す"
+		},
+		"empty": {
+			"button": "ホームページに戻る"
+		},
+		"button1": "スキップ",
+		"button2": "セッションを終了",
+		"main": {
+			"button2": "次",
+			"emptySearch1": "見つかりませんでした。",
+			"loadmore": "さらに読み込む",
+			"loading": "読み込み中..."
+		},
+		"scriptWriting": {
+			"button": "次へ",
+			"placeholder": "ここに入力"
+		},
+		"hyphenation": {
+			"button2": "次へ"
+		},
+		"detail": {
+			"lexeme": "語彙素",
+			"title1": "この語彙素"
+		}
+	},
+	"license": {
+		"section2": {
+			"subtitle3": "フォント"
+		}
+	},
+	"aria": {
+		"account": "アカウント",
+		"backToHome": "ホームに戻る",
+		"showLexemeDetail": "語彙素の詳細を表示",
+		"showItemDetail": "項目の詳細を表示",
+		"back": "戻る",
+		"close": "閉じる"
+	}
+}
