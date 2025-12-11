@@ -346,13 +346,11 @@ onBeforeUnmount(() => {
           ? untagHyphenation()
           : tagHyphenation()
         ">
-        <img v-if="selectedIndexes.find((item) => item !== currentIndex)" :src="isThemeDark ? DivideDark : Divide"
+        <img v-if="!selectedIndexes.find((item) => item === currentIndex)" :src="isThemeDark ? DivideDark : Divide"
           alt="divide" />
         <CdxIcon v-else :icon="cdxIconUndo" />
-        <span v-if="selectedIndexes.find((item) => item !== currentIndex)">{{ t("session.hyphenation.button1") }}</span>
-        <span v-if="selectedIndexes.find((item) => item === currentIndex)">{{ t("session.hyphenation.button1alt")
-        }}</span>
-
+        <span v-if="!selectedIndexes.find((item) => item === currentIndex)">{{ t("session.hyphenation.button1") }}</span>
+        <span v-else>{{ t("session.hyphenation.button1alt") }}</span>
       </CdxButton>
 
       <CdxButton class="interactable" aria-label="Next" @click="scrollNext" :disabled="currentIndex < 0 ||
