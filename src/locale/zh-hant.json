@@ -184,6 +184,7 @@
 		},
 		"hyphenation": {
 			"button1": "在此拆分",
+			"button1alt": "還原",
 			"button2": "下一頁"
 		},
 		"detail": {

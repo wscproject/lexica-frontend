@@ -1,0 +1,97 @@
+{
+	"@metadata": {
+		"authors": [
+			"Plana",
+			"TFX202X"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "登录",
+			"logout": "登出",
+			"locale": "显示语言",
+			"theme": "主题",
+			"auto": "自动",
+			"autoDesc": "跟随您的系统/浏览器主题",
+			"light": "浅色",
+			"dark": "深色",
+			"language": "英语",
+			"accessibility": "无障碍",
+			"loggingout": "登出中...",
+			"logoutsuccess": "您退出登录了。",
+			"ok": "确定"
+		}
+	},
+	"footer": {
+		"label": "Lexica是由{wikidata}为您带来的一款工具",
+		"about": "关于",
+		"privacy": "隐私",
+		"license": "许可协议"
+	},
+	"accessibilityDialog": {
+		"title": "无障碍",
+		"apply": "应用",
+		"close": "关闭",
+		"subtitle1": "文本",
+		"subtitle2": "动画",
+		"option1": "粗体文本",
+		"option2": "使用替代字体（Atkinson Hyperlegible Next）",
+		"option2Note": "注意：此字体可能无法渲染某些字符。",
+		"option3": "为链接添加下划线",
+		"option4": "减少动效",
+		"option4Note": "最小化动画和过渡效果"
+	},
+	"localeDialog": {
+		"title": "显示语言",
+		"footerText": "想要添加或改进您语言的翻译吗？",
+		"footerLink": "帮助翻译Lexica。",
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"darkmodeDialog": {
+		"title": "主题",
+		"auto": "自动",
+		"desc": "跟随您的浏览器主题",
+		"light": "浅色",
+		"dark": "深色",
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"contributionLangDialog": {
+		"title": "为Lexemes做贡献",
+		"placeholder": "搜索语言",
+		"cancel": "取消",
+		"apply": "应用",
+		"emptySearch1": "未找到任何语言。",
+		"emptySearch2": "尝试使用不同的关键词。"
+	},
+	"activityDialog": {
+		"title": "贡献类别",
+		"connect": {
+			"title": "将Lexeme链接至项目",
+			"description": "将Lexeme链接至具有相同概念的项目"
+		},
+		"script": {
+			"title": "脚本变体",
+			"description": "为Lexeme添加脚本变体"
+		},
+		"hyphenation": {
+			"title": "连字符连接",
+			"description": "将Lexeme划分为音节"
+		},
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"home": {
+		"unauth": {
+			"title": "欢迎！",
+			"title2": "轻松完善Wikidata上的词典数据",
+			"body1": "是一款创新工具，旨在让您能够轻松地为Wikidata上的词典数据做出贡献。"
+		}
+	},
+	"session": {
+		"hyphenation": {
+			"button1alt": "撤销"
+		}
+	}
+}
