@@ -1,0 +1,169 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleman",
+			"Hedda"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Oturum aç",
+			"logout": "Oturumu kapat",
+			"locale": "Görüntüleme dili",
+			"theme": "Tema",
+			"auto": "Otomatik",
+			"autoDesc": "Sistem/tarayıcı temasını kullan",
+			"light": "Açık",
+			"dark": "Koyu",
+			"language": "İngilizce",
+			"accessibility": "Erişilebilirlik",
+			"loggingout": "Oturum kapatılıyor...",
+			"logoutsuccess": "Oturumu kapattınız.",
+			"ok": "Tamam"
+		}
+	},
+	"footer": {
+		"label": "Lexica, Vikiveri tarafından sunulan bir araçtır",
+		"about": "Hakkında",
+		"privacy": "Gizlilik",
+		"license": "Lisans"
+	},
+	"accessibilityDialog": {
+		"title": "Erişilebilirlik",
+		"apply": "Uygula",
+		"close": "Kapat",
+		"subtitle1": "Metin",
+		"subtitle2": "Animasyon",
+		"option1": "Kalın metin",
+		"option2": "Alternatif yazı tipi kullan (Atkinson Hyperlegible Next)",
+		"option2Note": "Not: Bazı karakterler bu yazı tipinde görüntülenmeyebilir.",
+		"option3": "Bağlantıların altını çiz",
+		"option4": "Hareketi azalt",
+		"option4Note": "Animasyonları ve geçişleri en aza indirin"
+	},
+	"localeDialog": {
+		"title": "Görüntüleme dili",
+		"footerText": "Kendi dilinizde bir çeviri eklemek veya mevcut çeviriyi geliştirmek ister misiniz?",
+		"footerLink": "Lexica'yı çevirmeye yardımcı olun.",
+		"cancel": "İptal",
+		"apply": "Uygula"
+	},
+	"darkmodeDialog": {
+		"title": "Tema",
+		"auto": "Otomatik",
+		"desc": "Mevcut tarayıcı temasını kullan",
+		"light": "Açık",
+		"dark": "Koyu",
+		"cancel": "İptal",
+		"apply": "Uygula"
+	},
+	"contributionLangDialog": {
+		"title": "Şu dildeki sözlükbirimlerine katkıda bulunun:",
+		"placeholder": "Dil ara",
+		"cancel": "İptal",
+		"apply": "Uygula",
+		"emptySearch1": "Dil bulunamadı.",
+		"emptySearch2": "Farklı anahtar kelimeler kullanmayı deneyin."
+	},
+	"activityDialog": {
+		"title": "Katkı türü",
+		"connect": {
+			"title": "Sözlükbirimden ögeye",
+			"description": "Aynı kavrama sahip bir sözlükbirimi bir ögeyle ilişkilendir"
+		},
+		"script": {
+			"title": "Yazı sistemi varyantları",
+			"description": "Bir sözlükbirim için yazı sistemi varyantları ekle"
+		},
+		"hyphenation": {
+			"title": "Heceleme",
+			"description": "Bir sözlükbirimini hecelerine ayır"
+		},
+		"cancel": "İptal",
+		"apply": "Uygula"
+	},
+	"home": {
+		"unauth": {
+			"title": "Hoş geldiniz!",
+			"title2": "Vikiveri’deki sözlükbilimsel verileri kolayca tamamlayın",
+			"body1": "Vikiveri'deki sözlükbilimsel verilere kolay ve sorunsuz biçimde katkıda bulunmanızı sağlamak için geliştirilmiş yenilikçi bir araçtır.",
+			"body2": "Lexica'yı kullanarak şunları kabul etmiş olursunuz:",
+			"privacyPolicy": "Lexica Gizlilik Politikası",
+			"login": "Oturum aç",
+			"info": "Gizlilik politikamızı, Lexica'nın geliştirme sürecinin 20 Ağustos 2025 saat 20.00 DHBY (Dünya'nın Herhangi Bir Yeri) itibarıyla tamamlandığını belirtecek şekilde güncelleyeceğiz. Veri işleme veya gizlilik uygulamalarında herhangi bir değişiklik bulunmamaktadır."
+		},
+		"auth": {
+			"title": "Merhaba",
+			"languageSelect": "Şu dildeki sözlükbirimlerine katkıda bulunun:",
+			"start": "Katkıda bulunmaya başlayın",
+			"tutorial": "Öğreticiyi okuyun"
+		},
+		"loading": "Yükleniyor..."
+	},
+	"tutorial": {
+		"title": "Öğretici",
+		"of": "/",
+		"start": "Katkıda bulunmaya başlayın",
+		"one": {
+			"title": "Lexica nedir?",
+			"content": "Lexica, Vikiveri’deki sözlükbilimsel verileri düzenlemek için yeni yollar keşfetmeyi amaçlayan bir araçtır. Burada Lexica, hızlı katkıları kolaylaştırmak için Vikiveri'deki sözlükbilimsel veriler için özel bir düzenleme görünümü sunar. Size, Vikiveri’deki ögelerle ilişkilendirilmesi gereken sözlükbirimler verilecektir."
+		},
+		"two": {
+			"title": "Nasıl kullanılır",
+			"point1Title": "Anasayfa",
+			"point1Content": "katkı yaptığınız oturumu sonlandırın ve anasayfaya dönün.",
+			"point2Title": "Kart numarası",
+			"point2Content": "şu anda gösterilen kartların sırasını görüntüler.",
+			"point3Title": "Kart hareketi",
+			"point3Content": "kart başlığında yukarı kaydırarak mevcut kartı geç.",
+			"point4Title": "Atla butonu",
+			"point4Content": "bu butonu kartı geçmenin başka bir yolu olarak kullan.",
+			"point5Title": "Oturumu bitir",
+			"point5Content": "katkı yaptığınız oturumu sonlandırın ve anasayfaya dönün."
+		},
+		"three": {
+			"title": "Bir katkı kartının yapısı",
+			"point1Title": "Başlık",
+			"point1Content": "sözlükbirimi, sözlükbirim kimliğini, sözlükbirimin tanımını ve sözlükbirimle ilgili ek bilgileri görüntülemeye yarayan bir butonu içerir.",
+			"point2Title": "Kart içeriği",
+			"point2Content": "soru, arama kutusu ve öge veya arama sonuçlarını içerir.",
+			"point3Title": "Eylem butonları",
+			"point3Content": "doğru ögeyi seçtikten sonra \"İleri\"yi, hiçbirini bulamazsanız \"Öge bulunamadı\"yı seçin."
+		},
+		"four": {
+			"title": "Hepsi tamam!",
+			"content1": "Lexica ile Vikiveri'deki sözlükbilimsel verilere katkı yaparken keyifli çalışmalar!",
+			"content2": "İpucu: Bu eğitimi anasayfadan yeniden görüntüleyebilirsiniz."
+		}
+	},
+	"tooltips": {
+		"home": "Anasayfaya dön",
+		"account": "Hesap",
+		"info": "Sözlükbirim bilgilerini göster",
+		"item": "Öge bilgilerini göster",
+		"back": "Geri dön"
+	},
+	"session": {
+		"loading": "Kartlar yükleniyor...",
+		"error": {
+			"title": "Bir şeyler yanlış gitti",
+			"description": "Lütfen sayfayı yeniden yüklemeyi deneyin.",
+			"button": "Yeniden yükle"
+		},
+		"noInternet": {
+			"title": "Katkı yüklenemedi.",
+			"description": "İnternet bağlantınızı kontrol edip tekrar deneyin.",
+			"button": "Tekrar dene"
+		},
+		"empty": {
+			"title": "Şu anda tekrar doldurulabilecek kart bulunmamaktadır.",
+			"button": "Anasayfaya dön"
+		},
+		"title": "Kart",
+		"button1": "Atla",
+		"button2": "Oturumu bitir",
+		"main": {
+			"title": "Yukarıdaki sözlükbirim anlamıyla aynı kavrama sahip olan aşağıdaki öge hangisidir?"
+		}
+	}
+}
