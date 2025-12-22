@@ -8,10 +8,10 @@
 		"menu": {
 			"login": "Aanmelden",
 			"logout": "Afmelden",
-			"locale": "Taal voor weergave",
+			"locale": "Weergavetaal",
 			"theme": "Thema",
 			"auto": "Automatisch",
-			"autoDesc": "Volg uw systeem-/browserthema",
+			"autoDesc": "Uw systeem-/browserthema volgen",
 			"light": "Licht",
 			"dark": "Donker",
 			"language": "Engels",
@@ -41,7 +41,7 @@
 		"option4Note": "Animaties en overgangen beperken"
 	},
 	"localeDialog": {
-		"title": "Taal voor weergave",
+		"title": "Weergavetaal",
 		"footerText": "Wilt u vertalingen in uw taal toevoegen of verbeteren?",
 		"footerLink": "Help Lexica vertalen.",
 		"cancel": "Annuleren",
@@ -50,7 +50,7 @@
 	"darkmodeDialog": {
 		"title": "Thema",
 		"auto": "Automatisch",
-		"desc": "Volg uw browserthema",
+		"desc": "Uw browserthema volgen",
 		"light": "Licht",
 		"dark": "Donker",
 		"cancel": "Annuleren",
@@ -162,6 +162,7 @@
 		"button1": "Overslaan",
 		"button2": "Sessie beëindigen",
 		"main": {
+			"title": "Welk item hieronder heeft hetzelfde concept als de bovenstaande Lexeme Sense?",
 			"search": "Item of QID zoeken",
 			"recommendation": "Aanbevelingen",
 			"result": "Zoekresultaten",
@@ -183,6 +184,7 @@
 		},
 		"hyphenation": {
 			"button1": "Hier opdelen",
+			"button1alt": "Ongedaan maken",
 			"button2": "Volgende"
 		},
 		"detail": {
