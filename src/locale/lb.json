@@ -8,22 +8,32 @@
 		"menu": {
 			"login": "Aloggen",
 			"logout": "Ausloggen",
+			"locale": "Sprooch vum Interface",
 			"theme": "Faarfscheema",
 			"auto": "Automatesch",
+			"autoDesc": "Um Browserscheema orientéieren",
 			"light": "Hell",
 			"dark": "Däischter",
+			"language": "Englesch",
+			"accessibility": "Accessibilitéit",
+			"loggingout": "Ausloggen...",
 			"logoutsuccess": "Dir sidd ausgeloggt.",
 			"ok": "OK"
 		}
 	},
 	"footer": {
 		"about": "Iwwer",
+		"privacy": "Dateschutz",
 		"license": "Lizenz"
 	},
 	"accessibilityDialog": {
+		"title": "Accessibilitéit",
+		"apply": "Uwenden",
 		"close": "Zoumaachen",
 		"subtitle1": "Text",
 		"subtitle2": "Animatioun",
+		"option1": "Fettgedréckten Text",
+		"option2": "Alternativ Schrëftaart benotzen (Atkinson Hyperlegible Next)",
 		"option3": "Linken ënnersträichen",
 		"option4": "Beweegung reduzéieren"
 	},
