@@ -22,6 +22,7 @@
 		}
 	},
 	"footer": {
+		"label": "Lexica ass en Tool, dat duerch {wikidata} erméiglecht gëtt",
 		"about": "Iwwer",
 		"privacy": "Dateschutz",
 		"license": "Lizenz"
@@ -34,49 +35,84 @@
 		"subtitle2": "Animatioun",
 		"option1": "Fettgedréckten Text",
 		"option2": "Alternativ Schrëftaart benotzen (Atkinson Hyperlegible Next)",
+		"option2Note": "Nott: Et ka sinn, datt verschidden Zeechen net an där Schrëftaart duergestallt kënne ginn.",
 		"option3": "Linken ënnersträichen",
-		"option4": "Beweegung reduzéieren"
+		"option4": "Beweegung reduzéieren",
+		"option4Note": "Animatiounen an Iwwergäng miniméieren"
 	},
 	"localeDialog": {
-		"footerLink": "Hëllef beim Iwwersetze vu Lexica.",
-		"cancel": "Ofbriechen"
+		"title": "Sprooch vum Interface",
+		"footerText": "Wëllt Dir Iwwersetzungen op Är Sprooch derbäisetzen oder verbesseren?",
+		"footerLink": "Hëlleft beim Iwwersetze vu Lexica.",
+		"cancel": "Ofbriechen",
+		"apply": "Uwenden"
 	},
 	"darkmodeDialog": {
 		"title": "Faarfscheema",
 		"auto": "Automatesch",
+		"desc": "Um Browserscheema orientéieren",
 		"light": "Hell",
 		"dark": "Däischter",
-		"cancel": "Ofbriechen"
+		"cancel": "Ofbriechen",
+		"apply": "Uwenden"
 	},
 	"contributionLangDialog": {
+		"title": "Bäidroen zu Lexeemer op",
+		"placeholder": "Sprooch sichen",
 		"cancel": "Ofbriechen",
-		"emptySearch1": "Keng Sprooche fonnt."
+		"apply": "Uwenden",
+		"emptySearch1": "Keng Sprooch fonnt.",
+		"emptySearch2": "Probéiert et mat anere Sichbegrëffer."
 	},
 	"activityDialog": {
-		"hyphenation": {
-			"title": "Wuerttrennung"
+		"title": "Bäitragstyp",
+		"connect": {
+			"title": "Lexeem mat Element",
+			"description": "Verbannt e Lexeem mat engem Element fir de selwechte Begrëff"
 		},
-		"cancel": "Ofbriechen"
+		"script": {
+			"title": "Schrëftvarianten",
+			"description": "Setzt Schrëftvariante fir e Lexeem derbäi"
+		},
+		"hyphenation": {
+			"title": "Wuerttrennung",
+			"description": "Spléckt e Lexeem a Silben op"
+		},
+		"cancel": "Ofbriechen",
+		"apply": "Uwenden"
 	},
 	"home": {
 		"unauth": {
 			"title": "Wëllkomm!",
+			"title2": "Komplettéiert lexikographesch Donnéeën op Wikidata mat Liichtegkeet",
+			"body2": "Andeems Dir Lexica benotzt, erkläert Dir Iech averstane mat den",
+			"privacyPolicy": "Dateschutzrichtlinne vu Lexica",
 			"login": "Aloggen"
 		},
 		"auth": {
 			"title": "Moien",
-			"tutorial": "Liest den Tutorial"
+			"languageSelect": "Bäidroen zu Lexeemer op",
+			"start": "Ufänke mat bäidroen",
+			"tutorial": "D'Uleedung liesen"
 		},
 		"loading": "Gëtt gelueden..."
 	},
 	"tutorial": {
 		"title": "Uleedung",
+		"of": "vu(n)",
+		"start": "Ufänke mat bäidroen",
 		"one": {
 			"title": "Wat ass Lexica?"
 		},
 		"two": {
+			"title": "Wéi benotzen",
 			"point1Title": "Haaptsäit",
-			"point4Title": "Iwwersprangknäppchen"
+			"point4Title": "Iwwersprangknäppchen",
+			"point5Title": "Sessioun ofschléissen"
+		},
+		"four": {
+			"content1": "Vill Spaass mam Bäidroe vu lexikographeschen Donnéeë fir Wikidata mat Lexica!",
+			"content2": "Tipp: Dir kënnt dës Uleedung nach eng Kéier vun der Homepage aus kucken."
 		}
 	},
 	"tooltips": {
@@ -87,55 +123,79 @@
 		"back": "Zeréck goen"
 	},
 	"session": {
+		"loading": "Kaarte gi gelueden...",
 		"error": {
 			"title": "Et ass eppes schif gaangen",
-			"description": "Probéiert dës Säit nei ze lueden."
+			"description": "Probéiert dës Säit nei ze lueden.",
+			"button": "Nei lueden"
 		},
 		"noInternet": {
+			"title": "De Bäitrag konnt net eropgeluede ginn",
 			"description": "Iwwerpréift Är Internetverbindung a probéiert dann nach eng Kéier.",
 			"button": "Nach eng Kéier probéieren"
 		},
 		"empty": {
+			"title": "Am Moment gëtt et keng Kaarte méi, déi nach ausgefëllt kënne ginn.",
 			"button": "Zeréck op d'Haaptsäit"
 		},
 		"title": "Kaart",
 		"button1": "Iwwersprangen",
+		"button2": "Sessioun ofschléissen",
 		"main": {
+			"title": "Wéi ee vun den Elementer hei drënner steet fir de selwechte Begrëff wéi d'Lexeembedeitung uewen?",
 			"search": "Element oder QID sichen",
+			"recommendation": "Virschléi",
+			"result": "Sichresultater",
 			"button1": "Element net fonnt",
 			"button2": "Nächst",
 			"emptySearch1": "Keng Resultater fonnt.",
+			"emptySearch2": "Probéiert et mat anere Sichbegrëffer.",
+			"emptySuggestion1": "Keng Virschléi fonnt.",
+			"emptySuggestion2": "Probéiert manuell nom Element ze sichen.",
 			"loadmore": "Méi lueden",
-			"loading": "Gëtt gelueden..."
+			"loading": "Gëtt gelueden...",
+			"emptyLoad": "Dir sidd um Enn vun de Sichresultater ukomm"
 		},
 		"scriptWriting": {
 			"title2": "op {lang}",
-			"button": "Nächst"
+			"button": "Nächst",
+			"placeholder": "Hei schreiwen"
 		},
 		"hyphenation": {
+			"button1": "Hei opsplécken",
+			"button1alt": "Réckgängeg",
 			"button2": "Nächst"
 		},
 		"detail": {
 			"lexeme": "Lexeem",
+			"loading": "Lexeeminformatioune ginn ofgeruff",
 			"title1": "Dëse Lexeem",
+			"title2": "Dës Bedeitung",
 			"subtitle1": "Aussoen",
 			"subtitle2": "An anere Sproochen",
 			"title3": "Aner Bedeitungen",
 			"senseCount": "Bedeitung {count}",
+			"usageExample": "Verwendungsbeispill",
 			"hasCharacteristics": "charakteriséiert duerch",
+			"combinesLexemes": "zesummegesat aus",
 			"images": "Bild",
 			"languageStyle": "Sproochstil",
+			"fieldOfUsage": "Verwendungskontext",
+			"locationOfSenseUsage": "Verwendungsgéigend",
 			"semanticGender": "semantescht Geschlecht",
 			"synonym": "Synonym",
 			"antonym": "Antonym",
 			"itemForThisSense": "Element fir dës Bedeitung",
 			"otherGlosses": "An anere Sproochen",
-			"sense": "Bedeitung"
+			"allSense": "All Bedeitungen",
+			"sense": "Bedeitung",
+			"grammaticalFeature": "D'grammatesch Funktioune vun dëser Form:"
 		},
 		"item": {
 			"wikidata": "Wikidata-Element",
 			"statements": "Aussoen",
 			"translations": "Iwwersetzung",
+			"loading": "Elementinformatioune ginn ofgeruff",
 			"images": "Bild",
 			"instanceOf": "ass en(g)",
 			"partOf": "ass en Deel vun",
@@ -145,10 +205,13 @@
 			"aliases": "Och bekannt als:"
 		},
 		"preview": {
+			"title": "Virschau",
 			"lexeme": "Lexeem",
 			"newStatement": "Nei Ausso: {statement}",
 			"statement": "Element fir dës Bedeitung",
 			"button1": "Änneren",
+			"button2": "Fäerdeg",
+			"empty": "Et gi keng Ännerunge gemaach",
 			"reason": "Grond: Element net fonnt"
 		},
 		"scriptPreview": {
@@ -157,20 +220,35 @@
 		"hyphenationPreview": {
 			"newStatement": "Nei Ausso: Wuerttrennung (P5279)"
 		},
+		"upload": "Bäitrag gëtt eropgelueden...",
+		"recLoading": "Virschléi gi gelueden",
 		"cardError": {
+			"title": "Eropluede feelgeschloen",
 			"description": "Iwwerpréift Är Internetverbindung a probéiert nach eng Kéier.",
 			"button": "Nach eng Kéier probéieren"
 		},
 		"done": {
+			"title": "Merci fir Är Bäiträg mat Lexica!",
 			"button": "Zeréck op d'Haaptsäit"
 		},
 		"skip": {
-			"title": "Kaart iwwersprongen."
+			"title": "Kaart iwwersprongen.",
+			"button": "Réckgängeg"
+		},
+		"warning": {
+			"title": "Dës Bäitragssessioun ofschléissen?",
+			"content": "Dir hutt bis elo u(n)",
+			"subtext": "kenger Kaart geschafft. | Kaart geschafft. | Kaarte geschafft.",
+			"button1": "Virufuere mat Bäiträg",
+			"button2": "Sessioun ofschléissen",
+			"loading": "Sessioun gëtt ofgeschloss..."
 		},
 		"blank": {
+			"title": "Am Moment gëtt et keng Kaarte méi, déi nach ausgefëllt kënne ginn.",
 			"button": "Zeréck op d'Haaptsäit"
 		},
 		"emptyStatement": "Ausso net fonnt",
+		"emptyDescriptionHead": "Definitioun net fonnt op",
 		"emptyDescription": "Definitioun net fonnt"
 	},
 	"about": {
@@ -178,15 +256,31 @@
 		"page": "dës Säit"
 	},
 	"privacy": {
+		"header": "Dateschutz",
+		"title1": "Dateschutzrichtlinnen",
 		"version": "Versioun",
+		"section2": {
+			"privacy": "Dateschutzrichtlinne vun der Wikimedia Foundation"
+		},
 		"title3": "Lizenz",
-		"section3": "Kuckt d'{Lizenz}-Säit.",
-		"license": "Lizenz"
+		"section3": "Kuckt d'{license}-Säit.",
+		"license": "Lizenz",
+		"title4": "Ännerungen un den Dateschutzrichtlinnen",
+		"section4": {
+			"point1": "Lexica ka seng Dateschutzrichtlinnen zu all Moment änneren."
+		}
 	},
 	"license": {
 		"title1": "Lizenz",
+		"section1": {
+			"content1": "{lexica} an all seng Komponente ginn ënnert der Lizenz „{gnu}“ (GNU GPL-2.0) verëffentlecht. All Donnéeën, déi mat dësem Tool bäigedroe ginn, ginn op Wikidata ënnert der Lizenz „{cc0}“ (CC0) gespäichert.",
+			"content2": "De Quellcode fir Lexica ass an de follgende Repositories disponibel:"
+		},
 		"title2": "Open-Source-Komponenten",
 		"section2": {
+			"content": "Hei sinn d'Open-Source-Komponenten, déi vu Lexica benotzt ginn:",
+			"subtitle1": "Frontend-Bibliothéiken a Frameworks",
+			"subtitle2": "Backend-Bibliothéiken a Frameworks",
 			"subtitle3": "Schrëftaarten"
 		}
 	},
@@ -194,6 +288,7 @@
 		"account": "Kont",
 		"backToHome": "Zeréck op d'Haaptsäit",
 		"showLexemeDetail": "Lexeemdetailer weisen",
+		"showItemDetail": "Elementdetailer weisen",
 		"back": "Zeréck",
 		"close": "Zoumaachen"
 	}

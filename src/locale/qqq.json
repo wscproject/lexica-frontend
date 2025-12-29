@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"Volvox"
+		]
 	},
 	"header": {
 		"menu": {
@@ -227,7 +229,7 @@
 			"button": "Button text for back to Homepage"
 		},
 		"emptyStatement": "Text that appears when an item has no definition",
-		"emptyDescriptionHead": " Text that appears when a lexeme has no defitnition on the front of the card",
+		"emptyDescriptionHead": " Text that appears when a lexeme has no definition on the front of the card",
 		"emptyDescription": "Text that appears when a lexeme has no definition inside the card"
 	},
 	"about": {
