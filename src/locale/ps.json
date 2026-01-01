@@ -1,0 +1,234 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "ننوتل",
+			"logout": "وتل",
+			"locale": "د ښکارېدنې ژبه",
+			"theme": "شاليد",
+			"auto": "خپلکاره",
+			"autoDesc": "د خپل غونډال/ښوونگر شاليد څارل",
+			"light": "روښانه",
+			"dark": "تياره",
+			"language": "انگليسي",
+			"accessibility": "لاسرسی",
+			"loggingout": "ننوځي...",
+			"logoutsuccess": "تاسو ووتلئ.",
+			"ok": "ښه"
+		}
+	},
+	"footer": {
+		"about": "په‌اړه",
+		"privacy": "پټنتيا",
+		"license": "منښتليک"
+	},
+	"accessibilityDialog": {
+		"title": "لاسرسی",
+		"apply": "پلي‌کول",
+		"close": "تړل",
+		"subtitle1": "ليک",
+		"option1": "زغرد ليک"
+	},
+	"localeDialog": {
+		"title": "د ښکارېدنې ژبه",
+		"footerLink": "لېکسيکا ژباړلو کې مرسته کول.",
+		"cancel": "ناگارل",
+		"apply": "پلي‌کول"
+	},
+	"darkmodeDialog": {
+		"title": "شاليد",
+		"auto": "خپلکاره",
+		"desc": "د خپل ښوونگر شاليد څارل",
+		"light": "روښانه",
+		"dark": "تياره",
+		"cancel": "ناگارل",
+		"apply": "پلي‌کول"
+	},
+	"contributionLangDialog": {
+		"placeholder": "ژبه پلټل",
+		"cancel": "ناگارل",
+		"apply": "پلي‌کول",
+		"emptySearch1": "هيڅ ژبې ونه موندل شوې.",
+		"emptySearch2": "توپيري ويوکو کارولو هڅه وکړئ."
+	},
+	"activityDialog": {
+		"title": "ونډې ډول",
+		"script": {
+			"title": "سکريپټ بلبڼې",
+			"description": "پيل‌ويوکي لپاره سکريپټ بلبڼې ورگډول"
+		},
+		"cancel": "ناگارل",
+		"apply": "پلي‌کول"
+	},
+	"home": {
+		"unauth": {
+			"title": "ښه راغلاست!",
+			"login": "ننوتل"
+		},
+		"auth": {
+			"title": "سلام",
+			"start": "ونډه پيلول",
+			"tutorial": "لارښوونيزې لوستل"
+		},
+		"loading": "بارېږي..."
+	},
+	"tutorial": {
+		"title": "لارښوونيزې",
+		"of": "د",
+		"start": "ونډه پيلول",
+		"two": {
+			"title": "څنگه کارول کېږي",
+			"point1Title": "کور مخ",
+			"point4Title": "پرېښودو تڼۍ",
+			"point5Title": "د غونډې پای"
+		},
+		"three": {
+			"point1Title": "سرليک",
+			"point3Title": "کړنې تڼۍ"
+		},
+		"four": {
+			"title": "ټول وشول!"
+		}
+	},
+	"tooltips": {
+		"home": "بیرته کورمخ ته",
+		"account": "گڼون",
+		"item": "توکي مالومات ښکاره کول",
+		"back": "پر شا تلل"
+	},
+	"session": {
+		"error": {
+			"button": "بيابارول"
+		},
+		"noInternet": {
+			"title": "د ونډې پورته کولو توان نلري",
+			"button": "بیا هڅه وکړئ"
+		},
+		"empty": {
+			"button": "بیرته کورمخ ته"
+		},
+		"button1": "تېرېدل",
+		"button2": "د غونډې پای",
+		"main": {
+			"recommendation": "سپارښتنې",
+			"result": "د پلټنې پايلې",
+			"button1": "توکی ونه موندل شو",
+			"button2": "راتلونکی",
+			"emptySearch1": "هېڅ پايلې ونه موندل شوې.",
+			"emptySearch2": "توپيري ويوکو کارولو هڅه وکړئ.",
+			"emptySuggestion1": "سپارښتنه ونه موندل شوه.",
+			"emptySuggestion2": "هڅه وکړئ چې توکي په لاسي ډول وپلټئ.",
+			"loadmore": "نور بارول",
+			"loading": "بارېږي..."
+		},
+		"scriptWriting": {
+			"title1": "بیا لیکل",
+			"title2": "په {lang}",
+			"button": "راتلونکی",
+			"placeholder": "دلته يې وليکئ"
+		},
+		"hyphenation": {
+			"button1": "دلته يې ووېشئ",
+			"button1alt": "ناکړل",
+			"button2": "راتلونکی"
+		},
+		"detail": {
+			"lexeme": "پيل‌ويوکی",
+			"loading": "پيل‌ويوکي مالومات ترلاسه‌کول",
+			"title1": "دا پيل‌ويوکی",
+			"title2": "دا جاج",
+			"subtitle1": "پرېکړه‌ليکونه",
+			"subtitle2": "په نورو ژبو کې",
+			"title3": "نور جاجونه",
+			"senseCount": "جاج {count}",
+			"usageExample": "کارونې بېلگه",
+			"combinesLexemes": "پيل‌ويوکي يوځای‌کول",
+			"images": "انځور",
+			"languageStyle": "ژبې ښودبڼه",
+			"fieldOfUsage": "کارولو ډگر",
+			"synonym": "هممانيز",
+			"antonym": "بډمانيز",
+			"itemForThisSense": "د دې جاج توکی",
+			"otherGlosses": "په نورو ژبو کې",
+			"allSense": "ټول جاجونه",
+			"sense": "جاج",
+			"grammaticalFeature": "د دې فورمې ژبدوديزه ځانگړنې:"
+		},
+		"item": {
+			"wikidata": "ويکي‌اومتوک توکی",
+			"statements": "پرېکړه‌ليکونه",
+			"translations": "ژباړه",
+			"loading": "توکي مالومات ترلاسه‌کول",
+			"images": "انځور",
+			"instanceOf": "نمونه د",
+			"partOf": "برخه د",
+			"subclass": "څېرمه‌ټولگی د",
+			"hasParts": "برخې لري",
+			"taxonName": "ټاکسون نوم",
+			"aliases": "بل نوم يې:"
+		},
+		"preview": {
+			"title": "مخکتنه",
+			"lexeme": "پيل‌ويوکی",
+			"newStatement": "نوی پرېکړه ليک: {statement}",
+			"statement": "د دې جاج توکی",
+			"button1": "سمون",
+			"button2": "وشو",
+			"empty": "هېڅ بدلون به نه کېږي",
+			"reason": "لامل: توکی ونه موندل شو"
+		},
+		"cardError": {
+			"title": "راپورته‌کول نابرياله شول",
+			"button": "بیا هڅه وکړئ"
+		},
+		"skip": {
+			"button": "ناکړل"
+		},
+		"warning": {
+			"button1": "سمون ته دوام ورکول",
+			"button2": "د غونډې پای",
+			"loading": "د غونډې پای..."
+		},
+		"blank": {
+			"button": "بیرته کورمخ ته"
+		},
+		"emptyStatement": "بیان ونه موندل شو",
+		"emptyDescriptionHead": "پېژندون پکې ونه موندل شو",
+		"emptyDescription": "پېژندون ونه موندل شو"
+	},
+	"about": {
+		"title": "په‌اړه",
+		"page": "همدا مخ"
+	},
+	"privacy": {
+		"header": "پټنتيا",
+		"title1": "پټنتيا تگلار",
+		"version": "بل‌بڼه",
+		"title2": "د ځانواله اومتوک مالوماتو ټولگه",
+		"section2": {
+			"privacy": "د ويکي‌رسنۍ بنسټ د پټنتيا تگلار"
+		},
+		"title3": "منښتليک",
+		"section3": "{license} مخ وگورئ.",
+		"license": "منښتليک",
+		"title4": "د پټنتيا تگلار کې بدلونونه"
+	},
+	"license": {
+		"title1": "منښتليک",
+		"section2": {
+			"subtitle3": "ليکبڼې"
+		}
+	},
+	"aria": {
+		"account": "گڼون",
+		"backToHome": "بیرته کور ته",
+		"showLexemeDetail": "پيل‌ويوکي سپيناو ښودل",
+		"showItemDetail": "توکي سپيناو ښودل",
+		"back": "پرشاکېدل",
+		"close": "تړل"
+	}
+}
