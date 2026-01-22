@@ -1,0 +1,170 @@
+{
+	"@metadata": {
+		"authors": [
+			"Cabal"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "ਦਾਖ਼ਲ ਹੋਵੋ",
+			"logout": "ਬਾਹਰ ਆਓ",
+			"auto": "ਆਪਣੇ-ਆਪ",
+			"light": "ਚਾਨਣ",
+			"dark": "ਗੂੜ੍ਹਾ",
+			"language": "ਅੰਗਰੇਜ਼ੀ",
+			"ok": "ਠੀਕ"
+		}
+	},
+	"footer": {
+		"about": "ਬਾਰੇ",
+		"privacy": "ਨਿੱਜਤਾ",
+		"license": "ਲਸੰਸ"
+	},
+	"accessibilityDialog": {
+		"apply": "ਲਾਗੂ ਕਰੋ",
+		"close": "ਬੰਦ ਕਰੋ",
+		"subtitle1": "ਲਿਖਤ",
+		"option1": "ਮੋਟੀ ਲਿਖਤ"
+	},
+	"localeDialog": {
+		"cancel": "ਰੱਦ ਕਰੋ",
+		"apply": "ਲਾਗੂ ਕਰੋ"
+	},
+	"darkmodeDialog": {
+		"auto": "ਆਪਣੇ-ਆਪ",
+		"light": "ਚਾਨਣ",
+		"dark": "ਗੂੜ੍ਹਾ",
+		"cancel": "ਰੱਦ ਕਰੋ",
+		"apply": "ਲਾਗੂ ਕਰੋ"
+	},
+	"contributionLangDialog": {
+		"title": "ਸ਼ਬਦਾਵਲੀ ਵਿੱਚ ਯੋਗਦਾਨ ਪਾਓ",
+		"placeholder": "ਬੋਲੀ ਲੱਭੋ",
+		"cancel": "ਰੱਦ ਕਰੋ",
+		"apply": "ਲਾਗੂ ਕਰੋ",
+		"emptySearch1": "ਕੋਈ ਬੋਲੀ ਨਹੀਂ ਲੱਭੀ।"
+	},
+	"activityDialog": {
+		"title": "ਯੋਗਦਾਨ ਦੀ ਕਿਸਮ",
+		"cancel": "ਰੱਦ ਕਰੋ",
+		"apply": "ਲਾਗੂ ਕਰੋ"
+	},
+	"home": {
+		"unauth": {
+			"title": "ਜੀ ਆਇਆਂ ਨੂੰ!",
+			"login": "ਦਾਖ਼ਲ ਹੋਵੋ"
+		},
+		"auth": {
+			"title": "ਸਤ ਸ੍ਰੀ ਅਕਾਲ",
+			"start": "ਯੋਗਦਾਨ ਪਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ",
+			"tutorial": "ਸਿਖਲਾਈ ਪੜ੍ਹੋ"
+		},
+		"loading": "ਲੱਦ ਰਿਹਾ ਏ..."
+	},
+	"tutorial": {
+		"title": "ਸਿਖਲਾਈ",
+		"start": "ਯੋਗਦਾਨ ਪਾਉਣਾ ਸ਼ੁਰੂ ਕਰੋ",
+		"two": {
+			"title": "ਇਸਨੂੰ ਕਿਵੇਂ ਵਰਤਣਾ ਏ",
+			"point1Title": "ਮੁੱਢਲਾ ਵਰਕਾ"
+		},
+		"three": {
+			"point1Title": "ਸਿਰਲੇਖ"
+		},
+		"four": {
+			"title": "ਸਭ ਕੁਝ ਹੋ ਗਿਆ!"
+		}
+	},
+	"tooltips": {
+		"account": "ਖਾਤਾ",
+		"back": "ਪਿੱਛੇ ਜਾਓ"
+	},
+	"session": {
+		"noInternet": {
+			"button": "ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+		},
+		"empty": {
+			"button": "ਮੁੱਢਲਾ ਵਰਕੇ 'ਤੇ ਵਾਪਸ ਜਾਓ"
+		},
+		"button1": "ਛੱਡੋ",
+		"button2": "ਅਜਲਾਸ ਖਤਮ ਕਰੋ",
+		"main": {
+			"button2": "ਅਗਲਾ",
+			"emptySearch1": "ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ।",
+			"loadmore": "ਹੋਰ ਲੱਦੋ",
+			"loading": "ਲੱਦ ਰਿਹਾ ਏ..."
+		},
+		"scriptWriting": {
+			"title1": "ਮੁੜ ਲਿਖੋ",
+			"button": "ਅੱਗੇ",
+			"placeholder": "ਇੱਥੇ ਲਿਖੋ"
+		},
+		"hyphenation": {
+			"button1": "ਇੱਥੇ ਵੰਡੋ",
+			"button1alt": "ਰੱਦ ਕਰੋ",
+			"button2": "ਅੱਗੇ"
+		},
+		"detail": {
+			"lexeme": "ਸ਼ਬਦਾਵਲੀ",
+			"images": "ਤਸਵੀਰ",
+			"languageStyle": "ਭਾਸ਼ਾ ਸ਼ੈਲੀ",
+			"fieldOfUsage": "ਵਰਤੋਂ ਦਾ ਖੇਤਰ"
+		},
+		"item": {
+			"translations": "ਉਲਥਾ",
+			"images": "ਤਸਵੀਰ",
+			"instanceOf": "ਦੀ ਮਿਸਾਲ",
+			"partOf": "ਦਾ ਹਿੱਸਾ",
+			"hasParts": "ਹਿੱਸੇ ਹਨ",
+			"aliases": "ਵਜੋਂ ਵੀ ਜਾਣਿਆ ਜਾਂਦਾ ਏ:"
+		},
+		"preview": {
+			"title": "ਝਾਤ",
+			"lexeme": "ਸ਼ਬਦਾਵਲੀ",
+			"button1": "ਸੋਧੋ",
+			"button2": "ਹੋ ਗਿਆ",
+			"empty": "ਕੋਈ ਤਬਦੀਲੀ ਨਹੀਂ ਕੀਤੀ ਜਾਵੇਗੀ।"
+		},
+		"cardError": {
+			"button": "ਮੁੜ ਕੋਸ਼ਿਸ਼ ਕਰੋ"
+		},
+		"done": {
+			"button": "ਮੁੱਢਲੇ ਵਰਕੇ 'ਤੇ ਵਾਪਸ ਜਾਓ"
+		},
+		"skip": {
+			"button": "ਰੱਦ ਕਰੋ"
+		},
+		"warning": {
+			"button1": "ਸੋਧਣਾ ਜਾਰੀ ਰੱਖੋ",
+			"button2": "ਅਜਲਾਸ ਖਤਮ ਕਰੋ",
+			"loading": "ਅਜਲਾਸ ਖਤਮ ਕੀਤਾ ਜਾ ਰਿਹਾ ਏ..."
+		},
+		"blank": {
+			"button": "ਮੁੱਢਲੇ ਵਰਕੇ 'ਤੇ ਵਾਪਸ ਜਾਓ"
+		}
+	},
+	"about": {
+		"title": "ਬਾਰੇ",
+		"page": "ਇਹ ਵਰਕਾ"
+	},
+	"privacy": {
+		"header": "ਨਿੱਜਤਾ",
+		"title1": "ਨਿੱਜਤਾ ਨੀਤੀ",
+		"version": "ਰੂਪ",
+		"title3": "ਲਸੰਸ",
+		"section3": "{license} ਵਰਕਾ ਵੇਖੋ।",
+		"license": "ਲਸੰਸ"
+	},
+	"license": {
+		"title1": "ਲਸੰਸ",
+		"section2": {
+			"subtitle3": "ਅੱਖਰ"
+		}
+	},
+	"aria": {
+		"account": "ਖਾਤਾ",
+		"backToHome": "ਮੁੱਢਲੇ ਵਰਕੇ 'ਤੇ ਵਾਪਸ ਜਾਓ",
+		"back": "ਪਿਛਾਂਹ",
+		"close": "ਬੰਦ ਕਰੋ"
+	}
+}

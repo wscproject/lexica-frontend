@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bennylin",
 			"Fexpr",
 			"Penyuwangi"
 		]
@@ -255,7 +256,7 @@
 		},
 		"skip": {
 			"title": "Kartu dilewati.",
-			"button": "Urungkan"
+			"button": "Batalkan"
 		},
 		"warning": {
 			"title": "Akhiri sesi kontribusi ini?",
