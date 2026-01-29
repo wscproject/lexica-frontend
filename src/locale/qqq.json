@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Volvox"
+			"Volvox",
+			"Woytecr"
 		]
 	},
 	"header": {
@@ -29,7 +30,7 @@
 	"accessibilityDialog": {
 		"title": "Text that leads to the user enabling accessibility features",
 		"apply": "Button text to apply an alternative font",
-		"close": "Button text to undo the application of an alternative font",
+		"close": "Button text to close window with accessibility tools",
 		"subtitle1": "Heading text that directs the user to change the font in Lexica",
 		"subtitle2": "Heading text that directs the user to change the animation motion",
 		"option1": "Text containing options that guide the user to make the text to bold",
@@ -242,7 +243,7 @@
 	},
 	"privacy": {
 		"header": "Label in the header that links to the page containing Lexica's privacy",
-		"title1": " Title of the text on the Lexica privacy page",
+		"title1": "Title of the text on the Lexica privacy page",
 		"version": "Versi",
 		"section1": "Contains content about Lexica's privacy policy",
 		"title2": "Title text inside Lexica's Privacy Policy Page",

@@ -1,0 +1,188 @@
+{
+	"@metadata": {
+		"authors": [
+			"Woytecr"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Zaloguj się",
+			"logout": "Wyloguj się",
+			"locale": "Język wyświetlania",
+			"theme": "Motyw",
+			"auto": "Automatyczny",
+			"autoDesc": "Dostosuj się do motywu graficznego systemu/przeglądarki",
+			"light": "Jasny",
+			"dark": "Ciemny",
+			"language": "Angielski",
+			"accessibility": "Dostępność",
+			"loggingout": "Wylogowywanie...",
+			"logoutsuccess": "Zostałeś wylogowany.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"about": "O narzędziu",
+		"privacy": "Polityka prywatności",
+		"license": "Licencja"
+	},
+	"accessibilityDialog": {
+		"title": "Dostępność",
+		"apply": "Zastosuj",
+		"close": "Zamknij",
+		"subtitle1": "Tekst",
+		"subtitle2": "Ruch",
+		"option1": "Tekst pogrubiony",
+		"option2": "Użyj alternatywnej czcionki (Atkinson Hyperlegible Next)",
+		"option2Note": "Uwaga: Niektóre znaki mogą nie być wyświetlane w tej czcionce.",
+		"option3": "Podkreślaj linki",
+		"option4": "Ogranicz ruchomość elementów",
+		"option4Note": "Ogranicz animacje i wizualizacje przejść"
+	},
+	"localeDialog": {
+		"title": "Język wyświetlania",
+		"footerText": "Chcesz dodać lub ulepszyć tłumaczenie w swoim języku?",
+		"footerLink": "Pomóż tłumaczyć Lexica.",
+		"cancel": "Anuluj",
+		"apply": "Zastosuj"
+	},
+	"darkmodeDialog": {
+		"title": "Motyw",
+		"auto": "Automatyczny",
+		"desc": "Dostosuj się do motywu graficznego przeglądarki",
+		"light": "Jasny",
+		"dark": "Ciemny",
+		"cancel": "Anuluj",
+		"apply": "Zastosuj"
+	},
+	"contributionLangDialog": {
+		"title": "Wnieś swój wkład do leksemów w",
+		"placeholder": "Szukaj języka",
+		"cancel": "Anuluj",
+		"apply": "Zastosuj",
+		"emptySearch1": "Nie znaleziono języków.",
+		"emptySearch2": "Spróbuj użyć innych słów kluczowych."
+	},
+	"activityDialog": {
+		"title": "Rodzaj wkładu",
+		"connect": {
+			"title": "Leksem do elementu",
+			"description": "Połącz leksem z elementem o tym samym pojęciu"
+		},
+		"script": {
+			"title": "Warianty zapisu"
+		},
+		"hyphenation": {
+			"description": "Podziel leksem na sylaby"
+		},
+		"cancel": "Anuluj",
+		"apply": "Zastosuj"
+	},
+	"home": {
+		"unauth": {
+			"title": "Witamy!",
+			"title2": "Łatwe uzupełnianie danych leksykograficznych w Wikidanych",
+			"body1": "jest innowacyjnym narzędziem stworzonym z myślą o umożliwieniu użytkownikom bezproblemowego uzupełniania danych leksykograficznych w Wikidanych.",
+			"body2": "Korzystając z Lexica, akceptujesz",
+			"privacyPolicy": "Politykę prywatności Lexica",
+			"login": "Zaloguj się",
+			"info": "Zmienimy naszą politykę prywatności, informując, że prace nad aplikacją Lexica zostały zakończone 20 sierpnia 2025 r. o godzinie 20:00 AoE (Gdziekolwiek na Ziemi). Nie wprowadzamy żadnych zmian w zakresie przetwarzania danych ani praktyk dotyczących prywatności."
+		},
+		"auth": {
+			"title": "Cześć",
+			"languageSelect": "Wnieś swój wkład do leksemów w",
+			"start": "Zacznij działania",
+			"tutorial": "Przeczytaj instrukcję"
+		},
+		"loading": "Ładowanie..."
+	},
+	"tutorial": {
+		"one": {
+			"title": "Czym jest Lexica?",
+			"content": "Lexica to narzędzie do wyszukiwania nowych sposobów edytowania danych leksykograficznych w Wikidanych. Tutaj Lexica udostępnia widok edycji danych leksykograficznych na Wikidanych, aby ułatwić szybkie edytowanie. Otrzymasz leksemy, które należy powiązać z elementami na Wikidanych."
+		},
+		"three": {
+			"title": "Budowa karty edycji",
+			"point1Title": "Nagłówek",
+			"point3Title": "Przyciski akcji"
+		}
+	},
+	"tooltips": {
+		"home": "Wróć do strony głównej",
+		"account": "Konto",
+		"info": "Pokaż informacje o leksemie",
+		"item": "Pokaż informacje o Elemencie"
+	},
+	"session": {
+		"loading": "Ładowanie kart...",
+		"error": {
+			"title": "Coś poszło nie tak",
+			"description": "Spróbuj odświeżyć tę stronę.",
+			"button": "Odśwież"
+		},
+		"noInternet": {
+			"title": "Nie udało się przesłać edycji",
+			"description": "Sprawdź swoje połączenie internetowe i spróbuj ponownie.",
+			"button": "Spróbuj ponownie"
+		},
+		"empty": {
+			"title": "W tej chwili nie ma kart do wypełnienia.",
+			"button": "Wróć do strony głównej"
+		},
+		"title": "Karta",
+		"button1": "Pomiń",
+		"button2": "Zakończ sesję",
+		"detail": {
+			"synonym": "synonim",
+			"antonym": "antonim",
+			"otherGlosses": "W innych językach"
+		}
+	},
+	"privacy": {
+		"header": "Prywatność",
+		"title1": "Polityka prywatności",
+		"version": "Wersja",
+		"section1": "Aplikacja Lexica zakończyła fazę rozwoju i jest obecnie dostępna w wersji stabilnej. Polityka prywatności może być zmieniana w razie potrzeby. Korzystając z aplikacji Lexica, użytkownicy akceptują niniejszą politykę prywatności.",
+		"title2": "Gromadzenie danych osobowych",
+		"section2": {
+			"point1": "Lexica nie przechowuje żadnych danych powiązanych z użytkownikami, takich jak między innymi nazwy użytkowników, hasła, adresy IP, historia interakcji i statystyki użytkowania.",
+			"point2": "Lexica uzyskuje tylko autoryzację do podejmowania działań w imieniu użytkowników, gdy użytkownicy logują się poprzez swoje konto użytkownika Wikimedia.",
+			"point3": "Zapisy o wkładzie użytkownika będą przechowywane w Wikidanych, co podlega {privacy}",
+			"privacy": "polityce prywatności Fundacji Wikimedia"
+		},
+		"title3": "Licencja",
+		"section3": "Zobacz stronę {license}.",
+		"license": "Licencja",
+		"title4": "Zmiany w Polityce Prywatności",
+		"section4": {
+			"point1": "Lexica może zmienić swoją politykę prywatności w dowolnym momencie.",
+			"point2": "Przed wprowadzeniem zmian do polityki prywatności Lexica powiadomi Cię o nich wcześniej, zanim zostaną one trwale wdrożone.",
+			"point3": "Powiadomienia o zmianach w polityce prywatności będą ogłaszane za pośrednictwem serwisu Lexica.",
+			"point4": "Istnieje okres zwany „okresem przejściowym”, który obejmuje siedem dni od ogłoszenia zmiany polityki prywatności do wejścia w życie nowej polityki prywatności.",
+			"point5": "Lexica zaleca użytkownikom regularne sprawdzanie zmian w polityce prywatności, którą można znaleźć na tej stronie, na stronie użytkownika w Wikidanych oraz w polityce prywatności Fundacji Wikimedia.",
+			"point6": "Kontynuując korzystanie z serwisu Lexica po zmianie polityki prywatności, użytkownik wyraża zgodę na zmienioną wersję polityki prywatności."
+		}
+	},
+	"license": {
+		"title1": "Licencja",
+		"section1": {
+			"content1": "{lexica} i wszystkie jej komponenty są publikowane na licencji {gnu} (GNU GPL-2.0). Wszystkie dane dodane za pomocą tego narzędzia będą przechowywane w Wikidanych na licencji {cc0} (CC0).",
+			"content2": "Kod źródłowy Lexica jest dostępny w następujących repozytoriach:"
+		},
+		"title2": "Komponenty z otwartym kodem",
+		"section2": {
+			"content": "Poniżej przedstawiono komponenty otrwatoźródłowe używane przez Lexica:",
+			"subtitle1": "Biblioteki i frameworki front-end",
+			"subtitle2": "Biblioteki i frameworki back-end",
+			"subtitle3": "Czcionki"
+		}
+	},
+	"aria": {
+		"account": "Konto",
+		"backToHome": "Wróć do strony głównej",
+		"showLexemeDetail": "Pokaż szczegóły Leksemu",
+		"showItemDetail": "Pokaż szczegóły Elementu",
+		"back": "Wstecz",
+		"close": "Zamknij"
+	}
+}
