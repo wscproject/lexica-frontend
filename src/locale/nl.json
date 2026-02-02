@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand"
+			"Siebrand",
+			"Sjoerddebruin"
 		]
 	},
 	"header": {
@@ -191,18 +192,26 @@
 			"lexeme": "Lexeem",
 			"loading": "Lexemegegevens verkrijgen",
 			"title1": "Dit Lexeem",
+			"title2": "Deze Betekenis",
 			"subtitle1": "Verklaringen",
 			"subtitle2": "In andere talen",
+			"title3": "Andere betekenissen",
+			"senseCount": "Betekenis {count}",
 			"usageExample": "gebruiksvoorbeeld",
 			"hasCharacteristics": "heeft kenmerken",
 			"combinesLexemes": "lexemen combineren",
 			"images": "afbeelding",
 			"languageStyle": "taalstijl",
 			"fieldOfUsage": "toepassingsgebied",
+			"locationOfSenseUsage": "plaats van betekenisgebruik",
 			"semanticGender": "semantisch geslacht",
 			"synonym": "synoniem",
 			"antonym": "antoniem",
+			"glossQuotes": "gloscitaat",
+			"itemForThisSense": "item voor deze betekenis",
 			"otherGlosses": "In andere talen",
+			"allSense": "Alle Betekenissen",
+			"sense": "Betekenis",
 			"grammaticalFeature": "Grammaticale kenmerken van dit formulier:"
 		},
 		"item": {
@@ -222,6 +231,7 @@
 			"title": "Voorvertoning",
 			"lexeme": "Lexeem",
 			"newStatement": "Nieuwe verklaring: {statement}",
+			"statement": "item voor deze betekenis",
 			"button1": "Bewerken",
 			"button2": "Afgerond",
 			"empty": "Er worden geen wijzigingen aangebracht",
