@@ -39,6 +39,8 @@ onMounted(async () => {
     displayLanguageCode: lang,
   });
 
+  console.log('login response:', JSON.stringify(response));
+
   if (response.statusCode === 200) {
     responseAPI.value = false;
     cookies.set("auth", response?.data?.token);
