@@ -42,7 +42,7 @@ const reload = () => {
 
 onMounted(() => {
   isAuth.value = cookies.get("auth");
-  console.log("Auth status:", cookies.get("auth"));
+  console.log("Authorization status:", cookies.get("auth"));
 
 });
 </script>
