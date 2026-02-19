@@ -1,7 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fexpr"
+			"Bennylin",
+			"Fexpr",
+			"Penyuwangi"
 		]
 	},
 	"header": {
@@ -151,7 +153,7 @@
 		},
 		"noInternet": {
 			"title": "Gagal mengunggah kontribusi",
-			"description": "Periksa koneksi internet Anda, lalu coba lagi.",
+			"description": "Periksa sambungan internet Anda, lalu coba lagi.",
 			"button": "Coba lagi"
 		},
 		"empty": {
@@ -245,7 +247,7 @@
 		"recLoading": "Mendapatkan rekomendasi",
 		"cardError": {
 			"title": "Tidak dapat mengunggah kontribusi",
-			"description": "Periksa koneksi internet Anda, lalu coba lagi.",
+			"description": "Periksa sambungan internet Anda, lalu coba lagi.",
 			"button": "Coba lagi"
 		},
 		"done": {
@@ -254,7 +256,7 @@
 		},
 		"skip": {
 			"title": "Kartu dilewati.",
-			"button": "Urungkan"
+			"button": "Batalkan"
 		},
 		"warning": {
 			"title": "Akhiri sesi kontribusi ini?",

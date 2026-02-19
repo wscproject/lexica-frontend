@@ -1,0 +1,278 @@
+{
+	"@metadata": {
+		"authors": [
+			"GuoPC",
+			"Plana",
+			"TFX202X"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "登录",
+			"logout": "登出",
+			"locale": "显示语言",
+			"theme": "主题",
+			"auto": "自动",
+			"autoDesc": "跟随您的系统/浏览器主题",
+			"light": "浅色",
+			"dark": "深色",
+			"language": "英语",
+			"accessibility": "无障碍",
+			"loggingout": "登出中...",
+			"logoutsuccess": "您退出登录了。",
+			"ok": "确定"
+		}
+	},
+	"footer": {
+		"label": "Lexica是由{wikidata}为您带来的一款工具",
+		"about": "关于",
+		"privacy": "隐私",
+		"license": "许可协议"
+	},
+	"accessibilityDialog": {
+		"title": "无障碍",
+		"apply": "应用",
+		"close": "关闭",
+		"subtitle1": "文本",
+		"subtitle2": "动画",
+		"option1": "粗体文本",
+		"option2": "使用替代字体（Atkinson Hyperlegible Next）",
+		"option2Note": "注意：此字体可能无法渲染某些字符。",
+		"option3": "为链接添加下划线",
+		"option4": "减少动效",
+		"option4Note": "最小化动画和过渡效果"
+	},
+	"localeDialog": {
+		"title": "显示语言",
+		"footerText": "想要添加或改进您语言的翻译吗？",
+		"footerLink": "帮助翻译Lexica。",
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"darkmodeDialog": {
+		"title": "主题",
+		"auto": "自动",
+		"desc": "跟随您的浏览器主题",
+		"light": "浅色",
+		"dark": "深色",
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"contributionLangDialog": {
+		"title": "为Lexemes做贡献",
+		"placeholder": "搜索语言",
+		"cancel": "取消",
+		"apply": "应用",
+		"emptySearch1": "未找到任何语言。",
+		"emptySearch2": "尝试使用不同的关键词。"
+	},
+	"activityDialog": {
+		"title": "贡献类别",
+		"connect": {
+			"title": "将Lexeme链接至项目",
+			"description": "将Lexeme链接至具有相同概念的项目"
+		},
+		"script": {
+			"title": "脚本变体",
+			"description": "为Lexeme添加脚本变体"
+		},
+		"hyphenation": {
+			"title": "连字符连接",
+			"description": "将Lexeme划分为音节"
+		},
+		"cancel": "取消",
+		"apply": "应用"
+	},
+	"home": {
+		"unauth": {
+			"title": "欢迎！",
+			"title2": "轻松完善Wikidata上的词典数据",
+			"body1": "是一款创新工具，旨在让您能够轻松地为Wikidata上的词典数据做出贡献。",
+			"body2": "使用Lexica即表示您同意",
+			"privacyPolicy": "Lexica隐私政策",
+			"login": "登录",
+			"info": "我们将更新隐私政策来声明Lexica已完成开发，更新将于2025年8月20日 20:00（AoE时间）生效。数据处理和隐私保护措施不会有任何变化。"
+		},
+		"auth": {
+			"title": "您好",
+			"languageSelect": "选择为词位做出贡献的语言",
+			"start": "开始贡献",
+			"tutorial": "阅读教程"
+		},
+		"loading": "加载中…"
+	},
+	"tutorial": {
+		"title": "教程",
+		"of": "/",
+		"start": "开始贡献",
+		"one": {
+			"title": "Lexica是什么？",
+			"content": "Lexica是一个寻找编辑维基数据上词典数据新方法的工具。在这里，Lexica提供了维基数据上词典数据的编辑视图，能更轻松地进行快速贡献。您能获得需要连接到维基数据上项目的词位。"
+		},
+		"two": {
+			"title": "如何使用",
+			"point1Title": "首页",
+			"point1Content": "结束您的贡献会话并返回首页。",
+			"point2Title": "卡片号码",
+			"point2Content": "显示当前显示的卡片顺序。",
+			"point3Title": "卡片手势",
+			"point3Content": "在卡片顶部上滑即可跳过当前卡片。",
+			"point4Title": "跳过按钮",
+			"point4Content": "使用此按钮同样可以跳过一张卡片。",
+			"point5Title": "结束会话",
+			"point5Content": "结束您的贡献会话并返回首页。"
+		},
+		"three": {
+			"title": "贡献卡片分析",
+			"point1Title": "标题",
+			"point1Content": "包括词目、词位ID、词位定义以及查看有关词位的更多信息的按钮。",
+			"point2Title": "卡片内容",
+			"point2Content": "包含问题、搜索框、项目或搜索结果。",
+			"point3Title": "操作按钮",
+			"point3Content": "选择正确的项目后，选择“下一步”；如果没有找到任何项目，请选择“找不到项目”。"
+		},
+		"four": {
+			"title": "全部完成！",
+			"content1": "很高兴与Lexica一起为维基数据上的词典数据做出贡献！",
+			"content2": "提示：您可以在首页再次查看本教程。"
+		}
+	},
+	"tooltips": {
+		"home": "返回首页",
+		"account": "账号",
+		"info": "显示词位信息",
+		"item": "显示项目信息",
+		"back": "返回"
+	},
+	"session": {
+		"loading": "正在加载卡片…",
+		"error": {
+			"title": "发生错误",
+			"description": "请尝试重新加载此页面。",
+			"button": "重新加载"
+		},
+		"noInternet": {
+			"title": "无法上传贡献",
+			"description": "请检查您的网络连接，然后重试。",
+			"button": "重试"
+		},
+		"empty": {
+			"title": "目前没有任何卡片可以再次填写。",
+			"button": "返回首页"
+		},
+		"title": "卡片",
+		"button1": "跳过",
+		"button2": "结束会话",
+		"main": {
+			"title": "以下哪个选项与上述词位词义的概念相同？",
+			"search": "搜索项目或QID",
+			"recommendation": "推荐",
+			"result": "搜索结果",
+			"button1": "找不到项目",
+			"button2": "下一个",
+			"emptySearch1": "未找到结果。",
+			"emptySearch2": "尝试使用不同关键词。",
+			"emptySuggestion1": "未找到推荐内容。",
+			"emptySuggestion2": "尝试手动搜索该项目。",
+			"loadmore": "加载更多",
+			"loading": "加载中…",
+			"emptyLoad": "您已浏览完所有搜索结果"
+		},
+		"scriptWriting": {
+			"title1": "改写",
+			"title2": "在{lang}",
+			"button": "下一页",
+			"placeholder": "在此编写"
+		},
+		"hyphenation": {
+			"button1": "在此拆分",
+			"button1alt": "撤销",
+			"button2": "下一页"
+		},
+		"detail": {
+			"lexeme": "词位",
+			"loading": "获取词位信息",
+			"title1": "此词位",
+			"title2": "此词义",
+			"subtitle1": "陈述",
+			"subtitle2": "其他语言",
+			"title3": "其他词义",
+			"senseCount": "词义{count}",
+			"usageExample": "使用示例",
+			"hasCharacteristics": "具有特性",
+			"combinesLexemes": "合成词",
+			"images": "图像",
+			"languageStyle": "语言风格",
+			"fieldOfUsage": "使用领域",
+			"locationOfSenseUsage": "此词义的使用地区",
+			"semanticGender": "语义性别",
+			"synonym": "同义词",
+			"antonym": "反义词",
+			"glossQuotes": "注释引用",
+			"itemForThisSense": "此词义项目",
+			"otherGlosses": "其他语言",
+			"allSense": "所有词义",
+			"sense": "词义",
+			"grammaticalFeature": "此词形的语法特点："
+		},
+		"item": {
+			"wikidata": "维基数据项目",
+			"statements": "陈述",
+			"translations": "翻译",
+			"loading": "获取项目信息",
+			"images": "图像",
+			"instanceOf": "实例",
+			"partOf": "部分",
+			"subclass": "子类别",
+			"hasParts": "包含部分",
+			"taxonName": "学名",
+			"aliases": "又称为："
+		},
+		"preview": {
+			"title": "预览",
+			"lexeme": "词位",
+			"newStatement": "新陈述：{statement}",
+			"statement": "此词义项目",
+			"button1": "编辑",
+			"button2": "完成",
+			"empty": "不会做出任何更改",
+			"reason": "原因：未找到项目"
+		},
+		"scriptPreview": {
+			"newStatement": "已新增词目：{lang}（{code}）"
+		},
+		"hyphenationPreview": {
+			"newStatement": "新陈述：断字（P5279）"
+		},
+		"upload": "正在上传贡献…",
+		"recLoading": "获取推荐",
+		"cardError": {
+			"title": "上传失败",
+			"description": "请检查您的网络连接并重试。",
+			"button": "重试"
+		},
+		"done": {
+			"title": "感谢您使用Lexica做出贡献！",
+			"button": "返回首页"
+		},
+		"skip": {
+			"title": "卡片已跳过。",
+			"button": "撤销"
+		},
+		"warning": {
+			"title": "结束此贡献会话？",
+			"content": "您目前已参与了",
+			"subtext": "0张卡片。 | 1张卡片。 | 多张卡片。",
+			"button1": "继续编辑",
+			"button2": "结束会话",
+			"loading": "正在结束会话…"
+		},
+		"blank": {
+			"title": "目前没有任何卡片可以再次填写。",
+			"button": "返回首页"
+		},
+		"emptyStatement": "未找到陈述",
+		"emptyDescriptionHead": "未找到定义在",
+		"emptyDescription": "未找到定义"
+	}
+}

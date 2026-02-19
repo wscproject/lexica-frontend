@@ -1,17 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Siebrand"
+			"Siebrand",
+			"Sjoerddebruin"
 		]
 	},
 	"header": {
 		"menu": {
 			"login": "Aanmelden",
 			"logout": "Afmelden",
-			"locale": "Taal voor weergave",
+			"locale": "Weergavetaal",
 			"theme": "Thema",
 			"auto": "Automatisch",
-			"autoDesc": "Volg uw systeem-/browserthema",
+			"autoDesc": "Uw systeem-/browserthema volgen",
 			"light": "Licht",
 			"dark": "Donker",
 			"language": "Engels",
@@ -41,7 +42,7 @@
 		"option4Note": "Animaties en overgangen beperken"
 	},
 	"localeDialog": {
-		"title": "Taal voor weergave",
+		"title": "Weergavetaal",
 		"footerText": "Wilt u vertalingen in uw taal toevoegen of verbeteren?",
 		"footerLink": "Help Lexica vertalen.",
 		"cancel": "Annuleren",
@@ -50,7 +51,7 @@
 	"darkmodeDialog": {
 		"title": "Thema",
 		"auto": "Automatisch",
-		"desc": "Volg uw browserthema",
+		"desc": "Uw browserthema volgen",
 		"light": "Licht",
 		"dark": "Donker",
 		"cancel": "Annuleren",
@@ -162,6 +163,7 @@
 		"button1": "Overslaan",
 		"button2": "Sessie beëindigen",
 		"main": {
+			"title": "Welk item hieronder heeft hetzelfde concept als de bovenstaande Lexeme Sense?",
 			"search": "Item of QID zoeken",
 			"recommendation": "Aanbevelingen",
 			"result": "Zoekresultaten",
@@ -183,24 +185,33 @@
 		},
 		"hyphenation": {
 			"button1": "Hier opdelen",
+			"button1alt": "Ongedaan maken",
 			"button2": "Volgende"
 		},
 		"detail": {
 			"lexeme": "Lexeem",
 			"loading": "Lexemegegevens verkrijgen",
 			"title1": "Dit Lexeem",
+			"title2": "Deze Betekenis",
 			"subtitle1": "Verklaringen",
 			"subtitle2": "In andere talen",
+			"title3": "Andere betekenissen",
+			"senseCount": "Betekenis {count}",
 			"usageExample": "gebruiksvoorbeeld",
 			"hasCharacteristics": "heeft kenmerken",
 			"combinesLexemes": "lexemen combineren",
 			"images": "afbeelding",
 			"languageStyle": "taalstijl",
 			"fieldOfUsage": "toepassingsgebied",
+			"locationOfSenseUsage": "plaats van betekenisgebruik",
 			"semanticGender": "semantisch geslacht",
 			"synonym": "synoniem",
 			"antonym": "antoniem",
+			"glossQuotes": "gloscitaat",
+			"itemForThisSense": "item voor deze betekenis",
 			"otherGlosses": "In andere talen",
+			"allSense": "Alle Betekenissen",
+			"sense": "Betekenis",
 			"grammaticalFeature": "Grammaticale kenmerken van dit formulier:"
 		},
 		"item": {
@@ -220,6 +231,7 @@
 			"title": "Voorvertoning",
 			"lexeme": "Lexeem",
 			"newStatement": "Nieuwe verklaring: {statement}",
+			"statement": "item voor deze betekenis",
 			"button1": "Bewerken",
 			"button2": "Afgerond",
 			"empty": "Er worden geen wijzigingen aangebracht",
