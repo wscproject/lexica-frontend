@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hakimi97"
+			"Hakimi97",
+			"Tofeiku"
 		]
 	},
 	"header": {
@@ -111,7 +112,88 @@
 			"title": "Cara penggunaan",
 			"point1Title": "Laman Utama",
 			"point1Content": "tamatkan sesi sumbangan anda dan kembali ke Laman Utama.",
-			"point2Title": "Nombor kad"
+			"point2Title": "Nombor kad",
+			"point4Title": "Butang langkau"
 		}
+	},
+	"session": {
+		"detail": {
+			"lexeme": "Leksem",
+			"loading": "Mendapatkan maklumat Leksem",
+			"title1": "Leksem ini",
+			"title2": "Maksud ini",
+			"subtitle1": "Kenyataan",
+			"subtitle2": "Dalam bahasa lain",
+			"usageExample": "contoh penggunaan",
+			"hasCharacteristics": "mempunyai ciri-ciri",
+			"combinesLexemes": "menggabungkan leksem",
+			"images": "imej",
+			"languageStyle": "gaya bahasa",
+			"fieldOfUsage": "bidang penggunaan",
+			"locationOfSenseUsage": "lokasi kegunaan maksud",
+			"synonym": "sinonim",
+			"antonym": "antonim",
+			"itemForThisSense": "butir untuk maksud ini",
+			"otherGlosses": "Dalam bahasa lain",
+			"grammaticalFeature": "Ciri tatabahasa Bentuk ini:"
+		},
+		"item": {
+			"wikidata": "Butir Wikidata",
+			"statements": "Kenyataan",
+			"translations": "Terjemahan",
+			"images": "imej"
+		},
+		"preview": {
+			"title": "Pralihat",
+			"lexeme": "Leksem",
+			"newStatement": "Kenyataan Baharu: {statement}",
+			"statement": "butir untuk maksud ini",
+			"button1": "Sunting",
+			"button2": "Siap",
+			"empty": "Tiada perubahan akan dibuat"
+		},
+		"upload": "Memuat naik sumbangan...",
+		"recLoading": "Mendapatkan cadangan",
+		"cardError": {
+			"title": "Muat naik gagal",
+			"button": "Cuba lagi"
+		},
+		"skip": {
+			"title": "Kad dilangkau.",
+			"button": "Nyahbuat"
+		},
+		"warning": {
+			"title": "Tamatkan sesi sumbangan ini?",
+			"content": "Anda telah mengerjakan",
+			"button1": "Teruskan menyunting",
+			"button2": "Tamat sesi",
+			"loading": "Menamatkan sesi..."
+		}
+	},
+	"about": {
+		"title": "Perihal",
+		"page": "laman ini"
+	},
+	"privacy": {
+		"header": "Privasi",
+		"title1": "Dasar Privasi",
+		"version": "Versi",
+		"section2": {
+			"privacy": "Dasar Privasi Yayasan Wikimedia"
+		},
+		"title3": "Lesen",
+		"license": "Lesen"
+	},
+	"license": {
+		"title1": "Lesen",
+		"section2": {
+			"subtitle3": "Fon"
+		}
+	},
+	"aria": {
+		"account": "Akaun",
+		"showLexemeDetail": "Tunjukkan butiran Leksem",
+		"back": "Kembali",
+		"close": "Tutup"
 	}
 }

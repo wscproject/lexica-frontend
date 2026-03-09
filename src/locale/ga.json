@@ -1,0 +1,331 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aindriu80"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Logáil isteach",
+			"logout": "Logáil amach",
+			"locale": "Teanga taispeána",
+			"theme": "Téama",
+			"auto": "Uathoibríoch",
+			"autoDesc": "Lean téama do chórais/bhrabhsálaí",
+			"light": "Solas",
+			"dark": "Dorcha",
+			"language": "Béarla",
+			"accessibility": "Inrochtaineacht",
+			"loggingout": "Ag logáil amach...",
+			"logoutsuccess": "Tá tú logáilte amach.",
+			"ok": "Ceart go leor"
+		}
+	},
+	"footer": {
+		"label": "Is uirlis í Lexica a thug {wikidata} chugat",
+		"about": "Maidir",
+		"privacy": "Príobháideacht",
+		"license": "Ceadúnas"
+	},
+	"accessibilityDialog": {
+		"title": "Inrochtaineacht",
+		"apply": "Cuir isteach",
+		"close": "Dún",
+		"subtitle1": "Téacs",
+		"subtitle2": "Beochan",
+		"option1": "Téacs trom",
+		"option2": "Úsáid cló malartach (Atkinson Hyperlegible Next)",
+		"option2Note": "Nóta: B’fhéidir nach ndéanfar roinnt carachtair a léiriú sa chló seo.",
+		"option3": "Folínigh naisc",
+		"option4": "Laghdaigh gluaiseacht",
+		"option4Note": "Íoslaghdaigh beochana agus aistrithe"
+	},
+	"localeDialog": {
+		"title": "Teanga taispeána",
+		"footerText": "Ar mhaith leat aistriúchán a chur leis nó a fheabhsú i do theanga?",
+		"footerLink": "Cabhraigh le haistriúchán a dhéanamh ar Lexica.",
+		"cancel": "Cealaigh",
+		"apply": "Cuir isteach"
+	},
+	"darkmodeDialog": {
+		"title": "Téama",
+		"auto": "Uathoibríoch",
+		"desc": "Lean téama do bhrabhsálaí",
+		"light": "Solas",
+		"dark": "Dorcha",
+		"cancel": "Cealaigh",
+		"apply": "Cuir isteach"
+	},
+	"contributionLangDialog": {
+		"title": "Cuir le Leicséimí i",
+		"placeholder": "Teanga cuardaigh",
+		"cancel": "Cealaigh",
+		"apply": "Cuir isteach",
+		"emptySearch1": "Níor aimsíodh aon teangacha.",
+		"emptySearch2": "Bain triail as eochairfhocail éagsúla a úsáid."
+	},
+	"activityDialog": {
+		"title": "Cineál ranníocaíochta",
+		"connect": {
+			"title": "Leicséime go Mír",
+			"description": "Ceangail Leicséime le Mír leis an gcoincheap céanna"
+		},
+		"script": {
+			"title": "Malartacha scripte",
+			"description": "Cuir malairtí scripte le haghaidh Lexeme"
+		},
+		"hyphenation": {
+			"title": "Fleiscín",
+			"description": "Roinn Leicséim ina siollaí"
+		},
+		"cancel": "Cealaigh",
+		"apply": "Cuir isteach"
+	},
+	"home": {
+		"unauth": {
+			"title": "Fáilte!",
+			"title2": "Comhlánaigh sonraí foclóireachta ar Wikidata go héasca",
+			"body1": "is uirlis nuálach í atá ceaptha chun tú a chumasú chun cur go réidh leis na sonraí foclóireachta ar Wikidata.",
+			"body2": "Trí Lexica a úsáid, aontaíonn tú le",
+			"privacyPolicy": "Polasaí Príobháideachta Lexica",
+			"login": "Logáil isteach",
+			"info": "Déanfaimid ár mbeartas príobháideachais a nuashonrú chun a rá go bhfuil forbairt Lexica críochnaithe, éifeachtach ón 20 Lúnasa 2025, 20:00 AoE (Áit ar bith ar Domhan). Níl aon athruithe ar láimhseáil sonraí ná ar chleachtais phríobháideachais."
+		},
+		"auth": {
+			"title": "Haigh",
+			"languageSelect": "Cuir le Leicséimí i",
+			"start": "Tosaigh ag cur leis",
+			"tutorial": "Léigh an rang teagaisc"
+		},
+		"loading": "Ag lódáil..."
+	},
+	"tutorial": {
+		"title": "Rang teagaisc",
+		"of": "de",
+		"start": "Tosaigh ag cur leis",
+		"one": {
+			"title": "Cad is Lexica ann?",
+			"content": "Is uirlis é Lexica chun bealaí nua a aimsiú chun sonraí foclóireachta ar Wikidata a chur in eagar. Anseo, cuireann Lexica radharc eagarthóireachta ar fáil do shonraí foclóireachta ar Wikidata chun ranníocaíochtaí tapa a dhéanamh níos éasca. Tabharfar Léacséim duit ar gá iad a nascadh le Míreanna ar Wikidata."
+		},
+		"two": {
+			"title": "Conas a úsáid",
+			"point1Title": "Leathanach baile",
+			"point1Content": "críochnaigh do sheisiún ranníocaíochta agus fill ar an Leathanach Baile.",
+			"point2Title": "Uimhir cárta",
+			"point2Content": "taispeánann sé seicheamh na gcártaí atá á thaispeáint faoi láthair.",
+			"point3Title": "Gotha cárta",
+			"point3Content": "svaidhpeáil suas ar cheanntásc an chárta chun an cárta reatha a scipeáil.",
+			"point4Title": "Cnaipe scipeála",
+			"point4Content": "bain úsáid as an gcnaipe seo mar bhealach eile chun cárta a scipeáil.",
+			"point5Title": "Deireadh seisiún",
+			"point5Content": "críochnaigh do sheisiún ranníocaíochta agus fill ar an Leathanach Baile."
+		},
+		"three": {
+			"title": "Anatamaíocht cárta ranníocaíochta",
+			"point1Title": "Ceanntásc",
+			"point1Content": "áirítear an Lema, ID an Leicseime, sainmhíniú an Leicseime, agus cnaipe chun tuilleadh eolais faoin Leicseime a fheiceáil.",
+			"point2Title": "Ábhar an chárta",
+			"point2Content": "áirítear ceist, bosca cuardaigh, agus torthaí Míre nó cuardaigh.",
+			"point3Title": "Cnaipí gníomhaíochta",
+			"point3Content": "roghnaigh “Ar Aghaidh” tar éis duit an Mhír cheart a roghnú nó roghnaigh “Níor aimsíodh Mír” mura bhfaighidh tú aon cheann."
+		},
+		"four": {
+			"title": "Gach rud déanta!",
+			"content1": "Sásta cur le sonraí foclóireachta ar Wikidata le Lexica!",
+			"content2": "Leid: Is féidir leat an rang teagaisc seo a fheiceáil arís ón Leathanach Baile."
+		}
+	},
+	"tooltips": {
+		"home": "Ar ais go dtí an Leathanach Baile",
+		"account": "Cuntas",
+		"info": "Taispeáin eolas Lexeme",
+		"item": "Taispeáin eolas faoin mír",
+		"back": "Téigh ar ais"
+	},
+	"session": {
+		"loading": "Ag lódáil cártaí...",
+		"error": {
+			"title": "Chuaigh rud éigin mícheart",
+			"description": "Bain triail as an leathanach seo a athlódáil.",
+			"button": "Athlódáil"
+		},
+		"noInternet": {
+			"title": "Ní féidir an ranníocaíocht a uaslódáil",
+			"description": "Seiceáil do nasc idirlín, agus déan iarracht arís.",
+			"button": "Bain triail eile as"
+		},
+		"empty": {
+			"title": "Níl aon chártaí ann is féidir a líonadh isteach arís faoi láthair.",
+			"button": "Ar ais go dtí an Leathanach Baile"
+		},
+		"title": "Cárta",
+		"button1": "Scipeáil",
+		"button2": "Deireadh seisiún",
+		"main": {
+			"title": "Cén Mír thíos a bhfuil an coincheap céanna aici leis an Lexeme Sense thuas?",
+			"search": "Cuardaigh Mír nó QID",
+			"recommendation": "Moltaí",
+			"result": "Torthaí cuardaigh",
+			"button1": "Níor aimsíodh an mhír",
+			"button2": "Ar Aghaidh",
+			"emptySearch1": "Níor aimsíodh aon torthaí.",
+			"emptySearch2": "Bain triail as eochairfhocail éagsúla a úsáid.",
+			"emptySuggestion1": "Níor aimsíodh an moladh.",
+			"emptySuggestion2": "Bain triail as an Mír a chuardach de láimh.",
+			"loadmore": "Luchtaigh níos mó",
+			"loading": "Ag lódáil...",
+			"emptyLoad": "Tá deireadh na dtorthaí cuardaigh sroichte agat"
+		},
+		"scriptWriting": {
+			"title1": "Athscríobh",
+			"title2": "i {lang}",
+			"button": "Ar Aghaidh",
+			"placeholder": "Scríobh anseo"
+		},
+		"hyphenation": {
+			"button1": "Roinn anseo",
+			"button1alt": "Cuir ar ceal",
+			"button2": "Ar Aghaidh"
+		},
+		"detail": {
+			"lexeme": "Leicséim",
+			"loading": "Ag fáil eolais faoi Leicséim",
+			"title1": "An Leicséim seo",
+			"title2": "An Chiall seo",
+			"subtitle1": "Ráitis",
+			"subtitle2": "I dteangacha eile",
+			"title3": "Céadfaí eile",
+			"senseCount": "Braistint {count}",
+			"usageExample": "sampla úsáide",
+			"hasCharacteristics": "tá tréithe aige",
+			"combinesLexemes": "comhcheangail leicséimí",
+			"images": "íomhá",
+			"languageStyle": "stíl teanga",
+			"fieldOfUsage": "réimse úsáide",
+			"locationOfSenseUsage": "suíomh úsáide céadfaí",
+			"semanticGender": "inscne sheimeantach",
+			"synonym": "comhchiallaigh",
+			"antonym": "antainm",
+			"glossQuotes": "luachan snasta",
+			"itemForThisSense": "mír don chiall seo",
+			"otherGlosses": "I dteangacha eile",
+			"allSense": "Gach Céadfa",
+			"sense": "Braistint",
+			"grammaticalFeature": "Gnéithe gramadaí na Foirme seo:"
+		},
+		"item": {
+			"wikidata": "Mír Wikidata",
+			"statements": "Ráitis",
+			"translations": "Aistriúchán",
+			"loading": "Ag fáil eolais faoi mhír",
+			"images": "íomhá",
+			"instanceOf": "sampla de",
+			"partOf": "cuid de",
+			"subclass": "fo-aicme de",
+			"hasParts": "tá codanna ann",
+			"taxonName": "ainm tacsóin",
+			"aliases": "Ar a dtugtar freisin:"
+		},
+		"preview": {
+			"title": "Réamhamharc",
+			"lexeme": "Leicséim",
+			"newStatement": "Ráiteas Nua: {statement}",
+			"statement": "mír don chiall seo",
+			"button1": "Cuir in Eagar",
+			"button2": "Déanta",
+			"empty": "Ní dhéanfar aon athruithe",
+			"reason": "Cúis: Níor aimsíodh an mhír"
+		},
+		"scriptPreview": {
+			"newStatement": "Lema curtha leis: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Ráiteas Nua: fleiscín (P5279)"
+		},
+		"upload": "Ag uaslódáil ranníocaíochta...",
+		"recLoading": "Moltaí a fháil",
+		"cardError": {
+			"title": "Theip ar an uaslódáil",
+			"description": "Seiceáil do nasc idirlín agus déan iarracht eile.",
+			"button": "Bain triail eile as"
+		},
+		"done": {
+			"title": "Go raibh maith agat as rannchuidiú le Lexica!",
+			"button": "Ar ais go dtí an Leathanach Baile"
+		},
+		"skip": {
+			"title": "Cárta scipeáilte.",
+			"button": "Cuir ar ceal"
+		},
+		"warning": {
+			"title": "Deireadh a chur leis an seisiún ranníocaíochta seo?",
+			"content": "D'oibrigh tú ar",
+			"subtext": "Gan aon chárta go dtí seo. | cárta go dtí seo. | cártaí go dtí seo.",
+			"button1": "Lean ort ag eagarthóireacht",
+			"button2": "Deireadh seisiún",
+			"loading": "Ag críochnú seisiúin..."
+		},
+		"blank": {
+			"title": "Níl aon chártaí ann is féidir a líonadh isteach arís faoi láthair.",
+			"button": "Ar ais go dtí an Leathanach Baile"
+		},
+		"emptyStatement": "Níor aimsíodh an ráiteas",
+		"emptyDescriptionHead": "Sainmhíniú nach bhfuarthas i",
+		"emptyDescription": "Sainmhíniú gan aimsiú"
+	},
+	"about": {
+		"title": "Maidir",
+		"content1": "Is féidir go mbeadh sé dúshlánach do roinnt daoine sonraí foclóireachta a chur in eagar ar Wikidata trí ghléasanna soghluaiste. Sin é an fáth ar cruthaíodh Lexica. Tá ár sprioc simplí: eagarthóireacht a dhéanamh níos simplí agus inrochtana do gach duine, i ngach áit.",
+		"content2": "Is uirlis nuálach í Lexica atá ceaptha chun tú a chumasú chun cur go réidh leis na sonraí foclóireachta ar Wikidata. Mar uirlis ghréasánbhunaithe atá optamaithe do ghléasanna soghluaiste, ligeann Lexica duit Lexeme Senses a nascadh go tapa le Míreanna ar Wikidata trí chomhéadan cártaí iomasach.",
+		"content3": "Tá Lexica á fhorbairt ag Wikicollabs i gcomhar le Wikimedia Deutschland, mar chuid de Chomhoibriú Bogearraí Wikidata, le tacaíocht ó dheontas ó Chiste Daonchairdiúil Arcadia.",
+		"content4": "Táimid tiomanta do Lexica a fhorbairt i gcónaí chun feabhas a chur ar thaithí an úsáideora. Chun tuilleadh eolais a fháil faoinár dtionscadal, tabhair cuairt ar {link}.",
+		"page": "an leathanach seo"
+	},
+	"privacy": {
+		"header": "Príobháideacht",
+		"title1": "Polasaí Príobháideachais",
+		"version": "Leagan",
+		"section1": "Tá céim forbartha Lexica críochnaithe agus tá sé i leagan cobhsaí anois. Féadfar an polasaí príobháideachais a nuashonrú de réir mar is gá. Trí Lexica a úsáid, meastar go n-aontaíonn úsáideoirí leis an bpolasaí príobháideachais seo.",
+		"title2": "Bailiú Faisnéise Sonraí Pearsanta",
+		"section2": {
+			"point1": "Ní stórálann Lexica aon sonraí a bhaineann le húsáideoirí, amhail ainmneacha úsáideora, pasfhocail, seoltaí IP, stair idirghníomhaíochta agus staitisticí úsáide, ach gan a bheith teoranta dóibh sin.",
+			"point2": "Ní fhaigheann Lexica údarú chun gníomhartha a dhéanamh thar ceann úsáideoirí ach amháin nuair a logálann úsáideoirí isteach trína gcuntas úsáideora Wikimedia.",
+			"point3": "Stórálfar taifid ranníocaíochta úsáideoirí ar Wikidata, atá faoi réir na {privacy}.",
+			"privacy": "Polasaí Príobháideachta Fhondúireacht Wikimedia"
+		},
+		"title3": "Ceadúnas",
+		"section3": "Féach ar an leathanach {license}.",
+		"license": "Ceadúnas",
+		"title4": "Athruithe ar an mBeartas Príobháideachais",
+		"section4": {
+			"point1": "Féadfaidh Lexica a polasaí príobháideachais a athrú tráth ar bith.",
+			"point2": "Sula ndéanfar athruithe ar an mbeartas príobháideachais, cuirfidh Lexica fógra roimh ré ar fáil maidir leis na hathruithe ar an mbeartas príobháideachais sula gcuirfear i bhfeidhm go buan iad.",
+			"point3": "Fógrófar fógraí faoi athruithe ar an mbeartas príobháideachais trí Lexica.",
+			"point4": "Tá tréimhse ama ann ar a dtugtar “tréimhse feithimh”, a chlúdaíonn seacht lá tar éis fógra an athraithe ar an mbeartas príobháideachais agus cur i bhfeidhm an bheartais nua príobháideachais.",
+			"point5": "Molann Lexica d’úsáideoirí seiceáil go rialta le haghaidh athruithe ar an mbeartas príobháideachais atá le fáil ar an leathanach seo, ar leathanach an úsáideora ar Wikidata, agus ar bheartas príobháideachais Fhondúireacht Wikimedia.",
+			"point6": "Trí leanúint de Lexica a úsáid tar éis na hathruithe ar an mbeartas príobháideachais, aontaíonn an t-úsáideoir leis an athrú athbhreithnithe ar an mbeartas príobháideachais."
+		}
+	},
+	"license": {
+		"title1": "Ceadúnas",
+		"section1": {
+			"content1": "Tá {lexica} agus a chomhpháirteanna uile foilsithe faoin gceadúnas {gnu} (GNU GPL-2.0). Stórálfar na sonraí uile a chuirtear leis an uirlis seo ar Wikidata faoin gceadúnas {cc0} (CC0).",
+			"content2": "Tá cód foinse Lexica ar fáil sna stórtha seo a leanas:"
+		},
+		"title2": "Comhpháirteanna foinse oscailte",
+		"section2": {
+			"content": "Seo a leanas na comhpháirteanna foinse oscailte a úsáideann Lexica:",
+			"subtitle1": "Leabharlanna agus creatlacha tosaigh",
+			"subtitle2": "Leabharlanna agus creatlacha cúil",
+			"subtitle3": "Clónna"
+		}
+	},
+	"aria": {
+		"account": "Cuntas",
+		"backToHome": "Ar ais go dtí an Baile",
+		"showLexemeDetail": "Taispeáin sonraí Lexeme",
+		"showItemDetail": "Taispeáin sonraí na Míre",
+		"back": "Ar ais",
+		"close": "Dún"
+	}
+}
