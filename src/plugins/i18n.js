@@ -1,6 +1,7 @@
 import { createI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
 import displayLang from "@/locale/displayLang.json";
+import { pl } from "vuetify/locale";
 
 const { cookies } = useCookies();
 
@@ -32,7 +33,7 @@ const messages = Promise.all(mapLangs).then(function (results) {
 
 const getBrowserLanguage = () => {
   const browserLang = window?.navigator?.language?.split("-")?.[0];
-  const supportedLangs = ["en", "eu", "id", "ja", "lb", "min", "mk", "ms", "nl", "pt", "zh-hant"];
+  const supportedLangs = ["en", "es", "eu", "ga", "id", "ja", "lb", "min", "mk", "ms", "nl", "pa", "pl", "ps", "pt", "tr", "zh-hans", "zh-hant"];
   return supportedLangs.includes(browserLang) ? browserLang : "en";
 };
 
