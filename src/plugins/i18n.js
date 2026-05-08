@@ -1,7 +1,6 @@
 import { createI18n } from "vue-i18n";
 import { useCookies } from "vue3-cookies";
 import displayLang from "@/locale/displayLang.json";
-import { pl } from "vuetify/locale";
 
 const { cookies } = useCookies();
 
