@@ -1,0 +1,300 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ellif",
+			"Tensama0415"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "로그인",
+			"logout": "로그아웃",
+			"locale": "표시 언어",
+			"theme": "테마",
+			"auto": "자동",
+			"autoDesc": "시스템/브라우저 테마 사용",
+			"light": "라이트",
+			"dark": "다크",
+			"language": "영어",
+			"accessibility": "접근성",
+			"loggingout": "로그아웃 중...",
+			"logoutsuccess": "로그아웃했습니다.",
+			"ok": "확인"
+		}
+	},
+	"footer": {
+		"about": "정보",
+		"privacy": "개인정보",
+		"license": "라이선스"
+	},
+	"accessibilityDialog": {
+		"title": "접근성",
+		"apply": "적용",
+		"close": "닫기",
+		"subtitle1": "텍스트",
+		"subtitle2": "애니메이션",
+		"option1": "굵은 글씨",
+		"option2": "대체 글꼴을 사용 (Atkinson Hyperreadable Next)",
+		"option2Note": "참고: 이 글꼴의 경우 일부 문자는 렌더링되지 않을 수 있습니다.",
+		"option3": "밑줄 링크",
+		"option4": "움직임 줄이기",
+		"option4Note": "애니메이션과 전환 최소화시키기"
+	},
+	"localeDialog": {
+		"title": "표시 언어",
+		"footerText": "당신의 언어로 번역을 추가하거나 개선하고 싶나요?",
+		"footerLink": "렉시카 번역을 도와주세요.",
+		"cancel": "취소",
+		"apply": "적용"
+	},
+	"darkmodeDialog": {
+		"title": "테마",
+		"auto": "자동",
+		"desc": "브라우저 테마 사용",
+		"light": "라이트",
+		"dark": "어두움",
+		"cancel": "취소",
+		"apply": "적용"
+	},
+	"contributionLangDialog": {
+		"title": "다음 언어로 어휘소에 기여",
+		"placeholder": "언어 검색",
+		"cancel": "취소",
+		"apply": "적용",
+		"emptySearch1": "언어를 찾을 수 없습니다.",
+		"emptySearch2": "다른 키워드를 사용해보세요."
+	},
+	"activityDialog": {
+		"title": "기여 유형",
+		"connect": {
+			"title": "어휘소를 항목으로",
+			"description": "어휘소를 동일한 개념의 항목에 연결합니다"
+		},
+		"script": {
+			"title": "스크립트 변종",
+			"description": "어휘소에 스크립트 변종을 추가합니다"
+		},
+		"hyphenation": {
+			"title": "하이픈화",
+			"description": "어휘소를 음절로 나눕니다"
+		},
+		"cancel": "취소",
+		"apply": "적용"
+	},
+	"home": {
+		"unauth": {
+			"title": "환영합니다!",
+			"body2": "렉시카를 사용함으로써 당신은 다음에 동의하는 것입니다:",
+			"privacyPolicy": "렉시카 개인정보 보호정책",
+			"login": "로그인"
+		},
+		"auth": {
+			"title": "안녕하세요",
+			"languageSelect": "다음 언어로 어휘소에 기여",
+			"start": "기여 시작",
+			"tutorial": "강좌를 읽어보세요"
+		},
+		"loading": "불러오는 중..."
+	},
+	"tutorial": {
+		"title": "강좌",
+		"of": "/",
+		"start": "기여 시작",
+		"one": {
+			"title": "렉시카는 무엇일까요?"
+		},
+		"two": {
+			"title": "사용 방법",
+			"point1Title": "홈페이지",
+			"point1Content": "기여 섹션을 끝내고 홈페이지로 돌아갑니다.",
+			"point2Title": "카드 번호",
+			"point2Content": "현재 보여지는 카드의 순서를 표시합니다.",
+			"point3Title": "카드 동작",
+			"point3Content": "현재 카드를 건너뛰기 위해 카드 헤더를 위로 쓸어올립니다.",
+			"point4Title": "건너뛰기 버튼",
+			"point4Content": "카드를 건너뛰기 위한 다른 방법으로써 이 버튼을 사용합니다.",
+			"point5Title": "세션 끝내기",
+			"point5Content": "기여 섹션을 끝내고 홈페이지로 돌아갑니다."
+		},
+		"three": {
+			"point1Title": "머리글",
+			"point2Title": "카드 내용",
+			"point3Title": "작업 버튼"
+		},
+		"four": {
+			"title": "모두 완료했습니다!",
+			"content2": "팁: 이 강좌는 홈페이지에서 언제든 다시 볼 수 있습니다."
+		}
+	},
+	"tooltips": {
+		"home": "홈페이지로 돌아가기",
+		"account": "계정",
+		"info": "어휘소 정보 보기",
+		"item": "항목 정보 보기",
+		"back": "돌아가기"
+	},
+	"session": {
+		"loading": "카드 불러오는 중…",
+		"error": {
+			"title": "무언가가 잘못되었습니다",
+			"description": "이 페이지를 다시 불러와보세요.",
+			"button": "다시 불러오기"
+		},
+		"noInternet": {
+			"title": "기여를 업로드할 수 없습니다",
+			"description": "인터넷 연결을 확인하고 다시 시도해 보세요.",
+			"button": "다시 시도"
+		},
+		"empty": {
+			"title": "현재 다시 채울 수 있는 카드가 없습니다.",
+			"button": "홈페이지로 돌아가기"
+		},
+		"title": "카드",
+		"button1": "건너뛰기",
+		"button2": "세션 나가기",
+		"main": {
+			"title": "위의 어휘소 의미와 같은 개념을 가진 항목은 아래 중 어느 것 인가요?",
+			"search": "항목 또는 QID 검색",
+			"recommendation": "추천",
+			"result": "검색 결과",
+			"button1": "항목을 찾을 수 없습니다",
+			"button2": "다음",
+			"emptySearch1": "결과가 없습니다.",
+			"emptySearch2": "다른 키워드를 사용해보세요.",
+			"emptySuggestion1": "추천을 찾을 수 없습니다.",
+			"emptySuggestion2": "이 항목을 수동으로 검색해 보세요.",
+			"loadmore": "더 불러오기",
+			"loading": "불러오는 중...",
+			"emptyLoad": "모든 검색결과를 보셨습니다."
+		},
+		"scriptWriting": {
+			"title1": "재작성",
+			"title2": "{lang}으로",
+			"button": "다음",
+			"placeholder": "여기에 적으세요"
+		},
+		"hyphenation": {
+			"button1": "여기서 나누기",
+			"button1alt": "실행 취소",
+			"button2": "다음"
+		},
+		"detail": {
+			"lexeme": "어휘소",
+			"loading": "어휘소 정보 얻기",
+			"title1": "이 어휘소",
+			"title2": "이 의미",
+			"subtitle1": "서술",
+			"subtitle2": "다른 언어",
+			"title3": "다른 의미",
+			"senseCount": "의미 {count}",
+			"usageExample": "사용례",
+			"hasCharacteristics": "특성을 가지고 있습니다",
+			"combinesLexemes": "어휘소 결합",
+			"images": "이미지",
+			"languageStyle": "언어 스타일",
+			"fieldOfUsage": "사용 분야",
+			"locationOfSenseUsage": "의미 사용처의 위치",
+			"semanticGender": "의미상의 성별",
+			"synonym": "동의어",
+			"antonym": "반의어",
+			"glossQuotes": "주석 인용",
+			"itemForThisSense": "이 의미에 대한 항목",
+			"otherGlosses": "다른 언어",
+			"allSense": "모든 의미",
+			"sense": "의미",
+			"grammaticalFeature": "이 형태의 문법적 특징:"
+		},
+		"item": {
+			"wikidata": "위키데이터 항목",
+			"statements": "서술",
+			"translations": "번역",
+			"loading": "항목 정보 얻기",
+			"images": "그림",
+			"instanceOf": "다음의 예시",
+			"partOf": "다음의 일부",
+			"aliases": "다른 이름:"
+		},
+		"preview": {
+			"title": "미리 보기",
+			"lexeme": "어휘소",
+			"newStatement": "새 서술: {statement}",
+			"statement": "이 의미에 대한 항목",
+			"button1": "편집",
+			"button2": "완료",
+			"empty": "변경 사항은 없습니다",
+			"reason": "이유: 항목이 없습니다"
+		},
+		"scriptPreview": {
+			"newStatement": "기본형 추가됨: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "새 서술: 하이픈화 (P5279)"
+		},
+		"upload": "기여 업로드 중...",
+		"recLoading": "추천 가져오기",
+		"cardError": {
+			"title": "업로드 실패",
+			"description": "인터넷 연결을 확인하고 다시 시도해 보세요.",
+			"button": "다시 시도"
+		},
+		"done": {
+			"title": "렉시카에 기여해주셔서 감사합니다!",
+			"button": "홈페이지로 돌아가기"
+		},
+		"skip": {
+			"title": "카드 건너뜀.",
+			"button": "실행 취소"
+		},
+		"warning": {
+			"title": "이 기여 세션을 끝낼까요?",
+			"content": "다음을 작업했습니다:",
+			"button1": "편집 계속",
+			"button2": "세션 끝내기",
+			"loading": "세션 끝내는 중..."
+		},
+		"blank": {
+			"title": "현재 다시 채울 수 있는 카드가 없습니다.",
+			"button": "홈페이지로 돌아가기"
+		},
+		"emptyStatement": "서술이 없습니다",
+		"emptyDescriptionHead": "다음의 정의가 없습니다:",
+		"emptyDescription": "정의가 없습니다"
+	},
+	"about": {
+		"title": "정보"
+	},
+	"privacy": {
+		"header": "개인정보",
+		"title1": "개인정보 보호정책",
+		"version": "버전",
+		"section2": {
+			"privacy": "위키미디어 재단 개인정보 보호정책"
+		},
+		"title3": "라이선스",
+		"section3": "{license} 문서를 참조하세요.",
+		"license": "라이선스",
+		"title4": "개인정보 보호정책 변경에 관해",
+		"section4": {
+			"point1": "렉시카는 언제든지 개인정보 보호 정책을 변경할 수 있습니다.",
+			"point3": "개인정보 보호정책의 변경 사항에 대한 알림 사항은 렉시카를 통해 전달됩니다."
+		}
+	},
+	"license": {
+		"title1": "라이선스",
+		"title2": "오픈소스 구성 요소",
+		"section2": {
+			"content": "렉시카에서 사용하는 오픈소스 구성 요소는 다음과 같습니다.",
+			"subtitle1": "프론트엔드 라이브러리와 프레임워크",
+			"subtitle2": "백엔드 라이브러리와 프레임워크",
+			"subtitle3": "글꼴"
+		}
+	},
+	"aria": {
+		"account": "계정",
+		"backToHome": "홈으로 돌아가기",
+		"showLexemeDetail": "어휘소 세부 사항 보기",
+		"showItemDetail": "항목 세부 사항 보기",
+		"back": "뒤로",
+		"close": "닫기"
+	}
+}
