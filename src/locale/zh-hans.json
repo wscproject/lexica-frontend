@@ -274,5 +274,60 @@
 		"emptyStatement": "未找到陈述",
 		"emptyDescriptionHead": "未找到定义在",
 		"emptyDescription": "未找到定义"
+	},
+	"about": {
+		"title": "关于",
+		"content1": "在移动设备上编辑维基数据的词汇数据对某些人来说可能颇具挑战。正因如此，Lexica应运而生。我们的目标很明确：让编辑变得更简单，让每个人都能随时随地轻松使用。",
+		"content2": "Lexica是一款创新工具，旨在帮助您无缝贡献维基数据上的词汇数据。作为一款针对移动设备优化的网络工具，Lexica通过直观的卡片界面，让您能够快速将词位义项与维基数据中的项目关联起来。",
+		"content3": "Lexica由Wikicollabs与Wikimedia Deutschland合作开发，作为Wikidata软件协作项目的一部分，并得到Arcadia慈善基金的资助支持。",
+		"content4": "我们致力于持续开发Lexica以提升用户体验。欲了解更多项目详情，请访问{link}。",
+		"page": "维基数据上的Lexica项目页面"
+	},
+	"privacy": {
+		"header": "隐私",
+		"title1": "隐私政策",
+		"version": "版本",
+		"section1": "Lexica已完成开发阶段，现已进入稳定发布版本。隐私政策可能会根据需要进行更新。使用Lexica即视为用户同意本隐私政策。",
+		"title2": "个人数据信息的收集",
+		"section2": {
+			"point1": "Lexica不会存储任何与用户相关的数据，包括但不限于用户名、密码、IP地址、交互历史和使用统计信息。",
+			"point2": "Lexica仅在用户通过其维基媒体用户账户登录时，才获得代表用户执行操作的授权。",
+			"point3": "用户贡献记录将存储在维基数据上，并受{privacy}约束",
+			"privacy": "维基媒体基金会隐私政策"
+		},
+		"title3": "许可协议",
+		"section3": "请参阅{license}页面。",
+		"license": "许可协议",
+		"title4": "隐私政策变更",
+		"section4": {
+			"point1": "Lexica可随时更改其隐私政策。",
+			"point2": "在对隐私政策进行更改之前，Lexica会提前通知用户有关隐私政策的更改，然后再永久实施。",
+			"point3": "隐私政策变更通知将通过Lexica发布。",
+			"point4": "在隐私政策变更公布后至新隐私政策实施期间，会有一段被称为“等待期”的时间段。",
+			"point5": "Lexica建议用户定期查看此页面、维基数据用户页面和维基媒体基金会隐私政策中的隐私政策变更。",
+			"point6": "在隐私政策变更后继续使用Lexica，即表示用户同意修订后的隐私政策。"
+		}
+	},
+	"license": {
+		"title1": "许可协议",
+		"section1": {
+			"content1": "{lexica}及其所有组件均依据{gnu}（GNU GPL-2.0）许可证发布。通过此工具添加的所有数据将按照{cc0}（CC0）许可证存储于维基数据上。",
+			"content2": "Lexica的源代码可在以下代码库中找到："
+		},
+		"title2": "开源组件",
+		"section2": {
+			"content": "以下是Lexica使用的开源组件：",
+			"subtitle1": "前端库和框架",
+			"subtitle2": "后端库和框架",
+			"subtitle3": "字体"
+		}
+	},
+	"aria": {
+		"account": "账号",
+		"backToHome": "返回首页",
+		"showLexemeDetail": "显示词位详情",
+		"showItemDetail": "显示项目详情",
+		"back": "返回",
+		"close": "关闭"
 	}
 }
