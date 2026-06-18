@@ -150,6 +150,7 @@
 			"images": "انځور",
 			"languageStyle": "ژبې ښودبڼه",
 			"fieldOfUsage": "کارولو ډگر",
+			"semanticGender": "ماناپوهنيز هويت",
 			"synonym": "هممانيز",
 			"antonym": "بډمانيز",
 			"itemForThisSense": "د دې جاج توکی",
@@ -184,6 +185,9 @@
 		"cardError": {
 			"title": "راپورته‌کول نابرياله شول",
 			"button": "بیا هڅه وکړئ"
+		},
+		"done": {
+			"button": "بېرته کورمخ ته"
 		},
 		"skip": {
 			"button": "ناکړل"
