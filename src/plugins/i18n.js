@@ -4,42 +4,61 @@ import displayLang from "@/locale/displayLang.json";
 
 const { cookies } = useCookies();
 
-//Function for dynamically import localization datas
+const supportedLangs = displayLang.lang.map((language) => language.value);
 
-const importLangs = async (lang) => {
+// Dynamically import localisation messages.
+const importLang = async (lang) => {
   const locale = await import(`@/locale/${lang}.json`);
 
-  return locale;
+  return locale.default ?? locale;
 };
 
-//Combine both display language array and imported localization datas
-const mapLangs = displayLang.lang.map(async (item) => {
-  const json = await importLangs(item.value);
-
-  return {
-    ...item,
-    lang: json,
-  };
-});
-
-//Transform combined data into an accepted data object
-const messages = Promise.all(mapLangs).then(function (results) {
-  return results.reduce(
-    (obj, item) => ((obj[item.value] = item.lang), obj),
-    {}
-  );
-});
+// Import localisation messages for every language in displayLang.json.
+const messages = Object.fromEntries(
+  await Promise.all(
+    displayLang.lang.map(async ({ value }) => [
+      value,
+      await importLang(value),
+    ])
+  )
+);
 
 const getBrowserLanguage = () => {
-  const browserLang = window?.navigator?.language?.split("-")?.[0];
-  const supportedLangs = ["en", "es", "eu", "ga", "id", "ja", "lb", "min", "mk", "ms", "nl", "pa", "pl", "ps", "pt", "tr", "zh-hans", "zh-hant"];
-  return supportedLangs.includes(browserLang) ? browserLang : "en";
+  const browserLang = window.navigator.language.toLowerCase();
+
+  // Use the complete browser locale when it already matches a supported locale.
+  if (supportedLangs.includes(browserLang)) {
+    return browserLang;
+  }
+
+  // Determine the most likely Chinese script.
+  if (browserLang === "zh" || browserLang.startsWith("zh-")) {
+    try {
+      const locale = new Intl.Locale(browserLang).maximize();
+
+      return locale.script === "Hant" ? "zh-hant" : "zh-hans";
+    } catch {
+      return "zh-hans";
+    }
+  }
+
+  // Match region-specific locales, such as de-DE or pt-BR,
+  // to their supported base language.
+  const baseLang = browserLang.split("-")[0];
+
+  return supportedLangs.includes(baseLang) ? baseLang : "en";
 };
+
+const cookieLocale = cookies?.get("locale");
+
+const initialLocale = supportedLangs.includes(cookieLocale)
+  ? cookieLocale
+  : getBrowserLanguage();
 
 export const i18n = createI18n({
   legacy: false,
   globalInjection: true,
-  locale: cookies?.get("locale") || getBrowserLanguage(),
+  locale: initialLocale,
   fallbackLocale: "en",
-  messages: await messages,
+  messages,
 });
