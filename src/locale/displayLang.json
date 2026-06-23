@@ -13,14 +13,32 @@
       "disabled": false
     },
     {
+      "label": "Deutsch",
+      "value": "de",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "English",
       "value": "en",
       "dir": "ltr",
       "disabled": false
     },
     {
+      "label": "Español",
+      "value": "es",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "Euskara",
       "value": "eu",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "Gaeilge",
+      "value": "ga",
       "dir": "ltr",
       "disabled": false
     },
@@ -37,20 +55,50 @@
       "disabled": false
     },
     {
-      "label": "македонски",
-      "value": "mk",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
       "label": "Nederlands",
       "value": "nl",
       "dir": "ltr",
       "disabled": false
     },
     {
+      "label": "Polski",
+      "value": "pl",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "Português",
       "value": "pt",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "Türkçe",
+      "value": "tr",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "македонски",
+      "value": "mk",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "پښتو",
+      "value": "ps",
+      "dir": "rtl",
+      "disabled": false
+    },
+    {
+      "label": "ਪੰਜਾਬੀ",
+      "value": "pa",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
+      "label": "中文（简体）",
+      "value": "zh-hans",
       "dir": "ltr",
       "disabled": false
     },
@@ -63,48 +111,6 @@
     {
       "label": "日本語",
       "value": "ja",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "Español",
-      "value": "es",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "Gaeilge",
-      "value": "ga",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "ਪੰਜਾਬੀ",
-      "value": "pa",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "Polski",
-      "value": "pl",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "پښتو",
-      "value": "ps",
-      "dir": "rtl",
-      "disabled": false
-    },
-    {
-      "label": "Türkçe",
-      "value": "tr",
-      "dir": "ltr",
-      "disabled": false
-    },
-    {
-      "label": "中文（简体）",
-      "value": "zh-hans",
       "dir": "ltr",
       "disabled": false
     }
