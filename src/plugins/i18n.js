@@ -6,52 +6,44 @@ const { cookies } = useCookies();
 
 const supportedLangs = displayLang.lang.map((language) => language.value);
 
-const importLangs = async (lang) => {
+// Dynamically import localisation messages.
+const importLang = async (lang) => {
   const locale = await import(`@/locale/${lang}.json`);
+
   return locale.default ?? locale;
 };
 
-const mapLangs = displayLang.lang.map(async (item) => {
-  const messages = await importLangs(item.value);
-
-  return {
-    ...item,
-    lang: messages,
-  };
-});
-
-const messages = Promise.all(mapLangs).then((results) =>
-  results.reduce((obj, item) => {
-    obj[item.value] = item.lang;
-    return obj;
-  }, {})
+// Import localisation messages for every language in displayLang.json.
+const messages = Object.fromEntries(
+  await Promise.all(
+    displayLang.lang.map(async ({ value }) => [
+      value,
+      await importLang(value),
+    ])
+  )
 );
 
 const getBrowserLanguage = () => {
   const browserLang = window.navigator.language.toLowerCase();
 
+  // Use the complete browser locale when it already matches a supported locale.
   if (supportedLangs.includes(browserLang)) {
     return browserLang;
   }
 
-  if (
-    browserLang === "zh" ||
-    browserLang === "zh-cn" ||
-    browserLang === "zh-sg" ||
-    browserLang.startsWith("zh-hans")
-  ) {
-    return "zh-hans";
+  // Determine the most likely Chinese script.
+  if (browserLang === "zh" || browserLang.startsWith("zh-")) {
+    try {
+      const locale = new Intl.Locale(browserLang).maximize();
+
+      return locale.script === "Hant" ? "zh-hant" : "zh-hans";
+    } catch {
+      return "zh-hans";
+    }
   }
 
-  if (
-    browserLang === "zh-tw" ||
-    browserLang === "zh-hk" ||
-    browserLang === "zh-mo" ||
-    browserLang.startsWith("zh-hant")
-  ) {
-    return "zh-hant";
-  }
-
+  // Match region-specific locales, such as de-DE or pt-BR,
+  // to their supported base language.
   const baseLang = browserLang.split("-")[0];
 
   return supportedLangs.includes(baseLang) ? baseLang : "en";
@@ -68,5 +60,5 @@ export const i18n = createI18n({
   globalInjection: true,
   locale: initialLocale,
   fallbackLocale: "en",
-  messages: await messages,
+  messages,
 });
