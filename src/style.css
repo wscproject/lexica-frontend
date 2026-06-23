@@ -3,36 +3,102 @@
 /* Inter */
 @font-face {
   font-family: "Inter";
-  src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 400;
+  src: url("/font/Inter/InterVariable.woff2") format("woff2");
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Inter";
-  src: url("/font/Inter-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 700;
+  src: url("/font/Inter/InterVariable-Italic.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("/font/Inter/Inter-Bold.woff2") format("woff2");
+  font-weight: 100 600;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 400;
+  font-family: "InterBold";
+  src: url("/font/Inter/Inter-BoldItalic.woff2") format("woff2");
+  font-weight: 100 600;
   font-style: italic;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Inter";
-  src: url("/font/Inter-Italic-VariableFont_opsz,wght.ttf") format("truetype");
-  font-weight: 700;
+  font-family: "InterBold";
+  src: url("/font/Inter/Inter-Black.woff2") format("woff2");
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "InterBold";
+  src: url("/font/Inter/Inter-BlackItalic.woff2") format("woff2");
+  font-weight: 700 800;
   font-style: italic;
   font-display: swap;
 }
 
+/* AtkinsonHyperlegibleNext */
+@font-face {
+  font-family: "Atkinson";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Atkinson";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-VariableFont_wght.woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-Bold.woff2") format("woff2");
+  font-weight: 100 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-BoldItalic.woff2") format("woff2");
+  font-weight: 100 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-ExtraBold.woff2") format("woff2");
+  font-weight: 700 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "AtkinsonBold";
+  src: url("/font/Atkinson/AtkinsonHyperlegibleNext-ExtraBoldItalic.woff2") format("woff2");
+  font-weight: 700 800;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* Noto Sans */
 @font-face {
   font-family: "NotoSansSundanese";
   src: url("/font/NotoSansSundanese-VariableFont_wght.ttf") format("truetype");
@@ -128,59 +194,6 @@
 @font-face {
   font-family: "InterBold";
   src: url("/font/Inter-BlackItalic.ttf") format("truetype");
-  font-weight: 700 800;
-  font-style: italic;
-  font-display: swap;
-}
-/* **************************************************** */
-
-/* AtkinsonHyperlegibleNext */
-@font-face {
-  font-family: "Atkinson";
-  src: url("/font/AtkinsonHyperlegibleNext-VariableFont_wght.ttf")
-    format("truetype");
-  font-weight: 100 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Atkinson";
-  src: url("/font/AtkinsonHyperlegibleNext-Italic-VariableFont_wght.ttf")
-    format("truetype");
-  font-weight: 100 800;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "AtkinsonBold";
-  src: url("/font/AtkinsonHyperlegibleNext-Bold.ttf") format("truetype");
-  font-weight: 100 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "AtkinsonBold";
-  src: url("/font/AtkinsonHyperlegibleNext-BoldItalic.ttf") format("truetype");
-  font-weight: 100 600;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "AtkinsonBold";
-  src: url("/font/AtkinsonHyperlegibleNext-ExtraBold.ttf") format("truetype");
-  font-weight: 700 800;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "AtkinsonBold";
-  src: url("/font/AtkinsonHyperlegibleNext-ExtraBoldItalic.ttf")
-    format("truetype");
   font-weight: 700 800;
   font-style: italic;
   font-display: swap;
