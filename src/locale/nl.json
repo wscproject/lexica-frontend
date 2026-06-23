@@ -148,7 +148,7 @@
 		"error": {
 			"title": "Er is iets misgegaan",
 			"description": "Probeer deze pagina opnieuw te laden.",
-			"button": "Herladen"
+			"button": "Vernieuwen"
 		},
 		"noInternet": {
 			"title": "Bijdrage uploaden is mislukt",

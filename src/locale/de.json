@@ -1,0 +1,332 @@
+{
+	"@metadata": {
+		"authors": [
+			"Brettchenweber",
+			"VeryCreativeNameIKnow"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Anmelden",
+			"logout": "Abmelden",
+			"locale": "Anzeigesprache",
+			"theme": "Design",
+			"auto": "Automatisch",
+			"autoDesc": "Benutze dein System- bzw. Browserdesign",
+			"light": "Hell",
+			"dark": "Dunkel",
+			"language": "Englisch",
+			"accessibility": "Barrierefreiheit",
+			"loggingout": "Abmelden...",
+			"logoutsuccess": "Du bist abgemeldet.",
+			"ok": "Okay"
+		}
+	},
+	"footer": {
+		"label": "Lexica ist ein Tool von {wikidata}",
+		"about": "Über uns",
+		"privacy": "Datenschutz",
+		"license": "Lizenz"
+	},
+	"accessibilityDialog": {
+		"title": "Barrierefreiheit",
+		"apply": "Anwenden",
+		"close": "Schließen",
+		"subtitle1": "Schriftart",
+		"subtitle2": "Animation",
+		"option1": "Fettgedruckter Text",
+		"option2": "Alternative Schriftart verwenden (Atkinson Hyperlegible Next)",
+		"option2Note": "Beachte: Einige Zeichen werden möglicherweise nicht in dieser Schriftart dargestellt.",
+		"option3": "Links unterstreichen",
+		"option4": "Bewegung reduzieren",
+		"option4Note": "Animationen und Übergänge minimieren"
+	},
+	"localeDialog": {
+		"title": "Anzeigesprache",
+		"footerText": "Eine Übersetzung in deiner Sprache hinzufügen oder verbessern?",
+		"footerLink": "Hilf mit, Lexica zu übersetzen.",
+		"cancel": "Abbrechen",
+		"apply": "Anwenden"
+	},
+	"darkmodeDialog": {
+		"title": "Design",
+		"auto": "Automatisch",
+		"desc": "Benutze dein System- bzw. Browserdesign",
+		"light": "Hell",
+		"dark": "Dunkel",
+		"cancel": "Abbrechen",
+		"apply": "Anwenden"
+	},
+	"contributionLangDialog": {
+		"title": "Lexeme beitragen in",
+		"placeholder": "Sprache suchen",
+		"cancel": "Abbrechen",
+		"apply": "Anwenden",
+		"emptySearch1": "Keine Sprachen gefunden.",
+		"emptySearch2": "Versuche, andere Schlüsselwörter zu benutzen."
+	},
+	"activityDialog": {
+		"title": "Beitragsart",
+		"connect": {
+			"title": "Lexem zum Datenobjekt",
+			"description": "Verlinke ein Lexem zu einem Datenobjekt mit demselbem Konzept"
+		},
+		"script": {
+			"title": "Skriptvarianten",
+			"description": "Füge Skriptvarianten für ein Lexem hinzu"
+		},
+		"hyphenation": {
+			"title": "Silbentrennung",
+			"description": "Trenne ein Lexem in seine Silben auf"
+		},
+		"cancel": "Abbrechen",
+		"apply": "Anwenden"
+	},
+	"home": {
+		"unauth": {
+			"title": "Willkommen!",
+			"title2": "Fülle ganz einfach lexikographische Daten auf Wikidata aus",
+			"body1": "ist ein innovatives Tool, das dir dabei hilft, problemlos zu lexikographischen Daten auf Wikidata beizutragen.",
+			"body2": "Durch die Nutzung von Lexica stimmst du Folgendem zu",
+			"privacyPolicy": "Datenschutzrichtlinie von Lexica",
+			"login": "Anmelden",
+			"info": "Wir werden unsere Datenschutzrichtlinie aktualisieren und darauf hinweisen, dass die Entwicklung von Lexica abgeschlossen ist. Die Aktualisierung tritt am 20. August 2025 um 20:00 Uhr Ww (weltweit) in Kraft. Die Datenverarbeitung und die Datenschutzpraktiken haben sich nicht geändert."
+		},
+		"auth": {
+			"title": "Hallo",
+			"languageSelect": "Lexeme beitragen in",
+			"start": "Jetzt mitmachen",
+			"tutorial": "Lies dir das Tutorial durch"
+		},
+		"loading": "Laden..."
+	},
+	"tutorial": {
+		"title": "Tutorial",
+		"of": "von",
+		"start": "Jetzt mitmachen",
+		"one": {
+			"title": "Was ist Lexica?",
+			"content": "Lexica ist ein Tool, um neuartig lexikographische Daten auf Wikidata zu bearbeiten. Lexica bietet hier eine Bearbeitungansicht an, um schnell und einfach Beiträge zu machen. Es werden dir Lexeme vorgeschlagen, die mit Datenobjekten auf Wikidata verknüpft werden sollen."
+		},
+		"two": {
+			"title": "Hilfe zur Benutzung",
+			"point1Title": "Startseite",
+			"point1Content": "beende deine Sitzung und kehre zur Startseite zurück.",
+			"point2Title": "Kartennummer",
+			"point2Content": "zeigt die Reihenfolge der aktuell angezeigten Karten an.",
+			"point3Title": "Kartengeste",
+			"point3Content": "wische auf der Kopfzeile der Karte nach oben, um die aktuelle Karte zu überspringen.",
+			"point4Title": "Überspringen",
+			"point4Content": "benutze diese Schaltfläche als zusätzliche Art, eine Karte zu überspringen.",
+			"point5Title": "Sitzung beenden",
+			"point5Content": "beende deine Sitzung und kehre zur Startseite zurück."
+		},
+		"three": {
+			"title": "Aufbau einer Beitragskarte",
+			"point1Title": "Kopfzeile",
+			"point1Content": "beinhaltet das Lemma, die Lexem-ID, die Definition des Lexem und eine Schaltfläche, um zusätzliche Informationen über das Lexem anzuzeigen.",
+			"point2Title": "Karteninhalt",
+			"point2Content": "beinhaltet Fragen, Suchfeld und Datenobjekt- oder Suchergebnisse.",
+			"point3Title": "Aktionsschaltflächen",
+			"point3Content": "wähle \"Weiter\", nachdem du das richtige Datenobjekt ausgewählt hast, oder wähle \"Datenobjekt nicht gefunden\", wenn du keine gefunden hast."
+		},
+		"four": {
+			"title": "Erledigt!",
+			"content1": "Wir wünschen dir ein frohes Bearbeiten der lexikographischen Daten auf Wikidata mit Lexica!",
+			"content2": "Tipp: Du kannst dir dieses Tutorial auf der Startseite erneut ansehen."
+		}
+	},
+	"tooltips": {
+		"home": "Zurück zur Startseite",
+		"account": "Konto",
+		"info": "Lexeminformationen anzeigen",
+		"item": "Datenobjektinformationen anzeigen",
+		"back": "Zurück"
+	},
+	"session": {
+		"loading": "Karten werden geladen...",
+		"error": {
+			"title": "Etwas ist schiefgelaufen",
+			"description": "Versuche, die Seite neu zu laden.",
+			"button": "Neu laden"
+		},
+		"noInternet": {
+			"title": "Beitrag konnte nicht hochgeladen werden",
+			"description": "Überprüfe deine Internetverbindung und versuche es dann erneut.",
+			"button": "Erneut versuchen"
+		},
+		"empty": {
+			"title": "Im Moment gibt es keine Karten, die erneut ausgefüllt werden können.",
+			"button": "Zurück zur Startseite"
+		},
+		"title": "Karte",
+		"button1": "Überspringen",
+		"button2": "Sitzung beenden",
+		"main": {
+			"title": "Welches untenstehende Datenobjekt entspricht demselben Konzept wie die obengenannte Lexembedeutung?",
+			"search": "Suche Datenobjekt oder QID",
+			"recommendation": "Empfehlungen",
+			"result": "Suchergebnisse",
+			"button1": "Datenobjekt nicht gefunden",
+			"button2": "Weiter",
+			"emptySearch1": "Keine Ergebnisse gefunden.",
+			"emptySearch2": "Versuche, andere Schlüsselwörter zu benutzen.",
+			"emptySuggestion1": "Empfehlung nicht gefunden.",
+			"emptySuggestion2": "Versuche, das Datenobjekt manuell zu suchen.",
+			"loadmore": "Mehr laden",
+			"loading": "Wird geladen...",
+			"emptyLoad": "Du hast das Ende der Suchergebnisse erreicht."
+		},
+		"scriptWriting": {
+			"title1": "Umschreiben",
+			"title2": "in {lang}",
+			"button": "Weiter",
+			"placeholder": "Hier schreiben"
+		},
+		"hyphenation": {
+			"button1": "Hier teilen",
+			"button1alt": "Rückgängig machen",
+			"button2": "Weiter"
+		},
+		"detail": {
+			"lexeme": "Lexem",
+			"loading": "Lexeminformationen abrufen",
+			"title1": "Dieses Lexem",
+			"title2": "Diese Bedeutung",
+			"subtitle1": "Aussagen",
+			"subtitle2": "In anderen Sprachen",
+			"title3": "Andere Bedeutungen",
+			"senseCount": "Bedeutung {count}",
+			"usageExample": "Anwendungsbeispiel",
+			"hasCharacteristics": "hat Eigenschaften",
+			"combinesLexemes": "Lexeme verknüpfen",
+			"images": "Bild",
+			"languageStyle": "Sprachstil",
+			"fieldOfUsage": "Anwendungsbereich",
+			"locationOfSenseUsage": "Ort der Bedeutungsanwendung",
+			"semanticGender": "semantisches Geschlecht",
+			"synonym": "Synonym",
+			"antonym": "Antonym",
+			"glossQuotes": "Glossenzitat",
+			"itemForThisSense": "Datenobjekt für diese Bedeutung",
+			"otherGlosses": "In anderen Sprachen",
+			"allSense": "Alle Bedeutungen",
+			"sense": "Bedeutung",
+			"grammaticalFeature": "Grammatikalische Merkmale dieser Form:"
+		},
+		"item": {
+			"wikidata": "Wikidata-Datenobjekt",
+			"statements": "Aussagen",
+			"translations": "Übersetzung",
+			"loading": "Datenobjektinformationen abrufen",
+			"images": "Bild",
+			"instanceOf": "Beispiel für",
+			"partOf": "Teil von",
+			"subclass": "Unterkategorie von",
+			"hasParts": "hat Teile",
+			"taxonName": "Name des Taxons",
+			"aliases": "Auch bekannt als:"
+		},
+		"preview": {
+			"title": "Vorschau",
+			"lexeme": "Lexem",
+			"newStatement": "Neue Aussage: {statement}",
+			"statement": "Datenobjekt für diese Bedeutung",
+			"button1": "Bearbeiten",
+			"button2": "Fertig",
+			"empty": "Es werden keine Änderungen vorgenommen.",
+			"reason": "Grund: Datenobjekt nicht gefunden"
+		},
+		"scriptPreview": {
+			"newStatement": "Lemma hinzugefügt: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Neue Aussage: Worttrennung (P5279)"
+		},
+		"upload": "Beitrag wird hochgeladen...",
+		"recLoading": "Empfehlungen erhalten",
+		"cardError": {
+			"title": "Upload fehlgeschlagen",
+			"description": "Überprüfe deine Internetverbindung und versuche es erneut.",
+			"button": "Erneut versuchen"
+		},
+		"done": {
+			"title": "Vielen Dank für deinen Beitrag mit Lexica!",
+			"button": "Zurück zur Startseite"
+		},
+		"skip": {
+			"title": "Karte übersprungen",
+			"button": "Rückgängig"
+		},
+		"warning": {
+			"title": "Diese Beitragssitzung beenden?",
+			"content": "Du hast gearbeitet an",
+			"subtext": "bisher keine Karte. | bisherige Karte. | bisherige Karten.",
+			"button1": "Weiter bearbeiten",
+			"button2": "Sitzung beenden",
+			"loading": "Sitzung wird beendet..."
+		},
+		"blank": {
+			"title": "Im Moment gibt es keine Karten, die erneut ausgefüllt werden können.",
+			"button": "Zurück zur Startseite"
+		},
+		"emptyStatement": "Aussage nicht gefunden",
+		"emptyDescriptionHead": "Definition nicht gefunden in",
+		"emptyDescription": "Definition nicht gefunden"
+	},
+	"about": {
+		"title": "Über uns",
+		"content1": "Die Bearbeitung lexikographischer Daten auf Wikidata auf mobilen Geräten kann für manche herausfordernd sein. Deshalb wurde Lexica ins Leben gerufen. Unser Ziel ist klar: das Bearbeiten für alle überall einfacher und zugänglicher zu machen.",
+		"content2": "Lexica ist ein innovatives Tool, das dir dabei hilft, problemlos zu lexikographischen Daten auf Wikidata beizutragen. Als webbasiertes Tool für mobile Geräte ermöglicht dir Lexica, Lexembedeutungen mit Datenobjekten auf Wikidata mithilfe einer intuitiven Kartenoberfläche zu verknüpfen.",
+		"content3": "Lexica wird von Wikicollabs in Zusammenarbeit mit Wikimedia Deutschland als Teil der Wikidata Software Collaboration entwickelt, was mit einem Zuschuss des Arcadia Philanthropic Funds unterstützt wird.",
+		"content4": "Wir bemühen uns darum, Lexica kontinuierlich weiterzuentwickeln, um die Benutzererfahrung zu verbessern. Um mehr darüber zu erfahren, besuche uns unter {link}.",
+		"page": "Lexica-Projektseite auf Wikidata"
+	},
+	"privacy": {
+		"header": "Datenschutz",
+		"title1": "Datenschutzrichtlinie",
+		"version": "Version",
+		"section1": "Lexica hat seine Entwicklungsphase abgeschlossen und ist nun als stabile Version verfügbar. Die Datenschutzerklärung kann bei Bedarf aktualisiert werden. Mit der Benutzung von Lexica wird angenommen, dass Benutzer dieser Datenschutzerklärung zustimmen.",
+		"title2": "Erhebung personenbezogener Daten",
+		"section2": {
+			"point1": "Lexica speichert keine benutzerbezogenen Daten wie beispielsweise, aber nicht ausschließlich Benutzernamen, Passwörter, IP-Adressen, die Versionsgeschichte und Benutzerstatistiken.",
+			"point2": "Lexica erhält die Berechtigung, im Namen von Benutzern zu handeln, nur, wenn diese sich über ihr Wikimedia-Benutzerkonto anmelden.",
+			"point3": "Die Aufzeichnungen der Benutzerbeiträge werden auf Wikidata gespeichert, welches der {privacy} unterliegt.",
+			"privacy": "Datenschutzerklärung der Wikimedia Foundation"
+		},
+		"title3": "Lizenz",
+		"section3": "Siehe {license} Seite",
+		"license": "Lizenz",
+		"title4": "Änderungen der Datenschutzrichtlinie",
+		"section4": {
+			"point1": "Lexica kann ihre Datenschutzrichtlinien jederzeit ändern.",
+			"point2": "Bevor Lexica seine Datenschutzerklärung ändert, wird es davor Mitteilungen in Bezug auf Änderungen der Datenschutzrichtlinien veröffentlichen, bevor diese dann endgültig umgesetzt werden.",
+			"point3": "Mitteilungen über Änderungen der Datenschutzrichtlinien werden über Lexica bekannt gegeben.",
+			"point4": "Es besteht ein Zeitraum, genannt \"Wartezeit\", der die sieben Tage nach der Ankündigung der Datenschutzerklärungsveränderung und der Umsetzung neuer Datenschutzrichtlinien umfasst.",
+			"point5": "Lexica empfiehlt Benutzern regelmäßig zu überprüfen, ob Änderungen an der Datenschutzerklärung bestehen, welche auf dieser Seite, der Wikidata-Benutzerseite und in der Datenschutzerklärung der Wikimedai Foundation zu finden sind.",
+			"point6": "Durch die weitere Nutzung von Lexica nach den Änderungen der Datenschutzrichtlinie stimmt der Nutzer der geänderten Datenschutzrichtlinie zu."
+		}
+	},
+	"license": {
+		"title1": "Lizenz",
+		"section1": {
+			"content1": "{lexica} und alle seine zugehörigen Komponenten werden unter der {gnu} (GNU GPL-2.0)-Lizenz veröffentlicht. Alle Daten im Zusammenhang mit diesem Tool werden auf Wikidata unter der {cc0} (CC0)-Lizenz gespeichert.",
+			"content2": "Lexicas Quellcode ist in den folgenden Repositories verfügbar:"
+		},
+		"title2": "Open-Source-Komponenten",
+		"section2": {
+			"content": "Folgende Open-Source-Komponenten werden von Lexica verwendet:",
+			"subtitle1": "Frontend-Bibliotheken und Frameworks",
+			"subtitle2": "Backend-Bibliotheken und Frameworks",
+			"subtitle3": "Schriftarten"
+		}
+	},
+	"aria": {
+		"account": "Konto",
+		"backToHome": "Zurück zur Startseite",
+		"showLexemeDetail": "Lexemdetails anzeigen",
+		"showItemDetail": "Datenobjektdetails anzeigen",
+		"back": "Zurück",
+		"close": "Schließen"
+	}
+}
