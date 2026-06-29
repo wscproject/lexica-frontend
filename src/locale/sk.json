@@ -1,0 +1,331 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wizzard"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Prihlásiť sa",
+			"logout": "Odhlásiť sa",
+			"locale": "Jazyk zobrazenia",
+			"theme": "Téma",
+			"auto": "Automaticky",
+			"autoDesc": "Riadiť sa témou systému/prehliadača",
+			"light": "Svetlá",
+			"dark": "Tmavá",
+			"language": "Slovenčina",
+			"accessibility": "Prístupnosť",
+			"loggingout": "Odhlasovanie…",
+			"logoutsuccess": "Boli ste odhlásení.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica je nástroj, ktorý vám prináša {wikidata}",
+		"about": "O nástroji",
+		"privacy": "Súkromie",
+		"license": "Licencia"
+	},
+	"accessibilityDialog": {
+		"title": "Prístupnosť",
+		"apply": "Použiť",
+		"close": "Zavrieť",
+		"subtitle1": "Text",
+		"subtitle2": "Animácia",
+		"option1": "Tučný text",
+		"option2": "Použiť alternatívne písmo (Atkinson Hyperlegible Next)",
+		"option2Note": "Poznámka: Niektoré znaky sa v tomto písme nemusia zobraziť.",
+		"option3": "Podčiarknuť odkazy",
+		"option4": "Obmedziť pohyb",
+		"option4Note": "Minimalizovať animácie a prechody"
+	},
+	"localeDialog": {
+		"title": "Jazyk zobrazenia",
+		"footerText": "Chcete pridať alebo zlepšiť preklad vo svojom jazyku?",
+		"footerLink": "Pomôžte prekladať Lexica.",
+		"cancel": "Zrušiť",
+		"apply": "Použiť"
+	},
+	"darkmodeDialog": {
+		"title": "Téma",
+		"auto": "Automaticky",
+		"desc": "Riadiť sa témou prehliadača",
+		"light": "Svetlá",
+		"dark": "Tmavá",
+		"cancel": "Zrušiť",
+		"apply": "Použiť"
+	},
+	"contributionLangDialog": {
+		"title": "Prispievať k lexémam v jazyku",
+		"placeholder": "Hľadať jazyk",
+		"cancel": "Zrušiť",
+		"apply": "Použiť",
+		"emptySearch1": "Nenašli sa žiadne jazyky.",
+		"emptySearch2": "Skúste použiť iné kľúčové slová."
+	},
+	"activityDialog": {
+		"title": "Typ príspevku",
+		"connect": {
+			"title": "Lexéma k položke",
+			"description": "Prepojiť lexému s položkou s rovnakým konceptom"
+		},
+		"script": {
+			"title": "Varianty písma",
+			"description": "Pridať varianty písma pre lexému"
+		},
+		"hyphenation": {
+			"title": "Delenie slov",
+			"description": "Rozdeliť lexému na slabiky"
+		},
+		"cancel": "Zrušiť",
+		"apply": "Použiť"
+	},
+	"home": {
+		"unauth": {
+			"title": "Vitajte!",
+			"title2": "Jednoducho doplňte lexikografické údaje na Wikidátach",
+			"body1": "je inovatívny nástroj vytvorený na to, aby vám umožnil bezproblémovo prispievať k lexikografickým údajom na Wikidátach.",
+			"body2": "Používaním Lexica súhlasíte so",
+			"privacyPolicy": "Zásadami ochrany súkromia Lexica",
+			"login": "Prihlásiť sa",
+			"info": "Aktualizujeme naše zásady ochrany súkromia tak, aby uvádzali, že vývoj Lexica bol dokončený, s účinnosťou od 20. augusta 2025, 20:00 AoE (Anywhere on Earth). Pri spracovaní údajov ani v postupoch ochrany súkromia nedochádza k žiadnym zmenám."
+		},
+		"auth": {
+			"title": "Ahoj",
+			"languageSelect": "Prispievať k lexémam v jazyku",
+			"start": "Začať prispievať",
+			"tutorial": "Prečítať si návod"
+		},
+		"loading": "Načítava sa…"
+	},
+	"tutorial": {
+		"title": "Návod",
+		"of": "z",
+		"start": "Začať prispievať",
+		"one": {
+			"title": "Čo je Lexica?",
+			"content": "Lexica je nástroj na hľadanie nových spôsobov úpravy lexikografických údajov na Wikidátach. Lexica poskytuje editačné zobrazenie lexikografických údajov na Wikidátach, aby boli rýchle príspevky jednoduchšie. Dostanete lexémy, ktoré treba prepojiť s položkami na Wikidátach."
+		},
+		"two": {
+			"title": "Ako používať",
+			"point1Title": "Domovská stránka",
+			"point1Content": "ukončí vašu reláciu prispievania a vráti vás na domovskú stránku.",
+			"point2Title": "Číslo karty",
+			"point2Content": "zobrazuje poradie aktuálne zobrazených kariet.",
+			"point3Title": "Gesto karty",
+			"point3Content": "potiahnutím nahor po hlavičke karty preskočíte aktuálnu kartu.",
+			"point4Title": "Tlačidlo Preskočiť",
+			"point4Content": "toto tlačidlo použite ako ďalší spôsob preskočenia karty.",
+			"point5Title": "Ukončiť reláciu",
+			"point5Content": "ukončí vašu reláciu prispievania a vráti vás na domovskú stránku."
+		},
+		"three": {
+			"title": "Anatómia karty príspevku",
+			"point1Title": "Hlavička",
+			"point1Content": "obsahuje lemu, ID lexémy, definíciu lexémy a tlačidlo na zobrazenie ďalších informácií o lexéme.",
+			"point2Title": "Obsah karty",
+			"point2Content": "obsahuje otázku, vyhľadávacie pole a položku alebo výsledky vyhľadávania.",
+			"point3Title": "Akčné tlačidlá",
+			"point3Content": "po výbere správnej položky vyberte „Ďalej“ alebo vyberte „Položka sa nenašla“, ak žiadnu nenájdete."
+		},
+		"four": {
+			"title": "Hotovo!",
+			"content1": "Prajeme príjemné prispievanie k lexikografickým údajom na Wikidátach s Lexica!",
+			"content2": "Tip: Tento návod si môžete znova zobraziť z domovskej stránky."
+		}
+	},
+	"tooltips": {
+		"home": "Späť na domovskú stránku",
+		"account": "Účet",
+		"info": "Zobraziť informácie o lexéme",
+		"item": "Zobraziť informácie o položke",
+		"back": "Prejsť späť"
+	},
+	"session": {
+		"loading": "Načítavajú sa karty…",
+		"error": {
+			"title": "Niečo sa pokazilo",
+			"description": "Skúste znova načítať túto stránku.",
+			"button": "Znova načítať"
+		},
+		"noInternet": {
+			"title": "Príspevok sa nepodarilo nahrať",
+			"description": "Skontrolujte internetové pripojenie a skúste to znova.",
+			"button": "Skúsiť znova"
+		},
+		"empty": {
+			"title": "Momentálne nie sú žiadne karty, ktoré by sa dali znova vyplniť.",
+			"button": "Späť na domovskú stránku"
+		},
+		"title": "Karta",
+		"button1": "Preskočiť",
+		"button2": "Ukončiť reláciu",
+		"main": {
+			"title": "Ktorá položka nižšie má rovnaký koncept ako význam lexémy vyššie?",
+			"search": "Hľadať položku alebo QID",
+			"recommendation": "Odporúčania",
+			"result": "Výsledky vyhľadávania",
+			"button1": "Položka sa nenašla",
+			"button2": "Ďalej",
+			"emptySearch1": "Nenašli sa žiadne výsledky.",
+			"emptySearch2": "Skúste použiť iné kľúčové slová.",
+			"emptySuggestion1": "Odporúčanie sa nenašlo.",
+			"emptySuggestion2": "Skúste položku vyhľadať ručne.",
+			"loadmore": "Načítať viac",
+			"loading": "Načítava sa…",
+			"emptyLoad": "Dosiahli ste koniec výsledkov vyhľadávania"
+		},
+		"scriptWriting": {
+			"title1": "Prepíšte",
+			"title2": "v jazyku {lang}",
+			"button": "Ďalej",
+			"placeholder": "Píšte sem"
+		},
+		"hyphenation": {
+			"button1": "Rozdeliť tu",
+			"button1alt": "Späť",
+			"button2": "Ďalej"
+		},
+		"detail": {
+			"lexeme": "Lexéma",
+			"loading": "Získavajú sa informácie o lexéme",
+			"title1": "Táto lexéma",
+			"title2": "Tento význam",
+			"subtitle1": "Výroky",
+			"subtitle2": "V iných jazykoch",
+			"title3": "Ďalšie významy",
+			"senseCount": "Význam {count}",
+			"usageExample": "príklad použitia",
+			"hasCharacteristics": "má charakteristiky",
+			"combinesLexemes": "kombinuje lexémy",
+			"images": "obrázok",
+			"languageStyle": "jazykový štýl",
+			"fieldOfUsage": "oblasť použitia",
+			"locationOfSenseUsage": "miesto použitia významu",
+			"semanticGender": "sémantický rod",
+			"synonym": "synonymum",
+			"antonym": "antonymum",
+			"glossQuotes": "citácia glosy",
+			"itemForThisSense": "položka pre tento význam",
+			"otherGlosses": "V iných jazykoch",
+			"allSense": "Všetky významy",
+			"sense": "Význam",
+			"grammaticalFeature": "Gramatické vlastnosti tohto tvaru:"
+		},
+		"item": {
+			"wikidata": "Položka Wikidát",
+			"statements": "Výroky",
+			"translations": "Preklad",
+			"loading": "Získavajú sa informácie o položke",
+			"images": "obrázok",
+			"instanceOf": "je inštanciou",
+			"partOf": "je súčasťou",
+			"subclass": "je podtriedou",
+			"hasParts": "má časti",
+			"taxonName": "názov taxónu",
+			"aliases": "Známe aj ako:"
+		},
+		"preview": {
+			"title": "Náhľad",
+			"lexeme": "Lexéma",
+			"newStatement": "Nový výrok: {statement}",
+			"statement": "položka pre tento význam",
+			"button1": "Upraviť",
+			"button2": "Hotovo",
+			"empty": "Nevykonajú sa žiadne zmeny",
+			"reason": "Dôvod: Položka sa nenašla"
+		},
+		"scriptPreview": {
+			"newStatement": "Pridaná lema: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Nový výrok: delenie slov (P5279)"
+		},
+		"upload": "Nahráva sa príspevok…",
+		"recLoading": "Získavajú sa odporúčania",
+		"cardError": {
+			"title": "Nahrávanie zlyhalo",
+			"description": "Skontrolujte internetové pripojenie a skúste to znova.",
+			"button": "Skúsiť znova"
+		},
+		"done": {
+			"title": "Ďakujeme za príspevok cez Lexica!",
+			"button": "Späť na domovskú stránku"
+		},
+		"skip": {
+			"title": "Karta bola preskočená.",
+			"button": "Späť"
+		},
+		"warning": {
+			"title": "Ukončiť túto reláciu prispievania?",
+			"content": "Doteraz ste pracovali na",
+			"subtext": "žiadnej karte. | karte. | kartách.",
+			"button1": "Pokračovať v úpravách",
+			"button2": "Ukončiť reláciu",
+			"loading": "Ukončuje sa relácia…"
+		},
+		"blank": {
+			"title": "Momentálne nie sú žiadne karty, ktoré by sa dali znova vyplniť.",
+			"button": "Späť na domovskú stránku"
+		},
+		"emptyStatement": "Výrok sa nenašiel",
+		"emptyDescriptionHead": "Definícia sa nenašla v",
+		"emptyDescription": "Definícia sa nenašla"
+	},
+	"about": {
+		"title": "O nástroji",
+		"content1": "Úprava lexikografických údajov na Wikidátach cez mobilné zariadenia môže byť pre niektorých náročná. Práve preto vznikla Lexica. Náš cieľ je jednoduchý: zjednodušiť a sprístupniť úpravy pre každého a všade.",
+		"content2": "Lexica je inovatívny nástroj vytvorený na to, aby vám umožnil bezproblémovo prispievať k lexikografickým údajom na Wikidátach. Ako webový nástroj optimalizovaný pre mobilné zariadenia vám Lexica umožňuje rýchlo prepájať významy lexém s položkami na Wikidátach prostredníctvom intuitívneho kartového rozhrania.",
+		"content3": "Lexica vyvíja Wikicollabs v spolupráci s Wikimedia Deutschland v rámci Wikidata Software Collaboration s podporou grantu z Arcadia Philanthropic Fund.",
+		"content4": "Zaviazali sme sa Lexica neustále vyvíjať a zlepšovať používateľský zážitok. Ak sa chcete o našom projekte dozvedieť viac, navštívte {link}.",
+		"page": "Stránka projektu Lexica na Wikidátach"
+	},
+	"privacy": {
+		"header": "Súkromie",
+		"title1": "Zásady ochrany súkromia",
+		"version": "Verzia",
+		"section1": "Lexica dokončila svoju vývojovú fázu a je teraz v stabilnom vydaní. Zásady ochrany súkromia môžu byť podľa potreby aktualizované. Používaním Lexica sa používatelia považujú za súhlasiacich s týmito zásadami ochrany súkromia.",
+		"title2": "Zhromažďovanie osobných údajov",
+		"section2": {
+			"point1": "Lexica neukladá žiadne údaje spojené s používateľmi, ako napríklad (nie však výlučne) používateľské mená, heslá, IP adresy, históriu interakcií a štatistiku používania.",
+			"point2": "Lexica získava oprávnenie konať v mene používateľov iba vtedy, keď sa používatelia prihlásia prostredníctvom svojho používateľského účtu Wikimedia.",
+			"point3": "Záznamy o príspevkoch používateľov sa budú ukladať na Wikidátach, ktoré podliehajú {privacy}",
+			"privacy": "Zásadám ochrany súkromia nadácie Wikimedia"
+		},
+		"title3": "Licencia",
+		"section3": "Pozrite si stránku {license}.",
+		"license": "Licencia",
+		"title4": "Zmeny v zásadách ochrany súkromia",
+		"section4": {
+			"point1": "Lexica môže svoje zásady ochrany súkromia kedykoľvek zmeniť.",
+			"point2": "Pred vykonaním zmien v zásadách ochrany súkromia Lexica poskytne predchádzajúce upozornenie o týchto zmenách skôr, ako budú natrvalo zavedené.",
+			"point3": "Upozornenia o zmenách v zásadách ochrany súkromia budú oznámené prostredníctvom Lexica.",
+			"point4": "Existuje obdobie nazývané „čakacia lehota“, ktoré zahŕňa sedem dní od oznámenia zmeny zásad ochrany súkromia po zavedenie nových zásad ochrany súkromia.",
+			"point5": "Lexica odporúča používateľom pravidelne kontrolovať zmeny v zásadách ochrany súkromia, ktoré nájdu na tejto stránke, na používateľskej stránke na Wikidátach a v zásadách ochrany súkromia nadácie Wikimedia.",
+			"point6": "Pokračovaním v používaní Lexica po zmenách zásad ochrany súkromia používateľ súhlasí so zmenenými zásadami ochrany súkromia."
+		}
+	},
+	"license": {
+		"title1": "Licencia",
+		"section1": {
+			"content1": "{lexica} a všetky jeho súčasti sú publikované pod licenciou {gnu} (GNU GPL-2.0). Všetky údaje pridané týmto nástrojom sa budú ukladať na Wikidátach pod licenciou {cc0} (CC0).",
+			"content2": "Zdrojový kód Lexica je dostupný v týchto repozitároch:"
+		},
+		"title2": "Open source súčasti",
+		"section2": {
+			"content": "Nasledujúce sú open source súčasti, ktoré Lexica používa:",
+			"subtitle1": "Frontendové knižnice a frameworky",
+			"subtitle2": "Backendové knižnice a frameworky",
+			"subtitle3": "Písma"
+		}
+	},
+	"aria": {
+		"account": "Účet",
+		"backToHome": "Späť na domov",
+		"showLexemeDetail": "Zobraziť detail lexémy",
+		"showItemDetail": "Zobraziť detail položky",
+		"back": "Späť",
+		"close": "Zavrieť"
+	}
+}
