@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kokage si",
 			"Largestone"
 		]
 	},
@@ -56,7 +57,7 @@
 		"apply": "適用"
 	},
 	"contributionLangDialog": {
-		"placeholder": "言語を選択",
+		"placeholder": "言語を検索",
 		"cancel": "キャンセル",
 		"apply": "適用",
 		"emptySearch1": "言語が見つかりません。"

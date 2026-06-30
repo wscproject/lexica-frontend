@@ -1,0 +1,129 @@
+{
+	"@metadata": {
+		"authors": [
+			"Aquasen",
+			"Asteralee"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Connexion",
+			"logout": "Déconnexion",
+			"locale": "Langue d’affichage",
+			"theme": "Thème",
+			"auto": "Automatique",
+			"autoDesc": "Suivre le thème de votre système/navigateur",
+			"light": "Clair",
+			"dark": "Sombre",
+			"language": "Anglais",
+			"accessibility": "Accessibilité",
+			"loggingout": "Déconnexion...",
+			"logoutsuccess": "Vous êtes déconnecté(e).",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexica est un outil disponible grâce à {wikidata}",
+		"about": "À propos",
+		"privacy": "Confidentialité",
+		"license": "Licence"
+	},
+	"accessibilityDialog": {
+		"title": "Accessibilité",
+		"apply": "Appliquer",
+		"close": "Fermer",
+		"subtitle1": "Texte",
+		"subtitle2": "Animation",
+		"option1": "Texte en gras",
+		"option2": "Utiliser une police alternative (Atkinson Hyperlegible Next)",
+		"option2Note": "Remarque : Certains caractères peuvent ne pas être affichés dans cette police.",
+		"option3": "Liens soulignés",
+		"option4": "Réduire les mouvements",
+		"option4Note": "Réduire au minimum les animations et les transitions"
+	},
+	"localeDialog": {
+		"title": "Langue d’affichage",
+		"footerText": "Vous souhaitez ajouter ou améliorer la traduction dans votre langue ?",
+		"footerLink": "Aidez à traduire Lexica.",
+		"cancel": "Annuler",
+		"apply": "Appliquer"
+	},
+	"darkmodeDialog": {
+		"title": "Thème",
+		"auto": "Automatique",
+		"desc": "Suivre le thème de votre navigateur",
+		"light": "Clair",
+		"dark": "Sombre",
+		"cancel": "Annuler",
+		"apply": "Appliquer"
+	},
+	"contributionLangDialog": {
+		"title": "Contribuer à Lexemes en",
+		"placeholder": "Rechercher une langue",
+		"cancel": "Annuler",
+		"apply": "Appliquer",
+		"emptySearch1": "Aucune langue trouvée.",
+		"emptySearch2": "Essayez d'utiliser des mots-clés différents."
+	},
+	"activityDialog": {
+		"title": "Type de contribution",
+		"connect": {
+			"title": "Lexeme à Élément",
+			"description": "Lier un Lexeme à un élément ayant le même concept"
+		},
+		"script": {
+			"title": "Variantes de script",
+			"description": "Ajouter des variantes de script pour un Lexeme"
+		},
+		"hyphenation": {
+			"title": "Trait d'union",
+			"description": "Divisez un Lexeme en syllabes"
+		},
+		"cancel": "Annuler",
+		"apply": "Appliquer"
+	},
+	"home": {
+		"unauth": {
+			"title": "Bienvenue !",
+			"title2": "Données lexicographiques complètes sur Wikidata en toute simplicité",
+			"body1": "est un outil innovant conçu pour vous permettre de contribuer facilement aux données lexicographiques de Wikidata.",
+			"body2": "En utilisant Lexica, vous acceptez",
+			"privacyPolicy": "Politique de confidentialité de Lexica",
+			"login": "Connexion",
+			"info": "Nous mettrons à jour notre politique de confidentialité pour indiquer que le développement de Lexica est terminé, à compter du 20 août 2025 à 20h00 (N'importe où sur Terre). Les pratiques de traitement et de confidentialité des données restent inchangées."
+		},
+		"auth": {
+			"title": "Bonjour",
+			"languageSelect": "Contribuer à Lexemes en",
+			"start": "Commencer à contribuer",
+			"tutorial": "Lire le tutoriel"
+		},
+		"loading": "Chargement..."
+	},
+	"tutorial": {
+		"title": "Tutoriel",
+		"of": "de",
+		"start": "Commencer à contribuer",
+		"one": {
+			"title": "Qu'est-ce que Lexica ?",
+			"content": "Lexica est un outil permettant de trouver de nouvelles façons d'éditer des données lexicographiques sur Wikidata. Ici, Lexica fournit une vue d'édition des données lexicographiques sur Wikidata afin de faciliter les contributions rapides. Vous recevrez des Lexemes qui doivent être connectés aux Éléments de Wikidata."
+		},
+		"two": {
+			"title": "Mode d’emploi",
+			"point1Title": "Page d’accueil",
+			"point1Content": "Terminer votre session de contribution et retourner à la page d'accueil.",
+			"point2Title": "Numéro de carte",
+			"point2Content": "affiche la séquence des cartes actuellement affichées.",
+			"point3Title": "Geste de carte",
+			"point3Content": "Faites glisser votre doigt vers le haut sur l'en-tête de la carte pour passer à la carte suivante.",
+			"point4Title": "Bouton Passer",
+			"point4Content": "Utilisez ce bouton comme autre moyen de passer une carte.",
+			"point5Title": "Fermer la session"
+		}
+	},
+	"session": {
+		"hyphenation": {
+			"button1alt": "Annuler"
+		}
+	}
+}
