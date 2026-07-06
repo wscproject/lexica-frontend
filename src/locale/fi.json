@@ -1,0 +1,205 @@
+{
+	"@metadata": {
+		"authors": [
+			"Wikipeedikko",
+			"Yupik"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Kirjaudu sisään",
+			"logout": "Kirjaudu ulos",
+			"locale": "Käyttöliittymän kieli",
+			"theme": "Teema",
+			"auto": "Automaattinen",
+			"autoDesc": "Käytä järjestelmän/selaimen teemaa",
+			"light": "Vaalea",
+			"dark": "Tumma",
+			"language": "englanti",
+			"accessibility": "Saavutettavuus",
+			"loggingout": "Kirjaudutaan ulos...",
+			"logoutsuccess": "Olet kirjautunut ulos.",
+			"ok": "OK"
+		}
+	},
+	"footer": {
+		"label": "Lexican tarjoaa {wikidata}",
+		"about": "Tietoja",
+		"privacy": "Yksityisyys",
+		"license": "Lisenssi"
+	},
+	"accessibilityDialog": {
+		"title": "Saavutettavuus",
+		"apply": "Käytä",
+		"close": "Sulje",
+		"subtitle1": "Teksti",
+		"subtitle2": "Animaatio",
+		"option1": "Lihavoitu teksti",
+		"option2": "Käytä vaihtoehtoista kirjasintyyppiä (Atkinson Hyperlegible Next)",
+		"option2Note": "Huomautus: jotkin merkit eivät saata näkyä tätä kirjasintyyppiä käytettäessä.",
+		"option3": "Alleviivaa linkit",
+		"option4": "Vähennä liikettä",
+		"option4Note": "Minimoi animaatiot ja siirtymät"
+	},
+	"localeDialog": {
+		"title": "Käyttöliittymän kieli",
+		"footerText": "Haluatko kääntää omalle kielellesi tai parantaa jo tehtyjä käännöksiä?",
+		"footerLink": "Osallistu Lexican kääntämiseen.",
+		"cancel": "Peru",
+		"apply": "Käytä"
+	},
+	"darkmodeDialog": {
+		"title": "Teema",
+		"auto": "Automaattinen",
+		"desc": "Käytä selaimen teemaa",
+		"light": "Vaalea",
+		"dark": "Tumma",
+		"cancel": "Peru",
+		"apply": "Käytä"
+	},
+	"contributionLangDialog": {
+		"title": "Lisää lekseemejä kielellä",
+		"placeholder": "Hae kieltä",
+		"cancel": "Peru",
+		"apply": "Käytä",
+		"emptySearch1": "Kieliä ei löytynyt.",
+		"emptySearch2": "Kokeile muita hakusanoja."
+	},
+	"activityDialog": {
+		"hyphenation": {
+			"title": "Tavutus"
+		},
+		"cancel": "Peru",
+		"apply": "Käytä"
+	},
+	"home": {
+		"unauth": {
+			"title": "Tervetuloa!",
+			"privacyPolicy": "Lexican tietosuojakäytäntö",
+			"login": "Kirjaudu sisään"
+		},
+		"loading": "Ladataan..."
+	},
+	"tutorial": {
+		"title": "Opas",
+		"two": {
+			"title": "Käyttöohje",
+			"point1Title": "Etusivu",
+			"point5Title": "Päätä istunto"
+		},
+		"three": {
+			"point1Title": "Ylätunniste",
+			"point3Title": "Toimintopainikkeet"
+		},
+		"four": {
+			"title": "Valmista tuli!"
+		}
+	},
+	"tooltips": {
+		"home": "Palaa aloitussivulle",
+		"account": "Käyttäjätunnus",
+		"back": "Takaisin"
+	},
+	"session": {
+		"error": {
+			"title": "Jokin meni pieleen",
+			"button": "Lataa uudelleen"
+		},
+		"noInternet": {
+			"description": "Tarkista internetyhteys ja yritä uudelleen.",
+			"button": "Yritä uudelleen"
+		},
+		"empty": {
+			"button": "Palaa aloitussivulle"
+		},
+		"title": "Kortti",
+		"button1": "Ohita",
+		"button2": "Päätä istunto",
+		"main": {
+			"recommendation": "Suositukset",
+			"result": "Hakutulokset",
+			"button1": "Kohdetta ei löytynyt",
+			"button2": "Seuraava",
+			"emptySearch1": "Tuloksia ei löytynyt.",
+			"emptySearch2": "Kokeile muita hakusanoja.",
+			"emptySuggestion1": "Suositusta ei löytynyt.",
+			"emptySuggestion2": "Etsi kohdetta manuaalisesti.",
+			"loadmore": "Lataa lisää",
+			"loading": "Ladataan...",
+			"emptyLoad": "Hakutulokset päättyvät tähän"
+		},
+		"scriptWriting": {
+			"button": "Seuraava",
+			"placeholder": "Kirjoita tähän"
+		},
+		"hyphenation": {
+			"button1": "Jaa tästä",
+			"button1alt": "Kumoa",
+			"button2": "Seuraava"
+		},
+		"detail": {
+			"lexeme": "Lekseemi",
+			"loading": "Haetaan lekseemin tietoja",
+			"title1": "Tämä lekseemi",
+			"subtitle2": "Muilla kielillä",
+			"usageExample": "käyttöesimerkki",
+			"images": "kuva",
+			"languageStyle": "kielen tyyli",
+			"fieldOfUsage": "käyttöala",
+			"synonym": "synonyymi",
+			"antonym": "antonyymi"
+		},
+		"item": {
+			"translations": "Käännös",
+			"images": "kuva",
+			"aliases": "Muita nimiä:"
+		},
+		"preview": {
+			"title": "Esikatselu",
+			"lexeme": "Lekseemi",
+			"button1": "Muokkaa",
+			"button2": "Valmis",
+			"empty": "Mitään muutoksia ei tehdä",
+			"reason": "Syy: kohdetta ei löydy"
+		},
+		"cardError": {
+			"title": "Lataus epäonnistui",
+			"button": "Yritä uudelleen"
+		},
+		"done": {
+			"button": "Palaa aloitussivulle"
+		},
+		"warning": {
+			"button1": "Jatka muokkaamista",
+			"button2": "Päätä istunto",
+			"loading": "Päätetään istuntoa..."
+		}
+	},
+	"about": {
+		"title": "Tietoja"
+	},
+	"privacy": {
+		"header": "Yksityisyys",
+		"title1": "Tietosuojakäytäntö",
+		"version": "Versio",
+		"title3": "Lisenssi",
+		"section3": "Näytä lisenssin {license} sivu.",
+		"license": "Lisenssi",
+		"title4": "Tietosuojakäytännön muutokset"
+	},
+	"license": {
+		"title1": "Lisenssi",
+		"title2": "Avoimen lähdekoodin komponentit",
+		"section2": {
+			"subtitle3": "Kirjasintyypit"
+		}
+	},
+	"aria": {
+		"account": "Käyttäjätunnus",
+		"backToHome": "Palaa aloitussivulle",
+		"showLexemeDetail": "Näytä lekseemin tiedot",
+		"showItemDetail": "Näytä kohteen tiedot",
+		"back": "Takaisin",
+		"close": "Sulje"
+	}
+}
