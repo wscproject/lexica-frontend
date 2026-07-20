@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aquasen",
-			"Asteralee"
+			"Asteralee",
+			"Zer0null"
 		]
 	},
 	"header": {
@@ -118,7 +119,11 @@
 			"point3Content": "Faites glisser votre doigt vers le haut sur l'en-tête de la carte pour passer à la carte suivante.",
 			"point4Title": "Bouton Passer",
 			"point4Content": "Utilisez ce bouton comme autre moyen de passer une carte.",
-			"point5Title": "Fermer la session"
+			"point5Title": "Fermer la session",
+			"point5Content": "terminer votre session de contribution et retourner à la page d'accueil."
+		},
+		"three": {
+			"title": "Anatomie d'une carte de contribution"
 		}
 	},
 	"session": {
