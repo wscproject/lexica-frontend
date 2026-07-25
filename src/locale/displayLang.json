@@ -85,6 +85,12 @@
       "disabled": false
     },
     {
+      "label": "Suomi",
+      "value": "fi",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "Türkçe",
       "value": "tr",
       "dir": "ltr",
