@@ -1,0 +1,331 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"header": {
+		"menu": {
+			"login": "Iniciar sesión",
+			"logout": "Saír",
+			"locale": "Lingua da interface",
+			"theme": "Tema",
+			"auto": "Automático",
+			"autoDesc": "Usar o tema do teu sistema/navegador",
+			"light": "Claro",
+			"dark": "Escuro",
+			"language": "inglés",
+			"accessibility": "Accesibilidade",
+			"loggingout": "Pechando a sesión...",
+			"logoutsuccess": "Pechaches a sesión.",
+			"ok": "Aceptar"
+		}
+	},
+	"footer": {
+		"label": "Lexica é unha ferramenta que che ofrece {wikidata}",
+		"about": "Acerca de",
+		"privacy": "Privacidade",
+		"license": "Licenza"
+	},
+	"accessibilityDialog": {
+		"title": "Accesibilidade",
+		"apply": "Aplicar",
+		"close": "Pechar",
+		"subtitle1": "Texto",
+		"subtitle2": "Animación",
+		"option1": "Texto en grosa",
+		"option2": "Usar un tipo de letra alternativo (Atkinson Hyperlegible Next)",
+		"option2Note": "Nota: É posible que algúns caracteres non se mostren con este tipo de letra.",
+		"option3": "Subliñar as ligazóns",
+		"option4": "Reducir o movemento",
+		"option4Note": "Minimizar as animacións e transicións"
+	},
+	"localeDialog": {
+		"title": "Lingua da interface",
+		"footerText": "Queres engadir ou mellorar a tradución na túa lingua?",
+		"footerLink": "Axuda a traducir Lexica.",
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"darkmodeDialog": {
+		"title": "Tema",
+		"auto": "Automático",
+		"desc": "Pon o tema do teu navegador",
+		"light": "Claro",
+		"dark": "Escuro",
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"contributionLangDialog": {
+		"title": "Contribuír a lexemas en",
+		"placeholder": "Procurar unha lingua",
+		"cancel": "Cancelar",
+		"apply": "Aplicar",
+		"emptySearch1": "Non se atopou ningunha lingua.",
+		"emptySearch2": "Intenta usar palabras clave diferentes."
+	},
+	"activityDialog": {
+		"title": "Tipo de contribución",
+		"connect": {
+			"title": "Lexema a elemento",
+			"description": "Vencella un lexema a un elemento co mesmo concepto"
+		},
+		"script": {
+			"title": "Variantes de escritura",
+			"description": "Engade variantes de escritura a un lexema"
+		},
+		"hyphenation": {
+			"title": "Separación en sílabas",
+			"description": "Divide un lexema nas súas sílabas"
+		},
+		"cancel": "Cancelar",
+		"apply": "Aplicar"
+	},
+	"home": {
+		"unauth": {
+			"title": "Recibe a nosa benvida!",
+			"title2": "Datos lexicográficos completos en Wikidata con facilidade",
+			"body1": "é unha ferramenta innovadora deseñada para que poidas contribuír sen problemas aos datos lexicográficos de Wikidata.",
+			"body2": "Ao utilizares Lexica, aceptas",
+			"privacyPolicy": "Política de privacidade de Lexica",
+			"login": "Iniciar sesión",
+			"info": "Actualizaremos a nosa política de privacidade para indicar que Lexica completou o desenvolvemento, con entrada en vigor o 20 de agosto de 2025 ás 20:00 (hora en calquera lugar da Terra). Non hai cambios no tratamento de datos nin nas prácticas de privacidade."
+		},
+		"auth": {
+			"title": "Boas",
+			"languageSelect": "Contribuír a lexemas en",
+			"start": "Comezar a contribuír",
+			"tutorial": "Ler a guía"
+		},
+		"loading": "Cargando..."
+	},
+	"tutorial": {
+		"title": "Guía",
+		"of": "de",
+		"start": "Comezar a contribuír",
+		"one": {
+			"title": "Que é Lexica?",
+			"content": "Lexica é unha ferramenta para atopar novas formas de editar datos lexicográficos en Wikidata. Aquí, Lexica ofrece unha vista de edición de datos lexicográficos en Wikidata para facilitar as contribucións rápidas. Recibirás lexemas que deben estar conectados a elementos en Wikidata."
+		},
+		"two": {
+			"title": "Modo de uso",
+			"point1Title": "Páxina de inicio",
+			"point1Content": "remata a túa sesión de contribucións e volve á páxina de inicio.",
+			"point2Title": "Número da tarxeta",
+			"point2Content": "mostra a secuencia das tarxetas que se mostran actualmente.",
+			"point3Title": "Xesto da tarxeta",
+			"point3Content": "desliza cara arriba na cabeceira da tarxeta para omitires a tarxeta actual.",
+			"point4Title": "Botón de omitir",
+			"point4Content": "utiliza este botón como outra forma de omitir unha tarxeta.",
+			"point5Title": "Rematar a sesión",
+			"point5Content": "remata a túa sesión de contribucións e volve á páxina de inicio."
+		},
+		"three": {
+			"title": "Anatomía dunha tarxeta de contribución",
+			"point1Title": "Cabeceira",
+			"point1Content": "Inclúe o lema, o identificador do lexema, a definición do lexema e un botón para ver información adicional sobre o lexema.",
+			"point2Title": "Contido da tarxeta",
+			"point2Content": "inclúe a pregunta, a caixa de busca e o elemento ou os resultados de busca.",
+			"point3Title": "Botóns de acción",
+			"point3Content": "selecciona «Seguinte» despois de elixir o elemento correcto ou selecciona «Non se atopou o elemento» se non atopas ningún."
+		},
+		"four": {
+			"title": "Todo feito!",
+			"content1": "Feliz de colaborar con datos lexicográficos en Wikidata con Lexica!",
+			"content2": "Consello: Podes volver ver esta guía desde a páxina de inicio."
+		}
+	},
+	"tooltips": {
+		"home": "Volver á páxina de inicio",
+		"account": "Conta",
+		"info": "Mostrar a información do lexema",
+		"item": "Mostrar a información do elemento",
+		"back": "Volver"
+	},
+	"session": {
+		"loading": "Cargando as tarxetas...",
+		"error": {
+			"title": "Algo foi mal",
+			"description": "Intenta recargar esta páxina.",
+			"button": "Recargar"
+		},
+		"noInternet": {
+			"title": "Non se puido subir a contribución",
+			"description": "Comproba a túa conexión a Internet e inténtao de novo.",
+			"button": "Intentar de novo"
+		},
+		"empty": {
+			"title": "Non hai tarxetas que se poidan volver cubrir neste momento.",
+			"button": "Volver á páxina de inicio"
+		},
+		"title": "Tarxeta",
+		"button1": "Omitir",
+		"button2": "Rematar a sesión",
+		"main": {
+			"title": "Cal dos seguintes elementos representa o mesmo concepto que a acepción do lexema anterior?",
+			"search": "Buscar por elemento ou QID",
+			"recommendation": "Recomendacións",
+			"result": "Resultados da procura",
+			"button1": "Non se atopou o elemento",
+			"button2": "Seguinte",
+			"emptySearch1": "Non se atopou ningún resultado.",
+			"emptySearch2": "Intenta usar palabras clave diferentes.",
+			"emptySuggestion1": "Non se atopou a recomendación.",
+			"emptySuggestion2": "Intenta buscar o elemento manualmente.",
+			"loadmore": "Cargar máis",
+			"loading": "Cargando...",
+			"emptyLoad": "Acadaches o final dos resultados da procura"
+		},
+		"scriptWriting": {
+			"title1": "Reescribir",
+			"title2": "en {lang}",
+			"button": "Seguinte",
+			"placeholder": "Escribe aquí"
+		},
+		"hyphenation": {
+			"button1": "Divide aquí",
+			"button1alt": "Desfacer",
+			"button2": "Seguinte"
+		},
+		"detail": {
+			"lexeme": "Lexema",
+			"loading": "Recuperando a información sobre o lexema",
+			"title1": "Este lexema",
+			"title2": "Esta acepción",
+			"subtitle1": "Declaracións",
+			"subtitle2": "Noutras linguas",
+			"title3": "Outras acepcións",
+			"senseCount": "Acepción {count}",
+			"usageExample": "exemplo de uso",
+			"hasCharacteristics": "ten características",
+			"combinesLexemes": "lexemas combinados",
+			"images": "imaxe",
+			"languageStyle": "estilo lingüístico",
+			"fieldOfUsage": "campo de uso",
+			"locationOfSenseUsage": "localización do uso da acepción",
+			"semanticGender": "xénero semántico",
+			"synonym": "sinónimo",
+			"antonym": "antónimo",
+			"glossQuotes": "cita de glosa",
+			"itemForThisSense": "elemento para esta acepción",
+			"otherGlosses": "Noutras linguas",
+			"allSense": "Todas as acepcións",
+			"sense": "Acepción",
+			"grammaticalFeature": "Características gramaticais desta forma:"
+		},
+		"item": {
+			"wikidata": "Elemento de Wikidata",
+			"statements": "Declaracións",
+			"translations": "Tradución",
+			"loading": "Recuperando a información sobre o elemento",
+			"images": "imaxe",
+			"instanceOf": "instancia de",
+			"partOf": "parte de",
+			"subclass": "subclase de",
+			"hasParts": "composto por",
+			"taxonName": "nome do taxon",
+			"aliases": "Tamén coñecido como:"
+		},
+		"preview": {
+			"title": "Vista previa",
+			"lexeme": "Lexema",
+			"newStatement": "Nova declaración: {statement}",
+			"statement": "elemento para esta acepción",
+			"button1": "Editar",
+			"button2": "Feito",
+			"empty": "Non se farán cambios",
+			"reason": "Motivo: Non se atopou o elemento"
+		},
+		"scriptPreview": {
+			"newStatement": "Lema engadido: {lang} ({code})"
+		},
+		"hyphenationPreview": {
+			"newStatement": "Declaración nova: separación en sílabas (P5279)"
+		},
+		"upload": "Subindo a contribución...",
+		"recLoading": "Recuperando as recomendacións",
+		"cardError": {
+			"title": "Fallou a subida",
+			"description": "Comproba a túa conexión a Internet e inténtao de novo.",
+			"button": "Intentar de novo"
+		},
+		"done": {
+			"title": "Grazas por contribuíres con Lexica!",
+			"button": "Volver á páxina de inicio"
+		},
+		"skip": {
+			"title": "Omitiuse a tarxeta.",
+			"button": "Desfacer"
+		},
+		"warning": {
+			"title": "Queres finalizar esta sesión de contribucións?",
+			"content": "Traballaches en",
+			"subtext": "ningunha tarxeta ata o de agora. | tarxeta ata o de agora. | tarxetas ata o de agora.",
+			"button1": "Seguir editando",
+			"button2": "Rematar a sesión",
+			"loading": "Rematando a sesión..."
+		},
+		"blank": {
+			"title": "Non hai tarxetas que se poidan volver cubrir neste momento.",
+			"button": "Volver á páxina de inicio"
+		},
+		"emptyStatement": "Non se atopou a declaración",
+		"emptyDescriptionHead": "Non se atopou a definición en",
+		"emptyDescription": "Non se atopou a definición"
+	},
+	"about": {
+		"title": "Acerca de",
+		"content1": "Editar datos lexicográficos en Wikidata a través de dispositivos móbiles pode ser un reto para algunhas persoas. Por iso se creou Lexica. O noso obxectivo é sinxelo: facer que a edición sexa máis sinxela e accesible para calquera, en todas partes.",
+		"content2": "Lexica é unha ferramenta innovadora deseñada para que poidas contribuír sen problemas aos datos lexicográficos de Wikidata. Como ferramenta web optimizada para dispositivos móbiles, Lexica permíteche conectar rapidamente acepcións de lexemas a elementos de Wikidata a través dunha interface intuitiva con tarxetas.",
+		"content3": "Wikicollabs desenvolve Lexica en colaboración con Wikimedia Deutschland, como parte da Wikidata Software Collaboration, co apoio dunha subvención do Arcadia Philanthropic Fund.",
+		"content4": "Comprometémonos a desenvolver Lexica continuamente para mellorarmos a experiencia de usuario. Para obter máis información sobre o noso proxecto, visita {link}.",
+		"page": "Páxina do proxecto Lexica en Wikidata"
+	},
+	"privacy": {
+		"header": "Privacidade",
+		"title1": "Política de protección de datos",
+		"version": "Versión",
+		"section1": "Lexica completou a súa fase de desenvolvemento e agora está nunha versión estable. A política de protección de datos pode actualizarse segundo sexa necesario. Ao utilizares Lexica, considérase que os usuarios aceptan esta política de protección de datos.",
+		"title2": "Información sobre a recompilación de datos persoais",
+		"section2": {
+			"point1": "Lexica non almacena ningún dato asociado cos usuarios, como (pero sen limitarse a isto) nomes de usuario, contrasinais, enderezos IP, historial de interacción e estatísticas de uso.",
+			"point2": "Lexica só obtén autorización para realizar accións en nome dos usuarios cando estes inician sesión a través da súa conta de usuario da Wikimedia.",
+			"point3": "Os rexistros de contribucións dos usuarios almacenaranse en Wikidata, que está suxeito á {privacidade}",
+			"privacy": "norma de protección de datos da Fundación Wikimedia"
+		},
+		"title3": "Licenza",
+		"section3": "Consulta a páxina da {license}.",
+		"license": "licenza",
+		"title4": "Cambios na política de protección de datos",
+		"section4": {
+			"point1": "Lexica pode cambiar a súa política de protección de datos en calquera momento.",
+			"point2": "Antes de realizar cambios na política de protección de datos, Lexica notificará previamente os cambios antes de que se implementen de forma permanente.",
+			"point3": "As notificacións dos cambios feitos á política de protección de datos anunciaranse a través de Lexica.",
+			"point4": "Hai un período de tempo denominado «período de espera», que abrangue sete días despois do anuncio do cambio na política de protección de datos ata a implementación da nova política de protección de datos.",
+			"point5": "Lexica recomenda aos usuarios que comproben regularmente os cambios na política de protección de datos que se pode atopar nesta páxina, na páxina de usuario de Wikidata e na norma de protección de datos da Fundación Wikimedia.",
+			"point6": "Ao continuar a utilizar Lexica despois de que cambie a política de protección de datos, o usuario acepta o cambio revisado na política de protección de datos."
+		}
+	},
+	"license": {
+		"title1": "Licenza",
+		"section1": {
+			"content1": "{lexica} e todos os seus compoñentes publícanse baixo a licenza {gnu} (GNU GPL-2.0). Todos os datos engadidos con esta ferramenta almacenaranse en Wikidata baixo a licenza {cc0} (CC0).",
+			"content2": "O código fonte de Lexica está dispoñible nos seguintes repositorios:"
+		},
+		"title2": "Compoñentes de código aberto",
+		"section2": {
+			"content": "Os seguintes son os compoñentes de código aberto que emprega Lexica:",
+			"subtitle1": "Bibliotecas e frameworks de frontend",
+			"subtitle2": "Bibliotecas e frameworks de backend",
+			"subtitle3": "Tipos de letra"
+		}
+	},
+	"aria": {
+		"account": "Conta",
+		"backToHome": "Volver ao inicio",
+		"showLexemeDetail": "Mostrar os detalles do lexema",
+		"showItemDetail": "Mostrar os detalles do elemento",
+		"back": "Volver",
+		"close": "Pechar"
+	}
+}
