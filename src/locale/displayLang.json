@@ -49,6 +49,12 @@
       "disabled": false
     },
     {
+      "label": "Galego",
+      "value": "gl",
+      "dir": "ltr",
+      "disabled": false
+    },
+    {
       "label": "Lëtzebuergesch",
       "value": "lb",
       "dir": "ltr",
