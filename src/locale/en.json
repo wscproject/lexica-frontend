@@ -77,7 +77,7 @@
     },
     "hyphenation": {
       "title": "Hyphenation",
-      "description": "Divide a Lexeme into its syllables"
+      "description": "Mark the positions where a Lexeme can be hyphenated"
     },
     "cancel": "Cancel",
     "apply": "Apply"
