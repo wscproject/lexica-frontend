@@ -153,6 +153,15 @@
   font-style: normal;
   font-display: swap;
 }
+
+@font-face {
+  font-family: "NotoSansGurmukhi";
+  src: url("/font/NotoSansGurmukhi-VariableFont_wdth.woff2") format("woff2");
+  font-weight: 100 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: "NotoSansSC";
   src: url("/font/NotoSansSC-VariableFont_wght.woff2") format("woff2");
