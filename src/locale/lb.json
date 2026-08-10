@@ -76,7 +76,7 @@
 		},
 		"hyphenation": {
 			"title": "Wuerttrennung",
-			"description": "Spléckt e Lexeem a Silben op"
+			"description": "Markéiert d'Positiounen, wou e Lexeem mat engem Bindestréch getrennt ka ginn"
 		},
 		"cancel": "Ofbriechen",
 		"apply": "Uwenden"
