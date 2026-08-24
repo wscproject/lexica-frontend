@@ -76,7 +76,7 @@
 		},
 		"hyphenation": {
 			"title": "Separación en sílabas",
-			"description": "Divide un lexema nas súas sílabas"
+			"description": "Marca as posicións nas se pode dividir un lexema mediante guións"
 		},
 		"cancel": "Cancelar",
 		"apply": "Aplicar"
@@ -114,7 +114,7 @@
 			"point2Title": "Número da tarxeta",
 			"point2Content": "mostra a secuencia das tarxetas que se mostran actualmente.",
 			"point3Title": "Xesto da tarxeta",
-			"point3Content": "desliza cara arriba na cabeceira da tarxeta para omitires a tarxeta actual.",
+			"point3Content": "desliza cara a arriba na cabeceira da tarxeta para omitires a tarxeta actual.",
 			"point4Title": "Botón de omitir",
 			"point4Content": "utiliza este botón como outra forma de omitir unha tarxeta.",
 			"point5Title": "Rematar a sesión",
